@@ -5,11 +5,13 @@ module Treat
         # Require the Ruby-Java bridge.
         silently do
           require 'rjb'
-          jar = "#{Treat.bin}/stanford_parser/stanford-parser.jar"
-          unless File.readable?(jar)
-            raise "Could not find stanford parser JAR file in #{jar}."+
-            " You may need to set Treat.bin to a custom value."
+          jar = "#{Treat.bin}/stanford-parser*/stanford-parser*.jar"
+          jars = Dir.glob(jar)
+          if jars.empty? || !File.readable?(jars[0])
+            raise "Could not find stanford parser JAR file (lookin in #{jar})."+
+            " You may need to manually download the JAR files and/or set Treat.bin."
           end
+          ::Rjb::load(jars[0])
           DocumentPreprocessor =
           ::Rjb::import('edu.stanford.nlp.process.DocumentPreprocessor')
           StringReader = ::Rjb::import('java.io.StringReader')

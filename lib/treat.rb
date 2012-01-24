@@ -38,7 +38,7 @@ module Treat
   if RUBY_VERSION <= '1.9'
     raise 'Treat requires Ruby 1.9 or higher.'
   end
-
+  
   # The current version of Treat.
   VERSION = "0.1.1"
 
@@ -78,14 +78,14 @@ module Treat
   def self.test; @@test; end
   def self.tmp; @@tmp; end
 
-  # Stype the default language to english.
+  # Set the default language to english.
   self.default_language = :eng
-  # Stype the default encoding to utf-8.
+  # Set the default encoding to utf-8.
   self.default_encoding = :utf_8
   # Turn language detection off by default.
   self.detect_language = false
-  # Dtypeect the language once per text by default.
+  # Detect the language once per text by default.
   self.language_detection_level = :text
-  # Stype the bin path to the gem's bin folder by default.
+  # Set the bin path to the gem's bin folder by default.
   self.bin = @@bin  
 end

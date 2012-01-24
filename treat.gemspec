@@ -8,12 +8,13 @@ Gem::Specification.new do |s|
   s.version     = Treat::VERSION
   s.authors     = ['Louis Mullie']
   s.email       = ['louis.mullie@gmail.com']
-  s.homepage    = 'http://www.github.com/louismullie/nat'
+  s.homepage    = 'https://github.com/louismullie/treat'
   s.summary     = %q{ Text retrieval, extraction and annotation toolkit }
   s.description = %q{ Treat is a toolkit for text retrieval, information extraction and natural language processing. }
   
   # Add Ruby, Xml and Txt files.
-  s.files = Dir['lib/**/*.rb'] + Dir['lib/**/*.xml'] + Dir['lib/**/*.txt']
+  s.files = Dir['lib/**/*'] + Dir['test/**/*'] + Dir['examples/**/*'] +
+  Dir['bin/**/*'] + ['README', 'TODO', 'LICENSE', 'INSTALL']
   
   # Runtime dependencies
   s.add_runtime_dependency 'rjb'

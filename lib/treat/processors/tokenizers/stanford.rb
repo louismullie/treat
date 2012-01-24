@@ -6,11 +6,13 @@ module Treat
         silently do
           require 'rjb'
           # Load the Stanford Parser Java files.
-          jar = "#{Treat.bin}/stanford_parser/stanford-parser.jar"
-          unless File.readable?(jar)
-            raise "Could not find stanford parser JAR file in #{jar}."+
-            " You may need to set Treat.bin to a custom value."
+          jar = "#{Treat.bin}/stanford-parser/stanford-parser.jar"
+          jars = Dir.glob(jar)
+          if jars.empty? || !File.readable?(jars[0])
+            raise "Could not find stanford parser JAR file (looking in #{jar})."+
+            " You may need to manually download the JAR files and/or set Treat.bin."
           end
+          ::Rjb::load(jars[0])
           # Load the Stanford Parser classes.
           PTBTokenizer = ::Rjb::import('edu.stanford.nlp.process.PTBTokenizer')
           CoreLabelTokenFactory = ::Rjb::import('edu.stanford.nlp.process.CoreLabelTokenFactory')

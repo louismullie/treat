@@ -5,15 +5,13 @@ module Treat
         # Require the Ruby-Java bridge.
         silently do
           require 'rjb'
-          jar = "#{Treat.bin}/stanford_tagger/stanford-postagger.jar"
-          unless File.readable?(jar)
-            raise "Could not find stanford tagger JAR file in #{jar}."+
-            " You may need to set Treat.bin to a custom value."
+          jar = "#{Treat.bin}/stanford-tagger*/stanford-postagger*.jar"
+          jars = Dir.glob(jar)
+          if jars.empty? || !File.readable?(jars[0])
+            raise "Could not find stanford tagger JAR file (looking in #{jar})."+
+            " You may need to manually download the JAR files and/or set Treat.bin."
           end
-          Rjb::load(
-            "#{Treat.bin}/stanford_tagger/stanford-postagger.jar", 
-            ['-Xms256M', '-Xmx512M']
-          )
+          Rjb::load(jars[0], ['-Xms256M', '-Xmx512M'])
           MaxentTagger = ::Rjb::import('edu.stanford.nlp.tagger.maxent.MaxentTagger')
           Word = ::Rjb::import('edu.stanford.nlp.ling.Word')
           List = ::Rjb::import('java.util.ArrayList')
@@ -43,8 +41,8 @@ module Treat
           else
             model = LanguageToModel[lang]
             if model.nil?
-              raise Treat::Exception "There exists no Stanford" +
-              "tagger model for language #{lang}."
+              raise Treat::Exception, "There exists no Stanford tagger model for " +
+              "the #{Treat::Resources::Languages.describe(lang)} language ."
             end
           end
           # Reinitialize the tagger if the options have changed.
@@ -53,13 +51,15 @@ module Treat
             @@taggers[lang] = nil # Reset the tagger
           end
           if @@taggers[lang].nil?
-            model = "#{Treat.bin}/stanford_tagger/models/#{model}"
-            unless File.readable?(model)
-              raise "Could not find a tagger model for language #{lang}: looking in #{model}."
+            model = "#{Treat.bin}/stanford-tagger*/models/#{model}"
+            models = Dir.glob(model)
+            if models.empty? || !File.readable?(models[0])
+              raise "Could not find a tagger model for the " +
+              "#{Treat::Resources::Languages.describe(lang)}: looking in #{model}."
             end
             silence_streams(STDOUT, STDERR) do
               @@taggers[lang] =
-              MaxentTagger.new(model)
+              MaxentTagger.new(models[0])
             end
           end
           list = List.new

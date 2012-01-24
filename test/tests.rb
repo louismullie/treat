@@ -1,6 +1,5 @@
 require 'test/unit'
 
-#$LOAD_PATH << '/ruby/treat/test/' # Remove for production
 $:.unshift File.join(File.dirname(__FILE__), "..", "lib")
 
 require 'treat'

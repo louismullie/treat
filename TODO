@@ -15,6 +15,9 @@
 - Ferret, Natural Inputs
 - Use consistently delegate
 - Text becomes section
+- Remove top level
+- Loading multiple stanford.
+- Tokenized sentences are not parsed
 
 === Eventually
 

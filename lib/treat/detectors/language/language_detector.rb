@@ -9,7 +9,8 @@ module Treat
             dlvl = Treat.language_detection_level
             if (Entities.rank(entity.type) < Entities.rank(dlvl)) &&
                entity.has_parent?
-                return entity.ancestor_with_type(dlvl).language
+               anc = entity.ancestor_with_type(dlvl)
+               return anc.language if anc
             end
           end
         end

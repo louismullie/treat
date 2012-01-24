@@ -23,7 +23,7 @@ module Treat
           properties.set_property('ner.model.3class', '/ruby/treat/bin/stanford/classifiers/all.3class.distsim.crf.ser.gz')
           properties.set_property('ner.model.7class', '/ruby/treat/bin/stanford/classifiers/muc.7class.distsim.crf.ser.gz')
           properties.set_property('ner.model.MISCclass', '/ruby/treat/bin/stanford/classifiers/conll.4class.distsim.crf.ser.gz')
-          properties.set_property('parser.model', '/ruby/treat/bin/stanford_parser/grammar/englishPCFG.ser.gz')
+          properties.set_property('parser.model', '/ruby/treat/bin/stanford-parser/grammar/englishPCFG.ser.gz')
           silence_stream(STDOUT) do
             pipeline = StanfordCoreNLP.new(properties)
           end

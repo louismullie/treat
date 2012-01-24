@@ -4,21 +4,23 @@ module Treat
       class Stanford
         # Require the Ruby-Java bridge.
         silently { require 'rjb' }
-        jar = "#{Treat.bin}/stanford_parser/stanford-parser.jar"
-        unless File.readable?(jar)
-          raise "Could not find stanford parser JAR file in #{jar}."+
-          " You may need to set Treat.bin to a custom value."
+        jar = "#{Treat.bin}/stanford-parser*/stanford-parser*.jar"
+        jars = Dir.glob(jar)
+        if jars.empty? || !File.readable?(jars[0])
+          raise "Could not find stanford parser JAR file (looking in #{jar})"+
+          " You may need to manually download the JAR files and/or set Treat.bin."
         end
-        Rjb::load(jar, ['-Xms256M', '-Xmx512M'])
+        Rjb::load(jars[0], ['-Xms256M', '-Xmx512M'])
         LexicalizedParser = ::Rjb::import('edu.stanford.nlp.parser.lexparser.LexicalizedParser')
         @@parsers = {}
         def self.parse(entity, options = {})
-          lang = Treat::Resources::Languages.describe(entity.language).to_s
-          pcfg = "#{Treat.bin}/stanford_parser/grammar/#{lang.upcase}PCFG.ser.gz"
-          unless File.readable?(pcfg)
-            raise "Could not find a language model for #{lang}: looking in #{pcfg}."
+          lang = Treat::Resources::Languages.describe(entity.language).to_s.upcase
+          pcfg = "#{Treat.bin}/stanford-parser*/grammar/#{lang.upcase}PCFG.ser.gz"
+          pcfgs = Dir.glob(pcfg)
+          if pcfgs.empty? || !File.readable?(pcfgs[0])
+            raise "Could not find a language model for #{lang.downcase} (looking in #{pcfg})."
           end
-          @@parsers[lang] ||= LexicalizedParser.new(pcfg) # Fix - check that exists.
+          @@parsers[lang] ||= LexicalizedParser.new(pcfgs[0])
           parse = @@parsers[lang].apply(entity.to_s)
           entity.remove_all!          
           recurse(parse, entity)
@@ -41,7 +43,7 @@ module Treat
               return recurse(java_node.children[0], ruby_node)
             end
             java_node.children.each do |java_child|
-              dependencies = java_child.dependencies.iterator
+              # dependencies = java_child.dependencies.iterator
               # while dependencies.has_next
                 #dependency = dependencies.next
               # end
