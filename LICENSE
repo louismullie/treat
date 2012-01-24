@@ -1,0 +1,28 @@
+Treat - Text Retrieval and Annotation Toolkit
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Author: Louis-Antoine Mullie (louis.mullie@gmail.com). Copyright 2012.
+
+Non-trivial amount of code has been incorporated and modified from
+other libraries, specifically for the following files:
+
+ - processors/tokenizers/macintyre.rb - Utiyama Masao (Ruby License)
+ - processors/tokenizers/tactful.rb - Matthew Bunday (GPL license)
+ - Inflectors/lemmatizers/e_lemma.rb - Utiyama Masao (GPL license)
+ - processors/tokenizers/perl.rb - Todd A. Fisher (MIT License)
+ - processors/tokenizers/punkt.rb - Steven Bird Edward Loper and Joel Nothman (Apache 2.0 license),
+ - extractors/topics/reuters.rb - Mark Watson (GPL license)
+ - inflectors/stemmers/porter.rb - Ray Pereda (No license information)
+ - tree.rb - Partyl based on work by 

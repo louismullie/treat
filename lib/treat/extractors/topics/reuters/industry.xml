@@ -1,0 +1,2717 @@
+<categories name="industry">
+ <word cat="TEXTILE INDUSTRY" name="berdan" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="dynic" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="omikenshi" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="thomaston" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="vilen" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="kanbo" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="fieldcrest" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="tecsyn" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="keori" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="matsuka" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="orimono" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="nisshinbo" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="nfy" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="ameriwood" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="kowa" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="lentex" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="kiito" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="texfi" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="aderan" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="seimo" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="toyobo" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="seiren" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="boseki" score="1.000000" />
+ <word cat="TEXTILE INDUSTRY" name="maruta" score="1.000000" />
+ <word cat="RETAIL DISTRIBUTION" name="selfix" score="1.000000" />
+ <word cat="ELECTRONIC OFFICE EQUIPMENT" name="coregi" score="1.000000" />
+ <word cat="ELECTRONIC OFFICE EQUIPMENT" name="hokubu" score="1.000000" />
+ <word cat="ELECTRONIC OFFICE EQUIPMENT" name="mutoh" score="1.000000" />
+ <word cat="ELECTRONIC OFFICE EQUIPMENT" name="katsuragawa" score="1.000000" />
+ <word cat="ELECTRONIC OFFICE EQUIPMENT" name="ensec" score="1.000000" />
+ <word cat="ELECTRONIC OFFICE EQUIPMENT" name="kurogan" score="1.000000" />
+ <word cat="ELECTRONIC OFFICE EQUIPMENT" name="telepanel" score="1.000000" />
+ <word cat="ELECTRONIC OFFICE EQUIPMENT" name="directmail" score="1.000000" />
+ <word cat="REINSURANCE" name="kielholz" score="1.000000" />
+ <word cat="REINSURANCE" name="renaissancer" score="1.000000" />
+ <word cat="REINSURANCE" name="unioria" score="1.000000" />
+ <word cat="PLASTICS PRODUCTS" name="wavelock" score="1.000000" />
+ <word cat="PLASTICS PRODUCTS" name="tsutsunaka" score="1.000000" />
+ <word cat="PLASTICS PRODUCTS" name="buffton" score="1.000000" />
+ <word cat="PLASTICS PRODUCTS" name="tarkett" score="1.000000" />
+ <word cat="PLASTICS PRODUCTS" name="boryszew" score="1.000000" />
+ <word cat="PLASTICS PRODUCTS" name="essef" score="1.000000" />
+ <word cat="FILM PRODUCTION AND DISTRIBUTION" name="cinar" score="1.000000" />
+ <word cat="FILM PRODUCTION AND DISTRIBUTION" name="scanbox" score="1.000000" />
+ <word cat="FILM PRODUCTION AND DISTRIBUTION" name="cinemastar" score="1.000000" />
+ <word cat="FILM PRODUCTION AND DISTRIBUTION" name="showscan" score="1.000000" />
+ <word cat="FILM PRODUCTION AND DISTRIBUTION" name="carmik" score="1.000000" />
+ <word cat="FILM PRODUCTION AND DISTRIBUTION" name="lanacan" score="1.000000" />
+ <word cat="FILM PRODUCTION AND DISTRIBUTION" name="shochiku" score="1.000000" />
+ <word cat="FILM PRODUCTION AND DISTRIBUTION" name="gamework" score="1.000000" />
+ <word cat="FILM PRODUCTION AND DISTRIBUTION" name="nikkatsu" score="1.000000" />
+ <word cat="RAILWAY EQUIPMENT" name="motivepow" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="nuplex" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="calnet" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="ovon" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="daicel" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="kaneka" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="landec" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="quadrax" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="zeon" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="valqua" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="geon" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="recticel" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="spartech" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="viskas" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="matritech" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="chempow" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="schawk" score="1.000000" />
+ <word cat="SYNTHETIC RESINS, POLYMERS AND PLASTICS" name="sheldahl" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="enscor" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="mulialand" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="tbi" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="unibail" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="rhl" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="nhp" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="sekiwa" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="yuraku" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="fairyoung" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="prentiss" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="catellu" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="capcount" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="hinoki" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="primetown" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="winfoong" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="hovnanian" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="frogmor" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="withycomb" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="goldon" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="riccia" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="cdil" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="vornado" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="lennar" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="zheny" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="rakutenchi" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="triplen" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="paradiso" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="kaneichi" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="castrum" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="multistack" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="minowa" score="1.000000" />
+ <word cat="REAL ESTATE DEALING" name="chikagai" score="1.000000" />
+ <word cat="HOUSEHOLD TEXTILES" name="gumussuyu" score="1.000000" />
+ <word cat="HOUSEHOLD TEXTILES" name="dakotah" score="1.000000" />
+ <word cat="HOUSEHOLD TEXTILES" name="novita" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="sanmina" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="yuden" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="orbotech" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="shizuki" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="ddl" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="cmk" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="sigmatron" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="hadco" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="avx" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="mrv" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="elna" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="kemet" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="sumida" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="eltech" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="firston" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="capacit" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="vishai" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="shinmei" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="bowthorp" score="1.000000" />
+ <word cat="PASSIVE COMPONENTS, PRINTED CIRCUITS" name="intertechnolog" score="1.000000" />
+ <word cat="FOOTWEAR" name="himiko" score="1.000000" />
+ <word cat="BREWING" name="olvi" score="1.000000" />
+ <word cat="BREWING" name="yanj" score="1.000000" />
+ <word cat="BREWING" name="labatt" score="1.000000" />
+ <word cat="BREWING" name="redhook" score="1.000000" />
+ <word cat="BREWING" name="boxmeer" score="1.000000" />
+ <word cat="BREWING" name="lansio" score="1.000000" />
+ <word cat="BREWING" name="vuursteen" score="1.000000" />
+ <word cat="HOTELS AND ACCOMMODATION" name="darowa" score="1.000000" />
+ <word cat="HOTELS AND ACCOMMODATION" name="cwtc" score="1.000000" />
+ <word cat="HOTELS AND ACCOMMODATION" name="lodgenet" score="1.000000" />
+ <word cat="HOTELS AND ACCOMMODATION" name="capcount" score="1.000000" />
+ <word cat="HOTELS AND ACCOMMODATION" name="supertel" score="1.000000" />
+ <word cat="HOTELS AND ACCOMMODATION" name="hasson" score="1.000000" />
+ <word cat="HOTELS AND ACCOMMODATION" name="budgetel" score="1.000000" />
+ <word cat="HOTELS AND ACCOMMODATION" name="micromus" score="1.000000" />
+ <word cat="HOTELS AND ACCOMMODATION" name="amerihost" score="1.000000" />
+ <word cat="HOTELS AND ACCOMMODATION" name="resnet" score="1.000000" />
+ <word cat="HOTELS AND ACCOMMODATION" name="amerisuit" score="1.000000" />
+ <word cat="HOTELS AND ACCOMMODATION" name="boykin" score="1.000000" />
+ <word cat="HOTELS AND ACCOMMODATION" name="sunston" score="1.000000" />
+ <word cat="FERTILISERS" name="agrium" score="1.000000" />
+ <word cat="FERTILISERS" name="nittoh" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="yoshinoya" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="ihop" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="cheesecak" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="plenu" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="denamerica" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="roadhous" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="bugaboo" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="schoenbaum" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="fairwood" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="blimpi" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="genki" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="autogril" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="jollibe" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="fuddruck" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="woodroast" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="applebe" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="shidax" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="diedrich" score="1.000000" />
+ <word cat="RESTAURANTS, CAFES AND FAST FOOD" name="edosawa" score="1.000000" />
+ <word cat="PENSION FUNDS" name="provida" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="securindo" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="pendapatan" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="superpundi" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="intru" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="reksa" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="arthatama" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="jayakarta" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="eficorp" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="obligasi" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="indovest" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="indosurya" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="fleksi" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="glg" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="asjaya" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="saham" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="yudistira" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="syariah" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="tetap" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="critef" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="seruni" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="mantap" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="selara" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="khatulistiwa" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="supersaham" score="1.000000" />
+ <word cat="UNIT TRUSTS AND MUTUAL FUNDS" name="kombinasi" score="1.000000" />
+ <word cat="MEAT PROCESSING" name="ruokatalo" score="1.000000" />
+ <word cat="MEAT PROCESSING" name="itoham" score="1.000000" />
+ <word cat="RADAR AND ELECTRONIC EQUIPMENT" name="elsburi" score="1.000000" />
+ <word cat="RADAR AND ELECTRONIC EQUIPMENT" name="lowranc" score="1.000000" />
+ <word cat="RADAR AND ELECTRONIC EQUIPMENT" name="alphastar" score="1.000000" />
+ <word cat="PRINTING INKS" name="lawter" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="amtran" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="lhag" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="grinstein" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="leul" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="vasp" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="lcag" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="rtkf" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="mergeglob" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="bawc" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="neglin" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="schorderet" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="icaro" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="cremad" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="jugoslovenski" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="cargolux" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="airplu" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="aerotransport" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="gitner" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="rftk" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="citylin" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="waybil" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="snagfa" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="okulov" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="traxon" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="mordvinov" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="asselin" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="amerijet" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="schout" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="uspnt" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="cempella" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="codeshar" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="kreindler" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="vlm" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="sovich" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="althen" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="swisscargo" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="ccair" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="peb" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="oaa" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="transbrasil" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="lhr" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="jnb" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="arpei" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="westjet" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="reutling" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="luftverkehr" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="winet" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="kanatta" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="kazair" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="blacklock" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="wellhun" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="petn" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="snpl" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="hushkit" score="1.000000" />
+ <word cat="AIR TRANSPORT" name="airclaim" score="1.000000" />
+ <word cat="FORESTRY" name="hitcom" score="1.000000" />
+ <word cat="ORGANIC CHEMICALS INCL. PETROCHEMICALS" name="polyta" score="0.996721" />
+ <word cat="ORGANIC CHEMICALS INCL. PETROCHEMICALS" name="boak" score="1.000000" />
+ <word cat="ORGANIC CHEMICALS INCL. PETROCHEMICALS" name="catalytica" score="1.000000" />
+ <word cat="ORGANIC CHEMICALS INCL. PETROCHEMICALS" name="zaxi" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="capcount" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="angerstein" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="wellsford" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="equitilink" score="0.993939" />
+ <word cat="INVESTMENT TRUSTS" name="thornburg" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="micromus" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="glimcher" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="criimi" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="macerich" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="shurgard" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="carramerica" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="reckson" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="newsweb" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="vastn" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="jdn" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="multistack" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="spieker" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="amli" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="biotal" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="cwm" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="evenbrook" score="1.000000" />
+ <word cat="INVESTMENT TRUSTS" name="herro" score="1.000000" />
+ <word cat="PAPER AND BOARD CONVERSION" name="boxmor" score="1.000000" />
+ <word cat="PAPER AND BOARD CONVERSION" name="urom" score="1.000000" />
+ <word cat="PAPER AND BOARD CONVERSION" name="aptargroup" score="1.000000" />
+ <word cat="PAPER AND BOARD CONVERSION" name="empaqu" score="1.000000" />
+ <word cat="PAPER AND BOARD CONVERSION" name="crisoba" score="1.000000" />
+ <word cat="PAPER AND BOARD CONVERSION" name="dryper" score="1.000000" />
+ <word cat="VENTURE CAPITAL" name="iddison" score="1.000000" />
+ <word cat="VENTURE CAPITAL" name="agab" score="1.000000" />
+ <word cat="VENTURE CAPITAL" name="dnib" score="1.000000" />
+ <word cat="COMMERCIAL VEHICLES" name="sharyo" score="1.000000" />
+ <word cat="PASSENGER CARS" name="autobianchi" score="1.000000" />
+ <word cat="PASSENGER CARS" name="wavrin" score="1.000000" />
+ <word cat="PASSENGER CARS" name="pininfarina" score="1.000000" />
+ <word cat="PASSENGER CARS" name="wiedek" score="1.000000" />
+ <word cat="PASSENGER CARS" name="coachmen" score="1.000000" />
+ <word cat="PASSENGER CARS" name="starcraft" score="1.000000" />
+ <word cat="PASSENGER CARS" name="unra" score="1.000000" />
+ <word cat="PASSENGER CARS" name="riutta" score="1.000000" />
+ <word cat="PASSENGER CARS" name="catera" score="1.000000" />
+ <word cat="PASSENGER CARS" name="robinet" score="1.000000" />
+ <word cat="PASSENGER CARS" name="paefgen" score="1.000000" />
+ <word cat="PASSENGER CARS" name="otosan" score="1.000000" />
+ <word cat="PASSENGER CARS" name="valad" score="1.000000" />
+ <word cat="PASSENGER CARS" name="minivehicl" score="1.000000" />
+ <word cat="PASSENGER CARS" name="onstar" score="1.000000" />
+ <word cat="PASSENGER CARS" name="mmta" score="1.000000" />
+ <word cat="PASSENGER CARS" name="jada" score="1.000000" />
+ <word cat="PASSENGER CARS" name="anfavea" score="1.000000" />
+ <word cat="PASSENGER CARS" name="bilstatistik" score="1.000000" />
+ <word cat="PASSENGER CARS" name="taschk" score="1.000000" />
+ <word cat="PASSENGER CARS" name="fcai" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="omron" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="ultratech" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="esterlin" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="transcrypt" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="thermospectra" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="tektronix" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="ltx" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="satcon" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="keithlei" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="voltek" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="genrad" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="instron" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="nemic" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="orbot" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="viisag" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="kollmorgen" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="iteq" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="kasuga" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="microtest" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="stavelei" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="halma" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="energoaparatura" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="electrogla" score="1.000000" />
+ <word cat="ELECTRICAL INSTUMENTS, CONTROL SYSTEMS" name="tekelec" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="spieker" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="eficorp" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="criimi" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="compscript" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="ibel" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="thornburg" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="equitilink" score="0.993939" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="asimco" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="tetap" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="whitefield" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="arthatama" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="securindo" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="huvitusfond" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="obligasi" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="syariah" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="multistack" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="iddison" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="angerstein" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="capcount" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="monadelph" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="newsweb" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="supersaham" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="norvestia" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="superpundi" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="amli" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="pendapatan" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="yudistira" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="agab" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="afei" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="djerriwarrh" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="dnib" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="bankar" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="milkirk" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="macerich" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="shurgard" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="yse" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="vastn" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="jayakarta" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="glimcher" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="korona" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="seruni" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="selara" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="ectec" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="picic" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="khatulistiwa" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="horejsi" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="jdn" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="kombinasi" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="glg" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="provida" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="intru" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="cwm" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="reckson" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="indosurya" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="wellsford" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="mantap" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="saham" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="herro" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="umbono" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="asjaya" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="fleksi" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="indovest" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="biotal" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="micromus" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="lemarn" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="carramerica" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="critef" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="reksa" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="powierniczych" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="lemvest" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="choiseul" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="waiviata" score="1.000000" />
+ <word cat="TRUSTS, SECURITIES INVESTMENT" name="evenbrook" score="1.000000" />
+ <word cat="EXTRACTION OF MINERALS" name="kdc" score="1.000000" />
+ <word cat="EXTRACTION OF MINERALS" name="quarrier" score="1.000000" />
+ <word cat="EXTRACTION OF MINERALS" name="moonston" score="1.000000" />
+ <word cat="EXTRACTION OF MINERALS" name="moonstar" score="1.000000" />
+ <word cat="EXTRACTION OF MINERALS" name="marcorp" score="1.000000" />
+ <word cat="EXTRACTION OF MINERALS" name="minaco" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="intro" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="naschek" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="quadrum" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="hannoverisch" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="rheinboden" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="jdb" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="schiffsbank" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="jcg" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="ffy" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="crv" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="mego" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="contifinanci" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="depfa" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="newcourt" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="bancor" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="firstfeder" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="groszek" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="aapr" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="firstplu" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="bsoc" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="killing" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="autobond" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="rinehart" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="sbab" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="nichiboshin" score="1.000000" />
+ <word cat="NON-BANK CREDIT INSTITUTIONS" name="cadtic" score="1.000000" />
+ <word cat="TEXTILE MACHINERY" name="janom" score="1.000000" />
+ <word cat="TEXTILE MACHINERY" name="tsudakoma" score="1.000000" />
+ <word cat="TEXTILE MACHINERY" name="tapistron" score="1.000000" />
+ <word cat="PAINTS" name="tencel" score="1.000000" />
+ <word cat="PAINTS" name="atomix" score="1.000000" />
+ <word cat="PAINTS" name="minwax" score="1.000000" />
+ <word cat="PAINTS" name="powdertech" score="1.000000" />
+ <word cat="PAINTS" name="ohka" score="1.000000" />
+ <word cat="GLASS FIBRE" name="hiner" score="1.000000" />
+ <word cat="LEATHER AND LEATHER GOODS" name="dragonfield" score="1.000000" />
+ <word cat="LEATHER AND LEATHER GOODS" name="melx" score="1.000000" />
+ <word cat="LEATHER AND LEATHER GOODS" name="chemiskor" score="1.000000" />
+ <word cat="SEWAGE DISPOSAL" name="corrpro" score="1.000000" />
+ <word cat="INORGANIC CHEMICALS" name="tayca" score="1.000000" />
+ <word cat="INORGANIC CHEMICALS" name="hakusui" score="1.000000" />
+ <word cat="INORGANIC CHEMICALS" name="toagosei" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="inacom" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="opsm" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="katsurao" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="autozon" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="suzutan" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="alrenco" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="botanika" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="shimamura" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="heilig" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="reiki" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="ganto" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="matsuyadenki" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="kojitu" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="mutow" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="supercut" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="halpin" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="suzui" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="successori" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="shinseido" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="stanhom" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="senshukai" score="1.000000" />
+ <word cat="SPECIALIST STORES" name="komeri" score="1.000000" />
+ <word cat="SLAUGHTERHOUSES AND MEAT PROCESSING" name="miesniek" score="1.000000" />
+ <word cat="TELEPHONE EQUIPMENT" name="telid" score="1.000000" />
+ <word cat="TELEPHONE EQUIPMENT" name="verilink" score="1.000000" />
+ <word cat="TELEPHONE EQUIPMENT" name="lxe" score="1.000000" />
+ <word cat="TELEPHONE EQUIPMENT" name="cowel" score="1.000000" />
+ <word cat="TELEPHONE EQUIPMENT" name="mosaix" score="1.000000" />
+ <word cat="TELEPHONE EQUIPMENT" name="datakei" score="1.000000" />
+ <word cat="TELEPHONE EQUIPMENT" name="vtel" score="1.000000" />
+ <word cat="TELEPHONE EQUIPMENT" name="mitel" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="keyspan" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="rioga" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="teja" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="karachaganak" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="distrigaz" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="saibu" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="comga" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="ceg" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="wicor" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="atmo" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="nicor" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="socalga" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="dekatherm" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="bleasel" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="cilcorp" score="1.000000" />
+ <word cat="GAS PRODUCTION" name="koatsu" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="kensei" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="zynaxi" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="fonar" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="maxxim" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="biom" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="respiron" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="endocar" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="cardiogenesi" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="acuson" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="danek" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="avecor" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="femrx" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="epix" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="laparoscop" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="ultron" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="ortholog" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="acrom" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="perclos" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="hemagen" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="empi" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="kawasumi" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="datascop" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="voxel" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="neogen" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="vidam" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="novametrix" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="angeion" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="gynecar" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="depotech" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="inbrand" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="moyco" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="sensicath" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="cardiosystem" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="vallen" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="hogi" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="neoprob" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="nitinol" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="digen" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="trimedyn" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="isolys" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="autopap" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="holog" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="physiometrix" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="bigmar" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="diasi" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="clintrial" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="angiojet" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="tecnol" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="incontrol" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="circon" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="thrombectomi" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="norland" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="marquest" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="haemonet" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="laserscop" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="electroscop" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="criticar" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="lasersight" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="cardiometr" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="xome" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="dentspli" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="biomet" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="polymedica" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="malachi" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="neopath" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="spectrasci" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="aradigm" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="ethicon" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="rehabilicar" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="endoson" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="invacar" score="0.994286" />
+ <word cat="MEDICAL EQUIPMENT" name="spectranet" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="adac" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="heartstream" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="danning" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="urologix" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="survivalink" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="depocyt" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="shofu" score="1.000000" />
+ <word cat="MEDICAL EQUIPMENT" name="teleflex" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="satera" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="rottlund" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="kanzai" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="bick" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="chodai" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="paliburg" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="amcorp" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="nvr" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="entrepos" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="sawako" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="gnomon" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="themeliodomi" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="gmd" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="kabuto" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="perini" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="kpbp" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="sasakura" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="jutaku" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="micromus" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="daikyo" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="tysan" score="1.000000" />
+ <word cat="CONSTRUCTION OF BUILDINGS" name="iwerk" score="1.000000" />
+ <word cat="REFUSE DISPOSAL" name="stericycl" score="1.000000" />
+ <word cat="REFUSE DISPOSAL" name="enviroserv" score="1.000000" />
+ <word cat="REFUSE DISPOSAL" name="covol" score="1.000000" />
+ <word cat="REFUSE DISPOSAL" name="greenman" score="1.000000" />
+ <word cat="REFUSE DISPOSAL" name="kimmin" score="1.000000" />
+ <word cat="REFUSE DISPOSAL" name="allwast" score="1.000000" />
+ <word cat="REFUSE DISPOSAL" name="virogroup" score="1.000000" />
+ <word cat="REFUSE DISPOSAL" name="newpark" score="1.000000" />
+ <word cat="BASIC INDUSTRIAL CHEMICALS" name="boshart" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="brpm" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="matoso" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="silvermin" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="itausa" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="hual" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="kelanama" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="intermet" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="klipton" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="aspoyhtyma" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="panafieu" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="containerlin" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="lassila" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="grana" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="valcor" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="unicem" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="winkelhaak" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="chromalloi" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="sequa" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="valhi" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="alcom" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="tikanoja" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="trindel" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="konzum" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="seillier" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="fimeus" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="manvil" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="thyssenga" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="hillenbrand" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="mouri" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="medo" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="izuhakon" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="stic" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="penwest" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="antah" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="bodson" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="heiton" score="1.000000" />
+ <word cat="DIVERSIFIED HOLDING COMPANIES" name="lisheen" score="1.000000" />
+ <word cat="ACCOUNTANCY AND AUDITING" name="softnet" score="1.000000" />
+ <word cat="ACCOUNTANCY AND AUDITING" name="avitar" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="schwing" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="jorex" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="ieoc" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="leonardit" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="nelayan" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="limn" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="tordi" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="coplex" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="karnali" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="opuc" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="toreador" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="cnooc" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="pttep" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="whipkei" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="yetagun" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="draupner" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="chauvco" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="enex" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="kemcor" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="wapet" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="urdinola" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="snamprogetti" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="aardoli" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="denburi" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="helmerich" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="viosca" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="xplor" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="alanco" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="yaloveha" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="alamco" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="panaco" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="japex" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="ensco" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="appea" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="enerfin" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="remp" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="nzog" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="durward" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="boepd" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="steihaug" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="europip" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="tyumenskaya" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="socdet" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="brida" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="schibevaag" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="patina" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="grandpuit" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="kaarsto" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="kollsn" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="seaunion" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="enermark" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="hugoton" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="feyzin" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="putilov" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="deeptech" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="abda" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="otwai" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="ngtl" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="qarun" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="bucke" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="yme" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="onako" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="khalda" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="xcl" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="aviva" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="tuer" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="derr" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="gnpc" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="ula" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="cordex" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="intercoast" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="funscap" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="drillship" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="petrocelt" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="stockdraw" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="mongstad" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="costilla" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="murzuk" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="mandoki" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="lodgepol" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="vagit" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="kapuni" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="macculloch" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="ecoga" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="mtoe" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="tgtl" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="petrofield" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="numac" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="ftx" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="ffk" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="lufeng" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="petsec" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="camisea" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="talysh" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="pacalta" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="midcoast" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="transwest" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="jungel" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="karachaganak" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="inpex" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="sibirsko" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="parkman" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="rigel" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="novaga" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="snorr" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="lilienth" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="callon" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="preussenelektra" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="mangistaumunaigaz" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="barauni" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="aqazadeh" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="macassa" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="mbpd" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="tuskar" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="timbali" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="bonrai" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="chirag" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="lenkoran" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="harcor" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="renno" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="lowden" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="kakap" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="tullow" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="brieant" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="norfra" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="digimu" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="fard" score="1.000000" />
+ <word cat="PETROLEUM AND TreatURAL GAS" name="atrion" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="tsx" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="tsushinki" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="martisdxx" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="sparton" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="maspro" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="intellical" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="votan" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="geotel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="wittlin" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="skybridg" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="transcom" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="pagemart" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="osicom" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="moscom" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="denkoh" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="periphon" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="uniden" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="molex" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="spanlink" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="kalov" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="iwatsu" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="brooktrout" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="yaesu" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="sanritsu" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="orckit" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="microdyn" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="chyron" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="telscap" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="timeplex" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="executon" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="davox" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="norstan" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="yokowo" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="virco" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS EQUIPMENT" name="forval" score="1.000000" />
+ <word cat="INSURANCE BROKERS AND AGENTS" name="hilb" score="1.000000" />
+ <word cat="INSURANCE BROKERS AND AGENTS" name="ockham" score="1.000000" />
+ <word cat="INSURANCE BROKERS AND AGENTS" name="rogal" score="1.000000" />
+ <word cat="STEEL COLD ROLLING AND FORMING" name="huntco" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="yamaka" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="meitec" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="nakamichi" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="linotyp" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="trima" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="zvei" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="industrieanlagenbau" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="elamex" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="accom" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="elcoteq" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="reptron" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="fermont" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="xeikon" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="spectrian" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="denpa" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="karmazin" score="1.000000" />
+ <word cat="ELECTRICAL AND ELECTRONIC ENGINEERING" name="relpol" score="1.000000" />
+ <word cat="THEATRES AND LIVE ENTERTAINMENT VENUES" name="mountasia" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="gakkan" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="beauticontrol" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="ciber" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="adcorp" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="norrel" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="tanseisha" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="ecco" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="technihir" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="payco" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="uniforc" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="damark" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="biotal" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="goldon" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="teletech" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="prosegur" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="addvantag" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="creyf" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="safecard" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="biken" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="warrantech" score="1.000000" />
+ <word cat="BUSINESS AND MEDIA SERVICES" name="vincam" score="1.000000" />
+ <word cat="DOCUMENT COPYING AND DUPLICATING" name="lason" score="1.000000" />
+ <word cat="MARKET RESEARCH AND PUBLIC RELATIONS" name="bellsystem" score="1.000000" />
+ <word cat="MANAGEMENT CONSULTANTS" name="medquist" score="1.000000" />
+ <word cat="AIRCRAFT MAINTENANCE" name="haeco" score="1.000000" />
+ <word cat="HOUSEHOLD TEXTILES" name="roberd" score="1.000000" />
+ <word cat="BOOK PRINTING AND PUBLISHING" name="leefung" score="1.000000" />
+ <word cat="SPACECRAFT MANUFACTURING" name="orbcomm" score="1.000000" />
+ <word cat="AIRPORTS AND AIR SUPPORT SERVICES" name="hactl" score="1.000000" />
+ <word cat="AIRPORTS AND AIR SUPPORT SERVICES" name="aeroporti" score="1.000000" />
+ <word cat="AIRPORTS AND AIR SUPPORT SERVICES" name="muc" score="1.000000" />
+ <word cat="CHEMISTS AND DRUG STORES" name="healthrit" score="1.000000" />
+ <word cat="CHEMISTS AND DRUG STORES" name="proxym" score="1.000000" />
+ <word cat="INDUSTRIAL ELECTRICAL EQUIPMENT" name="kimmon" score="1.000000" />
+ <word cat="INDUSTRIAL ELECTRICAL EQUIPMENT" name="trikon" score="1.000000" />
+ <word cat="INDUSTRIAL ELECTRICAL EQUIPMENT" name="denyo" score="1.000000" />
+ <word cat="INDUSTRIAL ELECTRICAL EQUIPMENT" name="newcor" score="1.000000" />
+ <word cat="INDUSTRIAL ELECTRICAL EQUIPMENT" name="orii" score="1.000000" />
+ <word cat="INDUSTRIAL ELECTRICAL EQUIPMENT" name="tescon" score="1.000000" />
+ <word cat="CERAMIC PRODUCTS" name="boch" score="1.000000" />
+ <word cat="CERAMIC PRODUCTS" name="villeroi" score="1.000000" />
+ <word cat="CERAMIC PRODUCTS" name="tyk" score="1.000000" />
+ <word cat="CERAMIC PRODUCTS" name="konoshima" score="1.000000" />
+ <word cat="CERAMIC PRODUCTS" name="deroma" score="1.000000" />
+ <word cat="FISHING" name="riopesca" score="1.000000" />
+ <word cat="FISHING" name="hoko" score="1.000000" />
+ <word cat="FISHING" name="selonda" score="1.000000" />
+ <word cat="FISHING" name="yonkyu" score="1.000000" />
+ <word cat="FISHING" name="kyokuyo" score="1.000000" />
+ <word cat="FISHING" name="maruha" score="1.000000" />
+ <word cat="TELEVISION AND RADIO" name="telemundo" score="1.000000" />
+ <word cat="TELEVISION AND RADIO" name="cfcf" score="1.000000" />
+ <word cat="TELEVISION AND RADIO" name="audiolux" score="1.000000" />
+ <word cat="TELEVISION AND RADIO" name="ectec" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="kolowich" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="logica" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="netliv" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="decisionon" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="cyberguard" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="quickrespons" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="nstor" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="quadram" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="amnex" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="gmi" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="whittman" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="intelligroup" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="cerner" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="biotal" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="goldon" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="usweb" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="evenbrook" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="gensym" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="vanstar" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="anicom" score="1.000000" />
+ <word cat="COMPUTER SERVICES" name="strategia" score="1.000000" />
+ <word cat="SHIPBUILDING" name="navai" score="1.000000" />
+ <word cat="SHIPBUILDING" name="kepphil" score="1.000000" />
+ <word cat="SHIPBUILDING" name="namura" score="1.000000" />
+ <word cat="SHIPBUILDING" name="sut" score="1.000000" />
+ <word cat="SHIPBUILDING" name="ksrc" score="1.000000" />
+ <word cat="SHIPBUILDING" name="wellensiek" score="1.000000" />
+ <word cat="ANIMAL FEED" name="nosan" score="1.000000" />
+ <word cat="RESIDENTIAL REAL ESTATE BUYING, SELLING" name="withycomb" score="1.000000" />
+ <word cat="MINERAL PRODUCTS" name="insteel" score="1.000000" />
+ <word cat="MINERAL PRODUCTS" name="kingspan" score="1.000000" />
+ <word cat="MINERAL PRODUCTS" name="ibstock" score="1.000000" />
+ <word cat="MINERAL PRODUCTS" name="juken" score="1.000000" />
+ <word cat="MINERAL PRODUCTS" name="takiron" score="1.000000" />
+ <word cat="MINERAL PRODUCTS" name="godson" score="1.000000" />
+ <word cat="MINERAL PRODUCTS" name="kunimin" score="1.000000" />
+ <word cat="ELECTRICAL EQUIPMENT FOR VEHICLES" name="tallei" score="1.000000" />
+ <word cat="TELEVISION PROGRAMME PRODUCTION" name="noterman" score="1.000000" />
+ <word cat="WINE PRODUCTION" name="vinicola" score="1.000000" />
+ <word cat="WINE PRODUCTION" name="icewin" score="1.000000" />
+ <word cat="WINE PRODUCTION" name="cvne" score="1.000000" />
+ <word cat="RETAIL REAL ESTATE DEALING" name="capcount" score="1.000000" />
+ <word cat="RETAIL REAL ESTATE DEALING" name="chikagai" score="1.000000" />
+ <word cat="NEWSPAPER PRINTING AND PUBLISHING" name="arculu" score="1.000000" />
+ <word cat="NEWSPAPER PRINTING AND PUBLISHING" name="wattachak" score="1.000000" />
+ <word cat="NEWSPAPER PRINTING AND PUBLISHING" name="goldon" score="1.000000" />
+ <word cat="NEWSPAPER PRINTING AND PUBLISHING" name="trachtenberg" score="1.000000" />
+ <word cat="COMMERCIAL REAL ESTATE DEALING" name="mulialand" score="1.000000" />
+ <word cat="HOTELS AND CATERING" name="mefo" score="1.000000" />
+ <word cat="CABLE TELEVISION" name="micromus" score="1.000000" />
+ <word cat="CABLE TELEVISION" name="goldon" score="1.000000" />
+ <word cat="ALARMS AND SIGNALLING EQUIPMENT" name="nohmi" score="1.000000" />
+ <word cat="ALARMS AND SIGNALLING EQUIPMENT" name="bosai" score="1.000000" />
+ <word cat="ALARMS AND SIGNALLING EQUIPMENT" name="destron" score="1.000000" />
+ <word cat="ALARMS AND SIGNALLING EQUIPMENT" name="numerex" score="1.000000" />
+ <word cat="RADIO BROADCASTING" name="sfx" score="1.000000" />
+ <word cat="TELEVISION BROADCASTING" name="sistem" score="1.000000" />
+ <word cat="TELEVISION BROADCASTING" name="canedo" score="1.000000" />
+ <word cat="TELEVISION BROADCASTING" name="megamania" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="xox" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="ichat" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="metatool" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="netradio" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="tangram" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="staffwar" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="broadvis" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="wkdec" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="tecmo" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="eido" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="skiba" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="versant" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="infospac" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="filenet" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="spacetec" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="novonyx" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="idx" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="medicu" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="certicom" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="intranetwar" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="premeno" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="wonderwar" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="netdynam" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="onewav" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="logal" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="mapinfo" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="konami" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="syncroni" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="cogno" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="linkon" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="visigen" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="stac" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="cimatron" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="interleaf" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="isocor" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="spss" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="netsi" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="zuken" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="altri" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="starbas" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="surfwatch" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="datalogix" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="eltrax" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="mathsoft" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="parcplac" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="geowork" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="microleagu" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="comshar" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="accugraph" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="holobyt" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="softech" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="autodesk" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="kertzman" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="questec" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="netwar" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="visio" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="mapic" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="vantiv" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="intergraph" score="1.000000" />
+ <word cat="APPLICATIONS SOFTWARE" name="computron" score="1.000000" />
+ <word cat="SYSTEMS SOFTWARE" name="artisoft" score="1.000000" />
+ <word cat="SYSTEMS SOFTWARE" name="vxtreme" score="1.000000" />
+ <word cat="SYSTEMS SOFTWARE" name="xcellenet" score="1.000000" />
+ <word cat="SYSTEMS SOFTWARE" name="herbold" score="1.000000" />
+ <word cat="SYSTEMS SOFTWARE" name="compuwar" score="1.000000" />
+ <word cat="SYSTEMS SOFTWARE" name="ascii" score="1.000000" />
+ <word cat="SYSTEMS SOFTWARE" name="backoffic" score="1.000000" />
+ <word cat="PETROLEUM REFINING AND PROCESSING" name="gastec" score="1.000000" />
+ <word cat="PETROLEUM REFINING AND PROCESSING" name="ula" score="1.000000" />
+ <word cat="PETROLEUM REFINING AND PROCESSING" name="uzen" score="1.000000" />
+ <word cat="PETROLEUM REFINING AND PROCESSING" name="chellgren" score="1.000000" />
+ <word cat="PETROLEUM REFINING AND PROCESSING" name="ashrafi" score="1.000000" />
+ <word cat="PETROLEUM REFINING AND PROCESSING" name="allasia" score="1.000000" />
+ <word cat="PETROLEUM REFINING AND PROCESSING" name="goldon" score="1.000000" />
+ <word cat="PETROLEUM REFINING AND PROCESSING" name="greehei" score="1.000000" />
+ <word cat="PETROLEUM REFINING AND PROCESSING" name="durward" score="1.000000" />
+ <word cat="PETROLEUM REFINING AND PROCESSING" name="murzuk" score="1.000000" />
+ <word cat="PETROLEUM REFINING AND PROCESSING" name="hemminghau" score="1.000000" />
+ <word cat="PETROLEUM REFINING AND PROCESSING" name="gaulin" score="1.000000" />
+ <word cat="PETROLEUM REFINING AND PROCESSING" name="huntwai" score="1.000000" />
+ <word cat="PRINTING AND PUBLISHING" name="gakken" score="1.000000" />
+ <word cat="PRINTING AND PUBLISHING" name="utusan" score="1.000000" />
+ <word cat="PRINTING AND PUBLISHING" name="nissha" score="1.000000" />
+ <word cat="PRINTING AND PUBLISHING" name="zenrin" score="1.000000" />
+ <word cat="PRINTING AND PUBLISHING" name="watmough" score="1.000000" />
+ <word cat="PRINTING AND PUBLISHING" name="lanacan" score="1.000000" />
+ <word cat="PRINTING AND PUBLISHING" name="schadt" score="1.000000" />
+ <word cat="PRINTING AND PUBLISHING" name="trachtenberg" score="1.000000" />
+ <word cat="CONSTRUCTION EQUIPMENT HIRE" name="gecoss" score="1.000000" />
+ <word cat="BUS AND COACH SERVICES" name="kwoon" score="1.000000" />
+ <word cat="DEVELOPMENT BANKS OR FUNDS" name="groszek" score="1.000000" />
+ <word cat="DEVELOPMENT BANKS OR FUNDS" name="jdb" score="1.000000" />
+ <word cat="CIVIL AIRCRAFT MANUFACTURING" name="deley" score="1.000000" />
+ <word cat="PULP" name="indorayon" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="molnlyck" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="chuetsu" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="sonoco" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="shiko" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="gascogn" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="jamont" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="kakoh" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="merfin" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="iggesund" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="nakabayashi" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="daio" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="furubayashi" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="tomoegawa" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="superbag" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="crisoba" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="shorewood" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="cellulosa" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="kawachiya" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="seishi" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="westvaco" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="aktiebolaget" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="clayoquot" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="foong" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="bowat" score="1.000000" />
+ <word cat="PAPER MANUFACTURING" name="hershaft" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="aapr" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="bsoc" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="bancor" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="depfa" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="firstfeder" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="intro" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="sbab" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="rheinboden" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="killing" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="schiffsbank" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="rinehart" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="contifinanci" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="naschek" score="1.000000" />
+ <word cat="MORTGAGE INSTITUTIONS" name="hannoverisch" score="1.000000" />
+ <word cat="SAVINGS BANKS" name="greenpoint" score="1.000000" />
+ <word cat="SAVINGS BANKS" name="carig" score="1.000000" />
+ <word cat="SECONDARY MEMORY STORES" name="matridigm" score="1.000000" />
+ <word cat="SECONDARY MEMORY STORES" name="streamlog" score="1.000000" />
+ <word cat="SECONDARY MEMORY STORES" name="shugart" score="1.000000" />
+ <word cat="SECONDARY MEMORY STORES" name="zitel" score="1.000000" />
+ <word cat="SECONDARY MEMORY STORES" name="sandisk" score="1.000000" />
+ <word cat="SECONDARY MEMORY STORES" name="storagetek" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="bahagia" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="sdbo" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="scmb" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="synovu" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="landesrentenbank" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="epfr" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="rupf" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="infisa" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="rolo" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="rentenbank" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="haeni" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="bankunit" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="polsko" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="fallbrook" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="maapank" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="bbbpi" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="klci" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="kiyo" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="becklei" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="michinoku" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="landwirtschaftlich" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="banpai" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="gdyni" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="bankorp" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="sietsma" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="kassenobligationen" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="joyo" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="fukutoku" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="gurnsei" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="drabb" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="southfirst" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="jeffbank" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="biwako" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="pierwszi" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="fimagest" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="polsc" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="mollovbank" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="westerf" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="unionbanc" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="daukshien" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="genfin" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="amerykanski" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="konzumbank" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="piba" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="ospel" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="ppabank" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="hkbank" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="landesbanken" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="barkoci" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="palf" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="langkah" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="banponc" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="waiviata" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="mobiliario" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="matil" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="tokushima" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="tomin" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="asiatrust" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="waterschapsbank" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="nationssecur" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="hkcb" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="extel" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="seacoast" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="chaffart" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="vienot" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="xiosalma" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="superwoman" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="agab" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="nkbm" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="kovich" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="shenango" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="goeltz" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="nikinmaa" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="amirsham" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="crediop" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="lippobank" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="tokuyo" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="ieb" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="rosprom" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="agroprombank" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="cfx" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="bcr" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="sierrawest" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="mainstreet" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="cliam" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="argentbank" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="siedlung" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="czepliewicz" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="cenit" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="prast" score="1.000000" />
+ <word cat="COMMERCIAL BANKING" name="sjnb" score="1.000000" />
+ <word cat="POWER TRANSMISSION EQUIPMENT" name="kugelfisch" score="1.000000" />
+ <word cat="POWER TRANSMISSION EQUIPMENT" name="nachi" score="1.000000" />
+ <word cat="POWER TRANSMISSION EQUIPMENT" name="nsk" score="1.000000" />
+ <word cat="POWER TRANSMISSION EQUIPMENT" name="thk" score="1.000000" />
+ <word cat="POWER TRANSMISSION EQUIPMENT" name="cogwheel" score="1.000000" />
+ <word cat="POWER TRANSMISSION EQUIPMENT" name="nakashima" score="1.000000" />
+ <word cat="CENTRAL BANKING AUTHORITIES" name="haferkamp" score="1.000000" />
+ <word cat="COMPUTER TERMINALS, WORK STATIONS" name="officem" score="1.000000" />
+ <word cat="COMPUTER TERMINALS, WORK STATIONS" name="xata" score="1.000000" />
+ <word cat="COMPUTER TERMINALS, WORK STATIONS" name="proview" score="1.000000" />
+ <word cat="COMPUTER TERMINALS, WORK STATIONS" name="dotronix" score="1.000000" />
+ <word cat="COMPUTER TERMINALS, WORK STATIONS" name="verifact" score="1.000000" />
+ <word cat="BANKING SERVICES" name="ubb" score="1.000000" />
+ <word cat="OPTICAL CHARACTER READERS" name="identix" score="1.000000" />
+ <word cat="COMPUTER PRINTERS" name="sekon" score="1.000000" />
+ <word cat="COMPUTER PRINTERS" name="encad" score="1.000000" />
+ <word cat="COMPUTER PRINTERS" name="lasermast" score="1.000000" />
+ <word cat="COMPUTER PRINTERS" name="genicom" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="wasino" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="torotel" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="sumikura" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="dijet" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="milacron" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="kurashiki" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="tungaloi" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="roteq" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="takisawa" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="kohki" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="fahrni" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="okuma" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="shoun" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="soligen" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="hurco" score="1.000000" />
+ <word cat="MACHINE TOOLS" name="nippei" score="1.000000" />
+ <word cat="BANKING AND FINANCIAL SERVICES" name="shohkoh" score="1.000000" />
+ <word cat="AIRCRAFT COMPONENTS, NOT ELECTRICAL" name="sundstrand" score="1.000000" />
+ <word cat="AIRCRAFT COMPONENTS, NOT ELECTRICAL" name="cobham" score="1.000000" />
+ <word cat="AIRCRAFT COMPONENTS, NOT ELECTRICAL" name="solium" score="1.000000" />
+ <word cat="FISH PROCESSING" name="kamaboko" score="1.000000" />
+ <word cat="FISH PROCESSING" name="kanezaki" score="1.000000" />
+ <word cat="FISH PROCESSING" name="hayashikan" score="1.000000" />
+ <word cat="FISH PROCESSING" name="ichimasa" score="1.000000" />
+ <word cat="BOOKS, STATIONERY RETAILING" name="bunkyodo" score="1.000000" />
+ <word cat="STORAGE AND WAREHOUSING" name="hutech" score="1.000000" />
+ <word cat="STORAGE AND WAREHOUSING" name="univar" score="1.000000" />
+ <word cat="STORAGE AND WAREHOUSING" name="norish" score="1.000000" />
+ <word cat="STORAGE AND WAREHOUSING" name="shibusawa" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="usfreightwai" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="bifa" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="svo" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="rtkf" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="icaro" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="snagfa" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="lhr" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="jnb" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="dxb" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="mordvinov" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="bkk" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="baltran" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="schout" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="blacklock" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="aggreko" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="butsuryu" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="tiaca" score="1.000000" />
+ <word cat="FREIGHT FORWARDING" name="chuounyu" score="1.000000" />
+ <word cat="OILS AND FATS PROCESSING" name="kruszwica" score="1.000000" />
+ <word cat="OILS AND FATS PROCESSING" name="tluszczow" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="chigen" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="elektrifikatsii" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="elektrizitaetswirtschaft" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="opuc" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="lupberg" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="powerchoic" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="egco" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="fuerza" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="energo" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="celesc" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="eletrosul" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="lansivoima" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="besicorp" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="norstar" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="chilquinta" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="ppa" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="kashiwazaki" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="amperwerk" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="meh" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="illinova" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="eua" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="dqe" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="bedzin" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="manweb" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="thyssenga" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="ofreg" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="drywel" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="gasand" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="prepa" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="braidwood" score="1.000000" />
+ <word cat="ELECTRICITY PRODUCTION" name="allasia" score="1.000000" />
+ <word cat="SOAPS AND COSMETICS" name="jintan" score="1.000000" />
+ <word cat="SOAPS AND COSMETICS" name="parlux" score="1.000000" />
+ <word cat="SOAPS AND COSMETICS" name="mandom" score="1.000000" />
+ <word cat="SOAPS AND COSMETICS" name="chattem" score="1.000000" />
+ <word cat="SOAPS AND COSMETICS" name="ecolab" score="1.000000" />
+ <word cat="SOAPS AND COSMETICS" name="ultrafem" score="1.000000" />
+ <word cat="SOAPS AND COSMETICS" name="bombril" score="1.000000" />
+ <word cat="SOAPS AND COSMETICS" name="nutramax" score="1.000000" />
+ <word cat="SOAPS AND COSMETICS" name="olestra" score="1.000000" />
+ <word cat="COMPUTER PERIPHERALS INCL. MODEMS" name="auspex" score="1.000000" />
+ <word cat="COMPUTER PERIPHERALS INCL. MODEMS" name="perfectdata" score="1.000000" />
+ <word cat="COMPUTER PERIPHERALS INCL. MODEMS" name="kurzweil" score="1.000000" />
+ <word cat="COMPUTER PERIPHERALS INCL. MODEMS" name="telesend" score="1.000000" />
+ <word cat="COMPUTER PERIPHERALS INCL. MODEMS" name="netsi" score="1.000000" />
+ <word cat="COMPUTER PERIPHERALS INCL. MODEMS" name="dataram" score="1.000000" />
+ <word cat="COMPUTER PERIPHERALS INCL. MODEMS" name="fujicopian" score="1.000000" />
+ <word cat="COMPUTER PERIPHERALS INCL. MODEMS" name="microtouch" score="1.000000" />
+ <word cat="COMPUTER PERIPHERALS INCL. MODEMS" name="cambex" score="1.000000" />
+ <word cat="COMPUTER PERIPHERALS INCL. MODEMS" name="miltop" score="1.000000" />
+ <word cat="COMPUTER PERIPHERALS INCL. MODEMS" name="zycad" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="viglen" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="martorana" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="vamo" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="radisi" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="neomag" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="emat" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="gottesman" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="osr" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="scaglia" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="kaferl" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="intervoic" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="netfram" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="alr" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="optiplex" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="poweredg" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="infostrada" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="kaifa" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="unruh" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="systemcar" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="pesatori" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="deskpro" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="rossignolo" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="gianmario" score="1.000000" />
+ <word cat="COMPUTERS AND PERSONAL COMPUTERS" name="laserjet" score="1.000000" />
+ <word cat="LIFTING AND HANDLING EQUIPMENT" name="kci" score="1.000000" />
+ <word cat="LIFTING AND HANDLING EQUIPMENT" name="aetrium" score="1.000000" />
+ <word cat="LIFTING AND HANDLING EQUIPMENT" name="umpanki" score="1.000000" />
+ <word cat="LIFTING AND HANDLING EQUIPMENT" name="fujitec" score="1.000000" />
+ <word cat="MEASURING AND PRECISION INSTRUMENTS" name="sokki" score="1.000000" />
+ <word cat="MEASURING AND PRECISION INSTRUMENTS" name="sokkia" score="1.000000" />
+ <word cat="MEASURING AND PRECISION INSTRUMENTS" name="avimo" score="1.000000" />
+ <word cat="MEASURING AND PRECISION INSTRUMENTS" name="goltermann" score="1.000000" />
+ <word cat="MEASURING AND PRECISION INSTRUMENTS" name="rikadenki" score="1.000000" />
+ <word cat="MEASURING AND PRECISION INSTRUMENTS" name="keiki" score="1.000000" />
+ <word cat="GENERAL CONSTRUCTION AND DEMOTreatION" name="btsc" score="1.000000" />
+ <word cat="GENERAL CONSTRUCTION AND DEMOTreatION" name="proodeftiki" score="1.000000" />
+ <word cat="GENERAL CONSTRUCTION AND DEMOTreatION" name="suzunui" score="1.000000" />
+ <word cat="GENERAL CONSTRUCTION AND DEMOTreatION" name="wakachiku" score="1.000000" />
+ <word cat="GENERAL CONSTRUCTION AND DEMOTreatION" name="cdil" score="1.000000" />
+ <word cat="GENERAL CONSTRUCTION AND DEMOTreatION" name="strabag" score="1.000000" />
+ <word cat="GENERAL CONSTRUCTION AND DEMOTreatION" name="bilfing" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="puregon" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="lovenox" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="posicor" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="cytec" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="bavc" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="kureha" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="meltex" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="nemour" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="taxoter" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="plasticis" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="taoka" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="xenova" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="dystar" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="xr" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="griesheim" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="tateho" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="tirouflet" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="croda" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="winkhau" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="inviras" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="alev" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="aastrom" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="ethicon" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="schmieder" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="xenic" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="aronkasei" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="methylcyclopentadienyl" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="kemcor" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="haarmann" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="lifescan" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY" name="fryge" score="1.000000" />
+ <word cat="ELECTRIC LIGHTING EQUIPMENT" name="holophan" score="1.000000" />
+ <word cat="ELECTRIC LIGHTING EQUIPMENT" name="tlg" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="onbancorp" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="tsugio" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="bhavnani" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="okin" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="multistack" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="bynum" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="ampal" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="extel" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="interra" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="aplu" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="ichiyoshi" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="schapiro" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="yukihira" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="montauk" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="matsuki" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="glg" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="csfp" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="keler" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="mcglocklin" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="nobutaka" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="fibv" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="biotal" score="1.000000" />
+ <word cat="FINANCIAL SERVICES" name="jwcharl" score="1.000000" />
+ <word cat="STEEL TUBES" name="tamsa" score="1.000000" />
+ <word cat="RAILWAYS" name="railcorp" score="1.000000" />
+ <word cat="RAILWAYS" name="keihan" score="1.000000" />
+ <word cat="RAILWAYS" name="sncb" score="1.000000" />
+ <word cat="RAILWAYS" name="cambier" score="1.000000" />
+ <word cat="RAILWAYS" name="weyauwega" score="1.000000" />
+ <word cat="RAILWAYS" name="tozan" score="1.000000" />
+ <word cat="RAILWAYS" name="railtex" score="1.000000" />
+ <word cat="RAILWAYS" name="omnitrax" score="1.000000" />
+ <word cat="RAILWAYS" name="adact" score="1.000000" />
+ <word cat="RAILWAYS" name="artsdalen" score="1.000000" />
+ <word cat="RAILWAYS" name="boct" score="1.000000" />
+ <word cat="TIMBER PROCESSING AND WOOD ARTICLES" name="dantani" score="1.000000" />
+ <word cat="TIMBER PROCESSING AND WOOD ARTICLES" name="honkarakenn" score="1.000000" />
+ <word cat="REPAIR OF VEHICLES AND CONSUMER GOODS" name="vicom" score="1.000000" />
+ <word cat="REPAIR OF VEHICLES AND CONSUMER GOODS" name="envirotest" score="1.000000" />
+ <word cat="TYRE MANUFACTURING" name="charbonnier" score="1.000000" />
+ <word cat="TYRE MANUFACTURING" name="bourdai" score="1.000000" />
+ <word cat="FRUIT GROWING" name="atoka" score="1.000000" />
+ <word cat="MAIL ORDER" name="burberri" score="1.000000" />
+ <word cat="MAIL ORDER" name="deikel" score="1.000000" />
+ <word cat="MAIL ORDER" name="mednet" score="1.000000" />
+ <word cat="DEPARTMENT STORE" name="matsuzakaya" score="1.000000" />
+ <word cat="DEPARTMENT STORE" name="jujiya" score="1.000000" />
+ <word cat="DEPARTMENT STORE" name="izutsuya" score="1.000000" />
+ <word cat="DEPARTMENT STORE" name="pamida" score="1.000000" />
+ <word cat="DEPARTMENT STORE" name="herti" score="1.000000" />
+ <word cat="DEPARTMENT STORE" name="mitsukoshi" score="1.000000" />
+ <word cat="PORTS AND SHIPPING SUPPORT SERVICES" name="clydeport" score="1.000000" />
+ <word cat="PORTS AND SHIPPING SUPPORT SERVICES" name="sbmp" score="1.000000" />
+ <word cat="PORTS AND SHIPPING SUPPORT SERVICES" name="naabsa" score="1.000000" />
+ <word cat="PORTS AND SHIPPING SUPPORT SERVICES" name="lattakia" score="1.000000" />
+ <word cat="NUCLEAR FUEL" name="tritium" score="1.000000" />
+ <word cat="GLASS AND GLASS PRODUCTS" name="szkla" score="1.000000" />
+ <word cat="GLASS AND GLASS PRODUCTS" name="cristaleria" score="1.000000" />
+ <word cat="GLASS AND GLASS PRODUCTS" name="photran" score="1.000000" />
+ <word cat="GLASS AND GLASS PRODUCTS" name="gospodarczego" score="1.000000" />
+ <word cat="GLASS AND GLASS PRODUCTS" name="krosnienski" score="1.000000" />
+ <word cat="STATIONERY, NOT PAPER" name="pentech" score="1.000000" />
+ <word cat="AEROSPACE" name="derlan" score="1.000000" />
+ <word cat="AEROSPACE" name="sundstrand" score="1.000000" />
+ <word cat="AEROSPACE" name="haeco" score="1.000000" />
+ <word cat="AEROSPACE" name="orbcomm" score="1.000000" />
+ <word cat="AEROSPACE" name="cobham" score="1.000000" />
+ <word cat="AEROSPACE" name="longbow" score="1.000000" />
+ <word cat="AEROSPACE" name="aeroteh" score="1.000000" />
+ <word cat="AEROSPACE" name="simula" score="1.000000" />
+ <word cat="AEROSPACE" name="deley" score="1.000000" />
+ <word cat="AEROSPACE" name="solium" score="1.000000" />
+ <word cat="AEROSPACE" name="transtechnolog" score="1.000000" />
+ <word cat="BUILDING PRODUCTS" name="fujisash" score="1.000000" />
+ <word cat="BUILDING PRODUCTS" name="arisawa" score="1.000000" />
+ <word cat="BUILDING PRODUCTS" name="uranata" score="1.000000" />
+ <word cat="BUILDING PRODUCTS" name="asahidank" score="1.000000" />
+ <word cat="RUBBER PRODUCTS" name="kinugawa" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="skansen" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="wyle" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="shaddi" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="vwr" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="vtx" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="strober" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="tohto" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="shinsho" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="liuski" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="amerisourc" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="interpak" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="wajax" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="penop" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="idepend" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="funashoku" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="noland" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="intellicel" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="csbi" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="kuraya" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="prosourc" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="partco" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="rexel" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="efekt" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="bwg" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="ryoyo" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="elcotel" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="advan" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="koun" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="zenchiku" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="bindlei" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="mataichi" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="uoichiba" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="lurgi" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="zahn" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="oakhurst" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="mytilineo" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="helasto" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="windmer" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="inabata" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="kaga" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="coloroc" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="sangetsu" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="finelist" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="moonbat" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="satori" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="sanacorp" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="ipmuda" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="kinsho" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="krantor" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="milgrai" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="venturian" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="starckjohann" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="brightpoint" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="azupharma" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="handleman" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="kevco" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="centrost" score="1.000000" />
+ <word cat="WHOLESALE DISTRIBUTION" name="sumikin" score="1.000000" />
+ <word cat="LEISURE AND ENTERTAINMENTS CONSTRUCTION" name="iwerk" score="1.000000" />
+ <word cat="CLOTHING" name="vilenzo" score="1.000000" />
+ <word cat="CLOTHING" name="kimbyr" score="1.000000" />
+ <word cat="CLOTHING" name="maidenform" score="1.000000" />
+ <word cat="CLOTHING" name="jichodo" score="1.000000" />
+ <word cat="CLOTHING" name="ichiya" score="1.000000" />
+ <word cat="CLOTHING" name="ichida" score="1.000000" />
+ <word cat="CLOTHING" name="donnkenni" score="1.000000" />
+ <word cat="CLOTHING" name="naigai" score="1.000000" />
+ <word cat="CLOTHING" name="gitano" score="1.000000" />
+ <word cat="CLOTHING" name="tomiya" score="1.000000" />
+ <word cat="CLOTHING" name="dabah" score="1.000000" />
+ <word cat="CLOTHING" name="unitog" score="1.000000" />
+ <word cat="CLOTHING" name="premiumwear" score="1.000000" />
+ <word cat="CLOTHING" name="bodycot" score="1.000000" />
+ <word cat="CLOTHING" name="oneita" score="1.000000" />
+ <word cat="CLOTHING" name="warnaco" score="1.000000" />
+ <word cat="CLOTHING" name="hartmarx" score="1.000000" />
+ <word cat="CLOTHING" name="itariyard" score="1.000000" />
+ <word cat="CLOTHING" name="maruco" score="1.000000" />
+ <word cat="NON-LIFE INSURANCE" name="kielholz" score="1.000000" />
+ <word cat="NON-LIFE INSURANCE" name="sockwel" score="1.000000" />
+ <word cat="NON-LIFE INSURANCE" name="renaissancer" score="1.000000" />
+ <word cat="NON-LIFE INSURANCE" name="synd" score="1.000000" />
+ <word cat="NON-LIFE INSURANCE" name="hemmingson" score="1.000000" />
+ <word cat="NON-LIFE INSURANCE" name="gainsco" score="1.000000" />
+ <word cat="NON-LIFE INSURANCE" name="unioria" score="1.000000" />
+ <word cat="NON-LIFE INSURANCE" name="trenwick" score="1.000000" />
+ <word cat="NON-LIFE INSURANCE" name="picom" score="1.000000" />
+ <word cat="LIFE INSURANCE" name="penncorp" score="1.000000" />
+ <word cat="LIFE INSURANCE" name="reliastar" score="1.000000" />
+ <word cat="LIFE INSURANCE" name="torchmark" score="1.000000" />
+ <word cat="LIFE INSURANCE" name="lifeusa" score="1.000000" />
+ <word cat="LIFE INSURANCE" name="dantai" score="1.000000" />
+ <word cat="LIFE INSURANCE" name="skansen" score="1.000000" />
+ <word cat="COMPOSITE INSURANCE" name="lippen" score="1.000000" />
+ <word cat="COMPOSITE INSURANCE" name="verzekeringsgroep" score="1.000000" />
+ <word cat="COMPOSITE INSURANCE" name="hueppi" score="1.000000" />
+ <word cat="COMPOSITE INSURANCE" name="hagemann" score="1.000000" />
+ <word cat="COMPOSITE INSURANCE" name="ligresti" score="1.000000" />
+ <word cat="COMPOSITE INSURANCE" name="kettler" score="1.000000" />
+ <word cat="COMPOSITE INSURANCE" name="jokiel" score="1.000000" />
+ <word cat="COMPOSITE INSURANCE" name="kask" score="1.000000" />
+ <word cat="COMPOSITE INSURANCE" name="chookaszian" score="1.000000" />
+ <word cat="INSURANCE" name="limnet" score="1.000000" />
+ <word cat="INSURANCE" name="tranquilidad" score="1.000000" />
+ <word cat="INSURANCE" name="rtw" score="1.000000" />
+ <word cat="INSURANCE" name="lippen" score="1.000000" />
+ <word cat="INSURANCE" name="compdent" score="1.000000" />
+ <word cat="INSURANCE" name="fbl" score="1.000000" />
+ <word cat="INSURANCE" name="wolin" score="1.000000" />
+ <word cat="INSURANCE" name="ockham" score="1.000000" />
+ <word cat="INSURANCE" name="catex" score="1.000000" />
+ <word cat="INSURANCE" name="sgio" score="1.000000" />
+ <word cat="INSURANCE" name="tuir" score="1.000000" />
+ <word cat="TOBACCO" name="dosal" score="1.000000" />
+ <word cat="TOBACCO" name="agrobiotechnolog" score="1.000000" />
+ <word cat="TOBACCO" name="chebeagu" score="1.000000" />
+ <word cat="FACTORY AND INDUSTRIAL CONSTRUCTION" name="amcorp" score="1.000000" />
+ <word cat="FACTORY AND INDUSTRIAL CONSTRUCTION" name="sasakura" score="1.000000" />
+ <word cat="RESIDENTIAL CONSTRUCTION" name="kabuto" score="1.000000" />
+ <word cat="RESIDENTIAL CONSTRUCTION" name="nvr" score="1.000000" />
+ <word cat="RESIDENTIAL CONSTRUCTION" name="jutaku" score="1.000000" />
+ <word cat="RESIDENTIAL CONSTRUCTION" name="sawako" score="1.000000" />
+ <word cat="RESIDENTIAL CONSTRUCTION" name="daikyo" score="1.000000" />
+ <word cat="CONFECTIONERY" name="kanro" score="1.000000" />
+ <word cat="CONFECTIONERY" name="glico" score="1.000000" />
+ <word cat="CONFECTIONERY" name="iwatsuka" score="1.000000" />
+ <word cat="CONFECTIONERY" name="rbgh" score="1.000000" />
+ <word cat="COCOA GROWING" name="cocobod" score="1.000000" />
+ <word cat="PUMPS" name="torishima" score="1.000000" />
+ <word cat="PUMPS" name="nikkiso" score="1.000000" />
+ <word cat="PUMPS" name="duriron" score="1.000000" />
+ <word cat="MINING MACHINERY" name="numar" score="1.000000" />
+ <word cat="SYNTHETIC FIBRES INCL. POLYESTER" name="ovex" score="1.000000" />
+ <word cat="SYNTHETIC FIBRES INCL. POLYESTER" name="dirbtini" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="exedi" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="echlin" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="kayaba" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="durakon" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="ichikoh" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="walbro" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="lemmerz" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="gentex" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="trinova" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="aeroquip" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="mitsuba" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="gissa" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="carburet" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="lomason" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="carburetor" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="unisia" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="sanden" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="georgin" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="britax" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="qianchao" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="ventra" score="1.000000" />
+ <word cat="VEHICLE PARTS" name="autobac" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="schwing" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="jorex" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="toreador" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="draupner" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="chauvco" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="enex" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="kemcor" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="wapet" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="aardoli" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="denburi" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="helmerich" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="alanco" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="alamco" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="enerfin" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="steihaug" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="europip" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="schibevaag" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="grandpuit" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="kaarsto" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="kollsn" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="enermark" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="feyzin" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="otwai" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="qarun" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="bucke" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="yme" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="onako" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="xcl" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="aviva" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="tuer" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="ula" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="cordex" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="mongstad" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="murzuk" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="vagit" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="camisea" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="talysh" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="transwest" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="jungel" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="snorr" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="callon" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="macassa" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="tuskar" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="lenkoran" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="harcor" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="lowden" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="kakap" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="tullow" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="brieant" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="norfra" score="1.000000" />
+ <word cat="CRUDE OIL EXTRACTION" name="digimu" score="1.000000" />
+ <word cat="CRUDE OIL EXPLORATION" name="petrocelt" score="1.000000" />
+ <word cat="CRUDE OIL EXPLORATION" name="brida" score="1.000000" />
+ <word cat="PAPER, PRINTING AND PUBLISHING" name="beness" score="1.000000" />
+ <word cat="COFFEE GROWING" name="cmbl" score="1.000000" />
+ <word cat="COFFEE GROWING" name="cdpc" score="1.000000" />
+ <word cat="COFFEE GROWING" name="sucafina" score="1.000000" />
+ <word cat="COFFEE GROWING" name="filiaci" score="1.000000" />
+ <word cat="OPTICIANS" name="opsm" score="1.000000" />
+ <word cat="GRAIN, CEREALS FARMING" name="gridasov" score="1.000000" />
+ <word cat="GRAIN, CEREALS FARMING" name="crnt" score="1.000000" />
+ <word cat="GRAIN, CEREALS FARMING" name="shroyer" score="1.000000" />
+ <word cat="GRAIN, CEREALS FARMING" name="awf" score="1.000000" />
+ <word cat="GRAIN, CEREALS FARMING" name="roskhleboprodukt" score="1.000000" />
+ <word cat="GRAIN, CEREALS FARMING" name="ffcat" score="1.000000" />
+ <word cat="GRAIN, CEREALS FARMING" name="lajud" score="1.000000" />
+ <word cat="GRAIN, CEREALS FARMING" name="bhimjayani" score="1.000000" />
+ <word cat="GRAIN, CEREALS FARMING" name="tassel" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="airga" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="paracelsian" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="quidel" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="unigen" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="shokubai" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="scio" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="aikoh" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="innovir" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="hoxan" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="ariad" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="cheme" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="ferrofluid" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="somatix" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="rooter" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="biotim" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="seiro" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="geltex" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="barnickel" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="teisan" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="fuisz" score="1.000000" />
+ <word cat="INDUSTRIAL CHEMICALS INCL. GASES" name="organogenesi" score="1.000000" />
+ <word cat="AGRICULTURAL MACHINERY" name="comson" score="1.000000" />
+ <word cat="AGRICULTURAL MACHINERY" name="ponss" score="1.000000" />
+ <word cat="AGRICULTURAL MACHINERY" name="daifuku" score="1.000000" />
+ <word cat="MIXED RETAIL" name="mitsukoshi" score="1.000000" />
+ <word cat="MIXED RETAIL" name="lechmer" score="1.000000" />
+ <word cat="MIXED RETAIL" name="mednet" score="1.000000" />
+ <word cat="MIXED RETAIL" name="duckwal" score="1.000000" />
+ <word cat="MIXED RETAIL" name="kotobukiya" score="1.000000" />
+ <word cat="MIXED RETAIL" name="gendi" score="1.000000" />
+ <word cat="MIXED RETAIL" name="mesbla" score="1.000000" />
+ <word cat="MIXED RETAIL" name="herti" score="1.000000" />
+ <word cat="MIXED RETAIL" name="jujiya" score="1.000000" />
+ <word cat="MIXED RETAIL" name="garzoni" score="1.000000" />
+ <word cat="MIXED RETAIL" name="deikel" score="1.000000" />
+ <word cat="MIXED RETAIL" name="ryohin" score="1.000000" />
+ <word cat="MIXED RETAIL" name="rals" score="1.000000" />
+ <word cat="MIXED RETAIL" name="pamida" score="1.000000" />
+ <word cat="MIXED RETAIL" name="waitros" score="1.000000" />
+ <word cat="MIXED RETAIL" name="yamazawa" score="1.000000" />
+ <word cat="MIXED RETAIL" name="izutsuya" score="1.000000" />
+ <word cat="MIXED RETAIL" name="takebishi" score="1.000000" />
+ <word cat="MIXED RETAIL" name="keikaku" score="1.000000" />
+ <word cat="MIXED RETAIL" name="burberri" score="1.000000" />
+ <word cat="MIXED RETAIL" name="matsuzakaya" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="detemobil" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="cycomm" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="telekomunikasi" score="0.994220" />
+ <word cat="TELECOMMUNICATIONS" name="enitel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="comcel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="etpi" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="ebber" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="telepar" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="phonetel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="telenot" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="carrapatoso" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="telet" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="massick" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="alestra" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="telsim" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="beavington" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="wkdec" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="utel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="mediaon" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="clearnet" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="commnet" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="entel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="sirti" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="highwaymast" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="wurtman" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="autoinfo" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="pricellular" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="klugman" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="telcel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="cofetel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="pactel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="goldon" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="viatel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="philcom" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="tyso" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="nabo" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="glotin" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="notebaert" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="davel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="scaglia" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="fonso" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="tisa" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="itineri" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="ixc" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="islacom" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="mtel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="telu" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="worldspac" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="osiptel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="netspeak" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="mobilnet" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="telfono" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="seidenberg" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="alltel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="voicenow" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="vimpel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="vyvx" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="mezhdugorodnoi" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="allasia" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="landlin" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="snet" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="pagenet" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="batelco" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="micromus" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="systemhous" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="aliant" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="fetratel" score="1.000000" />
+ <word cat="TELECOMMUNICATIONS" name="resurgen" score="1.000000" />
+ <word cat="FRUIT AND VEGETABLE PROCESSING" name="unimark" score="1.000000" />
+ <word cat="SUGAR BEET GROWING" name="wvz" score="1.000000" />
+ <word cat="PRECIOUS METALS" name="zmax" score="1.000000" />
+ <word cat="PRECIOUS METALS" name="leplat" score="1.000000" />
+ <word cat="PRECIOUS METALS" name="imataca" score="1.000000" />
+ <word cat="PRECIOUS METALS" name="parnass" score="1.000000" />
+ <word cat="PRECIOUS METALS" name="bakyrchik" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="erli" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="smithburg" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="suiza" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="shinobu" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="bongrain" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="foodbrand" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="rieber" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="myojo" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="pepperidg" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="nichiwa" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="sucrier" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="nichiro" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="yh" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="rokko" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="kagom" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="marudai" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="katokichi" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="zondervan" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="multifood" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="langbo" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="goodmark" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="fujicco" score="1.000000" />
+ <word cat="FOOD, DRINK AND TOBACCO PROCESSING" name="alcon" score="1.000000" />
+ <word cat="BASE NON FERROUS METALS" name="huludao" score="1.000000" />
+ <word cat="BASE NON FERROUS METALS" name="normaco" score="1.000000" />
+ <word cat="BASE NON FERROUS METALS" name="komrakov" score="1.000000" />
+ <word cat="BASE NON FERROUS METALS" name="olawa" score="1.000000" />
+ <word cat="BASE NON FERROUS METALS" name="vetchinin" score="1.000000" />
+ <word cat="BASE NON FERROUS METALS" name="autlan" score="1.000000" />
+ <word cat="BASE NON FERROUS METALS" name="bedder" score="1.000000" />
+ <word cat="ELECTRICITY, GAS UTITreatIES" name="wwp" score="1.000000" />
+ <word cat="ELECTRICITY, GAS UTITreatIES" name="psnh" score="1.000000" />
+ <word cat="ELECTRICITY, GAS UTITreatIES" name="dpl" score="1.000000" />
+ <word cat="ELECTRICITY, GAS UTITreatIES" name="fphc" score="1.000000" />
+ <word cat="ELECTRICITY, GAS UTITreatIES" name="delmarva" score="1.000000" />
+ <word cat="ELECTRICITY, GAS UTITreatIES" name="fryle" score="1.000000" />
+ <word cat="POULTRY FARMING" name="vvnd" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="andrx" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="transkaryot" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="prihti" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="progenitor" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="herbalif" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="vistid" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="biora" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="thinprep" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="ibah" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="prilosec" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="avonex" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="anipryl" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="grindex" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="introgen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="genemedicin" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="crixivan" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="sepracor" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="flamel" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="transcriptas" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="caraco" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="phytopharm" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="ventak" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cantab" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="chemgen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="lamivudin" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="biomatrix" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cistron" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="lovenox" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="anergen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="claritin" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="regeneron" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="combinatori" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="ambisom" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="nextran" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="wockhardt" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="selfcar" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="neuromed" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="lidak" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="actiq" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="envirom" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="enbrel" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="sunpharm" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="anesta" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="biopool" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="blech" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="geron" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="shionogi" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cellex" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="epivir" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="neurogen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="vical" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="taxol" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="nichiko" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="epitop" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="oclassen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="biotranspl" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cortech" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="celgen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="xytronyx" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="seragen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="suzuken" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="progesteron" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="alkerm" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="chemtrak" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="druggist" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="arri" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cholestech" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="viropharma" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cytotherapeut" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="allervax" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="tengasco" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="accol" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="novavax" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="excedrin" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="fosamax" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="alza" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="atridox" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="xoma" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="aksi" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="medeva" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cellegi" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="noven" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cyclosporin" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="leboy" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="carvedilol" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="ternbi" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="banyu" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="betaseron" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="bioequival" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="procept" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="zonagen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="persept" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="oncor" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="neorx" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="sequu" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="neos" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="immunex" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="pharmaprint" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="medarex" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="immulog" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="biovail" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="senetek" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="oravax" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="grandpoint" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="penederm" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="mochida" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="valtrex" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="techniclon" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="etodolac" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="genzym" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="dynagen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="leukoscan" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="deprenyl" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="estrasorb" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="duram" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="echogen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="martek" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="alteon" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="betaferon" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="qlt" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="myotrophin" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="immudyn" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="kissei" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="neozym" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="hybridon" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="biocryst" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="ngd" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="gensia" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="immunomed" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="lxr" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="periostat" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cytogen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="draxi" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cocensi" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="aronex" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="lipitor" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="berlex" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="sciclon" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="abaxi" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="diatid" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="taisho" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="capoten" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="napro" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="sangstat" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="medimmun" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="hycamtin" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cytyc" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cytrx" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="centocor" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cytel" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="zerit" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="pharmacycl" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="etoposid" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="perrigo" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="zomig" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="sugen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="incstar" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="galagen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="corva" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="reopro" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="diltiazem" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="genelab" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="gilead" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="somatix" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="synvisc" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="magainin" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="ostex" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="biomedix" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="nadro" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="abelcet" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="somatogen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="celtrix" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="padfield" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="collagenex" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="pramlintid" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="antex" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="incyt" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="somanet" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="ayerst" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="synbiot" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="neurex" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="cadu" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="pearlstein" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="sonu" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="houghten" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="chirex" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="peptor" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="ranitidin" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="ribozym" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="integrilin" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="pathogenesi" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="avigen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="quintil" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="lifecor" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="lifecel" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="supergen" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="crinon" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="editek" score="1.000000" />
+ <word cat="PHARMACEUTICALS" name="multiplan" score="1.000000" />
+ <word cat="DIRECT MARKETING" name="beauticontrol" score="1.000000" />
+ <word cat="DIRECT MARKETING" name="damark" score="1.000000" />
+ <word cat="TIMEKEEPING EQUIPMENT" name="movado" score="1.000000" />
+ <word cat="TIMEKEEPING EQUIPMENT" name="stelux" score="1.000000" />
+ <word cat="BUILDING INSTALLATIONS" name="gijutsu" score="1.000000" />
+ <word cat="BUILDING INSTALLATIONS" name="chempow" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY MACHINERY" name="kakoki" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY MACHINERY" name="betzdearborn" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY MACHINERY" name="foilmark" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY MACHINERY" name="roki" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY MACHINERY" name="larox" score="1.000000" />
+ <word cat="CHEMICAL INDUSTRY MACHINERY" name="prochem" score="1.000000" />
+ <word cat="ADVERTISING AGENCIES" name="kikaku" score="1.000000" />
+ <word cat="ADVERTISING AGENCIES" name="tostmann" score="1.000000" />
+ <word cat="ADVERTISING AGENCIES" name="schoep" score="1.000000" />
+ <word cat="JEWELLERY" name="kosaikogei" score="1.000000" />
+ <word cat="JEWELLERY" name="hohrin" score="1.000000" />
+ <word cat="JEWELLERY" name="tasaki" score="1.000000" />
+ <word cat="JEWELLERY" name="shinju" score="1.000000" />
+ <word cat="JEWELLERY" name="oroamerica" score="1.000000" />
+ <word cat="INSTRUMENT ENGINEERING" name="diasi" score="1.000000" />
+ <word cat="INSTRUMENT ENGINEERING" name="puru" score="1.000000" />
+ <word cat="INSTRUMENT ENGINEERING" name="ametek" score="1.000000" />
+ <word cat="WOODEN FURNITURE" name="knape" score="1.000000" />
+ <word cat="WOODEN FURNITURE" name="chromcraft" score="1.000000" />
+ <word cat="POSTAL SERVICES" name="sfei" score="1.000000" />
+ <word cat="POSTAL SERVICES" name="helfert" score="1.000000" />
+ <word cat="COMPUTER MAINTENANCE AND SUPPORT" name="strategia" score="1.000000" />
+ <word cat="BOILERS AND PROCESS PLANT FABRICATIONS" name="kotlow" score="1.000000" />
+ <word cat="ELECTRICAL APPLIANCES" name="multibra" score="1.000000" />
+ <word cat="ELECTRICAL APPLIANCES" name="enix" score="1.000000" />
+ <word cat="ELECTRICAL APPLIANCES" name="brasmotor" score="1.000000" />
+ <word cat="ELECTRICAL APPLIANCES" name="refripar" score="1.000000" />
+ <word cat="ELECTRICAL APPLIANCES" name="juki" score="1.000000" />
+ <word cat="MISCELLANEOUS FOODS" name="coffeemix" score="1.000000" />
+ <word cat="MISCELLANEOUS FOODS" name="opta" score="1.000000" />
+ <word cat="MISCELLANEOUS FOODS" name="tokatsu" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="iatro" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="novacar" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="biodynam" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="teamcar" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="carematrix" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="cryomed" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="brookdal" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="intermed" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="mhm" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="emcar" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="rightchoic" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="apria" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="terumo" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="amsurg" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="akorn" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="caremark" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="corvel" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="equim" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="inphynet" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="promedco" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="boshart" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="theratx" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="matricaria" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="wellcar" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="homepati" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="xillix" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="rehabcar" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="zaucha" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="lincar" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="vitalink" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="hearx" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="laservis" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="integram" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="readicar" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="choicecar" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="heartport" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="pediatrix" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="occusystem" score="1.000000" />
+ <word cat="HOSPITALS AND HEALTHCARE" name="phycor" score="1.000000" />
+ <word cat="BASIC ELECTRICAL EQUIPMENT" name="nidec" score="1.000000" />
+ <word cat="BASIC ELECTRICAL EQUIPMENT" name="togami" score="1.000000" />
+ <word cat="BASIC ELECTRICAL EQUIPMENT" name="photocomm" score="1.000000" />
+ <word cat="BASIC ELECTRICAL EQUIPMENT" name="nattelfus" score="1.000000" />
+ <word cat="BASIC ELECTRICAL EQUIPMENT" name="amerigon" score="1.000000" />
+ <word cat="BASIC ELECTRICAL EQUIPMENT" name="baldor" score="1.000000" />
+ <word cat="BASIC ELECTRICAL EQUIPMENT" name="iriso" score="1.000000" />
+ <word cat="BASIC ELECTRICAL EQUIPMENT" name="zurn" score="1.000000" />
+ <word cat="COPPER AND COPPER ALLOYS" name="shindoh" score="1.000000" />
+ <word cat="COPPER AND COPPER ALLOYS" name="palabora" score="1.000000" />
+ <word cat="REFRIGERATING, HEATING, AIR CONDITIONING" name="afilli" score="1.000000" />
+ <word cat="REFRIGERATING, HEATING, AIR CONDITIONING" name="intermagnet" score="1.000000" />
+ <word cat="REFRIGERATING, HEATING, AIR CONDITIONING" name="multistack" score="1.000000" />
+ <word cat="REFRIGERATING, HEATING, AIR CONDITIONING" name="dainichi" score="1.000000" />
+ <word cat="REFRIGERATING, HEATING, AIR CONDITIONING" name="kelon" score="1.000000" />
+ <word cat="REFRIGERATING, HEATING, AIR CONDITIONING" name="fukusima" score="1.000000" />
+ <word cat="REFRIGERATING, HEATING, AIR CONDITIONING" name="oncho" score="1.000000" />
+ <word cat="REFRIGERATING, HEATING, AIR CONDITIONING" name="totech" score="1.000000" />
+ <word cat="REFRIGERATING, HEATING, AIR CONDITIONING" name="rooter" score="1.000000" />
+ <word cat="REFRIGERATING, HEATING, AIR CONDITIONING" name="watsco" score="1.000000" />
+ <word cat="REFRIGERATING, HEATING, AIR CONDITIONING" name="haier" score="1.000000" />
+ <word cat="IRON AND STEEL" name="whx" score="0.991935" />
+ <word cat="IRON AND STEEL" name="koniambo" score="1.000000" />
+ <word cat="IRON AND STEEL" name="komai" score="1.000000" />
+ <word cat="IRON AND STEEL" name="maanshan" score="1.000000" />
+ <word cat="IRON AND STEEL" name="kivimaki" score="1.000000" />
+ <word cat="IRON AND STEEL" name="mfl" score="1.000000" />
+ <word cat="IRON AND STEEL" name="castpart" score="1.000000" />
+ <word cat="IRON AND STEEL" name="aco" score="1.000000" />
+ <word cat="IRON AND STEEL" name="kawatetsu" score="1.000000" />
+ <word cat="IRON AND STEEL" name="quanex" score="1.000000" />
+ <word cat="IRON AND STEEL" name="kanak" score="1.000000" />
+ <word cat="IRON AND STEEL" name="ivaco" score="1.000000" />
+ <word cat="IRON AND STEEL" name="wellek" score="1.000000" />
+ <word cat="IRON AND STEEL" name="smsp" score="1.000000" />
+ <word cat="IRON AND STEEL" name="sollac" score="1.000000" />
+ <word cat="IRON AND STEEL" name="koshuha" score="1.000000" />
+ <word cat="IRON AND STEEL" name="kohtai" score="1.000000" />
+ <word cat="IRON AND STEEL" name="mineira" score="1.000000" />
+ <word cat="IRON AND STEEL" name="imsa" score="1.000000" />
+ <word cat="IRON AND STEEL" name="weirton" score="1.000000" />
+ <word cat="CLEANING SERVICES" name="aaxi" score="1.000000" />
+ <word cat="FOOD PROCESSING MACHINERY" name="sanjo" score="1.000000" />
+ <word cat="FOOD PROCESSING MACHINERY" name="rheon" score="1.000000" />
+ <word cat="INDUSTRIAL PLANT AND STEELWORK" name="tsukishima" score="1.000000" />
+ <word cat="INDUSTRIAL PLANT AND STEELWORK" name="micromus" score="1.000000" />
+ <word cat="INDUSTRIAL PLANT AND STEELWORK" name="kanetsu" score="1.000000" />
+ <word cat="INDUSTRIAL PLANT AND STEELWORK" name="singama" score="1.000000" />
+ <word cat="INDUSTRIAL PLANT AND STEELWORK" name="sakurada" score="1.000000" />
+ <word cat="METAL GOODS INCL. NUTS AND BOLTS" name="seikan" score="1.000000" />
+ <word cat="METAL GOODS INCL. NUTS AND BOLTS" name="ramset" score="1.000000" />
+ <word cat="METAL GOODS INCL. NUTS AND BOLTS" name="lobtex" score="1.000000" />
+ <word cat="METAL GOODS INCL. NUTS AND BOLTS" name="sealright" score="1.000000" />
+ <word cat="METAL GOODS INCL. NUTS AND BOLTS" name="lubeca" score="1.000000" />
+ <word cat="METAL GOODS INCL. NUTS AND BOLTS" name="jpe" score="1.000000" />
+ <word cat="METAL GOODS INCL. NUTS AND BOLTS" name="minebea" score="1.000000" />
+ <word cat="METAL GOODS INCL. NUTS AND BOLTS" name="gantan" score="1.000000" />
+ <word cat="METAL GOODS INCL. NUTS AND BOLTS" name="buildmax" score="1.000000" />
+ <word cat="METAL GOODS INCL. NUTS AND BOLTS" name="kinark" score="1.000000" />
+ <word cat="METAL GOODS INCL. NUTS AND BOLTS" name="harsco" score="1.000000" />
+ <word cat="METAL GOODS INCL. NUTS AND BOLTS" name="nansin" score="1.000000" />
+ <word cat="METAL GOODS INCL. NUTS AND BOLTS" name="autocam" score="1.000000" />
+ <word cat="CLOTHING STORES" name="konaka" score="1.000000" />
+ <word cat="CLOTHING STORES" name="gymbore" score="1.000000" />
+ <word cat="CLOTHING STORES" name="lamac" score="1.000000" />
+ <word cat="CLOTHING STORES" name="senza" score="1.000000" />
+ <word cat="CLOTHING STORES" name="wearhous" score="1.000000" />
+ <word cat="CATTLE FARMING" name="creutzfeld" score="1.000000" />
+ <word cat="ALUMINIUM AND ALUMINIUM ALLOYS" name="bougi" score="1.000000" />
+ <word cat="ALUMINIUM AND ALUMINIUM ALLOYS" name="rackwitz" score="1.000000" />
+ <word cat="ALUMINIUM AND ALUMINIUM ALLOYS" name="aluar" score="1.000000" />
+ <word cat="ALUMINIUM AND ALUMINIUM ALLOYS" name="easco" score="1.000000" />
+ <word cat="ALUMINIUM AND ALUMINIUM ALLOYS" name="rodier" score="1.000000" />
+ <word cat="ALUMINIUM AND ALUMINIUM ALLOYS" name="alyuminii" score="1.000000" />
+ <word cat="ALUMINIUM AND ALUMINIUM ALLOYS" name="aluv" score="1.000000" />
+ <word cat="ALUMINIUM AND ALUMINIUM ALLOYS" name="lekkich" score="1.000000" />
+ <word cat="ALUMINIUM AND ALUMINIUM ALLOYS" name="tiwai" score="1.000000" />
+ <word cat="COMPRESSORS, HYDRAULIC, PNEUMATIC" name="kitz" score="1.000000" />
+ <word cat="COMPRESSORS, HYDRAULIC, PNEUMATIC" name="yuken" score="1.000000" />
+ <word cat="COMPRESSORS, HYDRAULIC, PNEUMATIC" name="cuno" score="1.000000" />
+ <word cat="FOOD RETAILING" name="matsumotokiyoshi" score="1.000000" />
+ <word cat="FOOD RETAILING" name="kasumi" score="1.000000" />
+ <word cat="FOOD RETAILING" name="heiwado" score="1.000000" />
+ <word cat="FOOD RETAILING" name="guangnan" score="1.000000" />
+ <word cat="FOOD RETAILING" name="doutor" score="1.000000" />
+ <word cat="FOOD RETAILING" name="yokado" score="1.000000" />
+ <word cat="FOOD RETAILING" name="benimaru" score="1.000000" />
+ <word cat="FOOD RETAILING" name="izumiya" score="1.000000" />
+ <word cat="FOOD RETAILING" name="marukyu" score="1.000000" />
+ <word cat="FOOD RETAILING" name="shokubun" score="1.000000" />
+ <word cat="FOOD RETAILING" name="kimisawa" score="1.000000" />
+ <word cat="FOOD RETAILING" name="familymart" score="1.000000" />
+ <word cat="FOOD RETAILING" name="tenmaya" score="1.000000" />
+ <word cat="FOOD RETAILING" name="seiyu" score="1.000000" />
+ <word cat="FOOD RETAILING" name="ministop" score="1.000000" />
+ <word cat="CYCLES AND MOTOR CYCLES" name="sundiro" score="1.000000" />
+ <word cat="CYCLES AND MOTOR CYCLES" name="cannondal" score="1.000000" />
+ <word cat="CYCLES AND MOTOR CYCLES" name="maruishi" score="1.000000" />
+ <word cat="CYCLES AND MOTOR CYCLES" name="rockshox" score="1.000000" />
+ <word cat="CEMENT, LIME AND PLASTER" name="jalaprathan" score="1.000000" />
+ <word cat="CEMENT, LIME AND PLASTER" name="unicem" score="1.000000" />
+ <word cat="CEMENT, LIME AND PLASTER" name="glari" score="1.000000" />
+ <word cat="CEMENT, LIME AND PLASTER" name="vencemo" score="1.000000" />
+ <word cat="CEMENT, LIME AND PLASTER" name="apasco" score="1.000000" />
+ <word cat="CEMENT, LIME AND PLASTER" name="cahya" score="1.000000" />
+ <word cat="CEMENT, LIME AND PLASTER" name="nesher" score="1.000000" />
+ <word cat="RUBBER AND PLASTICS PROCESSING" name="stimsonit" score="1.000000" />
+ <word cat="ELECTRONIC CONSUMER GOODS" name="ezconi" score="1.000000" />
+ <word cat="ELECTRONIC CONSUMER GOODS" name="shintom" score="1.000000" />
+ <word cat="ELECTRONIC CONSUMER GOODS" name="soundwork" score="1.000000" />
+ <word cat="ELECTRONIC CONSUMER GOODS" name="nikkodo" score="1.000000" />
+ <word cat="ELECTRONIC CONSUMER GOODS" name="maginet" score="1.000000" />
+ <word cat="ELECTRONIC CONSUMER GOODS" name="audiovox" score="1.000000" />
+ <word cat="ELECTRONIC CONSUMER GOODS" name="bodyson" score="1.000000" />
+ <word cat="ELECTRONIC CONSUMER GOODS" name="projectavis" score="1.000000" />
+ <word cat="ELECTRONIC CONSUMER GOODS" name="tomei" score="1.000000" />
+ <word cat="SOFT DRINKS" name="panamco" score="1.000000" />
+ <word cat="SOFT DRINKS" name="agral" score="1.000000" />
+ <word cat="SOFT DRINKS" name="contal" score="1.000000" />
+ <word cat="SOFT DRINKS" name="emvasa" score="1.000000" />
+ <word cat="SOFT DRINKS" name="calpi" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="lepani" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="tarkwa" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="yamana" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="westgold" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="askatindo" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="kidston" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="exal" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="pancontinent" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="grimwood" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="geomaqu" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="erpm" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="omai" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="mangkusubroto" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="kanowna" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="roundtop" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="nuinsco" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="auridiam" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="macmin" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="crystallex" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="lydenburg" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="oaki" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="azco" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="benco" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="usmx" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="rz" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="asturienn" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="monadelph" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="democrito" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="lydex" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="agnico" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="devex" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="yandi" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="metallica" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="cornishman" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="djerriwarrh" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="perilya" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="kalgold" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="sotho" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="nonoc" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="winkelhaak" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="ausmelt" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="arboyn" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="qmc" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="topi" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="ectec" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="kdc" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="navan" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="goldridg" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="motlatsi" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="penol" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="vasilkovskoy" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="blyvoor" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="randex" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="correnti" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="willson" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="metat" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="mael" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="kapok" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="nimari" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="guyanor" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="oglebai" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="smsp" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="lisheen" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="leplat" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="cambior" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="iocc" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="leggatt" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="digimu" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="hecla" score="1.000000" />
+ <word cat="METAL ORE EXTRACTION" name="yauricocha" score="1.000000" />
+ <word cat="PHOTOGRAPHIC EQUIPMENT" name="xillix" score="1.000000" />
+ <word cat="PHOTOGRAPHIC EQUIPMENT" name="videon" score="1.000000" />
+ <word cat="PHOTOGRAPHIC EQUIPMENT" name="kaveta" score="1.000000" />
+ <word cat="PHOTOGRAPHIC EQUIPMENT" name="noritsu" score="1.000000" />
+ <word cat="PHOTOGRAPHIC EQUIPMENT" name="presstek" score="1.000000" />
+ <word cat="PHOTOGRAPHIC EQUIPMENT" name="advantix" score="1.000000" />
+ <word cat="PHOTOGRAPHIC EQUIPMENT" name="tamron" score="1.000000" />
+ <word cat="SPIRITS DISTILLING" name="ltdi" score="1.000000" />
+ <word cat="SPIRITS DISTILLING" name="soju" score="1.000000" />
+ <word cat="SPIRITS DISTILLING" name="agav" score="1.000000" />
+ <word cat="SPIRITS DISTILLING" name="gamework" score="1.000000" />
+ <word cat="SPIRITS DISTILLING" name="heidsieck" score="1.000000" />
+ <word cat="BARS AND PUBLIC HOUSES" name="pubmast" score="1.000000" />
+ <word cat="COMPONENTS FOR ELECTRONIC GOODS" name="mitsumi" score="1.000000" />
+ <word cat="COMPONENTS FOR ELECTRONIC GOODS" name="jalco" score="1.000000" />
+ <word cat="COMPONENTS FOR ELECTRONIC GOODS" name="sansui" score="1.000000" />
+ <word cat="COMPONENTS FOR ELECTRONIC GOODS" name="baoshi" score="1.000000" />
+ <word cat="COMPONENTS FOR ELECTRONIC GOODS" name="hakuto" score="1.000000" />
+ <word cat="SUGAR AND SUGAR PRODUCTS" name="stendevad" score="1.000000" />
+ <word cat="SUGAR AND SUGAR PRODUCTS" name="pillard" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="symmetricom" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="edelston" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="kurlak" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="chuomusen" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="pistorio" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="dauvin" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="startac" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="enomoto" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="triquint" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="wavetop" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="soshin" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="aylesworth" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="shindengen" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="micrel" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="microlyt" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="gason" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="xicor" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="dempa" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="compcor" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="photron" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="ipec" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="conceptron" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="ramtron" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="drobni" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="seimitsu" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="altera" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="mimasu" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="charn" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="telsim" score="1.000000" />
+ <word cat="ELECTRONIC ACTIVE COMPONENTS" name="exar" score="1.000000" />
+ <word cat="WATER SUPPLY" name="glotin" score="1.000000" />
+ <word cat="WATER SUPPLY" name="aquarion" score="1.000000" />
+ <word cat="WATER SUPPLY" name="suido" score="1.000000" />
+ <word cat="WATER SUPPLY" name="cgea" score="1.000000" />
+ <word cat="OTHER TRANSPORT EQUIPMENT HIRE" name="gatx" score="1.000000" />
+ <word cat="SPORTING EQUIPMENT" name="innovo" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="miyahara" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="burwil" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="seieido" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="threlkeld" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="iuchi" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="koeki" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="kawab" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="nadex" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="unidux" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="chaifa" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="chiew" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="turkistuottajat" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="technotron" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="yugang" score="1.000000" />
+ <word cat="PRODUCT TRADING AND BROKING" name="dransfield" score="1.000000" />
+ <word cat="NUCLEAR POWER" name="heysham" score="1.000000" />
+ <word cat="NUCLEAR POWER" name="hinklei" score="1.000000" />
+ <word cat="NUCLEAR POWER" name="hunterston" score="1.000000" />
+ <word cat="ROAD HAULAGE" name="konpo" score="1.000000" />
+ <word cat="ROAD HAULAGE" name="thulani" score="1.000000" />
+ <word cat="ROAD HAULAGE" name="kllm" score="1.000000" />
+ <word cat="ROAD HAULAGE" name="trimac" score="1.000000" />
+ <word cat="ROAD HAULAGE" name="landstar" score="1.000000" />
+ <word cat="ROAD HAULAGE" name="dachser" score="1.000000" />
+ <word cat="ROAD HAULAGE" name="kyogoku" score="1.000000" />
+ <word cat="ROAD HAULAGE" name="seino" score="1.000000" />
+ <word cat="ROAD HAULAGE" name="padborg" score="1.000000" />
+ <word cat="VEHICLE BODIES AND TRAILERS" name="feathernat" score="1.000000" />
+ <word cat="RECORDS, TAPES AND DISCS" name="zomax" score="1.000000" />
+ <word cat="RECORDS, TAPES AND DISCS" name="maxel" score="1.000000" />
+ <word cat="COAL MINING" name="bergbau" score="1.000000" />
+ <word cat="COAL MINING" name="banpu" score="1.000000" />
+ <word cat="COAL MINING" name="rancea" score="1.000000" />
+ <word cat="COAL MINING" name="nacco" score="1.000000" />
+ <word cat="TOYS AND GAMES" name="nikkatsu" score="1.000000" />
+ <word cat="TOYS AND GAMES" name="shuffler" score="1.000000" />
+ <word cat="TOYS AND GAMES" name="snacktim" score="1.000000" />
+ <word cat="TOYS AND GAMES" name="sanrio" score="1.000000" />
+ <word cat="TOYS AND GAMES" name="lanacan" score="1.000000" />
+ <word cat="TOYS AND GAMES" name="galoob" score="1.000000" />
+ <word cat="TOYS AND GAMES" name="igt" score="1.000000" />
+ <word cat="TOYS AND GAMES" name="capcom" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="nordson" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="sasib" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="kurita" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="wkdec" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="golik" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="timberjack" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="keyser" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="mannesmannrohren" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="defibr" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="soudek" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="uozu" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="demag" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="deley" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="pantec" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="thermadyn" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="zagel" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="shimpo" score="1.000000" />
+ <word cat="MECHANICAL ENGINEERING" name="duffryn" score="1.000000" />
+ <word cat="DAIRY PRODUCTS PROCESSING" name="saputo" score="1.000000" />
+ <word cat="DAIRY PRODUCTS PROCESSING" name="honsha" score="1.000000" />
+ <word cat="DAIRY PRODUCTS PROCESSING" name="yakult" score="1.000000" />
+ <word cat="AUTOMOBILE DEALERS" name="nathia" score="1.000000" />
+ <word cat="AUTOMOBILE DEALERS" name="aucnet" score="1.000000" />
+ <word cat="PAPER MAKING MACHINERY" name="tomioka" score="1.000000" />
+ <word cat="PAPER MAKING MACHINERY" name="navita" score="1.000000" />
+ <word cat="PAPER MAKING MACHINERY" name="riutta" score="1.000000" />
+ <word cat="RUBBER AND PLASTICS WORKING MACHINERY" name="showpla" score="1.000000" />
+ <word cat="RUBBER AND PLASTICS WORKING MACHINERY" name="kawata" score="1.000000" />
+ <word cat="OPTICAL EQUIPMENT" name="norita" score="1.000000" />
+ <word cat="OPTICAL EQUIPMENT" name="safilo" score="1.000000" />
+ <word cat="OPTICAL EQUIPMENT" name="pulstec" score="1.000000" />
+ <word cat="OPTICAL EQUIPMENT" name="luxottica" score="1.000000" />
+ <word cat="OPTICAL EQUIPMENT" name="dycam" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="kawada" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="teb" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="abigroup" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="dragag" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="jgc" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="ohmori" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="elektromontaz" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="chalendon" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="seikitokyu" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="waiviata" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="asakawagumi" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="choiseul" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="ausdril" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="christiani" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="exeo" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="impregilo" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="obayashi" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="wisewai" score="1.000000" />
+ <word cat="CIVIL ENGINEERING" name="bescorp" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="scansourc" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="glasgal" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="xircom" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="mindspr" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="memotec" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="proteon" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="websecur" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="aetherwork" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="talx" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="deysher" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="verio" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="teleglob" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="diebold" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="tricord" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="realaudio" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="billimoria" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="apertu" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="nuko" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="novadigm" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="webcom" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="netvantag" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="ebber" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="trafficmast" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="netlink" score="1.000000" />
+ <word cat="DATACOMMUNICATIONS AND NETWORKING" name="worldtalk" score="1.000000" />
+ <word cat="SEA TRANSPORT" name="kinkai" score="1.000000" />
+ <word cat="SEA TRANSPORT" name="hinod" score="1.000000" />
+ <word cat="SEA TRANSPORT" name="arbonal" score="1.000000" />
+ <word cat="SEA TRANSPORT" name="mirzan" score="1.000000" />
+ <word cat="SEA TRANSPORT" name="hyoki" score="1.000000" />
+ <word cat="SEA TRANSPORT" name="awaji" score="1.000000" />
+ <word cat="SEA TRANSPORT" name="uniglori" score="1.000000" />
+ <word cat="SEA TRANSPORT" name="jinhui" score="1.000000" />
+ <word cat="SEA TRANSPORT" name="holyman" score="1.000000" />
+ <word cat="SEA TRANSPORT" name="sjoinvest" score="1.000000" />
+ <word cat="SEA TRANSPORT" name="norex" score="1.000000" />
+ <word cat="SEA TRANSPORT" name="kaiun" score="1.000000" />
+ <word cat="SEA TRANSPORT" name="hoverspe" score="1.000000" />
+ <word cat="ARCHITECTS, SURVEYORS, ETC" name="micromus" score="1.000000" />
+ <word cat="ARCHITECTS, SURVEYORS, ETC" name="arrk" score="1.000000" />
+ <word cat="ARCHITECTS, SURVEYORS, ETC" name="vetco" score="1.000000" />
+ <word cat="ARCHITECTS, SURVEYORS, ETC" name="dgc" score="1.000000" />
+ <word cat="ARCHITECTS, SURVEYORS, ETC" name="luckland" score="1.000000" />
+ <word cat="ARCHITECTS, SURVEYORS, ETC" name="ohba" score="1.000000" />
+ <word cat="ARCHITECTS, SURVEYORS, ETC" name="pininfarina" score="1.000000" />
+ <word cat="HORTICULTURE" name="yukiguni" score="1.000000" />
+ <word cat="HORTICULTURE" name="atoka" score="1.000000" />
+ <word cat="HORTICULTURE" name="maitak" score="1.000000" />
+ <word cat="AGRICULTURE" name="bhimjayani" score="1.000000" />
+ <word cat="AGRICULTURE" name="shroyer" score="1.000000" />
+ <word cat="AGRICULTURE" name="sucafina" score="1.000000" />
+ <word cat="AGRICULTURE" name="filiaci" score="1.000000" />
+ <word cat="AGRICULTURE" name="ukragroconsult" score="1.000000" />
+ <word cat="AGRICULTURE" name="gridasov" score="1.000000" />
+ <word cat="AGRICULTURE" name="nppc" score="1.000000" />
+ <word cat="AGRICULTURE" name="ffcat" score="1.000000" />
+ <word cat="AGRICULTURE" name="roskhleboprodukt" score="1.000000" />
+ <word cat="AGRICULTURE" name="lonsum" score="1.000000" />
+ <word cat="AGRICULTURE" name="wvz" score="1.000000" />
+ <word cat="AGRICULTURE" name="lajud" score="1.000000" />
+ <word cat="AGRICULTURE" name="tassel" score="1.000000" />
+ <word cat="AGRICULTURE" name="creutzfeld" score="1.000000" />
+ <word cat="AGRICULTURE" name="crnt" score="1.000000" />
+ <word cat="AGRICULTURE" name="cocobod" score="1.000000" />
+ <word cat="AGRICULTURE" name="awf" score="1.000000" />
+ <word cat="AGRICULTURE" name="rwendeir" score="1.000000" />
+ <word cat="AGRICULTURE" name="cmbl" score="1.000000" />
+ <word cat="AGRICULTURE" name="kemayan" score="1.000000" />
+ <word cat="AGRICULTURE" name="cdpc" score="1.000000" />
+ <word cat="AGRICULTURE" name="vvnd" score="1.000000" />
+ <word cat="DYESTUFFS AND PIGMENTS" name="dystar" score="1.000000" />
+ <word cat="DYESTUFFS AND PIGMENTS" name="synalloi" score="1.000000" />
+ <word cat="DYESTUFFS AND PIGMENTS" name="hodogaya" score="1.000000" />
+ <word cat="NON FERROUS METALS" name="sitix" score="1.000000" />
+ <word cat="BETTING AND GAMBLING" name="ameristar" score="1.000000" />
+ <word cat="BETTING AND GAMBLING" name="mikohn" score="1.000000" />
+ <word cat="BETTING AND GAMBLING" name="autotot" score="1.000000" />
+ <word cat="BETTING AND GAMBLING" name="broadwat" score="1.000000" />
+ <word cat="BETTING AND GAMBLING" name="aztar" score="1.000000" />
+ <word cat="BETTING AND GAMBLING" name="greektown" score="1.000000" />
+ <word cat="BETTING AND GAMBLING" name="goldigg" score="1.000000" />
+ <word cat="BETTING AND GAMBLING" name="gamecash" score="1.000000" />
+ <word cat="BETTING AND GAMBLING" name="sodak" score="1.000000" />
+ <word cat="SPORTING FACITreatIES AND VENUES" name="koshien" score="1.000000" />
+ <word cat="SPORTING FACITreatIES AND VENUES" name="tochi" score="1.000000" />
+ <word cat="WIRES AND CABLES" name="tatsuta" score="1.000000" />
+ <word cat="WIRES AND CABLES" name="ciena" score="1.000000" />
+ <word cat="WIRES AND CABLES" name="bydgoska" score="1.000000" />
+ <word cat="WIRES AND CABLES" name="toyokuni" score="1.000000" />
+ <word cat="WIRES AND CABLES" name="hanashima" score="1.000000" />
+ <word cat="WIRES AND CABLES" name="totoku" score="1.000000" />
+ <word cat="WIRES AND CABLES" name="ortel" score="1.000000" />
+ <word cat="METAL MANUFACTURING" name="buderu" score="1.000000" />
+ <word cat="METAL MANUFACTURING" name="stalprodukt" score="1.000000" />
+ <word cat="METAL MANUFACTURING" name="bamba" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="pesatori" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="jyoho" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="computron" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="questec" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="holobyt" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="intergraph" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="visio" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="mapic" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="rynn" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="voxwar" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="kurzweil" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="vamo" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="netwar" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="dataram" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="laserjet" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="ichat" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="martorana" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="emat" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="certicom" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="novonyx" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="intervoic" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="microtouch" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="conigliaro" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="eido" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="nematron" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="anacomp" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="waitt" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="spacetec" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="matridigm" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="streamlog" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="auspex" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="wkdec" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="miltop" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="infospac" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="tecmo" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="staffwar" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="identix" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="telesend" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="xcellenet" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="officem" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="syncroni" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="artisoft" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="andreessen" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="wintel" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="datawork" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="umax" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="interleaf" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="filenet" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="wonderwar" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="lernout" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="mapinfo" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="logal" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="optiplex" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="medicu" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="visigen" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="dotronix" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="pippin" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="premeno" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="starbas" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="accugraph" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="datametr" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="pouliadi" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="encad" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="netfram" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="netsi" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="altri" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="surfwatch" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="verifact" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="softdesk" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="isocor" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="diba" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="datalogix" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="zitel" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="ascii" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="xata" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="comshar" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="xox" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="eltrax" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="sherlund" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="rossignolo" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="kertzman" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="autocad" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="adaptec" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="metatool" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="sekon" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="parcplac" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="microleagu" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="deskpro" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="gamework" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="scaglia" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="osr" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="micrografx" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="cambex" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="myst" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="storagetek" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="tangram" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="gianmario" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="shugart" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="genicom" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="sawtek" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="idx" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="hnc" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="proview" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="broadvis" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="vantiv" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="versant" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="polycom" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="fujicopian" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="viglen" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="intranetwar" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="lasermast" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="perfectdata" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="alr" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="vxtreme" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="neomag" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="netradio" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="legato" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="gottesman" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="radisi" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="pickrel" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="skiba" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="copal" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="zycad" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="triteal" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="syntellect" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="kaferl" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="helionet" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="siltek" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="herbold" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="hauspi" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="stac" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="compuwar" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="infostrada" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="sandisk" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="spss" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="cogno" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="onewav" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="geowork" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="netdynam" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="konami" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="cimatron" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="oshap" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="manugist" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="autodesk" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="phami" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="systemcar" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="softech" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="linkon" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="kaifa" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="zuken" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="calcomp" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="poweredg" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="axent" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="finocchio" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="mathsoft" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="unruh" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="electrograph" score="1.000000" />
+ <word cat="COMPUTER SYSTEMS AND SOFTWARE" name="backoffic" score="1.000000" />
+ <word cat="AIRCRAFT HIRING AND LEASING" name="gatx" score="1.000000" />
+ <word cat="HOUSEHOLD GOODS AND HARDWARE" name="radioshack" score="1.000000" />
+ <word cat="HOUSEHOLD GOODS AND HARDWARE" name="juntendo" score="1.000000" />
+ <word cat="HOUSEHOLD GOODS AND HARDWARE" name="korasidi" score="1.000000" />
+ <word cat="HOUSEHOLD GOODS AND HARDWARE" name="kohnan" score="1.000000" />
+ <word cat="HOUSEHOLD GOODS AND HARDWARE" name="encho" score="1.000000" />
+ <word cat="HOUSEHOLD GOODS AND HARDWARE" name="levitz" score="1.000000" />
+ <word cat="HOUSEHOLD GOODS AND HARDWARE" name="cashwai" score="1.000000" />
+ <word cat="HOUSEHOLD GOODS AND HARDWARE" name="kanseki" score="1.000000" />
+ <word cat="HOUSEHOLD GOODS AND HARDWARE" name="heching" score="1.000000" />
+ <word cat="HOUSEHOLD GOODS AND HARDWARE" name="distefora" score="1.000000" />
+ <word cat="HOUSEHOLD GOODS AND HARDWARE" name="kalm" score="1.000000" />
+</categories>

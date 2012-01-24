@@ -1,0 +1,28 @@
+module Treat
+  module Formatters
+    module Visualizers
+      class Tree
+        # Obtain a plain text tree representation 
+        # of the entity.
+        def self.visualize(entity, options = {})
+          options = {:indent => 0} if options.empty?
+          string = ''
+          if entity.has_children?
+            spacer = '--'
+            spaces = ''
+            options[:indent].times { spaces << '   '}
+            string << "+ #{entity.inspect}\n#{spaces}|"
+            options[:indent] += 1
+            entity.children.each do |child|
+              string = string + "\n" + spaces + '+' + 
+              spacer + self.visualize(child, options)
+            end
+            options[:indent] -= 1
+            return string
+          end
+          '> ' + entity.inspect
+        end
+      end
+    end
+  end
+end

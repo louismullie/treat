@@ -1,0 +1,504 @@
+aar,aa,afar,afar
+abk,ab,abkhazian,abkhaze
+ace,,achinese,aceh
+ach,,acoli,acoli
+ada,,adangme,adangme
+ady,,adyghe,adyghé
+afa,,afro-asiatic languages,afro-asiatique
+afh,,afrihili,afrihili
+afr,af,afrikaans,afrikaans
+ain,,ainu,aïnou
+aka,ak,akan,akan
+akk,,akkadian,akkadien
+alb,sq,albanian,albanais
+ale,,aleut,aléoute
+alg,,algonquian languages,algonquine
+alt,,southern altai,altai du sud
+amh,am,amharic,amharique
+ang,,old english,anglo-saxon
+anp,,angika,angika
+apa,,apache languages,apache
+ara,ar,arabic,arabe
+arc,,official aramaic|imperial aramaic,araméen d'empire 
+arg,an,aragonese,aragonais
+arm,hy,armenian,arménien
+arn,,mapudungun,mapudungun|mapuce
+arp,,arapaho,arapaho
+art,,artificial languages,artificielle
+arw,,arawak,arawak
+asm,as,assamese,assamais
+ast,,asturian|leonese,asturien|léonais
+ath,,athapascan languages,athapascane
+aus,,australian languages,australien
+ava,av,avaric,avar
+ave,ae,avestan,avestique
+awa,,awadhi,awadhi
+aym,ay,aymara,aymara
+aze,az,azerbaijani,azéri
+bad,,banda languages,banda
+bai,,bamileke languages,bamiléké
+bak,ba,bashkir,bachkir
+bal,,baluchi,baloutchi
+bam,bm,bambara,bambara
+ban,,balinese,balinais
+baq,eu,basque,basque
+bas,,basa,basa
+bat,,baltic languages,balte
+bej,,beja,bedja
+bel,be,belarusian,biélorusse
+bem,,bemba,bemba
+ben,bn,bengali,bengali
+ber,,berber languages,berbère
+bho,,bhojpuri,bhojpuri
+bih,bh,bihari languages,langues biharis
+bik,,bikol,bikol
+bin,,bini,bini
+bis,bi,bislama,bichlamar
+bla,,siksika,blackfoot
+bnt,,bantu languages,bantou
+tib,bo,tibetan,tibétain
+bos,bs,bosnian,bosniaque
+bra,,braj,braj
+bre,br,breton,breton
+btk,,batak languages,batak
+bua,,buriat,bouriate
+bug,,buginese,bugi
+bul,bg,bulgarian,bulgare
+bur,my,burmese,birman
+byn,,blin,blin
+cad,,caddo,caddo
+cai,,central american indian languages,amérindiennes de l'amérique centrale
+car,,galibi carib,karib|carib
+cat,ca,catalan,catalan
+cau,,caucasian languages,caucasien
+ceb,,cebuano,cebuano
+cel,,celtic languages,celtique
+cze cs,czech,tchèque
+cha,ch,chamorro,chamorro
+chb,,chibcha,chibcha
+che,ce,chechen,tchétchène
+chg,,chagatai,djaghataï
+chi,zh,chinese,chinois
+chk,,chuukese,chuuk
+chm,,mari,mari
+chn,,chinook,chinook
+cho,,choctaw,choctaw
+chp,,chipewyan suline,chipewyan
+chr,,cherokee,cherokee
+chu,cu,church slavic slavonic slavonic bulgarian church slavonic,slavon d'église slave naturgique bulgare
+chv,cv,chuvash,tchouvache
+chy,,cheyenne,cheyenne
+cmc,,chamic languages,chame
+cop,,coptic,copte
+cor,kw,cornish,cornique
+cos,co,corsican,corse
+cpe,,creole,créole
+cpf,,creole,créole
+cpp,,creole,créole
+cre,cr,cree,cree
+crh,,crimean tatar turkish,tatar de crimé
+crp,,creoles and pidgins,créoles et pidgins
+csb,,kashubian,kachoube
+cus,,cushitic languages,couchitique
+wel,cy,welsh,gallois
+cze,cs,czech,tchèque
+dak,,dakota,dakota
+dan,da,danish,danois
+dar,,dargwa,dargwa
+day,,land dayak languages,dayak
+del,,delaware,delaware
+den,,slave,esclave 
+ger,de,german,allemand
+dgr,,dogrib,dogrib
+din,,dinka,dinka
+div,dv,divehi|maldivian,maldivien
+doi,,dogri,dogri
+dra,,dravidian languages,dravidien
+dsb,,lower sorbian,bas-sorabe
+dua,,duala,douala
+dum,,middle dutch,néerlandais moyen 
+dut,nl,dutch,néerlandais
+dyu,,dyula,dioula
+dzo,dz,dzongkha,dzongkha
+efi,,efik,efik
+egy,,egyptian,égyptien
+eka,,ekajuk,ekajuk
+gre,el,greek,grec
+elx,,elamite,élamite
+eng,en,english,anglais
+enm,,middle english,anglais moyen 
+epo,eo,esperanto,espéranto
+est,et,estonian,estonien
+baq,eu,basque,basque
+ewe,ee,ewe,éwé
+ewo,,ewondo,éwondo
+fan,,fang,fang
+fao,fo,faroese,féroïen
+per,fa,persian,persan
+fat,,fanti,fanti
+fij,fj,fijian,fidjien
+fil,,filipino,filipino
+fin,fi,finnish,finnois
+fiu,,finno-ugrian languages,finno-ougrien
+fon,,fon,fon
+fre,fr,french,français
+frm,,middle french,français moyen 
+fro,,old french,français ancien 
+frr,,northern frisian,frison septentrional
+frs,,eastern frisian,frison oriental
+fry,fy,western frisian,frison occidental
+ful,ff,fulah,peul
+fur,,friulian,frioulan
+gaa,,ga,ga
+gay,,gayo,gayo
+gba,,gbaya,gbaya
+gem,,germanic languages,germanique
+geo,ka,georgian,géorgien
+ger,de,german,allemand
+gez,,geez,guèze
+gil,,gilbertese,kiribati
+gla,gd,gaelic gaelic,gaélique écossais
+gle,ga,irish,irlandais
+glg,gl,galician,galicien
+glv,gv,manx,manx
+gmh,,middle high german,moyen haut allemand 
+goh,,old high german,vieux haut allemand
+gon,,gondi,gond
+gor,,gorontalo,gorontalo
+got,,gothic,gothique
+grb,,grebo,grebo
+grc,,ancient greek,grec ancien 
+gre,el,greek,grec
+grn,gn,guarani,guarani
+gsw,,swiss german|alsatian,suisse alémanique|alsacien
+guj,gu,gujarati,goudjrati
+gwi,,gwich'in,gwich'in
+hai,,haida,haida
+hat,ht,haitian creole,haïtien haïtien
+hau,ha,hausa,haoussa
+haw,,hawaiian,hawaïen
+heb,he,hebrew,hébreu
+her,hz,herero,herero
+hil,,hiligaynon,hiligaynon
+him,,himachali languages pahari languages,langues himachalis paharis occidentales
+hin,hi,hindi,hindi
+hit,,hittite,hittite
+hmn,,hmong,hmong
+hmo,ho,hiri motu,hiri motu
+hrv,hr,croatian,croate
+hsb,,upper sorbian,haut-sorabe
+hun,hu,hungarian,hongrois
+hup,,hupa,hupa
+arm,hy,armenian,arménien
+iba,,iban,iban
+ibo,ig,igbo,igbo
+ice,is,icelandic,islandais
+ido,io,ido,ido
+iii,ii,sichuan yi,yi de sichuan
+ijo,,ijo languages,ijo
+iku,iu,inuktitut,inuktitut
+ile,ie,interlingue,interlingue
+ilo,,iloko,ilocano
+ina,ia,interlingua,interlingua 
+inc,,indic languages,indo-aryen
+ind,id,indonesian,indonésien
+ine,,indo-european languages,indo-européen
+inh,,ingush,ingouche
+ipk,ik,inupiaq,inupiaq
+ira,,iranian languages,iranien
+iro,,iroquoian languages,iroquoise
+ice,is,icelandic,islandais
+ita,it,italian,italien
+jav,jv,javanese,javanais
+jbo,,lojban,lojban
+jpn,ja,japanese,japonais
+jpr,,judeo-persian,judéo-persan
+jrb,,judeo-arabic,judéo-arabe
+kaa,,kara-kalpak,karakalpak
+kab,,kabyle,kabyle
+kac,,kachin,kachin
+kal,kl,kalaallisut,groenlandais
+kam,,kamba,kamba
+kan,kn,kannada,kannada
+kar,,karen languages,karen
+kas,ks,kashmiri,kashmiri
+geokat,ka,georgian,géorgien
+kau,kr,kanuri,kanouri
+kaw,,kawi,kawi
+kaz,kk,kazakh,kazakh
+kbd,,kabardian,kabardien
+kha,,khasi,khasi
+khi,,khoisan languages,khoïsan
+khm,km,central khmer,khmer central
+kho,,khotanese,khotanais
+kik,ki,kikuyu,kikuyu
+kin,rw,kinyarwanda,rwanda
+kir,ky,kirghiz,kirghiz
+kmb,,kimbundu,kimbundu
+kok,,konkani,konkani
+kom,kv,komi,kom
+kon,kg,kongo,kongo
+kor,ko,korean,coréen
+kos,,kosraean,kosrae
+kpe,,kpelle,kpellé
+krc,,karachay-balkar,karatchai balkar
+krl,,karelian,carélien
+kro,,kru languages,krou
+kru,,kurukh,kurukh
+kua,kj,kuanyama,kuanyama
+kum,,kumyk,koumyk
+kur,ku,kurdish,kurde
+kut,,kutenai,kutenai
+lad,,ladino,judéo-espagnol
+lah,,lahnda,lahnda
+lam,,lamba,lamba
+lao,lo,lao,lao
+lat,la,latin,latin
+lav,lv,latvian,letton
+lez,,lezghian,lezghien
+lim,li,limburgan|limburgish,limbourgeois
+lin,ln,lingala,lingala
+nat,lt,lithuanian,lituanien
+lol,,mongo,mongo
+loz,,lozi,lozi
+ltz,lb,luxembourgish,luxembourgeois
+lua,,luba-lulua,luba-lulua
+lub,lu,luba-katanga,luba-katanga
+lug,lg,ganda,ganda
+lui,,luiseno,luiseno
+lun,,lunda,lunda
+luo,,luo,luo 
+lus,,lushai,lushai
+mac,mk,macedonian,macédonien
+mad,,madurese,madourais
+mag,,magahi,magahi
+mah,mh,marshallese,marshall
+mai,,maithili,maithili
+mak,,makasar,makassar
+mal,ml,malayalam,malayalam
+man,,mandingo,mandingue
+mao,mi,maori,maori
+map,,austronesian languages,austronésien
+mar,mr,marathi,marathe
+mas,,masai,massaï
+may,ms,malay,malais
+mdf,,moksha,moksa
+mdr,,mandar,mandar
+men,,mende,mendé
+mga,,middle irish,irlandais moyen 
+mic,,mi'kmaq,mi'kmaq
+min,,minangkabau,minangkabau
+mis,,uncoded languages,langues non codées
+mac,mk,macedonian,macédonien
+mkh,,mon-khmer languages,môn-khmer
+mlg,mg,malagasy,malgache
+mlt,mt,maltese,maltais
+mnc,,manchu,mandchou
+mni,,manipuri,manipuri
+mno,,manobo languages,manobo
+moh,,mohawk,mohawk
+mon,mn,mongolian,mongol
+mos,,mossi,moré
+mao,mi,maori,maori
+may,ms,malay,malais
+mul,,multiple languages,multilingue
+mun,,munda languages,mounda
+mus,,creek,muskogee
+mwl,,mirandese,mirandais
+mwr,,marwari,marvari
+bur,my,burmese,birman
+myn,,mayan languages,maya
+myv,,erzya,erza
+nah,,nahuatl languages,nahuatl
+nai,,north american indian languages,nord-amérindien
+nap,,neaponatan,napolitain
+nau,na,nauru,nauruan
+nav,nv,navajo,navaho
+nbl,nr,south ndebele,ndébélé du sud
+nde,nd,north ndebele,ndébélé du nord
+ndo,ng,ndonga,ndonga
+nds,,low german saxon|,bas allemand saxon
+nep,ne,nepali,népalais
+new,,nepal bhasa,nepal bhasa
+nia,,nias,nias
+nic,,niger-kordofanian languages,nigéro-kordofanien
+niu,,niuean,niué
+dut,nl,dutch,néerlandais
+nno,nn,nynorsk norwegian,norvégien nynorsk
+nob,nb,bokmål norwegian,norvégien bokmål
+nog,,nogai,nogaï
+non,,old norse,vieux norrois
+nor,no,norwegian,norvégien
+nqo,,n'ko,n'ko
+nso,,pedi|northern sotho,pedi|sotho du nord
+nub,,nubian languages,nubien
+nwc,,classical newari newari nepal bhasa,newari classique
+nya,ny,chichewa|nyanja,chichewa|nyanja
+nym,,nyamwezi,nyamwezi
+nyn,,nyankole,nyankolé
+nyo,,nyoro,nyoro
+nzi,,nzima,nzema
+oci,oc,occitan,occitan 
+oji,oj,ojibwa,ojibwa
+ori,or,oriya,oriya
+orm,om,oromo,galla
+osa,,osage,osage
+oss,os,ossetian,ossète
+ota,,ottoman turkish,turc ottoman 
+oto,,otomian languages,otomi
+paa,,papuan languages,papoue
+pag,,pangasinan,pangasinan
+pal,,pahlavi,pahlavi
+pam,,pampanga,pampangan
+pan,pa,panjabi,pendjabi
+pap,,papiamento,papiamento
+pau,,palauan,palau
+peo,,old persian,vieux perse
+per,,farsi,persan
+phi,,philippine languages,philippine
+phn,,phoenician,phénicien
+pli,pi,pali,pali
+pny,,pinyin,pinyin
+pol,pl,polish,polonais
+pon,,pohnpeian,pohnpei
+por,pt,portuguese,portugais
+pra,,prakrit languages,prâkrit
+pro,,old provençal occitan,provençal ancien ancien 
+pus,ps,pushto,pachto
+qaa-qtz,,reserved for local use,réservée à l'usage local
+que,qu,quechua,quechua
+raj,,rajasthani,rajasthani
+rap,,rapanui,rapanui
+rar,,rarotongan islands maori,rarotonga des îles cook
+roa,,romance languages,romane
+roh,rm,romansh,romanche
+rom,,romany,tsigane
+rum,ro,romanian|moldovan,roumain
+rum,ro,romanian|moldovan,roumain
+run,rn,rundi,rundi
+rup,,aromanian|macedo-romanian,aroumain-roumain
+rus,ru,russian,russe
+sad,,sandawe,sandawe
+sag,sg,sango,sango
+sah,,yakut,iakoute
+sai,,south american indian languages,sud-amérindien
+sal,,salishan languages,salishen
+sam,,samaritan aramaic,samaritain
+san,sa,sanskrit,sanskrit
+sas,,sasak,sasak
+sat,,santali,santal
+scn,,sicilian,sicilien
+sco,,scots,écossais
+sel,,selkup,selkoupe
+sem,,semitic languages,sémitique
+sga,,old irish,irlandais ancien 
+sgn,,sign languages,langues des signes
+shn,,shan,chan
+sid,,sidamo,sidamo
+sin,si,sinhala,singhalais
+sio,,siouan languages,sioux
+sit,,sino-tibetan languages,sino-tibétaine
+sla,,slavic languages,slave
+slo,sk,slovak,slovaque
+slv,sl,slovenian,slovène
+sma,,southern sami,sami du sud
+sme,se,northern sami,sami du nord
+smi,,sami languages,same
+smj,,lule sami,sami de lule
+smn,,inari sami,sami d'inari
+smo,sm,samoan,samoan
+sms,,skolt sami,sami skolt
+sna,sn,shona,shona
+snd,sd,sindhi,sindhi
+snk,,soninke,soninké
+sog,,sogdian,sogdien
+som,so,somali,somali
+son,,songhai languages,songhai
+sot,st,southern sotho,sotho du sud
+spa,es,spanish,espagnol
+alb,sq,albanian,albanais
+srd,sc,sardinian,sarde
+srn,,sranan tongo,sranan tongo
+srp,sr,serbian,serbe
+srr,,serer,sérère
+ssa,,nilo-saharan languages,nilo-saharien
+ssw,ss,swati,swati
+suk,,sukuma,sukuma
+sun,su,sundanese,soundanais
+sus,,susu,soussou
+sux,,sumerian,sumérien
+swa,sw,swahili,swahili
+swe,sv,swedish,suédois
+syc,,classical syriac,syriaque classique
+syr,,syriac,syriaque
+tah,ty,tahitian,tahitien
+tai,,tai languages,tai
+tam,ta,tamil,tamoul
+tat,tt,tatar,tatar
+tel,te,telugu,télougou
+tem,,timne,temne
+ter,,tereno,tereno
+tet,,tetum,tetum
+tgk,tg,tajik,tadjik
+tgl,tl,tagalog,tagalog
+tha,th,thai,thaï
+tib,bo,tibetan,tibétain
+tig,,tigre,tigré
+tir,ti,tigrinya,tigrigna
+tiv,,tiv,tiv
+tkl,,tokelau,tokelau
+tlh,,klingon-hol,klingon
+tli,,tlingit,tlingit
+tmh,,tamashek,tamacheq
+tog,,tonga,tonga 
+ton,to,tonga,tongan 
+tpi,,tok pisin,tok pisin
+tsi,,tsimshian,tsimshian
+tsn,tn,tswana,tswana
+tso,ts,tsonga,tsonga
+tuk,tk,turkmen,turkmène
+tum,,tumbuka,tumbuka
+tup,,tupi languages,tupi
+tur,tr,turkish,turc
+tut,,altaic languages,altaïque
+tvl,,tuvalu,tuvalu
+twi,tw,twi,twi
+tyv,,tuvinian,touva
+udm,,udmurt,oudmourte
+uga,,ugaritic,ougaritique
+uig,ug,uighur,ouïgour
+ukr,uk,ukrainian,ukrainien
+umb,,umbundu,umbundu
+und,,undetermined,indéterminée
+urd,ur,urdu,ourdou
+uzb,uz,uzbek,ouszbek
+vai,,vai,vaï
+ven,ve,venda,venda
+vie,vi,vietnamese,vietnamien
+vol,vo,volapük,volapük
+vot,,votic,vote
+wak,,wakashan languages,wakashane
+wal,,wolaitta,wolaitta
+war,,waray,waray
+was,,washo,washo
+wel,cy,welsh,gallois
+wen,,sorbian languages,sorabe
+wln,wa,walloon,wallon
+wol,wo,wolof,wolof
+xal,,kalmyk,kalmouk
+xho,xh,xhosa,xhosa
+yao,,yao,yao
+yap,,yapese,yapois
+yid,yi,yiddish,yiddish
+yor,yo,yoruba,yoruba
+ypk,,yupik languages,yupik
+zap,,zapotec,zapotèque
+zbl,,blissymbols|bliss,symboles bliss
+zen,,zenaga,zenaga
+zha,za,zhuang,zhuang
+chi,zh,chinese,chinois
+znd,,zande languages,zandé
+zul,zu,zulu,zoulou
+zun,,zuni,zuni
+zxx,,no linguistic content applicable,pas de contenu linguistique applicable
+zza,,zaza|dimli|kirmanjki,zaza|dimli|kirmanjki

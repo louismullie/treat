@@ -1,0 +1,67 @@
+== Before first release
+
+- Linkers, inflectors
+- Check taggers for context
+- Stanford dependencies parse
+- Enju : make sure Enju parses constituents, remove_last, abbr
+- Ocropus => use better function
+- Optimize magic methods... bigger or smaller, is_token? type methods, phrase categories.
+- Move statistics?
+- Synset class move
+- general procedure for options, check that user doesn't want to change options...
+- Resources: dependencies vs. edges, PTB function tags
+- Check for # Fix everywhere
+- Check paths; parse bin paths
+- Ferret, Natural Inputs
+- Use consistently delegate
+- Text becomes section
+
+=== Eventually
+
+- RDF output
+- Apache OpenNLP
+- Ariel
+- Text2rdf
+- AI libraries
+- JAWS
+- NLTK
+- ghmm
+- Root
+- OpenCyc
+- Tapas Kanungo
+- Mark Watson Text Extractor & other Java tools
+- Citar 
+- PLDA
+- AI4R
+- Math
+- Abner
+- ACOPOST
+- Linkage integration
+- Lemmatizer
+- Claws tagger
+- YAWNI
+- Const missing instead of autoload
+- Probabilistic features: rchardet19, what_language
+- Enju multithreading ?
+- String type detector for other languages
+
+- Automatic benchmark
+
+=== Distant future
+
+- Spell Cheker Raspell
+- Multithreading
+
+=== Checklist before releasing
+
+- Remove code from main page
+- Remove lib path from tests and main page
+- Remove docs
+- gem19 build treat.gemspec
+
+=== Performance
+
+- Cache results that get computed often
+- Use .size == 0 instead of .empty?
+- Optimize method_missing using define_method, even dynamically
+- Array include is slow
