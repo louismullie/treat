@@ -29,7 +29,6 @@ module Treat
       
       def test_modules_loaded?
         ['exception',
-        'utilities',
         'resources',
         'entities',
         'feature',

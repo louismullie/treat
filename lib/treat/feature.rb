@@ -1,4 +1,6 @@
 module Treat
+  # This class is currently not used, because its
+  # behaviours is non-deterministic.
   class Feature
     # Undefine all methods, except those that 
     # create any problems (e.g. with serializing).

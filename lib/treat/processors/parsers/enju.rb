@@ -55,7 +55,7 @@ module Treat
             text = entity.to_s + '.'
           else
             remove_last = false
-            text = entity.to_s
+            text = entity.to_s.gsub('.', '') + '.' # Fix
           end
           stdin.puts(text + "\n")
           parsed = build(stdout.gets, remove_last)

@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{ Text retrieval, extraction and annotation toolkit }
   s.description = %q{ Treat is a toolkit for text retrieval, information extraction and natural language processing. }
   
-  # Add Ruby, Xml and Txt files.
+  # Add all files.
   s.files = Dir['lib/**/*'] + Dir['test/**/*'] + Dir['examples/**/*'] +
   Dir['bin/**/*'] + ['README', 'TODO', 'LICENSE', 'INSTALL']
   

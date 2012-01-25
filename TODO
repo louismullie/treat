@@ -1,11 +1,11 @@
-== Before first release
+## Urgent
 
-- Linkers, inflectors
+- Linkers
 - Check taggers for context
 - Stanford dependencies parse
-- Enju : make sure Enju parses constituents, remove_last, abbr
+- Enju: test
 - Ocropus => use better function
-- Optimize magic methods... bigger or smaller, is_token? type methods, phrase categories.
+- Optimize magic methods... is_token? type methods, phrase categories.
 - Move statistics?
 - Synset class move
 - general procedure for options, check that user doesn't want to change options...
@@ -16,11 +16,14 @@
 - Use consistently delegate
 - Text becomes section
 - Remove top level
-- Loading multiple stanford.
+- Loading multiple JARs
 - Tokenized sentences are not parsed
+- Documentation
+- Remove feature
 
-=== Eventually
+## Eventually
 
+- English inflector
 - RDF output
 - Apache OpenNLP
 - Ariel
@@ -47,24 +50,6 @@
 - Probabilistic features: rchardet19, what_language
 - Enju multithreading ?
 - String type detector for other languages
-
 - Automatic benchmark
-
-=== Distant future
-
-- Spell Cheker Raspell
+- Raspell spell checker
 - Multithreading
-
-=== Checklist before releasing
-
-- Remove code from main page
-- Remove lib path from tests and main page
-- Remove docs
-- gem19 build treat.gemspec
-
-=== Performance
-
-- Cache results that get computed often
-- Use .size == 0 instead of .empty?
-- Optimize method_missing using define_method, even dynamically
-- Array include is slow

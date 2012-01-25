@@ -20,7 +20,8 @@ module Treat
           return klass.send(method, self, options)
         end
       else
-        raise "This type of visitor cannot visit a #{self.class}."
+        raise NAT::Exception,
+        "This type of visitor cannot visit a #{self.class}."
       end
     end
   end
