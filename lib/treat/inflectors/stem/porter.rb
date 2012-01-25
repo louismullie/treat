@@ -2,16 +2,20 @@ module Treat
   module Inflectors
     module Stem
       # Stem a word using a native Ruby implementation of the
-      # Porter stemming algorithm, ported to Ruby from the
-      # version coded up in Perl.
+      # Porter stemming algorithm, ported to Ruby from a 
+      # version coded up in Perl. This is a simplified 
+      # implementation; for a true and fast Porter stemmer,
+      # see Treat::Inflectors::Stem::PorterC.
       #
       # Authored by Ray Pereda (raypereda@hotmail.com).
+      # Unknown license.
       #
       # Original paper: Porter, 1980. An algorithm for suffix stripping, 
       # Program, Vol. 14, no. 3, pp 130-137,
       # Original C implementation: http://www.tartarus.org/~martin/PorterStemmer.
       class Porter
         # Returns the stem of a word using a native Porter stemmer.
+        #
         # Options: none.
         def self.stem(word, options = {})
           # Copy the word and convert it to a string.

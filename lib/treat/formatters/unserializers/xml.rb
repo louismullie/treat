@@ -1,9 +1,11 @@
 module Treat
   module Formatters
     module Unserializers
+      # Recreates the entity tree corresponding to 
+      # a serialized XML file.
       class XML
         require 'nokogiri'
-        
+        # Unserialize an entity stored in XML format.
         def self.unserialize(document, options = {})
           # Read in the XML file.
           xml = File.read(document.file)

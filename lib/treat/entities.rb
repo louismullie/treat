@@ -25,9 +25,11 @@ module Treat
         const_get(entity).build(value, id)
       end
     end
+    # Cache a list of defined entity types to
+    # improve performance.
+    @@list = []
     # Provide a list of defined entity types,
     # as non-camel case identifiers.
-    @@list = []
     def self.list
       return @@list unless @@list.empty?
       self.constants.each do |constant|
@@ -35,8 +37,9 @@ module Treat
       end
       @@list
     end
-    # Return the 'z-order' for hierarchical
-    # comparison of entity types.
+    # Return the hierarchy level of the entity
+    # class, the minimum being a Token and the
+    # maximum being a Collection.
     def self.rank(type)
       klass = Entities.const_get(cc(type))
       compare = lambda { |a,b| a == b || a < b }

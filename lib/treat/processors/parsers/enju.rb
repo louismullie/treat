@@ -20,21 +20,6 @@ module Treat
         @@i = 0
         # Require the Nokogiri XML parser.
         require 'nokogiri'
-        # Maps Enju categories to Treat categories.
-        CategoryMap = {
-          'ADJ' => :adjective,
-          'ADV' => :adverb,
-          'CONJ' => :conjunction,
-          'COOD' => :conjunction,
-          'C' => :complementizer,
-          'D' => :determiner,
-          'N' => :noun,
-          'P' => :preposition,
-          'PN' => :punctuation,
-          'SC' => :conjunction,
-          'V' => :verb,
-          'PRT' => :particle
-        }
         # Return the process running Enju.
         def self.proc
           if @@parsers.size < @@options[:processes]
@@ -114,7 +99,7 @@ module Treat
                         new_attributes[:saturated] = (value[-1] == 'P')
                         value = value[0..-2]
                       end
-                      cat = CategoryMap[value]
+                      cat = Treat::Languages::English::EnjuCatToCategory[value]
                       new_attributes[:cat] = cat
                     else
                       new_attributes[:enju_cat] = value

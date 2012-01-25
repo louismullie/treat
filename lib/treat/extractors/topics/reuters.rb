@@ -6,9 +6,9 @@ module Treat
       #
       # Copyright 2005 Mark Watson.  All rights reserved.
       # This software is released under the GPL.
-      #
-      # Modifications for inclusion in Treat by 
-      # Louis Mullie (2011).
+      # Rewrite for inclusion in Treat by Louis Mullie (2011).
+      # 
+      # Original project website: http://www.markwatson.com/opensource/
       class Reuters
         # Require the Nokogiri XML parser.
         require 'nokogiri'

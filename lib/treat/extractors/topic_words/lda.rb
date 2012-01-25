@@ -9,6 +9,8 @@ module Treat
       # Blei, David M., Ng, Andrew Y., and Jordan, Michael
       # I. 2003. Latent dirichlet allocation. Journal of
       # Machine Learning Research. 3 (Mar. 2003), 993-1022.
+      # 
+      # Project website: https://github.com/ealdent/lda-ruby
       class LDA
         # Require the lda-ruby gem.
         silence_warnings { require 'lda-ruby' }

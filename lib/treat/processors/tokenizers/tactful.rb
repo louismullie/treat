@@ -41,7 +41,7 @@ module Treat
           [/([Cc])annot/, '\1an not']
         ]
         # Tokenize the entity using a rule-based algorithm
-        # which has been lifted from the 'tactful-tokenizer'
+        # that has been lifted from the 'tactful-tokenizer'
         # gem.
         def self.tokenize(entity, options = {})
           s = entity.to_s

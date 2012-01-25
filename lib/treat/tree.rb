@@ -68,6 +68,7 @@ module Treat
         end
         nodes[0]
       end
+      # Retrieve a child node by name or index.
       def [](name_or_index)
         if name_or_index == nil
           raise Treat::Exception, 
@@ -80,6 +81,7 @@ module Treat
           @children_hash[name_or_index]
         end
       end
+      # Remove the supplied node or id of a node from the children.
       def remove!(ion)
         return nil unless ion
         if ion.is_a? Treat::Tree::Node
@@ -91,6 +93,7 @@ module Treat
           @children_hash.delete(ion)
         end
       end
+      # Remove all children.
       def remove_all!
         @children.each { |child| child.set_as_root! }
         @children.clear
@@ -103,14 +106,18 @@ module Treat
         id = @parent.children.index(self)
         @parent.children.at(id + 1) if id
       end
+      # Return the sibling N positions to the left of this one.
       def left(n = 1); sibling(-1*n); end
+      # Return the sibling N positions to the right of this one.
       def right(n = 1); sibling(1*n); end
+      # Return the sibling with position #pos versus 
+      # this one. #pos can be ... -1, 0, 1, ...
       def sibling(pos)
         return nil if is_root?
         id = @parent.children.index(self)
         @parent.children.at(id + pos)
       end
-      # There must be a cleaner way to do this.
+      # Return all brothers and sisters of this node.
       def siblings
         r = @parent.children.dup
         r.delete(self)

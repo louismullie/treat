@@ -24,9 +24,8 @@ module Treat
         @@options = {}
         # Hold the default options.
         DefaultOptions =  {
-          unknown_word_tag: '?',
-          relax: false,
-          debug: false
+          unknown_word_tag: 'FW',
+          relax: false
         }
         # Tag the word using a probabilistic model taking
         # into account known words found in a lexicon and
@@ -34,11 +33,10 @@ module Treat
         #
         # Options:
         # 
-        #   :relax => (Boolean) Relax the Hidden Markov Model: 
+        # - (Boolean) :relax => Relax the Hidden Markov Model: 
         #   this may improve accuracy for uncommon words, 
         #   particularly words used polysemously.
-        #   :debug => (Boolean) Print debug messages.
-        #   :unknown_word_tag => (String) Tag for unknown words.
+        # - (String) :unknown_word_tag => Tag for unknown words.
         def self.tag(entity, options = {})
           # Reinitialize the tagger if the options have changed.
           if options != @@options

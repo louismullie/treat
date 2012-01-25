@@ -1,7 +1,7 @@
 module Treat
   module Formatters
     module Serializers
-      # This class converts an entity to XML format.
+      # This class converts an entity to a storable XML format.
       class XML
         # Reauire the Nokogiri XML parser.
         require 'nokogiri'

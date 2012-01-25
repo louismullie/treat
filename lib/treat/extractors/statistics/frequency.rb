@@ -2,7 +2,8 @@ module Treat
   module Extractors
     module Statistics
       class Frequency
-        # Find the frequency of a given string value.
+        # Find the frequency of the supplied entity
+        # in its root parent.
         def self.statistics(entity, options={})
           if entity.is_leaf?
             w = entity.value.downcase

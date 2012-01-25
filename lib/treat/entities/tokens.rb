@@ -13,6 +13,7 @@ module Treat
       def plural(declensor = nil); declense(declensor, :count => :plural); end
       def singular(declensor = nil); declense(declensor, :count => :singular); end
     end
+    # Represents a clitic ('s).
     class Clitic < Token
     end
     # Represents a number.

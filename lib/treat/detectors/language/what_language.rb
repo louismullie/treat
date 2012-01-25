@@ -7,7 +7,7 @@ module Treat
       # performs probabilistic language detection.
       class WhatLanguage < LanguageDetector
         # Keep only once instance of the gem class.
-        @@wl = nil
+        @@detector = nil
         # Detect the language of an entity using the
         # 'whatlanguage' gem. Return an identifier
         # corresponding to the ISO-639-2 code for the
@@ -15,10 +15,10 @@ module Treat
         def self.language(entity, options = {})
           predetection = super(entity, options)
           return predetection if predetection
-          @@wl ||= ::WhatLanguage.new(:all)
-          all = @@wl.process_text(entity.to_s)
+          @@detector ||= ::WhatLanguage.new(:possibilities)
+          possibilities = @@detector.process_text(entity.to_s)
           lang = {}
-          all.each do |k,v|
+          possibilities.each do |k,v|
             lang[Treat::Languages.find(k)] = v
           end
           Treat::Feature.new(lang).best

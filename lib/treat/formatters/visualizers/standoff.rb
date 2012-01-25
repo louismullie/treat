@@ -5,17 +5,21 @@ module Treat
       # an entity in standoff format; for example:
       # (S (NP John) (VP has (VP come))).
       class Standoff
-        Recurse = Proc.new do |entity, options|
+        # Default options for the visualizer.
+        DefaultOptions = { indent: 0 }
+        # A lambda to recursively visualize the children
+        # of an entity.
+        Recurse = lambda do |entity, options|
           v = ''
           entity.each { |child| v += visualize(child, options) }
           v
         end
         # Visualize the entity using standoff notation.
-        # This can only be called on sentences, as it
-        # is not a suitable format to represent larger
-        # entity.
+        # This can only be called on sentences and smaller
+        # entities, as it is not a suitable format to 
+        # represent larger entities.
         def self.visualize(entity, options = {})
-          options = {:indent => 0} if options.empty?
+          options = DefaultOptions.merge(options)
           value = '';  spaces = ''
           options[:indent].times { spaces << '   '}
           options[:indent] += 1

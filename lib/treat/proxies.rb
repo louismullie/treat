@@ -1,11 +1,13 @@
 module Treat
-  # Proxies install Treat functions on Rubycore classes.
+  # Proxies install Treat functions on core Ruby classes.
   module Proxies
     # The module proxy provides functionanaty common
     # to the different types of proxies.
     module Proxy
+      # Build the entity corresponding to the proxied
+      # object and send the method call to the entity.
       def method_missing(sym, *args, &block)
-        if Categories.have_method?(sym)
+        if Treat::Categories.have_method?(sym)
           to_entity.send(sym, *args)
         else
           super(sym, *args, &block)
@@ -16,8 +18,8 @@ module Treat
       end
     end
     # Install Treat functions on String objects.
-    module StringProxy
-      include Proxy
+    module String
+      include Treat::Proxies::Proxy
       # Save the string to the specified file.
       def save(file)
         File.open(file, 'w') { |f| f.write(self) }
@@ -28,16 +30,21 @@ module Treat
       end
     end
     # Install Treat functions on Numeric objects.
-    module NumericProxy
-      include Proxy
+    module Numeric
+      include Treat::Proxies::Proxy
       # Return the entity corresponding to the number.
       def to_entity(builder = nil)
         Treat::Entities::Entity.from_numeric(self)
       end
     end
     # Install Treat functions on Array objects.
-    module ArrayProxy
-      include Proxy
+    module Array
+      include Treat::Proxies::Proxy
+      # The behaviour of this proxy is special:
+      # if a Treat function is called on an array,
+      # the function will be called on each element
+      # of the array and a new array with the 
+      # results will be returned.
       def method_missing(sym, *args, &block)
         if Category.has_method?(sym)
           array = []
@@ -59,8 +66,8 @@ module Treat
       end
     end
     # Include the proxies in the core classes.
-    String.class_eval { include StringProxy }
-    Numeric.class_eval { include NumericProxy }
-    Array.class_eval { include ArrayProxy }
+    ::String.class_eval { include Treat::Proxies::String }
+    ::Numeric.class_eval { include Treat::Proxies::Numeric }
+    ::Array.class_eval { include Treat::Proxies::Array }
   end
 end

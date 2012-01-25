@@ -21,6 +21,7 @@ module Treat
         # Segment a text using the Punkt segmenter gem.
         #
         # Options: 
+        # 
         #   :training_text => (String) Text to train the segmenter on.
         def self.segment(entity, options = {})
           lang = entity.language

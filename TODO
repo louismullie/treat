@@ -1,6 +1,6 @@
 ## Urgent
 
-- Linkers
+- Linkers + documentation
 - Check taggers for context
 - Stanford dependencies parse
 - Enju: test
@@ -11,15 +11,17 @@
 - general procedure for options, check that user doesn't want to change options...
 - Languages: dependencies vs. edges, PTB function tags
 - Check for # Fix everywhere
-- Check paths; parse bin paths
 - Ferret, Natural Inputs
 - Use consistently delegate
 - Text becomes section
 - Remove top level
 - Loading multiple JARs
+- Linguistics loader, stanford loader
 - Tokenized sentences are not parsed
 - Documentation
-- Remove feature
+- Dot colors
+- Fix encoders
+- Fix Punkt segmenter training text.
 
 ## Eventually
 

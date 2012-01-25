@@ -1,6 +1,7 @@
 module Treat
   module Processors
     module Parsers
+      # A wrapper class for hte stanford parser.
       class Stanford
         # Require the Ruby-Java bridge.
         silence_warnings { require 'rjb' }
@@ -13,6 +14,7 @@ module Treat
         Rjb::load(jars[0], ['-Xms256M', '-Xmx512M'])
         LexicalizedParser = ::Rjb::import('edu.stanford.nlp.parser.lexparser.LexicalizedParser')
         @@parsers = {}
+        # Parse the entity using the Stanford parser.
         def self.parse(entity, options = {})
           lang = Treat::Languages.describe(entity.language).to_s.upcase
           pcfg = "#{Treat.bin}/stanford-parser*/grammar/#{lang.upcase}PCFG.ser.gz"
@@ -26,6 +28,8 @@ module Treat
           recurse(parse, entity)
           entity
         end
+        # Helper method which recurses the tree supplied by 
+        # the Stanford parser.
         def self.recurse(java_node, ruby_node)
           # Leaf
           if java_node.num_children == 0

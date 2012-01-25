@@ -52,24 +52,16 @@ module Treat
         @@tagger = nil
         # Hold the user-set options
         @@options = {}
-        # Hold the default options.
-        DefaultOptions =  {
-          lexicon: nil,
-          lexical_rules: nil, 
-          contextual_rules: nil
-        }
         # Tag words using a native Brill tagger.
         #
-        # Available options:
+        # Options:
+        # 
         # :lexicon => String (Lexicon file to use)
         # :lexical_rules => String (Lexical rule file to use)
         # :contextual_rules => String (Contextual rules file to use)
         def self.tag(entity, options = {})
           # Reinitialize the tagger if the options have changed.
-          if options != @@options
-            @@options = DefaultOptions.merge(options)
-            @@tagger = nil # Reset the tagger
-          end
+          @@tagger = nil if options != @@options
           # Create the tagger if necessary
           @@tagger ||= ::Brill::Tagger.new(options[:lexicon],
           options[:lexical_rules], options[:contextual_rules])

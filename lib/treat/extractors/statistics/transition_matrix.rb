@@ -1,8 +1,8 @@
 module Treat
   module Extractors
     module Statistics
+      # Experimental algorithm to generate transition matrices.
       class TransitionMatrix
-
         # Find the transition matrix.
         def self.statistics(entity, options={})
 

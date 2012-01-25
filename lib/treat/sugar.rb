@@ -1,5 +1,10 @@
 module Treat
+  # This module provides syntactic sugar in the following manner:
+  # all entities found under Treat::Entities will be made
+  # available within the global namespace. For example,
+  # Treat::Entities::Word can now be referred to as simply 'Word'.
   module Sugar
+    # Installs syntactic sugar.
     def edulcorate
       return if @@edulcorated
       @@edulcorated = true
@@ -13,6 +18,7 @@ module Treat
         end
       end
     end
+    # Uninstalls syntactic sugar.
     def unedulcorate
       return unless @@edulcorated
       @@edulcorated = false
@@ -24,14 +30,13 @@ module Treat
         end
       end
     end
-    # Whtypeher syntactic sugar is
+    # Boolean - whether syntactic sugar is
     # enabled or not.
     def edulcorated?; @@edulcorated; end
     # Syntactic sugar is disabled by default.
     @@edulcorated = false
-
     private
-    
+    # Helper method, yields each entity type and class.
     def each_entity_class
       Treat::Entities.list.each do |entity_type|
         type = :"#{cc(entity_type)}"

@@ -1,15 +1,28 @@
 module Treat
   module Inflectors
     module Conjugations
+      # This class is a wrapper for the functions included
+      # in the 'linguistics' gem that allow to conjugate verbs.
+      #
+      # Project website: http://deveiate.org/projects/Linguistics/
       class Linguistics
         silence_warnings { require 'linguistics' }
+        # Conjugate a verb using ruby linguistics with the specified
+        # mode, tense, count and person.
+        #
+        # Options:
+        #
+        # - (Symbol) :mode => :infinitive, :indicative, :subjunctive, :participle
+        # - (Symbol) :tense => :past, :present, :future
+        # - (Symbol) :count => :singular, :plural
+        # - (Symbol) :person => :first, :second, :third
         def self.conjugate(entity, parameters)
           begin
             l = entity.language.to_s.upcase
             delegate = nil
             silence_warnings { delegate = ::Linguistics.const_get(l) }
           rescue RuntimeError
-            raise "Ruby Linguistics does not have a module " + 
+            raise "Ruby Linguistics does not have a module " +
             " installed for the #{entity.language} language."
           end
           if parameters[:mode] == :infinitive

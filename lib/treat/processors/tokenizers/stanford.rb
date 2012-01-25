@@ -1,6 +1,8 @@
 module Treat
   module Processors
     module Tokenizers
+      # A wrapper for the Stanford parser's Penn-Treebank
+      # style tokenizer.
       class Stanford
         # Require the Ruby-Java bridge.
         silence_warnings do
@@ -18,6 +20,8 @@ module Treat
           CoreLabelTokenFactory = ::Rjb::import('edu.stanford.nlp.process.CoreLabelTokenFactory')
           StringReader = ::Rjb::import('java.io.StringReader')
         end
+        # Tokenize the entity using a Penn-Treebank style tokenizer
+        # included with the Stanford Parser.
         def self.tokenize(entity, options = {})
           ptbt = PTBTokenizer.new(
             StringReader.new(entity.to_s),

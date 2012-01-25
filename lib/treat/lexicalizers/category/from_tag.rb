@@ -4,13 +4,12 @@ module Treat
       # A class that detects the category of a word from its tag,
       # using the default tagger for the language of the entity.
       class FromTag
-        DefaultOptions = { tagger: nil }
         # Find the category of the current entity.
+        # 
         # Options:
-        # :tagger => (Symbol) force the use of a tagger.
-        # :tag_to_cat => (Hash) a list of categories for each possible tag.
+        # 
+        # - (Symbol) :tagger => force the use of a tagger.
         def self.category(entity, options = {})
-          options = DefaultOptions.merge(options)
           tag = options[:tagger].nil? ? entity.tag : entity.tag(options[:tagger])
           lang = Treat::Languages.get(entity.language)
           cat = lang::WordTagToCategory[tag]

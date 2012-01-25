@@ -3,68 +3,68 @@
 #
 # 1. Entities
 #
-#   Entities are Tree structures that represent any textual 
-#   entity (from a collection of texts down to an individual
-#   word) with a value, features, children and edges linking
-#   it to other textual entities. Sugar provides syntactic sugar
-#   for Entities and can be enabled by running Treat.edulcorate.
+# Entities are Tree structures that represent any textual 
+# entity (from a collection of texts down to an individual
+# word) with a value, features, children and edges linking
+# it to other textual entities. Sugar provides syntactic sugar
+# for Entities and can be enabled by running Treat.edulcorate.
 # 
-#   Here are some example of how to create entities:
+# Here are some example of how to create entities:
 #
-#   c = Collection 'folder_with_documents'
-#   d = Document 'filename.txt' # (or PDF, html, xml, png, jpg, gif).
-#   p = Paragraph 'A short story. The end.'
-#   s = Sentence 'That is not a sentence.'
-#   w = Word 'fox'
+# c = Collection 'folder_with_documents'
+# d = Document 'filename.txt' # (or PDF, html, xml, png, jpg, gif).
+# p = Paragraph 'A short story. The end.'
+# s = Sentence 'That is not a sentence.'
+# w = Word 'fox'
 #  
-#   Here's a full list of entities (subtypes in parentheses): 
-#   Collection, Document, Zone (Section, Title, Paragraph or List),
-#   Sentence, Constituent (Phrase or Clause), Token (Word, Number,
-#   Symbol or Punctuation).
+# Here's a full list of entities (subtypes in parentheses): 
+# Collection, Document, Zone (Section, Title, Paragraph or List),
+# Sentence, Constituent (Phrase or Clause), Token (Word, Number,
+# Symbol or Punctuation).
 # 
 # 2. Proxies
 # 
-#   Proxies allow the Treat functions to be called on the core
-#   Ruby classes String, Numeric and Array. They build the entity 
-#   corresponding to the supplied raw text and send the requested 
-#   function to it.
-#   
-#   For example,
+# Proxies allow the Treat functions to be called on the core
+# Ruby classes String, Numeric and Array. They build the entity 
+# corresponding to the supplied raw text and send the requested 
+# function to it.
+# 
+# For example,
 #
-#       'fox'.tag
+#     'fox'.tag
 #
-#   Is equivalent to:
+# Is equivalent to:
 #
-#       w = Word 'fox'
-#       w.tag
+#     w = Word 'fox'
+#     w.tag
 # 
 # 3. Functions
 #
-#   A class is defined for each implemented algorithm performing a given
-#   task. These classes are clustered into groups of algorithms performing
-#   the same given task (Group), and the groups are clustered into Categories 
-#   of groups performing related tasks.
+# A class is defined for each implemented algorithm performing a given
+# task. These classes are clustered into groups of algorithms performing
+# the same given task (Group), and the groups are clustered into Categories 
+# of groups performing related tasks.
 #
-#   Here are the different Categories:
+# Here are the different Categories:
 # 
 # - Detectors - Category for language, encoding, and format 
-#   detectors.
+# detectors.
 # - Extractors - Category for algorithms that extract information 
-#   from entities.
+# from entities.
 # - Formatters - Category for algorithms that handle conversion 
-#   to and from different formats.
+# to and from different formats.
 # - Inflectors - Category for algorithms that supply the base 
-#   form, inflections and declensions of a word.
+# form, inflections and declensions of a word.
 # - Lexicalizers - Category for algorithms that supply lexical 
-#   information about a word (part of speech, synsets, word categories).
+# information about a word (part of speech, synsets, word categories).
 # - Processors - Namespace for algorithms that process collections and 
-#   documents into trees.
+# documents into trees.
 #
 # 3. Linguistic resources
 # 
-#   The Languages module contains linguistic information about 
-#   languages (full ISO-639-1 and 2 language list, tag alignments 
-#   for three treebanks, word categories, etc.)
+# The Languages module contains linguistic information about 
+# languages (full ISO-639-1 and 2 language list, tag alignments 
+# for three treebanks, word categories, etc.)
 #  
 # 4. Mixins for entities.
 # 
@@ -91,14 +91,14 @@ module Treat
   
   # Create class variables for the Treat module.
   class << self
-    # Default language to use when detect_language is false
+    # Symbol - default language to use when detect_language is false.
     attr_accessor :default_language
-    # Default encoding to use.
+    # Symbol - default encoding to use.
     attr_accessor :default_encoding
     # Boolean - detect language or use default?
     attr_accessor :detect_language
-    # Identifier - the ideal entity level to detect language at
-    # (:entity, :sentence, :zone, :text, :document, klass.)
+    # Symbol - the ideal entity level to detect language at
+    # (e.g., :entity, :sentence, :zone, :text, :document)
     attr_accessor :language_detection_level
     # String - main folder for executable files.
     attr_accessor :bin
@@ -121,8 +121,8 @@ module Treat
   # Set the lib path to that of this file.
   self.lib = File.dirname(__FILE__)
   # Set the paths to the bin, test and tmp folders.
-  self.bin = self.lib + '/../bin/'
-  self.test = self.lib + '/../test/'
+  self.bin = self.lib + '/../bin'
+  self.test = self.lib + '/../test'
   self.tmp = self.lib + '/../tmp/'
   
   # Require modified core classes.

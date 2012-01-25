@@ -1,9 +1,10 @@
 module Treat
   module Formatters
     module Readers
+      # A wrapper for the Poppler pdf2text utility, which
+      # extracts the text from a PDF file.
       class PDF
-        require 'fileutils'
-        # Read a file using the Poppler pdf2text utility.
+        # Read a PDF file using the Poppler pdf2text utility.
         def self.read(document, options = {})
           create_temp_file(:txt) do |tmp|
             `pdftotext #{document.file} #{tmp} `.strip

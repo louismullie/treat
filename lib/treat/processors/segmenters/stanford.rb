@@ -1,6 +1,8 @@
 module Treat
   module Processors
     module Segmenters
+      # A wrapper for the sentence splitter supplied by 
+      # the Stanford parser.
       class Stanford
         # Require the Ruby-Java bridge.
         silence_warnings do
@@ -16,6 +18,8 @@ module Treat
           ::Rjb::import('edu.stanford.nlp.process.DocumentPreprocessor')
           StringReader = ::Rjb::import('java.io.StringReader')
         end
+        # Segment sentences using the sentence splitter supplied by 
+        # the Stanford parser.
         def self.segment(entity, options = {})
           sr = StringReader.new(entity.to_s)
           sit = DocumentPreprocessor.new(sr).iterator

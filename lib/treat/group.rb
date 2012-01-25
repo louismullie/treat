@@ -61,9 +61,10 @@ module Treat
       end
       is_target
     end
+    # Cache the list of adaptors to improve performance.
+    @@list = {}
     # Populates once the list of the adaptors in the group
     # by crawling the filesystem.
-    @@list = {}
     def list
       mod = ucc(cl(self))
       if @@list[mod].nil?
@@ -79,7 +80,7 @@ module Treat
     # Get constants in this module, excluding those
     # defined by parent modules.
     def const_get(const); super(const, false); end
-    # Autoload the algorithms.
+    # Lazy load the classes in the group.
     def const_missing(const)
       bits = self.ancestors[0].to_s.split('::')
       bits.collect! { |bit| ucc(bit) }

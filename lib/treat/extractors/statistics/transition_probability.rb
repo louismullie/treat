@@ -1,6 +1,8 @@
 module Treat
   module Extractors
     module Statistics
+      # Experimental algorithm to calculate the transition
+      # probability of an observed word.
       class TransitionProbability
 
         # Find the transition probability.

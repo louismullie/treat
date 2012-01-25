@@ -183,6 +183,22 @@ module Treat
         ['PRT',	'Particle'],
         ['S',	'Sentence']
       ]
+      
+      # Maps Enju categories to Treat categories.
+      EnjuCatToCategory = {
+        'ADJ' => :adjective,
+        'ADV' => :adverb,
+        'CONJ' => :conjunction,
+        'COOD' => :conjunction,
+        'C' => :complementizer,
+        'D' => :determiner,
+        'N' => :noun,
+        'P' => :preposition,
+        'PN' => :punctuation,
+        'SC' => :conjunction,
+        'V' => :verb,
+        'PRT' => :particle
+      }
 
       # Description of the xcat in the Enju output specification.
       EnjuXCatDescription = [

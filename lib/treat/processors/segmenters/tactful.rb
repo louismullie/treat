@@ -8,7 +8,10 @@ module Treat
       # based on Splitta, but has support for ‘?’ and ‘!’
       # as well as primitive handling of XHTML markup.
       #
-      # Project website:
+      # Project website: https://github.com/SlyShy/Tackful-Tokenizer
+      # Original paper: Dan Gillick. 2009. Sentence Boundary Detection 
+      # and the Problem with the U.S. University of California, Berkeley.
+      # http://dgillick.com/resource/sbd_naacl_2009.pdf
       class Tactful
         # Require the 'tactful_tokenizer' gem.
         silence_warnings { require 'tactful_tokenizer' }

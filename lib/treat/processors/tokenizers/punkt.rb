@@ -26,7 +26,7 @@ module Treat
         ReWordTokenizer = /#{ReMultiCharPunct}|(?=#{ReWordStart})\S+?(?=\s|$|#{ReNonWordChars}|#{ReMultiCharPunct}|,(?=$|\s|#{ReNonWordChars}|#{ReMultiCharPunct}))|\S/
         RePeriodContext = /\S*#{ReSentEndChars}(?=(?<after_tok>#{ReNonWordChars}|\s+(?<next_tok>\S+)))/
         # Tokenize the text using the algorithm lifted from
-        # the Punkt tokenizer.
+        # the Punkt tokenizer gem.
         #
         # Options: none.
         def self.tokenize(entity, options = {})

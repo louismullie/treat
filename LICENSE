@@ -18,11 +18,10 @@ Author: Louis-Antoine Mullie (louis.mullie@gmail.com). Copyright 2012.
 Non-trivial amount of code has been incorporated and modified from
 other libraries, specifically for the following files:
 
- - processors/tokenizers/macintyre.rb - Utiyama Masao (Ruby License)
- - processors/tokenizers/tactful.rb - Matthew Bunday (GPL license)
- - Inflectors/lemmatizers/e_lemma.rb - Utiyama Masao (GPL license)
- - processors/tokenizers/perl.rb - Todd A. Fisher (MIT License)
- - processors/tokenizers/punkt.rb - Steven Bird Edward Loper and Joel Nothman (Apache 2.0 license),
- - extractors/topics/reuters.rb - Mark Watson (GPL license)
- - inflectors/stemmers/porter.rb - Ray Pereda (No license information)
- - tree.rb - Partyl based on work by 
+- processors/tokenizers/macintyre.rb - Utiyama Masao (Ruby License)
+- processors/tokenizers/tactful.rb - Matthew Bunday (GPL license)
+- processors/tokenizers/perl.rb - Todd A. Fisher (MIT License)
+- processors/tokenizers/punkt.rb - Steven Bird Edward Loper and Joel Nothman (Apache 2.0 license)
+- extractors/topics/reuters.rb - Mark Watson (GPL license)
+- inflectors/stemmers/porter.rb - Ray Pereda (No license information)
+- tree.rb - Partly based on work by Anupam Sengupta (Creative Commons Attribution-ShareAlike Unported v. 3.0)

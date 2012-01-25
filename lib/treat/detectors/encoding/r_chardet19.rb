@@ -6,9 +6,8 @@ module Treat
       # A wrapper for the 'rchardet19' gem, which
       # detects the encoding of a file.
       class RChardet19
-        # Returns an Encoding object representing
-        # the encoding of the supplied entity's 
-        # text value.
+        # Returns the encoding of the entity according
+        # to the 'rchardet19' gem.
         #
         # Options: none.
         def self.encoding(entity, options={})

@@ -6,21 +6,20 @@ module Treat
       # the appropriate reader based on the file
       # extension of the supplied document.
       class Autoselect
-        # A list of image extensions that should be routed
-        # to the Ocropus OCR engine.
+        # A list of image extensions that should be routed to OCR.
         ImageExtensions = ['gif', 'jpg', 'jpeg', 'png']
+        # Default options.
+        DefaultOptions = {:ocr => :ocropus}
         # Select the appropriate reader based on the format
         # of the filename in document.
         # 
         # Options:
-        # :ocr => :ocropus | :gocr (the OCR engine to use).
-        def self.read(document, options = {:ocr => :ocropus})
+        #
+        # - :ocr_engine => :ocropus or :gocr (the OCR engine to use).
+        def self.read(document, options)
+          options = DefaultOptions.merge(options)
           ext = document.file.split('.')[-1]
-          if ImageExtensions.include?(ext)
-            reader = 'ocropus'
-          else
-            reader = ext
-          end
+          reader = ImageExtensions.include?(ext) ? 'ocropus' : ext
           begin
             r = Treat::Formatters::Readers.const_get(cc(reader))
           rescue NameError
