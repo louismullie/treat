@@ -1,7 +1,7 @@
 #
 # Main namespace for Treat modules.
 #
-# 1. Entities
+# === Entities
 #
 # Entities are Tree structures that represent any textual 
 # entity (from a collection of texts down to an individual
@@ -11,18 +11,18 @@
 # 
 # Here are some example of how to create entities:
 #
-# c = Collection 'folder_with_documents'
-# d = Document 'filename.txt' # (or PDF, html, xml, png, jpg, gif).
-# p = Paragraph 'A short story. The end.'
-# s = Sentence 'That is not a sentence.'
-# w = Word 'fox'
+#     c = Collection 'folder_with_documents'
+#     d = Document 'filename.txt' # (or PDF, html, xml, png, jpg, gif).
+#     p = Paragraph 'A short story. The end.'
+#     s = Sentence 'That is not a sentence.'
+#     w = Word 'fox'
 #  
 # Here's a full list of entities (subtypes in parentheses): 
 # Collection, Document, Zone (Section, Title, Paragraph or List),
 # Sentence, Constituent (Phrase or Clause), Token (Word, Number,
 # Symbol or Punctuation).
 # 
-# 2. Proxies
+# === Proxies
 # 
 # Proxies allow the Treat functions to be called on the core
 # Ruby classes String, Numeric and Array. They build the entity 
@@ -38,7 +38,7 @@
 #     w = Word 'fox'
 #     w.tag
 # 
-# 3. Functions
+# === Functions
 #
 # A class is defined for each implemented algorithm performing a given
 # task. These classes are clustered into groups of algorithms performing
@@ -60,22 +60,22 @@
 # - Processors - Namespace for algorithms that process collections and 
 # documents into trees.
 #
-# 3. Linguistic resources
+# === Linguistic resources
 # 
 # The Languages module contains linguistic information about 
 # languages (full ISO-639-1 and 2 language list, tag alignments 
 # for three treebanks, word categories, etc.)
 #  
-# 4. Mixins for entities.
+# === Mixins for entities.
 # 
 #  Buildable, Delegatable, Visitable and Registrable are
 #  or extended by Entity and provide it with the ability to be built, 
 #  to delegate function calls, to accept visitors and to maintain a 
 #  token registry, respectively.
 #
-# 5. Exception
+# === Exception class.
 #  
-#  Exception defines a custom exception for the Treat module.
+#  Exception defines a custom exception class for the Treat module.
 # 
 module Treat
 
