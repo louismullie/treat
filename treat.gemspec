@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   
   # Add all files.
   s.files = Dir['lib/**/*'] + Dir['test/**/*'] + Dir['examples/**/*'] +
-  Dir['bin/**/*'] + ['README', 'TODO', 'LICENSE', 'INSTALL']
+  Dir['bin/**/*'] + Dir['tmp/**/*'] + ['README', 'TODO', 'LICENSE', 'INSTALL']
   
   # Runtime dependencies
   s.add_runtime_dependency 'rjb'

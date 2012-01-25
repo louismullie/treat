@@ -34,7 +34,7 @@ module Treat
     # Cleaners strip a text from its mark up.
     module Cleaners
       extend Group
-      self.type = :annotator
+      self.type = :transformer
       self.targets = [:document]
       self.default = :html
     end

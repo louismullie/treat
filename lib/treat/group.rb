@@ -69,7 +69,7 @@ module Treat
       mod = ucc(cl(self))
       if @@list[mod].nil?
         @@list[mod] = []
-        dirs = Dir["#{File.dirname(__FILE__)}/*/#{mod}/*.rb"]     # Fix
+        dirs = Dir.glob("#{Treat.lib}/treat/*/#{mod}/*.rb")
         dirs.each do |file|
           @@list[mod] <<
           :"#{file.split('/')[-1][0..-4]}"

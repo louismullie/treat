@@ -25,9 +25,11 @@ module Treat
         # assert_nothing_raised { @doc.named_entity(:abner) }
       end
 
-      def test_key_sentences
-        topics = @doc.topic_words(:lda)
-        assert_nothing_raised { @doc.key_sentences(:topics_frequency, topics) }
+      def test_keywords
+        assert_nothing_raised do 
+          topics = @doc.topic_words(:lda)
+          @doc.keywords(:topics_frequency, topic_words: topics)
+        end
       end
 
       def test_topics
@@ -38,7 +40,7 @@ module Treat
         @doc.chunk.segment(:tactful).tokenize
 
         assert_nothing_raised { @doc.statistics(:frequency_of, value: 'the') }
-        assert_nothing_raised { @word.statistics(:frequency) }
+        assert_nothing_raised { @word.statistics(:frequency_in) }
         # assert_nothing_raised { @doc.statistics(:position_in) }
         # assert_nothing_raised { @doc.statistics(:transition_matrix) }
         # assert_nothing_raised { @doc.statistics(:transition_probability) }

@@ -1,12 +1,12 @@
 module Treat
   module Extractors
     module Statistics
-      class PositionIn
+      class PositionInParent
         # Find the position of the current entity
         # inside the parent entity with type entity_type.
         # Not implemented.
         def self.statistics(entity, options = {})
-          raise Treat::Exception, 'Could you implement this?'
+          entity.parent.children.index(entity)
         end
       end
     end

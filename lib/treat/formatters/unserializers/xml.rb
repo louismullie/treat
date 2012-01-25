@@ -6,6 +6,8 @@ module Treat
       class XML
         require 'nokogiri'
         # Unserialize an entity stored in XML format.
+        # 
+        # Options: none.
         def self.unserialize(document, options = {})
           # Read in the XML file.
           xml = File.read(document.file)
@@ -61,6 +63,7 @@ module Treat
               current_value = xml_reader.value.strip
               if current_value && current_value != ''
                 current_element.value = current_value
+                current_element.register_token(current_element)
               end
             end
   

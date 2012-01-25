@@ -7,6 +7,8 @@ module Treat
         # Require the Psych YAML parser.
         require 'psych'
         # Unserialize a YAML file.
+        # 
+        # Options: none.
         def self.unserialize(document, options = {})
           document << ::Psych.load(File.read(document.file))
           document

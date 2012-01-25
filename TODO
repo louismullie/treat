@@ -3,25 +3,24 @@
 - Linkers + documentation
 - Check taggers for context
 - Stanford dependencies parse
-- Enju: test
 - Ocropus => use better function
 - Optimize magic methods... is_token? type methods, phrase categories.
-- Move statistics?
+- Move statistics
 - Synset class move
 - general procedure for options, check that user doesn't want to change options...
-- Languages: dependencies vs. edges, PTB function tags
-- Check for # Fix everywhere
-- Ferret, Natural Inputs
-- Use consistently delegate
-- Text becomes section
-- Remove top level
+- Ferret, Spider
 - Loading multiple JARs
 - Linguistics loader, stanford loader
 - Tokenized sentences are not parsed
-- Documentation
 - Dot colors
 - Fix encoders
 - Fix Punkt segmenter training text.
+- Mark Watson's text extractor
+- Statistics position in
+- Fix documentation antiword, Graphviz, # encoding: utf-8
+- Shortcut methods.. pre/postprocessors
+- Only Phrase..
+- Frequency in
 
 ## Eventually
 
@@ -55,3 +54,5 @@
 - Automatic benchmark
 - Raspell spell checker
 - Multithreading
+- Mark Watson's Java NLP utility to identify proper nouns (human names and places) in text
+- FastTag a Java fast part of speech tagger.

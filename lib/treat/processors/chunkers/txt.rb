@@ -14,9 +14,9 @@ module Treat
               text << Treat::Entities::List.new(zone)
             end
             if zone.length < 60
-              text << Treat::Title.new(zone)
+              text << Treat::Entities::Title.new(zone)
             else
-              text << Treat::Paragraph.new(zone)
+              text << Treat::Entities::Paragraph.new(zone)
             end
           end
           text

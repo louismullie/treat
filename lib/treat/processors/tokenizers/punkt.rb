@@ -31,7 +31,6 @@ module Treat
         # Options: none.
         def self.tokenize(entity, options = {})
           entity.to_s.scan(ReWordTokenizer).each do |token|
-            puts token
             entity << Treat::Entities::Entity.from_string(token)
           end
           entity

@@ -1,4 +1,3 @@
-#
 # Main namespace for Treat modules.
 #
 # === Entities
@@ -48,17 +47,17 @@
 # Here are the different Categories:
 # 
 # - Detectors - Category for language, encoding, and format 
-# detectors.
+#   detectors.
 # - Extractors - Category for algorithms that extract information 
-# from entities.
+#   from entities.
 # - Formatters - Category for algorithms that handle conversion 
-# to and from different formats.
+#   to and from different formats.
 # - Inflectors - Category for algorithms that supply the base 
-# form, inflections and declensions of a word.
+#   form, inflections and declensions of a word.
 # - Lexicalizers - Category for algorithms that supply lexical 
-# information about a word (part of speech, synsets, word categories).
+#   information about a word (part of speech, synsets, word categories).
 # - Processors - Namespace for algorithms that process collections and 
-# documents into trees.
+#   documents into trees.
 #
 # === Linguistic resources
 # 
@@ -85,9 +84,9 @@ module Treat
   end
   
   # The current version of Treat.
-  VERSION = "0.1.2"
+  VERSION = "0.1.3"
 
-#  $LOAD_PATH << '/ruby/treat/lib/' # Remove for release
+  # $LOAD_PATH << '/ruby/treat/lib/' # Remove for release
   
   # Create class variables for the Treat module.
   class << self
@@ -98,7 +97,7 @@ module Treat
     # Boolean - detect language or use default?
     attr_accessor :detect_language
     # Symbol - the ideal entity level to detect language at
-    # (e.g., :entity, :sentence, :zone, :text, :document)
+    # (e.g., :entity, :sentence, :zone, :section, :document)
     attr_accessor :language_detection_level
     # String - main folder for executable files.
     attr_accessor :bin
@@ -117,13 +116,13 @@ module Treat
   # Turn language detection off by default.
   self.detect_language = false
   # Detect the language once per text by default.
-  self.language_detection_level = :text
+  self.language_detection_level = :section
   # Set the lib path to that of this file.
   self.lib = File.dirname(__FILE__)
   # Set the paths to the bin, test and tmp folders.
   self.bin = self.lib + '/../bin'
   self.test = self.lib + '/../test'
-  self.tmp = self.lib + '/../tmp/'
+  self.tmp = self.lib + '/../tmp'
   
   # Require modified core classes.
   require 'treat/object'
@@ -137,6 +136,7 @@ module Treat
   require 'treat/proxies'
   require 'treat/sugar'
   
+  # Make sugar available when needed.
   extend Sugar
 
 end

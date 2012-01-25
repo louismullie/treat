@@ -43,7 +43,7 @@ module Treat
       # feature does not exist
       def method_missing(sym, *args, &block)
         return self.build(*args) if sym == nil
-        if !@features[sym]
+        if !@features.has_key?(sym)
           r = parse_magic_method(sym, *args, &block)
           if r == :no_magic
             begin
@@ -168,7 +168,10 @@ module Treat
       def <<(entities, clear_parent = true)
         entities = [entities] unless entities.is_a? Array
         entities.each do |entity|
-          register_token(entity) if entity.is_leaf?
+          if entity.is_a?(Treat::Entities::Token) || 
+            entity.is_a?(Treat::Entities::Constituent)
+              register_token(entity) unless entity.value == ''
+          end
         end
         super(entities)
         @parent.value = '' if has_parent?
@@ -211,7 +214,6 @@ module Treat
       def short_value(ml = 6); visualize(:short_value, :max_length => ml); end
       # Convenience functions. Convenience decorators.
       def frequency_of(word); statistics(:frequency_of, value: word); end
-      
       private
       # Return the first element in the array, warning if not
       # the only one in the array. Used for magic methods: e.g.,

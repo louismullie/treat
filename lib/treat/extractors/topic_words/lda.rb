@@ -9,7 +9,7 @@ module Treat
       # Blei, David M., Ng, Andrew Y., and Jordan, Michael
       # I. 2003. Latent dirichlet allocation. Journal of
       # Machine Learning Research. 3 (Mar. 2003), 993-1022.
-      # 
+      #
       # Project website: https://github.com/ealdent/lda-ruby
       class LDA
         # Require the lda-ruby gem.
@@ -19,25 +19,28 @@ module Treat
         Lda::TextCorpus.class_eval do
           # Ruby, Y U NO SHUT UP!
           silence_warnings { undef :initialize }
-          # Redefine initialize to take in an array of texts.
-          def initialize(texts)
+          # Redefine initialize to take in an array of sections
+          def initialize(sections)
             super(nil)
-            texts.each do |text|
-              add_document(Lda::TextDocument.new(self, text))
+            sections.each do |section|
+              add_document(Lda::TextDocument.new(self, section))
             end
           end
         end
+        # Default options for the LDA algorithm.
+        DefaultOptions = {
+          topics: 20,
+          words_per_topic: 10,
+          iterations: 20
+        }
+        # Retrieve the topic words of a collection.
         def self.topic_words(collection, options = {})
-          # Set the options
-          options[:words_per_topic] ||= 10
-          options[:topics] ||= 20
-          options[:iterations] ||= 20
-
+          options = DefaultOptions.merge(options)
           # Create a corpus with the collection
-          texts = collection.texts.collect do |t| 
+          sections = collection.sections.collect do |t|
             t.to_s.encode("UTF-8", :invalid => :replace, :undef => :replace, :replace => "?")
           end
-          corpus = Lda::TextCorpus.new(texts)
+          corpus = Lda::TextCorpus.new(sections)
 
           # Create an Lda object for training
           lda = Lda::Lda.new(corpus)
@@ -45,15 +48,15 @@ module Treat
           lda.max_iter = options[:iterations]
           # Run the EM algorithm using random starting points
           silence_streams(STDOUT, STDERR) { lda.em('random') }
-          
+
           # Load the vocabulary.
           if options[:vocabulary]
             lda.load_vocabulary(options[:vocabulary])
           end
-          
-          # Get the topic words and annotate the text.
+
+          # Get the topic words and annotate the section.
           topic_words = lda.top_words(options[:words_per_topic])
-          
+
           topic_words.each do |i, words|
             collection.each_word do |word|
               if words.include?(word)
@@ -64,7 +67,7 @@ module Treat
               end
             end
           end
-          
+
           topic_words
         end
       end

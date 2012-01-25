@@ -13,5 +13,9 @@ module Treat
     # Represents a list.
     class List < Zone
     end
+    # Represents a section, usually with a title
+    # and at least one paragraph.
+    class Section < Zone
+    end
   end
 end

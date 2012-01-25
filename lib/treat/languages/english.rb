@@ -1,8 +1,10 @@
 module Treat
   module Languages
     class English
+      
       require 'treat/languages/english/tags'
       require 'treat/languages/english/categories'
+      
       Extractors = {
         time: [:chronic],
         topics: [:reuters],
@@ -11,7 +13,7 @@ module Treat
       }
       Processors = {
         chunkers: [:txt],
-        parsers: [:enju, :stanford],
+        parsers: [:stanford, :enju],
         segmenters: [:tactful, :punkt, :stanford],
         tokenizers: [:multilingual, :macintyre, :perl, :punkt, :tactful, :stanford]
       }
@@ -28,6 +30,7 @@ module Treat
         ordinal_words: [:linguistics],
         cardinal_words: [:linguistics]
       }
+      
     end
   end
 end

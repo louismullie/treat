@@ -40,7 +40,8 @@ module Treat
             text = entity.to_s + '.'
           else
             remove_last = false
-            text = entity.to_s.gsub('.', '') + '.' # Fix
+            text = entity.to_s.gsub('.', '')
+            text += '.' unless ['!', '?'].include?(text[-1])
           end
           stdin.puts(text + "\n")
           parsed = build(stdout.gets, remove_last)

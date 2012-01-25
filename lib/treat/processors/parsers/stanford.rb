@@ -1,7 +1,7 @@
 module Treat
   module Processors
     module Parsers
-      # A wrapper class for hte stanford parser.
+      # A wrapper class for the Stanford parser.
       class Stanford
         # Require the Ruby-Java bridge.
         silence_warnings { require 'rjb' }

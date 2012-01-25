@@ -20,11 +20,14 @@ module Treat
           options = DefaultOptions.merge(options)
           ext = document.file.split('.')[-1]
           reader = ImageExtensions.include?(ext) ? 'ocropus' : ext
+          reader = 'html' if reader == 'htm'
+          reader = 'yaml' if reader == 'yml'
           begin
             r = Treat::Formatters::Readers.const_get(cc(reader))
-          rescue NameError
+          rescue NameError => e
+            puts e.message
             raise Treat::Exception,
-            "Cannot find a default reader for format: '#{ext}'."
+            "Cannot find a reader for format: '#{ext}'."
           end
           document = r.read(document, options)
         end

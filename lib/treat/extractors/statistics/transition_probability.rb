@@ -20,14 +20,16 @@ module Treat
               next unless tm[f1][v1]
               
               relationships.each do |relationship|
-                relatives = target.send(relationship)
+                relatives = entity.send(relationship)
                 relatives = [relatives] unless relatives.is_a? Array
                 relatives.each do |relative|
                   next if relative.nil? || !relative.has?(f2)
                   v2 = relative.send(f2)
-                  if tm[f1][v1][relationship][f2][v2]
-                    score += tm[f1][v1][relationship][f2][v2]
-                    count += 1
+                  if tm[f1][v1][relationship] && 
+                    tm[f1][v1][relationship][f2] && 
+                    tm[f1][v1][relationship][f2][v2]
+                      score += tm[f1][v1][relationship][f2][v2]
+                      count += 1
                   end
                 end
               end

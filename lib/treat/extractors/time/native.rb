@@ -7,6 +7,8 @@ module Treat
         # Return a DateTime object representing the date/time
         # contained within the entity, using Ruby's native
         # date/time parser.
+        #
+        # Options: none.
         def self.time(entity, options = {})
           ::DateTime.parse(entity.to_s)
         end

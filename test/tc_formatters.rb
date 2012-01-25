@@ -37,10 +37,6 @@ module Treat
         assert_nothing_raised { @sentence.visualize(:standoff) }
       end
 
-      def test_cleaners
-        assert_nothing_raised { @html_doc.clean(:html) }
-      end
-      
     end
   end
 end

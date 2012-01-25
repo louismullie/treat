@@ -16,7 +16,7 @@ module Treat
         # - (Symbol) :tense => :past, :present, :future
         # - (Symbol) :count => :singular, :plural
         # - (Symbol) :person => :first, :second, :third
-        def self.conjugate(entity, parameters)
+        def self.conjugations(entity, parameters)
           begin
             l = entity.language.to_s.upcase
             delegate = nil

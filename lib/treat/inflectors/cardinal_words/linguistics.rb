@@ -34,15 +34,7 @@ module Treat
         # 
         # More specific options when using :type => :ordinal:
         def self.cardinal_words(entity, options = {})
-          begin
-            l = entity.language.to_s.upcase
-            delegate = nil
-            silence_warnings { delegate = ::Linguistics.const_get(l) }
-          rescue RuntimeError
-            raise "Ruby Linguistics does not have a module " + 
-            " installed for the #{entity.language} language."
-          end
-          silence_warnings { delegate.numwords(entity.to_s, options) }
+          silence_warnings { ::Linguistics::EN.numwords(entity.to_s, options) }
         end
       end
     end

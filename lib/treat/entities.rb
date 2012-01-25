@@ -14,7 +14,6 @@ module Treat
     # Then require all possible entities.
     require 'treat/entities/collection'
     require 'treat/entities/document'
-    require 'treat/entities/text'
     require 'treat/entities/zones'
     require 'treat/entities/sentence'
     require 'treat/entities/constituents'
@@ -46,8 +45,8 @@ module Treat
       return 0 if compare.call(klass, Token)
       return 1 if compare.call(klass, Constituent)
       return 2 if compare.call(klass, Sentence)
+      return 3 if compare.call(klass, Zone)
       return 4 if compare.call(klass, Document)
-      return 3 if compare.call(klass, Section)
       return 5 if compare.call(klass, Collection)
     end
   end

@@ -20,6 +20,7 @@ module Treat
             if cat.size == 1
               return cat[0]
             else
+              entity.set :tag_set, :penn
               if entity.has?(:tag_set)
                 if cat[entity.tag_set]
                   return cat[entity.tag_set]

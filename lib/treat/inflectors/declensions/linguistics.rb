@@ -14,7 +14,7 @@ module Treat
         # Options:
         #
         # - (Identifier) :count => :singular, :plural
-        def self.declense(entity, options = {})
+        def self.declensions(entity, options = {})
           begin
             l = entity.language.to_s.upcase
             delegate = nil

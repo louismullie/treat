@@ -9,6 +9,8 @@ module Treat
         silence_warnings { require 'chronic' }
         # Return the time information contained within the entity
         # by parsing it with the 'chronic' gem.
+        # 
+        # Options: none.
         def self.time(entity, options = {})
           silence_warnings { ::Chronic.parse(entity.to_s, {:guess => true}) }
         end

@@ -1,16 +1,16 @@
 module Treat
   module Extractors
     module Statistics
-      class Frequency
-        # Find the frequency of the supplied entity
-        # in its root parent.
+      class FrequencyIn
+        DefaultOptions = {type: nil}
         def self.statistics(entity, options={})
+          options = DefaultOptions.merge(options)
           if entity.is_leaf?
             w = entity.value.downcase
-            if entity.token_registry[:value][w].nil?
+            if entity.token_registry(options[:type])[:value][w].nil?
               0
             else
-              entity.token_registry[:value][w].size
+              entity.token_registry(options[:type])[:value][w].size
             end
           else
             raise Treat::Exception,

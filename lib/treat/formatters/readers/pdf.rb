@@ -5,6 +5,8 @@ module Treat
       # extracts the text from a PDF file.
       class PDF
         # Read a PDF file using the Poppler pdf2text utility.
+        # 
+        # Options: none.
         def self.read(document, options = {})
           create_temp_file(:txt) do |tmp|
             `pdftotext #{document.file} #{tmp} `.strip

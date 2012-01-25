@@ -24,9 +24,8 @@ module Treat
         "Cannot create a document or collection from " +
         "a string (need a readable file/folder)."
       end
-      string = string.to_s
       dot = string.count('.') + string.count('!') + string.count('?')
-      return Treat::Entities::Text.new(string) if dot > 1 ||
+      return Treat::Entities::Section.new(string) if dot > 1 ||
       (string.count("\n") > 0 && dot == 1)
       return Treat::Entities::Sentence.new(string) if dot == 1 && string.size > 5
       if string.count(' ') == 0
@@ -99,12 +98,6 @@ module Treat
       d.read
     end
     def from_serialized_file(file)
-      unless [Treat::Entities::Document, 
-        Treat::Entities::Collection].include?(self)
-        raise Treat::Exception,
-        "Cannot create something else than a " +
-        "document from raw file '#{file}'."
-      end
       d = Treat::Entities::Document.new(file)
       d.unserialize
       d.children[0].set_as_root!

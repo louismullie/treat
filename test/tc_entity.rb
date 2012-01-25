@@ -2,7 +2,7 @@ module Treat
   module Tests
     class TestEntity < Test::Unit::TestCase
       def setup
-        @text = Treat::Entities::Text.new
+        @text = Treat::Entities::Section.new
         
         @sentence = Treat::Entities::Sentence.new
         
@@ -14,23 +14,23 @@ module Treat
         @adj_phrase.set :tag, 'ADJP'
         
         @det = Treat::Entities::Word.new('The')
-        @det.set :cat, :determiner
+        @det.set :category, :determiner
         @det.set :tag, 'DT'
         @det.set :tag_set, :penn
         @adj = Treat::Entities::Word.new('lazy')
-        @adj.set :cat, :adjective
+        @adj.set :category, :adjective
         @adj.set :tag, 'JJ'
         @adj.set :tag_set, :penn
         @noun = Treat::Entities::Word.new('fox')
-        @noun.set :cat, :noun
+        @noun.set :category, :noun
         @noun.set :tag, 'NN'
         @noun.set :tag_set, :penn
         @aux = Treat::Entities::Word.new('is')
-        @aux.set :cat, :verb
+        @aux.set :category, :verb
         @aux.set :tag, 'VBZ'
         @aux.set :tag_set, :penn
         @verb = Treat::Entities::Word.new('running')
-        @verb.set :cat, :verb
+        @verb.set :category, :verb
         @verb.set :tag, 'VBG'
         @verb.set :tag_set, :penn
         @dot = Treat::Entities::Punctuation.new('.')
@@ -62,7 +62,7 @@ module Treat
       end
       
       def test_type
-        assert_equal :text, @text.type
+        assert_equal :section, @text.type
       end
       
       def test_printers

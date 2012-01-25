@@ -5,11 +5,9 @@ module Treat
         # Find the frequency of a given string value.
         def self.statistics(entity, options = {})
           w = options[:value]
-          if entity.token_registry[:value][w].nil?
-            0
-          else
-            entity.token_registry[:value][w].size
-          end
+          raise Treat::Exception, "Must supply a non-nil value." unless w
+          entity.token_registry[:value][w].nil? ? 0 :
+          entity.token_registry[:value][w].size
         end
       end
     end

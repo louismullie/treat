@@ -3,21 +3,21 @@ module Treat
     module Statistics
       # Experimental algorithm to generate transition matrices.
       class TransitionMatrix
+        DefaultOptions = {
+          normalize: true,
+          features: [:tag],
+          condition: lambda { |e| true },
+          entity_types: [:word],
+          relationships: [:parent, :right, :children]
+        }
         # Find the transition matrix.
         def self.statistics(entity, options={})
-
-          normalize = options[:normalize] || true
-          features = options[:features] || [:tag]
-          condition = options[:condition] || lambda { |e| true }
-          entity_types = options[:entity_types] ? options[:entity_types] :
-          [options[:entity_type]]
-          relationships = options[:relationships] || 
-          [:parent, :left, :right, :children]
+          options = DefaultOptions.merge(options)
 
           # Create lambdas to generate the arrays.
-          empty_prototype = {}; features.each { |f| empty_prototype[f] = {} }
+          empty_prototype = {}; options[:features].each { |f| empty_prototype[f] = {} }
           empty = lambda { Marshal.load(Marshal.dump(empty_prototype)) }
-          empty2_prototype = {}; relationships.each { |r| empty2_prototype[r] = empty.call }
+          empty2_prototype = {}; options[:relationships].each { |r| empty2_prototype[r] = empty.call }
           empty2 = lambda { Marshal.load(Marshal.dump(empty2_prototype)) }
 
           # Deep (recursive) merger.
@@ -27,24 +27,25 @@ module Treat
 
           # Master matrix.
           mm = nil
+          tm = empty.call
 
-          entity.each_entity(*entity_types) do |target|
-            
-            next unless condition.call(target)
+          entity.each_entity(*options[:entity_types]) do |target|
+
+            next unless options[:condition].call(target)
 
             # Initialize the empty transition matrix.
-            tm = empty.call
+            
 
             # Calculate the transition probabilities.
-            features.each do |f1|
+            options[:features].each do |f1|
 
               v1 = target.send(f1)
               tm[f1][v1] = empty2.call
 
-              relationships.each do |relationship|
+              options[:relationships].each do |relationship|
                 tm[f1][v1][relationship] = empty.call
-                
-                features.each do |f2|
+
+                options[:features].each do |f2|
                   relatives = target.send(relationship)
                   relatives = [relatives] unless relatives.is_a? Array
                   relatives.each do |relative|
@@ -55,9 +56,9 @@ module Treat
                       tm[f1][v1][relationship][f2][v2] += 1.0
                     end
                   end
-                  
+
                   tm[f1][v1][:edge] = empty.call
-                  
+
                   target.edges.each do |id, edge_type|
                     s = target.ancestor_with_type :sentence
                     if s
@@ -68,14 +69,13 @@ module Treat
                       tm[f1][v1][:edge][f2][v2] += 1.0
                     end
                   end
-                             
+
                 end
               end
             end
-            
-            mm = mm ? mm.merge(tm, &merger) : tm
           end
-          if normalize
+          mm = mm ? mm.merge(tm, &merger) : tm
+          if options[:normalize]
             normalize(mm)
           else
             mm

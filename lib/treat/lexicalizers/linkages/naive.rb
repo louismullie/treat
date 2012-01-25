@@ -27,7 +27,7 @@ module Treat
         end
         # Return the subject of the sentence|verb.
         def self.subject(entity, options)
-          verb = entity.category == :verb ? 
+          verb = (entity.has?(:category) && entity.category == :verb) ? 
           main_verb(entity) : entity.main_verb
           args = []
           main_verb.edges.each_pair do |id,edge|
@@ -37,7 +37,7 @@ module Treat
         end
         # Return the object of the sentence|verb.
         def self.object(entity, options)
-          verb = entity.category == :verb ? 
+          verb = (entity.has?(:category) && entity.category == :verb) ? 
           main_verb(entity) : entity.main_verb
           if verb.voice == 'passive'
             return
@@ -50,7 +50,7 @@ module Treat
         end
         # Find the main verb (shallowest verb in the tree).
         def self.main_verb(entity, options)
-          verbs = entity.words_with_cat(:verb)
+          verbs = entity.verbs
           if verbs.empty?
             return
           end

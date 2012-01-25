@@ -26,7 +26,8 @@ module Treat
           if entity.is_a?(Treat::Entities::Token)
             value += "#{spaces}(#{entity.tag} #{entity.value})"
           elsif entity.is_a?(Treat::Entities::Constituent)
-            value += ("#{spaces}(#{entity.tag}\n" +
+            tag = entity.has?(:tag) ? entity.tag : ''
+            value += ("#{spaces}(#{tag}\n" +
             "#{Recurse.call(entity, options)})\n")
           elsif entity.is_a?(Treat::Entities::Sentence)
             value += ("#{spaces}(S\n" +

@@ -75,7 +75,7 @@ module Treat
           "Non-nil name or index needs to be provided." 
         end
         if name_or_index.kind_of?(Integer) && 
-          name_or_index < 1000            # Fix
+          name_or_index < 1000
           @children[name_or_index]
         else
           @children_hash[name_or_index]
@@ -140,7 +140,7 @@ module Treat
       # Does the entity have a feature ?
       def has_feature?(feature)
         @features.has_key?(feature) ||
-        feature == :value
+        [:id, :value, :children, :edges].include?(feature)
       end
       alias :has? :has_feature?
       # Link this node to the target node with

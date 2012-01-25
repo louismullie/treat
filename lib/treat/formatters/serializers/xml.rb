@@ -9,7 +9,8 @@ module Treat
         def self.serialize(entity, options = {})
           options = {:indent => 0} if options[:indent].nil?
           if options[:indent] == 0
-            string = '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>'
+            enc = entity.encoding(:r_chardet19).to_s.gsub('_', '-').upcase
+            string = "<?xml version=\"1.0\" encoding=\"#{enc}\" standalone=\"no\" ?>"
           else
             string = ''
           end

@@ -15,11 +15,11 @@ module Treat
       # DFKI and U. Kaiserslautern, Germany.
       class Ocropus
         #  Read a file using the Google Ocropus reader.
+        # 
+        # Options: none.
         def self.read(document, options = {})
           create_temp_file(:txt) do |tmp|
-            capture(:stderr) do
-              `ocropus page #{document.file} > #{tmp} -STDIO 2>/dev/null`
-            end
+            `ocropus page #{document.file} > #{tmp} -STDIO 2>/dev/null`
             f = File.read(tmp)
             document << Treat::Entities::Entity.from_string(f)
           end

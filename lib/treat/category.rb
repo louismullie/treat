@@ -12,7 +12,7 @@ module Treat
         groups.each do |group|
           group = const_get(group)
           group.targets.each do |entity_type|
-            entity = Entities.const_get(cc(entity_type))
+            entity = Treat::Entities.const_get(cc(entity_type))
             entity.class_eval { add_delegators group }
           end
         end

@@ -29,7 +29,6 @@ module Treat
       extend Group
       self.type = :annotator
       self.targets = [:word, :number]
-      
       def self.synonyms(entity, synsets)
         synsets.collect { |ss| ss.synonyms }.flatten - [entity.value]
       end
@@ -42,7 +41,6 @@ module Treat
       def self.hypernyms(entity, synsets)
         synsets.collect { |ss| ss.hypernyms }.flatten
       end
-      
     end
     extend Treat::Category
   end

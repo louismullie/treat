@@ -6,6 +6,8 @@ module Treat
       # This class serializes entities in YAML format.
       class YAML
         # Serialize an entity in YAML format.
+        #
+        # Options: none.
         def self.serialize(entity, options = {})
           ::Psych.dump(entity)
         end

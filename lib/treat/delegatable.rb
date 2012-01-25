@@ -46,7 +46,7 @@ module Treat
         delegate_klass = group.const_get(:"#{cc(delegate.to_s)}")
         result = entity.accept(group, delegate_klass, m, options)
         if decorator
-          result = group.send(decorator, self, result)
+          result = group.send(decorator, entity, result)
         end
         if group.type == :annotator
           f = decorator.nil? ? m : decorator

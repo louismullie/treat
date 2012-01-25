@@ -17,6 +17,8 @@ module Treat
         @@region = {}
         @@topics = {}
         # Get the topic of the text.
+        # 
+        # Options: none.
         def self.topics(text, options = {})
           stems = []
           @@reduce = 0
@@ -33,7 +35,7 @@ module Treat
           topics = score_words(@@industry, stems)
           topics = topics.merge(score_words(@@region, stems))
           topics = topics.merge(score_words(@@topics, stems))
-          Treat::Feature.new(topics)
+          #Treat::Feature.new(topics)
         end
         # Read the topics from the XML files.
         def self.get_topics
