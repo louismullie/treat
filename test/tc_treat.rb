@@ -29,7 +29,7 @@ module Treat
       
       def test_modules_loaded?
         ['exception',
-        'resources',
+        'languages',
         'entities',
         'feature',
         'category',

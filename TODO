@@ -9,7 +9,7 @@
 - Move statistics?
 - Synset class move
 - general procedure for options, check that user doesn't want to change options...
-- Resources: dependencies vs. edges, PTB function tags
+- Languages: dependencies vs. edges, PTB function tags
 - Check for # Fix everywhere
 - Check paths; parse bin paths
 - Ferret, Natural Inputs

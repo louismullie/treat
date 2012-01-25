@@ -3,7 +3,7 @@ module Treat
     module Tokenizers
       class Stanford
         # Require the Ruby-Java bridge.
-        silently do
+        silence_warnings do
           require 'rjb'
           # Load the Stanford Parser Java files.
           jar = "#{Treat.bin}/stanford-parser/stanford-parser.jar"

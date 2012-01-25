@@ -25,7 +25,7 @@ module Treat
         patch = false
         # Require the 'rbtagger' gem.
         begin
-          silently { require 'rbtagger' }
+          silence_warnings { require 'rbtagger' }
         # This whole mess is required to deal with
         # the fact that the 'rbtagger' gem defines
         # a top-level module called 'Word', which
@@ -73,6 +73,7 @@ module Treat
           # Create the tagger if necessary
           @@tagger ||= ::Brill::Tagger.new(options[:lexicon],
           options[:lexical_rules], options[:contextual_rules])
+          entity.set :tag_set, :penn
           # Perform tagging.
           if entity.type == :word
             # Setup the context of the word

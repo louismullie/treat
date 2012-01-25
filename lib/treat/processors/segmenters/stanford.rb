@@ -3,7 +3,7 @@ module Treat
     module Segmenters
       class Stanford
         # Require the Ruby-Java bridge.
-        silently do
+        silence_warnings do
           require 'rjb'
           jar = "#{Treat.bin}/stanford-parser*/stanford-parser*.jar"
           jars = Dir.glob(jar)

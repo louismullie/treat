@@ -15,9 +15,9 @@ module Treat
 =end
       module Nickel
         require 'date'
-        silently { require 'nickel' }
+        silence_warnings { require 'nickel' }
         def self.time(entity, options = {})
-          n = silently { ::Nickel.parse(entity.to_s) }
+          n = silence_warnings { ::Nickel.parse(entity.to_s) }
           occ = n.occurrences[0]
           # Find the words..
           rec = occ.type.to_s.gsub('single', 'once').intern

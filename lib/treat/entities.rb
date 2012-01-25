@@ -4,15 +4,14 @@ module Treat
   #
   # - Collection
   # - Document
-  # - Text
   # - Zone (a Section, Title, Paragraph, or List)
   # - Sentence
   # - Constituent (a Phrase or Clause)
   # - Token (a Word, Number, Punctuation, or Symbol).
   module Entities
-    # Require Entity first, since the other classes
-    # extend this class.
+    # Require Entity first.
     require 'treat/entities/entity'
+    # Then require all possible entities.
     require 'treat/entities/collection'
     require 'treat/entities/document'
     require 'treat/entities/text'
@@ -40,13 +39,13 @@ module Treat
     # comparison of entity types.
     def self.rank(type)
       klass = Entities.const_get(cc(type))
-      return 6 if klass == Collection || klass < Collection
-      return 5 if klass == Document || klass < Document
-      return 4 if klass == Text || klass < Text
-      return 3 if klass == Zone || klass < Zone
-      return 2 if klass == Sentence || klass < Sentence
-      return 1 if klass == Constituent || klass < Constituent
-      return 0 if klass == Token || klass < Token
+      compare = lambda { |a,b| a == b || a < b }
+      return 0 if compare.call(klass, Token)
+      return 1 if compare.call(klass, Constituent)
+      return 2 if compare.call(klass, Sentence)
+      return 4 if compare.call(klass, Document)
+      return 3 if compare.call(klass, Section)
+      return 5 if compare.call(klass, Collection)
     end
   end
 end

@@ -9,7 +9,7 @@ module Treat
       # Unsupervised Multilingual Sentence Boundary Detection. 
       # Computational Linguistics 32: 485-525.
       class Punkt
-        silently { require 'punkt-segmenter' }
+        silence_warnings { require 'punkt-segmenter' }
         # Hold one copy of the segmenter per language.
         @@segmenters = {}
         # Hold only one trainer per language.

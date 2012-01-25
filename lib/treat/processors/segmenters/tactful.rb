@@ -11,7 +11,7 @@ module Treat
       # Project website:
       class Tactful
         # Require the 'tactful_tokenizer' gem.
-        silently { require 'tactful_tokenizer' }
+        silence_warnings { require 'tactful_tokenizer' }
         # Somewhere in the depths of the code this is defined...
         String.class_eval { undef :tokenize }
         # Keep only one copy of the segmenter.

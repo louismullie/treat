@@ -1,8 +1,8 @@
-silently { require 'english' }
+silence_warnings { require 'english' }
 
 module Treat
    module Inflectors
-      module Declensors
+      module Declensions
          module En
             def self.declense(entity, options)
                string = entity.to_s

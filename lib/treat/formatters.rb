@@ -10,6 +10,13 @@ module Treat
       self.targets = [:collection, :document]
       self.default = :autoselect
     end
+    # Serializers transform entities into a storable format.
+    module Serializers
+      extend Group
+      self.type = :computer
+      self.targets = [:entity]
+      self.default = :yaml
+    end
     # Unserializers recreate entities from a serialized format.
     module Unserializers
       extend Group
@@ -24,14 +31,7 @@ module Treat
       self.targets = [:entity]
       self.default = :tree
     end
-    # Serializers transform entities into a storable format.
-    module Serializers
-      extend Group
-      self.type = :computer
-      self.targets = [:entity]
-      self.default = :yaml
-    end
-    # Serializers transform entities into a storable format.
+    # Cleaners strip a text from its mark up.
     module Cleaners
       extend Group
       self.type = :annotator

@@ -2,7 +2,7 @@ module Treat
   module Detectors
     module Encoding
       # Require the 'rchardet19' gem.
-      silently { require 'rchardet19' }
+      silence_warnings { require 'rchardet19' }
       # A wrapper for the 'rchardet19' gem, which
       # detects the encoding of a file.
       class RChardet19

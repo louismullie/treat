@@ -3,7 +3,7 @@ module Treat
     module NamedEntity
       class Stanford
         # Require the Ruby-Java bridge.
-        silently do 
+        silence_warnings do 
           require 'rjb'
           Rjb::load(nil, ['-Xms256M', '-Xmx1024M'])
           Rjb::add_jar('/ruby/treat/bin/treat/treat.jar')

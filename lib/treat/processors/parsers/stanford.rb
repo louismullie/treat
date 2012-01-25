@@ -3,7 +3,7 @@ module Treat
     module Parsers
       class Stanford
         # Require the Ruby-Java bridge.
-        silently { require 'rjb' }
+        silence_warnings { require 'rjb' }
         jar = "#{Treat.bin}/stanford-parser*/stanford-parser*.jar"
         jars = Dir.glob(jar)
         if jars.empty? || !File.readable?(jars[0])
@@ -14,7 +14,7 @@ module Treat
         LexicalizedParser = ::Rjb::import('edu.stanford.nlp.parser.lexparser.LexicalizedParser')
         @@parsers = {}
         def self.parse(entity, options = {})
-          lang = Treat::Resources::Languages.describe(entity.language).to_s.upcase
+          lang = Treat::Languages.describe(entity.language).to_s.upcase
           pcfg = "#{Treat.bin}/stanford-parser*/grammar/#{lang.upcase}PCFG.ser.gz"
           pcfgs = Dir.glob(pcfg)
           if pcfgs.empty? || !File.readable?(pcfgs[0])
@@ -49,6 +49,7 @@ module Treat
               # end
               ruby_child = Treat::Entities::Phrase.new
               ruby_child.set :tag, java_child.value 
+              ruby_child.set :tag_set, :penn
               ruby_node << ruby_child
               unless java_child.children.empty?
                 recurse(java_child, ruby_child)

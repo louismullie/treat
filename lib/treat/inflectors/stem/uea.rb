@@ -1,6 +1,6 @@
 module Treat
   module Inflectors
-    module Stemmers
+    module Stem
       # Stems a word using the UEA algorithm, implemented
       # by the 'uea-stemmer' gem.
       # 
@@ -15,13 +15,13 @@ module Treat
       #   http://www.uea.ac.uk/polopoly_fs/1.85493!stemmer25feb.pdf
       class UEA
         # Require the 'uea-stemmer' gem.
-        silently { require 'uea-stemmer' }
+        silence_warnings { require 'uea-stemmer' }
         # Keep only one copy of the stemmer.
         @@stemmer = nil
         # Stems a word using the UEA algorithm, implemented
         # by the 'uea-stemmer' gem.        
         def self.stem(entity, options = {})
-          @@stemmer ||= silently { ::UEAStemmer.new }
+          @@stemmer ||= silence_warnings { ::UEAStemmer.new }
           @@stemmer.stem(entity.to_s).strip
         end
       end

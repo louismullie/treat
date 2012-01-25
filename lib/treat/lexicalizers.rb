@@ -7,7 +7,7 @@ module Treat
     module Tag
       extend Group
       self.type = :annotator
-      self.targets = [:phrase, :word]
+      self.targets = [:word]
     end
     module Category
       extend Group

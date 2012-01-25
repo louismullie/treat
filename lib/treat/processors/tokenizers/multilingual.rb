@@ -8,13 +8,13 @@ module Treat
         # Hold one tokenizer per language.
         @@tokenizers = {}
         # Require the 'tokenizer' gem.
-        silently { require 'tokenizer' }
+        silence_warnings { require 'tokenizer' }
         # Perform the tokenization of English, German or French text.
         # Options:
         # :language => (Symbol) Force a language for the tokenizer.
         def self.tokenize(entity, options = {})
           lang = options[:language] ? options[:language] : entity.language
-          lang = Treat::Resources::Languages.find(lang, 1)    
+          lang = Treat::Languages.find(lang, 1)    
           if @@tokenizers[lang].nil?
             @@tokenizers[lang] = ::Tokenizer::Tokenizer.new(lang)
           end

@@ -1,7 +1,7 @@
 module Treat
   module Inflectors
-    module Declensors
-      silently { require 'linguistics' }
+    module Declensions
+      silence_warnings { require 'linguistics' }
       # Obtain word declensions in English using the
       # ruby 'linguistics' gem.
       class Linguistics
@@ -9,7 +9,7 @@ module Treat
           begin
             l = entity.language.to_s.upcase
             delegate = nil
-            silently { delegate = ::Linguistics.const_get(l) }
+            silence_warnings { delegate = ::Linguistics.const_get(l) }
           rescue RuntimeError
             raise "Ruby Linguistics does not have a module " + 
             " installed for the #{entity.language} language."
@@ -18,9 +18,9 @@ module Treat
           if options[:count] == :plural
             if entity.has?(:category) &&
               [:noun, :adjective, :verb].include?(entity.category)
-              silently { delegate.send(:"plural_#{entity.category}", string) }
+              silence_warnings { delegate.send(:"plural_#{entity.category}", string) }
             else
-              silently { delegate.plural(string) }
+              silence_warnings { delegate.plural(string) }
             end
           end
         end

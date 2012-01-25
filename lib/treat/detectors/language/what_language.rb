@@ -2,7 +2,7 @@ module Treat
   module Detectors
     module Language
       # Require the 'whatlanguage' gem.
-      silently { require 'whatlanguage'  }
+      silence_warnings { require 'whatlanguage'  }
       # Adaptor for the 'whatlanguage' gem, which
       # performs probabilistic language detection.
       class WhatLanguage < LanguageDetector
@@ -19,7 +19,7 @@ module Treat
           all = @@wl.process_text(entity.to_s)
           lang = {}
           all.each do |k,v|
-            lang[Treat::Resources::Languages.find(k)] = v
+            lang[Treat::Languages.find(k)] = v
           end
           Treat::Feature.new(lang).best
         end

@@ -11,12 +11,12 @@ module Treat
       # Machine Learning Research. 3 (Mar. 2003), 993-1022.
       class LDA
         # Require the lda-ruby gem.
-        silently { require 'lda-ruby' }
+        silence_warnings { require 'lda-ruby' }
         # Monkey patch the TextCorpus class to call it without
         # having to create any files.
         Lda::TextCorpus.class_eval do
           # Ruby, Y U NO SHUT UP!
-          silently { undef :initialize }
+          silence_warnings { undef :initialize }
           # Redefine initialize to take in an array of texts.
           def initialize(texts)
             super(nil)

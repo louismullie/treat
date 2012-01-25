@@ -1,7 +1,11 @@
 module Treat
-  # Provides functions common to all algorithm categories.
+  # Clusters together groups of algorithms that
+  # perform similar functions.
   module Category
+    # Require the Group class.
     require 'treat/group'
+    # Add delegators to the Entities based on the
+    # configuration for a given category.
     def self.extended(category)
       Treat::Categories.list << category
       category.module_eval do
@@ -14,9 +18,10 @@ module Treat
         end
       end
     end
+    # Provides a list of groups within this category.
     def groups; self.constants; end
     # Provide a list of methods implemented in
-    # the groups contained within that
+    # the groups contained within this category.
     def methods
       methods = []
       groups.each do |group|

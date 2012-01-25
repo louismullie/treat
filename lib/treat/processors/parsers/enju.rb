@@ -120,7 +120,7 @@ module Treat
                       new_attributes[:enju_cat] = value
                       xcat = attributes['xcat'].split(' ')[0]
                       xcat ||= ''
-                      tags = Treat::Resources::Tags::EnjuCatXcatToPTB.select do |m|
+                      tags = Treat::Languages::English::EnjuCatXcatToPTB.select do |m|
                         m[0] == value && m[1] == xcat
                       end
                       if tags.empty?
@@ -144,6 +144,7 @@ module Treat
             # Handle naming conventions.
             if attributes.has_key?('pos')
               new_attributes[:tag] = new_attributes[:pos]
+              new_attributes[:tag_set] = :penn
               new_attributes.delete :pos
             end
             # Create the appropriate entity for the

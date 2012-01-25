@@ -1,6 +1,9 @@
 module Treat
+  # Represents an object that can be built
+  # from a folder of files, a specific file,
+  # a string or a numeric object. This class
+  # is pretty much self-explanatory.
   module Buildable
-
     def from_anything(file_or_value, id)
       if File.readable?(file_or_value.to_s)
         from_file(file_or_value)
@@ -9,11 +12,11 @@ module Treat
       elsif file_or_value.is_a?(Numeric)
         from_numeric(file_or_value)
       else
-        raise "Unrecognizable input #{file_or_value}. "+
+        raise Treat::Exception,
+        "Unrecognizable input #{file_or_value}. "+
         "Use filename, folder, text or a number."
       end
     end
-    
     def from_string(string)
       if self == Treat::Entities::Document ||
         self == Treat::Entities::Collection
@@ -37,7 +40,6 @@ module Treat
       end
       return Treat::Entities::Unknown.new(string)
     end
-
     def from_numeric(numeric)
       unless self == Treat::Entities::Number
         raise Treat::Exception,
@@ -46,7 +48,6 @@ module Treat
       end
       Treat::Entities::Number.new(numeric.to_s)
     end
-
     def from_folder(folder)
       unless FileTest.directory?(folder)
         raise Treat::Exception,
@@ -69,7 +70,6 @@ module Treat
       end
       c
     end
-
     def from_file(file)
       unless File.readable?(file)
         raise Treat::Exception,
@@ -79,7 +79,8 @@ module Treat
         from_folder(file)
       else
         ext = file.split('.')[-1]
-        ext = 'yaml' if ext == 'yml' # Humanize the yml extension.
+        # Humanize the yaml extension.
+        ext = 'yaml' if ext == 'yml'
         if Treat::Formatters::Unserializers.list.
           include?(ext.downcase.intern)
           from_serialized_file(file)
@@ -88,7 +89,6 @@ module Treat
         end
       end
     end
-
     def from_raw_file(file)
       unless self == Treat::Entities::Document
         raise Treat::Exception,
@@ -98,9 +98,9 @@ module Treat
       d = Treat::Entities::Document.new(file)
       d.read
     end
-
     def from_serialized_file(file)
-      unless [Treat::Entities::Document, Treat::Entities::Collection].include?(self)
+      unless [Treat::Entities::Document, 
+        Treat::Entities::Collection].include?(self)
         raise Treat::Exception,
         "Cannot create something else than a " +
         "document from raw file '#{file}'."
@@ -110,6 +110,5 @@ module Treat
       d.children[0].set_as_root!
       d.children[0]
     end
-
   end
 end

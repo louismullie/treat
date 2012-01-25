@@ -3,7 +3,7 @@ module Treat
     module NamedEntity
       class Abner
         # Require the Ruby-Java bridge.
-        silently do
+        silence_warnings do
           require 'rjb'
           Rjb::load('', ['-Xms256M', '-Xmx512M'])
           puts Rjb.import('tagger')

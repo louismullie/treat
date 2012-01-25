@@ -1,6 +1,6 @@
 module Treat
   module Inflectors
-    module Stemmers
+    module Stem
       # Stem a word using a native Ruby implementation of the
       # Porter stemming algorithm, ported to Ruby from the
       # version coded up in Perl.

@@ -1,5 +1,6 @@
 module Treat
   module Group
+    # Modify the extended class.
     def self.extended(group)
       group.module_eval do
         class << self
@@ -75,22 +76,22 @@ module Treat
       end
       @@list[mod]
     end
-    # Set inherit to false by default.
-    def const_get(const)
-      super(const, false)
-    end
+    # Get constants in this module, excluding those
+    # defined by parent modules.
+    def const_get(const); super(const, false); end
     # Autoload the algorithms.
     def const_missing(const)
       bits = self.ancestors[0].to_s.split('::')
       bits.collect! { |bit| ucc(bit) }
-      file = bits.join('/') + "/#{ucc(const)}"          # Fix
-      #if not File.readable?(file + '.rb') 
-      #  raise Treat::Exception,
-      #  "File '#{file}.rb' corresponding to requested delegate "+
-      #  "#{self}::#{const} does not exist."
+      file = bits.join('/') + "/#{ucc(const)}"
+      if not File.readable?("#{Treat.lib}/#{file}.rb")
+        raise Treat::Exception,
+        "File '#{file}.rb' corresponding to requested delegate "+
+        "#{self}::#{const} does not exist."
+      else
         require file
         const_get(const)
-      #end
+      end
     end
   end
 end

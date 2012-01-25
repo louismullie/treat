@@ -62,7 +62,7 @@
 #
 # 3. Linguistic resources
 # 
-#   The Resources module contains linguistic information about 
+#   The Languages module contains linguistic information about 
 #   languages (full ISO-639-1 and 2 language list, tag alignments 
 #   for three treebanks, word categories, etc.)
 #  
@@ -87,21 +87,7 @@ module Treat
   # The current version of Treat.
   VERSION = "0.1.2"
 
-  $LOAD_PATH << '/ruby/treat/lib/' # Remove for release
-  
-  # Require modified core classes.
-  require 'treat/object'
-  require 'treat/kernel'
-  
-  # Require all files for the Treat library.
-  require 'treat/exception'
-  require 'treat/resources'
-  require 'treat/entities'
-  require 'treat/categories'
-  require 'treat/proxies'
-  require 'treat/sugar'
-  
-  extend Sugar
+#  $LOAD_PATH << '/ruby/treat/lib/' # Remove for release
   
   # Create class variables for the Treat module.
   class << self
@@ -139,4 +125,18 @@ module Treat
   self.test = self.lib + '/../test/'
   self.tmp = self.lib + '/../tmp/'
   
+  # Require modified core classes.
+  require 'treat/object'
+  require 'treat/kernel'
+  
+  # Require all files for the Treat library.
+  require 'treat/exception'
+  require 'treat/languages'
+  require 'treat/entities'
+  require 'treat/categories'
+  require 'treat/proxies'
+  require 'treat/sugar'
+  
+  extend Sugar
+
 end

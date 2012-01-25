@@ -5,7 +5,7 @@ $:.unshift File.join(File.dirname(__FILE__), "..", "lib")
 require 'treat'
 require 'texts'
 
-Treat.bin = '/ruby/nat/bin' # Remove
+# Treat.bin = '/ruby/nat/bin' # Remove for release
 
 require 'tc_treat'
 require 'tc_tree'

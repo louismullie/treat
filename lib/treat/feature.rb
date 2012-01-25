@@ -1,6 +1,9 @@
 module Treat
-  # This class is currently not used, because its
-  # behaviours is non-deterministic.
+  # This class represents a probabilistic feature;
+  # it is currently not used, because its
+  # behaviour is non-deterministic. Perhaps at 
+  # some point this will be of value for specific
+  # algorithms and so I'm keeping it here.
   class Feature
     # Undefine all methods, except those that 
     # create any problems (e.g. with serializing).
@@ -28,7 +31,7 @@ module Treat
       end
     end
     # Normalize the probabilities, so that
-    # the sum of all probabilities is one,
+    # the sum of all probabilities is 1,
     # except if the sum of all probabilities
     # is already below one (in which case we
     # assume that the feature is intentionally

@@ -1,6 +1,6 @@
 module Treat
   module Inflectors
-    module Stemmers
+    module Stem
       # Stems words using the 'ruby-stemmer' gem, which
       # wraps a C version of the Porter stemming algorithm.
       # 
@@ -9,13 +9,13 @@ module Treat
       # Program, Vol. 14, no. 3, pp 130-137,
       # Original C implementation: http://www.tartarus.org/~martin/PorterStemmer.
       class PorterC
-        silently { require 'lingua/stemmer' }
+        silence_warnings { require 'lingua/stemmer' }
         ::LinguaStemmer = ::Lingua
         Object.instance_eval { remove_const :Lingua }
         # Stem the word using the Porter C algorithm.
         # Options: none.
         def self.stem(word, options = {})
-          silently { ::LinguaStemmer.stemmer(word.to_s) }
+          silence_warnings { ::LinguaStemmer.stemmer(word.to_s) }
         end
       end
     end

@@ -2,7 +2,7 @@ module Treat
   module Inflectors
     module CardinalWords
       class Linguistics
-        silently { require 'linguistics' }
+        silence_warnings { require 'linguistics' }
         # 
         # Options:
         #
@@ -32,12 +32,12 @@ module Treat
           begin
             l = entity.language.to_s.upcase
             delegate = nil
-            silently { delegate = ::Linguistics.const_get(l) }
+            silence_warnings { delegate = ::Linguistics.const_get(l) }
           rescue RuntimeError
             raise "Ruby Linguistics does not have a module " + 
             " installed for the #{entity.language} language."
           end
-          silently { delegate.numwords(entity.to_s, options) }
+          silence_warnings { delegate.numwords(entity.to_s, options) }
         end
       end
     end

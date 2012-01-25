@@ -4,7 +4,7 @@ module Treat
       # Currently not implemented.
       class RitaWn
         # Require the Ruby-Java bridge.
-        #silently do
+        #silence_warnings do
           require 'rjb'
           # Load the RitaWN jars.
           Rjb::load("#{Treat.bin}/jwnl/jwnl.jar", [])

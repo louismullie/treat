@@ -17,7 +17,7 @@ module Treat
       # http://cpansearch.perl.org/src/ACOBURN/Lingua-EN-Tagger-0.15/
       class Lingua
         # Require the 'engtagger' gem.
-        silently { require 'engtagger' }
+        silence_warnings { require 'engtagger' }
         # Hold the tagger.
         @@tagger = nil
         # Hold the user-set options
@@ -46,6 +46,7 @@ module Treat
             @@tagger = nil # Reset the tagger
           end
           @@tagger ||= ::EngTagger.new(@@options)
+          entity.set :tag_set, :penn
           left = entity.left
           if left.nil? || left.type != :word
             left_tag = 'pp'

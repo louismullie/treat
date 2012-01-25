@@ -3,7 +3,7 @@ module Treat
     module Tag
       class Stanford
         # Require the Ruby-Java bridge.
-        silently do
+        silence_warnings do
           require 'rjb'
           jar = "#{Treat.bin}/stanford-tagger*/stanford-postagger*.jar"
           jars = Dir.glob(jar)
@@ -42,7 +42,7 @@ module Treat
             model = LanguageToModel[lang]
             if model.nil?
               raise Treat::Exception, "There exists no Stanford tagger model for " +
-              "the #{Treat::Resources::Languages.describe(lang)} language ."
+              "the #{Treat::Languages.describe(lang)} language ."
             end
           end
           # Reinitialize the tagger if the options have changed.
@@ -55,13 +55,14 @@ module Treat
             models = Dir.glob(model)
             if models.empty? || !File.readable?(models[0])
               raise "Could not find a tagger model for the " +
-              "#{Treat::Resources::Languages.describe(lang)}: looking in #{model}."
+              "#{Treat::Languages.describe(lang)}: looking in #{model}."
             end
             silence_streams(STDOUT, STDERR) do
               @@taggers[lang] =
               MaxentTagger.new(models[0])
             end
           end
+          entity.set :tag_set, :penn
           list = List.new
           id_list = {}
           i = 0

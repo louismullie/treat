@@ -93,7 +93,7 @@ module Treat
       # dispatches done by Ruby to improve performance.
       def parse_magic_method(sym, *args, &block)
         @@entities_regexp ||= "(#{Treat::Entities.list.join('|')})"
-        @@cats_regexp ||= "(#{Treat::Resources::Categories::List.join('|')})"
+        @@cats_regexp ||= "(#{Treat::Languages::English::Categories.join('|')})"
         method = sym.to_s =~ /entities/ ?
         sym.to_s.gsub('entities', 'entitys'):
         method = sym.to_s
