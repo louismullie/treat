@@ -68,14 +68,14 @@
 #  
 # === Mixins for entities.
 # 
-#  Buildable, Delegatable, Visitable and Registrable are
-#  or extended by Entity and provide it with the ability to be built, 
-#  to delegate function calls, to accept visitors and to maintain a 
-#  token registry, respectively.
+# Buildable, Delegatable, Visitable and Registrable are
+# or extended by Entity and provide it with the ability to be built, 
+# to delegate function calls, to accept visitors and to maintain a 
+# token registry, respectively.
 #
 # === Exception class.
 #  
-#  Exception defines a custom exception class for the Treat module.
+# Exception defines a custom exception class for the Treat module.
 # 
 module Treat
 
