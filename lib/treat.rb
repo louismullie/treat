@@ -84,7 +84,7 @@ module Treat
   end
   
   # The current version of Treat.
-  VERSION = "0.1.3"
+  VERSION = "0.1.4"
 
   # $LOAD_PATH << '/ruby/treat/lib/' # Remove for release
   
@@ -122,7 +122,6 @@ module Treat
   # Set the paths to the bin, test and tmp folders.
   self.bin = self.lib + '/../bin'
   self.test = self.lib + '/../test'
-  self.tmp = self.lib + '/../tmp'
   
   # Require modified core classes.
   require 'treat/object'
