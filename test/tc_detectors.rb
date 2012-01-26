@@ -11,7 +11,6 @@ module Treat
       end
       
       def test_encoding_detectors
-        assert_equal :utf_8, @doc.encoding(:native)
         assert_equal :utf_8, @doc.encoding(:r_chardet19)
       end
       

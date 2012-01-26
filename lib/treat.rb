@@ -105,10 +105,8 @@ module Treat
     attr_accessor :lib
     # String - folder for tests.
     attr_accessor :test
-    # String - folder for temp files.
-    attr_accessor :tmp
   end
-  
+
   # Set the default language to english.
   self.default_language = :eng
   # Set the default encoding to utf-8.
@@ -119,14 +117,16 @@ module Treat
   self.language_detection_level = :section
   # Set the lib path to that of this file.
   self.lib = File.dirname(__FILE__)
-  # Set the paths to the bin, test and tmp folders.
+  # Set the paths to the bin folder.
   self.bin = self.lib + '/../bin'
+  # Set the paths to the test folder.
   self.test = self.lib + '/../test'
-  
+
   # Require modified core classes.
   require 'treat/object'
   require 'treat/kernel'
-  
+  require 'treat/string'
+
   # Require all files for the Treat library.
   require 'treat/exception'
   require 'treat/languages'
@@ -137,5 +137,4 @@ module Treat
   
   # Make sugar available when needed.
   extend Sugar
-
 end

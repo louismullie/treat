@@ -32,10 +32,13 @@ module Kernel
   # Create a temporary file which is deleted
   # after execution of the block.
   def create_temp_file(ext, value = nil, &block)
-    File.open("../tmp/#{Random.rand(10000000).to_s}.#{ext}", 'w') do |f| 
+    fname = "../tmp/#{Random.rand(10000000).to_s}.#{ext}"
+    File.open(fname, 'w') do |f| 
       f.write(value) if value 
       block.call(f.path)
     end
+  ensure
+    File.delete(fname)
   end
   # Convert un_camel_case to CamelCase.
   def camel_case(o_phrase)

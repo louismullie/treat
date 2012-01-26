@@ -2,12 +2,12 @@ require 'test/unit'
 
 $:.unshift File.join(File.dirname(__FILE__), "..", "lib")
 
-# $LOAD_PATH << '/ruby/treat/test'
-
 require 'treat'
-require 'texts'
 
+# $LOAD_PATH << '/ruby/treat/test' # Remove for release
 # Treat.bin = '/ruby/nat/bin' # Remove for release
+
+require 'texts'
 
 require 'tc_treat'
 require 'tc_tree'

@@ -18,6 +18,7 @@ module Treat
         end
       end
     end
+    alias :sweeten :edulcorate
     # Uninstalls syntactic sugar.
     def unedulcorate
       return unless @@edulcorated
@@ -30,6 +31,7 @@ module Treat
         end
       end
     end
+    alias :unsweeten :unedulcorate
     # Boolean - whether syntactic sugar is
     # enabled or not.
     def edulcorated?; @@edulcorated; end

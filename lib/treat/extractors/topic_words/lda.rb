@@ -38,7 +38,7 @@ module Treat
           options = DefaultOptions.merge(options)
           # Create a corpus with the collection
           sections = collection.sections.collect do |t|
-            t.to_s.encode("UTF-8", :invalid => :replace, :undef => :replace, :replace => "?")
+            t.to_s.encode_compliant('UTF-8')    # fix
           end
           corpus = Lda::TextCorpus.new(sections)
 

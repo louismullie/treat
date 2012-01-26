@@ -9,14 +9,14 @@ module Treat
     module Encoding 
       extend Group
       self.type = :annotator
-      self.targets = [:entity]
-      self.default = :native
+      self.targets = [:document]
+      self.default = :r_chardet19
     end
     # Group for algorithms that support format detection.
     module Format
       extend Group
       self.type = :annotator
-      self.targets = [:entity]
+      self.targets = [:document]
       self.default = :file
     end
     # Group for algorithms that do language detection.

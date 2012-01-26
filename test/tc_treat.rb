@@ -51,7 +51,6 @@ module Treat
         assert_not_nil Treat.lib
         assert_not_nil Treat.bin
         assert_not_nil Treat.test
-        assert_not_nil Treat.tmp
       end
       
       def test_file_permissions

@@ -1,12 +1,12 @@
 module Treat
   module Formatters
     module Unserializers
-      # Recreates the entity tree corresponding to 
+      # Recreates the entity tree corresponding to
       # a serialized XML file.
       class XML
         require 'nokogiri'
         # Unserialize an entity stored in XML format.
-        # 
+        #
         # Options: none.
         def self.unserialize(document, options = {})
           # Read in the XML file.
@@ -14,7 +14,7 @@ module Treat
           xml_reader = Nokogiri::XML::Reader.from_memory(xml)
           current_element = nil
           previous_depth = 0
-          
+
           # Read the XML file entity by entity.
           while xml_reader.read
             # The depth in the XML tree.
@@ -31,18 +31,20 @@ module Treat
               previous_depth = current_depth
               next
             end
-            
+
             id = nil; value = ''
             attributes = {}; edges = {}
-            xml_reader.attributes.each_pair do |k,v|
-              if k == 'id'
-                id = v
-              elsif k == 'edges'
-                edges = v
-              elsif k == 'value'
-                value = v
-              else
-                attributes[k.intern] = v
+            unless xml_reader.attributes.empty?
+              xml_reader.attributes.each_pair do |k,v|
+                if k == 'id'
+                  id = v
+                elsif k == 'edges'
+                  edges = v
+                elsif k == 'value'
+                  value = v
+                else
+                  attributes[k.intern] = v
+                end
               end
             end
 
@@ -66,18 +68,18 @@ module Treat
                 current_element.register_token(current_element)
               end
             end
-  
+
             previous_depth = current_depth
           end
           document << current_element
           document
         end
-        
+
         def self.revive(type, value, id)
           klass = Treat::Entities.const_get(cc(type))
           klass.new(value, id)
         end
-        
+
       end
     end
   end

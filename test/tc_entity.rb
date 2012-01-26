@@ -57,7 +57,7 @@ module Treat
           @text.encoding(:nonexistent)
         end
         assert_nothing_raised do
-          @text.format
+          @text.language
         end
       end
       

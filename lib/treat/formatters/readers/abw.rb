@@ -5,9 +5,9 @@ module Treat
         require 'rexml/document'
         require 'rexml/streamlistener'
         def self.read(document, options = {})
-          xml_h = AbiWordXmlHandler.new(
-          REXML::Document.parse_stream((IO.read(document.file)), xml_h))
-          document << xml_h.plain_text
+          xml_h = AbiWordXmlHandler.new
+          REXML::Document.parse_stream(IO.read(document.file), xml_h)
+          document << Treat::Entities::Entity.from_string(xml_h.plain_text)
           document
         end
         class AbiWordXmlHandler
@@ -16,14 +16,10 @@ module Treat
           def initialize
             @plain_text = ""
           end
-          def text s
-            begin
-              s = s.strip
-              if s.length > 0
-                @plain_text << s
-                @plain_text << "\n"
-              end
-            end if s != 'AbiWord' && s != 'application/x-abiword'
+          def text(s)
+            if s != 'AbiWord' && s != 'application/x-abiword'
+              @plain_text << s if s.strip.length > 0
+            end
           end
         end
       end

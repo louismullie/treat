@@ -18,6 +18,7 @@ Author: Louis-Antoine Mullie (louis.mullie@gmail.com). Copyright 2012.
 Non-trivial amount of code has been incorporated and modified from
 other libraries, specifically for the following files:
 
+- formatters/readers/odt.rb - Mark Watson (GPL license)
 - processors/tokenizers/macintyre.rb - Utiyama Masao (Ruby License)
 - processors/tokenizers/tactful.rb - Matthew Bunday (GPL license)
 - processors/tokenizers/perl.rb - Todd A. Fisher (MIT License)
