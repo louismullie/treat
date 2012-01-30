@@ -1,8 +1,9 @@
 module Treat
   module Extractors
     module Time
+      require 'treat/extractors/time/time_extractor'
       # A wrapper for Ruby's native date/time parsing.
-      module Native
+      class Ruby < TimeExtractor
         require 'date'
         # Return a DateTime object representing the date/time
         # contained within the entity, using Ruby's native
@@ -10,7 +11,12 @@ module Treat
         #
         # Options: none.
         def self.time(entity, options = {})
-          ::DateTime.parse(entity.to_s)
+          begin
+            { start_time: ::DateTime.parse(entity.to_s).to_s }
+            self.clean_tree(entity)
+          rescue
+            {}
+          end
         end
       end
     end

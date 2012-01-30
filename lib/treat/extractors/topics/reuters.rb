@@ -22,7 +22,11 @@ module Treat
         def self.topics(text, options = {})
           stems = []
           @@reduce = 0
-          text.to_s.tokenize.words.collect! do |tok|
+          unless text.words.size > 0
+            raise Treat::Exception,
+            "Annotator 'topics' requires processor 'tokenize'."
+          end
+          text.words.collect! do |tok|
             stem = tok.stem.downcase
             val = tok.value.downcase
             stems << stem
@@ -32,9 +36,9 @@ module Treat
             end
           end
           get_topics
-          topics = score_words(@@industry, stems)
-          topics = topics.merge(score_words(@@region, stems))
-          topics = topics.merge(score_words(@@topics, stems))
+          score_words(@@industry, stems) + 
+          score_words(@@region, stems) +
+          score_words(@@topics, stems)
           #Treat::Feature.new(topics)
         end
         # Read the topics from the XML files.
@@ -65,8 +69,7 @@ module Treat
             count_hash[cat_name] ||= 0
             word_list.each do |word|
               unless hash[cat_name][word].nil?
-                count_hash[cat_name] =
-                count_hash[cat_name] + 
+                count_hash[cat_name] += 
                 hash[cat_name][word]
               end
             end
@@ -74,7 +77,7 @@ module Treat
           count_hash = best_of_hash(count_hash,
           (word_list.size.to_f - @@reduce.to_f)  / 250.0, 
           100.0 / (1 + word_list.size.to_f - @@reduce.to_f))
-          count_hash
+          count_hash.keys
         end
         def self.best_of_hash(hash, cutoff = 1, scale = 1)
           cutoff = 1 if cutoff == 0

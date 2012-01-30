@@ -7,8 +7,7 @@ module Treat
       #
       # Project website: http://deveiate.org/projects/Linguistics/
       class Linguistics
-        # Require the 'linguistics' gem.
-        silence_warnings { require 'linguistics' }
+        require 'treat/helpers/linguistics_loader'
         # Return the description of a cardinal number in words.
         # 
         # Options:
@@ -34,7 +33,8 @@ module Treat
         # 
         # More specific options when using :type => :ordinal:
         def self.cardinal_words(entity, options = {})
-          silence_warnings { ::Linguistics::EN.numwords(entity.to_s, options) }
+          klass = Treat::Helpers::LinguisticsLoader.load(entity.language)
+          klass.numwords(entity.to_s, options)
         end
       end
     end

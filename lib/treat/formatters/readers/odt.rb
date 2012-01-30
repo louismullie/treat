@@ -17,7 +17,6 @@ module Treat
           raise "Couldn't unzip dot file #{document.file}!" unless f
           xml_h = OOXmlHandler.new
           REXML::Document.parse_stream(f, xml_h)
-          puts xml_h.plain_text
           document << Treat::Entities::Entity.from_string(xml_h.plain_text)
           document
         end
@@ -39,7 +38,7 @@ module Treat
               s = s.strip
               if s.length > 0
                 @plain_text << s
-                @plain_text << "\n"
+                @plain_text << "\n\n"
               end
             end
           end

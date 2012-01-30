@@ -12,21 +12,22 @@ module Treat
         # (String) :sep => the separator to use between words.
         def self.visualize(entity, options = {})
           options = DefaultOptions.merge(options)
-          return entity.value if !entity.has_children?
+          return entity.value.dup if !entity.has_children?
           value = ''
           entity.each do |child|
+            value += "\n\n" if child.type == :section
             if child.is_a?(Treat::Entities::Token) || child.value != ''
               # Remove the trailing space for tokens that
               # 'stick' to the previous one, such
               # as punctuation symbols and clitics.
-              if child.is_a?(Treat::Entities::Punctuation) ||
-                child.is_a?(Treat::Entities::Clitic)
+              if [:punctuation, :clitic].include?(child.type)
                 value.strip!
               end
               value += child.value + options[:sep]
             else
               value += visualize(child, options)
             end
+            value += "\n\n" if [:title, :paragraph].include?(child.type)
           end
           value
         end

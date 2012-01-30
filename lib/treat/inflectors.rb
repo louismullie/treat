@@ -12,12 +12,22 @@ module Treat
       extend Group
       self.type = :annotator
       self.targets = [:word]
+      self.presets = {
+        plural: {:count => :plural},
+        singular: {:count => :singular}
+      }
     end
     # Retrieve the different conjugations of a word.
     module Conjugations
       extend Group
       self.type = :annotator
       self.targets = [:word]
+      self.presets = {
+        infinitive: {:mode => :infinitive},
+        present_participle: {:tense => :present, :mode => :participle},
+        plural_verb: {:count => :plural},
+        singular_verb: {:count => :singular}
+      }
     end
     # Retrieve the full text description of a cardinal number.
     module CardinalWords

@@ -24,10 +24,12 @@ module Kernel
     $VERBOSE = warn_level
     result
   end
-  # Runs a block of code while blocking
-  # stdout. Currently not implemented.
-  def silence_streams(*streams)
+  # Runs a block of code while blocking stdout.
+  def silence_stdout(log = '/dev/null')
+    old = $stdout.dup
+    $stdout.reopen(File.new(log, 'w'))
     yield
+    $stdout = old
   end
   # Create a temporary file which is deleted
   # after execution of the block.
@@ -39,6 +41,14 @@ module Kernel
     end
   ensure
     File.delete(fname)
+  end
+  # Create a temporary directory.
+  def create_temp_dir(&block)
+    dname = "../tmp/#{Random.rand(10000000).to_s}"
+    Dir.mkdir(dname)
+    block.call(dname)
+  ensure
+    FileUtils.rm_rf(dname)
   end
   # Convert un_camel_case to CamelCase.
   def camel_case(o_phrase)

@@ -4,32 +4,27 @@ module Treat
       # A wrapper for the Stanford parser's Penn-Treebank
       # style tokenizer.
       class Stanford
-        # Require the Ruby-Java bridge.
-        silence_warnings do
-          require 'rjb'
-          # Load the Stanford Parser Java files.
-          jar = "#{Treat.bin}/stanford-parser/stanford-parser.jar"
-          jars = Dir.glob(jar)
-          if jars.empty? || !File.readable?(jars[0])
-            raise "Could not find stanford parser JAR file (looking in #{jar})."+
-            " You may need to manually download the JAR files and/or set Treat.bin."
-          end
-          ::Rjb::load(jars[0])
-          # Load the Stanford Parser classes.
-          PTBTokenizer = ::Rjb::import('edu.stanford.nlp.process.PTBTokenizer')
-          CoreLabelTokenFactory = ::Rjb::import('edu.stanford.nlp.process.CoreLabelTokenFactory')
-          StringReader = ::Rjb::import('java.io.StringReader')
-        end
+        require 'stanford-core-nlp'
+        DefaultOptions = {silence: false, log_to_file: nil}
         # Tokenize the entity using a Penn-Treebank style tokenizer
         # included with the Stanford Parser.
+        #
+        # Options:
+        # - (String) :log_to_file => a filename to log output to
+        # instead of displaying it.
         def self.tokenize(entity, options = {})
-          ptbt = PTBTokenizer.new(
-            StringReader.new(entity.to_s),
-            CoreLabelTokenFactory.new, '')
-          while ptbt.has_next
-            w = ptbt.next.word
-            next if w[0] == '-' && w[-1] == '-'
-            entity << Treat::Entities::Entity.from_string(w)
+          options = DefaultOptions.merge(options)
+          options[:log_to_file] = '/dev/null' if options[:silence]
+          ::StanfordCoreNLP.log_file = options[:log_to_file] if options[:log_to_file]
+    
+          pipeline =  ::StanfordCoreNLP.load(:tokenize)
+          text = ::StanfordCoreNLP::Text.new(entity.to_s)
+          pipeline.annotate(text)
+          text.get(:tokens).each do |token|
+            t = Treat::Entities::Token.from_string(token.value)
+            entity << t
+            t.set :character_offset_begin, token.get(:character_offset_begin)
+            t.set :character_offset_end, token.get(:character_offset_end)
           end
           entity
         end

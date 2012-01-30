@@ -9,8 +9,8 @@ module Treat
   #   - Chunkers : split a text into zone objects.
   #   - Segmenters : split a text or zone into sentence objects.
   #   - Tokenizers : split a sentence into Token objects.
-  #   - Parsers: split a sentence into a tree of constituents
-  #     containing other constituents and Token objects, representing
+  #   - Parsers: split a sentence into a tree of phrases
+  #     containing other phrases and Token objects, representing
   #     the syntactic structure.
   module Processors
     # Chunkers split a text into zones.
@@ -29,15 +29,15 @@ module Treat
     module Tokenizers
       extend Group
       self.type = :transformer
-      self.targets = [:document, :zone, :sentence, :constituent]
+      self.targets = [:document, :zone, :sentence, :phrase]
     end
-    # Parsers split a sentence into constituent objects
+    # Parsers split a sentence into phrase objects
     # representing its syntactic structure, with the
-    # Token objects as children of the constituents.
+    # Token objects as children of the phrases.
     module Parsers
       extend Group
       self.type = :transformer
-      self.targets = [:document, :zone, :sentence, :constituent]
+      self.targets = [:document, :zone, :sentence, :phrase]
     end
     # Makes all the groups autoloadable and creates the delegators.
     extend Treat::Category

@@ -7,7 +7,7 @@ module Treat
       # Build the entity corresponding to the proxied
       # object and send the method call to the entity.
       def method_missing(sym, *args, &block)
-        if Treat::Categories.have_method?(sym)
+        if Treat::Categories.lookup(sym)
           to_entity.send(sym, *args)
         else
           super(sym, *args, &block)
@@ -46,7 +46,7 @@ module Treat
       # of the array and a new array with the 
       # results will be returned.
       def method_missing(sym, *args, &block)
-        if Category.has_method?(sym)
+        if Categories.lookup(sym)
           array = []
           each do |element|
             if element.is_a? Treat::Entities::Entity

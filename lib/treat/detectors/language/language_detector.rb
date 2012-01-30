@@ -7,6 +7,9 @@ module Treat
       # the default language when Treat.detect_language is false).
       class LanguageDetector
         def self.language(entity, options = {})
+          if entity.to_s =~ /^[[:digit:]]+$/
+            return Treat.default_language
+          end
           if Treat.detect_language == false
             return Treat.default_language
           else

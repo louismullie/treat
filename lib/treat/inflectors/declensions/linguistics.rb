@@ -7,31 +7,32 @@ module Treat
       # 
       # Project website: http://deveiate.org/projects/Linguistics/
       class Linguistics
-        # Require Ruby Linguistics
-        silence_warnings { require 'linguistics' }
+        require 'treat/helpers/linguistics_loader'
         # Retrieve a declension of a word using the 'linguistics' gem.
         # 
         # Options:
         #
         # - (Identifier) :count => :singular, :plural
         def self.declensions(entity, options = {})
-          begin
-            l = entity.language.to_s.upcase
-            delegate = nil
-            silence_warnings { delegate = ::Linguistics.const_get(l) }
-          rescue RuntimeError
-            raise "Ruby Linguistics does not have a module " +
-            " installed for the #{entity.language} language."
+          unless options[:count]
+            raise Treat::Exception, 
+            "Must supply option count (:singular or :plural)."
           end
+          klass = Treat::Helpers::LinguisticsLoader.load(entity.language)
           string = entity.to_s
+          if entity.category == :verb
+            raise Treat::Exception,
+            "Cannot retrieve the declensions of a verb. " +
+            "Use #singular_verb and #plural_verb instead."
+          end
           if options[:count] == :plural
             if entity.has?(:category) &&
               [:noun, :adjective, :verb].include?(entity.category)
               silence_warnings do
-                delegate.send(:"plural_#{entity.category}", string)
+                klass.send(:"plural_#{entity.category}", string)
               end
             else
-              silence_warnings { delegate.plural(string) }
+              silence_warnings { klass.plural(string) }
             end
           end
         end

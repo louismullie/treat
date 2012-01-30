@@ -6,7 +6,7 @@ module Treat
       # the parser formats it runs it through Enju, and
       # parses the XML output by Enju using the Nokogiri
       # XML reader. It creates wrappers for the sentences,
-      # syntactical constituents and  tokens that Enju identified.
+      # syntactical phrases and  tokens that Enju identified.
       #
       # Original paper:
       # Takuya Matsuzaki, Yusuke Miyao, and Jun'ichi Tsujii.
@@ -29,7 +29,7 @@ module Treat
           @@i = 0 if @@i == @@parsers.size
           @@parsers[@@i-1]
         end
-        # Parse the entity into its syntactical constituents
+        # Parse the entity into its syntactical phrases
         # using Enju
         def self.parse(entity, options = {})
           options[:processes] ||= 1
@@ -133,6 +133,10 @@ module Treat
               new_attributes[:tag_set] = :penn
               new_attributes.delete :pos
             end
+            if attributes.has_key?('base')
+              new_attributes[:lemma] = new_attributes[:base]
+              new_attributes.delete :base
+            end
             # Create the appropriate entity for the
             # element.
             current_value = ''
@@ -181,11 +185,11 @@ module Treat
               end
             end
             # Link the head and sem_head to their entities.
-            root.each_constituent do |constituent|
-              constituent.set :head,
-              root.find(id_table[constituent.head])
-              constituent.set :sem_head,
-              root.find(id_table[constituent.sem_head])
+            root.each_phrase do |phrase|
+              phrase.set :head,
+              root.find(id_table[phrase.head])
+              phrase.set :sem_head,
+              root.find(id_table[phrase.sem_head])
             end
           end
           # Remove the period we added at the end.

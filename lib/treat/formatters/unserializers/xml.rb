@@ -11,6 +11,8 @@ module Treat
         def self.unserialize(document, options = {})
           # Read in the XML file.
           xml = File.read(document.file)
+          xml.gsub!('<treat>', '')
+          xml.gsub!('</treat>', '')
           xml_reader = Nokogiri::XML::Reader.from_memory(xml)
           current_element = nil
           previous_depth = 0
@@ -62,7 +64,8 @@ module Treat
               current_element.features = attributes
               current_element.edges = edges
             else
-              current_value = xml_reader.value.strip
+              current_value = xml_reader.value ? 
+              xml_reader.value.strip : ''
               if current_value && current_value != ''
                 current_element.value = current_value
                 current_element.register_token(current_element)

@@ -11,7 +11,7 @@ module Treat
       end
       
       def test_encoding_detectors
-        assert_equal :utf_8, @doc.encoding(:r_chardet19)
+        assert_equal :ascii, @doc.encoding(:r_chardet19)
       end
       
       def test_language_detectors

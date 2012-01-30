@@ -1,31 +1,30 @@
 ## Urgent
 
-- Linkers + documentation
-- Check taggers for context
-- Stanford dependencies parse
-- Ocropus => use better function
-- Optimize magic methods... is_token? type methods, phrase categories.
-- Move statistics
+- Linkers; engtagger has linkages
+- Stanford dependencies parse, Stanford NER
+- Move statistics, add statistics registry
 - Synset class move
-- general procedure for options, check that user doesn't want to change options...
 - Ferret, Spider
-- Loading multiple JARs
-- Linguistics loader, stanford loader
-- Tokenized sentences are not parsed
-- Dot colors
-- Fix encoders
+- Dot colors, format for long array/hashes (e.g. topics)
 - Fix Punkt segmenter training text.
-- Mark Watson's text extractor
-- Statistics position in
-- Fix documentation antiword, Graphviz, # encoding: utf-8
-- Shortcut methods.. pre/postprocessors
-- Only Phrase..
-- Frequency in
+- Changing options => retag
+- XML stripper stanford
+- Fix time with Enju; couldn't parse the text..
+- Rita WN gem, Abner gem
+- Try new encodings
+- XML serializer: fix encoding... For a collection? Add inline blocks with different encodings.
+- XML unserializer --> exporter
+- Replace non ascii characters when tokenizing.
+- Dependencies: time requires parse.
+- Stanford CoreNLP prepend folder + change in here
+- Stanford lemmatizer
+- Wordnet-bdb
+- Nickel message
 
 ## Eventually
 
-- English inflector
-- RDF output
+- Sentiment count the number of hypernyms.
+- RDF
 - Apache OpenNLP
 - Ariel
 - Text2rdf
@@ -36,7 +35,6 @@
 - Root
 - OpenCyc
 - Tapas Kanungo
-- Mark Watson Text Extractor & other Java tools
 - Citar 
 - PLDA
 - AI4R
@@ -47,12 +45,12 @@
 - Lemmatizer
 - Claws tagger
 - YAWNI
-- Const missing instead of autoload
-- Probabilistic features: rchardet19, what_language
-- Enju multithreading ?
-- String type detector for other languages
-- Automatic benchmark
 - Raspell spell checker
-- Multithreading
 - Mark Watson's Java NLP utility to identify proper nouns (human names and places) in text
 - FastTag a Java fast part of speech tagger.
+- Enju as a server
+
+## Personal
+
+- Check treat.rb, tests.rb, kernel.rb.
+- Empty java_log.txt

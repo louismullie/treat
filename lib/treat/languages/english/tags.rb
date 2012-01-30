@@ -14,29 +14,32 @@ module Treat
         ['SQ', 'Inverted yes/no question']
       ]
 
-      PTBPhraseTagDescription = [
-        ['ADJP', 'Adjective phrase'],
-        ['ADVP', 'Adverb phrase'],
-        ['CONJP', 'Conjunction phrase'],
-        ['FRAG', 'Fragment'],
-        ['INTJ', 'Interjection'],
-        ['LST', 'List marker'],
-        ['NAC', 'Not a constituent'],
-        ['NP', 'Noun phrase'],
-        ['NX', 'Head of an NP'],
-        ['PP', 'Prepositional phrase'],
-        ['PRN', 'Parenthetical'],
-        ['PRT', 'Particle'],
-        ['QP', 'Quantifier phrase'],
-        ['RRC', 'Reduced relative clause'],
-        ['UCP', 'Unlike coordinated phrase'],
-        ['VP', 'Verb phrase'],
-        ['WHADJP', 'Wh-adjective phrase'],
-        ['WHAVP', 'Wh-adverb phrase'],
-        ['WHNP', 'Wh-noun phrase'],
-        ['WHPP', 'Wh-prepositional phrase'],
-        ['X', 'Unknown, uncertain, or unbracketable']
+      AlignedPhraseTags = 
+      [
+        'Adjective phrase', ['ADJP'],
+        'Adverb phrase', ['ADVP'],
+        'Conjunction phrase', ['CONJP'],
+        'Fragment', ['FRAG'],
+        'Interjection', ['INTJ'],
+        'List marker', ['LST'],
+        'Not a phrase', ['NAC'],
+        'Noun phrase', ['NP'],
+        'Head of NP', ['NX'],
+        'Prepositional phrase', ['PP'],
+        'Parenthetical', ['PRN'],
+        'Particle', ['PRT'],
+        'Quantifier phrase', ['QP'],
+        'Reduced relative clause', ['RRC'],
+        'Unlike coordinated phrase', ['UCP'],
+        'Verb phrase', ['VP'],
+        'Wh adjective phrase', ['WHADJP'],
+        'Wh adverb phrase', ['WHAVP'],
+         'Wh noun phrase', ['WHNP'],
+        'Wh prepositional phrase', ['WHPP'],
+        'Unknown', ['X'],
+        'Generic phrase', ['P']
       ]
+      
 
       PTBWordTagDescription = [
         ['CC', 'Coordinating conjunction'],
@@ -271,6 +274,7 @@ module Treat
         'Conjunction, subordination', ['CJS', 'CS', 'IN'],
         'Conjunction, complementizer, that', ['CJT', 'CS', 'IN'],
         'Determiner', ['DT0', 'DT', 'DT'],
+        'Determiner', ['DT0', 'DT', 'DET'],
         'Determiner, pronoun', ['DT0', 'DTI', 'DT'],
         'Determiner, pronoun, plural', ['DT0', 'DTS', 'DT'],
         'Determiner, prequalifier', ['DT0', 'ABL', 'DT'],
@@ -278,11 +282,14 @@ module Treat
         'Determiner, pronoun or double conjunction', ['DT0', 'ABX', 'PDT'],
         'Determiner, pronoun or double conjunction', ['DT0', 'DTX', 'DT'],
         'Determiner, article', ['AT0', 'AT', 'DT'],
-        'Determiner, postdeterminer', ['DT0', 'AP', 'JJ'],
+        'Determiner, postdeterminer', ['DT0', 'AP', 'DT'],
         'Determiner, possessive', ['DPS', 'PP$', 'PRP$'],
+        'Determiner, possessive, second', ['DPS', 'PPSS', 'PRPS'],
         'Determiner, possessive, second', ['DPS', 'PP$$', 'PRP'],
+        'Determiner, possessive, second', ['DPS', 'PPSS', 'PRP'],
         'Determiner, question', ['DTQ', 'WDT', 'WDT'],
         'Determiner, possessive & question', ['DTQ', 'WP$', 'WP$'],
+        'Determiner, possessive & question', ['DTQ', 'WPS', 'WPS'],
         'Noun', ['NN0', 'NN', 'NN'],
         'Noun, singular', ['NN1', 'NN', 'NN'],
         'Noun, plural', ['NN2', 'NNS', 'NNS'],
@@ -333,6 +340,7 @@ module Treat
         'Possessive', ['POS', '$', 'POS'],
         'Interjection (or other isolate)', ['ITJ', 'UH', 'UH'],
         'Punctuation, sentence ender', ['PUN', '.', '.'],
+        'Punctuation, sentence ender', ['PUN', '.', 'PP'],
         'Punctuation, semicolon', ['PUN', '.', '.'],
         'Puncutation, colon or ellipsis', ['PUN', ':', ':'],
         'Punctuationm, comma', ['PUN', ',', ','],
@@ -347,6 +355,34 @@ module Treat
         'Symbol, alphabetical', ['ZZ0', '', ''],
         'Symbol, list item', ['', '', 'LS']
       ]
+      
+      wttc = {}
+      Treat::Languages::English::AlignedWordTags.each_slice(2) do |desc, tags|
+        category = desc.gsub(',', ' ,').split(' ')[0].downcase.intern
+        wttc[tags[0]] ||= {}; wttc[tags[1]] ||= {} ;wttc[tags[2]] ||= {}
+        wttc[tags[0]][:claws_5] = category
+        wttc[tags[1]][:brown] = category
+        wttc[tags[2]][:penn] = category
+      end
+      # A hash converting word tags to word categories.
+      WordTagToCategory = wttc
+      
+      # A hash converting phrase tag to categories.
+      pttc = {}
+      Treat::Languages::English::AlignedPhraseTags.each_slice(2) do |desc, tags|
+        category = desc.gsub(',', ' ,').gsub(' ', '_').downcase.intern
+        pttc[tags[0]] ||= {};
+        #pttc[tags[0]][:claws_5] = category
+        #pttc[tags[1]][:brown] = category
+        pttc[tags[0]][:penn] = category
+      end
+      # A hash converting word tags to word categories.
+      PhraseTagToCategory = pttc
+      
+      SentenceTags = 
+      {
+        penn: 'S'
+      }
     end
   end
 end

@@ -3,13 +3,19 @@ module Treat
   # to a delegate class performing the appropriate call.
   module Delegatable
     # Add decorator methods to entities.
+    def add_presets(group)
+      group.presets.each do |preprocessor_m, presets|
+        define_method(preprocessor_m) do |delegate=nil, options={}|
+          options = presets.merge(options)
+          m = group.method
+          send(m, delegate, options)
+          features[preprocessor_m] = features.delete(m)
+        end
+      end
+    end
+    # Add decorator methods to entities.
     def add_decorators(group, m)
-      decorators = group.methods -
-      Object.methods -
-      [:type, :type=, :targets, :targets=,
-        :default, :default=, :add,
-      :has_target?, :list]
-      decorators.each do |decorator_m|
+      group.decorators.each do |decorator_m, block|
         define_method(decorator_m) do |delegate=nil, options={}|
           options[:decorator] = decorator_m
           send(m, delegate, options)
@@ -21,10 +27,10 @@ module Treat
       # Define each method in group.
       self.class_eval do
         m = group.method
+        add_presets(group)
         add_decorators(group, m)
         define_method(m) do |delegate=nil, options={}|
           decorator = options.delete(:decorator)
-          puts self.id if !@features
           if !@features[m].nil?
             @features[m]
           else
@@ -46,7 +52,7 @@ module Treat
         delegate_klass = group.const_get(:"#{cc(delegate.to_s)}")
         result = entity.accept(group, delegate_klass, m, options)
         if decorator
-          result = group.send(decorator, entity, result)
+          result = group.decorators[decorator].call(entity, result)
         end
         if group.type == :annotator
           f = decorator.nil? ? m : decorator
@@ -67,7 +73,6 @@ module Treat
         if !lclass[g] || !lclass[g][0]
           d = ucc(cl(group))
           d.gsub!('_', ' ')
-          d = d[0..-2] if d[-1] == 's'
           d = 'delegator to find ' + d
           raise Treat::Exception, "No #{d}" +
           " is available for the #{lang} language."

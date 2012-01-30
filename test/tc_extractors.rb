@@ -11,7 +11,7 @@ module Treat
 
       def test_time
         assert_nothing_raised { @date.time(:chronic) }
-        assert_nothing_raised { @date.time(:native) }
+        assert_nothing_raised { @date.time(:ruby) }
         assert_nothing_raised { @date.time(:nickel) }
       end
 
@@ -41,6 +41,7 @@ module Treat
 
         assert_nothing_raised { @doc.statistics(:frequency_of, value: 'the') }
         assert_nothing_raised { @word.statistics(:frequency_in) }
+        assert_nothing_raised { @word.statistics(:tf_idf) }
         # assert_nothing_raised { @doc.statistics(:position_in) }
         # assert_nothing_raised { @doc.statistics(:transition_matrix) }
         # assert_nothing_raised { @doc.statistics(:transition_probability) }

@@ -6,7 +6,7 @@ module Treat
         silence_warnings do
           require 'rjb'
           Rjb::load('', ['-Xms256M', '-Xmx512M'])
-          puts Rjb.import('tagger')
+          Rjb::add_jar('/ruby/bin/ritaWN/ritaWN.jar')
         end
         @@tagger = nil
         def self.named_entity(entity)

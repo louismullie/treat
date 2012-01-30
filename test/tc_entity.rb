@@ -75,6 +75,10 @@ module Treat
       end
 
       def test_magic_methods
+        
+        assert_equal true, @sentence.is_sentence?
+        assert_equal true, @noun.is_noun?
+        
         assert_equal @sentence, @text.sentence
         assert_equal [@sentence], @text.sentences
         assert_equal 1, @text.sentence_count

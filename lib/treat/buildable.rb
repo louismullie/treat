@@ -25,19 +25,33 @@ module Treat
         "a string (need a readable file/folder)."
       end
       dot = string.count('.') + string.count('!') + string.count('?')
-      return Treat::Entities::Section.new(string) if dot > 1 ||
-      (string.count("\n") > 0 && dot == 1)
-      return Treat::Entities::Sentence.new(string) if dot == 1 && string.size > 5
-      if string.count(' ') == 0
-        return Treat::Entities::Clitic.new(string) if string == "'s"
-        return Treat::Entities::Word.new(string) if string =~ /^[[:alpha:]\-']+$/
-        return Treat::Entities::Number.new(string) if string =~ /^[[:digit:]]+$/
-        return Treat::Entities::Punctuation.new(string) if string =~ /^[[:punct:]]+$/
-        return Treat::Entities::Symbol.new(string)
+      if dot > 2 && string.count("\n") > 0
+        c = Treat::Entities::Section.new(string) 
+      elsif dot == 1 && string.size > 5
+        c = Treat::Entities::Sentence.new(string) 
+      elsif string.count(' ') == 0
+        if string == "'s"
+          c = Treat::Entities::Clitic.new(string) 
+        elsif string =~ /^[[:alpha:]\-']+$/
+          c = Treat::Entities::Word.new(string) 
+        elsif string =~ /^[[:digit:]]+$/
+          c = Treat::Entities::Number.new(string) 
+        elsif string =~ /^[[:punct:]]+$/
+          c = Treat::Entities::Punctuation.new(string)
+        else
+          c = Treat::Entities::Symbol.new(string)
+        end
       else
-        return Treat::Entities::Phrase.new(string)
+        c = Treat::Entities::Phrase.new(string)
       end
-      return Treat::Entities::Unknown.new(string)
+      c = Treat::Entities::Unknown.new(string) unless c
+      unless self == c.class || self == Treat::Entities::Entity
+        raise Treat::Exception, 
+        "The type '#{cl(c.class)}' that was detected for "+
+        " '#{string}' does not match "+"
+        requested type #{self}."
+      end
+      c
     end
     def from_numeric(numeric)
       unless self == Treat::Entities::Number
@@ -80,9 +94,19 @@ module Treat
         ext = file.split('.')[-1]
         # Humanize the yaml extension.
         ext = 'yaml' if ext == 'yml'
-        if Treat::Formatters::Unserializers.list.
-          include?(ext.downcase.intern)
+        if ext == 'yaml'
           from_serialized_file(file)
+        elsif ext == 'xml'
+          beginning = nil
+          File.open(file) do |w| 
+            beginning = w.readlines(200) 
+          end
+          beginning = beginning.join(' ')
+          if beginning.index('<treat>')
+            from_serialized_file(file)
+          else
+            from_raw_file(file)
+          end
         else
           from_raw_file(file)
         end

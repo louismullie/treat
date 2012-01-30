@@ -5,7 +5,9 @@ module Treat
       group.module_eval do
         class << self
           attr_accessor :type, :default, :targets
+          attr_accessor :presets, :decorators
         end
+        self.presets = {}; self.decorators = {};
         # Return the method corresponding to the group.
         # This method resolves the name of the method
         # that a group should provide based on the name
@@ -35,6 +37,14 @@ module Treat
         end
       end
     end
+    def postprocessors; 
+      self.const_defined?(:Postprocessors) ?
+      const_get(:Postprocessors).methods(false) : []
+    end
+    def preprocessors; 
+      self.const_defined?(:Preprocessors) ?
+      const_get(:Preprocessors).methods(false) : []
+    end
     # Create a new algorithm within the group. Once
     # the algorithm is added, it will be automatically
     # installed on all the targets of the group.
@@ -55,7 +65,6 @@ module Treat
       self.targets.each do |entity_type|
         entity_type = Entities.const_get(cc(entity_type))
         if target < entity_type || entity_type == target
-
           is_target = true; break
         end
       end

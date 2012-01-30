@@ -18,7 +18,7 @@
 #  
 # Here's a full list of entities (subtypes in parentheses): 
 # Collection, Document, Zone (Section, Title, Paragraph or List),
-# Sentence, Constituent (Phrase or Clause), Token (Word, Number,
+# Sentence, Phrase (Phrase or Clause), Token (Word, Number,
 # Symbol or Punctuation).
 # 
 # === Proxies
@@ -86,7 +86,7 @@ module Treat
   # The current version of Treat.
   VERSION = "0.1.4"
 
-  # $LOAD_PATH << '/ruby/treat/lib/' # Remove for release
+#  $LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
   
   # Create class variables for the Treat module.
   class << self
@@ -125,8 +125,7 @@ module Treat
   # Require modified core classes.
   require 'treat/object'
   require 'treat/kernel'
-  require 'treat/string'
-
+  
   # Require all files for the Treat library.
   require 'treat/exception'
   require 'treat/languages'
@@ -137,4 +136,8 @@ module Treat
   
   # Make sugar available when needed.
   extend Sugar
+  
+  # Print the last log file.
+  def print_log; File.read(self.lib + '/log.txt'); end
+  
 end

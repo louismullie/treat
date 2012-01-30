@@ -6,16 +6,17 @@ module Treat
       require 'treat/languages/english/categories'
       
       Extractors = {
-        time: [:chronic],
+        time: [:nickel, :chronic, :ruby],
         topics: [:reuters],
         topic_words: [:lda],
-        key_sentences: [:topics_frequency]
+        keywords: [:topics_frequency],
+        named_entity: [:stanford]
       }
       Processors = {
         chunkers: [:txt],
         parsers: [:stanford, :enju],
         segmenters: [:tactful, :punkt, :stanford],
-        tokenizers: [:multilingual, :macintyre, :perl, :punkt, :tactful, :stanford]
+        tokenizers: [:tactful, :macintyre, :multilingual, :perl, :punkt, :stanford]
       }
       Lexicalizers = {
         category: [:from_tag],
@@ -25,7 +26,7 @@ module Treat
       }
       Inflectors = {
         conjugations: [:linguistics],
-        declensions: [:linguistics, :english],
+        declensions: [:english, :linguistics],
         stem: [:porter_c, :porter, :uea],
         ordinal_words: [:linguistics],
         cardinal_words: [:linguistics]

@@ -38,7 +38,8 @@ module Treat
           options = DefaultOptions.merge(options)
           # Create a corpus with the collection
           sections = collection.sections.collect do |t|
-            t.to_s.encode_compliant('UTF-8')    # fix
+            t.to_s.encode('UTF-8', :invalid => :replace,
+            :undef => :replace, :replace => "?")            # Fix
           end
           corpus = Lda::TextCorpus.new(sections)
 
@@ -47,8 +48,7 @@ module Treat
           lda.num_topics = options[:topics]
           lda.max_iter = options[:iterations]
           # Run the EM algorithm using random starting points
-          silence_streams(STDOUT, STDERR) { lda.em('random') }
-
+          silence_stdout { lda.em('random') }
           # Load the vocabulary.
           if options[:vocabulary]
             lda.load_vocabulary(options[:vocabulary])
@@ -57,8 +57,8 @@ module Treat
           # Get the topic words and annotate the section.
           topic_words = lda.top_words(options[:words_per_topic])
 
-          topic_words.each do |i, words|
-            collection.each_word do |word|
+          collection.each_word do |word|
+            topic_words.each do |i, words|
               if words.include?(word)
                 word.set :is_topic_word?, true
                 word.set :topic_id, i

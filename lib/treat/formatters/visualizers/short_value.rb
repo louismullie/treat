@@ -18,7 +18,7 @@ module Treat
           words = entity.to_s.split(' ')
           if words.size < options[:max_words] || 
             entity.to_s.length < options[:max_length]
-            entity.to_s 
+            entity.to_s
           else
             words[0..2].join(' ') + ' [...] ' + words[-3..-1].join(' ')
           end

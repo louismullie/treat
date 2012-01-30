@@ -2,9 +2,9 @@ module Treat
   module Entities
     # Represents a document.
     class Document < Entity
-      def initialize(file, id = nil)
+      def initialize(file = nil, id = nil)
         super('', id)
-        set :file, file
+        set :file, file if file
       end
     end
   end

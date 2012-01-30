@@ -25,7 +25,7 @@ module Treat
           options[:indent] += 1
           if entity.is_a?(Treat::Entities::Token)
             value += "#{spaces}(#{entity.tag} #{entity.value})"
-          elsif entity.is_a?(Treat::Entities::Constituent)
+          elsif entity.is_a?(Treat::Entities::Phrase)
             tag = entity.has?(:tag) ? entity.tag : ''
             value += ("#{spaces}(#{tag}\n" +
             "#{Recurse.call(entity, options)})\n")

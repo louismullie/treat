@@ -5,6 +5,7 @@ module Treat
       # All tokens are leafs.
       def is_leaf?; true; end
       # Convenience function for statistics.
+      def frequency_of(word); statistics(:frequency_of, value: word); end
       def frequency; statistics(:frequency_in); end
       def frequency_in(type); statistics(:frequency_in, type: type); end
       def position_in(type); statistics(:position_in_parent); end
@@ -12,14 +13,6 @@ module Treat
     end
     # Represents a word.
     class Word < Token
-      # Convenience function for conjugations.
-      def infinitive(conjugator = nil); conjugations(conjugator, :mode => :infinitive); end
-      # Convenience function for conjugations.
-      def present_participle(conjugator = nil); conjugations(conjugator, :tense => :present, :mode => :participle); end
-      # Convenience function for declensions.
-      def plural(declensor = nil); declensions(declensor, :count => :plural); end
-      # Convenience function for declensions.
-      def singular(declensor = nil); declensions(declensor, :count => :singular); end
     end
     # Represents a clitic ('s).
     class Clitic < Token

@@ -7,12 +7,12 @@ module Treat
       #
       # Project website: http://deveiate.org/projects/Linguistics/
       class Linguistics
-        # Require Ruby Linguistics.
-        silence_warnings { require 'linguistics' }
+        require 'treat/helpers/linguistics_loader'
         # Desribe a number in words in ordinal form, using the
         # 'linguistics' gem.
         def self.ordinal_words(number, options = {})
-          silence_warnings { ::Linguistics::EN.ordinate(number.to_s) }
+          klass = Treat::Helpers::LinguisticsLoader.load(number.language)
+          klass.ordinate(number.to_s)
         end
       end
     end

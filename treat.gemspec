@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'chronic'
   s.add_runtime_dependency 'hpricot'
   s.add_runtime_dependency 'psych'
+  s.add_runtime_dependency 'stanford-core-nlp'
   s.add_runtime_dependency 'rchardet19'
   s.add_runtime_dependency 'whatlanguage'
   s.add_runtime_dependency 'wordnet'
@@ -30,12 +31,12 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'punkt-segmenter'
   s.add_runtime_dependency 'tokenizer'
   s.add_runtime_dependency 'tactful_tokenizer'
-  s.add_runtime_dependency 'english'
   s.add_runtime_dependency 'linguistics'
   s.add_runtime_dependency 'ruby-stemmer'
   s.add_runtime_dependency 'uea-stemmer'
   s.add_runtime_dependency 'lda-ruby'
   s.add_runtime_dependency 'nickel'
+  s.add_runtime_dependency 'zip'
     
   # Development dependencies.
   s.add_development_dependency 'unprof'

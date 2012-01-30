@@ -28,9 +28,10 @@ module Treat
       end
       
       def test_taggers
+        assert_nothing_raised { @word.tag(:stanford, silence: true) }
         assert_nothing_raised { @word.tag(:brill) }
         assert_nothing_raised { @word.tag(:lingua) }
-        assert_nothing_raised { @word.tag(:stanford) }
+
       end
       
     end

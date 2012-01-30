@@ -6,31 +6,31 @@ module Treat
     module Time
       extend Group
       self.type = :annotator
-      self.targets = [:sentence, :word, :constituent, :symbol]
+      self.targets = [:phrase]
     end
     # Extract the topic from a text.
     module Topics
       extend Group
       self.type = :annotator
-      self.targets = [:collection, :document, :zone, :sentence]
+      self.targets = [:collection, :document]
     end
     # Extract the topic from a text.
     module TopicWords
       extend Group
       self.type = :annotator
-      self.targets = [:collection, :document, :zone, :sentence]
-    end
-    # Extract named entities from texts.
-    module NamedEntity
-      extend Group
-      self.type = :computer
-      self.targets = [:entity]
+      self.targets = [:collection, :document]
     end
     # Extract the key sentences from a text.
     module Keywords
       extend Group
       self.type = :annotator
-      self.targets = [:collection, :document, :zone, :sentence]
+      self.targets = [:collection, :document]
+    end
+    # Extract named entities from texts.
+    module NamedEntity
+      extend Group
+      self.type = :computer
+      self.targets = [:sentence]
     end
     # This module should be moved out of here ASAP.
     module Statistics

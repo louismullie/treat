@@ -31,7 +31,12 @@ module Treat
         # Options: none.
         def self.tokenize(entity, options = {})
           entity.to_s.scan(ReWordTokenizer).each do |token|
-            entity << Treat::Entities::Entity.from_string(token)
+            if SentEndChars.include?(token[-1])
+              entity << Treat::Entities::Token.from_string(token[0..-2])
+              entity << Treat::Entities::Punctuation.from_string(token[-1..-1])
+            else
+              entity << Treat::Entities::Token.from_string(token)
+            end   
           end
           entity
         end

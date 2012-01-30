@@ -32,7 +32,6 @@ module Treat
         assert_nothing_raised { @doc.visualize(:tree) }
         # assert_nothing_raised { @doc.visualize(:html) }
         assert_nothing_raised { @doc.visualize(:dot) }
-        assert_nothing_raised { @doc.visualize(:inspect) }
         assert_nothing_raised { @doc.visualize(:short_value) }
         assert_nothing_raised { @sentence.visualize(:standoff) }
       end

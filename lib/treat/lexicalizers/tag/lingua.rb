@@ -15,7 +15,7 @@ module Treat
       # Project website: http://engtagger.rubyforge.org/
       # Original Perl module site:
       # http://cpansearch.perl.org/src/ACOBURN/Lingua-EN-Tagger-0.15/
-      class Lingua
+      class Lingua < Tagger
         # Require the 'engtagger' gem.
         silence_warnings { require 'engtagger' }
         # Hold the tagger.
@@ -24,7 +24,7 @@ module Treat
         @@options = {}
         # Hold the default options.
         DefaultOptions =  {
-          unknown_word_tag: 'FW',
+          unknown_word_tag: 'pp',  # Fix unknown word tag
           relax: false
         }
         # Tag the word using a probabilistic model taking
@@ -38,24 +38,29 @@ module Treat
         #   particularly words used polysemously.
         # - (String) :unknown_word_tag => Tag for unknown words.
         def self.tag(entity, options = {})
+          options = DefaultOptions.merge(options)
+          r = super(entity, options)
+          return r if r && r != :isolated_word
           # Reinitialize the tagger if the options have changed.
           if options != @@options
             @@options = DefaultOptions.merge(options)
             @@tagger = nil # Reset the tagger
           end
           @@tagger ||= ::EngTagger.new(@@options)
-          entity.set :tag_set, :penn
-          left = entity.left
-          if left.nil? || left.type != :word
-            left_tag = 'pp'
-          else
-            left_tag = left.tag.downcase
-            left_tag = 'pp' if left_tag == ''
+          left_tag = @@tagger.conf[:current_tag] = 'pp'
+          tokens = (r == :isolated_word) ? [entity] : entity.tokens
+          tokens.each do |token|
+            w = @@tagger.clean_word(token.to_s)
+            t = @@tagger.assign_tag(left_tag, w)
+            t = options[:unknown_word_tag] if t.nil? || t == ''
+            @@tagger.conf[:current_tag] = left_tag = t
+            token.set :tag, t.upcase
+            token.set :tag_set, :penn
+            return t.upcase if r == :isolated_word
           end
-          w = @@tagger.clean_word(entity.to_s)
-          t = @@tagger.conf[:current_tag] = 
-          @@tagger.assign_tag(left_tag, w)
-          t.upcase
+          entity.set :tag_set, :penn
+          return 'P' if entity.type == :phrase
+          return 'S' if entity.type == :sentence
         end
       end
     end

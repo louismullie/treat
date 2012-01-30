@@ -1,47 +1,40 @@
 module Treat
   module Processors
     module Segmenters
-      # A wrapper for the sentence splitter supplied by 
+      # A wrapper for the sentence splitter supplied by
       # the Stanford parser.
       class Stanford
-        # Require the Ruby-Java bridge.
-        silence_warnings do
-          require 'rjb'
-          jar = "#{Treat.bin}/stanford-parser*/stanford-parser*.jar"
-          jars = Dir.glob(jar)
-          if jars.empty? || !File.readable?(jars[0])
-            raise "Could not find stanford parser JAR file (lookin in #{jar})."+
-            " You may need to manually download the JAR files and/or set Treat.bin."
-          end
-          ::Rjb::load(jars[0])
-          DocumentPreprocessor =
-          ::Rjb::import('edu.stanford.nlp.process.DocumentPreprocessor')
-          StringReader = ::Rjb::import('java.io.StringReader')
-        end
-        # Segment sentences using the sentence splitter supplied by 
-        # the Stanford parser.
+        require 'stanford-core-nlp'
+        DefaultOptions = { silence: false, log_to_file: false, also_tokenize: false }
+        # Segment sentences using the sentence splitter supplied by
+        # the Stanford parser. By default, this segmenter also adds
+        # the tokens as children of the sentences.
+        #
+        # Options:
+        # - (Boolean) :also_tokenize? - Whether to also add the tokens
+        # as children of the sentence.
+        # - (String) :log_to_file => a filename to log output to
+        # instead of displaying it.
         def self.segment(entity, options = {})
-          sr = StringReader.new(entity.to_s)
-          sit = DocumentPreprocessor.new(sr).iterator
-          while sit.has_next
-            str = sit.next.to_string
-            str.gsub!(', ', ' ')              # Fix - find better way to implode.
-            str.gsub!(' \'s', '\'s')
-            str.gsub!(' .', '.')
-            str.gsub!(' ,', ',')
-            str.gsub!(' ;', ';')
-            str.gsub!(/-[A-Z]{3}-/, '')
-            str = str[1..-2]
-            sentence = Entities::Entity.from_string(str)
-            if options[:tokenize] == true
-              tit = s.iterator
-              while tit.has_next
-                w = tit.next.word
-                next if w[0] == '-' && w[-1] == '-'
-                sentence << Entities::Entity.from_string(w)
+          options = DefaultOptions.merge(options)
+          options[:log_to_file] = '/dev/null' if options[:silence]
+          ::StanfordCoreNLP.log_file = options[:log_to_file] if options[:log_to_file]
+          
+          options = DefaultOptions.merge(options)
+          pipeline =  ::StanfordCoreNLP.load(:tokenize, :ssplit)
+          text = ::StanfordCoreNLP::Text.new(entity.to_s)
+          pipeline.annotate(text)
+          text.get(:sentences).each do |sentence|
+            s = Treat::Entities::Sentence.from_string(sentence.to_s)
+            entity << s
+            if options[:also_tokenize?]
+              sentence.get(:tokens).each do |token|
+                t = Treat::Entities::Token.from_string(token.value)
+                s << t
+                t.set :character_offset_begin, token.get(:character_offset_begin)
+                t.set :character_offset_end, token.get(:character_offset_end)
               end
             end
-            entity << sentence
           end
           entity
         end

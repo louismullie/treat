@@ -6,7 +6,7 @@ module Treat
   # - Document
   # - Zone (a Section, Title, Paragraph, or List)
   # - Sentence
-  # - Constituent (a Phrase or Clause)
+  # - Phrase
   # - Token (a Word, Number, Punctuation, or Symbol).
   module Entities
     # Require Entity first.
@@ -16,7 +16,7 @@ module Treat
     require 'treat/entities/document'
     require 'treat/entities/zones'
     require 'treat/entities/sentence'
-    require 'treat/entities/constituents'
+    require 'treat/entities/phrase'
     require 'treat/entities/tokens'
     # Make the constants buildable.
     constants.each do |entity|
@@ -32,7 +32,7 @@ module Treat
     def self.list
       return @@list unless @@list.empty?
       self.constants.each do |constant|
-        @@list << :"#{ucc(constant)}"
+        @@list << :"#{ucc(constant)}" unless constant == :Entity
       end
       @@list
     end
@@ -43,7 +43,7 @@ module Treat
       klass = Entities.const_get(cc(type))
       compare = lambda { |a,b| a == b || a < b }
       return 0 if compare.call(klass, Token)
-      return 1 if compare.call(klass, Constituent)
+      return 1 if compare.call(klass, Phrase)
       return 2 if compare.call(klass, Sentence)
       return 3 if compare.call(klass, Zone)
       return 4 if compare.call(klass, Document)

@@ -53,7 +53,7 @@ Benchmark.bmbm do |x|
 
   # Extractors
   x.report("Date:chronic") { '2007/02/12'.date(:chronic) }
-  x.report("Date:native") { '2007/02/12'.date(:native) }
+  x.report("Date:ruby") { '2007/02/12'.date(:ruby) }
   x.report("Time:chronic") { '2007/02/12'.time(:chronic) }
   x.report("Topic:reuters") { text.topic }
   x.report("Statistics:frequency:") { text.each_token { |token| token.statistics(:frequency) } }
