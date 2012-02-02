@@ -1,12 +1,12 @@
 module Treat
   module Extractors
     module Keywords
-      class TopicsFrequency
-        DefaultOptions = {tf_idf_threshold: 0.5, topic_words: nil}
+      class TopicsTfIdf
+        DefaultOptions = {num_keywords: 5, tf_idf_threshold: 0.5, topic_words: nil}
         def self.keywords(entity, options = {})
           options = DefaultOptions.merge(options)
           unless options[:topic_words]
-            options[:topic_words] = entity.topic_words
+            options[:topic_words] = entity.parent_collection.topic_words
           end
           if Treat::Entities.rank(entity.type) <
             Treat::Entities.rank(:sentence)
@@ -32,10 +32,15 @@ module Treat
               end
             end
           end
-          keywords.each do ||
-            
+          i = 0
+          # Take a slice of keywords with i elements.
+          selected_keywords = []
+          keywords.each do |keyword|
+            break if i > options[:num_keywords]
+            selected_keywords << keyword
+            i += 1
           end
-          keywords
+          selected_keywords
         end
       end
     end

@@ -1,28 +1,27 @@
 ## Urgent
 
-- Linkers; engtagger has linkages
-- Stanford dependencies parse, Stanford NER
-- Move statistics, add statistics registry
-- Synset class move
-- Ferret, Spider
-- Dot colors, format for long array/hashes (e.g. topics)
+- Stanford dependencies parse
 - Fix Punkt segmenter training text.
-- Changing options => retag
 - XML stripper stanford
 - Fix time with Enju; couldn't parse the text..
-- Rita WN gem, Abner gem
 - Try new encodings
 - XML serializer: fix encoding... For a collection? Add inline blocks with different encodings.
 - XML unserializer --> exporter
 - Replace non ascii characters when tokenizing.
 - Dependencies: time requires parse.
-- Stanford CoreNLP prepend folder + change in here
-- Stanford lemmatizer
-- Wordnet-bdb
-- Nickel message
+- Stanford CoreNLP prepend folder + change in here + README = Wiki
+- Remove bin
+- Tree.unset
 
 ## Eventually
 
+- Ferret, Spider
+- Stanford, wordnet lemmatizer
+- User choose gems (minimal/maximal)
+- Wordnet-bdb
+- Improve linkers
+- Changing options => retag
+- Rita WN gem, Abner gem
 - Sentiment count the number of hypernyms.
 - RDF
 - Apache OpenNLP

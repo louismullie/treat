@@ -4,11 +4,13 @@ require 'treat/delegatable'
 require 'treat/visitable'
 require 'treat/registrable'
 require 'treat/buildable'
-require 'treat/annotatable'
+require 'treat/doable'
 
 module Treat
   module Entities
     class Entity < Tree::Node
+      # A Symbol representing the lowercase version of the class name.
+      attr_accessor :type
       # Implements support for #register
       include Registrable
       # Implement support for #accept.
@@ -17,8 +19,8 @@ module Treat
       extend Delegatable
       # Implement support for #self.from_*
       extend Buildable
-      # Implement support for #annotate.
-      include Annotatable
+      # Implement support for #do.
+      include Doable
       # Initialize the document with its filename.
       # Optionally specify a reader to read the file.
       # If +read+ is set to false, the document will
@@ -35,10 +37,8 @@ module Treat
       def initialize(value = '', id = nil)
         id ||= object_id
         super(value, id)
+        @type = :entity
       end
-      # Return a lowercase identifier representing the
-      # type of entity (e.g. :word, :token, etc.)
-      def type; :"#{cl(self.class).downcase}"; end
       # Catch missing methods to support method-like
       # access to features (e.g. entity.categoryinstead of
       # entity.features[:cat]) and to support magic
@@ -52,6 +52,7 @@ module Treat
             begin
               super(sym, *args, &block)
             rescue NoMethodError
+              return false if sym.to_s[-1] == '?'
               if Categories.lookup(sym)
                 msg = "Method #{sym} cannot be called on a #{type}."
               else
@@ -93,113 +94,82 @@ module Treat
       # (instead of method chaining) is intentional
       # and aims to reduce the number of method
       # dispatches done by Ruby to improve performance.
-      def parse_magic_method(sym, *args, &block)
+      def parse_magic_method(sym, *args)
         @@entities_regexp ||= "(#{Treat::Entities.list.join('|')})"
         @@cats_regexp ||= "(#{Treat::Languages::English::Categories.join('|')})"
         method = sym.to_s =~ /entities/ ?
         sym.to_s.gsub('entities', 'entitys') :
         method = sym.to_s
-        
-        if method =~ /^is_#{@@entities_regexp}\?$/
-          block = lambda { type.to_s == $1  }
-        elsif method =~ /^is_#{@@cats_regexp}\?$/
-          block = lambda { category.to_s == $1 }
-        elsif method =~ /^parent_#{@@entities_regexp}$/
-          block = lambda do
-            ancestor_with_types(:"#{$1}")
-          end
-        elsif method =~ /^each_#{@@entities_regexp}$/
-          block = lambda do
-            each_entity(:"#{$1}") { |entity| yield entity }
-          end
-        elsif method =~ /^#{@@entities_regexp}s$/
-          block = lambda do
-            a = []
-            each_entity(:"#{$1}") { |e| a << e }
-            a
-          end
+        if method =~ /^#{@@entities_regexp}s$/
+          a = []
+          each_entity($1.intern) { |e| a << e }
+          a
         elsif method =~ /^#{@@entities_regexp}$/
-          block = lambda do
-            a = []
-            each_entity(:"#{$1}") { |e| a << e }
-            first_but_warn(a, $1)
-          end
+          a = []
+          each_entity($1.intern) { |e| a << e }
+          first_but_warn(a, $1)
+        elsif method =~ /^parent_#{@@entities_regexp}$/
+          ancestor_with_types($1.intern)
+        elsif method =~ /^each_#{@@entities_regexp}$/
+          each_entity($1.intern) { |e| yield e }
         elsif method =~ /^#{@@entities_regexp}_count$/
-          block = lambda do
-            i = 0
-            each_entity(:"#{$1}") { |e| i += 1 }
-            i
+          i = 0
+          each_entity($1.intern) { |e| i += 1 }
+          i
+        elsif method =~ /^#{@@entities_regexp}s_with_([a-z]+)$/
+          a = []
+          each_entity($1.intern) do |e|
+            a << e if e.has?($2.intern) &&
+            e.send($2.intern) == args[0]
           end
+          a
         elsif method =~ /^#{@@entities_regexp}s_with_([a-z]*)$/
-          block = lambda do
-            a = []
-            each_entity(:"#{$1}") do |e|
-              a << e if e.has?(:"#{$2}") &&
-              e.send(:"#{$2}") == args[0]
-            end
-            a
+          a = []
+          each_entity($1.intern) do |e|
+            a << e if e.has?($2.intern) &&
+            e.send($2.intern) == args[0]
           end
-        elsif method =~ /^#{@@entities_regexp}s_with_([a-z]*)$/
-          block = lambda do
-            a = []
-            each_entity(:"#{$1}") do |e|
-              a << e if e.has?(:"#{$2}") &&
-              e.send(:"#{$2}") == args[0]
-            end
-            first_but_warn(a, $1)
-          end
+          first_but_warn(a, $1)
         elsif method =~ /^each_with_([a-z]*)$/
-          block = lambda do
-            each_entity do |e|
-              yield e if e.has?(:"#{$2}") &&
-              e.send(:"#{$2}") == args[0]
-            end
+          each_entity do |e|
+            yield e if e.has?($2.intern) &&
+            e.send($2.intern) == args[0]
           end
         elsif method =~ /^each_#{@@cats_regexp}$/
-          block = lambda do
-            each_entity(:word) { |e| yield e if e.category== :"#{$1}" }
-          end
+          each_entity(:word) { |e| yield e if e.category == $1.intern }
         elsif method =~ /^#{@@cats_regexp}s$/
-          block = lambda do
-            a = []
-            each_entity(:word) { |e| a << e if e.category== :"#{$1}" }
-            a
-          end
+          a = []
+          each_entity(:word) { |e| a << e if e.category == $1.intern }
+          a
         elsif method =~ /^#{@@cats_regexp}$/
-          block = lambda do
-            a = []
-            each_entity(:word) { |e| a << e if e.category== :"#{$1}" }
-            first_but_warn(a, $1)
-          end
+          a = []
+          each_entity(:word) { |e| a << e if e.category == $1.intern }
+          first_but_warn(a, $1)
         elsif method =~ /^#{@@cats_regexp}_count$/
-          block = lambda do
-            i = 0
-            each_entity(:word) { |e| i += 1 if e.category== :"#{$1}" }
-            i
-          end
+          i = 0
+          each_entity(:word) { |e| i += 1 if e.category == $1.intern }
+          i
         elsif method =~ /^#{@@cats_regexp}s_with_([a-z]*)$/
-          block = lambda do
-            a = []
-            each_entity(:word) do |e|
-              a << e if e.category== :"#{$1}" &&
-              e.has?(:"#{$2}") && e.send(:"#{$2}") == args[0]
-            end
-            a
+          a = []
+          each_entity(:word) do |e|
+            a << e if e.category == $1.intern &&
+            e.has?($2.intern) && e.send($2.intern) == args[0]
           end
+          a
         elsif method =~ /^#{@@cats_regexp}_with_([a-z]*)$/
-          block = lambda do
-            a = []
-            each_entity(:word) do |e|
-              a << e if e.category== :"#{$1}" &&
-              e.has?(:"#{$2}") && e.send(:"#{$2}") == args[0]
-            end
-            first_but_warn(a, $1)
+          a = []
+          each_entity(:word) do |e|
+            a << e if e.category== $1.intern &&
+            e.has?($2.intern) && e.send($2.intern) == args[0]
           end
+          first_but_warn(a, $1)
+        elsif method =~ /^is_#{@@entities_regexp}\?$/
+          type.to_s == $1
+        elsif method =~ /^is_#{@@cats_regexp}\?$/
+          category.to_s == $1
         else
           return :no_magic
         end
-        self.class.send(:define_method, sym, block)
-        block.call
       end
       # Add an entity to the current entity.
       # Registers the entity in the root node
@@ -224,23 +194,31 @@ module Treat
       # #each. It does not yield the top element being
       # recursed.
       def each_entity(*types)
-        types = [:entity] if types.empty?
-        yield self if match_types(self, types)
-        if has_children?
+        types = [:entity] if types.size == 0
+        f = false
+        types.each { |t2| f = true if @@match_types[type][t2] }
+        yield self if f
+        unless @children.size == 0
           @children.each do |child|
             child.each_entity(*types) { |y| yield y }
           end
         end
       end
+
       # Returns the first ancestor of this
       # entity that has the given type.
       def ancestor_with_types(*types)
         ancestor = @parent
-        while not match_types(ancestor, types)
+        match_types = lambda do |t1, t2s|
+          f = false
+          t2s.each { |t2| f = true if @@match_types[t1][t2] }
+          f
+        end
+        while not match_types.call(ancestor.type, types)
           return nil unless (ancestor && ancestor.has_parent?)
           ancestor = ancestor.parent
         end
-        match_types(ancestor, types) ? ancestor : nil
+        match_types.call(ancestor.type, types) ? ancestor : nil
       end
       alias :ancestor_with_type :ancestor_with_types
       # Return the entity's string value in plain text format.
@@ -253,7 +231,7 @@ module Treat
       # Return an informative string representation of the entity.
       def inspect
         s = "#{cl(self.class)} (#{@id.to_s})"
-        if caller_method(3) == :inspect
+        if caller_method(2) == :inspect
           @id.to_s
         else
           s += "  |  #{short_value.inspect}" +
@@ -261,6 +239,15 @@ module Treat
           "  |  #{@edges.inspect}"
         end
         s
+      end
+      inline do |builder|
+
+        builder.c_raw <<-EOS, :arity => -1
+        VALUE each_entity_c(int argc, VALUE *types, VALUE self)
+        {
+
+        }
+        EOS
       end
       # Print out an ASCII representation of the tree.
       def print_tree; puts visualize(:tree); end
@@ -272,23 +259,27 @@ module Treat
       # but warn the user.
       def first_but_warn(array, type)
         if array.size > 1
-          raise
           warn "Warning: requested one #{type}, but" +
           " there are many #{type}s in the given entity."
         end
         array[0]
       end
-      # Cache a list of the type => class relationships.
-      @@type_classes = {}
-      # Returns true if the node is of the same type or
-      # is a subtype of of one of the specified entity types,
-      # which are supplied as identifiers rather than classes.
-      def match_types(node, entity_types)
-        entity_types.each do |type|
-          @@type_classes[type] ||= Entities.const_get(cc(type))
-          return true if node.is_a? @@type_classes[type]
+      # Lookup table
+      @@match_types = nil
+      def self.create_match_types
+        return @@match_types if @@match_types
+        list = (Treat::Entities.list + [:entity])
+        @@match_types = {}
+        list.each do |type1|
+          @@match_types[type1] = {type1 => true}
+          list.each do |type2|
+            if Treat::Entities.const_get(cc(type1)) <
+              Treat::Entities.const_get(cc(type2))
+              @@match_types[type1][type2] = true
+            end
+          end
         end
-        false
+        @@match_types
       end
     end
   end

@@ -9,7 +9,8 @@ module Treat
         def self.chunk(text, options = {})
           zones = text.to_s.split("\n")
           zones.each do |zone|
-            next if zone.strip == ''
+            zone.strip!
+            next if zone == ''
             if false # fix
               text << Treat::Entities::List.new(zone)
             end

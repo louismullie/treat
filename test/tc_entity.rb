@@ -6,12 +6,12 @@ module Treat
         
         @sentence = Treat::Entities::Sentence.new
         
-        @noun_phrase = Treat::Entities::Phrase.new
-        @noun_phrase.set :tag, 'NP'
-        @verb_phrase = Treat::Entities::Phrase.new
-        @verb_phrase.set :tag, 'VP'
-        @adj_phrase = Treat::Entities::Phrase.new
-        @adj_phrase.set :tag, 'ADJP'
+        @noun_cons = Treat::Entities::Phrase.new
+        @noun_cons.set :tag, 'NP'
+        @verb_cons = Treat::Entities::Phrase.new
+        @verb_cons.set :tag, 'VP'
+        @adj_cons = Treat::Entities::Phrase.new
+        @adj_cons.set :tag, 'ADJP'
         
         @det = Treat::Entities::Word.new('The')
         @det.set :category, :determiner
@@ -35,10 +35,10 @@ module Treat
         @verb.set :tag_set, :penn
         @dot = Treat::Entities::Punctuation.new('.')
         
-        @text << @sentence << [@noun_phrase, @verb_phrase, @dot]
-        @noun_phrase << [@det, @adj_phrase, @noun]
-        @adj_phrase << @adj
-        @verb_phrase << [@aux, @verb]
+        @text << @sentence << [@noun_cons, @verb_cons, @dot]
+        @noun_cons << [@det, @adj_cons, @noun]
+        @adj_cons << @adj
+        @verb_cons << [@aux, @verb]
       end
 
       def test_respond_to_missing

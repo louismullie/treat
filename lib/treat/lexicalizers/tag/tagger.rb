@@ -3,10 +3,12 @@ module Treat
     module Tag
       class Tagger
         def self.tag(entity, options = {})
-          if [:sentence, :phrase].include?(entity.type) && !entity.has_children?
-            raise Treat::Exception,
-            "Annotator 'tag' requires processor 'tokenize'."
-          elsif entity.type == :word
+          if (entity.is_a?(Treat::Entities::Sentence) ||
+             entity.is_a?(Treat::Entities::Phrase)) && 
+             !entity.has_children?
+              raise Treat::Exception,
+              "Annotator 'tag' requires processor 'tokenize'."
+          elsif entity.is_a?(Treat::Entities::Word)
             if entity.has_parent?
               ps = entity.parent_sentence
               pp = entity.parent_phrase

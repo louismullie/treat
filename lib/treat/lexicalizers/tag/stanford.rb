@@ -4,14 +4,14 @@ module Treat
       class Stanford < Tagger
         require 'stanford-core-nlp'
         # A list of models to use by language.
-        # Other models are available; see the models/ folder
+        # Other models are available; see the taggers/ folder
         # in the Stanford Tagger distribution files.
         LanguageToModel = {
-          eng: 'english-left3words-distsim.tagger',
-          ger: 'german-fast.tagger',
-          fra: 'french.tagger',
-          ara: 'arabic-fast.tagger',
-          chi: 'chinese.tagger'
+          eng: 'taggers/english-left3words-distsim.tagger',
+          ger: 'taggers/german-fast.tagger',
+          fra: 'taggers/french.tagger',
+          ara: 'taggers/arabic-fast.tagger',
+          chi: 'taggers/chinese.tagger'
         }
         # Hold one tagger per language.
         @@taggers = {}
@@ -22,10 +22,8 @@ module Treat
         # Tag the word using one of the Stanford taggers.
         def self.tag(entity, options = {})
           options = DefaultOptions.merge(options)
-          
-          t = super(entity, options)
+          r = super(entity, options)
           return r if r && r != :isolated_word
-
           # Arrange options.
           lang = entity.language
           model = options[:model]
@@ -33,7 +31,7 @@ module Treat
             model = LanguageToModel[lang]
             if model.nil?
               raise Treat::Exception, "There exists no Stanford tagger model for " +
-              "the #{Treat::Languages.describe(lang)} language ."
+              "the #{Treat::Languages.describe(lang)} language."
             end
           end
           # Set the tagger model.
@@ -60,9 +58,12 @@ module Treat
               sentence.get(:tokens).each do |t2|
                 if t2.value == t1.value
                   tag = t2.get(:part_of_speech).to_s
-                  t1.set :tag, tag
+                  tag_s, tag_opt = *tag.split('-')
+                  tag_s ||= ''
+                  t1.set :tag, tag_s
+                  t1.set :tag_opt, tag_opt
                   t1.set :tag_set, :penn
-                  return tag if r == :isolated_word
+                  return tag_s if r == :isolated_word
                   break
                 end
               end
@@ -71,8 +72,8 @@ module Treat
           
           # Handle tags for sentences and phrases.
           entity.set :tag_set, :penn
-          return 'P' if entity.type == :phrase
-          return 'S' if entity.type == :sentence
+          return 'P' if entity.is_a?(Treat::Entities::Phrase)
+          return 'S' if entity.is_a?(Treat::Entities::Sentence)
         end
       end
     end

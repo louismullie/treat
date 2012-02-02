@@ -4,12 +4,20 @@ module Treat
   module Delegatable
     # Add decorator methods to entities.
     def add_presets(group)
-      group.presets.each do |preprocessor_m, presets|
-        define_method(preprocessor_m) do |delegate=nil, options={}|
+      group.presets.each do |preset_m, presets|
+        define_method(preset_m) do |delegate=nil, options={}|
           options = presets.merge(options)
           m = group.method
           send(m, delegate, options)
-          features[preprocessor_m] = features.delete(m)
+          features[preset_m] = features.delete(m)
+        end
+      end
+    end
+    def add_preprocessors(group)
+      group.preprocessors.each do |preprocessor_m, block|
+        define_method(preprocessor_m) do |delegate=nil, options={}|
+          block.call(self, delegate, options)
+          features[preprocessor_m] = features.delete(group.method)
         end
       end
     end
@@ -28,6 +36,7 @@ module Treat
       self.class_eval do
         m = group.method
         add_presets(group)
+        add_preprocessors(group)
         add_decorators(group, m)
         define_method(m) do |delegate=nil, options={}|
           decorator = options.delete(:decorator)
@@ -43,13 +52,13 @@ module Treat
     end
     # Call a delegator.
     def call_delegator(entity, m, delegate, decorator, group, options)
-      if delegate.nil?
+      if delegate.nil? || delegate == :default
         delegate = get_missing_delegate(entity, group)
       end
       if not group.list.include?(delegate)
         raise Treat::Exception, delegate_not_found(delegate, group)
       else
-        delegate_klass = group.const_get(:"#{cc(delegate.to_s)}")
+        delegate_klass = group.const_get(cc(delegate.to_s).intern)
         result = entity.accept(group, delegate_klass, m, options)
         if decorator
           result = group.decorators[decorator].call(entity, result)

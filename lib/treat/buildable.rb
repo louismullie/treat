@@ -17,22 +17,26 @@ module Treat
         "Use filename, folder, text or a number."
       end
     end
-    def from_string(string)
+    def from_string(string, enforce_type = true)
       if self == Treat::Entities::Document ||
         self == Treat::Entities::Collection
         raise Treat::Exception,
         "Cannot create a document or collection from " +
         "a string (need a readable file/folder)."
       end
-      dot = string.count('.') + string.count('!') + string.count('?')
-      if dot > 2 && string.count("\n") > 0
+      unless self == Treat::Entities::Entity
+        return self.new(string) if enforce_type 
+      end
+      dot = string.count('.!?')
+      if dot > 1 && string.count("\n") > 0
         c = Treat::Entities::Section.new(string) 
-      elsif dot == 1 && string.size > 5
+      elsif dot >= 1 && dot < 5 && string.size > 5
         c = Treat::Entities::Sentence.new(string) 
       elsif string.count(' ') == 0
         if string == "'s"
           c = Treat::Entities::Clitic.new(string) 
-        elsif string =~ /^[[:alpha:]\-']+$/
+        elsif string =~ /^[[:alpha:]\-']+$/ && 
+              string.count(' ') == 0
           c = Treat::Entities::Word.new(string) 
         elsif string =~ /^[[:digit:]]+$/
           c = Treat::Entities::Number.new(string) 
@@ -41,15 +45,14 @@ module Treat
         else
           c = Treat::Entities::Symbol.new(string)
         end
-      else
+      elsif string.strip.count(' ') > 0
         c = Treat::Entities::Phrase.new(string)
+      else
+        c = Treat::Entities::Unknown.new(string) unless c
       end
-      c = Treat::Entities::Unknown.new(string) unless c
-      unless self == c.class || self == Treat::Entities::Entity
-        raise Treat::Exception, 
-        "The type '#{cl(c.class)}' that was detected for "+
-        " '#{string}' does not match "+"
-        requested type #{self}."
+      unless self == c.class || self == Treat::Entities::Entity || c.is_a?(self)
+        raise "You said that \"#{string}\" was a #{cl(self).downcase}, " +
+             "but Treat thinks it is a #{cl(c.class).downcase}."
       end
       c
     end

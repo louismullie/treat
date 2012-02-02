@@ -6,6 +6,7 @@ module Treat
       # containing the texts of the collection.
       def initialize(folder = nil, id = nil)
         super('', id)
+        @type = :collection
         if folder
           set :folder, folder
           Dir.glob("#{folder}/*").each do |f|
@@ -14,6 +15,7 @@ module Treat
           end
         end
       end
+      def type; :collection; end
     end
   end
 end

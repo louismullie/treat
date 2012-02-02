@@ -37,9 +37,9 @@ module Treat
          'Wh noun phrase', ['WHNP'],
         'Wh prepositional phrase', ['WHPP'],
         'Unknown', ['X'],
-        'Generic phrase', ['P']
+        'Phrase', ['P'],
+        'Sentence', ['S']
       ]
-      
 
       PTBWordTagDescription = [
         ['CC', 'Coordinating conjunction'],
@@ -376,13 +376,20 @@ module Treat
         #pttc[tags[1]][:brown] = category
         pttc[tags[0]][:penn] = category
       end
+      
       # A hash converting word tags to word categories.
       PhraseTagToCategory = pttc
       
-      SentenceTags = 
-      {
-        penn: 'S'
-      }
+      def self.has_phrase_tag?(tag, tag_set)
+        PhraseTagToCategory[tag] && 
+        PhraseTagToCategory[tag_set]
+      end
+      
+      def self.has_word_tag?(tag, tag_set)
+        WordTagToCategory[tag] && 
+        WordTagToCategory[tag_set]
+      end
+      
     end
   end
 end

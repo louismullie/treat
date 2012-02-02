@@ -27,11 +27,11 @@ module Treat
         silence_warnings { require 'nickel' }
         # Extract time information from a bit of text.
         def self.time(entity, options = {})
-
+          return nil if entity.to_s.strip == ''
           n = nil
           silence_warnings { n = ::Nickel.parse(entity.to_s.strip) }
           occ = n.occurrences[0]
-          return unless occ
+          return nil unless occ
 
           rec = occ.type.to_s.gsub('single', 'once').intern
           time_recurrence = rec
@@ -52,12 +52,16 @@ module Treat
           end_time = ::DateTime.civil(*de, *te) if de && te
 
           self.clean_tree(entity)
-          {
-            start_time: start_time.to_s,
-            end_time: end_time.to_s,
-            time_recurrence: time_recurrence, 
-            time_recurrence_interval: time_recurrence_interval
+          
+          time = {
+            :start_time => start_time,
+            :end_time => end_time,
+            :time_recurrence => time_recurrence, 
+            :time_recurrence_interval => time_recurrence_interval,
+            :time_message => n.message
           } 
+          
+          time
         end
       end
     end

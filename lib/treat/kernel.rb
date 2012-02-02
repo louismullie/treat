@@ -7,7 +7,7 @@ module Kernel
   # A list of acronyms used in class names within
   # the program. These do not CamelCase; they
   # CAMELCase.
-  Acronyms = ['XML', 'HTML', 'YAML', 'UEA', 'LDA', 'PDF', 'GOCR'].join('|')
+  Acronyms = ['XML', 'HTML', 'YAML', 'UEA', 'LDA', 'PDF'].join('|')
   # A cache to optimize camel casing.
   @@cc_cache = {}
   # A cache to optimize un camel casing.
@@ -34,7 +34,7 @@ module Kernel
   # Create a temporary file which is deleted
   # after execution of the block.
   def create_temp_file(ext, value = nil, &block)
-    fname = "../tmp/#{Random.rand(10000000).to_s}.#{ext}"
+    fname = "#{Treat.lib}/../tmp/#{Random.rand(10000000).to_s}.#{ext}"
     File.open(fname, 'w') do |f| 
       f.write(value) if value 
       block.call(f.path)
@@ -44,7 +44,7 @@ module Kernel
   end
   # Create a temporary directory.
   def create_temp_dir(&block)
-    dname = "../tmp/#{Random.rand(10000000).to_s}"
+    dname = "#{Treat.lib}/../tmp/#{Random.rand(10000000).to_s}"
     Dir.mkdir(dname)
     block.call(dname)
   ensure
@@ -54,7 +54,7 @@ module Kernel
   def camel_case(o_phrase)
     phrase = o_phrase.to_s.dup
     return @@cc_cache[o_phrase] if @@cc_cache[o_phrase]
-    phrase.gsub!(/#{Acronyms.downcase}[^a-z]+/) { |a| a.upcase }
+    phrase.gsub!(/#{Acronyms.downcase}[^a-z]*/) { |a| a.upcase }
     phrase.gsub!(/^[a-z]|_[a-z]/) { |a| a.upcase }
     phrase.gsub!('_', '')
     @@cc_cache[o_phrase] = phrase
@@ -87,7 +87,7 @@ module Kernel
         sugg << element
       end
     end
-    unless sugg.empty?
+    unless sugg.size == 0
       if sugg.size == 1
         msg += " Perhaps you meant '#{sugg[0]}' ?"
       else
@@ -104,7 +104,7 @@ module Kernel
   def caller_method(n = 3)
     at = caller(n).first
     /^(.+?):(\d+)(?::in `(.*)')?/ =~ at
-    :"#{Regexp.last_match[3]}"
+    Regexp.last_match[3].intern
   end
   alias :cm :caller_method
   # Return the levensthein distance between two stringsm

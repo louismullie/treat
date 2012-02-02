@@ -6,8 +6,12 @@ module Treat
         # Reauire the Nokogiri XML parser.
         require 'nokogiri'
         # Serialize an entity tree in XML format.
+        #
+        # Options:
+        # - (String) :file => a file to write to.
         def self.serialize(entity, options = {})
-          options = {:indent => 0} if options[:indent].nil?
+          options = options.merge({:indent => 0}) if options[:indent].nil?
+          indent = options[:indent]
           if options[:indent] == 0
             #enc = entity.encoding(:r_chardet19).to_s.gsub('_', '-').upcase
             string = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\" ?>\n<treat>"
@@ -31,17 +35,33 @@ module Treat
             end
           end
           tag = entity.class.to_s.split('::')[-1].downcase
-          string += "\n#{spaces}<#{tag}#{attributes[0..-2]}>"
+          unless entity.is_a?(Treat::Entities::Token)
+            string += "\n" 
+          end
+          string += "#{spaces}<#{tag}#{attributes[0..-2]}>"
           if entity.has_children?
             options[:indent] += 1
-            entity.children.each do |child| 
-              string = string + serialize(child, options)
+            entity.children.each do |child|
+              string =
+              string +
+              serialize(child, options)
             end
             options[:indent] -= 1
           else
-            string = string + "\n#{spaces}#{entity.value}"
+            string = string + "#{entity.value}"
           end
-          string + "\n#{spaces}</#{tag}>\n</treat>"
+          unless entity.is_a?(Treat::Entities::Token)
+            string += "\n#{spaces}"
+          end
+          string += "</#{tag}>"
+          if indent == 0
+            string += "\n</treat>"
+            if options[:file]
+              File.open(options[:file], 'w') { |f| f.write(string) }
+            end
+            # puts string
+          end
+          string
         end
       end
     end

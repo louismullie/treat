@@ -6,17 +6,31 @@ module Treat
   # - Document
   # - Zone (a Section, Title, Paragraph, or List)
   # - Sentence
-  # - Phrase
+  # - Phrases
   # - Token (a Word, Number, Punctuation, or Symbol).
   module Entities
+    # Cache a list of defined entity types to
+    # improve performance.
+    @@list = nil
+    # Provide a list of defined entity types,
+    # as non-camel case identifiers.
+    def self.list
+      return @@list if @@list
+      @@list = []
+      self.constants.each do |constant|
+        unless constant == :Entity
+          @@list << ucc(constant).intern 
+        end
+      end
+      @@list
+    end
     # Require Entity first.
     require 'treat/entities/entity'
     # Then require all possible entities.
     require 'treat/entities/collection'
     require 'treat/entities/document'
     require 'treat/entities/zones'
-    require 'treat/entities/sentence'
-    require 'treat/entities/phrase'
+    require 'treat/entities/phrases'
     require 'treat/entities/tokens'
     # Make the constants buildable.
     constants.each do |entity|
@@ -24,18 +38,8 @@ module Treat
         const_get(entity).build(value, id)
       end
     end
-    # Cache a list of defined entity types to
-    # improve performance.
-    @@list = []
-    # Provide a list of defined entity types,
-    # as non-camel case identifiers.
-    def self.list
-      return @@list unless @@list.empty?
-      self.constants.each do |constant|
-        @@list << :"#{ucc(constant)}" unless constant == :Entity
-      end
-      @@list
-    end
+    # Create entity lookup table.
+    Treat::Entities::Entity.create_match_types
     # Return the hierarchy level of the entity
     # class, the minimum being a Token and the
     # maximum being a Collection.

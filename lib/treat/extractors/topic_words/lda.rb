@@ -29,7 +29,7 @@ module Treat
         end
         # Default options for the LDA algorithm.
         DefaultOptions = {
-          topics: 20,
+          num_topics: 20,
           words_per_topic: 10,
           iterations: 20
         }
@@ -45,7 +45,7 @@ module Treat
 
           # Create an Lda object for training
           lda = Lda::Lda.new(corpus)
-          lda.num_topics = options[:topics]
+          lda.num_topics = options[:num_topics]
           lda.max_iter = options[:iterations]
           # Run the EM algorithm using random starting points
           silence_stdout { lda.em('random') }

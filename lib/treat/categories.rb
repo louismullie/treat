@@ -5,16 +5,20 @@ module Treat
     class << self; attr_accessor :list; end
     # Array - list of all categories.
     self.list = []
-    @@lookup = {}
+    @@lookup = nil
     # Find the class of a group given its method.
     def self.lookup(method)
-      return @@lookup[method] unless @@lookup.empty?
+      return @@lookup[method] if @@lookup
+      @@lookup = {}
       self.list.each do |category|
         category.groups.each do |group|
           group = category.const_get(group)
           @@lookup[group.method] = group
           group.decorators.each do |decorator,x|
             @@lookup[decorator] = group
+          end
+          group.preprocessors.each do |preprocessor,x|
+            @@lookup[preprocessor] = group
           end
           group.presets.each do |preset,x|
             @@lookup[preset] = group

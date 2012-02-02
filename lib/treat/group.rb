@@ -5,9 +5,11 @@ module Treat
       group.module_eval do
         class << self
           attr_accessor :type, :default, :targets
-          attr_accessor :presets, :decorators
+          attr_accessor :presets, :preprocessors, :decorators
         end
-        self.presets = {}; self.decorators = {};
+        self.presets = {}
+        self.preprocessors = {}
+        self.decorators = {}
         # Return the method corresponding to the group.
         # This method resolves the name of the method
         # that a group should provide based on the name
@@ -33,23 +35,15 @@ module Treat
           else
             n = m
           end
-          @method = :"#{n}"
+          @method = n.intern
         end
       end
-    end
-    def postprocessors; 
-      self.const_defined?(:Postprocessors) ?
-      const_get(:Postprocessors).methods(false) : []
-    end
-    def preprocessors; 
-      self.const_defined?(:Preprocessors) ?
-      const_get(:Preprocessors).methods(false) : []
     end
     # Create a new algorithm within the group. Once
     # the algorithm is added, it will be automatically
     # installed on all the targets of the group.
     def add(class_name, &block)
-      class_name = :"#{cc(class_name)}"
+      class_name = cc(class_name).intern
       klass = self.const_set(class_name, Class.new)
       method = self.method
       klass.class_eval do
@@ -81,7 +75,7 @@ module Treat
         dirs = Dir.glob("#{Treat.lib}/treat/*/#{mod}/*.rb")
         dirs.each do |file|
           @@list[mod] <<
-          :"#{file.split('/')[-1][0..-4]}"
+          file.split('/')[-1][0..-4].intern
         end
       end
       @@list[mod]
@@ -100,6 +94,10 @@ module Treat
         "#{self}::#{const} does not exist."
       else
         require file
+        if not const_defined?(const)
+          raise Treat::Exception,
+          "File #{file} does not define #{self}::#{const}."
+        end
         const_get(const)
       end
     end

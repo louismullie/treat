@@ -18,7 +18,12 @@ module Treat
           end
           def text(s)
             if s != 'AbiWord' && s != 'application/x-abiword'
-              @plain_text << s if s.strip.length > 0
+              s.strip!
+              if s.length > 0
+                s += ' ' 
+                s += "\n\n" if s.length < 60
+              end
+              @plain_text << s
             end
           end
         end

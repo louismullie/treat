@@ -59,8 +59,8 @@ module Treat
             return t.upcase if r == :isolated_word
           end
           entity.set :tag_set, :penn
-          return 'P' if entity.type == :phrase
-          return 'S' if entity.type == :sentence
+          return 'P' if entity.is_a?(Treat::Entities::Phrase)
+          return 'S' if entity.is_a?(Treat::Entities::Sentence)
         end
       end
     end

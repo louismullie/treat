@@ -36,7 +36,7 @@ module Treat
 
             id = nil; value = ''
             attributes = {}; edges = {}
-            unless xml_reader.attributes.empty?
+            unless xml_reader.attributes.size == 0
               xml_reader.attributes.each_pair do |k,v|
                 if k == 'id'
                   id = v

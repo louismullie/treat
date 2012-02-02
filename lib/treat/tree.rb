@@ -41,11 +41,11 @@ module Treat
         @edges = {}
       end
       # Boolean - does the node have edges?
-      def has_edges?; !@edges.empty?; end
+      def has_edges?; !(@edges.size == 0); end
       # Boolean - does the node have children?
-      def has_children?; !@children.empty?; end
+      def has_children?; !(@children.size == 0); end
       # Boolean - does the node have features?
-      def has_features?; !@features.empty?; end
+      def has_features?; !(@features.size == 0); end
       # Boolean - does the node have a parent?
       def has_parent?; !@parent.nil?; end
       # Boolean - does the node not have a parent?
@@ -139,14 +139,15 @@ module Treat
       end
       # Does the entity have a feature ?
       def has_feature?(feature)
-        @features.has_key?(feature) ||
+        (@features.has_key?(feature) && 
+        !@features[feature].nil?) ||
         [:id, :value, :children, :edges].include?(feature)
       end
       alias :has? :has_feature?
       # Link this node to the target node with
       # the supplied edge type.
-      def associate(id_or_node, edge_type = nil)
-        if id_or_node.is_a? Treat::Tree::Node
+      def link(id_or_node, edge_type = nil)
+        if id_or_node.is_a?(Treat::Tree::Node)
           id = root.find(id_or_node).id
         else
           id = id_or_node
@@ -155,7 +156,7 @@ module Treat
       end
       # Find the node in the tree with the given id.
       def find(id_or_node)
-        if id_or_node.is_a? self.class
+        if id_or_node.is_a?(Treat::Tree::Node)
           id = id_or_node.id
         else
           id = id_or_node

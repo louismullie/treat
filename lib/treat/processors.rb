@@ -17,7 +17,7 @@ module Treat
     module Chunkers
       extend Group
       self.type = :transformer
-      self.targets = [:document, :zone]
+      self.targets = [:document, :section]
     end
     # Segmenters split a text or zone into sentences.
     module Segmenters
@@ -29,7 +29,7 @@ module Treat
     module Tokenizers
       extend Group
       self.type = :transformer
-      self.targets = [:document, :zone, :sentence, :phrase]
+      self.targets = [:document, :zone, :phrase]
     end
     # Parsers split a sentence into phrase objects
     # representing its syntactic structure, with the
@@ -37,7 +37,7 @@ module Treat
     module Parsers
       extend Group
       self.type = :transformer
-      self.targets = [:document, :zone, :sentence, :phrase]
+      self.targets = [:document, :zone, :phrase]
     end
     # Makes all the groups autoloadable and creates the delegators.
     extend Treat::Category

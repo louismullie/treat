@@ -4,8 +4,10 @@ module Treat
       class Doc
         def self.read(document, options = {})
           f = `antiword #{document.file}`
+          f.gsub!("\n\n", '#keep#')
+          f.gsub!("\n", ' ')
+          f.gsub!('#keep#', "\n\n")
           document << Treat::Entities::Entity.from_string(f)
-          document
         end
       end
     end

@@ -18,7 +18,7 @@ module Treat
         end
       end
     end
-    alias :sweeten :edulcorate
+    alias :sweeten! :edulcorate
     # Uninstalls syntactic sugar.
     def unedulcorate
       return unless @@edulcorated
@@ -31,7 +31,7 @@ module Treat
         end
       end
     end
-    alias :unsweeten :unedulcorate
+    alias :unsweeten! :unedulcorate
     # Boolean - whether syntactic sugar is
     # enabled or not.
     def edulcorated?; @@edulcorated; end
@@ -41,7 +41,7 @@ module Treat
     # Helper method, yields each entity type and class.
     def each_entity_class
       Treat::Entities.list.each do |entity_type|
-        type = :"#{cc(entity_type)}"
+        type = cc(entity_type).intern
         klass = Treat::Entities.const_get(type, klass)
         yield type, klass
       end

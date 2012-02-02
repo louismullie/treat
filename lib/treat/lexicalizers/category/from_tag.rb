@@ -10,23 +10,24 @@ module Treat
         #
         # - (Symbol) :tagger => force the use of a tagger.
         def self.category(entity, options = {})
-          tag = options[:tagger].nil? ? 
-          entity.tag : entity.tag(options[:tagger])
+          tag = (entity.has?(:tag_set) && entity.has?(:tag)) ?
+          entity.tag : nil
+          return :unknown if tag.nil? || tag == ''
+          return :sentence if tag == 'S'
           lang = Treat::Languages.get(entity.language)
-          if entity.type == :sentence
-            cat = lang::SentenceTags[entity.tag_set]
-            unless cat
-              raise Treat::Exception,
-              "'#{entity.tag} is not a valid sentence tag."
-            end
-            return cat
-          elsif entity.type == :phrase
+          if entity.is_a?(Treat::Entities::Phrase)
             cat = lang::PhraseTagToCategory[tag]
-          elsif entity.type == :word
+            unless cat
+              cat = lang::WordTagToCategory[tag]
+              unless cat
+                raise Treat::Exception,
+                "'#{entity.tag}' is not a valid phrase/word tag."
+              end
+            end
+          elsif entity.is_a?(Treat::Entities::Word)
             cat = lang::WordTagToCategory[tag]
           end
-          cat ||= ''
-          if cat == ''
+          if cat == nil
             warn "Category not found for tag '#{tag}'." 
             :unknown
           else

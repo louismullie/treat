@@ -43,7 +43,7 @@ module Treat
         end
         # Read the topics from the XML files.
         def self.get_topics
-          return unless @@industry.empty?
+          return unless @@industry.size == 0
           @@industry = read_xml(Treat.lib + '/treat/extractors/topics/reuters/industry.xml')
           @@region = read_xml(Treat.lib + '/treat/extractors/topics/reuters/region.xml')
           @@topics = read_xml(Treat.lib + '/treat/extractors/topics/reuters/topics.xml')

@@ -29,20 +29,15 @@ module Treat
           @@i = 0 if @@i == @@parsers.size
           @@parsers[@@i-1]
         end
-        # Parse the entity into its syntactical phrases
-        # using Enju
+        # Parse the entity into its syntactical phrases using Enju.
+        # Calls #build to initiate XML parsing.
         def self.parse(entity, options = {})
           options[:processes] ||= 1
           @@options = options
+          @@id_table = {}
+          @@edges_table = {}
           stdin, stdout = proc
-          if entity.to_s.count('.') == 0
-            remove_last = true
-            text = entity.to_s + '.'
-          else
-            remove_last = false
-            text = entity.to_s.gsub('.', '')
-            text += '.' unless ['!', '?'].include?(text[-1])
-          end
+          text, remove_last = valid_text(entity)
           stdin.puts(text + "\n")
           parsed = build(stdout.gets, remove_last)
           if not parsed.nil?
@@ -50,9 +45,16 @@ module Treat
             parsed.children.each do |child|
               entity << child
             end
+            # Remove the period we added at the end.
+            if remove_last
+              last = entity.punctuations[-1]
+              entity.remove!(last)
+            end
           else
             warn "Couldn't parse the text '#{entity.to_s}'."
           end
+          link_heads(entity)
+          add_edges(entity)
           entity
         end
         # Parses an Enju XML output file using the Nogoriki
@@ -63,8 +65,6 @@ module Treat
           xml_reader = Nokogiri::XML::Reader.from_memory(xml)
           current_element = nil
           previous_depth = 0
-          id_table = {}
-          edges_table = {}
           # Read the XML file entity by entity.
           while xml_reader.read
             # The depth in the XML tree.
@@ -81,123 +81,133 @@ module Treat
               previous_depth = current_depth
               next
             end
+            # Get and format attributes and edges.
             attributes = xml_reader.attributes
-            prefix = ['schema', 'lexentry', 'type']
-            # If the entity has entributes, add them.
-            unless attributes.empty?
-              new_attributes = {}
-              edges = {}
-              id = attributes.delete('id')
-              pred = attributes.delete('pred')
-              attributes.each_pair do |attribute, value|
-                if ['arg1', 'arg2'].include?(attribute)
-                  edges[value] = pred
-                else
-                  if attribute == 'cat'
-                    if xml_reader.name == 'tok'
-                      if value.length > 1 && ['P', 'X'].include?(value[-1]) &&
-                        value != 'PN'
-                        new_attributes[:saturated] = (value[-1] == 'P')
-                        value = value[0..-2]
-                      end
-                      cat = Treat::Languages::English::EnjuCatToCategory[value]
-                      new_attributes[:cat] = cat
-                    else
-                      new_attributes[:enju_cat] = value
-                      xcat = attributes['xcat'].split(' ')[0]
-                      xcat ||= ''
-                      tags = Treat::Languages::English::EnjuCatXcatToPTB.select do |m|
-                        m[0] == value && m[1] == xcat
-                      end
-                      if tags.empty?
-                        tag = 'UK'
-                      else
-                        tag = tags[0][2]
-                      end
-                      new_attributes[:enju_xcat] = xcat
-                      attributes.delete('xcat')
-                      new_attributes[:tag] = tag
-                    end
-                  else
-                    pre = prefix.include?(attribute) ? 'enju_' : ''
-                    new_attributes[:"#{pre+attribute}"] = value
-                  end
-                end
-              end
-              attributes.delete('arg1')
-              attributes.delete('arg2')
-            end
-            # Handle naming conventions.
-            if attributes.has_key?('pos')
-              new_attributes[:tag] = new_attributes[:pos]
-              new_attributes[:tag_set] = :penn
-              new_attributes.delete :pos
-            end
-            if attributes.has_key?('base')
-              new_attributes[:lemma] = new_attributes[:base]
-              new_attributes.delete :base
+            id = attributes.delete('id')
+            new_attributes = {}; edges = {}
+            unless attributes.size == 0
+              new_attributes, edges =
+              cleanup_attributes(xml_reader.name, attributes)
             end
             # Create the appropriate entity for the
             # element.
             current_value = ''
-            attributes = new_attributes
             case xml_reader.name
             when 'sentence'
               current_element = Treat::Entities::Sentence.new('')
-              id_table[id] = current_element.id
-              edges_table[current_element.id] = edges
-              current_element.features = attributes
+              @@id_table[id] = current_element.id
+              @@edges_table[current_element.id] = edges
+              current_element.features = new_attributes
             when 'cons'
               current_element = current_element <<
               Treat::Entities::Phrase.new('')
-              id_table[id] = current_element.id
-              edges_table[current_element.id] = edges
-              current_element.features = attributes
+              @@id_table[id] = current_element.id
+              @@edges_table[current_element.id] = edges
+              current_element.features = new_attributes
             when 'tok'
-              tmp_attributes = attributes
+              tmp_attributes = new_attributes
               tmp_edges = edges
             else
               current_value = xml_reader.value.gsub(/\s+/, "")
-              if !current_value.empty?
+              unless current_value.size == 0
                 current_element = current_element <<
                 Treat::Entities::Entity.from_string(current_value)
                 if current_element.is_a?(Treat::Entities::Word)
                   current_element.features = tmp_attributes
-                  id_table[id] = current_element.id
-                  edges_table[current_element.id] = tmp_edges                  
+                  @@id_table[id] = current_element.id
+                  @@edges_table[current_element.id] = tmp_edges
                 end
               end
             end
             previous_depth = current_depth
           end
-          # Add the edges to the entity.
-          unless current_element.nil?
-            root = current_element.root
-            edges_table.each_pair do |id2, edges2|
+          current_element
+        end
+        # Validate a text - Enju wants period to parse a sentence.
+        def self.valid_text(entity)
+          if entity.to_s.count('.') == 0
+            remove_last = true
+            text = entity.to_s + '.'
+          else
+            remove_last = false
+            text = entity.to_s.gsub('.', '')
+            text += '.' unless ['!', '?'].include?(text[-1])
+          end
+          return text, remove_last
+        end
+        # Link the head and sem_head to their entities.
+        def self.link_heads(entity)
+          entity.each_phrase do |phrase|
+            if phrase.has?(:head)
+              phrase.set :head,
+              entity.find(@@id_table[phrase.head])
+            end
+            if phrase.has?(:sem_head)
+              phrase.set :sem_head,
+              entity.find(@@id_table[phrase.sem_head])
+            end
+          end
+        end
+        # Add edges a posterior to a parsed entity.
+        def self.add_edges(entity2)
+          entity2.each_entity(:word, :phrase) do |entity|
+            @@edges_table.each_pair do |id2, edges2|
               # Next if there are no edges.
               next if edges2.nil?
-              entity = root.find(id2)
+              entity = entity2.find(id2)
               edges2.each_pair do |argument, type|
-                # Skip this argument if we don't know
-                # the target node.
+                # Skip this argument if we don't know the target node.
                 next if argument == 'unk'
-                entity.associate(id_table[argument], type)
+                entity.link(@@id_table[argument], type)
               end
             end
-            # Link the head and sem_head to their entities.
-            root.each_phrase do |phrase|
-              phrase.set :head,
-              root.find(id_table[phrase.head])
-              phrase.set :sem_head,
-              root.find(id_table[phrase.sem_head])
+          end
+        end
+        # Helper function to convert Enju attributes to Treat attributes.
+        def self.cleanup_attributes(name, attributes)
+          new_attributes = {}
+          edges = {}
+          pred = attributes.delete('pred')
+          attributes.each_pair do |attribute2, value|
+            attribute = attribute2.strip
+            if attribute == 'arg1' || attribute == 'arg2'
+              edges[value] = pred
+              next
+            end
+            if attribute == 'cat'
+              if name == 'tok'
+                if value.length > 1 && ['P', 'X'].include?(value[-1]) &&
+                  value != 'PN'
+                  new_attributes[:saturated] = (value[-1] == 'P')
+                  value = value[0..-2]
+                end
+                new_attributes[:category] =
+                Treat::Languages::English::EnjuCatToCategory[value]
+              else
+                tags = Treat::Languages::English::EnjuCatXcatToPTB.select do |m|
+                  m[0] == value && m[1] == attributes['xcat']
+                end
+                tag = (tags.size == 0) ? 'UK' : tags[0][2]
+                new_attributes[:tag] = tag
+              end
+            else
+              new_attributes[:"#{attribute}"] = value
             end
           end
-          # Remove the period we added at the end.
-          if remove_last
-            last = current_element.punctuations[-1]
-            current_element.remove!(last)
+          # Delete after iteration.
+          attributes.delete('arg1')
+          attributes.delete('arg2')
+          # Handle naming conventions.
+          if attributes.has_key?('pos')
+            new_attributes[:tag] = new_attributes[:pos]
+            new_attributes[:tag_set] = :penn
+            new_attributes.delete :pos
           end
-          current_element
+          if attributes.has_key?('base')
+            new_attributes[:lemma] = new_attributes[:base]
+            new_attributes.delete :base
+          end
+          return new_attributes, edges
         end
       end
     end

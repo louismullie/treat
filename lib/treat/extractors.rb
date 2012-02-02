@@ -12,32 +12,50 @@ module Treat
     module Topics
       extend Group
       self.type = :annotator
-      self.targets = [:collection, :document]
+      self.targets = [:document]
     end
-    # Extract the topic from a text.
-    module TopicWords
-      extend Group
-      self.type = :annotator
-      self.targets = [:collection, :document]
-    end
-    # Extract the key sentences from a text.
+    # Extract the keywords from a text.
     module Keywords
       extend Group
       self.type = :annotator
-      self.targets = [:collection, :document]
+      self.targets = [:document]
+    end
+    # Extract the topic words from a text.
+    module TopicWords
+      extend Group
+      self.type = :annotator
+      self.targets = [:collection]
     end
     # Extract named entities from texts.
-    module NamedEntity
+    module NamedEntityTag
       extend Group
-      self.type = :computer
+      self.type = :transformer
       self.targets = [:sentence]
+    end
+    # Extract named entities from texts.
+    module Coreferences
+      extend Group
+      self.type = :transformer
+      self.targets = [:zone]
     end
     # This module should be moved out of here ASAP.
     module Statistics
       extend Group
       self.type = :annotator
-      self.targets = [:entity]
+      self.targets = [:word]
       self.default = :none
+      self.preprocessors = {
+        :frequency_in => lambda do |entity, delegate, options|
+          options = {parent: delegate}.merge(options)
+          entity.statistics(:frequency_in, options)
+        end,
+        :tf_idf => lambda do |entity, delegate, options|
+          entity.statistics(:tf_idf, options)
+        end,
+        :position_in => lambda do |entity, options|
+          entity.statistics(:position_in, options)
+        end
+      }
     end
     extend Treat::Category
   end

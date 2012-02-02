@@ -14,7 +14,7 @@ module Treat
         # :language => (Symbol) Force a language for the tokenizer.
         def self.tokenize(entity, options = {})
           lang = options[:language] ? options[:language] : entity.language
-          lang = Treat::Languages.find(lang, 1)    
+          lang = Treat::Languages.code(lang, 1)    
           if @@tokenizers[lang].nil?
             @@tokenizers[lang] = ::Tokenizer::Tokenizer.new(lang)
           end

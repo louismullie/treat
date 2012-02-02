@@ -5,7 +5,8 @@ module Treat
       # style tokenizer.
       class Stanford
         require 'stanford-core-nlp'
-        DefaultOptions = {silence: false, log_to_file: nil}
+        DefaultOptions = {:silence => false, :log_to_file => nil, :silence => false}
+        @@tokenizer = nil
         # Tokenize the entity using a Penn-Treebank style tokenizer
         # included with the Stanford Parser.
         #
@@ -16,12 +17,11 @@ module Treat
           options = DefaultOptions.merge(options)
           options[:log_to_file] = '/dev/null' if options[:silence]
           ::StanfordCoreNLP.log_file = options[:log_to_file] if options[:log_to_file]
-    
-          pipeline =  ::StanfordCoreNLP.load(:tokenize)
+          @@tokenizer ||= ::StanfordCoreNLP.load(:tokenize)
           text = ::StanfordCoreNLP::Text.new(entity.to_s)
-          pipeline.annotate(text)
+          @@tokenizer.annotate(text)
           text.get(:tokens).each do |token|
-            t = Treat::Entities::Token.from_string(token.value)
+            t = Treat::Entities::Entity.from_string(token.value)
             entity << t
             t.set :character_offset_begin, token.get(:character_offset_begin)
             t.set :character_offset_end, token.get(:character_offset_end)

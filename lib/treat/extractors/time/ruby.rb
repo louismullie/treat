@@ -12,7 +12,7 @@ module Treat
         # Options: none.
         def self.time(entity, options = {})
           begin
-            { start_time: ::DateTime.parse(entity.to_s).to_s }
+            { start_time: ::DateTime.parse(entity.to_s) }
             self.clean_tree(entity)
           rescue
             {}

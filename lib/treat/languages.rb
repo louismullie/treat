@@ -12,7 +12,7 @@ module Treat
     # or its full text description in full French or English.
     def self.describe(lang, desc_lang = :en)
       raise "Must provide a non-nil language identifier to describe." if lang.nil?
-      lang = find(lang).to_s
+      lang = code(lang).to_s
       if [:en, :eng, :english, :anglais].include?(desc_lang)
         l = @@english_full.key(lang)
       elsif [:fr, :fra, :french, :french].include?(desc_lang)
@@ -42,22 +42,22 @@ module Treat
     # or full name (in English or French) and return
     # the ISO-639-1 or ISO-639-2 language code as a
     # lowercase identifier.
-    def self.find(lang, rc = ISO639_2)
+    def self.code(lang, rc = ISO639_2)
       raise "Must provide a non-nil language identifier to describe." if lang.nil?
       get_languages
       lang = lang.to_s.downcase
       if @@iso639_1.has_key?(lang)
-        return :"#{lang}" if rc == ISO639_1
-        return :"#{@@iso639_1[lang]}" if rc == ISO639_2
+        return lang.intern if rc == ISO639_1
+        return @@iso639_1[lang].intern if rc == ISO639_2
       elsif @@iso639_2.has_key?(lang)
-        return :"#{lang}" if rc == ISO639_2
-        return :"#{@@iso639_2[lang]}" if rc == ISO639_1
+        return lang.intern if rc == ISO639_2
+        return @@iso639_2[lang].intern if rc == ISO639_1
       elsif @@english_full.has_key?(lang)
-        return :"#{@@english_full[lang]}" if rc == ISO639_2
-        return :"#{@@iso639_2[@@english_full[lang]]}" if rc == ISO639_1
+        return @@english_full[lang].intern if rc == ISO639_2
+        return @@iso639_2[@@english_full[lang]].intern if rc == ISO639_1
       elsif @@french_full.has_key?(lang)
-        return :"#{@@french_full[lang]}" if rc == ISO639_2
-        return :"#{@@iso639_1[@@french_full[lang]]}" if rc == ISO639_2
+        return @@french_full[lang].intern if rc == ISO639_2
+        return @@iso639_1[@@french_full[lang]].intern if rc == ISO639_2
       else
         not_found(lang)
       end

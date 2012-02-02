@@ -2,20 +2,13 @@ module Treat
   module Extractors
     module Statistics
       class FrequencyIn
-        DefaultOptions = {type: nil}
-        def self.statistics(entity, options={})
+        DefaultOptions = { parent: nil }
+        # Find the frequency of a given string value.
+        def self.statistics(entity, options = {})
           options = DefaultOptions.merge(options)
-          if entity.is_leaf?
-            w = entity.value.downcase
-            if entity.token_registry(options[:type])[:value][w].nil?
-              0
-            else
-              entity.token_registry(options[:type])[:value][w].size
-            end
-          else
-            raise Treat::Exception,
-            'Cannot get the frequency of a non-terminal entity.'
-          end
+          tr = entity.token_registry(options[:parent])
+          tv = tr[:value][entity.value]
+          tv ? tv.size : 1
         end
       end
     end

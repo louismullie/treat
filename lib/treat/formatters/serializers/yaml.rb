@@ -7,9 +7,14 @@ module Treat
       class YAML
         # Serialize an entity in YAML format.
         #
-        # Options: none.
+        # Options:
+        # - (String) :file => a file to write to.
         def self.serialize(entity, options = {})
-          ::Psych.dump(entity)
+          yaml = ::Psych.dump(entity)
+          if options[:file]
+            File.open(options[:file], 'w') { |f| f.write(yaml) }
+          end
+          yaml
         end
       end
     end

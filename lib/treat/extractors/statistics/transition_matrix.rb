@@ -34,7 +34,7 @@ module Treat
             next unless options[:condition].call(target)
 
             # Initialize the empty transition matrix.
-            
+
 
             # Calculate the transition probabilities.
             options[:features].each do |f1|

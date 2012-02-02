@@ -19,7 +19,7 @@ module Treat
           possibilities = @@detector.process_text(entity.to_s)
           lang = {}
           possibilities.each do |k,v|
-            lang[Treat::Languages.find(k)] = v
+            lang[Treat::Languages.code(k)] = v
           end
           Treat::Feature.new(lang).best
         end

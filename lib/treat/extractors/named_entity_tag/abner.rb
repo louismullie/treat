@@ -1,6 +1,6 @@
 module Treat
   module Extractors
-    module NamedEntity
+    module NamedEntityTag
       class Abner
         # Require the Ruby-Java bridge.
         silence_warnings do

@@ -2,7 +2,14 @@ module Treat
   module Formatters
     module Visualizers
       class Dot
-        DefaultOptions = {colors: {}, :features => :all, :first => true}
+        DefaultOptions = {
+          :colors => {}, 
+          :features => :all, 
+          :file => nil,
+          :filter_out => [],
+          :colors => nil,
+          :first => true # For internal purposes only.
+        }
         # Create the top-most graph structure
         # and delegate the creation of the graph
         # nodes to to_dot.
@@ -11,14 +18,21 @@ module Treat
           string = "graph {"
           string << self.to_dot(entity, options)
           string << "\n}"
+          if options[:file]
+            File.open(options[:file], 'w') { |f| f.write(string) }
+          end
+          string
         end
         # dot -Tpdf test4.dot > test4.pdf
         def self.to_dot(entity, options)
+          # Filter out specified types.
+          return '' if options[:filter_out].include?(entity.type)
           # Id
           string = ''
           label = ''
+          sv = entity.short_value.inspect[1..-2]
           string = "\n#{entity.id} ["
-          label = "#{entity.type.to_s.capitalize}\\n\\\"#{entity.short_value}\\\""
+          label = "#{entity.type.to_s.capitalize}\\n\\\"#{sv}\\\""
           label.gsub!(' [...]', " [...] \\n")
           # Features
           if entity.has_features?
@@ -45,6 +59,7 @@ module Treat
                   elsif value.is_a?(Array)
                     label << "\\n#{feature}: \\n\[ "
                     value.each do |e|
+                      e = "*#{e.id}" if e.is_a?(Treat::Entities::Entity)
                       label << "#{e},\\n"
                     end
                     label = label[0..-4] unless label[-2] == '['
@@ -56,8 +71,15 @@ module Treat
               end
             end
           end
+          color = nil
+          if options[:colors]
+            options[:colors].each do |col, lambda|
+              color = col.to_s if lambda.call(entity)
+              break if color
+            end
+          end
           label = label[0..-2] if label[-1] == ','
-          string << "label=\"#{label}\"]"
+          string << "label=\"#{label}\",color=\"#{color.to_s}\"]"
           string.gsub!('\\\\""]', '\\""]')
           string.gsub('\"\""]', '\""]')
           # Parent-child relationships.

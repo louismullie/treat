@@ -8,7 +8,7 @@ module Treat
         @leaf = Treat::Tree::Node.new('leaf node', 'leaf')
         @root << @branch << @leaf
         @root << @sibling
-        @leaf.associate(@sibling, 'some dependency')
+        @leaf.link(@sibling, 'some dependency')
       end
       def test_branching
         assert_equal 2, @root.children.size

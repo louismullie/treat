@@ -10,7 +10,13 @@ module Treat
         def self.read(document, options = {})
           create_temp_file(:txt) do |tmp|
             `pdftotext #{document.file} #{tmp} `.strip
-            document << Treat::Entities::Entity.from_string(File.read(tmp))
+            f = File.read(tmp)
+            f.gsub!("\t\r ", '')
+            f.gsub!('---', '-')
+            f.gsub!("\n\n", '#keep#')
+            f.gsub!("\n", ' ')
+            f.gsub!('#keep#', "\n\n")
+            document << Treat::Entities::Entity.from_string(f)
           end
           document
         end

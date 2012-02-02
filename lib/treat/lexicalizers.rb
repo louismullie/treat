@@ -22,7 +22,7 @@ module Treat
     module Linkages
       extend Group
       self.type = :annotator
-      self.targets = [:sentence, :word]
+      self.targets = [:sentence]
       self.presets = {
         object: {:linkage => :object},
         subject: {:linkage => :subject},
@@ -47,7 +47,7 @@ module Treat
           synsets.collect { |ss| ss.antonyms }.flatten
         end,
         hyponyms: lambda do |entity, synsets|
-          synsets.collect { |e, ss| ss.hyponyms }.flatten
+          synsets.collect { |ss| ss.hyponyms }.flatten
         end,
         hypernyms: lambda do |entity, synsets|
           synsets.collect { |ss| ss.hypernyms }.flatten

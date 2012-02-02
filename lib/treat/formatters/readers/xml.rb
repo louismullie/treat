@@ -25,7 +25,6 @@ module Treat
               @@xml_cleaner.annotate(text)
               sentences = []
               text.get(:sentences) do |sentence|
-                puts sentence.to_s
                 sentences << Treat::Entities::Sentence.from_string(sentence.to_s)
               end
               val = sentences.join(' ')
