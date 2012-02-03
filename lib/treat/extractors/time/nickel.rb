@@ -1,7 +1,6 @@
 module Treat
   module Extractors
     module Time
-      require 'treat/extractors/time/time_extractor'
       # A wrapper for the 'nickel' gem, which parses
       # times and dates and supplies additional information
       # concerning these. The additional information supplied
@@ -22,7 +21,7 @@ module Treat
       # - datemonthly: "pay credit card bill on the 22nd of each month"
       #
       # Project website: http://naturalinputs.com/
-      class Nickel < TimeExtractor
+      class Nickel
         require 'date'
         silence_warnings { require 'nickel' }
         # Extract time information from a bit of text.
@@ -50,8 +49,6 @@ module Treat
           start_time = ::DateTime.civil(*ds, *ts) if ds && ts
           end_time = ::DateTime.civil(*de) if de && !te
           end_time = ::DateTime.civil(*de, *te) if de && te
-
-          self.clean_tree(entity)
           
           time = {
             :start_time => start_time,

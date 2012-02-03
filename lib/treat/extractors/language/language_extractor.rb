@@ -1,11 +1,11 @@
 module Treat
-  module Detectors
+  module Extractors
     module Language
       # A generic language detector, which is called before
       # any language detector and ensures that configuration
       # options concerning language are enforced (e.g. returns
       # the default language when Treat.detect_language is false).
-      class LanguageDetector
+      class LanguageExtractor
         def self.language(entity, options = {})
           if entity.to_s =~ /^[[:digit:]]+$/
             return Treat.default_language

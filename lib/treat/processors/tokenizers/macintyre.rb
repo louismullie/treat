@@ -16,13 +16,15 @@ module Treat
       class Macintyre
         # Tokenize the entity using a native rule-based algorithm.
         def self.tokenize(entity, options = {})
-          raise 'Error' if entity.has_children?
-          chunks = self.split(entity.to_s)
+          if entity.has_children?
+            raise Treat::Exception,
+              'Cannot tokenize a Phrase that already has children.'
+          end
+          chunks = split(entity.to_s)
           chunks.each do |chunk|
             next if chunk =~ /([[:space:]]+)/
-            entity << Treat::Entities::Entity.from_string(chunk)
+            entity << Treat::Entities::Token.from_string(chunk)
           end 
-          entity
         end
         # Helper method to split the string into tokens.
         def self.split(string)
@@ -63,8 +65,7 @@ module Treat
           s.gsub!(/ '([Tt])is /,' \'\1 is ')
           s.gsub!(/ '([Tt])was /,' \'\1 was ')
           s.gsub!(/ ([Ww])anna /,' \1an na ')
-          while s.sub!(/(\s)([0-9]+) , ([0-9]+)(\s)/, '\1\2,\3\4')
-          end
+          while s.sub!(/(\s)([0-9]+) , ([0-9]+)(\s)/, '\1\2,\3\4'); end
           s.gsub!(/\//, ' / ')
           s.gsub!(/\s+/,' ')
           s.strip!

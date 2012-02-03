@@ -1,11 +1,15 @@
 module Treat
-  module Detectors
+  module Extractors
     module Language
       # Require the 'whatlanguage' gem.
       silence_warnings { require 'whatlanguage'  }
+      String.class_eval { undef :language }
       # Adaptor for the 'whatlanguage' gem, which
       # performs probabilistic language detection.
-      class WhatLanguage < LanguageDetector
+      # The library works by checking for the presence 
+      # of words with bloom filters built from dictionaries 
+      # based upon each source language.
+      class WhatLanguage < LanguageExtractor
         # Keep only once instance of the gem class.
         @@detector = nil
         # Detect the language of an entity using the
@@ -21,7 +25,14 @@ module Treat
           possibilities.each do |k,v|
             lang[Treat::Languages.code(k)] = v
           end
-          Treat::Feature.new(lang).best
+          max = lang.values.max
+          ordered = lang.select { |i,j| j == max }.keys
+          ordered.each do |l|
+            if Treat.language_detection_bias.include?(l)
+              return l
+            end
+          end
+          return ordered.first
         end
       end
     end

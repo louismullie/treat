@@ -10,8 +10,8 @@ module Treat
         #
         # - (Symbol) :tagger => force the use of a tagger.
         def self.category(entity, options = {})
-          tag = (entity.has?(:tag_set) && entity.has?(:tag)) ?
-          entity.tag : nil
+          tag = #(entity.has?(:tag_set) && entity.has?(:tag)) ?
+          entity.tag #: nil
           return :unknown if tag.nil? || tag == ''
           return :sentence if tag == 'S'
           lang = Treat::Languages.get(entity.language)

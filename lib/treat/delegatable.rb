@@ -9,7 +9,7 @@ module Treat
           options = presets.merge(options)
           m = group.method
           send(m, delegate, options)
-          features[preset_m] = features.delete(m)
+          features[preset_m] = unset(m)
         end
       end
     end
@@ -17,7 +17,7 @@ module Treat
       group.preprocessors.each do |preprocessor_m, block|
         define_method(preprocessor_m) do |delegate=nil, options={}|
           block.call(self, delegate, options)
-          features[preprocessor_m] = features.delete(group.method)
+          features[preprocessor_m] = unset(group.method)
         end
       end
     end

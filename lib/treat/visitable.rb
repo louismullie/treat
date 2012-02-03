@@ -9,7 +9,8 @@ module Treat
           if has_children?
             @children.each do |entity|
               if group.has_target?(entity.class)
-                entity.accept(group, klass, method, options)
+                #puts "Accepting #{klass} on #{entity.class} from #{self.type}"
+                entity.accept(group, klass, method, options) unless entity.id == id
               end
             end
           else

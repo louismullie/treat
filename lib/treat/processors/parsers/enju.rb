@@ -55,7 +55,6 @@ module Treat
           end
           link_heads(entity)
           add_edges(entity)
-          entity
         end
         # Parses an Enju XML output file using the Nogoriki
         # XML reader and converts that structure into a tree
@@ -111,7 +110,7 @@ module Treat
               current_value = xml_reader.value.gsub(/\s+/, "")
               unless current_value.size == 0
                 current_element = current_element <<
-                Treat::Entities::Entity.from_string(current_value)
+                Treat::Entities::Token.from_string(current_value)
                 if current_element.is_a?(Treat::Entities::Word)
                   current_element.features = tmp_attributes
                   @@id_table[id] = current_element.id

@@ -23,24 +23,34 @@ module Treat
         # - (String) :log_to_file => a filename to log output to
         # instead of displaying it.
         def self.parse(entity, options = {})
+          
           options = DefaultOptions.merge(options)
           options[:log_to_file] = '/dev/null' if options[:silence]
           lang = Treat::Languages.describe(entity.language)
           
           unless options[:tagger_model]
-            puts entity.language
-            options[:tagger_model] = LanguageToModel[entity.language]
+            options[:tagger_model] = 
+            LanguageToModel[entity.language]
             if options[:tagger_model].nil?
-              raise Treat::Exception, "There exists no Stanford tagger model for " +
+              raise Treat::Exception, 
+              "There exists no Stanford tagger model for " +
               "the #{lang} language ."
             end
           end
-          options[:parser_model] ||= "grammar/#{lang}PCFG.ser.gz"
-          ::StanfordCoreNLP.log_file = options[:log_to_file] if options[:log_to_file]
+          
+          options[:parser_model] ||= 
+            "grammar/#{lang}PCFG.ser.gz"
+            
+          if options[:log_to_file]
+            ::StanfordCoreNLP.log_file = 
+              options[:log_to_file] 
+          end
+          
           #::StanfordCoreNLP.set_model('pos.model', options[:tagger_model])
           #::StanfordCoreNLP.set_model('parser.model', options[:parser_model])
-          
-          @@parser[lang] ||= ::StanfordCoreNLP.load(:tokenize, :ssplit, :pos, :lemma, :parse)
+
+          @@parser[lang] ||= 
+          ::StanfordCoreNLP.load(:tokenize, :ssplit, :pos, :lemma, :parse)
           text = ::StanfordCoreNLP::Text.new(entity.to_s)
           @@parser[lang].annotate(text)
           
@@ -59,8 +69,8 @@ module Treat
               recurse(s.get(:tree), entity)
             end
           end
-          entity
         end
+        
         # Helper method which recurses the tree supplied by
         # the Stanford parser.
         def self.recurse(java_node, ruby_node, additional_tags = [])
@@ -76,10 +86,19 @@ module Treat
             ruby_node.set :tag_opt, tag_opt if tag_opt
             ruby_node.set :tag_set, :penn
             ruby_node.set :lemma, label.get(:lemma).to_s
-            ruby_node.set :character_offset_begin, label.get(:character_offset_begin).to_s
-            ruby_node.set :character_offset_end, label.get(:character_offset_end).to_s
-            ruby_node.set :begin_index, label.get(:begin_index).to_s
-            ruby_node.set :end_index, label.get(:end_index).to_s
+            
+            ruby_node.set :character_offset_begin, 
+            label.get(:character_offset_begin).to_s
+            
+            ruby_node.set :character_offset_end, 
+            label.get(:character_offset_end).to_s
+            
+            ruby_node.set :begin_index, 
+            label.get(:begin_index).to_s
+            
+            ruby_node.set :end_index, 
+            label.get(:end_index).to_s
+            
             additional_tags.each do |t|
               lt = label.get(t)
               ruby_node.set t, lt.to_s if lt
@@ -104,7 +123,7 @@ module Treat
                 v = java_child.children[0].value.to_s.strip
                 # Mhmhmhmhmhm
                 val = (l == v) ? v :  l.split(' ')[-1][0..-2]
-                ruby_child = Treat::Entities::Entity.from_string(val)
+                ruby_child = Treat::Entities::Token.from_string(val)
               end
 
               ruby_child.set :tag_set, :penn

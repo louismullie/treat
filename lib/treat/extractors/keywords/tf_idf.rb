@@ -6,7 +6,6 @@ module Treat
         def self.keywords(entity, options = {})
           options = DefaultOptions.merge(options)
           tf_idfs = {}
-          entity.annotate(:tf_idf)
           entity.each_word do |word|
             tf_idfs[word.value] ||= word.tf_idf
           end

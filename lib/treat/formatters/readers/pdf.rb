@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Treat
   module Formatters
     module Readers
@@ -12,9 +13,10 @@ module Treat
             `pdftotext #{document.file} #{tmp} `.strip
             f = File.read(tmp)
             f.gsub!("\t\r ", '')
-            f.gsub!('---', '-')
+            f.gsub!('-­‐', '-')
             f.gsub!("\n\n", '#keep#')
             f.gsub!("\n", ' ')
+            f.gsub!(" ", ' ')
             f.gsub!('#keep#', "\n\n")
             document << Treat::Entities::Entity.from_string(f)
           end

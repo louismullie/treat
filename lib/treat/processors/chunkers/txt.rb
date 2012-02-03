@@ -2,8 +2,8 @@ module Treat
   module Processors
     module Chunkers
       # This class separates a plain text file into 
-      # zones based on a very naive analysis of the 
-      # file.
+      # zones based on an extremely naive analysis of the 
+      # file. Suprisingly, this works pretty well.
       class Txt
         # Split a document into Zone objects.
         def self.chunk(text, options = {})
@@ -20,7 +20,6 @@ module Treat
               text << Treat::Entities::Paragraph.new(zone)
             end
           end
-          text
         end
       end
     end

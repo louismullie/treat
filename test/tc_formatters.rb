@@ -9,19 +9,18 @@ module Treat
       end
 
       def test_readers
-        # How should we test this?
+        # Load collection
       end
-
 
       def test_serializers_and_unserializers
         create_temp_file('yml') do |tmp|
-          @doc.serialize(:yaml).save(tmp)
+          @doc.serialize(:yaml, :file => tmp)
           doc = Treat::Entities::Document(tmp)
           assert_equal File.read(tmp).length, 
           doc.serialize(:yaml).length
         end
         create_temp_file('xml') do |tmp|
-          @doc.serialize(:xml).save(tmp)
+          @doc.serialize(:xml, :file => tmp)
           doc = Treat::Entities::Document(tmp)
           assert_equal File.read(tmp).length, 
           doc.serialize(:xml).length

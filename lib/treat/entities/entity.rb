@@ -132,8 +132,8 @@ module Treat
           first_but_warn(a, $1)
         elsif method =~ /^each_with_([a-z]*)$/
           each_entity do |e|
-            yield e if e.has?($2.intern) &&
-            e.send($2.intern) == args[0]
+            yield e if e.has?($1.intern) &&
+            e.send($1.intern) == args[0]
           end
         elsif method =~ /^each_#{@@cats_regexp}$/
           each_entity(:word) { |e| yield e if e.category == $1.intern }
@@ -193,10 +193,24 @@ module Treat
       # Note that this function is recursive, unlike
       # #each. It does not yield the top element being
       # recursed.
+      # 
+      # This function NEEDS to be ported to C (see source).
       def each_entity(*types)
+=begin  
+     # Replace with:
+    inline do |builder|
+
+      builder.c_raw <<-EOS, :arity => -1
+      VALUE each_entity_c(int argc, VALUE *types, VALUE self)
+      {
+
+      }
+      EOS
+    end
+=end
         types = [:entity] if types.size == 0
         f = false
-        types.each { |t2| f = true if @@match_types[type][t2] }
+        types.each { |t2| f = true if Treat::Entities.match_types[type][t2] }
         yield self if f
         unless @children.size == 0
           @children.each do |child|
@@ -204,14 +218,13 @@ module Treat
           end
         end
       end
-
       # Returns the first ancestor of this
       # entity that has the given type.
       def ancestor_with_types(*types)
         ancestor = @parent
         match_types = lambda do |t1, t2s|
           f = false
-          t2s.each { |t2| f = true if @@match_types[t1][t2] }
+          t2s.each { |t2| f = true if Treat::Entities.match_types[t1][t2] }
           f
         end
         while not match_types.call(ancestor.type, types)
@@ -240,18 +253,8 @@ module Treat
         end
         s
       end
-      inline do |builder|
-
-        builder.c_raw <<-EOS, :arity => -1
-        VALUE each_entity_c(int argc, VALUE *types, VALUE self)
-        {
-
-        }
-        EOS
-      end
       # Print out an ASCII representation of the tree.
       def print_tree; puts visualize(:tree); end
-      private
       # Return the first element in the array, warning if not
       # the only one in the array. Used for magic methods: e.g.,
       # the magic method "word" if called on a sentence
@@ -263,23 +266,6 @@ module Treat
           " there are many #{type}s in the given entity."
         end
         array[0]
-      end
-      # Lookup table
-      @@match_types = nil
-      def self.create_match_types
-        return @@match_types if @@match_types
-        list = (Treat::Entities.list + [:entity])
-        @@match_types = {}
-        list.each do |type1|
-          @@match_types[type1] = {type1 => true}
-          list.each do |type2|
-            if Treat::Entities.const_get(cc(type1)) <
-              Treat::Entities.const_get(cc(type2))
-              @@match_types[type1][type2] = true
-            end
-          end
-        end
-        @@match_types
       end
     end
   end

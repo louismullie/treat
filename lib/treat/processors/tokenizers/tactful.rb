@@ -49,9 +49,8 @@ module Treat
             s.gsub!(rules[0], rules[1])
           end
           s.split(' ').each do |token|
-            entity << Entities::Entity.from_string(token)
+            entity << Entities::Token.from_string(token)
           end
-          entity
         end
       end
     end

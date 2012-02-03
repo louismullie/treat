@@ -132,6 +132,10 @@ module Treat
         @features ||= {}
         @features[feature] = value
       end
+      # Unset a feature.
+      def unset(feature)
+        @features.delete(feature)
+      end
       # Return the depth of this node in the tree.
       def depth
         return 0 if is_root?

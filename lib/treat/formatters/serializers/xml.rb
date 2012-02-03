@@ -13,8 +13,8 @@ module Treat
           options = options.merge({:indent => 0}) if options[:indent].nil?
           indent = options[:indent]
           if options[:indent] == 0
-            #enc = entity.encoding(:r_chardet19).to_s.gsub('_', '-').upcase
-            string = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\" ?>\n<treat>"
+            enc = entity.to_s.encoding.to_s.downcase
+            string = "<?xml version=\"1.0\" encoding=\"#{enc}\" standalone=\"no\" ?>\n<treat>"
           else
             string = ''
           end

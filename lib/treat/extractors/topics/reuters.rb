@@ -32,7 +32,6 @@ module Treat
             stems << stem
             unless stem == val
               stems << val
-              @@reduce += 1
             end
           end
           get_topics
@@ -74,15 +73,13 @@ module Treat
               end
             end
           end
-          count_hash = best_of_hash(count_hash,
-          (word_list.size.to_f - @@reduce.to_f)  / 250.0, 
-          100.0 / (1 + word_list.size.to_f - @@reduce.to_f))
+          count_hash = best_of_hash(count_hash)
+          puts count_hash.inspect
           count_hash.keys
         end
-        def self.best_of_hash(hash, cutoff = 1, scale = 1)
-          cutoff = 1 if cutoff == 0
+        def self.best_of_hash(hash, cutoff = 0.0, scale = 1.0)
           ret = {}
-          hash.keys.each() do |key|
+          hash.keys.each do |key|
             if hash[key] > cutoff
               ret[key] = hash[key] * scale 
               ret[key] = ret[key].round(2)

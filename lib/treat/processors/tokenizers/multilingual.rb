@@ -21,9 +21,8 @@ module Treat
           tokens = @@tokenizers[lang].tokenize(entity.to_s)
           tokens.each do |token|
             next if token =~ /([[:space:]]+)/
-            entity << Treat::Entities::Entity.from_string(token)
+            entity << Treat::Entities::Token.from_string(token)
           end
-          entity
         end
       end
     end

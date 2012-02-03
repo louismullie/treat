@@ -87,7 +87,7 @@ module Treat
           tokens = text.split(/\s/)
           tokens[1..-1].each do |token|
             next if token =~ /([[:space:]]+)/
-            entity << Treat::Entities::Entity.from_string(token)
+            entity << Treat::Entities::Token.from_string(token)
           end
         end
       end

@@ -4,7 +4,7 @@ module Treat
       
       def setup
         @word = Treat::Tests::EnglishWord
-        @sentence = Treat::Tests::EnglishSentence.parse
+        @sentence = Treat::Tests::EnglishSentence.parse(:stanford, :silence => true)
       end
       
       def test_category

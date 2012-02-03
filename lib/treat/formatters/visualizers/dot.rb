@@ -26,7 +26,12 @@ module Treat
         # dot -Tpdf test4.dot > test4.pdf
         def self.to_dot(entity, options)
           # Filter out specified types.
-          return '' if options[:filter_out].include?(entity.type)
+          match_types = lambda do |t1, t2s|
+            f = false
+            t2s.each { |t2| f = true if Treat::Entities.match_types[t1][t2] }
+            f
+          end
+          return '' if match_types.call(entity.type, options[:filter_out])
           # Id
           string = ''
           label = ''

@@ -15,7 +15,7 @@ module Treat
       class Tactful
         # Require the 'tactful_tokenizer' gem.
         silence_warnings { require 'tactful_tokenizer' }
-        # Somewhere in the depths of the code this is defined...
+        # Remove function definition 'tactful_tokenizer' by gem.
         String.class_eval { undef :tokenize }
         # Keep only one copy of the segmenter.
         @@segmenter = nil
@@ -27,9 +27,8 @@ module Treat
           @@segmenter ||= TactfulTokenizer::Model.new
           sentences = @@segmenter.tokenize_text(entity.to_s)
           sentences.each do |sentence|
-            entity << Entities::Entity.from_string(sentence)
+            entity << Entities::Phrase.from_string(sentence)
           end
-          entity
         end
       end
     end

@@ -38,18 +38,17 @@ module Treat
           @method = n.intern
         end
       end
+      group.list
     end
     # Create a new algorithm within the group. Once
     # the algorithm is added, it will be automatically
     # installed on all the targets of the group.
     def add(class_name, &block)
-      class_name = cc(class_name).intern
-      klass = self.const_set(class_name, Class.new)
+      klass = self.const_set(cc(class_name).intern, Class.new)
       method = self.method
-      klass.class_eval do
-        @@block = block
-        eval "def #{method}(entity);" +
-        "@@block.call(entity); end"
+      @@list[ucc(cl(self))] << class_name
+      klass.send(:define_singleton_method, method) do |entity, options={}|
+        block.call(entity, options)
       end
     end
     # Boolean - does the group have the supplied class

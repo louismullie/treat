@@ -20,15 +20,19 @@ module Treat
     end
     def do_task(task, worker, options)
       group = Categories.lookup(task)
+      unless group
+        raise Treat::Exception, "Task #{task} does not exist."
+      end
       entity_types = group.targets
-      if entity_types.include?(type) ||
-        entity_types.include?(:entity)
+      f = nil
+      entity_types.each do |t| 
+        f = true if Treat::Entities.match_types[type][t]
+      end
+      if f || entity_types.include?(:entity)
         send(task, worker, options)
       else
-        i = 0
         each_entity(*entity_types) do |entity|
-          i += 1
-          entity.send(task, worker, options)
+          entity.do_task(task, worker, options)
         end
         unless entity_types.include?(type)
           features.delete(task)

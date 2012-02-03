@@ -9,8 +9,8 @@ module Treat
       Processors = {
         chunkers: [:txt],
         parsers: [:stanford],
-        segmenters: [:tactful, :punkt, :stanford],
-        tokenizers: [:multilingual, :macintyre, :perl, :punkt, :tactful, :stanford]
+        segmenters: [:punkt],
+        tokenizers: [:tactful]
       }
     end
   end

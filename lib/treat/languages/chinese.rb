@@ -4,7 +4,7 @@ module Treat
       Extractors = {}
       Inflectors = {}
       Lexicalizers = {
-        tag: [:stanford]
+        :tag => [:stanford]
       }
       Processors = {}
     end

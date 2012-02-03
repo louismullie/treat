@@ -19,14 +19,7 @@ module Treat
       self.targets = [:document]
       self.default = :file
     end
-    # Group for algorithms that do language detection.
-    module Language
-      extend Group
-      require 'treat/detectors/language/language_detector.rb'
-      self.type = :annotator
-      self.targets = [:entity]
-      self.default = :what_language
-    end
+
     extend Treat::Category
   end
 end

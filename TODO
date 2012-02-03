@@ -1,55 +1,25 @@
 ## Urgent
 
 - Stanford dependencies parse
-- Fix Punkt segmenter training text.
-- XML stripper stanford
-- Fix time with Enju; couldn't parse the text..
-- Try new encodings
-- XML serializer: fix encoding... For a collection? Add inline blocks with different encodings.
 - XML unserializer --> exporter
-- Replace non ascii characters when tokenizing.
-- Dependencies: time requires parse.
+- Gem dependencies & install
+- Annotator dependencies... time requires parse.
 - Stanford CoreNLP prepend folder + change in here + README = Wiki
-- Remove bin
-- Tree.unset
+- Paths
+- Back to tagger, etc.
+- Use constants to specify targets, etc. ?
+- Review installation procedure on github
+- Use => syntax
 
-## Eventually
+## Todo
 
-- Ferret, Spider
-- Stanford, wordnet lemmatizer
-- User choose gems (minimal/maximal)
-- Wordnet-bdb
+- Add XML stripper from the Stanford tools
+- Try new encodings
+- Add Stanford and Wordnet lemmatizers
 - Improve linkers
-- Changing options => retag
-- Rita WN gem, Abner gem
-- Sentiment count the number of hypernyms.
-- RDF
-- Apache OpenNLP
-- Ariel
-- Text2rdf
-- AI libraries
-- JAWS
-- NLTK
-- ghmm
-- Root
-- OpenCyc
-- Tapas Kanungo
-- Citar 
-- PLDA
-- AI4R
-- Math
-- Abner
-- ACOPOST
-- Linkage integration
-- Lemmatizer
-- Claws tagger
-- YAWNI
-- Raspell spell checker
-- Mark Watson's Java NLP utility to identify proper nouns (human names and places) in text
-- FastTag a Java fast part of speech tagger.
+- Sentiment analysis
 - Enju as a server
 
 ## Personal
 
 - Check treat.rb, tests.rb, kernel.rb.
-- Empty java_log.txt

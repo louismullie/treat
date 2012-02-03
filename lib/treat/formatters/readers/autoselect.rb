@@ -27,6 +27,8 @@ module Treat
             "Cannot find a reader for format: '#{ext}'."
           end
           document = r.read(document, options)
+          document.set :encoding, document.to_s.encoding.to_s.downcase
+          document
         end
       end
     end

@@ -6,8 +6,9 @@ module Treat
       Lexicalizers = {}
       Processors = {
         chunkers: [:txt],
-        segmenters: [:tactful, :punkt, :stanford],
-        tokenizers: [:multilingual, :macintyre, :perl, :punkt, :tactful, :stanford]
+        parsers: [:stanford],
+        segmenters: [:punkt],
+        tokenizers: [:tactful]
       }
     end
   end

@@ -17,7 +17,8 @@ module Treat
         "Use filename, folder, text or a number."
       end
     end
-    def from_string(string, enforce_type = true)
+    def from_string(string, enforce_type = false)
+      enforce_type = true if caller_method == :build
       if self == Treat::Entities::Document ||
         self == Treat::Entities::Collection
         raise Treat::Exception,
@@ -28,11 +29,14 @@ module Treat
         return self.new(string) if enforce_type 
       end
       dot = string.count('.!?')
-      if dot > 1 && string.count("\n") > 0
-        c = Treat::Entities::Section.new(string) 
-      elsif dot >= 1 && dot < 5 && string.size > 5
-        c = Treat::Entities::Sentence.new(string) 
-      elsif string.count(' ') == 0
+      if self == Treat::Entities::Phrase
+        if dot >= 1
+          c = Treat::Entities::Sentence.new(string)
+        else
+          c = Treat::Entities::Phrase.new(string)
+        end
+      elsif (self == Treat::Entities::Token) || 
+        string.count(' ') == 0
         if string == "'s"
           c = Treat::Entities::Clitic.new(string) 
         elsif string =~ /^[[:alpha:]\-']+$/ && 
@@ -45,6 +49,10 @@ module Treat
         else
           c = Treat::Entities::Symbol.new(string)
         end
+      elsif dot > 1 && string.count("\n") > 0
+        c = Treat::Entities::Section.new(string) 
+      elsif dot >= 1 && dot < 5 && string.size > 5
+        c = Treat::Entities::Sentence.new(string) 
       elsif string.strip.count(' ') > 0
         c = Treat::Entities::Phrase.new(string)
       else

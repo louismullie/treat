@@ -21,7 +21,7 @@ module Treat
           text.get(:sentences).each do |sentence|
             s = Treat::Entities::Sentence.from_string(sentence.get(:value).to_s)
             sentence.get(:tokens).each do |token|
-              t = Treat::Entities::Entity.from_string(token.value.to_s)
+              t = Treat::Entities::Token.from_string(token.value.to_s)
               tag = token.get(:named_entity_tag).to_s.downcase
               corefid = token.get(:coref_cluster_id).to_s
               t.set :named_entity_tag, tag.intern unless tag == 'o'
@@ -38,7 +38,7 @@ module Treat
               links = clusters[id].dup
               links.delete(token)
               if links.empty?
-                token.features.delete(:coreference_cluster_id)
+                token.unset(:coreference_cluster_id)
                 next
               end
               token.set :coreferences, links

@@ -1,6 +1,14 @@
 module Treat
   # Extractors extract specific information out of texts.
   module Extractors
+    # Detecs language.
+    module Language
+      extend Group
+      require 'treat/extractors/language/language_extractor.rb'
+      self.type = :annotator
+      self.targets = [:entity]
+      self.default = :what_language
+    end
     # Extracts the time of an object and annotates it
     # with specific information regarding time.
     module Time
@@ -12,13 +20,13 @@ module Treat
     module Topics
       extend Group
       self.type = :annotator
-      self.targets = [:document]
+      self.targets = [:document, :zone]
     end
     # Extract the keywords from a text.
     module Keywords
       extend Group
       self.type = :annotator
-      self.targets = [:document]
+      self.targets = [:document, :zone]
     end
     # Extract the topic words from a text.
     module TopicWords
@@ -30,7 +38,7 @@ module Treat
     module NamedEntityTag
       extend Group
       self.type = :transformer
-      self.targets = [:sentence]
+      self.targets = [:phrase]
     end
     # Extract named entities from texts.
     module Coreferences

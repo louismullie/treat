@@ -3,24 +3,28 @@
 #
 # === Entities
 #
-# Entities are Tree structures that represent any textual
-# entity (from a collection of texts down to an individual
-# word) with a value, features, children and edges linking
-# it to other textual entities. Sugar provides syntactic sugar
-# for Entities and can be enabled by running Treat.edulcorate.
+# Entities are Tree structures that represent textual entities
+# (from a collection of texts down to an individual word), with
+# a value, features, children and edges linking it to other
+# textual entities.
 #
 # Here are some example of how to create entities:
 #
 #     c = Collection 'folder_with_documents'
-#     d = Document 'filename.txt' # (or PDF, html, xml, png, jpg, gif).
+#     d = Document 'filename.txt' # (or pdf, html, xml, doc, abw, odt, png, jpg, jpeg, gif).
 #     p = Paragraph 'A short story. The end.'
 #     s = Sentence 'That is not a sentence.'
 #     w = Word 'fox'
 #
-# Here's a full list of entities (subtypes in parentheses):
-# Collection, Document, Zone (Section, Title, Paragraph or List),
-# Sentence, Phrase (Sentence or Phrase), Token (Word, Number,
-# Symbol or Punctuation).
+# Here is a list of entities and their description:
+#
+#  - A Collection represents a folder with different textual documents.
+#  - A Document represents a file with a textual content.
+#  - A Section represents a logical subdivision of a document.
+#  - A Zone can be a Title, a Paragraph or a List and represents an intra-section division of content.
+#  - A Sentence represents just that.
+#  - A Constituent can be a Phrase or a Clause and represents a syntactical unit.
+#  - A Token can be a Word, a Number, a Punctuation or a Symbol (non-punctuation, non-alphanumeric characters).
 #
 # === Proxies
 #
@@ -40,42 +44,35 @@
 #
 # === Functions
 #
-# A class is defined for each implemented algorithm performing a given
-# task. These classes are clustered into groups of algorithms performing
-# the same given task (Group), and the groups are clustered into Categories
-# of groups performing related tasks.
+# A worker class is defined for each implemented algorithm performing a given
+# task. These classes are clustered into workers performing the same given task
+# differently (Group), and the groups are clustered into Categories
+# of groups of workers that perform related tasks.
 #
-# Here are the different Categories:
+# Here are the different Categories and their description:
 #
-# - Detectors - Category for language, encoding, and format
-#   detectors.
-# - Extractors - Category for algorithms that extract information
-#   from entities.
-# - Formatters - Category for algorithms that handle conversion
-#   to and from different formats.
-# - Inflectors - Category for algorithms that supply the base
-#   form, inflections and declensions of a word.
-# - Lexicalizers - Category for algorithms that supply lexical
-#   information about a word (part of speech, synsets, word categories).
-# - Processors - Namespace for algorithms that process collections and
-#   documents into trees.
+#  - Processors perform the building of tree of entities representing texts (chunking, segmenting, tokenizing, parsing).
+#  - Lexicalizers give lexical information about words (synsets, tag, word category).
+#  - Extractors extract semantic information about an entity (topic, date, time, named entity).
+#  - Inflectors allow to retrieve the different inflections of a word (declensors, conjugators, stemmers, lemmatizers).
+#  - Formatters handle the conversion of entities to and from different formats (readers, serializers, unserializers, visualizers).
 #
-# === Linguistic resources
+# === Linguistic Resources
 #
 # The Languages module contains linguistic information about
 # languages (full ISO-639-1 and 2 language list, tag alignments
 # for three treebanks, word categories, etc.)
 #
-# === Mixins for entities.
+# === Mixins for Entities
 #
 # Buildable, Delegatable, Visitable and Registrable are
 # or extended by Entity and provide it with the ability to be built,
 # to delegate function calls, to accept visitors and to maintain a
 # token registry, respectively.
 #
-# === Exception class.
+# === Exception Class.
 #
-# Exception defines a custom exception class for the Treat module.
+# Treat::Exception defines a custom exception class for the Treat module.
 #
 module Treat
 
@@ -85,12 +82,14 @@ module Treat
   end
 
   # The current version of Treat.
-  VERSION = "0.1.4"
+  VERSION = "0.1.5"
 
   $LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
 
   # Create class variables for the Treat module.
   class << self
+    # Boolean - output debug information.
+    attr_accessor :debug
     # Symbol - default language to use when detect_language is false.
     attr_accessor :default_language
     # Symbol - default encoding to use.
@@ -100,6 +99,9 @@ module Treat
     # Symbol - the ideal entity level to detect language at
     # (e.g., :entity, :sentence, :zone, :section, :document)
     attr_accessor :language_detection_level
+    # Array - a list of languages to bias towards if two languages
+    # are detected with equal probability.
+    attr_accessor :language_detection_bias
     # String - main folder for executable files.
     attr_accessor :bin
     # String - folder of this file.
@@ -108,6 +110,8 @@ module Treat
     attr_accessor :test
   end
 
+  # Turn off debug by default.
+  self.debug = false
   # Set the default language to english.
   self.default_language = :eng
   # Set the default encoding to utf-8.
@@ -116,6 +120,9 @@ module Treat
   self.detect_language = false
   # Detect the language once per text by default.
   self.language_detection_level = :zone
+  # Languages to bias toward when more than one
+  # language is detected with equal probability.
+  self.language_detection_bias = [:eng, :fre, :chi, :ger, :ara, :esp]
   # Set the lib path to that of this file.
   self.lib = File.dirname(__FILE__)
   # Set the paths to the bin folder.
@@ -124,7 +131,7 @@ module Treat
   self.test = self.lib + '/../test'
 
   # Require inline C
-  require 'inline'
+  # require 'inline'
 
   # Require modified core classes.
   require 'treat/object'
@@ -139,30 +146,13 @@ module Treat
   require 'treat/sugar'
 
   # Make sugar available when needed.
-  extend Sugar
+  extend Treat::Sugar
 
-  # Print the last log file.
-  def print_log; File.read(self.lib + '/log.txt'); end
-
+  def self.install(language)
+    require 'treat/install'
+    Treat::Installer.install(language)
+  end
+  
 end
-Treat.sweeten!
 
-=begin
-
-       %self     total     self     wait    child    calls  name
-       48.22     65.86    32.09     0.00    65.86  6024174  Treat::Entities::Entity#each_entity
-       36.85     66.54    24.52     0.00    66.54  6552036  Array#each
-        2.86      2.15     1.90     0.00     0.25    22560  BasicObject#method_missing
-        1.13      0.75     0.75     0.00     0.00        3  <Module::Marshal>#load
-        0.76     66.39     0.51     0.00    66.39    35169  Treat::Delegatable#call_delegator
-        0.59      5.04     0.39     0.00     4.95    32565  Treat::Registrable#register_token
-        
-=end
-
-
-Treat.sweeten!
-Treat.detect_language = true
-
-s = Sentence 'Les renseignements qui suivent ont pour objet de fournir des informations générales au lecteur. Il est donc important de souligner que ces renseignements ne peuvent d\'aucune façon être considérés comme une interprétation juridique des lois et règlements concernés.'
-
-s.parse.visualize(:dot, :file => 'french-parsed-text.dot')
+#Treat.install(:english)

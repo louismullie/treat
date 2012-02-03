@@ -14,7 +14,6 @@ require 'tc_tree'
 require 'tc_entity'
 require 'tc_resources'
 
-require 'tc_detectors'
 require 'tc_formatters'
 require 'tc_inflectors'
 require 'tc_lexicalizers'

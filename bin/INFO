@@ -1,1 +1,0 @@
-This is where Treat will look for the Stanford JAR files by default. You can change this to another directory by setting Treat.bin = '/path/to/your/folder/' at runtime.

@@ -39,7 +39,23 @@ module Treat
       end
     end
     # Create entity lookup table.
-    Treat::Entities::Entity.create_match_types
+    # Lookup table
+    @@match_types = nil
+    def self.match_types
+      return @@match_types if @@match_types
+      list = (Treat::Entities.list + [:entity])
+      @@match_types = {}
+      list.each do |type1|
+        @@match_types[type1] = {type1 => true}
+        list.each do |type2|
+          if Treat::Entities.const_get(cc(type1)) <
+            Treat::Entities.const_get(cc(type2))
+            @@match_types[type1][type2] = true
+          end
+        end
+      end
+      @@match_types
+    end
     # Return the hierarchy level of the entity
     # class, the minimum being a Token and the
     # maximum being a Collection.
