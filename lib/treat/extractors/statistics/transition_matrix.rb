@@ -4,11 +4,11 @@ module Treat
       # Experimental algorithm to generate transition matrices.
       class TransitionMatrix
         DefaultOptions = {
-          normalize: true,
-          features: [:tag],
-          condition: lambda { |e| true },
-          entity_types: [:word],
-          relationships: [:parent, :right, :children]
+          :normalize => true,
+          :features => [:tag],
+          :condition => lambda { |e| true },
+          :entity_types => [:word],
+          :relationships => [:parent, :right, :children]
         }
         # Find the transition matrix.
         def self.statistics(entity, options={})
@@ -57,16 +57,16 @@ module Treat
                     end
                   end
 
-                  tm[f1][v1][:edge] = empty.call
+                  tm[f1][v1][:dependency] = empty.call
 
-                  target.edges.each do |id, edge_type|
+                  target.dependencies.each do |dependency|
                     s = target.ancestor_with_type :sentence
                     if s
-                      x = s.find(id)
+                      x = s.find(dependency.target)
                       next unless relative.has?(f2)
                       v2 = x.send(f2)
-                      tm[f1][v1][:edge][f2][v2] ||= 0.0
-                      tm[f1][v1][:edge][f2][v2] += 1.0
+                      tm[f1][v1][:dependency][f2][v2] ||= 0.0
+                      tm[f1][v1][:dependency][f2][v2] += 1.0
                     end
                   end
 

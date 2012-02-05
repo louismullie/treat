@@ -55,7 +55,11 @@ module Treat
       # The antonym sets of the synset.
       def antonyms; antonym.collect { |a| a.words }; end
       # The hypernym sets of the synset.
-      def hypernyms; hypernym.words; end
+      def hypernyms; 
+        h = hypernym
+        return [] unless h
+        h.words
+      end
       # The hyponym sets of the synset.
       def hyponyms; hyponym.collect { |h| h.words }; end
       # Respond to the missing method event.

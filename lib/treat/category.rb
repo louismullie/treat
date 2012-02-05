@@ -4,7 +4,7 @@ module Treat
   module Category
     # Require the Group class.
     require 'treat/group'
-    # Add delegators to the Entities based on the
+    # Add workers to the Entities based on the
     # configuration for a given category.
     def self.extended(category)
       Treat::Categories.list << category
@@ -13,7 +13,7 @@ module Treat
           group = const_get(group)
           group.targets.each do |entity_type|
             entity = Treat::Entities.const_get(cc(entity_type))
-            entity.class_eval { add_delegators group }
+            entity.class_eval { add_workers group }
           end
         end
       end

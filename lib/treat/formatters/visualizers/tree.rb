@@ -5,7 +5,7 @@ module Treat
       # of a tree of entities.
       class Tree
         # Default options for the visualizer.
-        DefaultOptions = { indent: 0 }
+        DefaultOptions = { :indent => 0 }
         # Obtain a plain text tree representation 
         # of the entity.
         def self.visualize(entity, options = {})

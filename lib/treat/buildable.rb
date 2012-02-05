@@ -4,6 +4,15 @@ module Treat
   # a string or a numeric object. This class
   # is pretty much self-explanatory.
   module Buildable
+    # Initialize the document with its filename.
+    # Optionally specify a reader to read the file.
+    # If +read+ is set to false, the document will
+    # not be read automatically; in that case, the
+    # method #read must be called on the document
+    # object to load it in.
+    def build(file_or_value = '', id = nil)
+      from_anything(file_or_value, id)
+    end
     def from_anything(file_or_value, id)
       if File.readable?(file_or_value.to_s)
         from_file(file_or_value)

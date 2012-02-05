@@ -4,7 +4,7 @@ module Treat
       # Creates a plain text visualization of an entity.
       class Txt
         # The default options for the visualizer.
-        DefaultOptions = { sep: ' ' }
+        DefaultOptions = { :sep => ' ' }
         # Obtain a plain text visualization of the entity,
         # with no additional information.
         # 

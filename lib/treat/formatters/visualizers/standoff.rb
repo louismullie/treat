@@ -6,7 +6,7 @@ module Treat
       # (S (NP John) (VP has (VP come))).
       class Standoff
         # Default options for the visualizer.
-        DefaultOptions = { indent: 0 }
+        DefaultOptions = { :indent => 0 }
         # A lambda to recursively visualize the children
         # of an entity.
         Recurse = lambda do |entity, options|

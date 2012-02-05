@@ -2,7 +2,7 @@ module Treat
   module Extractors
     module Statistics
       class FrequencyIn
-        DefaultOptions = { parent: nil }
+        DefaultOptions = { :parent => nil }
         # Find the frequency of a given string value.
         def self.statistics(entity, options = {})
           options = DefaultOptions.merge(options)

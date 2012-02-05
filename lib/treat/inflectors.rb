@@ -13,8 +13,8 @@ module Treat
       self.type = :annotator
       self.targets = [:word]
       self.presets = {
-        plural: {:count => :plural},
-        singular: {:count => :singular}
+        :plural => {:count => :plural},
+        :singular => {:count => :singular}
       }
     end
     # Retrieve the different conjugations of a word.

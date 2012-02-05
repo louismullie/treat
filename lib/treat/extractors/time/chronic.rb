@@ -16,7 +16,7 @@ module Treat
           silence_warnings do
             time = ::Chronic.parse(entity.to_s, {:guess => true})
           end
-          { start_time: time  }
+          { :start_time => time  }
         end
       end
     end

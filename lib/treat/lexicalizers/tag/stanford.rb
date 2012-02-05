@@ -3,55 +3,52 @@ module Treat
     module Tag
       class Stanford < Tagger
         require 'stanford-core-nlp'
-        # A list of models to use by language.
-        # Other models are available; see the taggers/ folder
-        # in the Stanford Tagger distribution files.
-        LanguageToModel = {
-          eng: 'taggers/english-left3words-distsim.tagger',
-          ger: 'taggers/german-fast.tagger',
-          fra: 'taggers/french.tagger',
-          ara: 'taggers/arabic-fast.tagger',
-          chi: 'taggers/chinese.tagger'
-        }
         # Hold one tagger per language.
         @@taggers = {}
-        # Hold the user-set options for each language.
-        @@options = {}
         # Hold the default options.
-        DefaultOptions =  {silence: false, log_to_file: nil}
+        DefaultOptions =  {
+          :tagger_model => nil,
+          :silence => false, 
+          :log_to_file => nil
+        }
+        LanguageToTagSet = {
+          :eng => :penn,
+          :ger => :negra,
+          :chi => :penn_chinese,
+          :fre => :simple
+        }
         # Tag the word using one of the Stanford taggers.
         def self.tag(entity, options = {})
+          # Handle options and set models.
           options = DefaultOptions.merge(options)
           r = super(entity, options)
           return r if r && r != :isolated_word
           # Arrange options.
           lang = entity.language
-          model = options[:model]
-          unless model
-            model = LanguageToModel[lang]
-            if model.nil?
-              raise Treat::Exception, "There exists no Stanford tagger model for " +
-              "the #{Treat::Languages.describe(lang)} language."
-            end
+          @@tag_set = LanguageToTagSet[lang]
+          unless @@tag_set
+            warn "The tag set for the tagger you are requiring is not supported."
           end
-          # Set the tagger model.
-          StanfordCoreNLP.set_model('tagger.model', model)
           
-          # Reinitialize the tagger if the options have changed.
-          if options != @@options[lang]
-            @@options[lang] = DefaultOptions.merge(options)
-            @@taggers[lang] = nil  # Reset the tagger
-            options[:log_to_file] = '/dev/null' if options[:silence]
-            ::StanfordCoreNLP.log_file = options[:log_to_file] if options[:log_to_file]
+          if options[:tagger_model]
+            ::StanfordCoreNLP.set_model(
+              'pos.model', options[:tagger_model]
+            )
+          end
+          if options[:silence]
+            options[:log_to_file] = '/dev/null'
+          end
+          if options[:log_to_file]
+            ::StanfordCoreNLP.log_file = 
+              options[:log_to_file] 
           end
           
           # Load the tagger.
+          StanfordCoreNLP.use(lang)
           @@taggers[lang] ||= ::StanfordCoreNLP.load(:tokenize, :ssplit, :pos)
-          
           # Tag the text.
           text = ::StanfordCoreNLP::Text.new(entity.to_s)
           @@taggers[lang].annotate(text)
-
           # Realign the tags.
           entity.each_token do |t1|
             text.get(:sentences).each do |sentence|
@@ -62,7 +59,7 @@ module Treat
                   tag_s ||= ''
                   t1.set :tag, tag_s
                   t1.set :tag_opt, tag_opt
-                  t1.set :tag_set, :penn
+                  t1.set :tag_set, @@tag_set if @@tag_set
                   return tag_s if r == :isolated_word
                   break
                 end
@@ -71,7 +68,7 @@ module Treat
           end
           
           # Handle tags for sentences and phrases.
-          entity.set :tag_set, :penn
+          entity.set :tag_set, @@tag_set if @@tag_set
           return 'P' if entity.is_a?(Treat::Entities::Phrase)
           return 'S' if entity.is_a?(Treat::Entities::Sentence)
         end
@@ -79,35 +76,3 @@ module Treat
     end
   end
 end
-
-=begin
-
-  list = StanfordCoreNLP::ArrayList.new
-  id_list = {}
-  i = 0
-  if entity.type == :word
-    ps = entity.parent_sentence
-    entities = ps.words if ps
-    pc = entity.parent_phrase
-    entities = pc.words if pc
-    entities = [entity] unless pc
-  else
-    entities = entity.words
-  end
-  entities.each do |word|    # Fix...
-    list.add(StanfordCoreNLP::Word.new(word.to_s))
-    id_list[i] = word
-    i += 1
-  end
-  it = nil
-  it = @@taggers[lang].apply(list).iterator
-  i = 0
-  while it.has_next
-    w = it.next
-    id_list[i].set :tag_set, :penn
-    id_list[i].set :tag, w.tag
-    i += 1
-  end
-  w.tag
-end
-=end

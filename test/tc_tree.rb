@@ -50,9 +50,9 @@ module Treat
         assert_equal true, @branch.has_parent?
         assert_equal true, @leaf.has_parent?
         
-        assert_equal false, @root.has_edges?
-        assert_equal false, @branch.has_edges?
-        assert_equal true, @leaf.has_edges?
+        assert_equal false, @root.has_dependencies?
+        assert_equal false, @branch.has_dependencies?
+        assert_equal true, @leaf.has_dependencies?
         
       end
     end

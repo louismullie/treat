@@ -1,24 +1,22 @@
-## Urgent
-
-- Stanford dependencies parse
-- XML unserializer --> exporter
-- Gem dependencies & install
-- Annotator dependencies... time requires parse.
-- Stanford CoreNLP prepend folder + change in here + README = Wiki
-- Paths
-- Back to tagger, etc.
-- Use constants to specify targets, etc. ?
-- Review installation procedure on github
-- Use => syntax
-
 ## Todo
 
+- Date, time structs
+- test wiki
+- Fix tag set for Stanford Parser.
+- Make sure that Core NLP reloads appropriately.
+- XML unserializer
+- Tag opt
+- Stanford dependencies parse
+- Annotator dependencies
+- Meronyms
 - Add XML stripper from the Stanford tools
 - Try new encodings
 - Add Stanford and Wordnet lemmatizers
 - Improve linkers
 - Sentiment analysis
 - Enju as a server
+- More information with categories
+- Gist languages convert
 
 ## Personal
 

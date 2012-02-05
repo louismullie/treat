@@ -28,7 +28,7 @@ module Treat
       def test_keywords
         assert_nothing_raised do
         # topics = @col.topic_words(:lda)
-        # @doc.keywords(:topics_frequency, topic_words: topics)
+        # @doc.keywords(:topics_frequency, :topic_words => topics)
         end
       end
 

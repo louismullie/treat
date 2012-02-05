@@ -5,6 +5,7 @@ require 'treat/visitable'
 require 'treat/registrable'
 require 'treat/buildable'
 require 'treat/doable'
+require 'treat/viewable'
 
 module Treat
   module Entities
@@ -15,21 +16,14 @@ module Treat
       include Registrable
       # Implement support for #accept.
       include Visitable
-      # Implement support for #self.add_delegators
+      # Implement support for #self.add_workers
       extend Delegatable
       # Implement support for #self.from_*
       extend Buildable
       # Implement support for #do.
       include Doable
-      # Initialize the document with its filename.
-      # Optionally specify a reader to read the file.
-      # If +read+ is set to false, the document will
-      # not be read automatically; in that case, the
-      # method #read must be called on the document
-      # object to load it in.
-      def self.build(file_or_value = '', id = nil)
-        from_anything(file_or_value, id)
-      end
+      # Implement support for to_s, inspect, etc.
+      include Viewable
       # Initialize the entity with its value and
       # (optionally) a unique identifier. By default,
       # the object_id will be used as id. Also initialize
@@ -90,13 +84,9 @@ module Treat
       # - nouns_with_*(value)
       # - noun_with_*(value)
       #
-      # Note that repetition of code in this method
-      # (instead of method chaining) is intentional
-      # and aims to reduce the number of method
-      # dispatches done by Ruby to improve performance.
       def parse_magic_method(sym, *args)
         @@entities_regexp ||= "(#{Treat::Entities.list.join('|')})"
-        @@cats_regexp ||= "(#{Treat::Languages::English::Categories.join('|')})"
+        @@cats_regexp ||= "(#{Treat::Languages::WordCategories.join('|')})"
         method = sym.to_s =~ /entities/ ?
         sym.to_s.gsub('entities', 'entitys') :
         method = sym.to_s
@@ -224,7 +214,11 @@ module Treat
         ancestor = @parent
         match_types = lambda do |t1, t2s|
           f = false
-          t2s.each { |t2| f = true if Treat::Entities.match_types[t1][t2] }
+          t2s.each do |t2| 
+            if Treat::Entities.match_types[t1][t2]
+              f = true; break
+            end
+          end
           f
         end
         while not match_types.call(ancestor.type, types)
@@ -234,27 +228,6 @@ module Treat
         match_types.call(ancestor.type, types) ? ancestor : nil
       end
       alias :ancestor_with_type :ancestor_with_types
-      # Return the entity's string value in plain text format.
-      def to_string; @value; end
-      # An alias for #to_string.
-      def to_s; visualize(:txt); end
-      alias :to_str :to_s
-      # Return a shortened value of the entity's string value using [...].
-      def short_value(ml = 6); visualize(:short_value, :max_length => ml); end
-      # Return an informative string representation of the entity.
-      def inspect
-        s = "#{cl(self.class)} (#{@id.to_s})"
-        if caller_method(2) == :inspect
-          @id.to_s
-        else
-          s += "  |  #{short_value.inspect}" +
-          "  |  #{@features.inspect}" +
-          "  |  #{@edges.inspect}"
-        end
-        s
-      end
-      # Print out an ASCII representation of the tree.
-      def print_tree; puts visualize(:tree); end
       # Return the first element in the array, warning if not
       # the only one in the array. Used for magic methods: e.g.,
       # the magic method "word" if called on a sentence

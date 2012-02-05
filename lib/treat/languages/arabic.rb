@@ -1,6 +1,8 @@
 module Treat
   module Languages
     class Arabic
+      RequiredDependencies = []
+      OptionalDependencies = []
       Extractors = {}
       Inflectors = {}
       Lexicalizers = {

@@ -34,7 +34,6 @@ module Treat
         'feature',
         'category',
         'group',
-        'detectors',
         'formatters',
         'processors',
         'lexicalizers',
@@ -49,7 +48,6 @@ module Treat
       
       def test_paths
         assert_not_nil Treat.lib
-        assert_not_nil Treat.bin
         assert_not_nil Treat.test
       end
       

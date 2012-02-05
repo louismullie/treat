@@ -35,7 +35,7 @@ module Treat
           options[:processes] ||= 1
           @@options = options
           @@id_table = {}
-          @@edges_table = {}
+          @@dependencies_table = {}
           stdin, stdout = proc
           text, remove_last = valid_text(entity)
           stdin.puts(text + "\n")
@@ -54,7 +54,7 @@ module Treat
             warn "Couldn't parse the text '#{entity.to_s}'."
           end
           link_heads(entity)
-          add_edges(entity)
+          add_dependencies(entity)
         end
         # Parses an Enju XML output file using the Nogoriki
         # XML reader and converts that structure into a tree
@@ -80,12 +80,12 @@ module Treat
               previous_depth = current_depth
               next
             end
-            # Get and format attributes and edges.
+            # Get and format attributes and dependencies.
             attributes = xml_reader.attributes
             id = attributes.delete('id')
-            new_attributes = {}; edges = {}
+            new_attributes = {}; dependencies = {}
             unless attributes.size == 0
-              new_attributes, edges =
+              new_attributes, dependencies =
               cleanup_attributes(xml_reader.name, attributes)
             end
             # Create the appropriate entity for the
@@ -95,17 +95,17 @@ module Treat
             when 'sentence'
               current_element = Treat::Entities::Sentence.new('')
               @@id_table[id] = current_element.id
-              @@edges_table[current_element.id] = edges
+              @@dependencies_table[current_element.id] = dependencies
               current_element.features = new_attributes
             when 'cons'
               current_element = current_element <<
               Treat::Entities::Phrase.new('')
               @@id_table[id] = current_element.id
-              @@edges_table[current_element.id] = edges
+              @@dependencies_table[current_element.id] = dependencies
               current_element.features = new_attributes
             when 'tok'
               tmp_attributes = new_attributes
-              tmp_edges = edges
+              tmp_dependencies = dependencies
             else
               current_value = xml_reader.value.gsub(/\s+/, "")
               unless current_value.size == 0
@@ -114,7 +114,7 @@ module Treat
                 if current_element.is_a?(Treat::Entities::Word)
                   current_element.features = tmp_attributes
                   @@id_table[id] = current_element.id
-                  @@edges_table[current_element.id] = tmp_edges
+                  @@dependencies_table[current_element.id] = tmp_dependencies
                 end
               end
             end
@@ -138,23 +138,23 @@ module Treat
         def self.link_heads(entity)
           entity.each_phrase do |phrase|
             if phrase.has?(:head)
-              phrase.set :head,
-              entity.find(@@id_table[phrase.head])
+              phrase.link(@@id_table[phrase.head], 'head', true, -1)
+              phrase.unset(:head)
             end
             if phrase.has?(:sem_head)
-              phrase.set :sem_head,
-              entity.find(@@id_table[phrase.sem_head])
+              phrase.link(@@id_table[phrase.sem_head], 'sem_head', true, -1)
+              phrase.unset(:sem_head)
             end
           end
         end
-        # Add edges a posterior to a parsed entity.
-        def self.add_edges(entity2)
+        # Add dependencies a posterior to a parsed entity.
+        def self.add_dependencies(entity2)
           entity2.each_entity(:word, :phrase) do |entity|
-            @@edges_table.each_pair do |id2, edges2|
-              # Next if there are no edges.
-              next if edges2.nil?
+            @@dependencies_table.each_pair do |id2, dependencies2|
+              # Next if there are no dependencies.
+              next if dependencies2.nil?
               entity = entity2.find(id2)
-              edges2.each_pair do |argument, type|
+              dependencies2.each_pair do |argument, type|
                 # Skip this argument if we don't know the target node.
                 next if argument == 'unk'
                 entity.link(@@id_table[argument], type)
@@ -165,12 +165,12 @@ module Treat
         # Helper function to convert Enju attributes to Treat attributes.
         def self.cleanup_attributes(name, attributes)
           new_attributes = {}
-          edges = {}
+          dependencies = {}
           pred = attributes.delete('pred')
           attributes.each_pair do |attribute2, value|
             attribute = attribute2.strip
             if attribute == 'arg1' || attribute == 'arg2'
-              edges[value] = pred
+              dependencies[value] = pred
               next
             end
             if attribute == 'cat'
@@ -181,9 +181,9 @@ module Treat
                   value = value[0..-2]
                 end
                 new_attributes[:category] =
-                Treat::Languages::English::EnjuCatToCategory[value]
+                Treat::Languages::Tags::EnjuCatToCategory[value]
               else
-                tags = Treat::Languages::English::EnjuCatXcatToPTB.select do |m|
+                tags = Treat::Languages::Tags::EnjuCatXcatToPTB.select do |m|
                   m[0] == value && m[1] == attributes['xcat']
                 end
                 tag = (tags.size == 0) ? 'UK' : tags[0][2]
@@ -206,7 +206,7 @@ module Treat
             new_attributes[:lemma] = new_attributes[:base]
             new_attributes.delete :base
           end
-          return new_attributes, edges
+          return new_attributes, dependencies
         end
       end
     end

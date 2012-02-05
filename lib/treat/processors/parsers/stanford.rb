@@ -8,14 +8,8 @@ module Treat
         DefaultOptions = {
           :silence => false, 
           :log_to_file => nil, 
-          :parser_model => nil
-        }
-        LanguageToModel = {
-          :eng => 'taggers/english-left3words-distsim.tagger',
-          :ger => 'taggers/german-dewac.tagger',
-          :fre => 'taggers/french.tagger',
-          :ara => 'taggers/arabic-fast.tagger',
-          :chi => 'taggers/chinese.tagger'
+          :parser_model => nil,
+          :tagger_model => nil
         }
         # Parse the entity using the Stanford parser.
         #
@@ -23,34 +17,30 @@ module Treat
         # - (String) :log_to_file => a filename to log output to
         # instead of displaying it.
         def self.parse(entity, options = {})
-          
           options = DefaultOptions.merge(options)
-          options[:log_to_file] = '/dev/null' if options[:silence]
-          lang = Treat::Languages.describe(entity.language)
-          
-          unless options[:tagger_model]
-            options[:tagger_model] = 
-            LanguageToModel[entity.language]
-            if options[:tagger_model].nil?
-              raise Treat::Exception, 
-              "There exists no Stanford tagger model for " +
-              "the #{lang} language ."
-            end
+          lang = entity.language
+          StanfordCoreNLP.use(lang)
+          if options[:tagger_model]
+            ::StanfordCoreNLP.set_model(
+              'pos.model', options[:tagger_model]
+            )
           end
-          
-          options[:parser_model] ||= 
-            "grammar/#{lang}PCFG.ser.gz"
-            
+          if options[:parser_model]
+            ::StanfordCoreNLP.set_model(
+              'parser.model', options[:parser_model]
+            )
+          end
+          if options[:silence]
+            options[:log_to_file] = '/dev/null'
+          end
           if options[:log_to_file]
             ::StanfordCoreNLP.log_file = 
               options[:log_to_file] 
           end
-          
-          #::StanfordCoreNLP.set_model('pos.model', options[:tagger_model])
-          #::StanfordCoreNLP.set_model('parser.model', options[:parser_model])
-
           @@parser[lang] ||= 
-          ::StanfordCoreNLP.load(:tokenize, :ssplit, :pos, :lemma, :parse)
+            ::StanfordCoreNLP.load(
+              :tokenize, :ssplit, :pos, :lemma, :parse
+            )
           text = ::StanfordCoreNLP::Text.new(entity.to_s)
           @@parser[lang].annotate(text)
           
@@ -116,13 +106,13 @@ module Treat
               tag_s, tag_opt = *tag.split('-')
               tag_s ||= ''
 
-              if Languages::English::PhraseTagToCategory[tag_s]
+              if Treat::Languages::Tags::PhraseTagToCategory[tag_s]
                 ruby_child = Treat::Entities::Phrase.new
               else
                 l = java_child.children[0].to_s
                 v = java_child.children[0].value.to_s.strip
                 # Mhmhmhmhmhm
-                val = (l == v) ? v :  l.split(' ')[-1][0..-2]
+                val = (l == v) ? v :  l.split(' ')[-1].gsub(')', '')
                 ruby_child = Treat::Entities::Token.from_string(val)
               end
 

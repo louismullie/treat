@@ -25,7 +25,9 @@ module Treat
         # Options: none.
         def self.segment(entity, options = {})
           @@segmenter ||= TactfulTokenizer::Model.new
-          sentences = @@segmenter.tokenize_text(entity.to_s)
+          s = entity.to_s
+          s.gsub!(/([^\.\?!]\.|\!|\?)([^\s])/) { $1 + ' ' + $2 }
+          sentences = @@segmenter.tokenize_text(s)
           sentences.each do |sentence|
             entity << Entities::Phrase.from_string(sentence)
           end

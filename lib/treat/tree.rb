@@ -1,10 +1,10 @@
 module Treat
   # This module provides an abstract tree structure with
-  # nodes having an id, a value, children, features and edges.
+  # nodes having an id, a value, children, features and dependencies.
   module Tree
     # This class models the nodes for an N-ary tree data structue
     # with unique identifiers, text value, children, features
-    # (annotations) and edges. 
+    # (annotations) and dependencies. 
     #
     # This class was tightly based on the 'rubytree' gem.
     # RubyTree is licensed under the BSD license and can
@@ -24,24 +24,26 @@ module Treat
       attr_reader :children
       # A hash containing the features of this node.
       attr_accessor :features
-      # A hash containing the edges that link this 
+      # An array containing the dependencies that link this 
       # node to other nodes.
-      attr_accessor :edges
+      attr_accessor :dependencies
+      # A struct for dependencies.
+      Struct.new('Dependency', :target, :type, :directed, :direction)
       # The parent of the node.
       attr_accessor :parent
       # Initialize the node with its value and id.
       # Setup containers for the children, features
-      # and edges of this node.
+      # and dependencies of this node.
       def initialize(value, id = nil)
         @parent = nil
         @value, @id = value, id
         @children = []
         @children_hash = {}
         @features = {}
-        @edges = {}
+        @dependencies = []
       end
-      # Boolean - does the node have edges?
-      def has_edges?; !(@edges.size == 0); end
+      # Boolean - does the node have dependencies?
+      def has_dependencies?; !(@dependencies.size == 0); end
       # Boolean - does the node have children?
       def has_children?; !(@children.size == 0); end
       # Boolean - does the node have features?
@@ -145,18 +147,20 @@ module Treat
       def has_feature?(feature)
         (@features.has_key?(feature) && 
         !@features[feature].nil?) ||
-        [:id, :value, :children, :edges].include?(feature)
+        [:id, :value, :children, :dependencies].include?(feature)
       end
       alias :has? :has_feature?
       # Link this node to the target node with
-      # the supplied edge type.
-      def link(id_or_node, edge_type = nil)
+      # the supplied dependency type.
+      def link(id_or_node, type = nil, directed = true, direction = 1)
         if id_or_node.is_a?(Treat::Tree::Node)
           id = root.find(id_or_node).id
         else
           id = id_or_node
         end
-        @edges[id] = edge_type if id
+        @dependencies.each { |d| return if d.target == id }
+        @dependencies << 
+          Struct::Dependency.new(id, type, directed, direction)
       end
       # Find the node in the tree with the given id.
       def find(id_or_node)

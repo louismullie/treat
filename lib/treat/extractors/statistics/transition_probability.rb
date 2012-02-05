@@ -34,14 +34,14 @@ module Treat
                 end
               end
 
-              entity.edges.each do |id, edge|
+              entity.dependencies.each do |dependency|
                 s = entity.ancestor_with_type :sentence
                 if s
-                  x = s.find(id)
+                  x = s.find(dependency.target)
                   next unless h.has?(f2)
                   v2 = x.send(f2)
-                  if tm[f1][v1][:edge][f2][v2]
-                    score += tm[f1][v1][:edge][f2][v2]
+                  if tm[f1][v1][:dependency][f2][v2]
+                    score += tm[f1][v1][:dependency][f2][v2]
                     count += 1
                   end
                 end

@@ -7,7 +7,7 @@ module Treat
         # Require Hpricot.
         silence_warnings { require 'hpricot' }
         # By default, backup the HTML text while cleaning.
-        DefaultOptions = { clean: true, backup: false }
+        DefaultOptions = { :clean => true, :backup => false }
         # Read the HTML document and strip it of its markup.
         #
         # Options:

@@ -5,8 +5,9 @@ module Treat
     # for a specific language.
     def self.install(language = :english)
       
-      required = Treat::Languages::Dependencies::Required[language]
-      optional = Treat::Languages::Dependencies::Optional[language]
+      lang = Treat::Languages.get(language)
+      required = lang::RequiredDependencies
+      optional = lang::OptionalDependencies
       
       puts "Treat Installer\n\n"
       puts "Installing dependencies for the #{language.to_s.capitalize} language.\n\n"

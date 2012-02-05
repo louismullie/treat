@@ -33,11 +33,13 @@ module Treat
             end
           end
           t = ::Psych.load(File.read(model))
-          @@segmenters[lang] = ::Punkt::SentenceTokenizer.new(t)
+          @@segmenters[lang] ||= ::Punkt::SentenceTokenizer.new(t)
+          s = entity.to_s
+          s.gsub!(/([^\.\?!]\.|\!|\?)([^\s])/) { $1 + ' ' + $2 }
           result = @@segmenters[lang].sentences_from_text(
-            entity.to_s, :output => :sentences_text)
+            s, :output => :sentences_text)
           result.each do |sentence|
-            entity << Entities::Phrase.from_string(sentence)
+            entity << Treat::Entities::Phrase.from_string(sentence)
           end
         end
       end

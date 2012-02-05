@@ -29,9 +29,9 @@ module Treat
         end
         # Default options for the LDA algorithm.
         DefaultOptions = {
-          num_topics: 20,
-          words_per_topic: 10,
-          iterations: 20
+          :num_topics => 20,
+          :words_per_topic => 10,
+          :iterations => 20
         }
         # Retrieve the topic words of a collection.
         def self.topic_words(collection, options = {})

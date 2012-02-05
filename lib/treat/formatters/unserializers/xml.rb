@@ -35,13 +35,33 @@ module Treat
             end
 
             id = nil; value = ''
-            attributes = {}; edges = {}
+            attributes = {}
+            dependencies = []
             unless xml_reader.attributes.size == 0
               xml_reader.attributes.each_pair do |k,v|
                 if k == 'id'
-                  id = v
-                elsif k == 'edges'
-                  edges = v
+                  id = v.to_i
+                elsif k == 'dependencies'
+                  a = v.split('--')
+                  a.each do |b|
+                    c = b.split(';')
+                    c.each do |dep|
+                      vals = []
+                      dep.split(',').each do |name_val|
+                        name_val = name_val[0..-2] if name_val[-1] == '}'
+                        d =  name_val.split(':')[1]
+                        vals << d.strip if d
+                      end
+                      
+                      target, type, directed, direction = *vals
+                      dependencies << [
+                          target.to_i, 
+                          type,
+                          (directed == 'true' ? true : false),
+                          direction.to_i
+                      ]
+                    end
+                  end
                 elsif k == 'value'
                   value = v
                 else
@@ -62,9 +82,12 @@ module Treat
               end
               current_element.features = attributes
               current_element.features = attributes
-              current_element.edges = edges
+              dependencies.each do |dependency|
+                target, type, directed, direction = *dependency
+                current_element.link(target, type, directed, direction)
+              end
             else
-              current_value = xml_reader.value ? 
+              current_value = xml_reader.value ?
               xml_reader.value.strip : ''
               if current_value && current_value != ''
                 current_element.value = current_value

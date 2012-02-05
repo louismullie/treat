@@ -5,7 +5,7 @@
 #
 # Entities are Tree structures that represent textual entities
 # (from a collection of texts down to an individual word), with
-# a value, features, children and edges linking it to other
+# a value, features, children and dependencies linking it to other
 # textual entities.
 #
 # Here are some example of how to create entities:
@@ -26,22 +26,6 @@
 #  - A Constituent can be a Phrase or a Clause and represents a syntactical unit.
 #  - A Token can be a Word, a Number, a Punctuation or a Symbol (non-punctuation, non-alphanumeric characters).
 #
-# === Proxies
-#
-# Proxies allow the Treat functions to be called on the core
-# Ruby classes String, Numeric and Array. They build the entity
-# corresponding to the supplied raw text and send the requested
-# function to it.
-#
-# For example,
-#
-#     'fox'.tag
-#
-# Is equivalent to:
-#
-#     w = Word 'fox'
-#     w.tag
-#
 # === Functions
 #
 # A worker class is defined for each implemented algorithm performing a given
@@ -52,7 +36,7 @@
 # Here are the different Categories and their description:
 #
 #  - Processors perform the building of tree of entities representing texts (chunking, segmenting, tokenizing, parsing).
-#  - Lexicalizers give lexical information about words (synsets, tag, word category).
+#  - Lexicalizers give lexical information about words (synsets, semantic relationships, tag, word category).
 #  - Extractors extract semantic information about an entity (topic, date, time, named entity).
 #  - Inflectors allow to retrieve the different inflections of a word (declensors, conjugators, stemmers, lemmatizers).
 #  - Formatters handle the conversion of entities to and from different formats (readers, serializers, unserializers, visualizers).
@@ -62,13 +46,6 @@
 # The Languages module contains linguistic information about
 # languages (full ISO-639-1 and 2 language list, tag alignments
 # for three treebanks, word categories, etc.)
-#
-# === Mixins for Entities
-#
-# Buildable, Delegatable, Visitable and Registrable are
-# or extended by Entity and provide it with the ability to be built,
-# to delegate function calls, to accept visitors and to maintain a
-# token registry, respectively.
 #
 # === Exception Class.
 #
@@ -99,11 +76,6 @@ module Treat
     # Symbol - the ideal entity level to detect language at
     # (e.g., :entity, :sentence, :zone, :section, :document)
     attr_accessor :language_detection_level
-    # Array - a list of languages to bias towards if two languages
-    # are detected with equal probability.
-    attr_accessor :language_detection_bias
-    # String - main folder for executable files.
-    attr_accessor :bin
     # String - folder of this file.
     attr_accessor :lib
     # String - folder for tests.
@@ -120,13 +92,8 @@ module Treat
   self.detect_language = false
   # Detect the language once per text by default.
   self.language_detection_level = :zone
-  # Languages to bias toward when more than one
-  # language is detected with equal probability.
-  self.language_detection_bias = [:eng, :fre, :chi, :ger, :ara, :esp]
   # Set the lib path to that of this file.
   self.lib = File.dirname(__FILE__)
-  # Set the paths to the bin folder.
-  self.bin = self.lib + '/../bin'
   # Set the paths to the test folder.
   self.test = self.lib + '/../test'
 
@@ -136,7 +103,6 @@ module Treat
   # Require modified core classes.
   require 'treat/object'
   require 'treat/kernel'
-
   # Require all files for the Treat library.
   require 'treat/exception'
   require 'treat/languages'
@@ -152,7 +118,26 @@ module Treat
     require 'treat/install'
     Treat::Installer.install(language)
   end
-  
-end
 
-#Treat.install(:english)
+  def self.detect!; self.detect_language = true; end
+
+end
+Treat.sweeten!
+
+s = Sentence 'Merkel subjected Sarkozy to her fury on Monday.'
+
+s.parse(:enju)
+
+s.do(
+  :patient, :main_verb, :agent, 
+  :visualize =>
+    [:dot, {
+      :file => 'test-relationship-extraction.dot',
+      :colors => {
+        :green =>  lambda { |entity| entity.is_main_verb? },
+        :blue =>   lambda { |entity| entity.is_patient? },
+        :red =>    lambda { |entity| entity.is_agent? }
+        }
+      }
+    ]
+)

@@ -22,15 +22,10 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'hpricot'
   s.add_runtime_dependency 'nokogiri'
   s.add_runtime_dependency 'psych'
-  
-  
   s.add_runtime_dependency 'whatlanguage'
   s.add_runtime_dependency 'linguistics'
   s.add_runtime_dependency 'stanford-core-nlp'
   s.add_runtime_dependency 'punkt-segmenter'
   s.add_runtime_dependency 'lda-ruby'
-    
-  # Development dependencies.
-  s.add_development_dependency 'unprof'
     
 end

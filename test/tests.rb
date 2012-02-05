@@ -5,7 +5,6 @@ $:.unshift File.join(File.dirname(__FILE__), "..", "lib")
 require 'treat'
 
 $LOAD_PATH << '/ruby/gems/treat/test' # Remove for release
-Treat.bin = '/ruby/bin/' # Remove for release
 
 require 'texts'
 

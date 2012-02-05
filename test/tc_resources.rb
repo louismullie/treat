@@ -16,12 +16,7 @@ module Treat
       def test_dependencies
         
       end
-      
-      def test_edges
-        
-      end
-      
-    end
 
+    end
   end
 end

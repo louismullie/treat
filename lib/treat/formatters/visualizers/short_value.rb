@@ -3,7 +3,7 @@ module Treat
     module Visualizers
       class ShortValue
         # Default options for the visualizer.
-        DefaultOptions = { max_words: 6, max_length: 30 }
+        DefaultOptions = { :max_words => 6, :max_length => 30 }
         # Returns the text value of an entity, shortend
         # with [..] if the value is longer than :max_words
         # or longer than :max_length.

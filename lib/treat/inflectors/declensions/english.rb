@@ -27,8 +27,8 @@ module Treat
           elsif options[:count] == :singular
             Inflect.singular(string)
           else
-            {singular: Inflect.singular(string),
-             plural: Inflect.plural(string)}
+            {:singular => Inflect.singular(string),
+             :plural => Inflect.plural(string)}
           end
         end
 

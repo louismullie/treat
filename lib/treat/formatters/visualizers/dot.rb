@@ -6,7 +6,8 @@ module Treat
           :colors => {}, 
           :features => :all, 
           :file => nil,
-          :filter_out => [],
+          :remove_types => [],
+          :remove_features => [],
           :colors => nil,
           :first => true # For internal purposes only.
         }
@@ -31,7 +32,7 @@ module Treat
             t2s.each { |t2| f = true if Treat::Entities.match_types[t1][t2] }
             f
           end
-          return '' if match_types.call(entity.type, options[:filter_out])
+          return '' if match_types.call(entity.type, options[:remove_types])
           # Id
           string = ''
           label = ''
@@ -44,6 +45,7 @@ module Treat
             unless options[:features] == :none
               label << "\\n"
               entity.features.each do |feature, value|
+                next if options[:remove_features].include?(feature)
                 if options[:features] == :all ||
                   options[:features].include?(feature)
                   if value.is_a?(Treat::Entities::Entity)
@@ -93,12 +95,18 @@ module Treat
               string << "\n#{entity.parent.id} -- #{entity.id};" 
             end
           end
-          # Edges.
-          if entity.has_edges?
-            entity.edges.each_pair do |target, type|
-              string << "\n#{entity.id} -- #{target}"
-              string << "[label=#{type},dir=forward,"
-              string << "arrowhead=\"odiamond\"]"
+          # Dependencies.
+          if entity.has_dependencies?
+            entity.dependencies.each do |dependency|
+              dir = ''
+              if dependency.directed == true
+                dir = dependency.direction == 1 ? 'forward' : 'back'
+                dir = ",dir=#{dir}"
+              else
+                dir = ",dir=both"
+              end
+              string << "\n#{entity.id} -- #{dependency.target}"
+              string << "[label=#{dependency.type}#{dir}]"
             end
           end
           # Recurse.

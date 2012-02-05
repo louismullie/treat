@@ -24,8 +24,8 @@ module Treat
         @@options = {}
         # Hold the default options.
         DefaultOptions =  {
-          unknown_word_tag: 'pp',  # Fix unknown word tag
-          relax: false
+          :unknown_word_tag => 'pp',  # Fix unknown word tag
+          :relax => false
         }
         # Tag the word using a probabilistic model taking
         # into account known words found in a lexicon and

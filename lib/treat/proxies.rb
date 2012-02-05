@@ -7,7 +7,7 @@ module Treat
       # Build the entity corresponding to the proxied
       # object and send the method call to the entity.
       def method_missing(sym, *args, &block)
-        if Treat::Categories.lookup(sym)
+        if sym == :do || Treat::Categories.lookup(sym)
           to_entity.send(sym, *args)
         else
           super(sym, *args, &block)

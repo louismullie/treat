@@ -11,7 +11,7 @@ module Treat
         # Options: none.
         def self.time(entity, options = {})
           begin
-            { start_time: ::DateTime.parse(entity.to_s) }
+            { :start_time => ::DateTime.parse(entity.to_s) }
           rescue
             {}
           end

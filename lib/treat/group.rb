@@ -5,11 +5,11 @@ module Treat
       group.module_eval do
         class << self
           attr_accessor :type, :default, :targets
-          attr_accessor :presets, :preprocessors, :decorators
+          attr_accessor :presets, :preprocessors, :postprocessors
         end
         self.presets = {}
         self.preprocessors = {}
-        self.decorators = {}
+        self.postprocessors = {}
         # Return the method corresponding to the group.
         # This method resolves the name of the method
         # that a group should provide based on the name
@@ -89,7 +89,7 @@ module Treat
       file = bits.join('/') + "/#{ucc(const)}"
       if not File.readable?("#{Treat.lib}/#{file}.rb")
         raise Treat::Exception,
-        "File '#{file}.rb' corresponding to requested delegate "+
+        "File '#{file}.rb' corresponding to requested worker "+
         "#{self}::#{const} does not exist."
       else
         require file

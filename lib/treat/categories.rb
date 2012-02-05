@@ -2,7 +2,10 @@ module Treat
   # This module keeps track of all categories that
   # exist and the methods they implement.
   module Categories
-    class << self; attr_accessor :list; end
+    class << self
+      # A list of all categories.
+      attr_accessor :list
+    end
     # Array - list of all categories.
     self.list = []
     @@lookup = nil
@@ -10,25 +13,26 @@ module Treat
     def self.lookup(method)
       return @@lookup[method] if @@lookup
       @@lookup = {}
+      
       self.list.each do |category|
         category.groups.each do |group|
           group = category.const_get(group)
           @@lookup[group.method] = group
-          group.decorators.each do |decorator,x|
-            @@lookup[decorator] = group
-          end
-          group.preprocessors.each do |preprocessor,x|
-            @@lookup[preprocessor] = group
-          end
-          group.presets.each do |preset,x|
-            @@lookup[preset] = group
+          methods = group.presets.merge(
+            group.preprocessors.merge(
+              group.postprocessors
+            )
+          )
+          methods.each do |x,y|
+            @@lookup[x] = group
           end
         end
       end
+      
       @@lookup[method]
     end
+    # Require all categories.
     require 'treat/category'
-    require 'treat/detectors'
     require 'treat/formatters'
     require 'treat/processors'
     require 'treat/lexicalizers'

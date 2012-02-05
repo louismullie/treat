@@ -37,13 +37,13 @@ module Treat
     # Extract named entities from texts.
     module NamedEntityTag
       extend Group
-      self.type = :transformer
-      self.targets = [:phrase]
+      self.type = :annotator
+      self.targets = [:phrase, :word]
     end
     # Extract named entities from texts.
     module Coreferences
       extend Group
-      self.type = :transformer
+      self.type = :annotator
       self.targets = [:zone]
     end
     # This module should be moved out of here ASAP.
@@ -53,16 +53,28 @@ module Treat
       self.targets = [:word]
       self.default = :none
       self.preprocessors = {
-        :frequency_in => lambda do |entity, delegate, options|
-          options = {parent: delegate}.merge(options)
+        :frequency_in => lambda do |entity, worker, options|
+          options = {:parent => worker}.merge(options)
           entity.statistics(:frequency_in, options)
         end,
-        :tf_idf => lambda do |entity, delegate, options|
+        :tf_idf => lambda do |entity, worker, options|
           entity.statistics(:tf_idf, options)
         end,
         :position_in => lambda do |entity, options|
           entity.statistics(:position_in, options)
         end
+      }
+    end
+    module Roles
+      extend Group
+      self.type = :annotator
+      self.targets = [:sentence]
+      self.presets = {
+        :object => {:role => :object},
+        :subject => {:role => :subject},
+        :main_verb => {:role => :main_verb},
+        :patient => {:role => :patient},
+        :agent => {:role => :agent}
       }
     end
     extend Treat::Category

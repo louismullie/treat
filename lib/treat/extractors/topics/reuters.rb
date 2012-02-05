@@ -74,7 +74,6 @@ module Treat
             end
           end
           count_hash = best_of_hash(count_hash)
-          puts count_hash.inspect
           count_hash.keys
         end
         def self.best_of_hash(hash, cutoff = 0.0, scale = 1.0)

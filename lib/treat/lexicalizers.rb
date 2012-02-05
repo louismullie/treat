@@ -8,28 +8,15 @@ module Treat
       extend Group
       require 'treat/lexicalizers/tag/tagger'
       self.type = :annotator
-      self.targets = [:sentence, :phrase, :word]
+      self.targets = [:word]
     end
     
+    # Return the general category of a word.
     module Category
       extend Group
       self.type = :annotator
-      self.targets = [:sentence, :phrase, :word]
-    end
-
-    # Linkers allow to retrieve grammatical links
-    # between words.
-    module Linkages
-      extend Group
-      self.type = :annotator
-      self.targets = [:sentence]
-      self.presets = {
-        object: {:linkage => :object},
-        subject: {:linkage => :subject},
-        patient: {:linkage => :patient},
-        agent: {:linkage => :agent},
-        main_verb: {:linkage => :main_verb}
-      }
+      self.targets = [:word]
+      self.default = :from_tag
     end
     
     # Lexicons are dictionnaries of semantically linked
@@ -38,22 +25,34 @@ module Treat
       extend Group
       self.type = :annotator
       self.targets = [:word]
-      self.decorators = {
-        synonyms: lambda do |entity, synsets|
+      self.postprocessors = {
+        :synonyms => lambda do |entity, synsets|
           synsets.collect { |ss| ss.synonyms }.flatten - 
           [entity.value]
         end,
-        antonyms: lambda do |entity, synsets|
+        :antonyms => lambda do |entity, synsets|
           synsets.collect { |ss| ss.antonyms }.flatten
         end,
-        hyponyms: lambda do |entity, synsets|
+        :hyponyms => lambda do |entity, synsets|
           synsets.collect { |ss| ss.hyponyms }.flatten
         end,
-        hypernyms: lambda do |entity, synsets|
+        :hypernyms => lambda do |entity, synsets|
           synsets.collect { |ss| ss.hypernyms }.flatten
         end
       }
     end
+    
+    module Linkages
+      extend Group
+      self.type = :annotator
+      self.targets = [:zone]
+      self.presets = {
+        :is_a => {:linkage => :is_a},
+        :synonym_of => {:linkage => :synonym_of},
+        :antonym_of => {:linkage => :antonym_of}
+      }
+    end
+    
     extend Treat::Category
   end
 end

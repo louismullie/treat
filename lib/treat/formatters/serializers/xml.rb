@@ -20,25 +20,30 @@ module Treat
           end
           spaces = ''
           options[:indent].times { spaces << ' ' }
-          attributes = ''
+          attributes = " id='#{entity.id}' "
           if !entity.features.nil? && entity.features.size != 0
-            attributes = ' '
+            attributes << ' '
             entity.features.each_pair do |feature, value|
               if value.is_a? Entities::Entity
                 attributes << "#{feature}='#{value.id}' "
               else
-                attributes << "#{feature}='#{value}' "
+                attributes << "#{feature}='#{escape(value)}' "
               end
             end
-            entity.edges.each_pair do |id,edge|
-              attributes << "#{edge}='#{id}' "
+            attributes << "dependencies='"
+            a = []
+            entity.dependencies.each do |dependency|
+               a << ("{target: #{dependency.target}, type: #{dependency.type}, " +
+                "directed: #{dependency.directed}, " +
+                "direction: #{dependency.direction}}" )
             end
+            attributes << a.join('--') + "'"
           end
           tag = entity.class.to_s.split('::')[-1].downcase
           unless entity.is_a?(Treat::Entities::Token)
             string += "\n" 
           end
-          string += "#{spaces}<#{tag}#{attributes[0..-2]}>"
+          string += "#{spaces}<#{tag}#{attributes}>"
           if entity.has_children?
             options[:indent] += 1
             entity.children.each do |child|
@@ -48,7 +53,7 @@ module Treat
             end
             options[:indent] -= 1
           else
-            string = string + "#{entity.value}"
+            string = string + "#{escape(entity.value)}"
           end
           unless entity.is_a?(Treat::Entities::Token)
             string += "\n#{spaces}"
@@ -62,6 +67,16 @@ module Treat
             # puts string
           end
           string
+        end
+        
+        def self.escape(input)
+          result = input.to_s.dup
+          result.gsub!("&", "&amp;")
+          result.gsub!("<", "&lt;")
+          result.gsub!(">", "&gt;")
+          result.gsub!("'", "&apos;")
+          result.gsub!("\"", "&quot;")
+          result
         end
       end
     end

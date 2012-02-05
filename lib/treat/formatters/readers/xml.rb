@@ -5,7 +5,7 @@ module Treat
         require 'stanford-core-nlp'
         require 'cgi'
         # By default, backup the XML text while cleaning.
-        DefaultOptions = { clean: true, backup: false }
+        DefaultOptions = { :clean => true, :backup => false }
         @@xml_cleaner = nil
         # Read the XML document and strip it of its markup.
         # Also splits the text into sentences and tokenizes it?

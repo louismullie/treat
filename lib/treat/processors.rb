@@ -39,7 +39,7 @@ module Treat
       self.type = :transformer
       self.targets = [:document, :zone, :phrase]
     end
-    # Makes all the groups autoloadable and creates the delegators.
+    # Makes all the groups autoloadable and creates the workers.
     extend Treat::Category
   end
 end

@@ -1,12 +1,16 @@
 module Treat
   module Languages
     class Chinese
+      RequiredDependencies = []
+      OptionalDependencies = []
       Extractors = {}
       Inflectors = {}
       Lexicalizers = {
         :tag => [:stanford]
       }
-      Processors = {}
+      Processors = {
+        :parsers => [:stanford]
+      }
     end
   end
 end
