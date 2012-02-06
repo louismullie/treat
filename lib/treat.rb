@@ -124,5 +124,3 @@ module Treat
   def self.detect!; self.detect_language = true; end
 
 end
-
-Treat.install
