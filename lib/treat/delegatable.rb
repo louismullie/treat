@@ -68,7 +68,7 @@ module Treat
         end
         if group.type == :annotator
           f = postprocessor.nil? ? m : postprocessor
-          entity.features[f] = result
+          entity.features[f] = result unless result == nil
         end
         result
       end

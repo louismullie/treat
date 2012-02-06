@@ -6,6 +6,7 @@ require 'treat/registrable'
 require 'treat/buildable'
 require 'treat/doable'
 require 'treat/viewable'
+require 'treat/features'
 
 module Treat
   module Entities
@@ -183,7 +184,7 @@ module Treat
       # Note that this function is recursive, unlike
       # #each. It does not yield the top element being
       # recursed.
-      # 
+      #
       # This function NEEDS to be ported to C (see source).
       def each_entity(*types)
 =begin  
@@ -208,26 +209,39 @@ module Treat
           end
         end
       end
-      # Returns the first ancestor of this
-      # entity that has the given type.
+      # Returns the first ancestor of this entity that has the given type.
       def ancestor_with_types(*types)
         ancestor = @parent
         match_types = lambda do |t1, t2s|
           f = false
-          t2s.each do |t2| 
+          t2s.each do |t2|
             if Treat::Entities.match_types[t1][t2]
               f = true; break
             end
           end
           f
         end
-        while not match_types.call(ancestor.type, types)
-          return nil unless (ancestor && ancestor.has_parent?)
-          ancestor = ancestor.parent
+        if ancestor
+          while not match_types.call(ancestor.type, types)
+            return nil unless (ancestor && ancestor.has_parent?)
+            ancestor = ancestor.parent
+          end
+          match_types.call(ancestor.type, types) ? ancestor : nil
         end
-        match_types.call(ancestor.type, types) ? ancestor : nil
       end
       alias :ancestor_with_type :ancestor_with_types
+      # Returns the (direct) ancestors of this entity that
+      # have the given type.
+      def ancestors_with_types(*types)
+        ancestor = self
+        ancestors = []
+        while (a = ancestor.ancestor_with_types(*types))
+          ancestors << a
+          ancestor = ancestor.parent
+        end
+        ancestors
+      end
+      alias :ancestors_with_type :ancestors_with_types
       # Return the first element in the array, warning if not
       # the only one in the array. Used for magic methods: e.g.,
       # the magic method "word" if called on a sentence

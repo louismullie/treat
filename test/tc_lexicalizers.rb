@@ -2,36 +2,28 @@ module Treat
   module Tests
     class TestLexicalizers < Test::Unit::TestCase
       
-      def setup
-        @word = Treat::Tests::EnglishWord
-        @sentence = Treat::Tests::EnglishSentence.parse(:stanford, :silence => true)
-      end
-      
       def test_category
-        assert_equal :verb, @word.category(:from_tag)
+        assert_equal :verb, 'visualize'.category(:from_tag, :tagger => :stanford)
+        assert_equal :noun, 'inflection'.category(:from_tag, :tagger => :brill)
+        assert_equal :adjective, 'sweet'.category(:from_tag, :tagger => :lingua)
       end
       
       def test_synsets
-        # assert_nothing_raised { @word.synsets(:rita_wn) }
-        assert_nothing_raised { @word.synsets(:wordnet) }
-        assert_nothing_raised { @word.synonyms(:wordnet) }
-        assert_nothing_raised { @word.antonyms(:wordnet) }
-        assert_nothing_raised { @word.hyponyms(:wordnet) }
-        assert_nothing_raised { @word.hypernyms(:wordnet) }
+        assert_equal 'mature', 'ripe'.synonyms(:wordnet)[0]
+        # assert_equal 'green', ' ripe'.antonyms(:wordnet)[0]
+        assert_equal 'beverage', 'coffee'.hypernyms(:wordnet)[0]
+        assert_equal 'gravy', 'juice'.hyponyms(:wordnet)[0]
       end
       
       def test_linkages
-       # assert_nothing_raised { @word.linkages(:naive, :linkage => :main_verb) }
-       # assert_nothing_raised { @word.linkages(:naive, :linkage => :subject) }
-       # assert_nothing_raised { @word.linkages(:naive, :linkage => :object) }
-       # assert_nothing_raised { @word.linkages(:naive, :linkage => :patient) }
+        sentence = 'Good is bad, but bad is not good'
+       # assert_equal sentence.parse(:enju).linkages
       end
       
       def test_taggers
-        assert_nothing_raised { @word.tag(:stanford, :silence => true) }
-        assert_nothing_raised { @word.tag(:brill) }
-        assert_nothing_raised { @word.tag(:lingua) }
-
+        assert_equal 'VBG', 'running'.tag(:stanford)
+        assert_equal 'VBG', 'running'.tag(:brill)
+        assert_equal 'VBG', 'running'.tag(:lingua)
       end
       
     end

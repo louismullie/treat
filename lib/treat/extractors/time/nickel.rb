@@ -49,15 +49,20 @@ module Treat
           start_time = ::DateTime.civil(*ds, *ts) if ds && ts
           end_time = ::DateTime.civil(*de) if de && !te
           end_time = ::DateTime.civil(*de, *te) if de && te
-          
-          time = {
-            :start_time => start_time,
-            :end_time => end_time,
-            :time_recurrence => time_recurrence, 
-            :time_recurrence_interval => time_recurrence_interval,
-            :time_message => n.message
-          } 
-          
+
+          time = Treat::Features::Time.new(             # Fix - time message.
+          start_time, end_time, time_recurrence,
+          time_recurrence_interval
+          )
+
+          # Keeps the lowest-level time annotations
+          # that do not conflict with the highest-level
+          # time annotation.
+          entity.ancestors_with_type(:phrase).each do |a|
+            unless a.id == entity.id || a.children[0].size == 0
+              a.unset(:time)
+            end
+          end
           time
         end
       end

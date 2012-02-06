@@ -16,6 +16,13 @@ module Treat
       self.type = :annotator
       self.targets = [:phrase]
     end
+    # Extracts the time of an object and annotates it
+    # with specific information regarding time.
+    module Date
+      extend Group
+      self.type = :annotator
+      self.targets = [:phrase]
+    end
     # Extract the topic from a text.
     module Topics
       extend Group
@@ -68,14 +75,7 @@ module Treat
     module Roles
       extend Group
       self.type = :annotator
-      self.targets = [:sentence]
-      self.presets = {
-        :object => {:role => :object},
-        :subject => {:role => :subject},
-        :main_verb => {:role => :main_verb},
-        :patient => {:role => :patient},
-        :agent => {:role => :agent}
-      }
+      self.targets = [:phrase]
     end
     extend Treat::Category
   end

@@ -59,9 +59,9 @@ module Treat
   end
 
   # The current version of Treat.
-  VERSION = "0.1.5"
+  VERSION = "0.2.0"
 
-  $LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
+ # $LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
 
   # Create class variables for the Treat module.
   class << self
@@ -114,30 +114,15 @@ module Treat
   # Make sugar available when needed.
   extend Treat::Sugar
 
-  def self.install(language)
+  # Install packages for a given language.
+  def self.install(language = :english)
     require 'treat/install'
     Treat::Installer.install(language)
   end
 
+  # Turn on detect language.
   def self.detect!; self.detect_language = true; end
 
 end
-Treat.sweeten!
 
-s = Sentence 'Merkel subjected Sarkozy to her fury on Monday.'
-
-s.parse(:enju)
-
-s.do(
-  :patient, :main_verb, :agent, 
-  :visualize =>
-    [:dot, {
-      :file => 'test-relationship-extraction.dot',
-      :colors => {
-        :green =>  lambda { |entity| entity.is_main_verb? },
-        :blue =>   lambda { |entity| entity.is_patient? },
-        :red =>    lambda { |entity| entity.is_agent? }
-        }
-      }
-    ]
-)
+Treat.install

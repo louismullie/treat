@@ -3,67 +3,51 @@ module Treat
     module Roles
       class Naive
         def self.roles(entity, options = {})
-          role = options.delete(:role)
-          if role.nil?
-            raise Treat::Exception,
-            "You must supply the :role option or call #subject, " +
-            "#object, #main_verb, #agent, or #patient."
-          end
-          if !respond_to?(role)
-            raise Treat::Exception,
-            "No handler to resolve role #{role}."
-          end
-          self.send(role, entity, options)
-        end
-        # %%%
-        def self.patient(entity, options)
           v = main_verb(entity, options)
-          return nil unless (v && v.has?('voice'))
+          return Treat::Features::Roles.new unless (v && v.has?(:voice))
+          o = object(v, options)
+          s = subject(v, options)
           if v.voice == 'active'
-            p = object(entity, options)
+            p = o
           elsif v.voice == 'passive'
-            p = subject(entity, options)
-          elsif main_verb(entity, options).has_feature?(:aux)
-            p = subject(entity, options)
+            p = s
+          elsif v.has_feature?(:aux)
+            p = s
           end
           p.set :is_patient?, true if p
-          p
-        end
-        def self.agent(entity, options)
-          v = main_verb(entity, options)
-          return nil unless (v && v.has?('voice'))
           if v.voice == 'active'
-            a = subject(entity, options)
+            a = s
           elsif v.voice == 'passive'
             #a = object(entity, options)
           end
           a.set :is_agent?, true if a
-          a
+          if a && p
+            a.link(p, :agent_of)
+            p.link(a, :patient_of)
+          end
+          # Fix - s, o, v
+          Treat::Features::Roles.new(s, o, v, p, a)
         end
         # Return the subject of the sentence|verb.
-        def self.subject(entity, options)
-          verb = (entity.has?(:category) && entity.category == :verb) ?
-          main_verb(entity) : entity.main_verb
+        def self.subject(verb, options)
           args = []
-          v = main_verb(entity, options)
-          return unless v
-          v.dependencies.each do |dependency|
-            args << entity.find(dependency.target)
+          return unless verb
+          verb.dependencies.each do |dependency|
+            args << verb.root.find(dependency.target)
           end
           s = args[0]
           s.set :is_subject?, true if s
           s
         end
         # Return the object of the sentence|verb.
-        def self.object(entity, options)
-          verb = (entity.has?(:category) && entity.category == :verb) ?
-          main_verb(entity, options) : entity.main_verb
+        def self.object(verb, options)
           return if verb.has?(:voice) && verb.voice == 'passive'
           args = []
           verb.dependencies.each do |dependency|
-            args << entity.find(dependency.target)
+            args << verb.root.find(dependency.target)
           end
           o = args[1]
+          return unless o
           if o.tag == 'NP'
             b = o
           else

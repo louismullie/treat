@@ -58,7 +58,7 @@ module Treat
         else
           c = Treat::Entities::Symbol.new(string)
         end
-      elsif dot > 1 && string.count("\n") > 0
+      elsif dot > 1 || string.count("\n") > 0
         c = Treat::Entities::Section.new(string) 
       elsif dot >= 1 && dot < 5 && string.size > 5
         c = Treat::Entities::Sentence.new(string) 

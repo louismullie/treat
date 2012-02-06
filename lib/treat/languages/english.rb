@@ -3,10 +3,11 @@ module Treat
     class English
       
       RequiredDependencies = ['rbtagger', 'ruby-stemmer', 'nickel', 'wordnet']
-      OptionalDependencies = ['uea-stemmer', 'tokenizer', 'tactful_tokenizer', 'engtagger', 'chronic']
+      OptionalDependencies = ['uea-stemmer', 'tokenizer', 'tactful_tokenizer', 'engtagger']
       
       Extractors = {
-        :time => [:nickel, :chronic, :ruby],
+        :time => [:nickel],
+        :date => [:chronic, :ruby],
         :topics => [:reuters],
         :topic_words => [:lda],
         :keywords => [:tf_idf, :topics_tf_idf],

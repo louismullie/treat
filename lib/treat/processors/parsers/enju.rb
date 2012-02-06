@@ -174,6 +174,7 @@ module Treat
               next
             end
             if attribute == 'cat'
+              new_attributes[:cat] = value
               if name == 'tok'
                 if value.length > 1 && ['P', 'X'].include?(value[-1]) &&
                   value != 'PN'
@@ -186,7 +187,7 @@ module Treat
                 tags = Treat::Languages::Tags::EnjuCatXcatToPTB.select do |m|
                   m[0] == value && m[1] == attributes['xcat']
                 end
-                tag = (tags.size == 0) ? 'UK' : tags[0][2]
+                tag = (tags.size == 0) ? 'FW' : tags[0][2]
                 new_attributes[:tag] = tag
               end
             else

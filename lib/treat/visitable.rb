@@ -8,9 +8,8 @@ module Treat
         if group.type == :transformer
           if has_children?
             @children.each do |entity|
-              if group.has_target?(entity.class)
-                #puts "Accepting #{klass} on #{entity.class} from #{self.type}"
-                entity.accept(group, klass, method, options) unless entity.id == id
+              if group.has_target?(entity.class) && entity.id != id
+                entity.accept(group, klass, method, options)
               end
             end
           else

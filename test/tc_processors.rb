@@ -3,26 +3,40 @@ module Treat
     class TestProcessors < Test::Unit::TestCase
       
       def setup
-        @doc = Treat::Tests::EnglishShortDoc 
+        @doc = Treat::Tests::English::ShortDoc 
       end
       
       def test_tokenizers
-        assert_nothing_raised { @doc.tokenize(:macintyre) }
-        assert_nothing_raised { @doc.tokenize(:multilingual) }
-        assert_nothing_raised { @doc.tokenize(:perl) }
-        assert_nothing_raised { @doc.tokenize(:punkt) }
-        assert_nothing_raised { @doc.tokenize(:stanford, :silence => true) }
-        assert_nothing_raised { @doc.tokenize(:tactful) }
+        words = ['A', 'sentence', 'to', 'tokenize']
+        tokenize_map = lambda do |worker, o={}|
+          'A sentence to tokenize'.
+          tokenize(worker, o).words.map { |w| w.value }
+        end
+        assert_equal words, tokenize_map.call(:macintyre)
+        assert_equal words, tokenize_map.call(:multilingual)
+        assert_equal words, tokenize_map.call(:perl)
+        assert_equal words, tokenize_map.call(:punkt)
+        assert_equal words, tokenize_map.call(:stanford, :silence => true)
+        assert_equal words, tokenize_map.call(:tactful)
       end
       
       def test_segmenters
-        assert_nothing_raised { @doc.segment(:punkt) }
-        assert_nothing_raised { @doc.segment(:stanford, :silence => true) }
-        assert_nothing_raised { @doc.segment(:tactful) }
+        sentences = ['This is sentence 1.', 'This is sentence 2.']
+        segment_map = lambda do |worker,o={}| 
+          'This is sentence 1. This is sentence 2.'.
+          segment(worker, o).sentences.map { |s| s.value }
+        end
+        assert_equal sentences, segment_map.call(:punkt)
+        assert_equal sentences, segment_map.call(:stanford, :silence => true)
+        assert_equal sentences, segment_map.call(:tactful)
       end
   
       def test_chunkers
-        assert_nothing_raised { @doc.chunk(:txt) }
+        title = 'This is a title!'
+        paragraph = 'This is sentence 1. This is a potential sentence inside a pargraph describing the wonders of the world.'
+        s = "This is a title!\nThis is sentence 1. This is a potential sentence inside a pargraph describing the wonders of the world.".chunk
+        assert_equal title, s.title.value
+        assert_equal paragraph, s.paragraph.value
       end
           
       def test_parsers

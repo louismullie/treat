@@ -2,6 +2,7 @@ module Treat
   module Formatters
     module Visualizers
       class Dot
+        require 'date'
         DefaultOptions = {
           :colors => {}, 
           :features => :all, 
@@ -50,6 +51,22 @@ module Treat
                   options[:features].include?(feature)
                   if value.is_a?(Treat::Entities::Entity)
                     label << "\\n#{feature}:  \\\"*#{value.id}\\\""
+                  elsif value.is_a?(Struct)
+                    label << "\\n#{feature}: \\n\{ "
+                    value.members.each do |member|
+                      v = value.send(member)
+                      v = v.to_s if v.is_a?(DateTime)
+                      v = "*#{v.id}" if v.is_a?(Treat::Entities::Entity)
+                      v = v ? v.inspect : ' -- '
+                      v.gsub!('[', '\[')
+                      v.gsub!('{', '\}')
+                      v.gsub!(']', '\]')
+                      v.gsub!('}', '\}')
+                      v.gsub!('"', '\"')
+                      label <<  "#{member}: #{v},\\n"
+                    end
+                     label = label[0..-4] unless label[-2] == '{'
+                     label << "\},"
                   elsif value.is_a?(Hash)
                     label << "\\n#{feature}: \\n\{ "
                     value.each do |k,v|

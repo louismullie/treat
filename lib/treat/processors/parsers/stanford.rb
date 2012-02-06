@@ -95,17 +95,19 @@ module Treat
             end
             return ruby_node
           else
+
             if java_node.num_children == 1 &&
               java_node.children[0].num_children == 0
               recurse(java_node.children[0], ruby_node, additional_tags)
               return
             end
+
             java_node.children.each do |java_child|
               label = java_child.label
               tag = label.get(:category).to_s
               tag_s, tag_opt = *tag.split('-')
               tag_s ||= ''
-
+              
               if Treat::Languages::Tags::PhraseTagToCategory[tag_s]
                 ruby_child = Treat::Entities::Phrase.new
               else

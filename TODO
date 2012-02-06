@@ -1,6 +1,8 @@
 ## Todo
 
-- Date, time structs
+- Chronic, ruby date
+- Stanford/Enju phrase in phrase
+- Date, time, roles structs
 - test wiki
 - Fix tag set for Stanford Parser.
 - Make sure that Core NLP reloads appropriately.

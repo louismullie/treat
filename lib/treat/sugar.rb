@@ -5,9 +5,9 @@ module Treat
   # Treat::Entities::Word can now be referred to as simply 'Word'.
   module Sugar
     # Installs syntactic sugar.
-    def edulcorate
-      return if @@edulcorated
-      @@edulcorated = true
+    def sweeten!
+      return if @@sweetened
+      @@sweetened = true
       each_entity_class do |type, klass|
         unless type == :Symbol
           Object.class_eval do
@@ -18,11 +18,11 @@ module Treat
         end
       end
     end
-    alias :sweeten! :edulcorate
+
     # Uninstalls syntactic sugar.
-    def unedulcorate
-      return unless @@edulcorated
-      @@edulcorated = false
+    def unsweeten!
+      return unless @@sweetened
+      @@sweetened = false
       each_entity_class do |type, klass| 
         unless type == :Symbol
           Object.class_eval do
@@ -31,12 +31,12 @@ module Treat
         end
       end
     end
-    alias :unsweeten! :unedulcorate
+
     # Boolean - whether syntactic sugar is
     # enabled or not.
-    def edulcorated?; @@edulcorated; end
+    def sweetened?; @@sweetened; end
     # Syntactic sugar is disabled by default.
-    @@edulcorated = false
+    @@sweetened = false
     private
     # Helper method, yields each entity type and class.
     def each_entity_class

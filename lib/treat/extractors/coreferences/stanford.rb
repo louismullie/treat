@@ -12,8 +12,8 @@ module Treat
             entity.remove_all!
           end
           @@pipeline ||=  ::StanfordCoreNLP.load(
-            :tokenize, :ssplit, :pos, 
-            :lemma, :parse, :ner, :dcoref
+          :tokenize, :ssplit, :pos,
+          :lemma, :parse, :ner, :dcoref
           )
           text = ::StanfordCoreNLP::Text.new(entity.to_s)
           @@pipeline.annotate(text)
@@ -25,32 +25,42 @@ module Treat
               t = Treat::Entities::Token.
               from_string(token.value.to_s)
               tag = token.get(:named_entity_tag).
-                      to_s.downcase
+              to_s.downcase
               corefid = token.get(:coref_cluster_id).to_s
+              unless corefid == ''
+                clusters[corefid] ||= []
+                clusters[corefid] << t
+                t.set :coref_cluster_id, corefid
+              end
+
               t.set :named_entity_tag,
-               tag.intern unless tag == 'o'
-              clusters[corefid] ||= []
-              clusters[corefid] << t
+              tag.intern unless tag == 'o'
               s << t
             end
             entity << s
           end
           entity.each_token do |token|
-            if token.has?(:coreference_cluster_id)
-              id = token.coreference_cluster_id
+            if token.has?(:coref_cluster_id)
+              id = token.coref_cluster_id
               links = clusters[id].dup
               links.delete(token)
-              if links.empty?
-                token.unset(:coreference_cluster_id)
-                next
-              end
-              token.set :coreferences, links
+              token.unset(:coref_cluster_id)
+              next if links.empty?
+              token.set :coreferents, links
               links.each do |target|
-                token.link(target, :coreference)
+                token.link(target, :refers_to)
               end
-             # token.set :coreference_cluster_id, i
             end
           end
+          i = 0
+          coreferences = {}
+          clusters.each do |k,v|
+            unless !v || v.size == 1
+              coreferences[i] = v
+              i += 1
+            end
+          end
+          coreferences
         end
       end
     end

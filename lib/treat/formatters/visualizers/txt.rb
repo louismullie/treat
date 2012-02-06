@@ -11,9 +11,12 @@ module Treat
         # Options:
         # (String) :sep => the separator to use between words.
         def self.visualize(entity, options = {})
+          options[:first] = true unless options[:first] == false
+          first = options[:first]
           options = DefaultOptions.merge(options)
           return entity.value.dup if !entity.has_children?
           value = ''
+          options[:first] = false
           entity.each do |child|
             value += "\n\n" if child.is_a?(Treat::Entities::Section)
             if child.is_a?(Treat::Entities::Token) || child.value != ''
@@ -33,6 +36,7 @@ module Treat
               value += "\n\n"
             end
           end
+          value = value.strip if first
           value
         end
       end

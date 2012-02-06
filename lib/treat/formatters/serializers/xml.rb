@@ -37,11 +37,12 @@ module Treat
                 "directed: #{dependency.directed}, " +
                 "direction: #{dependency.direction}}" )
             end
+            # Structs.
             attributes << a.join('--') + "'"
           end
           tag = entity.class.to_s.split('::')[-1].downcase
           unless entity.is_a?(Treat::Entities::Token)
-            string += "\n" 
+            string += "\n"
           end
           string += "#{spaces}<#{tag}#{attributes}>"
           if entity.has_children?
@@ -58,7 +59,7 @@ module Treat
           unless entity.is_a?(Treat::Entities::Token)
             string += "\n#{spaces}"
           end
-          string += "</#{tag}>"
+          string += "</#{tag}>\n"
           if indent == 0
             string += "\n</treat>"
             if options[:file]

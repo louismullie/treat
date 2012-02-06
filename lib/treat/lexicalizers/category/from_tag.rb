@@ -10,7 +10,7 @@ module Treat
         #
         # - (Symbol) :tagger => force the use of a tagger.
         def self.category(entity, options = {})
-          tag = entity.tag
+          tag = entity.tag(options[:tagger])
           return :unknown if tag.nil? || tag == ''
           return :sentence if tag == 'S'
           if entity.is_a?(Treat::Entities::Phrase)
