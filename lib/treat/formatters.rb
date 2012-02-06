@@ -31,13 +31,6 @@ module Treat
       self.targets = [:entity]
       self.default = :tree
     end
-    # Cleaners strip a text from its mark up.
-    module Cleaners
-      extend Group
-      self.type = :transformer
-      self.targets = [:document]
-      self.default = :html
-    end
     extend Treat::Category
   end
 end

@@ -101,7 +101,7 @@ module Treat
       self.find_worker_for_language(entity.language, group) :
       group.default
       if worker == :none
-        raise NAT::Exception,
+        raise Treat::Exception,
         "There is intentionally no default worker for #{group}."
       end
       worker
