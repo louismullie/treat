@@ -174,6 +174,7 @@ module Treat
           r = child.find(id)
           return r if r.is_a? Tree::Node
         end
+        nil
       end
       # Find the root of the tree within which
       # this node is contained.

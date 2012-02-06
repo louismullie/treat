@@ -2,8 +2,8 @@ module Treat
   module Languages
     class English
       
-      RequiredDependencies = ['rbtagger', 'ruby-stemmer', 'nickel', 'wordnet']
-      OptionalDependencies = ['uea-stemmer', 'tokenizer', 'tactful_tokenizer', 'engtagger']
+      RequiredDependencies = ['rbtagger', 'ruby-stemmer', 'tactful_tokenizer', 'nickel', 'wordnet']
+      OptionalDependencies = ['uea-stemmer', 'tokenizer', 'engtagger']
       
       Extractors = {
         :time => [:nickel],
@@ -19,7 +19,7 @@ module Treat
       Processors = {
         :chunkers => [:txt],
         :parsers => [:stanford, :enju],
-        :segmenters => [:punkt, :tactful, :stanford],
+        :segmenters => [:tactful, :punkt, :stanford],
         :tokenizers => [:macintyre, :multilingual, :perl, :punkt, :stanford, :tactful]
       }
       

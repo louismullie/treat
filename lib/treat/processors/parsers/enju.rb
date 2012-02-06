@@ -153,11 +153,12 @@ module Treat
             @@dependencies_table.each_pair do |id2, dependencies2|
               # Next if there are no dependencies.
               next if dependencies2.nil?
-              entity = entity2.find(id2)
+              entity = entity2.root.find(id2)
+              next if entity.nil?
               dependencies2.each_pair do |argument, type|
                 # Skip this argument if we don't know the target node.
                 next if argument == 'unk'
-                entity.link(@@id_table[argument], type)
+                entity.link(@@id_table[argument], type.intern)
               end
             end
           end

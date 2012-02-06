@@ -21,10 +21,10 @@ module Treat
         # 
         #   :training_text => (String) Text to train the segmenter on.
         def self.segment(entity, options = {})
+          lang = entity.language
           if options[:model]
             model = options[:model]
           else
-            lang = entity.language
             l = Treat::Languages.describe(lang)
             model = "#{Treat.lib}/treat/processors/segmenters/punkt/#{l}.yaml"
             unless File.readable?(model)

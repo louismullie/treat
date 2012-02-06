@@ -61,7 +61,7 @@ module Treat
   # The current version of Treat.
   VERSION = "0.2.0"
 
- # $LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
+# $LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
 
   # Create class variables for the Treat module.
   class << self
