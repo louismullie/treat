@@ -13,17 +13,16 @@ module Treat
         #
         # Options:
         #
-        # - (String) :q => a search query (aliased as :query).
+        # - (String) :q => a search query.
         # - (Symbol) :limit => number of documents.
         def self.search(collection, options = {})
           options = DefaultOptions.merge(options)
           unless collection.has?(:index) && collection.index
             raise Treat::Exception, 'This collection has not been indexed.'
           end
-          options[:q] = options[:query] if options[:query]
           unless options[:q]
             raise Treat::Exception, 
-            'You must set a query by using the :q or :query option.'
+            'You must set a query by using the :q option.'
           end
           path = "#{collection.folder}/.index"
           unless File.readable?(path)
@@ -42,7 +41,7 @@ module Treat
           files.each do |doc, score|
             doc2 = collection.document_with_file(doc)
             if options[:callback]
-              options[:callback].call(doc, score)
+              options[:callback].call(doc2, score)
             end
             docs << doc2
           end
