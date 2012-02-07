@@ -59,7 +59,7 @@ module Treat
   end
 
   # The current version of Treat.
-  VERSION = "0.2.1"
+  VERSION = "0.2.2"
 
   #$LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
 

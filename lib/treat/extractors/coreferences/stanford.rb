@@ -5,11 +5,11 @@ module Treat
         require 'stanford-core-nlp'
         @@pipeline = nil
         def self.coreferences(entity, options = {})
+         # puts entity.to_s
           if entity.has_children?
-            warn "The Stanford Coreference Resolver currently requires " +
+            raise "The Stanford Coreference Resolver currently requires " +
             "an unsegmented, untokenized block of text to work with. " +
             "Removing and replacing all children of '#{entity.short_value}'."
-            entity.remove_all!
           end
           @@pipeline ||=  ::StanfordCoreNLP.load(
           :tokenize, :ssplit, :pos,

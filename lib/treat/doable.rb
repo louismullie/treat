@@ -26,7 +26,7 @@ module Treat
       entity_types = group.targets
       f = nil
       entity_types.each do |t| 
-        f = true if Treat::Entities.match_types[type][t]
+        f = true if Treat::Entities.match_types[t][type]
       end
       if f || entity_types.include?(:entity)
         send(task, worker, options)

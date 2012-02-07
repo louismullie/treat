@@ -214,7 +214,7 @@ module Treat
         match_types = lambda do |t1, t2s|
           f = false
           t2s.each do |t2|
-            if Treat::Entities.match_types[t1].include?(t2)
+            if Treat::Entities.match_types[t2][t1]
               f = true; break
             end
           end
