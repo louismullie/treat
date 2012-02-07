@@ -20,11 +20,10 @@
 #
 #  - A Collection represents a folder with different textual documents.
 #  - A Document represents a file with a textual content.
-#  - A Section represents a logical subdivision of a document.
-#  - A Zone can be a Title, a Paragraph or a List and represents an intra-section division of content.
+#  - A Zone can be a Section, Title, a Paragraph or a List and represents an intra-section division of content.
 #  - A Sentence represents just that.
-#  - A Constituent can be a Phrase or a Clause and represents a syntactical unit.
-#  - A Token can be a Word, a Number, a Punctuation or a Symbol (non-punctuation, non-alphanumeric characters).
+#  - A Phrase is a group of words; a Sentence is a Phrase with a sentence ender (.!?)
+#  - A Token can be a Word, a Number, a Punctuation or a Symbol (non-punctuation, non-alphanumeric character).
 #
 # === Functions
 #
@@ -40,6 +39,7 @@
 #  - Extractors extract semantic information about an entity (topic, date, time, named entity).
 #  - Inflectors allow to retrieve the different inflections of a word (declensors, conjugators, stemmers, lemmatizers).
 #  - Formatters handle the conversion of entities to and from different formats (readers, serializers, unserializers, visualizers).
+#  - Retrievers allow to index and search collections of documents.
 #
 # === Linguistic Resources
 #
@@ -59,9 +59,9 @@ module Treat
   end
 
   # The current version of Treat.
-  VERSION = "0.2.0"
+  VERSION = "0.2.1"
 
-# $LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
+  #$LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
 
   # Create class variables for the Treat module.
   class << self
@@ -98,7 +98,7 @@ module Treat
   self.test = self.lib + '/../test'
 
   # Require inline C
-  # require 'inline'
+  require 'inline'
 
   # Require modified core classes.
   require 'treat/object'

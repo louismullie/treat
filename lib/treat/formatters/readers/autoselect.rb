@@ -22,7 +22,6 @@ module Treat
           begin
             r = Treat::Formatters::Readers.const_get(cc(reader))
           rescue NameError
-            puts e.message
             raise Treat::Exception,
             "Cannot find a reader for format: '#{ext}'."
           end

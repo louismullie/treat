@@ -46,11 +46,12 @@ module Treat
       list = (Treat::Entities.list + [:entity])
       @@match_types = {}
       list.each do |type1|
-        @@match_types[type1] = {type1 => true}
         list.each do |type2|
-          if Treat::Entities.const_get(cc(type1)) <
-            Treat::Entities.const_get(cc(type2))
-            @@match_types[type1][type2] = true
+          @@match_types[type2] ||= {}
+          if (type1 == type2) || 
+            (Treat::Entities.const_get(cc(type1)) < 
+            Treat::Entities.const_get(cc(type2)))
+            @@match_types[type2][type1] = true
           end
         end
       end

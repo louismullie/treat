@@ -81,7 +81,7 @@ module Treat
       end
       Treat::Entities::Number.new(numeric.to_s)
     end
-    def from_folder(folder)
+    def from_folder(folder, exclude = ['cfs'])
       unless FileTest.directory?(folder)
         raise Treat::Exception,
         "Path '#{folder}' does not point to a folder."
@@ -95,11 +95,15 @@ module Treat
         "Cannot create something else than a " +
         "collection from folder '#{folder}'."
       end
-      c = Treat::Entities::Collection.new
+      c = Treat::Entities::Collection.new(folder)
       folder += '/' unless folder[-1] == '/'
       Dir[folder + '*'].each do |f|
-        next if FileTest.directory?(f)
-        c << Treat::Entities::Document.from_file(f)
+        if FileTest.directory?(f)
+          c2 = Treat::Entities::Collection.from_folder(f)
+          c << c2
+        else
+          c << Treat::Entities::Document.from_file(f)
+        end
       end
       c
     end
@@ -127,6 +131,8 @@ module Treat
           else
             from_raw_file(file)
           end
+        elsif ext == 'cfs'
+          return
         else
           from_raw_file(file)
         end

@@ -36,7 +36,8 @@ module Treat
     require 'treat/formatters'
     require 'treat/processors'
     require 'treat/lexicalizers'
-    require 'treat/extractors'
     require 'treat/inflectors'
+    require 'treat/extractors'
+    require 'treat/retrievers'
   end
 end

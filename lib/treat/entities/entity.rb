@@ -33,6 +33,7 @@ module Treat
         id ||= object_id
         super(value, id)
         @type = :entity
+        # @match_types = Treat::Entities.match_types
       end
       # Catch missing methods to support method-like
       # access to features (e.g. entity.categoryinstead of
@@ -114,7 +115,7 @@ module Treat
             e.send($2.intern) == args[0]
           end
           a
-        elsif method =~ /^#{@@entities_regexp}s_with_([a-z]*)$/
+        elsif method =~ /^#{@@entities_regexp}_with_([a-z]*)$/
           a = []
           each_entity($1.intern) do |e|
             a << e if e.has?($2.intern) &&
@@ -187,21 +188,9 @@ module Treat
       #
       # This function NEEDS to be ported to C (see source).
       def each_entity(*types)
-=begin  
-     # Replace with:
-    inline do |builder|
-
-      builder.c_raw <<-EOS, :arity => -1
-      VALUE each_entity_c(int argc, VALUE *types, VALUE self)
-      {
-
-      }
-      EOS
-    end
-=end
         types = [:entity] if types.size == 0
         f = false
-        types.each { |t2| f = true if Treat::Entities.match_types[type][t2] }
+        types.each { |t2| f = true if Treat::Entities.match_types[type].include?(t2) }
         yield self if f
         unless @children.size == 0
           @children.each do |child|
@@ -209,13 +198,23 @@ module Treat
           end
         end
       end
+
+      # Replace with:
+      #inline do |builder|
+        #  
+       # builder.c_raw <<-EOS, :arity => -1
+
+
+
+        #EOS
+      #end
       # Returns the first ancestor of this entity that has the given type.
       def ancestor_with_types(*types)
         ancestor = @parent
         match_types = lambda do |t1, t2s|
           f = false
           t2s.each do |t2|
-            if Treat::Entities.match_types[t1][t2]
+            if Treat::Entities.match_types[t1].include?(t2)
               f = true; break
             end
           end

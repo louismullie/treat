@@ -24,7 +24,7 @@ module Treat
           return @method if @method
           m = ucc(cl(self))
           if m[-3..-1] == 'ers'
-            if ['k', 't', 'm', 'd', 'g', 'n'].include? m[-4]
+            if ['k', 't', 'm', 'd', 'g', 'n', 'x', 'h'].include? m[-4]
               n = m[0..-4]
               n = n[0..-2] if n[-1] == n[-2]
             else
@@ -81,7 +81,9 @@ module Treat
     end
     # Get constants in this module, excluding those
     # defined by parent modules.
-    def const_get(const); super(const, false); end
+    def const_get(const)
+      super(const, false)
+    end
     # Lazy load the classes in the group.
     def const_missing(const)
       bits = self.ancestors[0].to_s.split('::')
