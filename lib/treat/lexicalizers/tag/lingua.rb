@@ -15,7 +15,7 @@ module Treat
       # Project website: http://engtagger.rubyforge.org/
       # Original Perl module site:
       # http://cpansearch.perl.org/src/ACOBURN/Lingua-EN-Tagger-0.15/
-      class Lingua < Tagger
+      class Lingua
         # Require the 'engtagger' gem.
         silence_warnings { require 'engtagger' }
         # Hold the tagger.
@@ -38,9 +38,11 @@ module Treat
         #   particularly words used polysemously.
         # - (String) :unknown_word_tag => Tag for unknown words.
         def self.tag(entity, options = {})
+          if !entity.has_children?
+            warn "The Lingua tagger requires prior tokenization."
+            warn "Tokenizing the entity #{entity.short_value}."
+          end
           options = DefaultOptions.merge(options)
-          r = super(entity, options)
-          return r if r && r != :isolated_word
           # Reinitialize the tagger if the options have changed.
           if options != @@options
             @@options = DefaultOptions.merge(options)
@@ -48,15 +50,18 @@ module Treat
           end
           @@tagger ||= ::EngTagger.new(@@options)
           left_tag = @@tagger.conf[:current_tag] = 'pp'
-          tokens = (r == :isolated_word) ? [entity] : entity.tokens
-          tokens.each do |token|
+          isolated_word = entity.is_a?(Treat::Entities::Token)
+          entity.tokens.each do |token|
             w = @@tagger.clean_word(token.to_s)
             t = @@tagger.assign_tag(left_tag, w)
             t = options[:unknown_word_tag] if t.nil? || t == ''
             @@tagger.conf[:current_tag] = left_tag = t
             token.set :tag, t.upcase
             token.set :tag_set, :penn
-            return t.upcase if r == :isolated_word
+            if isolated_word
+              entity.set :tag_set, :penn
+              return t.upcase
+            end
           end
           entity.set :tag_set, :penn
           return 'P' if entity.is_a?(Treat::Entities::Phrase)

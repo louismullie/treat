@@ -6,9 +6,8 @@ module Treat
     # Taggers return the part of speech tag of a word.
     module Tag
       extend Group
-      require 'treat/lexicalizers/tag/tagger'
       self.type = :annotator
-      self.targets = [:word]
+      self.targets = [:sentence, :phrase, :token]
     end
     
     # Return the general category of a word.

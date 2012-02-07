@@ -21,7 +21,7 @@ module Treat
       # http://rbtagger.rubyforge.org/
       # Original Perl module site:
       # http://search.cpan.org/~kwilliams/Lingua-BrillTagger-0.02/lib/Lingua/BrillTagger.pm
-      class Brill < Tagger
+      class Brill
         patch = false
         # Require the 'rbtagger' gem.
         require 'rbtagger'
@@ -50,9 +50,8 @@ module Treat
         end
         # Hold the tagger.
         @@tagger = nil
-        # Hold the user-set options
-        @@options = {}
         # Tag words using a native Brill tagger.
+        # Performs own tokenization.
         #
         # Options:
         #
@@ -60,24 +59,27 @@ module Treat
         # :lexical_rules => String (Lexical rule file to use)
         # :contextual_rules => String (Contextual rules file to use)
         def self.tag(entity, options = {})
-          r = super(entity, options)
-          return r if r && r != :isolated_word
-          # Reinitialize the tagger if the options have changed.
-          @@tagger = nil if options != @@options
+          if entity.has_children?
+            warn "The Brill tagger performs its own tokenization. " +
+                 "Removing all children of #{entity.type} with value #{entity.short_value}."
+            entity.remove_all!
+          end
           # Create the tagger if necessary
           @@tagger ||= ::Brill::Tagger.new(options[:lexicon],
           options[:lexical_rules], options[:contextual_rules])
-          words = (r == :isolated_word) ? [entity] : entity.tokens
-          res = @@tagger.tag(words.join(' '))[1..-1]
+          res = @@tagger.tag(entity.to_s)
           res ||= []
+          isolated_word = entity.is_a?(Treat::Entities::Token)
           res.each do |info|
-            words.each do |word|
-              if word.value == info[0]
-                word.set :tag_set, :penn
-                word.set :tag, info[1]
-                return info[1] if r == :isolated_word
-              end
+            next if info[1] == ')'
+            token = Treat::Entities::Token.from_string(info[0])
+            token.set :tag_set, :penn
+            token.set :tag, info[1]
+            if isolated_word
+              entity.set :tag_set, :penn
+              return info[1]
             end
+            entity << token
           end
           entity.set :tag_set, :penn
           return 'P' if entity.is_a?(Treat::Entities::Phrase)

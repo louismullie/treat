@@ -18,6 +18,7 @@ module Treat
         end
       end
     end
+    DEBUG = true
     def do_task(task, worker, options)
       group = Categories.lookup(task)
       unless group
@@ -25,7 +26,7 @@ module Treat
       end
       entity_types = group.targets
       f = nil
-      entity_types.each do |t| 
+      entity_types.each do |t|
         f = true if Treat::Entities.match_types[t][type]
       end
       if f || entity_types.include?(:entity)

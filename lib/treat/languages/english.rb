@@ -20,7 +20,7 @@ module Treat
         :chunkers => [:txt],
         :parsers => [:stanford, :enju],
         :segmenters => [:tactful, :punkt, :stanford],
-        :tokenizers => [:macintyre, :multilingual, :perl, :punkt, :stanford, :tactful]
+        :tokenizers => [:macintyre, :multilingual, :perl, :punkt, :tactful, :stanford]
       }
       
       Lexicalizers = {

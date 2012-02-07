@@ -30,7 +30,7 @@ module Treat
           # Filter out specified types.
           match_types = lambda do |t1, t2s|
             f = false
-            t2s.each { |t2| f = true if Treat::Entities.match_types[t2][t1] }
+            t2s.each { |t2| f = true if Treat::Entities.match_types[t1][t2] }
             f
           end
           return '' if match_types.call(entity.type, options[:remove_types])

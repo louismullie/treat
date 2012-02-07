@@ -54,21 +54,8 @@ module Treat
             lda.load_vocabulary(options[:vocabulary])
           end
 
-          # Get the topic words and annotate the section.
-          topic_words = lda.top_words(options[:words_per_topic])
-
-          collection.each_word do |word|
-            topic_words.each do |i, words|
-              if words.include?(word)
-                word.set :is_topic_word?, true
-                word.set :topic_id, i
-              else
-                word.set :is_topic_word?, false
-              end
-            end
-          end
-
-          topic_words
+          # Get the topic words.
+          lda.top_words(options[:words_per_topic])
         end
       end
     end

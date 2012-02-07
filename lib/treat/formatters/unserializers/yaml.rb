@@ -6,8 +6,6 @@ module Treat
       class YAML
         # Require the Psych YAML parser.
         require 'psych'
-        # Require ferret to revive the index.
-        silence_warnings { require 'ferret' }
         # Require date to revive DateTime.
         require 'date'
         # Unserialize a YAML file.

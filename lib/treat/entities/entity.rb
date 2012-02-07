@@ -190,7 +190,7 @@ module Treat
       def each_entity(*types)
         types = [:entity] if types.size == 0
         f = false
-        types.each { |t2| f = true if Treat::Entities.match_types[type].include?(t2) }
+        types.each { |t2| f = true if Treat::Entities.match_types[t2][type] }
         yield self if f
         unless @children.size == 0
           @children.each do |child|
@@ -214,7 +214,7 @@ module Treat
         match_types = lambda do |t1, t2s|
           f = false
           t2s.each do |t2|
-            if Treat::Entities.match_types[t2][t1]
+            if Treat::Entities.match_types[t1][t2]
               f = true; break
             end
           end

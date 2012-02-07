@@ -32,12 +32,14 @@ module Treat
         # Parse the entity into its syntactical phrases using Enju.
         # Calls #build to initiate XML parsing.
         def self.parse(entity, options = {})
+          val = entity.to_s
+          entity.remove_all! if entity.has_children?
           options[:processes] ||= 1
           @@options = options
           @@id_table = {}
           @@dependencies_table = {}
           stdin, stdout = proc
-          text, remove_last = valid_text(entity)
+          text, remove_last = valid_text(val)
           stdin.puts(text + "\n")
           parsed = build(stdout.gets, remove_last)
           if not parsed.nil?
@@ -123,13 +125,13 @@ module Treat
           current_element
         end
         # Validate a text - Enju wants period to parse a sentence.
-        def self.valid_text(entity)
-          if entity.to_s.count('.') == 0
+        def self.valid_text(val)
+          if val.count('.') == 0
             remove_last = true
-            text = entity.to_s + '.'
+            text = val + '.'
           else
             remove_last = false
-            text = entity.to_s.gsub('.', '')
+            text = val.gsub('.', '')
             text += '.' unless ['!', '?'].include?(text[-1])
           end
           return text, remove_last

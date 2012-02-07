@@ -5,22 +5,46 @@ module Treat
         silence_warnings { require 'ferret' }
         require 'find'
         DefaultOptions = {
-          :q => '',
-          :limit => :all
+          :q => nil,
+          :limit => :all,
+          :callback => nil
         }
-        def self.search(collection, options = {:query => ''})
+        # Returns an array of retrieved documents.
+        #
+        # Options:
+        #
+        # - (String) :q => a search query (aliased as :query).
+        # - (Symbol) :limit => number of documents.
+        def self.search(collection, options = {})
+          options = DefaultOptions.merge(options)
           unless collection.has?(:index) && collection.index
             raise Treat::Exception, 'This collection has not been indexed.'
           end
-          options = DefaultOptions.merge(options)
+          options[:q] = options[:query] if options[:query]
+          unless options[:q]
+            raise Treat::Exception, 
+            'You must set a query by using the :q or :query option.'
+          end
+          path = "#{collection.folder}/.index"
+          unless File.readable?(path)
+            raise Treat::Exception, "The index at location #{path} cannot be found."
+          end
+          index = ::Ferret::Index::Index.new(
+            :default_field => 'content', 
+            :path => path
+          )
           query = options.delete(:q)
           files = {}
-          collection.index.search_each(query, options) do |doc, score|
-            files[collection.index[doc]['file']] = score
+          index.search_each(query, options) do |doc, score|
+            files[index[doc]['file']] = score
           end
           docs = []
           files.each do |doc, score|
-            docs << collection.document_with_file(doc)
+            if options[:callback]
+              doc = collection.document_with_file(doc)
+              options[:callback].call(doc, score)
+            end
+            docs << doc
           end
           docs
         end

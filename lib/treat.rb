@@ -1,4 +1,3 @@
-# encoding: utf-8
 # Main namespace for Treat modules.
 #
 # === Entities
@@ -10,20 +9,22 @@
 #
 # Here are some example of how to create entities:
 #
+#     Treat.sweeten!
+#
 #     c = Collection 'folder_with_documents'
-#     d = Document 'filename.txt' # (or pdf, html, xml, doc, abw, odt, png, jpg, jpeg, gif).
+#     d = Document 'filename.txt'
 #     p = Paragraph 'A short story. The end.'
 #     s = Sentence 'That is not a sentence.'
 #     w = Word 'fox'
 #
 # Here is a list of entities and their description:
 #
-#  - A Collection represents a folder with different textual documents.
-#  - A Document represents a file with a textual content.
-#  - A Zone can be a Section, Title, a Paragraph or a List and represents an intra-section division of content.
-#  - A Sentence represents just that.
-#  - A Phrase is a group of words; a Sentence is a Phrase with a sentence ender (.!?)
-#  - A Token can be a Word, a Number, a Punctuation or a Symbol (non-punctuation, non-alphanumeric character).
+# - A Collection represents a folder with different textual documents.
+# - A Document represents a file with a textual content.
+# - A Zone can be a Section, Title, a Paragraph or a List and represents an intra-section division of content.
+# - A Sentence represents just that.
+# - A Phrase is a group of words; a Sentence is a Phrase with a sentence ender (.!?)
+# - A Token can be a Word, a Number, a Punctuation or a Symbol (non-punctuation, non-alphanumeric character).
 #
 # === Functions
 #
@@ -34,12 +35,12 @@
 #
 # Here are the different Categories and their description:
 #
-#  - Processors perform the building of tree of entities representing texts (chunking, segmenting, tokenizing, parsing).
-#  - Lexicalizers give lexical information about words (synsets, semantic relationships, tag, word category).
-#  - Extractors extract semantic information about an entity (topic, date, time, named entity).
-#  - Inflectors allow to retrieve the different inflections of a word (declensors, conjugators, stemmers, lemmatizers).
-#  - Formatters handle the conversion of entities to and from different formats (readers, serializers, unserializers, visualizers).
-#  - Retrievers allow to index and search collections of documents.
+# - Processors perform the building of tree of entities representing texts (chunking, segmenting, tokenizing, parsing).
+# - Lexicalizers give lexical information about words (synsets, semantic relationships, tag, word category).
+# - Extractors extract semantic information about an entity (topic, date, time, named entity).
+# - Inflectors allow to retrieve the different inflections of a word (declensors, conjugators, stemmers, lemmatizers).
+# - Formatters handle the conversion of entities to and from different formats (readers, serializers, unserializers, visualizers).
+# - Retrievers allow to index and search collections of documents.
 #
 # === Linguistic Resources
 #
@@ -59,7 +60,7 @@ module Treat
   end
 
   # The current version of Treat.
-  VERSION = "0.2.2"
+  VERSION = "0.2.3"
 
   #$LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
 
@@ -98,7 +99,7 @@ module Treat
   self.test = self.lib + '/../test'
 
   # Require inline C
-  require 'inline'
+  # require 'inline'
 
   # Require modified core classes.
   require 'treat/object'

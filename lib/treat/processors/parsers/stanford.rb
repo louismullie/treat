@@ -17,6 +17,8 @@ module Treat
         # - (String) :log_to_file => a filename to log output to
         # instead of displaying it.
         def self.parse(entity, options = {})
+          val = entity.to_s
+          entity.remove_all! if entity.has_children?
           options = DefaultOptions.merge(options)
           lang = entity.language
           StanfordCoreNLP.use(lang)
@@ -41,7 +43,7 @@ module Treat
             ::StanfordCoreNLP.load(
               :tokenize, :ssplit, :pos, :lemma, :parse
             )
-          text = ::StanfordCoreNLP::Text.new(entity.to_s)
+          text = ::StanfordCoreNLP::Text.new(val)
           @@parser[lang].annotate(text)
           
           text.get(:sentences).each do |s|

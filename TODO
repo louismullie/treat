@@ -1,6 +1,8 @@
 ## Todo
 
 - Chronic, ruby date
+- YAML in folder
+- Tag remove sentence
 - Stanford/Enju phrase in phrase
 - Date, time, roles structs
 - test wiki
@@ -19,6 +21,7 @@
 - Enju as a server
 - More information with categories
 - Gist languages convert
+-
 
 ## Personal
 

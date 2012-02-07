@@ -8,7 +8,7 @@ module Treat
     end
     module Searchers
       extend Group
-      self.type = :annotator
+      self.type = :computer
       self.targets = [:entity]
       self.default = :ferret
     end
