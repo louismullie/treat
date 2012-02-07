@@ -40,11 +40,11 @@ module Treat
           end
           docs = []
           files.each do |doc, score|
+            doc2 = collection.document_with_file(doc)
             if options[:callback]
-              doc = collection.document_with_file(doc)
               options[:callback].call(doc, score)
             end
-            docs << doc
+            docs << doc2
           end
           docs
         end
