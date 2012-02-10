@@ -6,18 +6,30 @@ module Treat
       class Wordnet
         # Require the 'wordnet' gem.
         require 'wordnet'
+        @@indexes = {}
         # Obtain lexical information about a word using the
         # ruby 'wordnet' gem.
         def self.synsets(word, options = nil)
-          unless [:noun, :adjective, :verb].include?(word.category)
+          unless options[:nym]
+            raise Treat::Exception, "You must supply " +
+            "the :nym option (:synonym, :hypernym, etc.)"
+          end
+          unless [:noun, :adjective, :verb].
+            include?(word.category)
             return []
           end
           cat = word.category.to_s.capitalize
-          index = ::WordNet.const_get(cat + 'Index').instance
-          lemma = index.find(word.value.downcase)
+          @@indexes[cat] ||= ::WordNet.const_get(cat + 'Index').instance
+          lemma = @@indexes[cat].find(word.value.downcase)
           return [] if lemma.nil?
           synsets = []
-          lemma.synsets.each { |synset| synsets << Synset.new(synset) }
+          lemma.synsets.each do |synset|
+            synsets << Synset.new(synset)
+          end
+          nyms = (synsets.collect do |ss|
+            ss.send(options[:nym])
+          end - [entity.value]).flatten
+          entity.set options[:nym], nyms
           synsets
         end
       end
@@ -32,10 +44,10 @@ module Treat
       attr_accessor :examples
       def initialize(synset)
         @original_synset = synset
-        @pos, @definition, @examples = 
+        @pos, @definition, @examples =
         parse_synset(synset.to_s.split(')'))
       end
-      def parse_synset(res) 
+      def parse_synset(res)
         pos = res[0][1..-1].strip
         res2 = res[1].split('(')
         res3 = res2[1].split(';')
@@ -55,7 +67,7 @@ module Treat
       # The antonym sets of the synset.
       def antonyms; antonym.collect { |a| a.words }; end
       # The hypernym sets of the synset.
-      def hypernyms; 
+      def hypernyms;
         h = hypernym
         return [] unless h
         h.words

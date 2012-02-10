@@ -23,7 +23,12 @@ module Treat
         # Return the process running Enju.
         def self.proc
           if @@parsers.size < @@options[:processes]
-            @@parsers << ::Open3.popen3("enju -xml -i")
+            begin
+              @@parsers << ::Open3.popen3("enju -xml -i")
+            rescue Exception => e
+              raise Treat::Exception,
+              "Couldn't initialize Enju: #{e.message}."
+            end
           end
           @@i += 1
           @@i = 0 if @@i == @@parsers.size

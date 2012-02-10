@@ -138,6 +138,7 @@ module Treat
         'SC' => :conjunction
       }
 
+
       AlignedWordTags = [
 
         'Adjective', ['AJ0', 'JJ', 'JJ', '', 'JJ', 'A'],
@@ -163,8 +164,6 @@ module Treat
         'Adverb, nominal', ['AV0', 'RN', 'RB', 'PROP', '', 'ADV'],
         'Adverb, pronominal', ['', '', '', '', 'PROP', '', 'ADV'],
 
-        'Clitic', ['', '', 'POS', '', '', ''],
-
         'Conjunction, coordination', ['CJC', 'CC', 'CC', 'KON', 'CC', 'COOD'],
         'Conjunction, coordination, and', ['CJC', 'CC', 'CC', 'KON', 'CC', 'ET'],
         'Conjunction, subordination', ['CJS', 'CS', 'IN', 'KOUS', 'CS', 'CONJ'],
@@ -182,12 +181,9 @@ module Treat
         'Determiner, article', ['AT0', 'AT', 'DT', 'ART', '', 'D'],
         'Determiner, postdeterminer', ['DT0', 'AP', 'DT', '', '', 'D'],
         'Determiner, possessive', ['DPS', 'PP$', 'PRP$', '', '', 'D'],
-        'Determiner, possessive, second', ['DPS', 'PPSS', 'PRPS', '', '', 'D'],
-        'Determiner, possessive, second', ['DPS', 'PP$$', 'PRP', '', '', 'D'],
-        'Determiner, possessive, second', ['DPS', 'PPSS', 'PRP', '', '', 'D'],
+        'Determiner, possessive, second', ['DPS', 'PP$', 'PRPS', '', '', 'D'],
         'Determiner, question', ['DTQ', 'WDT', 'WDT', '', 'DT', 'D'],
         'Determiner, possessive & question', ['DTQ', 'WP$', 'WP$', '', '', 'D'],
-        'Determiner, possessive & question', ['DTQ', 'WPS', 'WPS', '', '', 'D'],
 
         'Localizer', ['', '', '', '', 'LC'],
 
@@ -297,7 +293,16 @@ module Treat
         'Punctuation, right bracket', ['PUR', ')', ')'],
         'Punctuation, quotation mark, left', ['PUQ', '', '``'],
         'Punctuation, quotation mark, right', ['PUQ', '', '"'],
-
+=begin
+        PP      Punctuation, sentence ender             ., !, ?
+        PPC     Punctuation, comma                      ,
+        PPD     Punctuation, dollar sign                $
+        PPL     Punctuation, quotation mark left        ``
+        PPR     Punctuation, quotation mark right       ''
+        PPS     Punctuation, colon, semicolon, elipsis  :, ..., -
+        LRB     Punctuation, left bracket               (, {, [
+        RRB     Punctuation, right bracket              ), }, ]
+=end    
         'Word, truncated, left', ['', '', '', 'TRUNC'],
 
         'Unknown, foreign words (not in lexicon)', ['UNZ', '(FW-)', 'FW', '', 'FW'],

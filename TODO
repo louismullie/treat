@@ -1,13 +1,15 @@
 ## Todo
 
-- Chronic, ruby date
-- YAML in folder
-- Tag remove sentence
+- Statistics
+- What to do with categories?
+- Structs, really? - Only for dependencies.
+
+- Taggers should accept tokenized sentences
+- Make sure that Core NLP reloads appropriately when changing languages
+- Tests for Wiki
 - Stanford/Enju phrase in phrase
 - Date, time, roles structs
-- test wiki
 - Fix tag set for Stanford Parser.
-- Make sure that Core NLP reloads appropriately.
 - XML unserializer
 - Tag opt
 - Stanford dependencies parse
@@ -20,8 +22,13 @@
 - Sentiment analysis
 - Enju as a server
 - More information with categories
-- Gist languages convert
--
+- Convert tags
+- Set tags of symbols as SYM
+- Check lingua punctuation tags
+- Workers => Visitors
+- Gem versions
+- Benchmarks
+- Avoid recomputing when using presets
 
 ## Personal
 

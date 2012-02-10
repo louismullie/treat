@@ -2,8 +2,9 @@
 # easy access to utility functions used across
 # the library.
 module Kernel
+  # Require file utilities for creating and 
+  # deleting temporary files.
   require 'fileutils'
-  require 'tempfile'
   # A list of acronyms used in class names within
   # the program. These do not CamelCase; they
   # CAMELCase.
@@ -12,10 +13,6 @@ module Kernel
   @@cc_cache = {}
   # A cache to optimize un camel casing.
   @@ucc_cache = {}
-  # Returns the platform we are running on.
-  def platform
-    RUBY_PLATFORM.split("-")[1]
-  end
   # Runs a block of code without warnings.
   def silence_warnings(&block)
     warn_level = $VERBOSE
@@ -42,7 +39,8 @@ module Kernel
   ensure
     File.delete(fname)
   end
-  # Create a temporary directory.
+  # Create a temporary directory, which is deleted
+  # after execution of the block.
   def create_temp_dir(&block)
     dname = "#{Treat.lib}/../tmp/#{Random.rand(10000000).to_s}"
     Dir.mkdir(dname)
@@ -91,8 +89,11 @@ module Kernel
       if sugg.size == 1
         msg += " Perhaps you meant '#{sugg[0]}' ?"
       else
-        sugg_quote = sugg[0..-2].map {|x| '\'' + x + '\''}
-        msg += " Perhaps you meant #{sugg_quote.join(', ')}," +
+        sugg_quote = sugg[0..-2].map do
+          |x| '\'' + x + '\''
+        end
+        msg += " Perhaps you meant " +
+        "#{sugg_quote.join(', ')}," +
         " or '#{sugg[-1]}' ?"
       end
     end
@@ -116,14 +117,16 @@ module Kernel
     return nil if first.nil? || other.nil?
     dm = []
     dm[0] = (0..first.length).collect { |i| i * ins}
-    fill = [0] * (first.length - 1)
+    fill = [0] * (first.length - 1).abs
     for i in 1..other.length
       dm[i] = [i * del, fill.flatten]
     end
     for i in 1..other.length
       for j in 1..first.length
         dm[i][j] = [
-          dm[i-1][j-1] + (first[i-1] == other[i-1] ? 0 : sub),
+          dm[i-1][j-1] + 
+          (first[i-1] == 
+          other[i-1] ? 0 : sub),
           dm[i][j-1] + ins,
           dm[i-1][j] + del
         ].min

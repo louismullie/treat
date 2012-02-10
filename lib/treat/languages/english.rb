@@ -27,7 +27,7 @@ module Treat
         :category => [:from_tag],
         :linkages => [:naive],
         :synsets => [:wordnet],
-        :tag => [:brill, :lingua, :stanford]
+        :tag => [:lingua, :brill, :stanford]
       }
       
       Inflectors = {

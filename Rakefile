@@ -14,9 +14,4 @@ task :test do
   require File.basename('test/tests.rb')
 end
 
-task :benchmark do
-  $:.unshift './test'
-  require File.basename('test/benchmark.rb')
-end
-
 task :default => :test

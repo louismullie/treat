@@ -1,25 +1,24 @@
-module Treat
-  module Extractors
-    module Date
-      # A wrapper for Ruby's native date parsing.
-      class Ruby
-        require 'date'
-        # Return a DateTime object representing the date/date
-        # contained within the entity, using Ruby's native
-        # date/date parser.
-        #
-        # Options: none.
-        def self.date(entity, options = {})
-          begin
-            s = entity.to_s.strip
-            s.gsub!('\/', '/')
-            date = ::DateTime.parse(s)
-            date.to_date
-          rescue
-            nil
-          end
-        end
-      end
+# A wrapper for Ruby's native date/time parsing.
+class Treat::Extractors::Date::Ruby
+
+  # Require Ruby's date module.
+  require 'date'
+
+  # Return a DateTime object representing the date/time
+  # contained within the entity, using Ruby's native
+  # date/time parser. This extractor is suitable for the
+  # detectionof well-structued dates and times, such as
+  # 2011/02/03 5:00.
+  #
+  # Options: none.
+  def self.date(entity, options = {})
+    begin
+      date = ::DateTime.parse(
+      entity.to_s.strip.gsub('\/', '/')
+      ).to_date
+    rescue
+      nil
     end
   end
+
 end

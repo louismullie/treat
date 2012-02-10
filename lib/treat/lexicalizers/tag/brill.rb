@@ -69,21 +69,21 @@ module Treat
           options[:lexical_rules], options[:contextual_rules])
           res = @@tagger.tag(entity.to_s)
           res ||= []
-          isolated_word = entity.is_a?(Treat::Entities::Token)
+          isolated_token = entity.is_a?(Treat::Entities::Token)
           res.each do |info|
             next if info[1] == ')'
             token = Treat::Entities::Token.from_string(info[0])
             token.set :tag_set, :penn
             token.set :tag, info[1]
-            if isolated_word
+            if isolated_token
               entity.set :tag_set, :penn
               return info[1]
             end
             entity << token
           end
           entity.set :tag_set, :penn
-          return 'P' if entity.is_a?(Treat::Entities::Phrase)
           return 'S' if entity.is_a?(Treat::Entities::Sentence)
+          return 'P' if entity.is_a?(Treat::Entities::Phrase)
         end
       end
     end
