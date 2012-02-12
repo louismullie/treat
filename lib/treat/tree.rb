@@ -227,7 +227,7 @@ module Treat::Tree
       end
       self.each do |child|
         r = child.find(id)
-        return r if r.is_a? Tree::Node
+        return r if r.is_a? Treat::Tree::Node
       end
       nil
     end

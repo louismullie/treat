@@ -2,17 +2,22 @@
 # easy access to utility functions used across
 # the library.
 module Kernel
+  
   # Require file utilities for creating and 
   # deleting temporary files.
   require 'fileutils'
+  
   # A list of acronyms used in class names within
   # the program. These do not CamelCase; they
   # CAMELCase.
-  Acronyms = ['XML', 'HTML', 'YAML', 'UEA', 'LDA', 'PDF'].join('|')
+  Acronyms = ['XML', 'HTML', 'YAML', 'UEA', 'LDA', 'PDF', 'PTB'].join('|')
+  
   # A cache to optimize camel casing.
   @@cc_cache = {}
+  
   # A cache to optimize un camel casing.
   @@ucc_cache = {}
+  
   # Runs a block of code without warnings.
   def silence_warnings(&block)
     warn_level = $VERBOSE
@@ -21,6 +26,7 @@ module Kernel
     $VERBOSE = warn_level
     result
   end
+  
   # Runs a block of code while blocking stdout.
   def silence_stdout(log = '/dev/null')
     old = $stdout.dup
@@ -28,10 +34,12 @@ module Kernel
     yield
     $stdout = old
   end
+  
   # Create a temporary file which is deleted
   # after execution of the block.
   def create_temp_file(ext, value = nil, &block)
-    fname = "#{Treat.lib}/../tmp/#{Random.rand(10000000).to_s}.#{ext}"
+    fname = "#{Treat.lib}/../tmp/"+
+    "#{Random.rand(10000000).to_s}.#{ext}"
     File.open(fname, 'w') do |f| 
       f.write(value) if value 
       block.call(f.path)
@@ -39,15 +47,18 @@ module Kernel
   ensure
     File.delete(fname)
   end
-  # Create a temporary directory, which is deleted
-  # after execution of the block.
+  
+  # Create a temporary directory, which is 
+  # deleted after execution of the block.
   def create_temp_dir(&block)
-    dname = "#{Treat.lib}/../tmp/#{Random.rand(10000000).to_s}"
+    dname = "#{Treat.lib}/../tmp/"+
+    "#{Random.rand(10000000).to_s}"
     Dir.mkdir(dname)
     block.call(dname)
   ensure
     FileUtils.rm_rf(dname)
   end
+  
   # Convert un_camel_case to CamelCase.
   def camel_case(o_phrase)
     phrase = o_phrase.to_s.dup
@@ -58,7 +69,9 @@ module Kernel
     @@cc_cache[o_phrase] = phrase
     phrase
   end
+  
   alias :cc :camel_case
+  
   # Convert CamelCase to un_camel_case.
   def un_camel_case(o_phrase)
     phrase = o_phrase.to_s.dup
@@ -69,10 +82,14 @@ module Kernel
     @@ucc_cache[o_phrase] = phrase
     phrase
   end
+  
   alias :ucc :un_camel_case
+  
   # Retrieve the Class from a Module::Class.
   def class_name(n); n.to_s.split('::')[-1]; end
+  
   alias :cl :class_name
+  
   # Search the list to see if there are words similar to #name
   # in the #list If yes, return a string saying "Did you mean 
   # ... ?" with the names.
@@ -99,7 +116,9 @@ module Kernel
     end
     msg
   end
+  
   alias :dym? :did_you_mean?
+  
   # Return the name of the method that called the method
   # that calls this method.
   def caller_method(n = 3)
@@ -107,7 +126,9 @@ module Kernel
     /^(.+?):(\d+)(?::in `(.*)')?/ =~ at
     Regexp.last_match[3].intern
   end
+  
   alias :cm :caller_method
+  
   # Return the levensthein distance between two stringsm
   # taking into account the costs of insertion, deletion,
   # and substitution. Stolen from:
@@ -134,4 +155,5 @@ module Kernel
     end
     dm[other.length][first.length]
   end
+  
 end

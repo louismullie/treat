@@ -86,7 +86,7 @@ module Treat
           text.gsub!(/ (wan)(na) /i,' \1 \2 ')
           tokens = text.split(/\s/)
           tokens[1..-1].each do |token|
-            next if token =~ /([[:space:]]+)/
+            next if token =~ /^\s*$/
             entity << Treat::Entities::Token.from_string(token)
           end
         end

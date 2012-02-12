@@ -19,6 +19,7 @@ module Treat::Entities::Abilities::Doable
         do_task(t, w, o)
       end
     end
+    self
   end
 
   # Perform an individual task on an entity

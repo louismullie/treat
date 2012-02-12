@@ -22,11 +22,11 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'hpricot'
   s.add_runtime_dependency 'sdsykes-ferret'
   s.add_runtime_dependency 'lda-ruby'
+  s.add_runtime_dependency 'zip'
   s.add_runtime_dependency 'stanford-core-nlp'
   s.add_runtime_dependency 'whatlanguage'
   s.add_runtime_dependency 'linguistics'
   s.add_runtime_dependency 'punkt-segmenter'
   s.add_runtime_dependency 'chronic'
-  s.add_runtime_dependency 'zip'
   
 end

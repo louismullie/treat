@@ -18,16 +18,16 @@ module Treat::Entities::Abilities::Delegatable
   # Add the workers to perform a task on an entity class.
   def add_workers(group)
     self.class_eval do
-      m = group.method
+      task = group.method
       add_presets(group)
-      define_method(m) do |worker=nil, options={}|
+      define_method(task) do |worker=nil, options={}|
         postprocessor =
         options.delete(:postprocessor)
-        if !@features[m].nil?
-          @features[m]
+        if !@features[task].nil?
+          @features[task]
         else
           self.class.call_worker(
-            self, m, worker,
+            self, task, worker,
             group, options
           )
         end
@@ -46,17 +46,17 @@ module Treat::Entities::Abilities::Delegatable
       raise Treat::Exception,
       worker_not_found(worker, group)
     else
+      
       worker = group.const_get(
         cc(worker.to_s).intern
       )
+
       result = entity.accept(
         task, worker, group, options
       )
       
       if group.type == :annotator
         entity.features[task] = result if result
-      elsif group.type == :adnotator
-        entity.features[task].merge(result)
       end
       
       result

@@ -10,7 +10,7 @@ module Treat
         :chunkers => [:txt],
         :parsers => [:stanford],
         :segmenters => [:punkt],
-        :tokenizers => [:tactful]
+        :tokenizers => [:perl, :tactful]
       }
     end
   end

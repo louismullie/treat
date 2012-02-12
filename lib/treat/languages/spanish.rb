@@ -6,7 +6,7 @@ module Treat
       Processors = {
         :chunkers => [:txt],
         :segmenters => [:punkt],
-        :tokenizers => [:tactful]
+        :tokenizers => [:perl, :tactful]
       }
       Extractors = {}
       Inflectors = {}

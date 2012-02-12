@@ -3,7 +3,8 @@
 - Statistics
 - What to do with categories?
 - Structs, really? - Only for dependencies.
-
+- Stanford logging
+- Brill tagger WTF
 - Taggers should accept tokenized sentences
 - Make sure that Core NLP reloads appropriately when changing languages
 - Tests for Wiki
@@ -29,6 +30,8 @@
 - Gem versions
 - Benchmarks
 - Avoid recomputing when using presets
+- Move data
+- Check_has_children
 
 ## Personal
 

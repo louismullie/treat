@@ -4,14 +4,16 @@ module Treat::Entities::Abilities::Visitable
   # Accept a worker performing the specified
   # task with the supplied options.
   def accept(task, worker, group, options)
+
     if group.has_target?(self.class)
       if group.type == :transformer
         if has_children?
           @children.each do |entity|
             if entity.id != id && 
               group.has_target?(entity.class)
-                entity.accept(group, worker, 
-                task, options)
+                entity.accept(
+                task, worker, 
+                group, options)
             end
           end
         else

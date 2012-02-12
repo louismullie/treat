@@ -75,7 +75,7 @@ module Treat::Entities
         msg = "Method #{sym} cannot be called on a #{type}."
       else
         msg = "Method #{sym} does not exist."
-        msg += did_you_mean?(Category.methods, sym)
+        msg += did_you_mean?(Treat::Categories.methods, sym)
       end
     end
 

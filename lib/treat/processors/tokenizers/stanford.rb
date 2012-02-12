@@ -7,7 +7,7 @@ module Treat
         require 'stanford-core-nlp'
         DefaultOptions = {
           :silence => false, 
-          :log_to_file => nil
+          :log_file => nil
         }
         @@tokenizer = nil
         # Tokenize the entity using a Penn-Treebank style tokenizer
@@ -18,9 +18,9 @@ module Treat
         # instead of displaying it.
         def self.tokenize(entity, options = {})
           options = DefaultOptions.merge(options)
-          options[:log_to_file] = '/dev/null' if options[:silence]
-          if options[:log_to_file]
-            ::StanfordCoreNLP.log_file = options[:log_to_file] 
+          options[:log_file] = '/dev/null' if options[:silence]
+          if options[:log_file]
+            ::StanfordCoreNLP.log_file = options[:log_file] 
           end
           @@tokenizer ||= ::StanfordCoreNLP.load(:tokenize)
           text = ::StanfordCoreNLP::Text.new(entity.to_s)
