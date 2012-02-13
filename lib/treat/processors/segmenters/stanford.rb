@@ -29,6 +29,9 @@ class Treat::Processors::Segmenters::Stanford
   # output to, instead of displaying it.
   # - (String) :silence => send output to /dev/null.
   def self.segment(entity, options = {})
+    
+    Treat::Processors.warn_if_has_children(entity)
+    
     options = get_options(options)
     @@segmenter ||=  
     ::StanfordCoreNLP.load(:tokenize, :ssplit)

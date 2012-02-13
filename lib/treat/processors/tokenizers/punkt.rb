@@ -12,7 +12,7 @@
 # (almost rewrite).
 #
 # Project website: https://github.com/lfcipriani/punkt-segmenter
-module Treat::Processors::Tokenizers::Punkt
+class Treat::Processors::Tokenizers::Punkt
   
   SentEndChars = ['.', '?', '!']
   ReSentEndChars = /[.?!]/
@@ -31,6 +31,8 @@ module Treat::Processors::Tokenizers::Punkt
   #
   # Options: none.
   def self.tokenize(entity, options = {})
+    
+    Treat::Processors.warn_if_has_children(entity)
     
     t = Treat::Entities::Token
     

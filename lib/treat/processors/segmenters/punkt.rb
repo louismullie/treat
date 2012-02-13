@@ -27,7 +27,27 @@ module Treat::Processors::Segmenters::Punkt
   #
   # (String) :training_text => Text to train on.
   def self.segment(entity, options = {})
+    
+    Treat::Processors.warn_if_has_children(entity)
+    
     lang = entity.language
+    set_options(lang, options)
+    s = entity.to_s
+    
+    s.gsub!(/([^\.\?!]\.|\!|\?)([^\s])/) { $1 + ' ' + $2 }
+    
+    result = @@segmenters[lang].
+    sentences_from_text(s, :output => :sentences_text)
+    
+    result.each do |sentence|
+      entity << Treat::Entities::Phrase.
+        from_string(sentence)
+    end
+    
+  end
+  
+  def self.set_options(lang, options)
+    
     if options[:model]
       model = options[:model]
     else
@@ -39,17 +59,11 @@ module Treat::Processors::Segmenters::Punkt
         "for the Punkt segmenter for #{l}."
       end
     end
+    
     t = ::Psych.load(File.read(model))
     @@segmenters[lang] ||= 
     ::Punkt::SentenceTokenizer.new(t)
-    s = entity.to_s
-    s.gsub!(/([^\.\?!]\.|\!|\?)([^\s])/) { $1 + ' ' + $2 }
-    result = @@segmenters[lang].
-    sentences_from_text(s, :output => :sentences_text)
-    result.each do |sentence|
-      entity << Treat::Entities::Phrase.
-        from_string(sentence)
-    end
+    
   end
   
 end

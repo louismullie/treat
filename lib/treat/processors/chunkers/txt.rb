@@ -5,6 +5,9 @@ module Treat::Processors::Chunkers::Txt
   
   # Split sections into smaller zones.
   def self.chunk(section, options = {})
+    
+    Treat::Processors.warn_if_has_children(entity)
+    
     zones = section.to_s.split("\n")
     zones.each do |zone|
       zone.strip!

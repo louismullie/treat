@@ -23,6 +23,9 @@ module Treat::Processors::Segmenters::Tactful
   #
   # Options: none.
   def self.segment(entity, options = {})
+    
+    Treat::Processors.warn_if_has_children(entity)
+    
     @@segmenter ||= TactfulTokenizer::Model.new
     s = entity.to_s
     s.gsub!(/([^\.\?!]\.|\!|\?)([^\s])/) { $1 + ' ' + $2 }

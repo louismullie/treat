@@ -34,4 +34,9 @@ module Treat::Processors
   # Make Processors categorizable.
   extend Treat::Categorizable
   
+  def self.warn_if_has_children(entity)
+    warn "Warning: can't #{caller_method(2)} an entity that has children."
+    warn "Removing all children of text \"#{entity.short_value}].\""
+    entity.remove_all!
+  end
 end
