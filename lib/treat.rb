@@ -1,6 +1,6 @@
 module Treat
 
-  $LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
+#  $LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
 
   # Require custom exception cass.
   require 'treat/exception'
@@ -39,11 +39,3 @@ module Treat
   end
 
 end
-
-Treat.sweeten!
-
-c = Collection 'economist'
-
-c.do(:index, :chunk, :segment, :tokenize, :tag, :category, :stem, :infinitive)
-
-c.print_tree
