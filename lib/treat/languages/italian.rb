@@ -1,17 +1,17 @@
-module Treat
-  module Languages
-    class Italian
-      RequiredDependencies = []
-      OptionalDependencies = []
-      Extractors = {}
-      Inflectors = {}
-      Lexicalizers = {}
-      Processors = {
-        :chunkers => [:txt],
-        :parsers => [:stanford],
-        :segmenters => [:punkt],
-        :tokenizers => [:perl, :tactful]
-      }
-    end
-  end
+class Treat::Languages::Italian
+  
+  RequiredDependencies = []
+  OptionalDependencies = []
+  
+  Processors = {
+    :chunkers => [:txt],
+    :parsers => [:stanford],
+    :segmenters => [:punkt],
+    :tokenizers => [:perl, :tactful]
+  }
+  Extractors = {}
+  Inflectors = {}
+  Lexicalizers = {}
+  Retrievers = {}
+  
 end

@@ -13,7 +13,7 @@ module Treat::Languages
   # Identifier constants for language codes.
   ISO639_1 = 1
   ISO639_2 = 2
-  
+
   # Describe a language code (ISO-639-1 or ISO-639-2)
   # or its full text description in full French or English.
   def self.describe(lang, desc_lang = :en)
@@ -109,5 +109,13 @@ module Treat::Languages
     end
     @@loaded = true
   end
+
+  # A list of all possible word categories.
+  WordCategories = [
+    :adjective, :adverb, :noun, :verb, :interjection,
+    :clitic, :coverb, :conjunction, :determiner, :particle,
+    :preposition, :pronoun, :number, :symbol, :punctuation,
+    :complementizer
+  ]
 
 end

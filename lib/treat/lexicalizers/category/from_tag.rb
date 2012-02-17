@@ -1,7 +1,7 @@
 # Finds the general part of speech of an entity
 # (:sentence, :noun_phrase, :verb, :adverb, etc.)
 # from its tag (e.g. 'S', 'NP', 'VBZ', 'ADV', etc.).
-module Treat::Lexicalizers::Category::Tag
+module Treat::Lexicalizers::Category::FromTag
   
   # A hash of phrase tags mapped to hashes of tag set => category
   Pttc = Treat::Languages::Tags::PhraseTagToCategory

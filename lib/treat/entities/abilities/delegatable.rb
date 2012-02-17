@@ -10,6 +10,7 @@ module Treat::Entities::Abilities::Delegatable
         options = presets.merge(options)
         m = group.method
         send(m, worker, options)
+  #      puts features.inspect
         features[method] = unset(m)
       end
     end
@@ -55,8 +56,8 @@ module Treat::Entities::Abilities::Delegatable
         task, worker, group, options
       )
       
-      if group.type == :annotator
-        entity.features[task] = result if result
+      if group.type == :annotator && result
+        entity.features[task] = result
       end
       
       result

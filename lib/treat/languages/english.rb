@@ -1,4 +1,4 @@
-module Treat::Languages::English
+class Treat::Languages::English
 
   RequiredDependencies = ['rbtagger', 'ruby-stemmer', 'tactful_tokenizer', 'nickel', 'wordnet']
   OptionalDependencies = ['uea-stemmer', 'engtagger']
@@ -35,6 +35,11 @@ module Treat::Languages::English
     :stem => [:porter, :porter_c, :uea],
     :ordinal_words => [:linguistics],
     :cardinal_words => [:linguistics]
+  }
+  
+  Retrievers = {
+    :searchers => [:ferret],
+    :indexers => [:ferret]
   }
 
   CommonWords = [

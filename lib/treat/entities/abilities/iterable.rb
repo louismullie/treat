@@ -40,7 +40,7 @@ module Treat::Entities::Abilities::Iterable
   # within the supplied types.
   def entities_with_types(*types)
     a = []
-    each_entity(types) { |e| a << e }
+    each_entity(*types) { |e| a << e }
     a
   end
   

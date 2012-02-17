@@ -47,7 +47,7 @@ module Treat::Processors::Segmenters::Punkt
   end
   
   def self.set_options(lang, options)
-    
+    return @@segmenters[lang] if @@segmenters[lang]
     if options[:model]
       model = options[:model]
     else
@@ -61,7 +61,7 @@ module Treat::Processors::Segmenters::Punkt
     end
     
     t = ::Psych.load(File.read(model))
-    @@segmenters[lang] ||= 
+    @@segmenters[lang] =
     ::Punkt::SentenceTokenizer.new(t)
     
   end

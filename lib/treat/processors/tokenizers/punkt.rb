@@ -21,9 +21,7 @@ class Treat::Processors::Tokenizers::Punkt
   ReWordStart = /[^\(\"\`{\[:;&\#\*@\)}\]\-,]/
   ReNonWordChars = /(?:[?!)\";}\]\*:@\'\({\[])/
   ReMultiCharPunct = /(?:\-{2,}|\.{2,}|(?:\.\s){2,}\.)/
-  a = "#{ReMultiCharPunct}|(?=#{ReWordStart})\S+?(?=\s|$|#{ReNonWordChars}|"
-  b = "#{ReMultiCharPunct}|,(?=$|\s|#{ReNonWordChars}|#{ReMultiCharPunct}))|\S"
-  ReWordTokenizer = /#{a}#{b}/
+  ReWordTokenizer = /#{ReMultiCharPunct}|(?=#{ReWordStart})\S+?(?=\s|$|#{ReNonWordChars}|#{ReMultiCharPunct}|,(?=$|\s|#{ReNonWordChars}|#{ReMultiCharPunct}))|\S/
   RePeriodContext = /\S*#{ReSentEndChars}(?=(?<after_tok>#{ReNonWordChars}|\s+(?<next_tok>\S+)))/
   
   # Tokenize the text using the algorithm lifted from
@@ -34,14 +32,12 @@ class Treat::Processors::Tokenizers::Punkt
     
     Treat::Processors.warn_if_has_children(entity)
     
-    t = Treat::Entities::Token
-    
     entity.to_s.scan(ReWordTokenizer).each do |token|
       if SentEndChars.include?(token[-1])
-        entity << t.from_string(token[0..-2])
-        entity << t.from_string(token[-1..-1])
+        entity << Treat::Entities::Token.from_string(token[0..-2])
+        entity << Treat::Entities::Token.from_string(token[-1..-1])
       else
-        entity << t.from_string(token)
+        entity << Treat::Entities::Token.from_string(token)
       end
     end
     

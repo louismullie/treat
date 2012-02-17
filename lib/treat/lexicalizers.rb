@@ -37,7 +37,7 @@ module Treat::Lexicalizers
   module Relations
     extend Treat::Groupable
     self.type = :annotator
-    self.targets = [:zone]
+    self.targets = [:phrase]
     self.presets = {
       :is_a => {:relation => :is_a},
       :synonym_of => {:relation => :synonym_of},
@@ -49,7 +49,7 @@ module Treat::Lexicalizers
   module Linkages
     extend Treat::Groupable
     self.type = :annotator
-    self.targets = [:zone]
+    self.targets = [:phrase]
     self.presets = {
       :main_verb => {:relation => :main_verb},
       :object => {:relation => :object},
