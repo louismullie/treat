@@ -1,7 +1,5 @@
 module Treat
-
-  #$LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
-
+  
   # Require custom exception cass.
   require 'treat/exception'
 
@@ -19,16 +17,27 @@ module Treat
   require 'treat/configurable'
   extend Treat::Configurable
 
-  # Add methods to provide access to common paths.
-  def self.lib; File.dirname(__FILE__) + '/'; end
-  def self.tmp; lib + '../tmp/'; end
-  def self.bin; lib + '../bin/'; end
-  def self.data; lib + '../data/'; end
-  def self.models; lib + '../models/'; end
-  def self.test; lib + '../test/'; end
-  def self.downloads; lib + '../downloads/'; end
+  # The folders in the library and descriptions.
+  Paths = {
+    :tmp => 'temporary files',
+    :lib => 'class and module definitions',
+    :bin => 'binary files',
+    :files => 'user-saved files',
+    :data => 'data set files',
+    :models => 'model files',
+    :spec => 'spec test files'
+  }
 
-  # Require all files for the Treat library.
+  # Add methods to provide access to common paths.
+  class << self
+    Paths.each do |path, _|
+      define_method(path) do
+        File.dirname(__FILE__) + 
+        '/../' + path.to_s + '/'
+      end
+    end
+  end
+
   require 'treat/object'
   require 'treat/kernel'
   require 'treat/downloader'

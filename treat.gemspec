@@ -33,4 +33,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'decisiontree', '>= 0.3.0'
   s.add_runtime_dependency 'progressbar', '>= 0.10.0'
   
+  s.add_development_dependency 'rspec', '>= 2.8.0'
 end
