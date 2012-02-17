@@ -1,6 +1,6 @@
 module Treat
 
-  $LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
+  #$LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
 
   # Require custom exception cass.
   require 'treat/exception'
@@ -12,17 +12,21 @@ module Treat
   end
 
   # The current version of Treat.
-  VERSION = "0.2.6"
+  VERSION = "0.2.7"
 
   # Add methods to handle syntactic sugar,
   # language configuration options, and paths.
   require 'treat/configurable'
   extend Treat::Configurable
 
+  # The directory of the library.
+  def self.lib
+    File.dirname(__FILE__) + '/'
+  end
+
   # Require all files for the Treat library.
   require 'treat/object'
   require 'treat/kernel'
-  
   require 'treat/languages'
   require 'treat/entities'
   require 'treat/categories'

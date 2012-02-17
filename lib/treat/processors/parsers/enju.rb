@@ -137,6 +137,9 @@ module Treat::Processors::Parsers::Enju
             entity.features = tmp_attributes
             @@id_table[id] = entity.id
             @@dependencies_table[entity.id] = tmp_dependencies
+          else
+            # Do something useful here
+            entity.set :tag, 'SYM'
           end
         end
       end

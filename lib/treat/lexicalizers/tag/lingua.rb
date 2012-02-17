@@ -38,6 +38,7 @@ class Treat::Lexicalizers::Tag::Lingua
       !entity.is_a?(Treat::Entities::Token)
       entity.tokenize
     end
+    
     options = DefaultOptions.merge(options)
     
     @@tagger ||= ::EngTagger.new(options)
@@ -54,10 +55,8 @@ class Treat::Lexicalizers::Tag::Lingua
       t = 'prp$' if t == 'prps'
       token.set :tag, t.upcase
       token.set :tag_set, :penn
-      if isolated_token
-        entity.set :tag_set, :penn
-        return t.upcase
-      end
+      return t.upcase if isolated_token
+      
     end
 
     entity.set :tag_set, :penn

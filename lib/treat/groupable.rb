@@ -5,7 +5,7 @@ module Treat::Groupable
     bits = self.ancestors[0].to_s.split('::')
     bits.collect! { |bit| ucc(bit) }
     file = bits.join('/') + "/#{ucc(const)}"
-    if not File.readable?("#{file}.rb")
+    if not File.readable?(Treat.lib + "#{file}.rb")
       raise Treat::Exception,
       "File '#{file}.rb' corresponding to " +
       "requested worker #{self}::#{const} " +
@@ -29,7 +29,7 @@ module Treat::Groupable
     mod = ucc(cl(self))
     if @@list[mod].nil?
       @@list[mod] = []
-      dirs = Dir.glob("treat/*/#{mod}/*.rb")
+      dirs = Dir[Treat.lib + "treat/*/#{mod}/*.rb"]
       dirs.each do |file|
         @@list[mod] <<
         file.split('/')[-1][0..-4].intern

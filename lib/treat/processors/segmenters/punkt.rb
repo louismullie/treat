@@ -10,7 +10,7 @@ module Treat::Processors::Segmenters::Punkt
   # Require silently the punkt-segmenter gem.
   silence_warnings { require 'punkt-segmenter' }
   # Require the YAML parser.
-  require 'psych'
+  silence_warnings { require 'psych' }
   
   # Hold one copy of the segmenter per language.
   @@segmenters = {}

@@ -184,8 +184,10 @@ module Treat::Tree
     end
     
     # Unset a feature.
-    def unset(feature)
-      @features.delete(feature)
+    def unset(*features)
+      features.each do |feature|
+        @features.delete(feature)
+      end
     end
     
     # Return the depth of this node in the tree.

@@ -332,7 +332,8 @@ module Treat
       }
       Treat::Languages::Tags::AlignedWordTags.each_slice(2) do |desc, tags|
 
-        category = desc.gsub(',', ' ,').split(' ')[0].downcase.intern
+        category = desc.gsub(',', ' ,').
+        split(' ')[0].downcase.intern
 
         wttc[tags[ClawsC5]] ||= {}
         wttc[tags[Brown]] ||= {}
@@ -366,17 +367,18 @@ module Treat
       # A hash converting word tags to word categories.
       PhraseTagToCategory = pttc
 
-      def self.has_phrase_tag?(tag, tag_set)
-        PhraseTagToCategory[tag] &&
-        PhraseTagToCategory[tag_set]
+      def self.describe(tag, tag_set)
+        if PhraseTagToCategory[tag] &&
+           PhraseTagToCategory[tag_set] &&
+           WordTagToCategory[tag] &&
+           WordTagToCategory[tag_set]
+        end
       end
+      
+      def self.convert(tag, from, to)
 
-      def self.has_word_tag?(tag, tag_set)
-        WordTagToCategory[tag] &&
-        WordTagToCategory[tag_set]
       end
-
-
+      
     end
   end
 end

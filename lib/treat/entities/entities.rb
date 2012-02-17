@@ -3,15 +3,7 @@ module Treat
     
     # Require the generic entity lass.
     require 'treat/entities/entity'
-    
-    # This module groups the mixins for entities.
-    module Abilities
-      # Require all abilities.
-      Dir['treat/entities/abilities/*.rb'].each do |file|
-        require file
-      end
-    end
-    
+
     # Represents a collection of texts.
     class Collection < Entity
       # Initialize the collection with a folder
@@ -54,17 +46,11 @@ module Treat
     class Sentence < Phrase; end
     
     # Represents a terminal element in the text structure.
-    class Token < Entity; end
+    class Token < Entity
+    end
     
     # Represents a word.
     class Word < Token
-      # A list of all possible word categories.
-      Categories = [
-        :adjective, :adverb, :noun, :verb, :interjection,
-        :clitic, :coverb, :conjunction, :determiner, :particle,
-        :preposition, :pronoun, :number, :symbol, :punctuation,
-        :complementizer
-      ]
     end
     
     # Represents a clitic ('s).

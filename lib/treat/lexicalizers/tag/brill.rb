@@ -14,14 +14,14 @@
 #
 # http://rbtagger.rubyforge.org/
 module Treat::Lexicalizers::Tag::Brill
-  
+
   require 'rbtagger'
-  
-  require 'treat/processors/lexicalizers/tag/brill/patch'
-  
+
+  require 'treat/lexicalizers/tag/brill/patch'
+
   # Hold one instance of the tagger.
   @@tagger = nil
-  
+
   # Tag words using a native Brill tagger.
   # Performs own tokenization.
   #
@@ -31,38 +31,34 @@ module Treat::Lexicalizers::Tag::Brill
   # :lexical_rules => String (Lexical rule file to use)
   # :contextual_rules => String (Contextual rules file to use)
   def self.tag(entity, options = {})
-    
-    if entity.has_children?
-      warn "The Brill tagger performs its own tokenization. " +
-      "Removing all children of #{entity.type} with value "+
-      "#{entity.short_value}."
-      entity.remove_all!
+
+    # Tokenize the sentence/phrase.
+    if !entity.has_children? &&
+      !entity.is_a?(Treat::Entities::Token)
+      entity.tokenize(:perl, options)
     end
     
     # Create the tagger if necessary
     @@tagger ||= ::Brill::Tagger.new(options[:lexicon],
     options[:lexical_rules], options[:contextual_rules])
-    res = @@tagger.tag(entity.to_s)
-    res ||= []
+    
     isolated_token = entity.is_a?(Treat::Entities::Token)
+    tokens = isolated_token ? [entity] : entity.tokens
+    tokens_s = tokens.map { |t| t.value }
     
-    res.each do |info|
-      next if info[1] == ')'
-      token = Treat::Entities::Token.from_string(info[0])
-      token.set :tag_set, :penn
-      token.set :tag, info[1]
-      if isolated_token
-        entity.set :tag_set, :penn
-        return info[1]
-      end
-      entity << token
+    tags = @@tagger.tag_tokens( tokens_s )
+
+    pairs = tokens.zip(tags)
+
+    pairs.each do |pair|
+      pair[0].set :tag, pair[1]
+      pair[0].set :tag_set, :penn
+      return pair[1] if isolated_token
     end
-    
-    entity.set :tag_set, :penn
     
     return 'S' if entity.is_a?(Treat::Entities::Sentence)
     return 'P' if entity.is_a?(Treat::Entities::Phrase)
-    
+
   end
 
 end

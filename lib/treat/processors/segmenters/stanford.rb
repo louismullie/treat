@@ -25,7 +25,7 @@ class Treat::Processors::Segmenters::Stanford
   #
   # - (Boolean) :also_tokenize - Whether to also 
   # add the tokens as children of the sentence.
-  # - (String) :log_file => a filename to log 
+  # - (String) :log_file => a filename to log 
   # output to, instead of displaying it.
   # - (String) :silence => send output to /dev/null.
   def self.segment(entity, options = {})
@@ -42,15 +42,8 @@ class Treat::Processors::Segmenters::Stanford
       from_string(sentence.to_s, true)
       entity << s
       if options[:also_tokenize]
-        sentence.get(:tokens).each do |token|
-          t = Treat::Entities::Phrase.from_string(token.value)
-          s << t
-          t.set :character_offset_begin,
-          token.get(:character_offset_begin)
-
-          t.set :character_offset_end,
-          token.get(:character_offset_end)
-        end
+        Treat::Processors::Tokenizers::Stanford.
+        add_tokens(s, sentence.get(:tokens))
       end
     end
   end

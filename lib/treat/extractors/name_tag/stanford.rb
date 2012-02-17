@@ -6,11 +6,13 @@ class Treat::Extractors::NameTag::Stanford
   # Require the Stanford CoreNLP gem and get some
   # utility Java classes.
   require 'stanford-core-nlp'
+  
   StanfordCoreNLP.load_class('ArrayList', 'java.util')
   StanfordCoreNLP.load_class('Word', 'edu.stanford.nlp.ling')
+  
   @@pipelines = {}
 
-  def self.named_entity_tag(entity, options = {})
+  def self.name_tag(entity, options = {})
     
     pp = nil
     
@@ -28,14 +30,14 @@ class Treat::Extractors::NameTag::Stanford
     
     lang = entity.language
 
-    @@pipeline[lang] ||=  
+    @@pipelines[lang] ||=  
     ::StanfordCoreNLP.load(
       :tokenize, :ssplit, :pos, 
       :lemma, :parse, :ner
     )
 
     text = ::StanfordCoreNLP::Text.new(s)
-    @@pipeline[lang].annotate(text)
+    @@pipelines[lang].annotate(text)
 
     add_to = pp ? pp : entity
 

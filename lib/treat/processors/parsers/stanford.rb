@@ -20,7 +20,7 @@ class Treat::Processors::Parsers::Stanford
   #  
   # - (Boolean) :silent => whether to silence the output
   #   of the JVM.
-  # - (String) :log_file => a filename to log output to
+  # - (String) :log_file => a filename to log output to
   # instead of displaying it.
   def self.parse(entity, options = {})
     
@@ -95,10 +95,10 @@ class Treat::Processors::Parsers::Stanford
       ruby_node.set :tag_set, :penn
       ruby_node.set :lemma, label.get(:lemma).to_s
 
-      ruby_node.set :character_offset_begin,
+      ruby_node.set :char_begin,
       label.get(:character_offset_begin).to_s
 
-      ruby_node.set :character_offset_end,
+      ruby_node.set :char_end,
       label.get(:character_offset_end).to_s
 
       ruby_node.set :begin_index,
@@ -118,7 +118,8 @@ class Treat::Processors::Parsers::Stanford
 
       if java_node.num_children == 1 &&
         java_node.children[0].num_children == 0
-        recurse(java_node.children[0], ruby_node, additional_tags)
+        recurse(java_node.children[0], 
+        ruby_node, additional_tags)
         return
       end
 

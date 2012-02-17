@@ -8,12 +8,7 @@ module Treat::Entities::Abilities::Buildable
   # a string, numeric,folder, or file name
   # representing a raw or serialized file).
   def build(file_or_value = '', id = nil)
-    from_anything(file_or_value, id)
-  end
-
-  # Build an entity from a file, folder,
-  # a string or a numeric object.
-  def from_anything(file_or_value, id)
+    
     fv = file_or_value.to_s
 
     if File.readable?(fv)
@@ -31,6 +26,7 @@ module Treat::Entities::Abilities::Buildable
       "Unrecognizable input #{file_or_value}. "+
       "Use filename, folder, text or a number."
     end
+    
   end
 
   # Build an entity from a string. Type is enforced
@@ -127,7 +123,7 @@ module Treat::Entities::Abilities::Buildable
     c = Treat::Entities::Collection.new(folder)
     folder += '/' unless folder[-1] == '/'
 
-    Dir[folder + '*'].each do |f|
+    Dir[Treat.lib + folder + '*'].each do |f|
       if FileTest.directory?(f)
         c2 = Treat::Entities::Collection.from_folder(f)
         c << c2

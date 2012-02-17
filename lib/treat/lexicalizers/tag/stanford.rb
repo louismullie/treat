@@ -52,12 +52,14 @@ class Treat::Lexicalizers::Tag::Stanford
   
   # Initialize the tagger for a language.
   def self.init_tagger(lang, silence)
+    
     language = Treat::Languages.describe(lang)
     model = StanfordCoreNLP::Config::Models[:pos][language]
     model = StanfordCoreNLP.jar_path +
     StanfordCoreNLP::Config::ModelFolders[:pos] + model
     @@taggers[lang] ||= 
     StanfordCoreNLP::MaxentTagger.new(model)
+    
   end
   
   # Handle the options for the tagger.

@@ -1,38 +1,29 @@
 ## Todo
 
-- Statistics
-- What to do with categories?
-- Structs, really? - Only for dependencies.
 - Stanford logging
-- Brill tagger WTF
-- Taggers should accept tokenized sentences
-- Make sure that Core NLP reloads appropriately when changing languages
-- Tests for Wiki
+- Make sure that Core NLP reloads appropriately when changing languages. That's right, once it loads an annotator once it always loads the same annotators when you make new pipelines.  
 - Stanford/Enju phrase in phrase
-- Date, time, roles structs
-- Fix tag set for Stanford Parser.
 - XML unserializer
-- Tag opt
 - Stanford dependencies parse
 - Annotator dependencies
 - Meronyms
 - Add XML stripper from the Stanford tools
 - Try new encodings
-- Add Stanford and Wordnet lemmatizers
 - Improve linkers
 - Sentiment analysis
-- Enju as a server
+- Enju as a server, better tag handling.
 - More information with categories
 - Convert tags
-- Set tags of symbols as SYM
 - Check lingua punctuation tags
-- Workers => Visitors
+- Workers => Visitors
 - Gem versions
 - Benchmarks
 - Avoid recomputing when using presets
 - Move data
+- Install with JAR
 - Check_has_children
 
-## Personal
+## Future
 
-- Check treat.rb, tests.rb, kernel.rb.
+- Add Stanford and Wordnet lemmatizers
+- Tests for Wiki

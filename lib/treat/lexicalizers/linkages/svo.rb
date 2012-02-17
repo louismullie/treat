@@ -1,27 +1,28 @@
 module Treat::Lexicalizers::Linkages
   
-  class Naive
+  class SVO
 
     def self.linkages(entity, options = {})
+      
       s = nil; v = nil; o = nil
       if entity.has?(:main_verb)
         v = entity.get(:main_verb)
       else
         v = main_verb(entity, options)
         entity.set :main_verb, v
-        unless (v && v.has?(:voice))
-          return Treat::Features::Linkages.new
+        return unless (v && v.has?(:voice))
         end
       end
+      
       if options[:linkage] == :subject
         s = subject(v, options)
-        entity.set :subject, s
+        entity.link(s, :subject)
       elsif
         options[:linkage] == :object
         o = object(v, options)
-        entity.set :object, o
+        entity.link(o, :object)
       end
-      Treat::Features::Linkages.new(s, v, o)
+      
     end
 
     # Return the subject of the sentence|verb.

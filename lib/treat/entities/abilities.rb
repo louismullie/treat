@@ -1,3 +1,10 @@
+# Requires the -able mixins for the Entity class.
 module Treat::Entities::Abilities
-  Dir['treat/entities/abilities/*.rb'].each { |f| require f }
+  
+  p = 'treat/entities/abilities/*.rb'
+  
+  Dir[Treat.lib + p].each do |f| 
+    require f
+  end
+  
 end
