@@ -17,16 +17,16 @@ Gem::Specification.new do |s|
   ['README', 'TODO', 'LICENSE', 'INSTALL']
   
   # Runtime dependencies
-  s.add_runtime_dependency 'psych'
-  s.add_runtime_dependency 'nokogiri'
-  s.add_runtime_dependency 'hpricot'
-  s.add_runtime_dependency 'sdsykes-ferret'
-  s.add_runtime_dependency 'lda-ruby'
-  s.add_runtime_dependency 'zip'
-  s.add_runtime_dependency 'stanford-core-nlp'
-  s.add_runtime_dependency 'whatlanguage'
-  s.add_runtime_dependency 'linguistics'
-  s.add_runtime_dependency 'punkt-segmenter'
-  s.add_runtime_dependency 'chronic'
+  s.add_runtime_dependency 'psych', '>= 1.2.2'
+  s.add_runtime_dependency 'nokogiri', '>= 1.5.0'
+  s.add_runtime_dependency 'hpricot', '>= 0.8.6'
+  s.add_runtime_dependency 'sdsykes-ferret', '>= 0.11.6.19'
+  s.add_runtime_dependency 'lda-ruby', '>= 0.3.8'
+  s.add_runtime_dependency 'zip', '>= 2.0.2'
+  s.add_runtime_dependency 'stanford-core-nlp', '>= 0.1.6'
+  s.add_runtime_dependency 'whatlanguage', '>= 1.0.0'
+  s.add_runtime_dependency 'linguistics', '>= 1.0.9'
+  s.add_runtime_dependency 'punkt-segmenter', '>= 0.9.1'
+  s.add_runtime_dependency 'chronic', '>= 0.6.7'
   
 end
