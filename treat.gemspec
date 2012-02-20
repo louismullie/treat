@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'sdsykes-ferret', '>= 0.11.6.19'
   s.add_runtime_dependency 'lda-ruby', '>= 0.3.8'
   s.add_runtime_dependency 'zip', '>= 2.0.2'
-  s.add_runtime_dependency 'ruby-readability', '>= 0.8.6'
+  s.add_runtime_dependency 'ruby-readability', '>= 0.5.0'
   s.add_runtime_dependency 'stanford-core-nlp', '>= 0.1.6'
   s.add_runtime_dependency 'whatlanguage', '>= 1.0.0'
   s.add_runtime_dependency 'linguistics', '>= 1.0.9'
