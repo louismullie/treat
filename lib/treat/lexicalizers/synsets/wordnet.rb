@@ -1,88 +1,56 @@
-module Treat
-  module Lexicalizers
-    module Synsets
-      # Obtain lexical information about a word using the
-      # ruby 'wordnet' gem.
-      class Wordnet
-        # Require the 'wordnet' gem.
-        require 'wordnet'
-        @@indexes = {}
-        # Obtain lexical information about a word using the
-        # ruby 'wordnet' gem.
-        def self.synsets(word, options = nil)
-          unless options[:nym]
-            raise Treat::Exception, "You must supply " +
-            "the :nym option (:synonym, :hypernym, etc.)"
-          end
-          unless [:noun, :adjective, :verb].
-            include?(word.category)
-            return []
-          end
-          cat = word.category.to_s.capitalize
-          @@indexes[cat] ||= ::WordNet.const_get(cat + 'Index').instance
-          lemma = @@indexes[cat].find(word.value.downcase)
-          return [] if lemma.nil?
-          synsets = []
-          lemma.synsets.each do |synset|
-            synsets << Synset.new(synset)
-          end
-          nyms = (synsets.collect do |ss|
-            ss.send(options[:nym])
-          end - [entity.value]).flatten
-          entity.set options[:nym], nyms
-          synsets
-        end
-      end
+# Obtain lexical information about a word using the
+# ruby 'wordnet' gem.
+class Treat::Lexicalizers::Synsets::Wordnet
+
+  # Require the 'wordnet' gem.
+  require 'wordnet'
+  
+  # Require an adaptor for Wordnet synsets.
+  require 'treat/lexicalizers/synsets/wordnet/synset'
+  
+  # Noun, adjective and verb indexes.
+  @@indexes = {}
+  
+  # Obtain lexical information about a word using the
+  # ruby 'wordnet' gem.
+  def self.synsets(word, options = nil)
+    
+    category = word.check_has(:category)
+    
+    unless options[:nym]
+      raise Treat::Exception, "You must supply " +
+      "the :nym option (:synonym, :hypernym, etc.)"
     end
-    # An adaptor for synsets used by the Wordnet gem.
-    class Synset
-      # The POS tag of the word.
-      attr_accessor :pos
-      # The definition of the synset.
-      attr_accessor :definition
-      # The examples in the synset.
-      attr_accessor :examples
-      def initialize(synset)
-        @original_synset = synset
-        @pos, @definition, @examples =
-        parse_synset(synset.to_s.split(')'))
-      end
-      def parse_synset(res)
-        pos = res[0][1..-1].strip
-        res2 = res[1].split('(')
-        res3 = res2[1].split(';')
-        1.upto(res3.size-1) do |i|
-          res3[i] = res3[i].strip[1..-2]
-        end
-        definition = res3[0]
-        examples = res3[1..-1]
-        return pos, definition, examples
-      end
-      # The words in the synset.
-      def words; @original_synset.words; end
-      def synonyms; @original_synset.words; end
-      # A gloss (short definition with examples)
-      # for the synset.
-      def gloss; @original_synset.gloss; end
-      # The antonym sets of the synset.
-      def antonyms; antonym.collect { |a| a.words }; end
-      # The hypernym sets of the synset.
-      def hypernyms;
-        h = hypernym
-        return [] unless h
-        h.words
-      end
-      # The hyponym sets of the synset.
-      def hyponyms; hyponym.collect { |h| h.words }; end
-      # Respond to the missing method event.
-      def method_missing(sym, *args, &block)
-        ret = @original_synset.send(sym)
-        if ret.is_a?(::WordNet::Synset)
-          Synset.new(ret)
-        else
-          ret
-        end
-      end
+    
+    options[:nym] = (options[:nym].to_s + 's').intern
+    
+    unless [:noun, :adjective, :verb].
+      include?(word.category)
+      return []
     end
+    
+    cat = category.to_s.capitalize
+
+    @@indexes[cat] ||= 
+    ::WordNet.const_get(cat + 'Index').instance
+    lemma = @@indexes[cat].find(word.value.downcase)
+
+    return [] if lemma.nil?
+    synsets = []
+    
+    lemma.synsets.each do |synset|
+      synsets << 
+      Treat::Lexicalizers::
+      Synsets::Wordnet::
+      Synset.new(synset)
+    end
+    
+    nyms = (synsets.collect do |ss|
+      ss.send(options[:nym])
+    end - [word.value]).flatten
+    word.set options[:nym], nyms
+    synsets
+    
   end
+
 end

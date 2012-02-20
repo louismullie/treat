@@ -30,7 +30,7 @@ class Treat::Processors::Tokenizers::Punkt
   # Options: none.
   def self.tokenize(entity, options = {})
     
-    Treat::Processors.warn_if_has_children(entity)
+    entity.check_hasnt_children
     
     entity.to_s.scan(ReWordTokenizer).each do |token|
       if SentEndChars.include?(token[-1])

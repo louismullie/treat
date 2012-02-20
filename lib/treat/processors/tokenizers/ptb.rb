@@ -15,7 +15,7 @@ module Treat::Processors::Tokenizers::PTB
   # Tokenize the entity using a native rule-based algorithm.
   def self.tokenize(entity, options = {})
     
-    Treat::Processors.warn_if_has_children(entity)
+    entity.check_hasnt_children
     
     if entity.has_children?
       raise Treat::Exception,

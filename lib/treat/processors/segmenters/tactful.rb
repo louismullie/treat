@@ -24,7 +24,7 @@ module Treat::Processors::Segmenters::Tactful
   # Options: none.
   def self.segment(entity, options = {})
     
-    Treat::Processors.warn_if_has_children(entity)
+    entity.check_hasnt_children
     
     @@segmenter ||= TactfulTokenizer::Model.new
     s = entity.to_s

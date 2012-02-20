@@ -73,7 +73,7 @@ class Treat::Extractors::Time::Nickel
   def self.remove_time_from_ancestors(entity, time)
     entity.ancestors_with_type(:phrase).each do |a|
       next if a.id == entity.id || !a.has?(:time)
-      return true unless a.time == time
+      return true unless a.get(:time) == time
       a.unset(:time, :end_time,
       :time_recurrence,
       :time_recurrence_interval)

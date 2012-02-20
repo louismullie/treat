@@ -30,7 +30,7 @@ class Treat::Processors::Segmenters::Stanford
   # - (String) :silence => send output to /dev/null.
   def self.segment(entity, options = {})
     
-    Treat::Processors.warn_if_has_children(entity)
+    entity.check_hasnt_children
     
     options = get_options(options)
     @@segmenter ||=  

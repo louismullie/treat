@@ -21,7 +21,7 @@ class Treat::Processors::Tokenizers::Stanford
   # log output to instead of displaying it.
   def self.tokenize(entity, options = {})
 
-    Treat::Processors.warn_if_has_children(entity)
+    entity.check_hasnt_children
 
     set_options(options)
     @@tokenizer ||= ::StanfordCoreNLP.load(:tokenize)

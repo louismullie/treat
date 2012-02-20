@@ -1,29 +1,32 @@
-## Todo
+## Todo in CoreNLP
 
 - Stanford logging
 - Make sure that Core NLP reloads appropriately when changing languages. That's right, once it loads an annotator once it always loads the same annotators when you make new pipelines.  
+
+## Todo in Treat
+
 - Stanford/Enju phrase in phrase
 - XML unserializer
 - Stanford dependencies parse
-- Annotator dependencies
-- Meronyms
+- JWI
 - Add XML stripper from the Stanford tools
 - Try new encodings
 - Improve linkers
-- Sentiment analysis
-- Enju as a server, better tag handling.
+- Enju - better tag handling.
 - More information with categories
 - Convert tags
 - Check lingua punctuation tags
-- Workers => Visitors
-- Gem versions
-- Benchmarks
-- Avoid recomputing when using presets
-- Move data
-- Install with JAR
-- Check_has_children
+- Move data with Wordnet
+- Install with JAR, custom JAR path
+- Remove char_begin, char_end.. inconsistent
 
 ## Future
 
+- Benchmarks
+- Tests
 - Add Stanford and Wordnet lemmatizers
+- NLP polish
 - Tests for Wiki
+- Enju as a server
+- Sectionners
+- Sentiment analysis

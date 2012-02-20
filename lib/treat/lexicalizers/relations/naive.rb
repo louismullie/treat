@@ -4,20 +4,27 @@ class Treat::Lexicalizers::Relations::Naive
   
   # Fix - add options for sentences.
   def self.relations(entity, options = {})
+    
     if options[:linkage] == :is_a ||
       options[:linkage] == :hypernym_of
 
       entity.each_word do |w1|
         hypernyms = []
         entity.each_word do |w2|
+          
           next if w1 == w2
-          if w2.hypernyms.include?(w1.value) ||
-            w1.hyponyms.include?(w2.value)
+          
+          h2 = w2.check_has(:hypernyms)
+          h1 = w1.check_has(:hyponyms)
+          
+          if h2.include?(w1.value) ||
+            h1.include?(w2.value)
             hypernyms << w1
             w2.link(w1, :is_a)
             w1.link(w2, :hypernym_of)
           end
         end
+        
         w1.set :hypernyms, hypernyms
       end
 
@@ -27,7 +34,8 @@ class Treat::Lexicalizers::Relations::Naive
         synonyms = []
         entity.each_word do |w2|
           next if w1 == w2
-          if w2.synonyms.include?(w1.value)
+          s = w2.check_has(:synonyms)
+          if s.include?(w1.value)
             synonyms << w1
             w2.link(w1, :synonym_of)
             w1.link(w2, :synonym_of)
@@ -42,7 +50,8 @@ class Treat::Lexicalizers::Relations::Naive
         antonyms = []
         entity.each_word do |w2|
           next if w1 == w2
-          if w2.antonyms.include?(w1.value)
+          a = entity.check_has(:antonyms)
+          if a.include?(w1.value)
             antonyms << w1
             w2.link(w1, :antonym_of)
             w1.link(w2, :antonym_of)

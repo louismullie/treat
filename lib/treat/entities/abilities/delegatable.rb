@@ -7,10 +7,10 @@ module Treat::Entities::Abilities::Delegatable
   def add_presets(group)
     group.presets.each do |method, presets|
       define_method(method) do |worker=nil, options={}|
+        return get(method) if has?(method)
         options = presets.merge(options)
         m = group.method
         send(m, worker, options)
-  #      puts features.inspect
         features[method] = unset(m)
       end
     end
@@ -22,8 +22,6 @@ module Treat::Entities::Abilities::Delegatable
       task = group.method
       add_presets(group)
       define_method(task) do |worker=nil, options={}|
-        postprocessor =
-        options.delete(:postprocessor)
         if !@features[task].nil?
           @features[task]
         else

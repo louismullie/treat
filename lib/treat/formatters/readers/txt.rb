@@ -1,17 +1,13 @@
-module Treat
-  module Formatters
-    module Readers
-      # This class simply reads a plain text file.
-      class Txt
-        # Build an entity from a string in plain text format.
-        # 
-        # Options: none.
-        def self.read(document, options = {})
-          f = File.read(document.file)
-          document << Treat::Entities::Entity.from_string(f)
-          document
-        end
-      end
-    end
+# This class simply reads a plain text file.
+class Treat::Formatters::Readers::TXT
+
+  # Build an entity from a string in plain text format.
+  #
+  # Options: none.
+  def self.read(document, options = {})
+    f = File.read(document.file)
+    document << Treat::Entities::Zone.from_string(f)
+    document
   end
+  
 end

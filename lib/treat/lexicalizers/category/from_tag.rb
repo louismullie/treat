@@ -11,7 +11,9 @@ module Treat::Lexicalizers::Category::FromTag
   
   # Find the category of the entity from its tag.
   def self.category(entity, options = {})
-    tag = entity.tag
+    
+    tag = entity.check_has(:tag)
+    
     return :unknown if tag.nil? || tag == ''
     return :sentence if tag == 'S'
     

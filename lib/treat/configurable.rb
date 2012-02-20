@@ -49,9 +49,11 @@ module Treat::Configurable
     @@sweetened = true
     each_entity_class do |type, klass|
       Object.class_eval do
-        define_method(type) do |value='',id=nil|
-          klass.build(value, id)
-        end unless type == :Symbol
+        unless type == :Symbol
+          define_method(type) do |file_or_value, options={}|
+            klass.build(file_or_value, options)
+          end
+        end
       end
     end
   end
@@ -102,5 +104,5 @@ module Treat::Configurable
       yield type, klass
     end
   end
-  
+
 end

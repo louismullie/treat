@@ -1,4 +1,4 @@
-class Treat::Languags::Polish
+class Treat::Languages::Polish
   
   RequiredDependencies = []
   OptionalDependencies = []

@@ -47,7 +47,7 @@ class Treat::Processors::Tokenizers::Tactful
   # gem.
   def self.tokenize(entity, options = {})
     
-    Treat::Processors.warn_if_has_children(entity)
+    entity.check_hasnt_children
     
     s = entity.to_s
     ReTokenize.each do |rules|

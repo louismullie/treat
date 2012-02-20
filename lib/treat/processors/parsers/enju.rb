@@ -34,7 +34,7 @@ module Treat::Processors::Parsers::Enju
   # Options: none.
   def self.parse(entity, options = {})
     
-    Treat::Processors.warn_if_has_children(entity)
+    entity.check_hasnt_children
     val = entity.to_s
     
     @@id_table = {}

@@ -60,30 +60,7 @@ module Treat::Extractors
     self.type = :annotator
     self.targets = [:zone]
   end
-
-=begin
-  # Retrieve different kinds of statistics
-  # concerning entities.
-  module Statistics
-    extend Treat::Groupable
-    self.type = :annotator
-    self.targets = [:word]
-    self.default = :none
-    self.preprocessors = {
-      :frequency_in => lambda do |entity, worker, options|
-        options = {:parent => worker}.merge(options)
-        entity.statistics(:frequency_in, options)
-      end,
-      :tf_idf => lambda do |entity, worker, options|
-        entity.statistics(:tf_idf, options)
-      end,
-      :position_in => lambda do |entity, options|
-        entity.statistics(:position_in, options)
-      end
-    }
-  end
-=end
-
+  
   # Retrieve the main grammatical roles
   # in the phrase (subject, verb, object).
   module Roles

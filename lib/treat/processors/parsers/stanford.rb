@@ -24,7 +24,7 @@ class Treat::Processors::Parsers::Stanford
   # instead of displaying it.
   def self.parse(entity, options = {})
     
-    Treat::Processors.warn_if_has_children(entity)
+    entity.check_hasnt_children
     
     val = entity.to_s
     lang = entity.language

@@ -1,6 +1,6 @@
 class Treat::Languages::English
 
-  RequiredDependencies = ['rbtagger', 'ruby-stemmer', 'tactful_tokenizer', 'nickel', 'wordnet']
+  RequiredDependencies = ['rbtagger', 'ruby-stemmer', 'tactful_tokenizer', 'nickel', 'rwordnet']
   OptionalDependencies = ['uea-stemmer', 'engtagger']
 
   Extractors = {

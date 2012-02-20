@@ -12,6 +12,7 @@ class Treat::Lexicalizers::Linkages::SVO
   def self.linkages(entity, options = {})
 
     s = nil; v = nil; o = nil
+    v = entity.check_has(:main_verb)
     if entity.has?(:main_verb)
       v = entity.get(:main_verb)
     else
@@ -35,8 +36,9 @@ class Treat::Lexicalizers::Linkages::SVO
   def self.subject(verb, options)
     args = []
     return unless verb
+    root = verb.root
     verb.dependencies.each do |dependency|
-      args << verb.root.find(dependency.target)
+      args << root.find(dependency.target)
     end
     s = args[0]
     s.set :is_subject?, true if s
@@ -48,8 +50,9 @@ class Treat::Lexicalizers::Linkages::SVO
     return if verb.has?(:voice) &&
     verb.voice == 'passive'
     args = []
+    root = verb.root
     verb.dependencies.each do |dependency|
-      args << verb.root.find(dependency.target)
+      args << root.find(dependency.target)
     end
     o = args[1]
     return unless o

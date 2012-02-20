@@ -83,7 +83,7 @@ module Treat::Tree
     # for example: node << [child1, child2, child3]
     def <<(nodes)
       nodes = [nodes] unless nodes.is_a? Array
-      if nodes.include? nil
+      if nodes.include?(nil)
         raise Treat::Exception,
         'Trying to add a nil node.'
       end

@@ -38,11 +38,13 @@ module Treat::Entities
     # Implement support for to_s, inspect, etc.
     include Abilities::Viewable
 
+    # Implement support for check_has and check_hasnt_children?
+    include Abilities::Checkable
+    
     # Implement support for #each_entity, as well as
     # #entities_with_type, #ancestors_with_type,
     # #entities_with_feature, #entities_with_category.
     include Abilities::Iterable
-
 
     # Initialize the entity with its value and
     # (optionally) a unique identifier. By default,
@@ -115,6 +117,7 @@ module Treat::Entities
         Treat::Categories.methods, sym)
       end
     end
+  
     
   end
   

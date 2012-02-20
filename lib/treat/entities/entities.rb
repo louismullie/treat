@@ -66,6 +66,12 @@ module Treat::Entities
   # character (e.g. @#$%&*).
   class Symbol < Token; end
 
+  # Represents a url.
+  class Url < Token; end
+  
+  # Represents a valid RFC822 address.
+  class Email < Token; end
+  
   # Represents an entity of unknown type.
   class Unknown; end
 

@@ -28,6 +28,7 @@ module Treat::Entities::Abilities::Visitable
       "This type of visitor cannot "+
       "visit a #{self.class}."
     end
+    
   end
   
 end

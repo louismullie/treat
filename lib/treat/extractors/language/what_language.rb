@@ -1,4 +1,5 @@
 module Treat::Extractors::Language
+  
   # Adaptor for the 'whatlanguage' gem, which
   # performs probabilistic language detection.
   # The library works by checking for the presence
@@ -51,4 +52,5 @@ module Treat::Extractors::Language
     end
     
   end
+
 end

@@ -21,7 +21,7 @@ module Treat::Processors::Tokenizers::Perl
   # Options: none.
   def self.tokenize(entity, options = {})
     
-    Treat::Processors.warn_if_has_children(entity)
+    entity.check_hasnt_children
     
     tokens = get_tokens(entity.to_s)
     tokens[1..-1].each do |token|

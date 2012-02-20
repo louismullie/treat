@@ -28,7 +28,7 @@ module Treat::Processors::Segmenters::Punkt
   # (String) :training_text => Text to train on.
   def self.segment(entity, options = {})
     
-    Treat::Processors.warn_if_has_children(entity)
+    entity.check_hasnt_children
     
     lang = entity.language
     set_options(lang, options)
