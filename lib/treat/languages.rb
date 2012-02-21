@@ -10,6 +10,14 @@ module Treat::Languages
     require file
   end
 
+  # Yield a lowercase symbol for each
+  # defined language.
+  def self.each
+    constants.each do |constant|
+      yield constant.to_s.downcase.intern
+    end
+  end
+  
   # Identifier constants for language codes.
   ISO639_1 = 1
   ISO639_2 = 2

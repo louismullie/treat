@@ -18,7 +18,8 @@
 - Check lingua punctuation tags
 - Move data with Wordnet
 - Install with JAR, custom JAR path
-- Remove char_begin, char_end.. inconsistent
+- Mark Watson zip
+- Thoroughly test on ...
 
 ## Future
 
@@ -30,3 +31,5 @@
 - Enju as a server
 - Sectionners
 - Sentiment analysis
+
+ no such file to load -- punkt-segmenter (LoadError)

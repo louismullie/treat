@@ -19,10 +19,11 @@ module Treat
   require 'treat/configurable'
   extend Treat::Configurable
 
-  # The directory of the library.
-  def self.lib
-    File.dirname(__FILE__) + '/'
-  end
+  # Useful directory paths.
+  def self.lib; File.dirname(__FILE__) + '/'; end
+  def self.tmp; lib + '../tmp/'; end
+  def self.bin; lib + '../bin/'; end
+  def self.data; lib + '../data/'; end
 
   # Require all files for the Treat library.
   require 'treat/object'

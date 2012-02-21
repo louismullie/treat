@@ -9,6 +9,7 @@ module Treat::Processors::Segmenters::Punkt
 
   # Require silently the punkt-segmenter gem.
   silence_warnings { require 'punkt-segmenter' }
+  
   # Require the YAML parser.
   silence_warnings { require 'psych' }
   
@@ -52,7 +53,7 @@ module Treat::Processors::Segmenters::Punkt
       model = options[:model]
     else
       l = Treat::Languages.describe(lang)
-      model = "treat/processors/segmenters/punkt/#{l}.yaml"
+      model = "#{Treat.data}punkt/#{l}.yaml"
       unless File.readable?(model)
         raise Treat::Exception,
         "Could not get the language model " +

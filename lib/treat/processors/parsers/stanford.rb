@@ -94,19 +94,7 @@ class Treat::Processors::Parsers::Stanford
       ruby_node.set :tag_opt, tag_opt if tag_opt
       ruby_node.set :tag_set, :penn
       ruby_node.set :lemma, label.get(:lemma).to_s
-
-      ruby_node.set :char_begin,
-      label.get(:character_offset_begin).to_s
-
-      ruby_node.set :char_end,
-      label.get(:character_offset_end).to_s
-
-      ruby_node.set :begin_index,
-      label.get(:begin_index).to_s
-
-      ruby_node.set :end_index,
-      label.get(:end_index).to_s
-
+    
       additional_tags.each do |t|
         lt = label.get(t)
         ruby_node.set t, lt.to_s if lt

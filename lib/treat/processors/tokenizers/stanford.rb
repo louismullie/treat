@@ -38,10 +38,6 @@ class Treat::Processors::Tokenizers::Stanford
     tokens.each do |token|
       t = Treat::Entities::Token.from_string(token.value)
       entity << t
-      t.set :char_begin,
-      token.get(:character_offset_begin)
-      t.set :char_end,
-      token.get(:character_offset_end)
     end
   end
   
