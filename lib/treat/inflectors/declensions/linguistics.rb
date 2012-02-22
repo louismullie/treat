@@ -5,7 +5,7 @@
 # Project website: http://deveiate.org/projects/Linguistics/
 class Treat::Inflectors::Declensions::Linguistics
 
-  require 'treat/helpers/linguistics_loader'
+  require 'treat/loaders/linguistics'
 
   # Retrieve a declension of a word using the 'linguistics' gem.
   #

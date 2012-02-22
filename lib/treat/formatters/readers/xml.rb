@@ -1,6 +1,8 @@
 class Treat::Formatters::Readers::XML
 
-  require 'stanford-core-nlp'
+  require 'treat/loaders/stanford'
+  Treat::Loaders::Stanford.load
+  
   require 'cgi'
 
   # By default, don't backup the XML

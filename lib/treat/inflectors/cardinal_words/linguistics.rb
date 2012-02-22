@@ -5,7 +5,7 @@
 # Project website: http://deveiate.org/projects/Linguistics/
 module Treat::Inflectors::CardinalWords::Linguistics
   
-  require 'treat/helpers/linguistics_loader'
+  require 'treat/loaders/linguistics'
   
   # Return the description of a cardinal number in words.
   #

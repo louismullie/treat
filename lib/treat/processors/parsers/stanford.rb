@@ -1,8 +1,8 @@
 # A wrapper class for the Stanford parser.
 class Treat::Processors::Parsers::Stanford
   
-  # Require Ruby bindings to the Stanford Core NLP tools.
-  require 'stanford-core-nlp'
+  require 'treat/loaders/stanford'
+  Treat::Loaders::Stanford.load
   
   # Hold one instance of the pipeline per language.
   @@parsers = {}

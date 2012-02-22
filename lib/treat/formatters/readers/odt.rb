@@ -1,27 +1,39 @@
-# A reader for the ODT (Open Office) document format.
+# A reader for the ODT (Open Office) 
+# document format.
 #
-# Based on work by Mark Watson, licensed under the GPL.
-# Original project website: http://www.markwatson.com/opensource/
+# Based on work by Mark Watson, 
+# licensed under the GPL.
+# 
+# Original project website: 
+# http://www.markwatson.com/opensource/
+#
+# Todo: reimplement with Nokogiri and use
+# XML node information to better translate
+# the format of the text.
 class Treat::Formatters::Readers::ODT
-
 
   # Require the 'zip' gem to unarchive the ODT files
   silence_warnings { require 'zip' }
-  # Build an entity from an ODT file.
+  
+  # Extract the readable text from an ODT file.
+  #
+  # Options: none.
   def self.read(document, options = {})
     f = nil
-    Zip::ZipFile.open(document.file, Zip::ZipFile::CREATE) do |zipfile|
+    Zip::ZipFile.open(document.file, 
+    Zip::ZipFile::CREATE) do |zipfile|
       f = zipfile.read('content.xml')
     end
-    raise "Couldn't unzip dot file #{document.file}!" unless f
-    xml_h = OOXmlHandler.new
+    raise "Couldn't unzip dot file " +
+    "#{document.file}!" unless f
+    xml_h = ODTXmlHandler.new
     REXML::Document.parse_stream(f, xml_h)
-    document << Treat::Entities::Zone.from_string(xml_h.plain_text)
-    document
+    document << Treat::Entities::Zone.
+    from_string(xml_h.plain_text)
   end
   
   # Xml listener for the parsing of the ODT file.
-  class OOXmlHandler
+  class ODTXmlHandler
     require 'rexml/document'
     require 'rexml/streamlistener'
     include REXML::StreamListener

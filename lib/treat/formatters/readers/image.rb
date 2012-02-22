@@ -8,6 +8,7 @@
 # lingual capabilities."
 #
 # Original paper:
+#
 # Breuel, Thomas M. The Ocropus Open Source OCR System.
 # DFKI and U. Kaiserslautern, Germany.
 class Treat::Formatters::Readers::Image
@@ -15,8 +16,10 @@ class Treat::Formatters::Readers::Image
   #  Read a file using the Google Ocropus reader.
   #
   # Options:
+  #
   # - (Boolean) :silent => whether to silence Ocropus.
   def self.read(document, options = {})
+    
     read = lambda do |doc|
       create_temp_dir do |tmp|
         `ocropus book2pages #{tmp}/out #{doc.file}`
@@ -30,10 +33,11 @@ class Treat::Formatters::Readers::Image
         doc.set :file, f
       end
     end
+    
     options[:silent] ?
     silence_stdout { read.call(document) } :
     read.call(document)
-    document
+    
   end
   
 end

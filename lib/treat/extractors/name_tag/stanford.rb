@@ -3,9 +3,8 @@
 # the Stanford Deterministic Coreference Resolver.
 class Treat::Extractors::NameTag::Stanford
 
-  # Require the Stanford CoreNLP gem and get some
-  # utility Java classes.
-  require 'stanford-core-nlp'
+  require 'treat/loaders/stanford'
+  Treat::Loaders::Stanford.load
   
   StanfordCoreNLP.load_class('ArrayList', 'java.util')
   StanfordCoreNLP.load_class('Word', 'edu.stanford.nlp.ling')

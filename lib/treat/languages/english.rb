@@ -13,15 +13,15 @@ class Treat::Languages::English
     :coreferences => [:stanford],
     :roles => [:naive]
   }
-
-  Processors = {
-    :chunkers => [:txt],
-    :parsers => [:stanford, :enju],
-    :segmenters => [:tactful, :punkt, :stanford],
-    :tokenizers => [:perl, :tactful, :macintyre,
-    :multilingual, :punkt, :stanford]
+  
+  Inflectors = {
+    :conjugations => [:linguistics],
+    :declensions => [:english, :linguistics],
+    :stem => [:porter, :porter_c, :uea],
+    :ordinal_words => [:linguistics],
+    :cardinal_words => [:linguistics]
   }
-
+  
   Lexicalizers = {
     :category => [:from_tag],
     :linkages => [:naive],
@@ -29,12 +29,12 @@ class Treat::Languages::English
     :tag => [:lingua, :brill, :stanford]
   }
 
-  Inflectors = {
-    :conjugations => [:linguistics],
-    :declensions => [:english, :linguistics],
-    :stem => [:porter, :porter_c, :uea],
-    :ordinal_words => [:linguistics],
-    :cardinal_words => [:linguistics]
+  Processors = {
+    :chunkers => [:txt],
+    :parsers => [:stanford, :enju],
+    :segmenters => [:tactful, :punkt, :stanford],
+    :tokenizers => [:perl, :tactful, :macintyre,
+    :multilingual, :punkt, :stanford]
   }
   
   Retrievers = {

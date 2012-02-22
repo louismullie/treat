@@ -4,7 +4,7 @@
 # Project website: http://deveiate.org/projects/Linguistics/
 module Treat::Inflectors::Conjugations::Linguistics
 
-  require 'treat/helpers/linguistics_loader'
+  require 'treat/loaders/linguistics'
   
   # Conjugate a verb using ruby linguistics with the specified
   # mode, tense, count and person.

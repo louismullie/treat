@@ -7,18 +7,23 @@ module Treat::Formatters::Readers::PDF
   #
   # Options: none.
   def self.read(document, options = {})
+    
     create_temp_file(:txt) do |tmp|
+      
       `pdftotext #{document.file} #{tmp} `.strip
       f = File.read(tmp)
       f.gsub!("\t\r ", '')
       f.gsub!('-­‐', '-')
       f.gsub!("\n\n", '#keep#')
       f.gsub!("\n", ' ')
-      f.gsub!(" ", ' ')
+      # Fix for an incompatible space character.
+      f.gsub!(" ", ' ')  
       f.gsub!('#keep#', "\n\n")
-      document << Treat::Entities::Zone.from_string(f)
+      document << 
+      Treat::Entities::Zone.from_string(f)
+      
     end
-    document
+    
   end
 
 end

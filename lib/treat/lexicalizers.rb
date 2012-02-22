@@ -16,7 +16,7 @@ module Treat::Lexicalizers
   module Category
     extend Treat::Groupable
     self.type = :annotator
-    self.targets = [:word]
+    self.targets = [:token]
     self.default = :from_tag
   end
 

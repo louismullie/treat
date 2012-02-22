@@ -5,8 +5,10 @@
 # Project homepage:
 # https://github.com/iterationlabs/ruby-readability
 class Treat::Formatters::Readers::HTML
-
-  require 'readability'
+  
+  # gem "ruby-readability", :require => 'readability' # Fix
+  
+  require 'ruby-readability'
 
   # By default, don't backup the original HTML.
   DefaultOptions = {
@@ -49,8 +51,6 @@ class Treat::Formatters::Readers::HTML
       Readability::Document.new(
       section.value, options).content
     end
-
-    document
 
   end
 

@@ -1,28 +1,26 @@
-## Todo in CoreNLP
-
-- Stanford logging
-- Make sure that Core NLP reloads appropriately when changing languages. That's right, once it loads an annotator once it always loads the same annotators when you make new pipelines.  
-
 ## Todo in Treat
 
-- Stanford/Enju phrase in phrase
+- Enju dependencies
+- Coref parse and NER parse
 - XML unserializer
 - Stanford dependencies parse
-- JWI
-- Add XML stripper from the Stanford tools
-- Try new encodings
 - Improve linkers
 - Enju - better tag handling.
-- More information with categories
-- Convert tags
-- Check lingua punctuation tags
-- Move data with Wordnet
-- Install with JAR, custom JAR path
-- Mark Watson zip
-- Thoroughly test on ...
+
+# Testing
+
+- All green
+- Thoroughly test on ... ZIP + punkt + engtagger
+- Rake test
+- Wiki test
+- Build and test
 
 ## Future
 
+- ABW, ODT Nokogiri
+- Try new encodings
+- Tags: description, conversion
+- JWI
 - Benchmarks
 - Tests
 - Add Stanford and Wordnet lemmatizers
@@ -31,5 +29,3 @@
 - Enju as a server
 - Sectionners
 - Sentiment analysis
-
- no such file to load -- punkt-segmenter (LoadError)

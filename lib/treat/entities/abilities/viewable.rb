@@ -38,9 +38,9 @@ module Treat::Entities::Abilities::Viewable
         dependencies << 
         "#{dependency.target}#{dependency.type}"
       end
-      s += "  |  #{short_value.inspect}" +
-      "  |  #{@features.inspect}" +
-      "  | { #{dependencies.join(', ')} }"
+      s += "  --- #{short_value.inspect}" +
+      "  ---  #{@features.inspect} " +
+      "  --- #{dependencies.inspect} "
     end
     s
   end

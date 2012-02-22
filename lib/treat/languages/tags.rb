@@ -283,7 +283,7 @@ module Treat
 
         'Punctuation', ['', '', '', '', 'PU', 'PN'],
         'Punctuation, sentence ender', ['PUN', '.', '.', '', '', 'PN'],
-        'Punctuation, sentence ender', ['PUN', '.', 'PP', '$.', '', 'PN'],
+        
         'Punctuation, semicolon', ['PUN', '.', '.', '', '', 'PN'],
         'Puncutation, colon or ellipsis', ['PUN', ':', ':'],
         'Punctuationm, comma', ['PUN', ',', ',', '$,'],
@@ -293,18 +293,17 @@ module Treat
         'Punctuation, right bracket', ['PUR', ')', ')'],
         'Punctuation, quotation mark, left', ['PUQ', '', '``'],
         'Punctuation, quotation mark, right', ['PUQ', '', '"'],
-=begin
-        PP      Punctuation, sentence ender             ., !, ?
-        PPC     Punctuation, comma                      ,
-        PPD     Punctuation, dollar sign                $
-        PPL     Punctuation, quotation mark left        ``
-        PPR     Punctuation, quotation mark right       ''
-        PPS     Punctuation, colon, semicolon, elipsis  :, ..., -
-        LRB     Punctuation, left bracket               (, {, [
-        RRB     Punctuation, right bracket              ), }, ]
-=end    
-        'Word, truncated, left', ['', '', '', 'TRUNC'],
-
+        
+        # Extension to the penn treebank
+        'Punctuation, sentence ender', ['PUN', '.', 'PP', '', '', 'PN'],
+        'Punctuation, semicolon', ['PUN', '.', 'PPS', '', '', 'PN'],
+        'Punctuation, comma', ['PUN', ',', 'PPC', '$,'],
+        'Punctuation, dash', ['PUN', '-', '-'],
+        'Punctuation, dollar sign', ['PUN', '', 'PPD'],
+        'Punctuation, left bracket', ['PUL', '(', '(', 'PPL'],
+        'Punctuation, right bracket', ['PUR', ')', 'PPR'],
+        # 
+        
         'Unknown, foreign words (not in lexicon)', ['UNZ', '(FW-)', 'FW', '', 'FW'],
 
         'Symbol', ['', '', 'SYM', 'XY'],

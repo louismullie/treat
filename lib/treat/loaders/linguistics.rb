@@ -1,8 +1,8 @@
-class Treat::Helpers
+class Treat::Loaders
   
   # A helper class to load a language class
   # registered with the Linguistics gem.
-  class LinguisticsLoader
+  class Linguistics
     
     silence_warnings { require 'linguistics' }
     @@languages = {}

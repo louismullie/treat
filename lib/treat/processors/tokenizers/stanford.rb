@@ -2,8 +2,8 @@
 # Penn-Treebank style tokenizer.
 class Treat::Processors::Tokenizers::Stanford
 
-  # Require the Stanford Core NLP Java bindings.
-  require 'stanford-core-nlp'
+  require 'treat/loaders/stanford'
+  Treat::Loaders::Stanford.load
 
   # By default, run verboselu.
   DefaultOptions = {

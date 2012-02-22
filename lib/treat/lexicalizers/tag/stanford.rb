@@ -1,8 +1,8 @@
 # Wrapper for the Stanford POS tagger.
 class Treat::Lexicalizers::Tag::Stanford
 
-  # Require the gem and load helper classes.
-  require 'stanford-core-nlp'
+  require 'treat/loaders/stanford'
+  Treat::Loaders::Stanford.load
   StanfordCoreNLP.load_class('ArrayList', 'java.util')
   StanfordCoreNLP.load_class('Word', 'edu.stanford.nlp.ling')
   StanfordCoreNLP.load_class('MaxentTagger', 'edu.stanford.nlp.tagger.maxent')
@@ -55,7 +55,7 @@ class Treat::Lexicalizers::Tag::Stanford
     
     language = Treat::Languages.describe(lang)
     model = StanfordCoreNLP::Config::Models[:pos][language]
-    model = StanfordCoreNLP.jar_path +
+    model = Treat.data + 'stanford/' +
     StanfordCoreNLP::Config::ModelFolders[:pos] + model
     @@taggers[lang] ||= 
     StanfordCoreNLP::MaxentTagger.new(model)

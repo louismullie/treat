@@ -22,7 +22,7 @@ module Treat::Lexicalizers::Category::FromTag
       unless cat
         cat = Wttc[tag]
       end
-    elsif entity.is_a?(Treat::Entities::Word)
+    else
       cat = Wttc[tag]
     end
     

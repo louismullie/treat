@@ -22,7 +22,7 @@ class Treat::Formatters::Serializers::XML
     if !entity.features.nil? && entity.features.size != 0
       attributes << ' '
       entity.features.each_pair do |feature, value|
-        if value.is_a? Entities::Entity
+        if value.is_a? Treat::Entities::Entity
           attributes << "#{feature}='#{value.id}' "
         else
           attributes << "#{feature}='#{escape(value)}' "

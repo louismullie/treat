@@ -1,6 +1,8 @@
 class Treat::Extractors::Coreferences::Stanford
     
-    require 'stanford-core-nlp'
+  require 'treat/loaders/stanford'
+  Treat::Loaders::Stanford.load
+  
     @@pipeline = nil
     
     def self.coreferences(entity, options = {})

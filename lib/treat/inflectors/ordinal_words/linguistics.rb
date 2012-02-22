@@ -5,7 +5,8 @@
 # Project website: http://deveiate.org/projects/Linguistics/
 class Treat::Inflectors::OrdinalWords::Linguistics
 
-  require 'treat/helpers/linguistics_loader'
+  require 'treat/loaders/linguistics'
+  
   # Desribe a number in words in ordinal form, using the
   # 'linguistics' gem.
   def self.ordinal_words(number, options = {})

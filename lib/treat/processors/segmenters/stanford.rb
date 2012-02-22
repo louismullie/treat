@@ -2,9 +2,9 @@
 # the Stanford parser.
 class Treat::Processors::Segmenters::Stanford
 
-  # Require bindings for the Stanford Core NLP package.
-  require 'stanford-core-nlp'
-
+  require 'treat/loaders/stanford'
+  Treat::Loaders::Stanford.load
+  
   # By default, run verbosely.
   DefaultOptions = {
     :silence => false,

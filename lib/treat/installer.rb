@@ -46,22 +46,15 @@ module Treat::Installer
 
     begin
 
-      begin
-        require 'progressbar'
-      rescue
-        title "Installing progress bar."
-        @@installer.install('progressbar')
-      end
-
       title "Install required gem dependencies for the #{l}."
-      install_required_dependencies(lang_class)
+#      install_required_dependencies(lang_class)
 
       title "Install optional gem dependencies for the #{l}."
-      install_optional_dependencies(lang_class)
+ #     install_optional_dependencies(lang_class)
 
       title "Install optional binaries "+
       "(you may need to authenticate this)."
-      install_binaries
+  #    install_binaries
 
       title "Download Stanford Core NLP JARs and " +
       "model files for the the #{l}.\n\n"
@@ -318,7 +311,7 @@ module Treat::Installer
 
         puts "- Creating directory data/stanford ..."
         unless File.readable?(Treat.data + 'stanford')
-          FileUtils.mkdir(Treat.data + 'stanford')
+          FileUtils.mkdir(Treat.data + 'stanford/')
         end
 
         puts "- Copying model files to data/stanford ..."

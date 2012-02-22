@@ -13,7 +13,8 @@ Gem::Specification.new do |s|
   s.description = %q{ Treat is a toolkit for text retrieval, information extraction and natural language processing. }
   
   # Add all files.
-  s.files = Dir['lib/**/*'] + Dir['test/**/*'] + Dir['tmp/**/*'] + 
+  s.files = Dir['lib/**/*'] + Dir['test/**/*'] + 
+  Dir['tmp/**/*'] + Dir['data/**/*'] + Dir['bin/**/*'] +
   ['README', 'TODO', 'LICENSE', 'INSTALL']
   
   # Runtime dependencies
