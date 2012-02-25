@@ -5,14 +5,13 @@
 # Project homepage:
 # https://github.com/iterationlabs/ruby-readability
 class Treat::Formatters::Readers::HTML
-  
-  # gem "ruby-readability", :require => 'readability' # Fix
-  
-  require 'ruby-readability'
 
-  # By default, don't backup the original HTML.
+  silence_warnings { require 'ruby-readability' }
+
+  # By default, don't backup the original HTML
   DefaultOptions = {
-    :keep_html => false
+    :keep_html => false,
+    :tags => %w[p div h1 h2 h3 ul ol dl dt li]
   }
 
   # Read the HTML document and strip it of its markup.
@@ -42,14 +41,21 @@ class Treat::Formatters::Readers::HTML
     options = DefaultOptions.merge(options)
     f = File.read(document.file)
     document << Treat::Entities::Zone.from_string(f)
+    
     document.each_section do |section|
       if options[:keep_html]
         section.set :html_value,
         section.value
       end
-      section.value =
-      Readability::Document.new(
-      section.value, options).content
+      silence_warnings do
+        # Strip comments
+        section.value.gsub!(/<!--[^>]*-->/m, '')
+        d = Readability::Document.new(
+        section.value, options)
+        section.value = d.content
+        document.set :page_title, d.title
+        document.set :format, :html
+      end
     end
 
   end

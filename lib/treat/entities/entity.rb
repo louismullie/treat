@@ -34,13 +34,14 @@ module Treat::Entities
 
     # Implement support for #magic.
     include Abilities::Magical
-    
-    # Implement support for to_s, inspect, etc.
+
+    # Implement support for #to_s, #inspect, etc.
     include Abilities::Viewable
 
-    # Implement support for check_has and check_hasnt_children?
+    # Implement support for #check_has
+    # and #check_hasnt_children?
     include Abilities::Checkable
-    
+
     # Implement support for #each_entity, as well as
     # #entities_with_type, #ancestors_with_type,
     # #entities_with_feature, #entities_with_category.
@@ -69,7 +70,7 @@ module Treat::Entities
     # sugar for the #self.build method.
     def method_missing(sym, *args, &block)
       return self.build(*args) if sym == nil
-      
+
       if !@features.has_key?(sym)
         r = magic(sym, *args, &block)
         return r unless r == :no_magic
@@ -82,9 +83,9 @@ module Treat::Entities
       else
         @features[sym]
       end
-      
+
     end
-    
+
     # Add an entity to the current entity.
     # Registers the entity in the root node
     # token registry if the entity is a leaf.
@@ -102,7 +103,7 @@ module Treat::Entities
       @parent.value = '' if has_parent?
       entities[0]
     end
-    
+
     private
 
     # Lookup if a handler method is available for the
@@ -117,8 +118,8 @@ module Treat::Entities
         Treat::Categories.methods, sym)
       end
     end
-  
-    
+
+
   end
-  
+
 end

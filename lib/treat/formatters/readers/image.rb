@@ -38,6 +38,8 @@ class Treat::Formatters::Readers::Image
     silence_stdout { read.call(document) } :
     read.call(document)
     
+    d.set :format, :image
+    
   end
   
 end

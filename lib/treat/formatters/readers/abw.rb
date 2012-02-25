@@ -21,9 +21,10 @@ class Treat::Formatters::Readers::ABW
     xml_h = ABWXmlHandler.new
     REXML::Document.parse_stream(
     IO.read(document.file), xml_h)
-    document << Treat::Entities::Entity.
+    d = document << Treat::Entities::Zone.
     from_string(xml_h.plain_text)
-
+    d.set :format, :abi_word
+    
   end
   
   # Helper class to parse the AbiWord file.

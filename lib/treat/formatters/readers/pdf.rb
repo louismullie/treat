@@ -19,8 +19,10 @@ module Treat::Formatters::Readers::PDF
       # Fix for an incompatible space character.
       f.gsub!(" ", ' ')  
       f.gsub!('#keep#', "\n\n")
-      document << 
+      d = document << 
       Treat::Entities::Zone.from_string(f)
+      
+      d.set :format, :pdf
       
     end
     

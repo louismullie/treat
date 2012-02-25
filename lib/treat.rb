@@ -4,7 +4,7 @@ module Treat
 
   # Require custom exception cass.
   require 'treat/exception'
-  
+
   # Treat requires Ruby 1.9 or higher.
   if RUBY_VERSION <= '1.9'
     raise Treat::Exception,
@@ -19,15 +19,17 @@ module Treat
   require 'treat/configurable'
   extend Treat::Configurable
 
-  # Useful directory paths.
   def self.lib; File.dirname(__FILE__) + '/'; end
   def self.tmp; lib + '../tmp/'; end
   def self.bin; lib + '../bin/'; end
   def self.data; lib + '../data/'; end
+  def self.test; lib + '../test/'; end
+  def self.downloads; lib + '../downloads/'; end
 
   # Require all files for the Treat library.
   require 'treat/object'
   require 'treat/kernel'
+  require 'treat/downloader'
   require 'treat/languages'
   require 'treat/entities'
   require 'treat/categories'

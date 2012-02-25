@@ -5,7 +5,8 @@ module Treat::Installer
 
   # Require the Rubygem dependency installer.
   require 'rubygems/dependency_installer'
-
+  require 'treat/downloader'
+  
   # Binaries to install and their purpose.
   Binaries = {
     'ocropus' => 'recognize text in image files',
@@ -47,22 +48,22 @@ module Treat::Installer
     begin
 
       title "Install required gem dependencies for the #{l}."
-#      install_required_dependencies(lang_class)
+      install_required_dependencies(lang_class)
 
       title "Install optional gem dependencies for the #{l}."
- #     install_optional_dependencies(lang_class)
+      install_optional_dependencies(lang_class)
 
-      title "Install optional binaries "+
-      "(you may need to authenticate this)."
-  #    install_binaries
-
+      title "Download model for the Punkt segmenter for the #{l}."
+      download_punkt_models(language)
+      
       title "Download Stanford Core NLP JARs and " +
       "model files for the the #{l}.\n\n"
       download_stanford(language)
 
-      title "Download model for the Punkt segmenter for the #{l}."
-      download_punkt_models(language)
-
+      title "Install optional binaries "+
+      "(you may need to authenticate this)."
+      install_binaries
+      
       #title "Downloading Wordnet database."
       #download_wordnet if language == :english
 

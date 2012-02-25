@@ -22,6 +22,9 @@ class Treat::Formatters::Readers::XML
   # - (Boolean) :keep_xml => whether to backup the XML
   #   markup while cleaning.
   def self.read(document, options = {})
+    
+    raise 'Not implemented.'
+    
     options = DefaultOptions.merge(options)
 
     document << Treat::Entities::Entity.
@@ -75,7 +78,7 @@ class Treat::Formatters::Readers::XML
     
     end
     
-    document
+    document.set :format, :xml
   
   end
 

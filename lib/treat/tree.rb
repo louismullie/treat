@@ -128,8 +128,8 @@ module Treat::Tree
       @children.each do |child|
         child.set_as_root!
       end
-      @children.clear
-      @children_hash.clear
+      @children = []
+      @children_hash = {}
       self
     end
 

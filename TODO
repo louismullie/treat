@@ -1,11 +1,12 @@
 ## Todo in Treat
 
-- Enju dependencies
+- Enju dependencies, better tag handling.
 - Coref parse and NER parse
 - XML unserializer
 - Stanford dependencies parse
 - Improve linkers
-- Enju - better tag handling.
+# Use english, in folder.
+- Lazy loading of languages
 
 # Testing
 

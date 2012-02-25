@@ -3,31 +3,23 @@
 # extension of the supplied document.
 class Treat::Formatters::Readers::Autoselect
   
-  # A list of image extensions that should 
-  # be routed to OCR.
-  ImageExtensions = 
-    ['gif', 'jpg', 'jpeg', 'png']
-  
   # Select the appropriate reader based on 
   # the format of the filename in document.
   #
   # Options: none.
   def self.read(document, options)
     
-    ext = document.file.split('.')[-1]
-    reader = 
-      ImageExtensions.include?(ext) ? 
-      'image' : ext
-    reader = 'html' if reader == 'htm'
-    reader = 'yaml' if reader == 'yml'
+    reader = document.format
     
     begin
       r = Treat::Formatters::Readers.
       const_get(cc(reader))
-    rescue NameError
+    rescue Treat::Exception => e
+      
       raise Treat::Exception,
       "Cannot find a reader " +
-      "for format: '#{ext}'."
+      "for format: '#{ext}'. " +
+      "(#{e.message})"
     end
     
     document = r.read(document, options)

@@ -14,10 +14,6 @@ module Treat::Configurable
       attr_accessor :detect_language
       # Symbol - the finest entity level at which to detect language.
       attr_accessor :language_detection_level
-      # String - folder of this file.
-      attr_accessor :lib
-      # String - folder for tests.
-      attr_accessor :test
     end
 
     # Set the default options.
@@ -28,10 +24,6 @@ module Treat::Configurable
       self.detect_language = false
       # Detect the language once per document by default.
       self.language_detection_level = :document
-      # Set the lib path to that of this file.
-      self.lib = File.dirname(__FILE__)
-      # Set the paths to the test folder.
-      self.test = self.lib + '/../test'
     end
 
   end

@@ -83,10 +83,9 @@ module Treat::Entities::Abilities::Iterable
     ancestor = self
     ancestors = []
     while (a = ancestor.ancestor_with_types(*types))
-      ancestors << a
+      yield a
       ancestor = ancestor.parent
     end
-    ancestors
   end
   
   # Returns an array of ancestors of this entity that

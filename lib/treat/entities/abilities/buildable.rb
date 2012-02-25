@@ -4,20 +4,27 @@
 # is pretty much self-explanatory.
 module Treat::Entities::Abilities::Buildable
 
+  # Simple regexps to match common entities.
   WordRegexp = /^[[:alpha:]\-']+$/
   NumberRegexp = /^[[:digit:]]+$/
   PunctRegexp = /^[[:punct:]]+$/
   UriRegexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix
   EmailRegexp = /.+\@.+\..+/
   
+  # A list of supported image extensions.
+  ImageExtensions = 
+    ['gif', 'jpg', 'jpeg', 'png']
+    
   # Build an entity from anything (can be
   # a string, numeric,folder, or file name
   # representing a raw or serialized file).
   def build(file_or_value, options = {})
 
     fv = file_or_value.to_s
-
-    if File.readable?(fv)
+    
+    if fv =~ UriRegexp
+      from_url(file_or_value, options)
+    elsif File.readable?(fv)
       if FileTest.directory?(fv)
         from_folder(file_or_value, options)
       else
@@ -54,6 +61,30 @@ module Treat::Entities::Abilities::Buildable
       "but type detected was #{cl(e.class).downcase}."
     end
     
+    e
+  end
+  
+  # Build a document from an URL.
+  def from_url(url, options)
+    unless self == 
+      Treat::Entities::Document
+      raise Treat::Exception,
+      'Cannot create something ' +
+      'else than a document from a url.'
+    end
+    
+    uri = ::URI.parse(url)
+
+    sp = uri.path.split('/')
+    sp.shift if sp[0] == ''
+    
+    file = sp[-1]
+    path = sp.size == 1 ? 
+    '/' : sp[0..-2].join('/')
+    
+    f = Treat::Downloader.download(uri.host, file, path)
+    e = from_file(f, options)
+    e.set :url, url
     e
   end
 
@@ -110,55 +141,57 @@ module Treat::Entities::Abilities::Buildable
 
   # Build a document from a raw or serialized file.
   def from_file(file, options)
+    
     unless File.readable?(file)
       raise Treat::Exception,
       "Path '#{file}' does not "+
       "point to a readable file."
     end
-
-    ext = file.split('.')[-1]
+    
+    fmt = detect_format(file)
+    
+    options[:fmt] = fmt
+    
     # Humanize the yaml extension.
-    ext = 'yaml' if ext == 'yml'
-    if ext == 'yaml'
-      from_serialized_file(file, options)
-    elsif ext == 'xml'
-      beginning = nil
-      File.open(file) do |w|
-        beginning = w.readlines(200)
-      end
-      beginning = beginning.join(' ')
-      if beginning.index('<treat>')
-        from_serialized_file(file)
-      else
-        from_raw_file(file, options)
-      end
+    if fmt == :yaml || 
+      (fmt == :xml && is_treat_xml?(file))
+      f = from_serialized_file(file, options)
     else
-      from_raw_file(file, options)
+      f = from_raw_file(file, options)
     end
+    
   end
 
   # Build a document from a raw file.
   def from_raw_file(file, options)
+    
     unless self == 
       Treat::Entities::Document
       raise Treat::Exception,
       "Cannot create something else than a " +
       "document from raw file '#{file}'."
     end
+    
     d = Treat::Entities::Document.new(file)
-    d.read(:autoselect, options)
+    fmt = options[:format] ? fmt : :autoselect
+    d.read(fmt, options)
+    
   end
 
   # Build an entity from a serialized file.
-  def from_serialized_file(file)
+  def from_serialized_file(file, options)
+    
     d = Treat::Entities::Document.new(file)
-    d.unserialize(:autoselect, options)
+    fmt = options[:format] ? fmt : :autoselect
+    d.unserialize(fmt, options)
     d.children[0].set_as_root!
     d.children[0]
+    
   end
 
   # Build any kind of entity from a string.
   def anything_from_string(string)
+    
     case cl(self).downcase.intern
     when :document, :collection
       raise Treat::Exception,
@@ -186,10 +219,18 @@ module Treat::Entities::Abilities::Buildable
     else
       self.new(string)
     end
+    
   end
-
+  
+  def check_encoding(string)
+    string.encode("UTF-8", undef: :replace) # Fix
+  end
+  
   # Build a phrase from a string.
   def phrase_from_string(string)
+    
+    check_encoding(string)
+    
     if string.count('.!?') >= 1
       Treat::Entities::Sentence.new(string)
     else
@@ -200,6 +241,9 @@ module Treat::Entities::Abilities::Buildable
   # Build the right type of token
   # corresponding to a string.
   def token_from_string(string)
+    
+    check_encoding(string)
+    
     if string == "'s" || string == "'S"
       Treat::Entities::Clitic.new(string)
     elsif string =~ WordRegexp &&
@@ -223,9 +267,12 @@ module Treat::Entities::Abilities::Buildable
 
   # Build the right type of zone 
   # corresponding to the string.
+  
   def zone_from_string(string)
+    
+    check_encoding(string)
     dot = string.count('.!?')
-    if dot >= 1 && string.count("\n") > 0
+    if dot && dot >= 1 && string.count("\n") > 0
       Treat::Entities::Section.new(string)
     elsif string.count('.') == 0 && 
           string.size < 60
@@ -233,6 +280,32 @@ module Treat::Entities::Abilities::Buildable
     else
       Treat::Entities::Paragraph.new(string)
     end
+  
+  end
+  
+  private
+
+  def detect_format(filename)
+    
+    ext = filename.scan(/(.*?)\.?([a-zA-Z0-9]*)/)[1][1]
+    
+    format =
+      ImageExtensions.include?(ext) ? 
+      'image' : ext
+    format = 'html' if format == 'htm'
+    format = 'html' if format == ''
+    
+    format.intern
+  
+  end
+  
+  def is_treat_xml?(file)
+    beginning = nil
+    File.open(file) do |w|
+      beginning = w.readlines(200)
+    end
+    beginning = beginning.join(' ')
+    beginning.count('<treat>') > 0
   end
 
 end

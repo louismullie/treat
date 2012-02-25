@@ -4,7 +4,7 @@ class Treat::Formatters::Visualizers::TXT
   # Obtain a plain text visualization of the entity,
   # with no additional information.
   def self.visualize(entity, options = {})
-    v = recurse(entity, options).strip
+    recurse(entity, options).strip
   end
 
   def self.recurse(entity, options)
