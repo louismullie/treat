@@ -55,7 +55,6 @@ module Treat::Entities::Abilities::Doable
       raise Treat::Exception,
       "Task #{task} does not exist."
     end
-    puts "Adding #{g.type} #{task}."
     g
   end
 

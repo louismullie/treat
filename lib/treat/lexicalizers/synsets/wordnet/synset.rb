@@ -61,7 +61,7 @@ class Treat::Lexicalizers::Synsets::Wordnet::Synset
   # Respond to the missing method event.
   def method_missing(sym, *args, &block)
     ret = @original_synset.send(sym)
-    if ret.is_a?(::WordNet::Synset)
+    if ret.is_a?(Treat::Lexicalizers::Synsets::Wordnet::Synset)
       self.new(ret)
     else
       ret

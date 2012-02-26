@@ -12,8 +12,8 @@ module Treat::Entities
     # Require abilities.
     require 'treat/entities/abilities'
 
-    # Implements support for #register
-    # and #token_registry.
+    # Implements support for #register,
+    # #registry, and #contains_* methods.
     include Abilities::Registrable
 
     # Implement support for #accept.
@@ -36,7 +36,7 @@ module Treat::Entities
     include Abilities::Magical
 
     # Implement support for #to_s, #inspect, etc.
-    include Abilities::Viewable
+    include Abilities::Stringable
 
     # Implement support for #check_has
     # and #check_hasnt_children?
@@ -47,6 +47,9 @@ module Treat::Entities
     # #entities_with_feature, #entities_with_category.
     include Abilities::Iterable
 
+    # Implement support for #implode
+    include Abilities::Implodable
+
     # Initialize the entity with its value and
     # (optionally) a unique identifier. By default,
     # the object_id will be used as id.
@@ -55,6 +58,15 @@ module Treat::Entities
       super(value, id)
       @type = :entity if self == Entity
       @type ||= ucc(cl(self.class)).intern
+      unless is_a?(Treat::Entities::Token)
+        @count = 0
+        @registry = {
+          :id => {},
+          :value => {},
+          :type => {},
+          :position => {}
+        }
+      end
     end
 
     # Catch missing methods to support method-like
@@ -94,10 +106,7 @@ module Treat::Entities
     def <<(entities, clear_parent = true)
       entities = [entities] unless entities.is_a? Array
       entities.each do |entity|
-        if entity.is_a?(Treat::Entities::Token) ||
-          entity.is_a?(Treat::Entities::Phrase)
-          register_token(entity) unless entity.value == ''
-        end
+        register(entity)
       end
       super(entities)
       @parent.value = '' if has_parent?
@@ -118,7 +127,6 @@ module Treat::Entities
         Treat::Categories.methods, sym)
       end
     end
-
 
   end
 

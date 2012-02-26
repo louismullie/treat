@@ -61,7 +61,9 @@ class Treat::Formatters::Serializers::XML
     if indent == 0
       string += "\n</treat>"
       if options[:file]
-        File.open(options[:file], 'w') { |f| f.write(string) }
+        File.open(options[:file], 'w') do |f| 
+          f.write(string)
+        end
       end
       # puts string
     end

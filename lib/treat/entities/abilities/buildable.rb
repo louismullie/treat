@@ -10,7 +10,7 @@ module Treat::Entities::Abilities::Buildable
   PunctRegexp = /^[[:punct:]]+$/
   UriRegexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix
   EmailRegexp = /.+\@.+\..+/
-  
+  ExtensionRegexp = /^.*?\.([a-zA-Z0-9]{2,5})$/
   # A list of supported image extensions.
   ImageExtensions = 
     ['gif', 'jpg', 'jpeg', 'png']
@@ -82,10 +82,14 @@ module Treat::Entities::Abilities::Buildable
     path = sp.size == 1 ? 
     '/' : sp[0..-2].join('/')
     
-    f = Treat::Downloader.download(uri.host, file, path)
+    f = Treat::Downloader.download(
+    uri.host, file, path)
+    options[:_default_format] = :html
+    
     e = from_file(f, options)
     e.set :url, url
     e
+    
   end
 
   # Build an entity from a Numeric object.
@@ -148,10 +152,10 @@ module Treat::Entities::Abilities::Buildable
       "point to a readable file."
     end
     
-    fmt = detect_format(file)
-    
-    options[:fmt] = fmt
-    
+    dflt = options[:_default_format]
+    fmt = detect_format(file, dflt)
+    options[:_format] = fmt
+
     # Humanize the yaml extension.
     if fmt == :yaml || 
       (fmt == :xml && is_treat_xml?(file))
@@ -173,8 +177,8 @@ module Treat::Entities::Abilities::Buildable
     end
     
     d = Treat::Entities::Document.new(file)
-    fmt = options[:format] ? fmt : :autoselect
-    d.read(fmt, options)
+    
+    d.read(options[:_format], options)
     
   end
 
@@ -182,7 +186,9 @@ module Treat::Entities::Abilities::Buildable
   def from_serialized_file(file, options)
     
     d = Treat::Entities::Document.new(file)
-    fmt = options[:format] ? fmt : :autoselect
+    fmt = options[:_format] ? 
+    detect_format(file) : 
+    :autoselect
     d.unserialize(fmt, options)
     d.children[0].set_as_root!
     d.children[0]
@@ -275,37 +281,43 @@ module Treat::Entities::Abilities::Buildable
     if dot && dot >= 1 && string.count("\n") > 0
       Treat::Entities::Section.new(string)
     elsif string.count('.') == 0 && 
-          string.size < 60
+          string.size < 45
       Treat::Entities::Title.new(string)
     else
       Treat::Entities::Paragraph.new(string)
     end
   
   end
-  
-  private
 
-  def detect_format(filename)
-    
-    ext = filename.scan(/(.*?)\.?([a-zA-Z0-9]*)/)[1][1]
+  def detect_format(filename, default_to = :txt)
+
+    ext = filename.scan(ExtensionRegexp)[0][0]
     
     format =
       ImageExtensions.include?(ext) ? 
       'image' : ext
+      
+    # Humanize extensions.
     format = 'html' if format == 'htm'
-    format = 'html' if format == ''
+    format = 'yaml' if format == 'yml'
+    
+    format = default_to if format == ''
     
     format.intern
   
   end
   
   def is_treat_xml?(file)
+    
     beginning = nil
+    
     File.open(file) do |w|
       beginning = w.readlines(200)
     end
+    
     beginning = beginning.join(' ')
     beginning.count('<treat>') > 0
+    
   end
 
 end

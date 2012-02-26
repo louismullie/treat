@@ -18,7 +18,6 @@ class Treat::Formatters::Readers::HTML
   #
   # Options:
   #
-  # - (Boolean) :keep_html => whether to backup the HTML
   #   text when cleaning the document (default: false).
   # - (Boolean) :remove_empty_nodes => remove <p> tags
   #   that have no text content
@@ -39,24 +38,19 @@ class Treat::Formatters::Readers::HTML
 
     # set encoding with the guess_html_encoding
     options = DefaultOptions.merge(options)
-    f = File.read(document.file)
-    document << Treat::Entities::Zone.from_string(f)
-    
-    document.each_section do |section|
-      if options[:keep_html]
-        section.set :html_value,
-        section.value
-      end
-      silence_warnings do
-        # Strip comments
-        section.value.gsub!(/<!--[^>]*-->/m, '')
-        d = Readability::Document.new(
-        section.value, options)
-        section.value = d.content
-        document.set :page_title, d.title
-        document.set :format, :html
-      end
+    html = File.read(document.file)
+
+    silence_warnings do
+      # Strip comments
+      html.gsub!(/<!--[^>]*-->/m, '')
+      d = Readability::Document.new(
+      html, options)
+      document.value = d.content
+      document.set :page_title, d.title
+      document.set :format, :html
     end
+    
+    document
 
   end
 

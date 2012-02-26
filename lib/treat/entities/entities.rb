@@ -21,13 +21,13 @@ module Treat::Entities
     end
   end
 
+  # Represents a section, usually with a title
+  # and at least one paragraph.
+  class Section < Entity; end
+  
   # Represents a zone of text
   # (Title, Paragraph, List, Quote).
   class Zone < Entity; end
-
-  # Represents a section, usually with a title
-  # and at least one paragraph.
-  class Section < Zone; end
 
   # Represents a title, subtitle, logical header.
   class Title < Zone; end

@@ -5,8 +5,7 @@ class Treat::Lexicalizers::Relations::Naive
   # Fix - add options for sentences.
   def self.relations(entity, options = {})
     
-    if options[:linkage] == :is_a ||
-      options[:linkage] == :hypernym_of
+    if options[:relation] == :hyponym_of
 
       entity.each_word do |w1|
         hypernyms = []
@@ -28,7 +27,7 @@ class Treat::Lexicalizers::Relations::Naive
         w1.set :hypernyms, hypernyms
       end
 
-    elsif options[:linkage] == :synonym_of
+    elsif options[:relation] == :synonym_of
 
       entity.each_word do |w1|
         synonyms = []
@@ -44,7 +43,7 @@ class Treat::Lexicalizers::Relations::Naive
         w1.set :synonyms, synonyms
       end
 
-    elsif options[:linkage] == :antonym_of
+    elsif options[:relation] == :antonym_of
 
       entity.each_word do |w1|
         antonyms = []
@@ -62,7 +61,7 @@ class Treat::Lexicalizers::Relations::Naive
 
     else
       raise Treat::Exception,
-      "Invalid linkage option '#{options[:linkage]}'."
+      "Invalid linkage '#{options[:relation]}'."
     end
 
   end

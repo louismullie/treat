@@ -50,9 +50,9 @@ module Treat
       end
 
       def test_registrable
-        assert_equal @section.token_registry, @verb.token_registry
-        assert_equal @noun, @section.token_registry[:id][@noun.id]
-        assert_equal [@noun], @section.token_registry[:value][@noun.value]
+        assert_equal @section.registry, @verb.registry
+        assert_equal @noun, @section.registry[:id][@noun.id]
+        assert_equal [@noun], @section.registry[:type][@noun.type]
       end
 
       def test_delegatable_visitable

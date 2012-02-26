@@ -21,9 +21,10 @@ class Treat::Formatters::Readers::ABW
     xml_h = ABWXmlHandler.new
     REXML::Document.parse_stream(
     IO.read(document.file), xml_h)
-    d = document << Treat::Entities::Zone.
-    from_string(xml_h.plain_text)
-    d.set :format, :abi_word
+    
+    document.value = xml_h.plain_text
+    document.set :format, :abw_word
+    document
     
   end
   
@@ -40,7 +41,7 @@ class Treat::Formatters::Readers::ABW
         s.strip!
         if s.length > 0
           s += ' '
-          s += "\n\n" if s.length < 60
+          s += "\n\n" if s.length < 45
         end
         @plain_text << s
       end

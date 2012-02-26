@@ -4,38 +4,34 @@ class Treat::Processors::Segmenters::Stanford
 
   require 'treat/loaders/stanford'
   Treat::Loaders::Stanford.load
-  
-  # By default, run verbosely.
+
   DefaultOptions = {
-    :silence => false,
-    :log_file => false,
     :also_tokenize => false
   }
 
   # Keep one copy of the Stanford Core NLP pipeline.
   @@segmenter = nil
 
-  # Segment sentences using the sentence splitter 
-  # supplied by the Stanford parser. For better 
-  # performance, set the option :also_tokenize 
+  # Segment sentences using the sentence splitter
+  # supplied by the Stanford parser. For better
+  # performance, set the option :also_tokenize
   # to true, and this segmenter will also add
   # the tokens as children of the sentences.
   #
   # Options:
   #
-  # - (Boolean) :also_tokenize - Whether to also 
+  # - (Boolean) :also_tokenize - Whether to also
   # add the tokens as children of the sentence.
-  # - (String) :log_file => a filename to log 
-  # output to, instead of displaying it.
-  # - (String) :silence => send output to /dev/null.
   def self.segment(entity, options = {})
-    
+
+    options = DefaultOptions.merge(options)
     entity.check_hasnt_children
-    
-    options = get_options(options)
-    @@segmenter ||=  
+
+    @@segmenter ||=
     ::StanfordCoreNLP.load(:tokenize, :ssplit)
+
     text = ::StanfordCoreNLP::Text.new(entity.to_s)
+
     @@segmenter.annotate(text)
     text.get(:sentences).each do |sentence|
       s = Treat::Entities::Sentence.
@@ -46,20 +42,7 @@ class Treat::Processors::Segmenters::Stanford
         add_tokens(s, sentence.get(:tokens))
       end
     end
+
   end
 
-  # Helper method to parse options and 
-  # set configuration values.
-  def self.get_options(options)
-    options = DefaultOptions.merge(options)
-    if options[:silence]
-      options[:log_file] = '/dev/null' 
-    end
-    if options[:log_file]
-      ::StanfordCoreNLP.log_file = 
-      options[:log_file]
-    end
-    options
-  end
-  
 end

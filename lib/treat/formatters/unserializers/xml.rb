@@ -90,7 +90,7 @@ module Treat::Formatters::Unserializers::XML
         xml_reader.value.strip : ''
         if current_value && current_value != ''
           current_element.value = current_value
-          current_element.register_token(current_element)
+          current_element.register(current_element)  # Fix?
         end
       end
 

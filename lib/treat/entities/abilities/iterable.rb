@@ -17,6 +17,7 @@ module Treat::Entities::Abilities::Iterable
     end
     yield self if f
     unless @children.size == 0
+      # return unless contains_types?(types)
       @children.each do |child|
         child.each_entity(*types) { |y| yield y }
       end
@@ -81,7 +82,6 @@ module Treat::Entities::Abilities::Iterable
   def each_ancestor(*types)
     types = [:entity] if types.empty?
     ancestor = self
-    ancestors = []
     while (a = ancestor.ancestor_with_types(*types))
       yield a
       ancestor = ancestor.parent

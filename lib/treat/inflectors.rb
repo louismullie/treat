@@ -3,7 +3,7 @@
 module Treat::Inflectors
 
   # Return the stem (*not root form*) of a word.
-  module Stem
+  module Stemmers
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:word]
@@ -15,10 +15,8 @@ module Treat::Inflectors
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:word]
-    self.presets = {
-      :plural => {:count => :plural},
-      :singular => {:count => :singular}
-    }
+    self.preset_option = :count
+    self.presets = [:plural, :singular]
   end
 
   # Retrieve the different conjugations of a word
@@ -27,20 +25,14 @@ module Treat::Inflectors
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:word]
-    self.presets = {
-      :infinitive => {:mode => :infinitive},
-      :present_participle => {
-        :tense => :present,
-        :mode => :participle
-      },
-      :plural_verb => {:count => :plural},
-      :singular_verb => {:count => :singular}
-    }
+    self.preset_option = :form
+    self.presets = [:infinitive, :present_participle, 
+                    :plural_verb, :singular_verb]
   end
 
   # Retrieve the full text description of a
   # cardinal number.
-  module CardinalWords
+  module Cardinal
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:number]
@@ -48,7 +40,7 @@ module Treat::Inflectors
 
   # Retrieve the full text description of an
   # ordinal number.
-  module OrdinalWords
+  module Ordinal
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:number]

@@ -2,7 +2,7 @@ class Treat::Formatters::Readers::XML
 
   require 'treat/loaders/stanford'
   Treat::Loaders::Stanford.load
-  
+
   require 'cgi'
 
   # By default, don't backup the XML
@@ -22,64 +22,61 @@ class Treat::Formatters::Readers::XML
   # - (Boolean) :keep_xml => whether to backup the XML
   #   markup while cleaning.
   def self.read(document, options = {})
-    
+
     raise 'Not implemented.'
-    
+
     options = DefaultOptions.merge(options)
 
-    document << Treat::Entities::Entity.
-    from_string(File.read(document.file))
+    xml = File.read(document.file)
 
     @@xml_reader ||= StanfordCoreNLP.load(
     :tokenize, :ssplit, :cleanxml)
-    
-    document.each_section do |section|
-      
-      text = StanfordCoreNLP::Text.new(section.to_s)
-      @@xml_reader.annotate(text)
 
-      text.get(:sentences).each do |sentence|
+    text = StanfordCoreNLP::Text.new(xml)
+    @@xml_reader.annotate(text)
 
-        s = Treat::Entities::Sentence.
-        from_string(sentence.to_s, true)
+    text.get(:sentences).each do |sentence|
 
-        sentence.get(:tokens).each do |token|
-          val = token.value.to_s.strip.gsub('\/', '/')
-          next if val =~ /^<[^>]+>$/
+      s = Treat::Entities::Sentence.
+      from_string(sentence.to_s, true)
 
-          t = Treat::Entities::Token.
-          from_string(val)
-          c = token.get(:xml_context)
+      sentence.get(:tokens).each do |token|
+        val = token.value.to_s.strip.gsub('\/', '/')
+        next if val =~ /^<[^>]+>$/
 
-          if c
-            context = []
-            c.each { |tag| context << tag.to_s }
-            t.set :xml_context, context
-          end
+        t = Treat::Entities::Token.
+        from_string(val)
+        c = token.get(:xml_context)
 
-          s << t
-
+        if c
+          context = []
+          c.each { |tag| context << tag.to_s }
+          t.set :xml_context, context
         end
-        
-        if Treat::Entities::Zone.from_string('')
-        section << s
 
+        s << t
+
+      end
+
+      if Treat::Entities::Zone.from_string('')
+        section << s
       end
 
       if options[:backup]
-        section.set :xml_value,
+        document.set :xml_value,
         CGI.escapeHTML(text.to_s)
       end
-      
-      section.value = ''
-      puts section.value
+
+      document.value = ''
+      puts document.value
 
       abort
-    
+
     end
     
     document.set :format, :xml
-  
+    document
+    
   end
 
 end

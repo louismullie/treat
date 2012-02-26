@@ -47,7 +47,7 @@ class Treat::Lexicalizers::Tag::Lingua
     tokens = isolated_token ? [entity] : entity.tokens
     
     tokens.each do |token|
-
+      next if token.to_s == ''
       w = @@tagger.clean_word(token.to_s)
       t = @@tagger.assign_tag(left_tag, w)
       t = 'fw' if t.nil? || t == ''

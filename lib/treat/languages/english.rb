@@ -18,13 +18,13 @@ class Treat::Languages::English
     :conjugations => [:linguistics],
     :declensions => [:english, :linguistics],
     :stem => [:porter, :porter_c, :uea],
-    :ordinal_words => [:linguistics],
-    :cardinal_words => [:linguistics]
+    :ordinal => [:linguistics],
+    :cardinal => [:linguistics]
   }
   
   Lexicalizers = {
     :category => [:from_tag],
-    :linkages => [:naive],
+    :relations => [:naive],
     :synsets => [:wordnet],
     :tag => [:lingua, :brill, :stanford]
   }
@@ -33,8 +33,7 @@ class Treat::Languages::English
     :chunkers => [:txt],
     :parsers => [:stanford, :enju],
     :segmenters => [:tactful, :punkt, :stanford],
-    :tokenizers => [:perl, :tactful, :macintyre,
-    :multilingual, :punkt, :stanford]
+    :tokenizers => [:perl, :tactful, :macintyre, :punkt, :stanford]
   }
   
   Retrievers = {

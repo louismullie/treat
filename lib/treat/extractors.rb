@@ -4,7 +4,6 @@ module Treat::Extractors
   # Extracts the language from an entity.
   module Language
     extend Treat::Groupable
-    require 'treat/extractors/language/language_extractor.rb'
     self.type = :annotator
     self.targets = [:entity]
     self.default = :what_language

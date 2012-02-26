@@ -5,8 +5,10 @@
 - XML unserializer
 - Stanford dependencies parse
 - Improve linkers
-# Use english, in folder.
 - Lazy loading of languages
+- Tag set and language - once
+- Plural verb
+- Standoff format
 
 # Testing
 

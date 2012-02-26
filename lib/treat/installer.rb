@@ -167,15 +167,15 @@ module Treat::Installer
     f = "#{language}.yaml"
     download(f, 'punkt/')
     
-    dest = "#{Treat.data}punkt/"
+    dest = "#{Treat.models}punkt/"
 
-    puts "- Creating directory data/punkt ..."
+    puts "- Creating directory models/punkt ..."
     unless File.readable?(dest)
       FileUtils.mkdir(dest)
     end
     
-    puts "- Copying model files to data/punkt ..."
-    FileUtils.cp("#{Treat.tmp}punkt/#{f}", "#{Treat.data}punkt/#{f}")
+    puts "- Copying model files to models/punkt ..."
+    FileUtils.cp("#{Treat.tmp}punkt/#{f}", "#{Treat.models}punkt/#{f}")
     puts "- Cleaning up..."
     FileUtils.rm_rf("#{Treat.tmp}punkt")
 
@@ -196,15 +196,6 @@ module Treat::Installer
     puts "#{@@n}. #{string}"
     puts
     @@n += 1
-  end
-
-  # Detect the platform we're running on.
-  def self.detect_platform
-    p = RUBY_PLATFORM.downcase
-    return :mac if p.include?("darwin")
-    return :windows if p.include?("mswin")
-    return :linux if p.include?("linux")
-    return :unknown
   end
 
   # Install a dependency with a supplied purpose
@@ -247,7 +238,7 @@ module Treat::Installer
       FileUtils.mkdir(Treat.tmp + dir)
     end
 
-    file = File.open(Treat.tmp + dir + filename, 'w+')
+    file = File.open(Treat.tmp + dir + filename, 'w')
 
     begin
 
@@ -310,19 +301,19 @@ module Treat::Installer
           FileUtils.cp(Treat.tmp + f, Treat.bin + 'stanford/')
         end
 
-        puts "- Creating directory data/stanford ..."
-        unless File.readable?(Treat.data + 'stanford')
-          FileUtils.mkdir(Treat.data + 'stanford/')
+        puts "- Creating directory models/stanford ..."
+        unless File.readable?(Treat.models + 'stanford')
+          FileUtils.mkdir(Treat.models + 'stanford/')
         end
 
-        puts "- Copying model files to data/stanford ..."
+        puts "- Copying model files to models/stanford ..."
 
         Dir.entries(Treat.tmp + f_path).each do |f|
           next if f == '.' || f == '..'
           if FileTest.directory?(Treat.tmp + f_path + f)
             FileUtils.cp_r(
             Treat.tmp + f_path + f,
-            Treat.data + 'stanford/')
+            Treat.models + 'stanford/')
           end
         end
 

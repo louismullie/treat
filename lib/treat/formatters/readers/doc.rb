@@ -12,9 +12,9 @@ class Treat::Formatters::Readers::DOC
     f.gsub!("\n", ' ')
     f.gsub!('#keep#', "\n\n")
     
-    d = document << 
-    Treat::Entities::Zone.from_string(f)
-    d.set :format, :ms_word
+    document.value = f
+    document.set :format, :doc
+    document
     
   end
   

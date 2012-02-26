@@ -5,7 +5,7 @@ module Treat::Extractors::Language
   # The library works by checking for the presence
   # of words with bloom filters built from 
   # dictionaries based upon each source language.
-  class WhatLanguage < LanguageExtractor
+  class WhatLanguage
     
     # Require the 'whatlanguage' gem.
     silence_warnings { require 'whatlanguage'  }

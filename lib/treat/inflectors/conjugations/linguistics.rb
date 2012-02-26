@@ -6,20 +6,37 @@ module Treat::Inflectors::Conjugations::Linguistics
 
   require 'treat/loaders/linguistics'
   
+  DefaultOptions = {
+    :strict => false
+  }
+  
+  Forms = {
+    :present_participle =>
+    {:mode => :participle, :tense => :present},
+    :infinitive => {:mode => :infinitive},
+    :plural_verb => {:count => :plural},
+    :singular_verb => {:count => :singular}
+  }
+  
   # Conjugate a verb using ruby linguistics with the specified
   # mode, tense, count and person.
   #
   # Options:
   #
+  # - (Boolean) :strict => whether to tag all words or only verbs.
   # - (Symbol) :mode => :infinitive, :indicative, :subjunctive, :participle
   # - (Symbol) :tense => :past, :present, :future
   # - (Symbol) :count => :singular, :plural
   # - (Symbol) :person => :first, :second, :third
+  # 
   def self.conjugations(entity, options = {})
     
-    return unless entity.category == :verb
+    options = DefaultOptions.merge(options)
+    return if entity.category != :verb && options[:strict]
     
-    klass = Treat::Helpers::LinguisticsLoader.load(entity.language)
+    options = Forms[options[:form]] if options[:form]
+    
+    klass = Treat::Loaders::Linguistics.load(entity.language)
     if options[:mode] == :infinitive
       silence_warnings { klass.infinitive(entity.to_s) }
     elsif options[:mode] == :participle && options[:tense] == :present

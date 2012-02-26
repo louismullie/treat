@@ -25,36 +25,28 @@ module Treat::Lexicalizers
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:word]
-    self.presets = {
-      :synonyms => {:nym => :synonym},
-      :antonyms => {:nym => :antonym},
-      :hyponyms => {:nym => :hyponym},
-      :hypernyms => {:nym => :hypernym}
-    }
+    self.preset_option = :nym
+    self.presets = [:synonyms, :antonyms, 
+                    :hyponyms, :hypernyms]
   end
 
   # Find the lexical relations between words.
   module Relations
     extend Treat::Groupable
     self.type = :annotator
-    self.targets = [:phrase]
-    self.presets = {
-      :is_a => {:relation => :is_a},
-      :synonym_of => {:relation => :synonym_of},
-      :antonym_of => {:relation => :antonym_of}
-    }
+    self.targets = [:document]
+    self.preset_option = :relation
+    self.presets = [:hyponym_of, :hypernym_of, 
+                    :synonym_of, :antonym_of]
   end
 
   # Find the grammatical links between words.
   module Linkages
     extend Treat::Groupable
     self.type = :annotator
-    self.targets = [:phrase]
-    self.presets = {
-      :main_verb => {:relation => :main_verb},
-      :object => {:relation => :object},
-      :subject => {:relation => :subject}
-    }
+    self.targets = [:word]
+    self.preset_option = :linkage
+    self.presets = [:subject, :verb, :object]
   end
 
   # Make Lexicalizers categorizable.

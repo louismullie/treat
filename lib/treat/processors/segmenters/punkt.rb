@@ -38,7 +38,8 @@ module Treat::Processors::Segmenters::Punkt
     s.gsub!(/([^\.\?!]\.|\!|\?)([^\s])/) { $1 + ' ' + $2 }
     
     result = @@segmenters[lang].
-    sentences_from_text(s, :output => :sentences_text)
+    sentences_from_text(s, 
+    :output => :sentences_text)
     
     result.each do |sentence|
       entity << Treat::Entities::Phrase.
@@ -53,7 +54,8 @@ module Treat::Processors::Segmenters::Punkt
       model = options[:model]
     else
       l = Treat::Languages.describe(lang)
-      model = "#{Treat.data}punkt/#{l}.yaml"
+      model = "#{Treat.models}punkt/#{l}.yaml"
+
       unless File.readable?(model)
         raise Treat::Exception,
         "Could not get the language model " +
@@ -62,6 +64,7 @@ module Treat::Processors::Segmenters::Punkt
     end
     
     t = ::Psych.load(File.read(model))
+
     @@segmenters[lang] =
     ::Punkt::SentenceTokenizer.new(t)
     

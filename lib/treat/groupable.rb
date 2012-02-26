@@ -91,12 +91,11 @@ module Treat::Groupable
         attr_accessor :default
         # The entity types which the group's workers work on.
         attr_accessor :targets
-        # This will eventually be removed.
+        # Presets to automatically generate functions.
         attr_accessor :presets
+        # The preset option to use with preset functions.
+        attr_accessor :preset_option
       end
-      
-      # Initialize an empty hash of presets.
-      self.presets = {}
       
       # Return the method corresponding to the group.
       # This method resolves the name of the method

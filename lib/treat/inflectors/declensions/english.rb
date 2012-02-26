@@ -14,6 +14,10 @@ class Treat::Inflectors::Declensions::English
   # the 'english' ruby gem.
   def self.declensions(entity, options)
     
+    unless [:noun, :adjective, :determiner].
+      include?(entity.category)
+        return
+    end
     
     unless options[:count]
       raise Treat::Exception,

@@ -115,7 +115,7 @@ module Treat::Processors::Tokenizers::Perl
     text.gsub!(/ (\'t)(is|was) /i,' \1 \2 ')
     #s/ (wan)(na) / $1 $2 /ig;
     text.gsub!(/ (wan)(na) /i,' \1 \2 ')
-    tokens = text.split(/\s/)
+    text.split(/\s/)
 
   end
 

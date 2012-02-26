@@ -22,7 +22,7 @@ class Treat::Downloader
     dest = server + '/' + dir
     make_directories_recursively(base, dest)
     fn = "#{base}#{server}/#{dir}/#{filename}"
-    file = File.open(fn, 'w+')
+    file = File.open(fn, 'w')
 
     begin
 

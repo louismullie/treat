@@ -6,9 +6,9 @@ class Treat::Formatters::Readers::TXT
   #
   # Options: none.
   def self.read(document, options = {})
-    d = document << Treat::Entities::Zone.
-    from_string(File.read(document.file))
-    d.set :format, :txt
+    document.value = File.read(document.file)
+    document.set :format, :txt
+    document
   end
   
 end

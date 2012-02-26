@@ -14,12 +14,17 @@ class Treat::Inflectors::Declensions::Linguistics
   # - (Identifier) :count => :singular, :plural
   def self.declensions(entity, options = {})
     
+    unless [:noun, :adjective, :determiner].
+      include?(entity.category)
+        return
+    end
+    
     unless options[:count]
       raise Treat::Exception,
       "Must supply option count (:singular or :plural)."
     end
     
-    klass = Treat::Helpers::LinguisticsLoader.load(entity.language)
+    klass = Treat::Loaders::Linguistics.load(entity.language)
     string = entity.to_s
     
     if options[:count] == :plural

@@ -26,11 +26,10 @@ class Treat::Formatters::Readers::Image
         `ocropus pages2lines #{tmp}/out`
         `ocropus lines2fsts #{tmp}/out`
         `ocropus buildhtml #{tmp}/out > #{tmp}/output.html`
-        f = document.file
-        doc.remove_all!
         doc.set :file,  "#{tmp}/output.html"
-        doc.read(:html)
+        doc = doc.read(:html)
         doc.set :file, f
+        doc.set :format, :image
       end
     end
     
@@ -38,7 +37,7 @@ class Treat::Formatters::Readers::Image
     silence_stdout { read.call(document) } :
     read.call(document)
     
-    d.set :format, :image
+    document
     
   end
   

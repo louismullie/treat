@@ -14,6 +14,7 @@ class Treat::Formatters::Visualizers::Standoff
     v
   end
   
+  # Fix - brackets
   # Visualize the entity using standoff notation.
   # This can only be called on sentences and smaller
   # entities, as it is not a suitable format to
@@ -24,7 +25,8 @@ class Treat::Formatters::Visualizers::Standoff
     options[:indent].times { spaces << '   '}
     options[:indent] += 1
     if entity.is_a?(Treat::Entities::Token)
-      value += "#{spaces}(#{entity.tag} #{entity.value})"
+      val = ptb_escape(entity.value)
+      value += "#{spaces}(#{entity.tag} #{val})"
     elsif entity.is_a?(Treat::Entities::Phrase)
       tag = entity.has?(:tag) ? entity.tag : ''
       value += ("#{spaces}(#{tag}\n" +
@@ -41,4 +43,12 @@ class Treat::Formatters::Visualizers::Standoff
     value
   end
   
+  def self.ptb_escape(val)
+    Treat::Languages::Tags::
+    PTBEscapeCharacters.each do |char, esc|
+      val.gsub!(char, val)
+    end
+    
+    val
+  end
 end

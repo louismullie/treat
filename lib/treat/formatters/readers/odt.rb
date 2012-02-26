@@ -28,10 +28,11 @@ class Treat::Formatters::Readers::ODT
     "#{document.file}!" unless f
     xml_h = ODTXmlHandler.new
     REXML::Document.parse_stream(f, xml_h)
-    d = document << Treat::Entities::Zone.
-    from_string(xml_h.plain_text)
     
-    d.set :format, :open_office
+    document.value = xml_h.plain_text
+    document.set :format, :odt_office
+    document
+    
   end
   
   # Xml listener for the parsing of the ODT file.

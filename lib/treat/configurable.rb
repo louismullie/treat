@@ -14,6 +14,8 @@ module Treat::Configurable
       attr_accessor :detect_language
       # Symbol - the finest entity level at which to detect language.
       attr_accessor :language_detection_level
+      # Boolean - whether to output debug information or not.
+      attr_accessor :debug
     end
 
     # Set the default options.
@@ -24,6 +26,8 @@ module Treat::Configurable
       self.detect_language = false
       # Detect the language once per document by default.
       self.language_detection_level = :document
+      # Set debug to off by default.
+      self.debug = false
     end
 
   end
@@ -80,13 +84,20 @@ module Treat::Configurable
 
   # Turn off language detection, optionally setting
   # a new default language to use.
-  def self.undetect!(default)
+  def self.undetect!(default = :english)
     self.detect_language = false
     if default
       self.default_language = default
     end
   end
 
+  # Use the supplied language by default and
+  # turn off language detection.
+  def self.use(language)
+    self.detect_language = false
+    self.default_language = language
+  end
+  
   private
   # Helper method, yields each entity type and class.
   def each_entity_class

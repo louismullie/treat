@@ -12,8 +12,7 @@ class Treat::Lexicalizers::Tag::Stanford
   
   # Hold the default options.
   DefaultOptions =  {
-    :tagger_model => nil,
-    :silent => false
+    :tagger_model => nil
   }
 
   # Tag the word using one of the Stanford taggers.
@@ -29,7 +28,7 @@ class Treat::Lexicalizers::Tag::Stanford
     lang = entity.language
     options = get_options(options, lang)
     tokens, list = get_token_list(entity)
-    init_tagger(lang, options[:silent])
+    init_tagger(lang)
     
     # Do the tagging.
     i = 0
@@ -51,11 +50,11 @@ class Treat::Lexicalizers::Tag::Stanford
   end
   
   # Initialize the tagger for a language.
-  def self.init_tagger(lang, silence)
+  def self.init_tagger(lang)
     
     language = Treat::Languages.describe(lang)
     model = StanfordCoreNLP::Config::Models[:pos][language]
-    model = Treat.data + 'stanford/' +
+    model = Treat.models + 'stanford/' +
     StanfordCoreNLP::Config::ModelFolders[:pos] + model
     @@taggers[lang] ||= 
     StanfordCoreNLP::MaxentTagger.new(model)
@@ -71,12 +70,6 @@ class Treat::Lexicalizers::Tag::Stanford
     if options[:tagger_model]
       ::StanfordCoreNLP.set_model('pos.model',
       options[:tagger_model])
-    end
-    options[:log_file] =
-    '/dev/null' if options[:silence]
-    if options[:log_file]
-      ::StanfordCoreNLP.log_file =
-      options[:log_file]
     end
     options[:tag_set] = 
     StanfordCoreNLP::Config::TagSets[language]

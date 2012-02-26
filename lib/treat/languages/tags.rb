@@ -1,4 +1,5 @@
 module Treat
+  
   module Languages
 
     module Tags
@@ -16,7 +17,16 @@ module Treat
         ['SINV', 'Inverted declarative sentence'],
         ['SQ', 'Inverted yes/no question']
       ]
-
+      
+      PTBEscapeCharacters = {
+        '(' => '-LRB-',
+        ')' => '-RRB-',
+        '[' => '-LSB-',
+        ']' => '-RSB-',
+        '{' => '-LCB-',
+        '}' => '-RCB-'
+      }
+      
       AlignedPhraseTags =
       [
         'Adjective phrase', ['', '', 'ADJP'],
@@ -300,8 +310,10 @@ module Treat
         'Punctuation, comma', ['PUN', ',', 'PPC', '$,'],
         'Punctuation, dash', ['PUN', '-', '-'],
         'Punctuation, dollar sign', ['PUN', '', 'PPD'],
-        'Punctuation, left bracket', ['PUL', '(', '(', 'PPL'],
+        'Punctuation, left bracket', ['PUL', '(', 'PPL'],
         'Punctuation, right bracket', ['PUR', ')', 'PPR'],
+        'Punctuation, left bracket', ['PUL', '(', 'LRB'],
+        'Punctuation, right bracket', ['PUR', ')', 'RRB'],
         # 
         
         'Unknown, foreign words (not in lexicon)', ['UNZ', '(FW-)', 'FW', '', 'FW'],

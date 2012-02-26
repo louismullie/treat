@@ -3,15 +3,15 @@ class Treat::Processors::Chunkers::HTML
   require 'nokogiri'
 
   def self.chunk(entity, options = {})
+    
     entity.check_hasnt_children
+    
     doc = Nokogiri::HTML(entity.value)
     recurse(entity, doc)
-    doc = nil
+  
   end
 
   def self.recurse(node, html_node, level = 1)
-
-    in_list = false
 
     html_node.children.each do |child|
       
@@ -19,14 +19,8 @@ class Treat::Processors::Chunkers::HTML
 
       txt = child.inner_text
       
-      if child.name == 'title'
-
-        t = node << Treat::Entities::Title.
-        from_string(txt)
-        t.set :level, 0
-        
-      elsif child.name =~ /^h([0-9]{1})$/ ||
-        (child.name == 'p' && txt.length < 60 && 
+      if child.name =~ /^h([0-9]{1})$/ ||
+        (child.name == 'p' && txt.length < 45 && 
         node.parent.type == :section)
         
         if $1

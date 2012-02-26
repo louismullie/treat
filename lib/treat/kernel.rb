@@ -2,7 +2,7 @@
 # easy access to utility functions used across
 # the library.
 module Kernel
-
+  
   # Require file utilities for creating and
   # deleting temporary files.
   require 'fileutils'
@@ -28,13 +28,13 @@ module Kernel
   end
 
   # Runs a block of code while blocking stdout.
-  def silence_stdout(log = '/dev/null')
+  def silence_stdout(log = NULL_DEVICE)
     old = $stdout.dup
     $stdout.reopen(File.new(log, 'w'))
     yield
     $stdout = old
   end
-
+  
   # Create a temporary file which is deleted
   # after execution of the block.
   def create_temp_file(ext, value = nil, &block)
@@ -134,6 +134,15 @@ module Kernel
 
   alias :cm :caller_method
 
+  # Detect the platform we're running on.
+  def detect_platform
+    p = RUBY_PLATFORM.downcase
+    return :mac if p.include?("darwin")
+    return :windows if p.include?("mswin")
+    return :linux if p.include?("linux")
+    return :unknown
+  end
+
   # Return the levensthein distance between two stringsm
   # taking into account the costs of insertion, deletion,
   # and substitution. Stolen from:
@@ -161,5 +170,10 @@ module Kernel
     dm[other.length][first.length]
   end
 
+  if detect_platform == :windows
+    NULL_DEVICE = 'NUL'
+  else
+    NULL_DEVICE = '/dev/null'
+  end
 
 end
