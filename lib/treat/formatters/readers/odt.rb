@@ -1,10 +1,10 @@
-# A reader for the ODT (Open Office) 
+# A reader for the ODT (Open Office)
 # document format.
 #
-# Based on work by Mark Watson, 
+# Based on work by Mark Watson,
 # licensed under the GPL.
-# 
-# Original project website: 
+#
+# Original project website:
 # http://www.markwatson.com/opensource/
 #
 # Todo: reimplement with Nokogiri and use
@@ -14,13 +14,13 @@ class Treat::Formatters::Readers::ODT
 
   # Require the 'zip' gem to unarchive the ODT files
   silence_warnings { require 'zip' }
-  
+
   # Extract the readable text from an ODT file.
   #
   # Options: none.
   def self.read(document, options = {})
     f = nil
-    Zip::ZipFile.open(document.file, 
+    Zip::ZipFile.open(document.file,
     Zip::ZipFile::CREATE) do |zipfile|
       f = zipfile.read('content.xml')
     end
@@ -28,17 +28,19 @@ class Treat::Formatters::Readers::ODT
     "#{document.file}!" unless f
     xml_h = ODTXmlHandler.new
     REXML::Document.parse_stream(f, xml_h)
-    
+
     document.value = xml_h.plain_text
     document.set :format, :odt_office
     document
-    
+
   end
-  
+
   # Xml listener for the parsing of the ODT file.
   class ODTXmlHandler
-    require 'rexml/document'
-    require 'rexml/streamlistener'
+    silence_warnings do
+      require 'rexml/document'
+      require 'rexml/streamlistener'
+    end
     include REXML::StreamListener
     attr_reader :plain_text
     def initialize
@@ -58,5 +60,5 @@ class Treat::Formatters::Readers::ODT
       end
     end
   end
-  
+
 end

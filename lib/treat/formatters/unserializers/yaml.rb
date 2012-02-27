@@ -2,10 +2,14 @@
 # parser; it unserializes YAML files.
 class Treat::Formatters::Unserializers::YAML
 
-  # Require the Psych YAML parser.
-  require 'psych'
+  silence_warnings do
+    # Require the Psych YAML parser.
+    require 'psych'
+  end
+  
   # Require date to revive DateTime.
   require 'date'
+
   # Unserialize a YAML file.
   #
   # Options: none.

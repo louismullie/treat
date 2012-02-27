@@ -25,7 +25,8 @@ module Treat::Extractors::Topics::Reuters
     @@reduce = 0
     unless text.words.size > 0
       raise Treat::Exception,
-      "Annotator 'topics' requires processor 'tokenize'."
+      "Annotator 'topics' requires " +
+      "processor 'tokenize'."
     end
     text.words.collect! do |tok|
       stem = tok.stem.downcase
@@ -45,9 +46,12 @@ module Treat::Extractors::Topics::Reuters
   # Read the topics from the XML files.
   def self.get_topics
     return unless @@industry.size == 0
-    @@industry = read_xml('treat/extractors/topics/reuters/industry.xml')
-    @@region = read_xml('/treat/extractors/topics/reuters/region.xml')
-    @@topics = read_xml('/treat/extractors/topics/reuters/topics.xml')
+    @@industry = read_xml(Treat.models + 
+    'reuters/industry.xml')
+    @@region = read_xml(Treat.models + 
+    'reuters/region.xml')
+    @@topics = read_xml(Treat.models + 
+    'reuters/topics.xml')
   end
   
   # Read an XML file and populate a

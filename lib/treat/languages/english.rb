@@ -18,8 +18,8 @@ class Treat::Languages::English
     :conjugations => [:linguistics],
     :declensions => [:english, :linguistics],
     :stem => [:porter, :porter_c, :uea],
-    :ordinal => [:linguistics],
-    :cardinal => [:linguistics]
+    :ordinal_form => [:linguistics],
+    :cardinal_form => [:linguistics]
   }
   
   Lexicalizers = {
@@ -59,7 +59,7 @@ class Treat::Languages::English
     'say', 'also', 'new', 'much', 'should', 'still',
     'such', 'before', 'after', 'other', 'then', 'over',
     'under', 'therefore', 'nonetheless', 'thereafter',
-    'afterwards', 'here', 'huh', 'hah', "'nt", "'t", 'here'
+    'afterwards', 'here', 'huh', 'hah', "n't", "'t", 'here'
   ]
   
 end

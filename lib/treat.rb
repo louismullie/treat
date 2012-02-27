@@ -1,6 +1,6 @@
 module Treat
 
-  #$LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
+  # $LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
 
   # Require custom exception cass.
   require 'treat/exception'

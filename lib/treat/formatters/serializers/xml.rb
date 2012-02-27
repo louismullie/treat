@@ -28,15 +28,17 @@ class Treat::Formatters::Serializers::XML
           attributes << "#{feature}='#{escape(value)}' "
         end
       end
-      attributes << "dependencies='"
-      a = []
-      entity.dependencies.each do |dependency|
-        a << ("{target: #{dependency.target}, type: #{dependency.type}, " +
-        "directed: #{dependency.directed}, " +
-        "direction: #{dependency.direction}}" )
+      unless entity.dependencies.empty?
+        attributes << "dependencies='"
+        a = []
+        entity.dependencies.each do |dependency|
+          a << ("{target: #{dependency.target}, type: #{dependency.type}, " +
+          "directed: #{dependency.directed}, " +
+          "direction: #{dependency.direction}}" )
+        end
+        # Structs.
+        attributes << a.join(',') + "'"
       end
-      # Structs.
-      attributes << a.join('--') + "'"
     end
     tag = entity.class.to_s.split('::')[-1].downcase
     unless entity.is_a?(Treat::Entities::Token)
@@ -61,7 +63,7 @@ class Treat::Formatters::Serializers::XML
     if indent == 0
       string += "\n</treat>"
       if options[:file]
-        File.open(options[:file], 'w') do |f| 
+        File.open(options[:file], 'w') do |f|
           f.write(string)
         end
       end

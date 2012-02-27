@@ -44,11 +44,17 @@ module Treat::Entities::Abilities::Magical
     elsif method =~ /^#{@@entities_regexp}s_with_([a-z]+)$/
       entities_with_feature($2.intern, args[0], $1.intern)
     elsif method =~ /^#{@@entities_regexp}_with_([a-z]*)$/
-      first_but_warn(entities_with_feature($2.intern, args[0], $1.intern), $1)
+      first_but_warn(entities_with_feature(
+      $2.intern, args[0], $1.intern), $1)
+    elsif method =~ /^each_#{@@entities_regexp}_with_([a-z]*)$/
+      entities_with_feature($2.intern, args[0], 
+      $1.intern).each { |e| yield e }
     elsif method =~ /^each_with_([a-z]*)$/
-      entities_with_feature($2.intern, args[0], $1.intern).each { |e| yield e }
+      entities_with_feature($2.intern, 
+      args[0], $1.intern).each { |e| yield e }
     elsif method =~ /^each_#{@@cats_regexp}$/
-      entities_with_category($1.intern).each { |e| yield e }
+      entities_with_category($1.intern
+      ).each { |e| yield e }
     elsif method =~ /^#{@@cats_regexp}s$/
       entities_with_category($1.intern)
     elsif method =~ /^#{@@cats_regexp}$/
@@ -58,7 +64,8 @@ module Treat::Entities::Abilities::Magical
     elsif method =~ /^#{@@cats_regexp}s_with_([a-z]*)$/
       entities_with_feature($2.intern, args[0], $1)
     elsif method =~ /^#{@@cats_regexp}_with_([a-z]*)$/
-      first_but_warn(entities_with_feature($2.intern, args[0], $1.intern), $1)
+      first_but_warn(entities_with_feature(
+      $2.intern, args[0], $1.intern), $1)
     elsif method =~ /^is_#{@@entities_regexp}\?$/
       type.to_s == $1.intern
     elsif method =~ /^is_#{@@cats_regexp}\?$/

@@ -13,16 +13,18 @@ module Treat::Extractors::TopicWords::LDA
   # Require the lda-ruby gem.
   silence_warnings { require 'lda-ruby' }
   
-  # Monkey patch the TextCorpus class to call it without
-  # having to create any files.
+  # Monkey patch the TextCorpus class to 
+  # call it without having to create any files.
   Lda::TextCorpus.class_eval do
     # Ruby, Y U NO SHUT UP!
     silence_warnings { undef :initialize }
-    # Redefine initialize to take in an array of sections.
+    # Redefine initialize to take in an 
+    # array of sections.
     def initialize(sections)
       super(nil)
       sections.each do |section|
-        add_document(Lda::TextDocument.new(self, section))
+        add_document(
+        Lda::TextDocument.new(self, section))
       end
     end
   end
@@ -37,15 +39,16 @@ module Treat::Extractors::TopicWords::LDA
   # Retrieve the topic words of a collection.
   def self.topic_words(collection, options = {})
     options = DefaultOptions.merge(options)
-    collection.documents                      # WTF
+    docs = collection.documents.map { |d| d.to_s }
     # Create a corpus with the collection
-    corpus = Lda::TextCorpus.new(sections)
+    corpus = Lda::TextCorpus.new(docs)
 
     # Create an Lda object for training
     lda = Lda::Lda.new(corpus)
     lda.num_topics = options[:num_topics]
     lda.max_iter = options[:iterations]
-    # Run the EM algorithm using random starting points
+    # Run the EM algorithm using random 
+    # starting points
     silence_stdout { lda.em('random') }
     # Load the vocabulary.
     if options[:vocabulary]
@@ -55,7 +58,7 @@ module Treat::Extractors::TopicWords::LDA
     # Get the topic words.
     lda.top_words(
     options[:words_per_topic]
-    ).values # #########
+    ).values
     
   end
   

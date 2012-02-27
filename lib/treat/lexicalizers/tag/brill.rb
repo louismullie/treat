@@ -52,8 +52,14 @@ module Treat::Lexicalizers::Tag::Brill
 
     pairs.each do |pair|
       pair[0].set :tag, pair[1]
-      pair[0].set :tag_set, :penn
+      pair[0].set :tag_set, :penn if isolated_token
       return pair[1] if isolated_token
+    end
+    
+    if entity.is_a?(Treat::Entities::Sentence) ||
+      (entity.is_a?(Treat::Entities::Phrase) && 
+      !entity.parent_sentence)
+        entity.set :tag_set, :penn
     end
     
     return 'S' if entity.is_a?(Treat::Entities::Sentence)

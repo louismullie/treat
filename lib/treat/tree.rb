@@ -180,7 +180,7 @@ module Treat::Tree
 
     # Return a feature.
     def get(feature)
-      @features[value]
+      @features[feature]
     end
 
     # Unset a feature.

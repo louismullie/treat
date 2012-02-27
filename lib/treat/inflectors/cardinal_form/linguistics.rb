@@ -3,7 +3,7 @@
 # number in words in cardinal form.
 #
 # Project website: http://deveiate.org/projects/Linguistics/
-module Treat::Inflectors::Cardinal::Linguistics
+module Treat::Inflectors::CardinalForm::Linguistics
   
   require 'treat/loaders/linguistics'
   
@@ -31,7 +31,7 @@ module Treat::Inflectors::Cardinal::Linguistics
   # as an array of word groups instead of a String.
   #
   # More specific options when using :type => :ordinal:
-  def self.cardinal(entity, options = {})
+  def self.cardinal_form(entity, options = {})
     Treat::Loaders::Linguistics.
     load(entity.language).
     numwords(entity.to_s, options)

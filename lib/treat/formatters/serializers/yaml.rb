@@ -1,9 +1,11 @@
 # This class serializes entities in YAML format.
 class Treat::Formatters::Serializers::YAML
   
-  # Require the Psych YAML serializer.
-  require 'psych'
-
+  silence_warnings do
+    # Require the Psych YAML serializer.
+    require 'psych'
+  end
+  
   # Serialize an entity in YAML format.
   #
   # Options:

@@ -4,10 +4,16 @@
 # for each language, and the different tags used
 # to markup that language.
 module Treat::Languages
-
-  # Require all languages.
-  Dir['treat/languages/*.rb'].each do |file|
-    require file
+  
+  def self.const_missing(const)
+    lang = const.to_s.downcase
+    f = 'treat/languages/' + lang
+    unless File.readable?(f + '.rb')
+      raise Treat::Exception,
+      "Language #{lang} is not supported."
+    end
+    require f
+    const_get(const)
   end
 
   # Yield a lowercase symbol for each

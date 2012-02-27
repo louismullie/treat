@@ -11,6 +11,7 @@ module Treat::Entities::Abilities::Buildable
   UriRegexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix
   EmailRegexp = /.+\@.+\..+/
   ExtensionRegexp = /^.*?\.([a-zA-Z0-9]{2,5})$/
+  
   # A list of supported image extensions.
   ImageExtensions = 
     ['gif', 'jpg', 'jpeg', 'png']

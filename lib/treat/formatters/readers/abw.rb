@@ -2,32 +2,34 @@
 # by Mark Watson to read AbiWord files.
 # Released under the GPL.
 #
-# Original project website: 
+# Original project website:
 # http://www.markwatson.com/opensource/
 #
 # Todo: reimplement with Nokogiri and use
 # XML node information to better translate
 # the format of the text.
 class Treat::Formatters::Readers::ABW
-  
-  require 'rexml/document'
-  require 'rexml/streamlistener'
+
+  silence_warnings do
+    require 'rexml/document'
+    require 'rexml/streamlistener'
+  end
   
   # Extract the readable text from an AbiWord file.
   #
   # Options: none.
   def self.read(document, options = {})
-    
+
     xml_h = ABWXmlHandler.new
     REXML::Document.parse_stream(
     IO.read(document.file), xml_h)
-    
+
     document.value = xml_h.plain_text
     document.set :format, :abw_word
     document
-    
+
   end
-  
+
   # Helper class to parse the AbiWord file.
   class ABWXmlHandler
     include REXML::StreamListener
@@ -36,7 +38,7 @@ class Treat::Formatters::Readers::ABW
       @plain_text = ""
     end
     def text(s)
-      if s != 'AbiWord' && s != 
+      if s != 'AbiWord' && s !=
         'application/x-abiword'
         s.strip!
         if s.length > 0
@@ -47,5 +49,5 @@ class Treat::Formatters::Readers::ABW
       end
     end
   end
-  
+
 end

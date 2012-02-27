@@ -22,9 +22,14 @@ module Treat::Entities
     # Implement support for #self.add_workers
     extend Abilities::Delegatable
 
-    # Implement support for #build and #self.from_*
-    extend Abilities::Buildable
+    # Implement support for #self.print_debug and
+    # #self.invalid_call_msg
+    extend Abilities::Debuggable
 
+    # Implement support for #self.build 
+    # and #self.from_*
+    extend Abilities::Buildable
+    
     # Implement support for #do.
     include Abilities::Doable
 
@@ -90,7 +95,7 @@ module Treat::Entities
           super(sym, *args, &block)
         rescue NoMethodError
           raise Treat::Exception,
-          get_error_msg(sym)
+          self.invalid_call_msg(sym)
         end
       else
         @features[sym]
@@ -104,7 +109,9 @@ module Treat::Entities
     #
     # @see Treat::Registrable
     def <<(entities, clear_parent = true)
-      entities = [entities] unless entities.is_a? Array
+      unless entities.is_a? Array
+        entities = [entities] 
+      end
       entities.each do |entity|
         register(entity)
       end
@@ -112,22 +119,7 @@ module Treat::Entities
       @parent.value = '' if has_parent?
       entities[0]
     end
-
-    private
-
-    # Lookup if a handler method is available for the
-    # supplied symbol.
-    def get_error_msg(sym)
-      if Treat::Categories.lookup(sym)
-        msg = "Method #{sym} cannot " +
-        "be called on a #{type}."
-      else
-        msg = "Method #{sym} does not exist."
-        msg += did_you_mean?(
-        Treat::Categories.methods, sym)
-      end
-    end
-
+    
   end
 
 end

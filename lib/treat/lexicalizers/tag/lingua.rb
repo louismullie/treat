@@ -54,12 +54,18 @@ class Treat::Lexicalizers::Tag::Lingua
       @@tagger.conf[:current_tag] = left_tag = t
       t = 'prp$' if t == 'prps'
       token.set :tag, t.upcase
-      token.set :tag_set, :penn
+      token.set :tag_set, :penn if isolated_token
       return t.upcase if isolated_token
       
     end
 
-    entity.set :tag_set, :penn
+    
+    if entity.is_a?(Treat::Entities::Sentence) ||
+      (entity.is_a?(Treat::Entities::Phrase) && 
+      !entity.parent_sentence)
+        entity.set :tag_set, :penn
+    end
+
     return 'S' if entity.is_a?(Treat::Entities::Sentence)
     return 'P' if entity.is_a?(Treat::Entities::Phrase)
     

@@ -30,9 +30,10 @@ module Treat::Entities::Abilities::Iterable
     a = []
     type = :entity unless type
     each_entity(type) do |e|
-      a << e if (e.has?(feature) || 
-      [:id, :value, :type].include?(feature)) &&
-      e.features[feature] == value
+      a << e if (e.has?(feature) &&
+      e.features[feature] == value) ||
+      ([:id, :value, :type].include?(feature) &&
+      e.send(feature) == value)
     end
     a
   end
@@ -57,17 +58,17 @@ module Treat::Entities::Abilities::Iterable
   # that has the given type.
   def ancestor_with_types(*types)
     ancestor = @parent
-    match_types = lambda do |t1, t2s|
+    match_types = lambda do |t1, t2|
       f = false
-      t2s.each do |t2|
-        if Treat::Entities.match_types[t1][t2]
+      types.each do |t2|
+        if Treat::Entities.match_types[t2][t1]
           f = true; break
         end
       end
       f
     end
     if ancestor
-      while not match_types.call(ancestor.type, types)
+      while not match_types.call(ancestor.type, type)
         return nil unless (ancestor && ancestor.has_parent?)
         ancestor = ancestor.parent
       end

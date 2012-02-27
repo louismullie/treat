@@ -16,6 +16,8 @@ module Treat::Configurable
       attr_accessor :language_detection_level
       # Boolean - whether to output debug information or not.
       attr_accessor :debug
+      # Boolean - whether to silence the output of external programs.
+      attr_accessor :silence
     end
 
     # Set the default options.
@@ -28,6 +30,8 @@ module Treat::Configurable
       self.language_detection_level = :document
       # Set debug to off by default.
       self.debug = false
+      # Silence external programs by default.
+      self.silence = true
     end
 
   end

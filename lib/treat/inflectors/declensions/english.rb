@@ -14,8 +14,9 @@ class Treat::Inflectors::Declensions::English
   # the 'english' ruby gem.
   def self.declensions(entity, options)
     
+    cat = entity.check_has(:category)
     unless [:noun, :adjective, :determiner].
-      include?(entity.category)
+      include?(cat)
         return
     end
     

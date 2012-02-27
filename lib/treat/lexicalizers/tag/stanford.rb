@@ -32,15 +32,23 @@ class Treat::Lexicalizers::Tag::Stanford
     
     # Do the tagging.
     i = 0
+    isolated_token = tokens.size == 1
     @@taggers[lang].apply(list).each do |tok|
-      tokens[i].set :tag_set, options[:tag_set]
       tokens[i].set :tag, tok.tag
-      return tok.tag if tokens.size == 1
+      tokens[i].set :tag_set, 
+      options[:tag_set] if isolated_token
+      return tok.tag if isolated_token
       i += 1
     end
 
     # Handle tags for sentences and phrases.
-    entity.set :tag_set, options[:tag_set]
+    
+    if entity.is_a?(Treat::Entities::Sentence) ||
+      (entity.is_a?(Treat::Entities::Phrase) && 
+      !entity.parent_sentence)
+        entity.set :tag_set, :penn
+    end
+    
     if entity.is_a?(Treat::Entities::Sentence)
       return 'S'
     elsif entity.is_a?(Treat::Entities::Phrase)

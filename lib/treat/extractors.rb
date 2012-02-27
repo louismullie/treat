@@ -29,14 +29,14 @@ module Treat::Extractors
   module Topics
     extend Treat::Groupable
     self.type = :annotator
-    self.targets = [:document, :zone]
+    self.targets = [:document]
   end
 
   # Extract the keywords from a text.
   module Keywords
     extend Treat::Groupable
     self.type = :annotator
-    self.targets = [:document, :zone]
+    self.targets = [:document]
   end
 
   # Extract clusters of topic words from a collection.
@@ -68,6 +68,20 @@ module Treat::Extractors
     self.targets = [:phrase]
   end
 
+  module TfIdf
+    extend Treat::Groupable
+    self.type = :annotator
+    self.targets = [:word]
+    self.default = :native
+  end
+  
+  module Summary
+    extend Treat::Groupable
+    self.type = :annotator
+    self.targets = [:document]
+    self.default = :keyword_count
+  end
+  
   # Make Extractors categorizable.
   extend Treat::Categorizable
   

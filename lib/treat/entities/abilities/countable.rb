@@ -3,6 +3,9 @@ module Treat::Entities::Abilities::Countable
   # Find the position of the current entity
   # inside the parent entity.
   def position_in(parent_type = nil)
+    unless parent_type
+      return @registry[:position][id] 
+    end
     raise Treat::Exception,
     "Cannot get the position " +
     "of an entity that doesn't have " +
@@ -12,17 +15,24 @@ module Treat::Entities::Abilities::Countable
 
   # Get the position of this entity
   # inside the root node.
-  alias :position :position_in
+  def position
+    position_in(:root)
+  end
   
   # Find the frequency of the entity in
   # the supplied parent.
   def frequency_in(parent_type = nil)
+    unless parent_type
+      return @registry[:value][id] 
+    end
     registry(parent_type)[:value][value]
   end
   
   # Get the frequency of this entity's 
   # value in the root node.
-  alias :frequency :frequency_in
+  def frequency
+    frequency_in(:root)
+  end
   
   # Returns the frequency of the given value
   # in the this entity.

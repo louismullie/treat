@@ -29,6 +29,9 @@ module Kernel
 
   # Runs a block of code while blocking stdout.
   def silence_stdout(log = NULL_DEVICE)
+    unless Treat.silence
+      yield; return
+    end
     old = $stdout.dup
     $stdout.reopen(File.new(log, 'w'))
     yield
@@ -129,7 +132,7 @@ module Kernel
   def caller_method(n = 3)
     at = caller(n).first
     /^(.+?):(\d+)(?::in `(.*)')?/ =~ at
-    Regexp.last_match[3].intern
+    Regexp.last_match[3].gsub('block in ', '').intern
   end
 
   alias :cm :caller_method

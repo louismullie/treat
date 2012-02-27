@@ -3,7 +3,6 @@ module Treat::Entities::Abilities::Implodable
   def implode
     
     return @value.dup if !has_children?
-
     value = ''
 
     each do |child|

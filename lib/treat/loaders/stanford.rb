@@ -9,9 +9,12 @@ class Treat::Loaders
     def self.load
       return if @@loaded
       require 'stanford-core-nlp'
-      StanfordCoreNLP.jar_path = '/ruby/gems/treat/bin/stanford/'
-      StanfordCoreNLP.model_path = Treat.models + 'stanford/'
-      StanfordCoreNLP.log_file = NULL_DEVICE
+      StanfordCoreNLP.jar_path = 
+      '/ruby/gems/treat/bin/stanford/'
+      StanfordCoreNLP.model_path = 
+      Treat.models + 'stanford/'
+      StanfordCoreNLP.log_file = 
+      NULL_DEVICE if Treat.silence
       @@loaded = true
     end
 

@@ -32,7 +32,8 @@ module Treat::Inflectors::Conjugations::Linguistics
   def self.conjugations(entity, options = {})
     
     options = DefaultOptions.merge(options)
-    return if entity.category != :verb && options[:strict]
+    cat = entity.check_has(:category)
+    return if cat != :verb && options[:strict]
     
     options = Forms[options[:form]] if options[:form]
     

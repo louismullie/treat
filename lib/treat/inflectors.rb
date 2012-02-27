@@ -3,7 +3,7 @@
 module Treat::Inflectors
 
   # Return the stem (*not root form*) of a word.
-  module Stemmers
+  module Stem
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:word]
@@ -32,7 +32,7 @@ module Treat::Inflectors
 
   # Retrieve the full text description of a
   # cardinal number.
-  module Cardinal
+  module CardinalForm
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:number]
@@ -40,7 +40,7 @@ module Treat::Inflectors
 
   # Retrieve the full text description of an
   # ordinal number.
-  module Ordinal
+  module OrdinalForm
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:number]

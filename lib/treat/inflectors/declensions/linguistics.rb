@@ -14,8 +14,9 @@ class Treat::Inflectors::Declensions::Linguistics
   # - (Identifier) :count => :singular, :plural
   def self.declensions(entity, options = {})
     
+    cat = entity.check_has(:category)
     unless [:noun, :adjective, :determiner].
-      include?(entity.category)
+      include?(cat)
         return
     end
     
