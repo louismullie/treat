@@ -14,7 +14,8 @@ class Treat::Formatters::Unserializers::YAML
   #
   # Options: none.
   def self.unserialize(document, options = {})
-    document << ::Psych.load(File.read(document.file))
+    document << ::Psych.load(
+    File.read(document.file))
     document
   end
 

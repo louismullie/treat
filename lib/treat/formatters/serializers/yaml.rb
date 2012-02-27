@@ -13,7 +13,9 @@ class Treat::Formatters::Serializers::YAML
   def self.serialize(entity, options = {})
     yaml = ::Psych.dump(entity)
     if options[:file]
-      File.open(options[:file], 'w') { |f| f.write(yaml) }
+      File.open(options[:file], 'w') do |f| 
+        f.write(yaml)
+      end
     end
     yaml
   end

@@ -6,7 +6,7 @@ class Treat::AI::Classifiers::ID3
   
   def self.classify(entity, options = {})
   
-    set = options[:training_set]
+    set = options[:training]
     cl = set.classification
     
     if !@@classifiers[cl]
@@ -20,7 +20,7 @@ class Treat::AI::Classifiers::ID3
     
     dec_tree.predict(
       cl.export_item(entity, false)
-    )
+    )[0]
     
   end
   
