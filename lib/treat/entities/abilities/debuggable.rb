@@ -3,21 +3,6 @@
 # printed by the #print_debug function.
 module Treat::Entities::Abilities::Debuggable
 
-  # Retrieve an error message for invalid calls.
-  def invalid_call_msg(sym)
-    
-    if Treat::Categories.lookup(sym)
-      msg = "Method #{sym} cannot " +
-      "be called on a #{type}."
-    else
-      msg = "Method #{sym} does not exist."
-      msg += did_you_mean?(
-      Treat::Categories.methods, sym)
-    end
-    
-  end
-
-
   @@prev = nil
   @@i = 0
 

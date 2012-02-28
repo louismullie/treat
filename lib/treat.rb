@@ -1,6 +1,6 @@
 module Treat
 
-  # $LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
+  #$LOAD_PATH << '/ruby/gems/treat/lib/' # Remove for release
 
   # Require custom exception cass.
   require 'treat/exception'
@@ -35,6 +35,7 @@ module Treat
   require 'treat/languages'
   require 'treat/entities'
   require 'treat/categories'
+  require 'treat/data_set'
   require 'treat/proxies'
 
   # Install packages for a given language.

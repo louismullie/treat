@@ -56,7 +56,7 @@ module Treat::Entities::Abilities::Delegatable
 
     print_debug(entity, task, worker,
     group, options) if Treat.debug
-
+    
     if not group.list.include?(worker)
       raise Treat::Exception,
       worker_not_found(worker, group)

@@ -10,7 +10,7 @@ module Kernel
   # A list of acronyms used in class names within
   # the program. These do not CamelCase; they
   # CAMELCase.
-  Acronyms = %w[xml html txt odt abw doc yaml uea lda pdf ptb dot]
+  Acronyms = %w[xml html txt odt abw doc yaml uea lda pdf ptb dot ai id3]
 
   # A cache to optimize camel casing.
   @@cc_cache = {}
@@ -102,7 +102,9 @@ module Kernel
   # in the #list If yes, return a string saying "Did you mean
   # ... ?" with the names.
   def did_you_mean?(list, name)
-    msg = ''
+    return '' # Fix
+    list = list.map { |e| e.to_s }
+    name = name.to_s
     sugg = []
     list.each do |element|
       l = levenshtein(element,name)

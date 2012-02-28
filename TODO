@@ -5,9 +5,12 @@
 - XML unserializer
 - Stanford dependencies parse
 - Improve linkers
+- Hashs in visualize
 - Lazy loading of languages
 - Plural verb
-- Standoff format
+- New working dirs
+- Standoff format - tag all entities.
+- Ruby graphviz
 
 # Testing
 

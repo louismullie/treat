@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'linguistics', '>= 1.0.9'
   s.add_runtime_dependency 'punkt-segmenter', '>= 0.9.1'
   s.add_runtime_dependency 'chronic', '>= 0.6.7'
+  s.add_runtime_dependency 'decisiontree', '>= 0.3.0'
   s.add_runtime_dependency 'progressbar', '>= 0.10.0'
   
 end

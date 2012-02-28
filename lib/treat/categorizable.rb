@@ -16,7 +16,7 @@ module Treat::Categorizable
         group.targets.each do |entity_type|
           entity = Treat::Entities.
           const_get(cc(entity_type))
-          entity.class_eval do 
+          entity.class_eval do
             add_workers group
           end
         end

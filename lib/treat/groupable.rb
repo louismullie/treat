@@ -109,14 +109,20 @@ module Treat::Groupable
       @method = nil
       def self.method
         return @method if @method
-        m = ucc(cl(self))
-        if m[-3..-1] == 'ers'
-          if ['k', 't', 'm', 'd', 'g', 'n', 'x', 'h'].include? m[-4]
+        m = ucc(cl(self)).dup
+        if m[-4..-1] == 'iers'
+          m[-4..-1] = 'y'
+          n = m
+        elsif m[-3..-1] == 'ers'
+          if ['k', 't', 'm', 'd', 
+              'g', 'n', 'x', 'h'].
+              include? m[-4]
             n = m[0..-4]
-            n = n[0..-2] if n[-1] == n[-2]
+            if n[-1] == n[-2]
+              n = n[0..-2] 
+            end
           else
             n = m[0..-3]
-
           end
         elsif m[-3..-1] == 'ors'
           n = m[0..-4] + 'e'
@@ -125,7 +131,10 @@ module Treat::Groupable
         end
         @method = n.intern
       end
+      
+      # Populate the group's list.
       group.list
+      
     end
     
   end

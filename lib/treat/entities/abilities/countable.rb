@@ -13,6 +13,13 @@ module Treat::Entities::Abilities::Countable
     registry(parent_type)[:position][id]
   end
 
+  def position_from_end_of(parent_type = nil)
+    p = ancestor_with_type(parent_type)
+    return unless p
+    count = p.send(:"#{type}_count")
+    count - position_in(parent_type)
+  end
+  
   # Get the position of this entity
   # inside the root node.
   def position
@@ -37,7 +44,7 @@ module Treat::Entities::Abilities::Countable
   # Returns the frequency of the given value
   # in the this entity.
   def frequency_of(value)
-    unless has_children?
+    if is_a?(Treat::Entities::Token)
       raise Treat::Exception,
       "Cannot get the frequency " +
       "of something within a leaf."

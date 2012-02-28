@@ -26,10 +26,10 @@ module Treat::Entities
     # #self.invalid_call_msg
     extend Abilities::Debuggable
 
-    # Implement support for #self.build 
+    # Implement support for #self.build
     # and #self.from_*
     extend Abilities::Buildable
-    
+
     # Implement support for #do.
     include Abilities::Doable
 
@@ -51,10 +51,11 @@ module Treat::Entities
     # #entities_with_type, #ancestors_with_type,
     # #entities_with_feature, #entities_with_category.
     include Abilities::Iterable
-
-    # Implement support for #implode
-    include Abilities::Implodable
-
+    
+    # Implement support for #export to export
+    # a line of a data set based on a classification.
+    include Abilities::Exportable
+    
     # Initialize the entity with its value and
     # (optionally) a unique identifier. By default,
     # the object_id will be used as id.
@@ -95,7 +96,14 @@ module Treat::Entities
           super(sym, *args, &block)
         rescue NoMethodError
           raise Treat::Exception,
-          self.invalid_call_msg(sym)
+          if Treat::Categories.lookup(sym)
+            msg = "Method #{sym} cannot " +
+            "be called on a #{type}."
+          else
+            msg = "Method #{sym} does not exist."
+            msg += did_you_mean?(
+            Treat::Categories.methods, sym)
+          end
         end
       else
         @features[sym]
@@ -110,7 +118,7 @@ module Treat::Entities
     # @see Treat::Registrable
     def <<(entities, clear_parent = true)
       unless entities.is_a? Array
-        entities = [entities] 
+        entities = [entities]
       end
       entities.each do |entity|
         register(entity)
@@ -119,7 +127,7 @@ module Treat::Entities
       @parent.value = '' if has_parent?
       entities[0]
     end
-    
+
   end
 
 end

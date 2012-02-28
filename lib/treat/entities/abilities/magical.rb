@@ -66,14 +66,22 @@ module Treat::Entities::Abilities::Magical
     elsif method =~ /^#{@@cats_regexp}_with_([a-z]*)$/
       first_but_warn(entities_with_feature(
       $2.intern, args[0], $1.intern), $1)
+    elsif method =~ /^([a-z]*)_of_first_#{@@entities_regexp}$/
+      f = send(:"#{$2}s".intern).first
+      f ? f.send($1.intern) : nil
     elsif method =~ /^is_#{@@entities_regexp}\?$/
       type.to_s == $1.intern
     elsif method =~ /^is_#{@@cats_regexp}\?$/
       category.to_s == $1.intern
     elsif method =~ /^frequency_in_#{@@entities_regexp}$/
-      frequency_in_parent($1.intern)
+      frequency_in($1.intern)
     elsif method =~ /^position_in_#{@@entities_regexp}$/
-      position_in_parent($1.intern)
+      position_in($1.intern)
+    elsif method =~ /^position_from_end_of_#{@@entities_regexp}$/
+      position_from_end_of($1.intern)
+      # first_word
+      # tag_of_first_verb
+      # tag_of_title
     else
       return :no_magic
     end

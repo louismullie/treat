@@ -39,7 +39,8 @@ module Treat::Categories
   require 'treat/inflectors'
   require 'treat/extractors'
   require 'treat/retrievers'
-
+  require 'treat/ai'
+  
   # Create the lookup table.
   self.list.each do |category|
     category.groups.each do |group|

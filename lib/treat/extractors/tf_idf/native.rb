@@ -26,7 +26,8 @@ module Treat::Extractors::TfIdf::Native
   def self.tf_idf(entity, options={})
     l = Treat::Languages.get(entity.language)
     if l.const_defined?(:CommonWords)
-      @@cw[entity.language] = l.const_get(:CommonWords)
+      @@cw[entity.language] = 
+      l.const_get(:CommonWords)
       return 0 if @@cw[entity.language].include?(entity.value)
     end
     return 0 if entity.value.length <= 2
