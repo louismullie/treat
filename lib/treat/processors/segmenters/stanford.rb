@@ -29,13 +29,16 @@ class Treat::Processors::Segmenters::Stanford
 
     @@segmenter ||=
     ::StanfordCoreNLP.load(:tokenize, :ssplit)
-
+    
+    s = entity.to_s
+    
     text = ::StanfordCoreNLP::Text.new(entity.to_s)
 
     @@segmenter.annotate(text)
     text.get(:sentences).each do |sentence|
+      sentence = sentence.to_s
       s = Treat::Entities::Sentence.
-      from_string(sentence.to_s, true)
+      from_string(sentence, true)
       entity << s
       if options[:also_tokenize]
         Treat::Processors::Tokenizers::Stanford.

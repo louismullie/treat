@@ -7,20 +7,37 @@ class Treat::Extractors::Coreferences::Stanford
 
   # Remove double iteration.
   def self.coreferences(entity, options = {})
+    
     val = entity.to_s
+    
     if entity.has_children?
       warn "The Stanford Coreference Resolver currently requires " +
       "an unsegmented, untokenized block of text to work with. " +
       "Removing and replacing all children of '#{entity.short_value}'."
       entity.remove_all!
     end
+    
     @@pipeline ||=  ::StanfordCoreNLP.load(
-    :tokenize, :ssplit, :pos,
-    :lemma, :parse, :ner, :dcoref
+      :tokenize, :ssplit, :pos,
+      :lemma, :parse, :ner, :dcoref
     )
+    
+    s_phrases = []
+    entity.each_phrase do |phrase|
+      if phrase.has_children?
+        p = ::StanfordCoreNLP.
+        get_list(phrase.tokens)
+      else
+        p = phrase.to_s
+      end
+      s_phrases << p
+    end
+    
     text = ::StanfordCoreNLP::Text.new(entity.to_s)
+    
     @@pipeline.annotate(text)
     clusters = {}
+    
     text.get(:sentences).each do |sentence|
       s = Treat::Entities::Sentence.
       from_string(sentence.get(:value).to_s, true)
@@ -86,15 +103,8 @@ class Treat::Extractors::Coreferences::Stanford
 
     end
 
-    i = 0
-    coreferences = []
-    clusters.each do |k,v|
-      unless !v || v.size == 1
-        coreferences << v
-      end
-    end
-
-    coreferences
+    nil
+    
   end
 
 end

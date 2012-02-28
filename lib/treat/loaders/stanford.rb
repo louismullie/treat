@@ -15,6 +15,7 @@ class Treat::Loaders
       Treat.models + 'stanford/'
       StanfordCoreNLP.log_file = 
       NULL_DEVICE if Treat.silence
+      StanfordCoreNLP.init
       @@loaded = true
     end
 

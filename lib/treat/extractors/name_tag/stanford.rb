@@ -5,68 +5,52 @@ class Treat::Extractors::NameTag::Stanford
 
   require 'treat/loaders/stanford'
   Treat::Loaders::Stanford.load
-  
-  StanfordCoreNLP.load_class('ArrayList', 'java.util')
-  StanfordCoreNLP.load_class('Word', 'edu.stanford.nlp.ling')
-  
-  @@pipelines = {}
+
+  @@classifiers = {}
 
   def self.name_tag(entity, options = {})
-    
+
     pp = nil
-    
-    # If it's a token, then call the function
-    # on the parent phrase. Otherwise, call the
-    # function on all the text contained within
-    # the entity.
-    if entity.is_a?(Treat::Entities::Token) &&
-      entity.has_parent?
-      pp = entity.parent_phrase
-      s = get_list(pp.tokens)
-    else
-      s = entity.to_s
-    end
-    
+
     lang = entity.language
 
-    @@pipelines[lang] ||=  
-    ::StanfordCoreNLP.load(
-      :tokenize, :ssplit, :pos, 
-      :lemma, :parse, :ner
-    )
+    language = Treat::Languages.describe(lang)
 
-    text = ::StanfordCoreNLP::Text.new(s)
-    @@pipelines[lang].annotate(text)
+    isolated_token = entity.is_a?(Treat::Entities::Token)
+    tokens = isolated_token ? [entity] : entity.tokens
 
-    add_to = pp ? pp : entity
+    ms = StanfordCoreNLP::Config::Models[:ner][language]
+    ms = Treat.models + 'stanford/' +
+    StanfordCoreNLP::Config::ModelFolders[:ner] +
+    ms['3class']
 
-    if entity.is_a?(Treat::Entities::Phrase)
-      text.get(:tokens).each do |token|
-        t = Treat::Entities::Token.
-        from_string(token.value.to_s)
-        tag = token.get(:named_entity_tag).
-              to_s.downcase
-        t.set :named_entity_tag, 
-        tag.intern unless tag == 'o'
-        add_to << t
+    @@classifiers[lang] ||=
+    StanfordCoreNLP::CRFClassifier.
+    getClassifier(ms)
+
+    token_list = StanfordCoreNLP.get_list(tokens)
+    sentence = @@classifiers[lang].classify_sentence(token_list)
+
+    i = 0
+    n = 0
+    
+    sentence.each do |s_token|
+      tag = s_token.get(:answer).to_s.downcase
+      tag = nil if tag == 'o'
+      return tag if isolated_token
+      if tag
+        tokens[i].set :name_tag, tag
+        n += 1
       end
-    elsif entity.is_a?(Treat::Entities::Token)
-      tag = text.get(:tokens).iterator.next.
-      get(:named_entity_tag).to_s.downcase
-      entity.set :named_entity_tag, 
-      tag.intern unless tag == 'o'
+      i += 1
     end
 
+    entity.set :named_entity_count, n
+
+    nil
+    
   end
 
-  # Get a Java ArrayList binding to pass lists
-  # of tokens to the Stanford Core NLP process.
-  def self.get_list(words)
-    list = StanfordCoreNLP::ArrayList.new
-    words.each do |w|
-      list.add(StanfordCoreNLP::Word.new(w.to_s))
-    end
-    list
-  end
+
 
 end

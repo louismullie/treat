@@ -14,6 +14,8 @@
 # Project website: https://github.com/lfcipriani/punkt-segmenter
 class Treat::Processors::Tokenizers::Punkt
   
+  require 'treat/helpers/decimal_point_escaper'
+  
   SentEndChars = ['.', '?', '!']
   ReSentEndChars = /[.?!]/
   InternalPunctuation = [',', ':', ';']
@@ -32,7 +34,10 @@ class Treat::Processors::Tokenizers::Punkt
     
     entity.check_hasnt_children
     
-    entity.to_s.scan(ReWordTokenizer).each do |token|
+    s = entity.to_s
+    Treat::Helpers::DecimalPointEscaper.escape!(s)
+    
+    s.scan(ReWordTokenizer).each do |token|
       if SentEndChars.include?(token[-1])
         entity << Treat::Entities::Token.from_string(token[0..-2])
         entity << Treat::Entities::Token.from_string(token[-1..-1])

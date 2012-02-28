@@ -11,7 +11,7 @@ module Treat::Entities::Abilities::Stringable
   # Returns the entity's string value by
   # imploding the value of all terminal
   # entities in the subtree of that entity.
-  def to_s; @value != '' ? @value : implode; end
+  def to_s; @value != '' ? @value : implode.strip; end
 
   # #to_str is the same as #to_s.
   alias :to_str :to_s

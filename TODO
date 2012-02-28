@@ -11,6 +11,8 @@
 - New working dirs
 - Standoff format - tag all entities.
 - Ruby graphviz
+- Stanford parser + coreference resolver accept tokens
+- What if an element in data set is nil?
 
 # Testing
 
@@ -22,13 +24,13 @@
 
 ## Future
 
+- Add Stanford and Wordnet lemmatizers
 - ABW, ODT Nokogiri
 - Try new encodings
 - Tags: description, conversion
 - JWI
 - Benchmarks
 - Tests
-- Add Stanford and Wordnet lemmatizers
 - NLP polish
 - Tests for Wiki
 - Enju as a server

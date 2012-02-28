@@ -6,6 +6,7 @@ class Treat::DataSet
   attr_reader :classification
   attr_reader :labels
   attr_reader :items
+  attr_reader :ids
   
   def self.open(file)
     unless File.readable?(file)
@@ -22,12 +23,14 @@ class Treat::DataSet
     @classification = classification
     @labels = classification.labels
     @items = []
+    @ids = []
   end
   
   def <<(entity)
-    items << 
+    @items << 
     @classification.
     export_item(entity)
+    @ids << entity.id
   end
   
   def save(file)

@@ -15,6 +15,8 @@
 # https://github.com/taf2/rb-brill-tagger
 module Treat::Processors::Tokenizers::Perl
 
+  require 'treat/helpers/decimal_point_escaper'
+  
   # Tokenize the entity using a rule-based algorithm
   # ported from Perl by Todd A. Fisher.
   #
@@ -22,6 +24,7 @@ module Treat::Processors::Tokenizers::Perl
   def self.tokenize(entity, options = {})
     
     entity.check_hasnt_children
+    s = entity.to_s
     
     tokens = get_tokens(entity.to_s)
     tokens[1..-1].each do |token|
@@ -37,6 +40,9 @@ module Treat::Processors::Tokenizers::Perl
 
     # Normalize all whitespace
     text = string.gsub(/\s+/,' ')
+    
+    # Replace all decimal points by ^^
+    Treat::Helpers::DecimalPointEscaper.escape!(text)
 
     # Translate some common extended ascii 
     # characters to quotes

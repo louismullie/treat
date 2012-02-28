@@ -3,9 +3,6 @@ class Treat::Lexicalizers::Tag::Stanford
 
   require 'treat/loaders/stanford'
   Treat::Loaders::Stanford.load
-  StanfordCoreNLP.load_class('ArrayList', 'java.util')
-  StanfordCoreNLP.load_class('Word', 'edu.stanford.nlp.ling')
-  StanfordCoreNLP.load_class('MaxentTagger', 'edu.stanford.nlp.tagger.maxent')
 
   # Hold one tagger per language.
   @@taggers = {}

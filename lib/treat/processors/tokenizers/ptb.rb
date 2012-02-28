@@ -12,6 +12,8 @@
 # same terms as Ruby itself.
 module Treat::Processors::Tokenizers::PTB
 
+  require 'treat/helpers/decimal_point_escaper'
+  
   # Tokenize the entity using a native rule-based algorithm.
   def self.tokenize(entity, options = {})
     
@@ -32,6 +34,7 @@ module Treat::Processors::Tokenizers::PTB
   # Helper method to split the string into tokens.
   def self.split(string)
     s = " " + string + " "
+    Treat::Helpers::DecimalPointEscaper.escape!(s)
     s.gsub!(/\s+/," ")
     s.gsub!(/(\s+)''/,'\1"')
     s.gsub!(/(\s+)``/,'\1"')

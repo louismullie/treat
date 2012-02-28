@@ -9,17 +9,8 @@ module Treat::Extractors
     self.default = :what_language
   end
 
-  # Extracts the time of a phrase and annotates it
-  # with additional information regarding time.
+  # Extracts the date/time of a phrase.
   module Time
-    extend Treat::Groupable
-    self.type = :annotator
-    self.targets = [:phrase]
-  end
-
-  # Extracts the time of a phrase and annotates it
-  # with additional information regarding time.
-  module Date
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:phrase]

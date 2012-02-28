@@ -4,9 +4,11 @@
 # is pretty much self-explanatory.
 module Treat::Entities::Abilities::Buildable
 
+  require 'treat/helpers/decimal_point_escaper'
+  
   # Simple regexps to match common entities.
   WordRegexp = /^[[:alpha:]\-']+$/
-  NumberRegexp = /^[[:digit:]]+$/
+  NumberRegexp = /^#?([0-9]+)(\^\^[0-9]+)$/
   PunctRegexp = /^[[:punct:]]+$/
   UriRegexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix
   EmailRegexp = /.+\@.+\..+/
@@ -96,13 +98,17 @@ module Treat::Entities::Abilities::Buildable
   # Build an entity from a Numeric object.
   def from_numeric(numeric)
     unless self ==
-      Treat::Entities::Number
+      Treat::Entities::Number ||
+      self == Treat::Entities::Token ||
+      self == Treat::Entities::Entity
       raise Treat::Exception,
       "Cannot create something " +
-      "else than a number from " +
+      "else than a number/token from " +
       "a numeric object."
     end
-    Treat::Entities::Number.new(numeric.to_s)
+    n = numeric.to_s
+    Treat::Helpers::DecimalPointEscaper.unescape!(n)
+    Treat::Entities::Number.new(n)
   end
 
   # Build an entity from a folder with documents.
@@ -258,7 +264,7 @@ module Treat::Entities::Abilities::Buildable
       string != '-'
       Treat::Entities::Word.new(string)
     elsif string =~ NumberRegexp
-      Treat::Entities::Number.new(string)
+      from_numeric(string)
     elsif string =~ PunctRegexp
       Treat::Entities::Punctuation.new(string)
     elsif string.count('.') > 0 && 

@@ -24,7 +24,7 @@ class Treat::Languages::English
   
   Lexicalizers = {
     :category => [:from_tag],
-    :relations => [:naive],
+    :linkages => [:svo],
     :synsets => [:wordnet],
     :tag => [:lingua, :brill, :stanford]
   }

@@ -10,7 +10,7 @@ module Kernel
   # A list of acronyms used in class names within
   # the program. These do not CamelCase; they
   # CAMELCase.
-  Acronyms = %w[xml html txt odt abw doc yaml uea lda pdf ptb dot ai id3]
+  Acronyms = %w[xml html txt odt abw doc yaml uea lda pdf ptb dot ai id3 svo]
 
   # A cache to optimize camel casing.
   @@cc_cache = {}

@@ -15,6 +15,8 @@ module Treat::Processors::Segmenters::Tactful
   # Remove function definition 'tactful_tokenizer' by gem.
   String.class_eval { undef :tokenize }
   
+  require 'treat/helpers/decimal_point_escaper'
+  
   # Keep only one copy of the segmenter.
   @@segmenter = nil
   
@@ -26,11 +28,16 @@ module Treat::Processors::Segmenters::Tactful
     
     entity.check_hasnt_children
     
-    @@segmenter ||= TactfulTokenizer::Model.new
     s = entity.to_s
+    Treat::Helpers::DecimalPointEscaper.escape!(s)
+    
     s.gsub!(/([^\.\?!]\.|\!|\?)([^\s])/) { $1 + ' ' + $2 }
+    
+    @@segmenter ||= TactfulTokenizer::Model.new
+   
     sentences = @@segmenter.tokenize_text(s)
     sentences.each do |sentence|
+      Treat::Helpers::DecimalPointEscaper.unescape!(sentence)
       entity << Treat::Entities::Phrase.from_string(sentence)
     end
   end

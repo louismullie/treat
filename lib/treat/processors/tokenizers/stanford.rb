@@ -15,10 +15,12 @@ class Treat::Processors::Tokenizers::Stanford
 
     entity.check_hasnt_children
 
+    s = entity.to_s
+    
     @@tokenizer ||=
     ::StanfordCoreNLP.load(:tokenize)
     text =
-    ::StanfordCoreNLP::Text.new(entity.to_s)
+    ::StanfordCoreNLP::Text.new(s)
     @@tokenizer.annotate(text)
 
     add_tokens(entity, text.get(:tokens))
@@ -29,7 +31,7 @@ class Treat::Processors::Tokenizers::Stanford
   def self.add_tokens(entity, tokens)
     tokens.each do |token|
       val = token.value
-      val = '(' if val == '-LRB-'
+      val = '(' if val == '-LRB-'     # Fix for other special chars
       val = ')' if val == '-RRB'
       t = Treat::Entities::Token.
       from_string(token.value)

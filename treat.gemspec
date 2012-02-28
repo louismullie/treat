@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'rubyzip', '>= 0.9.6.1'
   s.add_runtime_dependency, 'fann', '>= 1.1.3'
   s.add_runtime_dependency 'ruby-readability', '>= 0.5.0'
-  s.add_runtime_dependency 'stanford-core-nlp', '>= 0.1.6'
+  s.add_runtime_dependency 'stanford-core-nlp', '>= 0.1.8'
   s.add_runtime_dependency 'whatlanguage', '>= 1.0.0'
   s.add_runtime_dependency 'linguistics', '>= 1.0.9'
   s.add_runtime_dependency 'punkt-segmenter', '>= 0.9.1'

@@ -6,7 +6,8 @@
 # Project website: https://github.com/SlyShy/Tactful_Tokenizer
 class Treat::Processors::Tokenizers::Tactful
 
-
+  require 'treat/helpers/decimal_point_escaper'
+  
   ReTokenize = [
     # Uniform Quotes
     [/''|``/, '"'],
@@ -50,12 +51,15 @@ class Treat::Processors::Tokenizers::Tactful
     entity.check_hasnt_children
     
     s = entity.to_s
+    Treat::Helpers::DecimalPointEscaper.escape!(s)
+    
     ReTokenize.each do |rules|
       s.gsub!(rules[0], rules[1])
     end
     
     s.split(' ').each do |token|
-      entity << Treat::Entities::Token.from_string(token)
+      entity << Treat::Entities::Token.
+      from_string(token)
     end
     
   end

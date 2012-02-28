@@ -7,6 +7,8 @@
 # Computational Linguistics 32: 485-525.
 module Treat::Processors::Segmenters::Punkt
 
+  require 'treat/helpers/decimal_point_escaper'
+  
   # Require silently the punkt-segmenter gem.
   silence_warnings { require 'punkt-segmenter' }
   
@@ -33,8 +35,11 @@ module Treat::Processors::Segmenters::Punkt
     
     lang = entity.language
     set_options(lang, options)
+    
     s = entity.to_s
     
+    # Replace all decimal points by ^^
+    Treat::Helpers::DecimalPointEscaper.escape!(s)
     s.gsub!(/([^\.\?!]\.|\!|\?)([^\s])/) { $1 + ' ' + $2 }
     
     result = @@segmenters[lang].
@@ -42,6 +47,8 @@ module Treat::Processors::Segmenters::Punkt
     :output => :sentences_text)
     
     result.each do |sentence|
+      Treat::Helpers::DecimalPointEscaper.
+      unescape!(sentence)
       entity << Treat::Entities::Phrase.
         from_string(sentence)
     end
@@ -49,7 +56,9 @@ module Treat::Processors::Segmenters::Punkt
   end
   
   def self.set_options(lang, options)
+    
     return @@segmenters[lang] if @@segmenters[lang]
+    
     if options[:model]
       model = options[:model]
     else
