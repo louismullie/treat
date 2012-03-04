@@ -43,10 +43,8 @@ class Treat::Formatters::Readers::HTML
     silence_warnings do
       # Strip comments
       html.gsub!(/<!--[^>]*-->/m, '')
-      d = Readability::Document.new(
-      html, options)
-      document.value = d.content
-      document.set :page_title, d.title
+      d = Readability::Document.new(html, options)
+      document.value = "<h1>#{d.title}</h1>\n" + d.content
       document.set :format, :html
     end
     

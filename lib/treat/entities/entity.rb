@@ -16,9 +16,6 @@ module Treat::Entities
     # #registry, and #contains_* methods.
     include Abilities::Registrable
 
-    # Implement support for #accept.
-    include Abilities::Visitable
-
     # Implement support for #self.add_workers
     extend Abilities::Delegatable
 

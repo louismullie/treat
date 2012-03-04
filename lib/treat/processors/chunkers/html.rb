@@ -21,7 +21,7 @@ class Treat::Processors::Chunkers::HTML
       
       if child.name =~ /^h([0-9]{1})$/ ||
         (child.name == 'p' && txt.length < 45 && 
-        node.parent.type == :section)
+        node.parent && node.parent.type == :section)
         
         if $1
           lvl = $1.to_i

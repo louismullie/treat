@@ -298,7 +298,9 @@ module Treat::Entities::Abilities::Buildable
 
   def detect_format(filename, default_to = :txt)
 
-    ext = filename.scan(ExtensionRegexp)[0][0]
+    ext = filename.scan(ExtensionRegexp)
+    ext = (ext.is_a?(Array) && ext[0] && ext[0][0]) ? 
+          ext[0][0] : ''
     
     format =
       ImageExtensions.include?(ext) ? 

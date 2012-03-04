@@ -56,7 +56,7 @@ module Treat::Entities::Abilities::Delegatable
 
     print_debug(entity, task, worker,
     group, options) if Treat.debug
-    
+
     if not group.list.include?(worker)
       raise Treat::Exception,
       worker_not_found(worker, group)
@@ -65,16 +65,18 @@ module Treat::Entities::Abilities::Delegatable
       worker = group.const_get(
       cc(worker.to_s).intern
       )
-
-      result = entity.accept(
-      task, worker, group, options
-      )
+      
+      result = worker.send(group.method, entity, options)
 
       if group.type == :annotator && result
         entity.features[task] = result
       end
 
-      result
+      if group.type == :transformer
+        self
+      else
+        result
+      end
 
     end
   end
@@ -90,15 +92,15 @@ module Treat::Entities::Abilities::Delegatable
   # Get the default worker for that language
   # inside the given group.
   def find_worker_for_language(language, group)
-    
+
     lang = Treat::Languages.describe(language)
     klass = cc(lang).intern
     lclass = Treat::Languages.const_get(klass)
     cat = group.to_s.split('::')[-2].intern
     klass = lclass.const_get(cat)
-    
+
     g = ucc(cl(group)).intern
-    
+
     if !klass[g] || !klass[g][0]
       d = ucc(cl(group))
       d.gsub!('_', ' ')

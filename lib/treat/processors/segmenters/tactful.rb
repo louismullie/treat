@@ -25,7 +25,7 @@ module Treat::Processors::Segmenters::Tactful
   #
   # Options: none.
   def self.segment(entity, options = {})
-    
+
     entity.check_hasnt_children
     
     s = entity.to_s

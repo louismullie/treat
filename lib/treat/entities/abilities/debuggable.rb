@@ -2,7 +2,7 @@
 # #call_worker will result in a debug message being
 # printed by the #print_debug function.
 module Treat::Entities::Abilities::Debuggable
-
+  
   @@prev = nil
   @@i = 0
 
@@ -75,6 +75,9 @@ module Treat::Entities::Abilities::Debuggable
       @@i = 0
       puts @@prev     # Last call doesn't get shown.
     end
+    
     @@prev = curr
+  
   end
+  
 end

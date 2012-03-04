@@ -13,6 +13,7 @@
 - Ruby graphviz
 - Stanford parser + coreference resolver accept tokens
 - What if an element in data set is nil?
+- Save individual documents in a collection
 
 # Testing
 

@@ -13,14 +13,14 @@ module Treat::Processors
   module Segmenters
     extend Treat::Groupable
     self.type = :transformer
-    self.targets = [:document, :zone]
+    self.targets = [:zone]
   end
   
   # Tokenizers splits a sentence into Token objects.
   module Tokenizers
     extend Treat::Groupable
     self.type = :transformer
-    self.targets = [:document, :zone, :phrase]
+    self.targets = [:phrase]
   end
   
   # Parsers split a sentence into phrase objects

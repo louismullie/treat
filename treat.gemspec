@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ['Louis Mullie']
   s.email       = ['louis.mullie@gmail.com']
   s.homepage    = 'https://github.com/louismullie/treat'
-  s.summary     = %q{ Text retrieval, extraction and annotation toolkit }
-  s.description = %q{ Treat is a toolkit for text retrieval, information extraction and natural language processing. }
+  s.summary     = %q{ A text retrieval, extraction and annotation toolkit for Ruby. }
+  s.description = %q{ Treat is a Ruby toolkit for text retrieval, information extraction and natural language processing. }
   
   # Add all files.
   s.files = Dir['lib/**/*'] + Dir['test/**/*'] + 
