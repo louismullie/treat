@@ -132,22 +132,7 @@ module Treat::Tree
       @children_hash = {}
       self
     end
-
-    # Previous sibling from the same parent.
-    def next_sibling
-      return nil if is_root?
-      id = @parent.children.index(self)
-      @parent.children.at(id + 1) if id
-    end
-
-    # Return the sibling N positions to
-    # the left of this one.
-    def left(n = 1); sibling(-1*n); end
-
-    # Return the sibling N positions to the
-    # right of this one.
-    def right(n = 1); sibling(1*n); end
-
+    
     # Return the sibling with position #pos
     # versus this one.
     # #pos can be ... -1, 0, 1, ...
@@ -157,6 +142,16 @@ module Treat::Tree
       @parent.children.at(id + pos)
     end
 
+    # Return the sibling N positions to
+    # the left of this one.
+    def left(n = 1); sibling(-1*n); end
+    alias :previous_sibling :left
+
+    # Return the sibling N positions to the
+    # right of this one.
+    def right(n = 1); sibling(1*n); end
+    alias :next_sibling :right
+    
     # Return all brothers and sisters of this node.
     def siblings
       r = @parent.children.dup

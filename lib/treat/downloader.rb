@@ -7,7 +7,7 @@ class Treat::Downloader
   end
 
   self.progress_bar = false
-  self.download_folder = Treat.downloads
+  self.download_folder = Treat.files
 
   require 'net/http'
   require 'fileutils'
