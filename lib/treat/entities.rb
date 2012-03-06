@@ -23,8 +23,7 @@ module Treat::Entities
   # Add each constant to the list, except Entity.
   self.list = []
   constants.each do |constant|
-    unless constant == :Entity || 
-           constant == :Abilities
+    unless constant == :Entity
       self.list << ucc(constant).intern
     end
   end

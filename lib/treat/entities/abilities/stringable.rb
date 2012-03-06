@@ -19,14 +19,15 @@ module Treat::Entities::Abilities::Stringable
   # Return a shortened value of the entity's
   # string value using [...], with a cutoff
   # number of words or length.
-  def short_value(max_length = 30)
+  def short_value(max_words = 6, max_length = 30)
     s = to_s
     words = s.split(' ')
-    if s.length < max_length
+    if s.count(' ') < (max_words - 1) ||
+      s.length < max_length
       s
     else
       words[0..2].join(' ') + ' [...] ' +
-      words[-2..-1].join(' ')
+      words[-3..-1].join(' ')
     end
   end
 
@@ -51,8 +52,7 @@ module Treat::Entities::Abilities::Stringable
 
   # Print out an ASCII representation of the tree.
   def print_tree; puts visualize(:tree); end
-  
-  # Helper method to implode the string value of the subtree.
+
   def implode
 
     return @value.dup if !has_children?

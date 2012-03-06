@@ -1,0 +1,2 @@
+require 'unprof'
+require 'tests'

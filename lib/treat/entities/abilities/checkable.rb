@@ -11,6 +11,7 @@ module Treat::Entities::Abilities::Checkable
     return @features[feature] if has?(feature)
     return send(feature) if do_it
     task = caller_method(2)
+    puts task
     g1 = Treat::Categories.lookup(task)
     g2 = Treat::Categories.lookup(feature)
     raise Treat::Exception,

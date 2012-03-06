@@ -10,12 +10,10 @@
 - Plural verb
 - New working dirs
 - Standoff format - tag all entities.
-using wordsnet. keywordss
-- Escaped chars in XML serializer
+- Ruby graphviz
 - Stanford parser + coreference resolver accept tokens
 - What if an element in data set is nil?
 - Save individual documents in a collection
-- /Users/Louis/.rvm/gems/ruby-1.9.2-p290/gems/linguistics-1.0.9/lib/linguistics/en.rb:1060:in `block in number_to_words': undefined method `nitems' for ["9"]:Array (NoMethodError)
 
 # Testing
 
@@ -27,7 +25,6 @@ using wordsnet. keywordss
 
 ## Future
 
-- Serialize XML and visualize DOT with Ruby plugins.
 - Add Stanford and Wordnet lemmatizers
 - ABW, ODT Nokogiri
 - Try new encodings

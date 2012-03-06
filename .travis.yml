@@ -1,7 +1,0 @@
-language: ruby
-rvm:
-  - 1.9.2
-  - 1.9.3
-before_script: 
-  - sudo wget http://www.louismullie.com/stanford-core-nlp-minimal.zip
-  - sudo unzip -o stanford-core-nlp-minimal.zip -d bin/
