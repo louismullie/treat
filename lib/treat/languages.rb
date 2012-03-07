@@ -7,7 +7,7 @@ module Treat::Languages
   
   def self.const_missing(const)
     lang = const.to_s.downcase
-    f = 'treat/languages/' + lang
+    f = File.join(File.dirname(__FILE__), "languages", lang)
     unless File.readable?(f + '.rb')
       raise Treat::Exception,
       "Language #{lang} is not supported."
@@ -104,7 +104,7 @@ module Treat::Languages
     return if @@loaded
     @@iso639_1 = {}; @@iso639_2 = {};
     @@english_full = {}; @@french_full = {}
-    languages = IO.readlines('treat/languages/list.txt')
+    languages = IO.readlines(File.join(File.dirname(__FILE__), "languages", "list.txt"))
     languages.each do |language|
       iso639_2, iso639_1, english_desc, french_desc =
       language.split(',')
