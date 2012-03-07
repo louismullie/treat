@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   
   # Runtime dependencies
   s.add_runtime_dependency 'psych', '>= 1.2.2'
-  s.add_runtime_dependency 'nokogiri', '>= 1.5.0'
+  s.add_runtime_dependency 'nokogiri', '>= 1.4.0'
   s.add_runtime_dependency 'sdsykes-ferret', '>= 0.11.6.19'
   s.add_runtime_dependency 'lda-ruby', '>= 0.3.8'
   s.add_runtime_dependency 'rubyzip', '>= 0.9.6.1'
