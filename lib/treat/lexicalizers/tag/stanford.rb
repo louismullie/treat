@@ -2,7 +2,6 @@
 class Treat::Lexicalizers::Tag::Stanford
 
   require 'treat/loaders/stanford'
-  Treat::Loaders::Stanford.load
 
   # Hold one tagger per language.
   @@taggers = {}
@@ -29,7 +28,7 @@ class Treat::Lexicalizers::Tag::Stanford
     
     # Do the tagging.
     i = 0
-    isolated_token = tokens.size == 1
+   isolated_token = entity.is_a?(Treat::Entities::Token)
     @@taggers[lang].apply(list).each do |tok|
       tokens[i].set :tag, tok.tag
       tokens[i].set :tag_set, 

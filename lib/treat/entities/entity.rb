@@ -71,6 +71,25 @@ module Treat::Entities
         }
       end
     end
+    
+    
+    # Add an entity to the current entity.
+    # Registers the entity in the root node
+    # token registry if the entity is a leaf.
+    #
+    # @see Treat::Registrable
+    def <<(entities, clear_parent = true)
+      unless entities.is_a? Array
+        entities = [entities]
+      end
+      entities.each do |entity|
+        register(entity)
+      end
+      super(entities)
+      @parent.value = '' if has_parent?
+      entities[0]
+    end
+
 
     # Catch missing methods to support method-like
     # access to features (e.g. entity.category
@@ -106,23 +125,6 @@ module Treat::Entities
         @features[sym]
       end
 
-    end
-
-    # Add an entity to the current entity.
-    # Registers the entity in the root node
-    # token registry if the entity is a leaf.
-    #
-    # @see Treat::Registrable
-    def <<(entities, clear_parent = true)
-      unless entities.is_a? Array
-        entities = [entities]
-      end
-      entities.each do |entity|
-        register(entity)
-      end
-      super(entities)
-      @parent.value = '' if has_parent?
-      entities[0]
     end
 
   end

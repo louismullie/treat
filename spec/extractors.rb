@@ -49,25 +49,6 @@ module Treat
         # assert_nothing_raised { @doc.statistics(:transition_probability) }
       end
       
-      def test_language
-        assert_equal Treat.default_language, @doc.language
-        Treat.detect_language = true
-        assert_equal :eng, @doc.language
-        
-        a = 'I want to know God\'s thoughts; the rest are details. - Albert Einstein'
-        b = 'El mundo de hoy no tiene sentido, así que ¿por qué debería pintar cuadros que lo tuvieran? - Pablo Picasso'
-        c = 'Un bon Allemand ne peut souffrir les Français, mais il boit volontiers les vins de France. - Goethe'
-        d = 'Wir haben die Kunst, damit wir nicht an der Wahrheit zugrunde gehen. - Friedrich Nietzsche'
-
-        assert_equal :eng, a.language
-        assert_equal :spa, b.language
-        assert_equal :fre, c.language
-        assert_equal :ger, d.language
-        
-        # Reset defaults
-        Treat.detect_language = false
-      end
-      
     end
   end
 end

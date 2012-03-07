@@ -1,5 +1,5 @@
 module Treat
-  
+
   module Languages
 
     module Tags
@@ -17,7 +17,7 @@ module Treat
         ['SINV', 'Inverted declarative sentence'],
         ['SQ', 'Inverted yes/no question']
       ]
-      
+
       PTBEscapeCharacters = {
         '(' => '-LRB-',
         ')' => '-RRB-',
@@ -26,7 +26,7 @@ module Treat
         '{' => '-LCB-',
         '}' => '-RCB-'
       }
-      
+
       AlignedPhraseTags =
       [
         'Adjective phrase', ['', '', 'ADJP'],
@@ -148,6 +148,43 @@ module Treat
         'SC' => :conjunction
       }
 
+      PunctuationToCategory = {
+        '.' => :period,
+        ',' => :comma,
+        ';' => :semicolon,
+        ':' => :colon,
+        '!' => :exclamation,
+        '?' => :interrogation,
+        '"' => :quote,
+        "'" => :quote,
+                
+        '$' => :dollar,
+        '%' => :percent,
+        '#' => :hash,
+        '*' => :asterisk,
+        '&' => :ampersand,
+        '+' => :plus,
+        '-' => :dash,
+        
+        '/' => :slash,
+        '\\' => :backslash,
+        '^' => :caret,
+        '_' => :underscore,
+        '`' => :tick,
+        '|' => :pipe,
+        '~' => :tilde,
+        '@' => :at,
+        
+        '[' => :bracket,
+        ']' => :bracket,
+        '{' => :brace,
+        '}' => :brace,
+        '(' => :parenthesis,
+        ')' => :parenthesis,
+        
+        '<' => :tag,
+        '>' => :tag
+      }
 
       AlignedWordTags = [
 
@@ -181,7 +218,6 @@ module Treat
         'Conjunction, complementizer, that', ['CJT', 'CS', 'IN', '', '', 'C'],
 
         'Determiner', ['DT0', 'DT', 'DT', '', 'DT', 'D'],
-        'Determiner', ['DT0', 'DT', 'DET', '', 'DT', 'D'],
         'Determiner, pronoun', ['DT0', 'DTI', 'DT', '', '', 'D'],
         'Determiner, pronoun, plural', ['DT0', 'DTS', 'DT', '', '', 'D'],
         'Determiner, prequalifier', ['DT0', 'ABL', 'DT', '', '', 'D'],
@@ -294,7 +330,7 @@ module Treat
 
         'Punctuation', ['', '', '', '', 'PU', 'PN'],
         'Punctuation, sentence ender', ['PUN', '.', '.', '', '', 'PN'],
-        
+
         'Punctuation, semicolon', ['PUN', '.', '.', '', '', 'PN'],
         'Puncutation, colon or ellipsis', ['PUN', ':', ':'],
         'Punctuationm, comma', ['PUN', ',', ',', '$,'],
@@ -304,19 +340,14 @@ module Treat
         'Punctuation, right bracket', ['PUR', ')', ')'],
         'Punctuation, quotation mark, left', ['PUQ', '', '``'],
         'Punctuation, quotation mark, right', ['PUQ', '', '"'],
-        
-        # Extension to the penn treebank
-        'Punctuation, sentence ender', ['PUN', '.', 'PP', '', '', 'PN'],
-        'Punctuation, semicolon', ['PUN', '.', 'PPS', '', '', 'PN'],
-        'Punctuation, comma', ['PUN', ',', 'PPC', '$,'],
-        'Punctuation, dash', ['PUN', '-', '-'],
-        'Punctuation, dollar sign', ['PUN', '', 'PPD'],
+
         'Punctuation, left bracket', ['PUL', '(', 'PPL'],
         'Punctuation, right bracket', ['PUR', ')', 'PPR'],
-        'Punctuation, left bracket', ['PUL', '(', 'LRB'],
-        'Punctuation, right bracket', ['PUR', ')', 'RRB'],
-        # 
-        
+        'Punctuation, left square bracket', ['PUL', '(', 'LSB'],
+        'Punctuation, right square bracket', ['PUR', ')', 'RSB'],
+        'Punctuation, left curly bracket', ['PUL', '(', 'LCB'],
+        'Punctuation, right curly bracket', ['PUR', ')', 'RCB'],
+
         'Unknown, foreign words (not in lexicon)', ['UNZ', '(FW-)', 'FW', '', 'FW'],
 
         'Symbol', ['', '', 'SYM', 'XY'],
@@ -381,16 +412,16 @@ module Treat
 
       def self.describe(tag, tag_set)
         if PhraseTagToCategory[tag] &&
-           PhraseTagToCategory[tag_set] &&
-           WordTagToCategory[tag] &&
-           WordTagToCategory[tag_set]
+          PhraseTagToCategory[tag_set] &&
+          WordTagToCategory[tag] &&
+          WordTagToCategory[tag_set]
         end
       end
-      
+
       def self.convert(tag, from, to)
 
       end
-      
+
     end
   end
 end

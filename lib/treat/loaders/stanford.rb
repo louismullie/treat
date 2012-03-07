@@ -4,21 +4,24 @@ class Treat::Loaders
   # registered with the Linguistics gem.
   class Stanford
 
-    @@loaded = false
+    require 'stanford-core-nlp'
+    
+    StanfordCoreNLP.jar_path = 
+    Treat.bin + 'stanford/'
+    
+    StanfordCoreNLP.model_path = 
+    Treat.models + 'stanford/'
+    
+    StanfordCoreNLP.use(
+    Treat::Languages.describe(
+    Treat.default_language))
 
-    def self.load
-      return if @@loaded
-      require 'stanford-core-nlp'
-      StanfordCoreNLP.jar_path = 
-      '/ruby/gems/treat/bin/stanford/'
-      StanfordCoreNLP.model_path = 
-      Treat.models + 'stanford/'
-      StanfordCoreNLP.log_file = 
-      NULL_DEVICE if Treat.silence
-      StanfordCoreNLP.init
-      @@loaded = true
-    end
-
+    StanfordCoreNLP.log_file = 
+    NULL_DEVICE if Treat.silence
+    
+    StanfordCoreNLP.init
+    @@loaded = true
+    
   end
 
 end

@@ -11,7 +11,7 @@ module Treat::Entities::Abilities::Registrable
       @registry[:value][val] ||= 0
       @registry[:value][val] += 1
     end
-
+  
     @registry[:id][entity.id] = true
     @registry[:type][entity.type] ||= 0
     @registry[:type][entity.type] += 1
@@ -19,6 +19,7 @@ module Treat::Entities::Abilities::Registrable
     @count += 1
     
     @parent.register(entity) if has_parent?
+    
   end
 
   # Backtrack up the tree to find a token registry,

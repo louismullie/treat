@@ -33,7 +33,7 @@ class Treat::Languages::English
     :chunkers => [:txt],
     :parsers => [:stanford, :enju],
     :segmenters => [:tactful, :punkt, :stanford],
-    :tokenizers => [:perl, :tactful, :macintyre, :punkt, :stanford]
+    :tokenizers => [:perl, :ptb, :stanford, :tactful, :punkt]
   }
   
   Retrievers = {

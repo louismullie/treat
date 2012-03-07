@@ -1,5 +1,7 @@
 ## Todo in Treat
 
+- Stanford parse can't be called after segment
+- ODT, XML tests
 - Enju dependencies, better tag handling.
 - Coref parse and NER parse
 - XML unserializer
@@ -14,6 +16,7 @@
 - Stanford parser + coreference resolver accept tokens
 - What if an element in data set is nil?
 - Save individual documents in a collection
+- Does it return self when using processors?
 
 # Testing
 

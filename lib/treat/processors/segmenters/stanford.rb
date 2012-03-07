@@ -3,7 +3,6 @@
 class Treat::Processors::Segmenters::Stanford
 
   require 'treat/loaders/stanford'
-  Treat::Loaders::Stanford.load
 
   DefaultOptions = {
     :also_tokenize => false

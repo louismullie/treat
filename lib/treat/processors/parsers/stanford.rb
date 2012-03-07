@@ -2,7 +2,6 @@
 class Treat::Processors::Parsers::Stanford
 
   require 'treat/loaders/stanford'
-  Treat::Loaders::Stanford.load
 
   # Hold one instance of the pipeline per language.
   @@parsers = {}
@@ -41,7 +40,7 @@ class Treat::Processors::Parsers::Stanford
         entity.set :tag_set, :penn
         entity.set :tag, tag_s
         entity.set :tag_opt, tag_opt if tag_opt
-        recurse(s.get(:tree), entity)
+        recurse(s.get(:tree).children[0], entity)
         break
       else
         recurse(s.get(:tree), entity)

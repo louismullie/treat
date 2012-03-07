@@ -9,6 +9,7 @@ describe Treat::Tree do
     @leaf = Treat::Tree::Node.new('leaf node', 'leaf')
     @root << @branch << @leaf
     @root << @sibling
+    
     @leaf.link(@sibling, 'some dependency')
     @leaf.set :some_feature, 'value'
   end

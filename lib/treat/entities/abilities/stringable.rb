@@ -11,8 +11,10 @@ module Treat::Entities::Abilities::Stringable
   # Returns the entity's string value by
   # imploding the value of all terminal
   # entities in the subtree of that entity.
-  def to_s; @value != '' ? @value : implode.strip; end
-
+  def to_s
+    @value != '' ? @value : implode.strip
+  end
+  
   # #to_str is the same as #to_s.
   alias :to_str :to_s
 
@@ -54,27 +56,32 @@ module Treat::Entities::Abilities::Stringable
   
   # Helper method to implode the string value of the subtree.
   def implode
-
+    
     return @value.dup if !has_children?
+    
     value = ''
 
     each do |child|
+      
       if child.is_a?(Treat::Entities::Section)
         value += "\n\n"
       end
+      
       if child.is_a?(Treat::Entities::Token) || child.value != ''
         if child.is_a?(Treat::Entities::Punctuation) ||
           child.is_a?(Treat::Entities::Clitic)
           value.strip!
         end
-        value += child.value + ' '
+        value += child.to_s + ' '
       else
         value += child.implode
       end
+      
       if child.is_a?(Treat::Entities::Title) ||
         child.is_a?(Treat::Entities::Paragraph)
         value += "\n\n"
       end
+      
     end
 
     value

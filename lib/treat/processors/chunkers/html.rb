@@ -47,6 +47,7 @@ class Treat::Processors::Chunkers::HTML
         t.set :level, level
 
       elsif child.name == 'p'
+        
         node << Treat::Entities::Zone.
         from_string(txt)
 

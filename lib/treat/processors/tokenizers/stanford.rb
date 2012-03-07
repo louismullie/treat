@@ -3,7 +3,6 @@
 class Treat::Processors::Tokenizers::Stanford
 
   require 'treat/loaders/stanford'
-  Treat::Loaders::Stanford.load
 
   @@tokenizer = nil
 

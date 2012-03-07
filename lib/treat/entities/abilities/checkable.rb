@@ -18,14 +18,13 @@ module Treat::Entities::Abilities::Checkable
     "requires #{g2.type} #{g2.method}."
   end
 
-  # Raises a warning and removes all children of
-  # the entity if the entity has children.
+  # Raises an error if the entity has children.
   def check_hasnt_children
     return unless has_children?
-    warn "Warning: can't #{caller_method(2)} "+
+    raise Treat::Exception,
+    "Warning: can't #{caller_method(2)} "+
     "an entity that has children. Removing " +
     " all children of text \"[#{short_value}].\""
-    remove_all!
   end
 
 end

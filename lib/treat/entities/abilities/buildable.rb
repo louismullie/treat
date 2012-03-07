@@ -8,7 +8,7 @@ module Treat::Entities::Abilities::Buildable
   
   # Simple regexps to match common entities.
   WordRegexp = /^[[:alpha:]\-']+$/
-  NumberRegexp = /^#?([0-9]+)(\^\^[0-9]+)$/
+  NumberRegexp = /^#?([0-9]+)(\^\^[0-9]+)?$/
   PunctRegexp = /^[[:punct:]]+$/
   UriRegexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix
   EmailRegexp = /.+\@.+\..+/
