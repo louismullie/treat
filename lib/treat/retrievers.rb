@@ -17,7 +17,7 @@ module Treat::Retrievers
   module Searchers
     extend Treat::Groupable
     self.type = :computer
-    self.targets = [:entity]
+    self.targets = [:collection]
     self.default = :ferret
   end
   

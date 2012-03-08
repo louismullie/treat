@@ -13,8 +13,8 @@ Gem::Specification.new do |s|
   s.description = %q{ Treat is a Ruby toolkit for text retrieval, information extraction and natural language processing. }
   
   # Add all files.
-  s.files = Dir['lib/**/*'] + Dir['test/**/*'] + 
-  Dir['tmp/**/*'] + Dir['data/**/*'] + Dir['bin/**/*'] +
+  s.files = Dir['lib/**/*'] + Dir['spec/**/*'] + 
+  Dir['tmp/**/*'] + Dir['files/**/*'] + Dir['bin/**/*'] +
   ['README', 'TODO', 'LICENSE', 'INSTALL']
   
   # Runtime dependencies
@@ -23,7 +23,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'sdsykes-ferret', '>= 0.11.6.19'
   s.add_runtime_dependency 'lda-ruby', '>= 0.3.8'
   s.add_runtime_dependency 'rubyzip', '>= 0.9.6.1'
-  # s.add_runtime_dependency 'ruby-fann', '>= 1.1.3'
   s.add_runtime_dependency 'ruby-readability', '>= 0.5.0'
   s.add_runtime_dependency 'stanford-core-nlp', '>= 0.1.8'
   s.add_runtime_dependency 'whatlanguage', '>= 1.0.0'

@@ -1,5 +1,7 @@
+*~
+*.lock
+*.DS_Store
+*swp
+*.out
 *.gem
 *.sh
-*~
-*swp
-

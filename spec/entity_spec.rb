@@ -404,3 +404,17 @@ describe Treat::Entities::Entity do
   end
 
 end
+
+
+=begin
+
+
+def test_visualizers
+  assert_nothing_raised { @doc.visualize(:tree) }
+  # assert_nothing_raised { @doc.visualize(:html) }
+  assert_nothing_raised { @doc.visualize(:dot) }
+  assert_nothing_raised { @doc.visualize(:short_value) }
+  assert_nothing_raised { @sentence.visualize(:standoff) }
+end
+
+=end
