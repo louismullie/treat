@@ -1,24 +1,22 @@
 require 'date'
 require 'rspec/core/rake_task'
 
-desc 'Default: run specs.'
-task :default => :spec
+namespace :treat do
 
-desc "Run specs"
+  task :default => :spec
 
-RSpec::Core::RakeTask.new do |t|
-  t.pattern = "./spec/**/*_spec.rb"
-  # Put spec opts in a file named .rspec in root
-end
+  RSpec::Core::RakeTask.new do |t|
+    t.pattern = "./spec/**/*_spec.rb"
+  end
 
-desc "Generate code coverage"
-RSpec::Core::RakeTask.new(:coverage) do |t|
-  t.pattern = "./spec/**/*_spec.rb"
-  t.rcov = true
-  t.rcov_opts = ['--exclude', 'spec']
-end
+  task :version do
+    contents = File.read File.expand_path('../lib/treat.rb', __FILE__)
+    contents[/VERSION = "([^"]+)"/, 1]
+  end
 
-task :version do
-  contents = File.read File.expand_path('../lib/treat.rb', __FILE__)
-  contents[/VERSION = "([^"]+)"/, 1]
+  task :install, [:language] do |t, args|
+    require './lib/treat'
+    Treat.install(args.language)
+  end
+
 end

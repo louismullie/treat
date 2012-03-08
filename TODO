@@ -1,15 +1,12 @@
 ## Todo in Treat
 
-- Stanford parse can't be called after segment
+- Stanford parse can't be called after Stanford segment
 - ODT, XML tests
 - Enju dependencies, better tag handling.
 - Coref parse and NER parse
 - XML unserializer
-- Stanford dependencies parse
-- Improve linkers
+- Stanford dependencies
 - Hashs in visualize
-- Lazy loading of languages
-- Plural verb
 - New working dirs
 - Standoff format - tag all entities.
 - Ruby graphviz
@@ -22,7 +19,7 @@
 # Testing
 
 - All green
-- Thoroughly test on ... ZIP + punkt + engtagger
+- Thoroughly test on 1.9.2 ... ZIP + punkt + engtagger
 - Rake test
 - Wiki test
 - Build and test
