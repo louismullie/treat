@@ -12,6 +12,7 @@ describe Treat::Tree do
     
     @leaf.link(@sibling, 'some dependency')
     @leaf.set :some_feature, 'value'
+    
   end
 
   describe "#[]" do
@@ -44,6 +45,13 @@ describe Treat::Tree do
 
 =end
 
+  describe "#set(feature, value) and #get(feature)" do
+    it "set and get a feature in the @features hash" do 
+      @root.set :foo, true
+      @root.get(:foo).should eql true
+    end
+  end
+  
   describe "#size" do
     it "returns the total number of nodes in the tree" do
       @root.size.should eql 4

@@ -4,7 +4,7 @@ describe Treat::Entities::Entity do
 
   before do
 
-    @section = Treat::Entities::Section.new
+    @paragraph = Treat::Entities::Paragraph.new
     @sentence = Treat::Entities::Sentence.new
     @noun_phrase = Treat::Entities::Phrase.new
     @noun_phrase.set :tag, 'NP'
@@ -33,7 +33,8 @@ describe Treat::Entities::Entity do
     @verb.set :tag, 'VBG'
     @verb.set :tag_set, :penn
     @dot = Treat::Entities::Punctuation.new('.')
-    @section << @sentence << [@noun_phrase, @verb_phrase, @dot]
+    @dot.set :tag, '.'
+    @paragraph << @sentence << [@noun_phrase, @verb_phrase, @dot]
     @noun_phrase << [@det, @adj_phrase, @noun]
     @adj_phrase << @adj
     @verb_phrase << [@aux, @verb]
@@ -42,6 +43,94 @@ describe Treat::Entities::Entity do
 
 
   describe "Buildable" do
+
+    describe "#build" do
+
+      context "when called on a document" do
+
+        context "when supplied with a file name" do
+          it "opens the file and reads its " +
+          "content into a document" do
+            d = Treat::Entities::Document.build('')
+          end
+        end
+
+        context "when supplied with a folder name" do
+          it "recursively searches the folder for " +
+          "files and opens them into a collection of documents" do
+
+          end
+        end
+
+        context "when supplied with a url" do
+          it "downloads the file the URL points to and opens " +
+          "a document with the contents of the file" do
+
+          end
+        end
+
+      end
+
+      context "when called on a section of text" do
+
+        context "when supplied with a section of text" do
+          it "creates a section with the text" do
+            
+          end
+        end
+        
+        context "when supplied with anything else" do
+          it "raises an error" do
+            
+          end
+        end
+
+      end
+
+      context "when called on a paragraph" do 
+        it "creates a paragraph with the text" do
+
+        end
+      end
+
+      context "when supplied with a sentence" do
+        it "creates a sentence with the text" do
+
+        end
+      end
+
+      context "when supplied with a phrase" do
+        it "creates a phrase with the text" do
+
+        end
+      end
+
+      context "when supplied with a word" do
+        it "creates a word with the text" do
+
+        end
+      end
+
+      context "when supplied with an integer number" do
+        it "creates a number" do
+
+        end
+      end
+
+      context "when supplied with a punctuation character" do
+        it "creates a punctuation with the text" do
+
+        end
+      end
+
+      context "when supplied with a symbol character" do
+        it "creates a symbol with the text" do
+
+        end
+      end
+
+
+    end
 
   end
 
@@ -54,19 +143,9 @@ describe Treat::Entities::Entity do
 
     describe "#position" do
 
-      it "returns the position of the entity in its parent" do
+      it "returns the position of the entity in its parent, sarting at 1" do
         @noun_phrase.position.should eql 1
-        @det.position.should eql 4
-      end
-
-    end
-
-    describe "#position_in(parent_type = nil)" do
-
-      it "returns the position of the entity in the first " +
-      "ancestor with the specified parent type or the parent if nil" do
-        @noun_phrase.position.should eql @noun_phrase.position_in
-        @det.position_in(:section).should eql 4
+        @det.position.should eql 1
       end
 
     end
@@ -118,11 +197,12 @@ describe Treat::Entities::Entity do
       end
     end
 
-    describe "#each_entity(*entity_types) { |entity| ... }" do
+    describe "#each_entity(&entity_types) { |entity| ... }" do
 
       context "when called with no arguments" do
-        it "recursively yields each element in the tree, including itself, " +
-        "top-down first then left to right" do
+        it "recursively yields each element in " +
+        "the tree, including itself, top-down " +
+        "first then left to right" do
 
           a = []
           @sentence.each_entity do |e|
@@ -136,7 +216,8 @@ describe Treat::Entities::Entity do
         end
       end
 
-      context "when called with one or more entity types supplied as lowercase symbols" do
+      context "when called with one or more entity " +
+      "types supplied as lowercase symbols" do
         it "recursively yields all elements with the given type(s), "+
         "including the receiver if it matches on of the types" do
           a = []
@@ -151,40 +232,106 @@ describe Treat::Entities::Entity do
     end
   end
 
-
   describe "Magical" do
 
-    describe "#is_*?" do
-      assert_equal true, @sentence.is_sentence?
-      assert_equal true, @noun.is_noun?
+    describe "#<entity or word type> - e.g. " +
+    "#title, #paragraph, etc. and #adjective, #noun, etc." do
+
+      it "return the first entity with the corresponding " +
+      "type inside another entity, but raises an exception "+
+      "the type occurs more than once in the entity" do
+        @paragraph.sentence.should eql @sentence
+      end
+
     end
 
-    describe "#*" do
-      assert_equal @sentence, @section.sentence
-      assert_equal [@sentence], @section.sentences
-      assert_equal 1, @section.sentence_count
-    end
-    
-    assert_equal [@det], @section.words_with_value('The')
-    assert_equal [@verb], @section.words_with_tag('VBG')
 
-    assert_equal @noun, @section.noun
-    assert_equal [@aux, @verb], @section.verbs
-    assert_equal 6, @section.token_count
+    describe "#<entity or word type>s - e.g. " +
+    "#sections, #words, etc. and #nouns, #adverbs, etc." do
 
-    @section.each_sentence do |s|
-      assert_equal @sentence, s
-    end
-    @section.each_noun do |n|
-      assert_equal @noun, n
-    end
-    @section.each_with_value('The') do |x|
-      assert_equal @det, x
+      it "return an array of the entities with the " +
+      "corresponding type in the subtree of an entity" do
+        @paragraph.phrases.should eql [@sentence,
+        @noun_phrase, @adj_phrase, @verb_phrase]
+      end
+
     end
 
-    assert_equal @sentence, @noun.parent_sentence
+    describe "#each_<entity type> - e.g. " +
+    "#each_sentence, #each_word, etc." do
+
+      it "yields each of the entities with the " +
+      "corresponding type in the subtree of an entity" do
+        a = []
+
+        @paragraph.each_phrase { |p| a << p }
+        a.should eql [@sentence, @noun_phrase,
+        @adj_phrase, @verb_phrase]
+
+      end
+
+    end
+
+    describe "#<entity or word type>_count - e.g. " +
+    "#sentence_count, #paragraph_count, etc. and " +
+    "#noun_count, #verb_count, etc." do
+
+      it "return the number of entities with the" +
+      "corresponding type inside another entity" do
+        @paragraph.sentence_count.should eql 1
+        @paragraph.phrase_count.should eql 4
+      end
+
+    end
+
+    describe "#<entity or word type>_with_<feature>(value) - " +
+    "e.g. #word_with_id(x) or #adverb_with_value('seemingly')" do
+
+      it "return the entity with the corresponding type " +
+      "that have [feature] set to the supplied value; raise" +
+      "a warning if there are many entities of that type" do
+        @paragraph.word_with_value('The').should eql @det
+        @paragraph.token_with_tag('.').should eql @dot
+        @sentence.phrase_with_tag('NP').should eql @noun_phrase
+      end
+
+    end
+
+    describe "#<entity or word type>s_with_<feature>(value) - " +
+    "e.g. #phrases_with_tag('NP'), #nouns_with_value('foo')" do
+
+      it "return an array of the entities with the " +
+      "corresponding type that have [feature] set to "+
+      "the supplied value" do
+        @paragraph.words_with_value('The').should eql [@det]
+        @paragraph.tokens_with_tag('.').should eql [@dot]
+        @sentence.phrases_with_tag('NP').should eql [@noun_phrase]
+      end
+
+    end
+
+    describe "#parent_<entity type> - e.g. " +
+    "#parent_document, #parent_collection, etc." do
+
+      it "return the first ancestor of the entity " +
+      "that has the supplied type, or nil if none" do
+        @sentence.parent_paragraph.should eql @paragraph
+        @adj.parent_sentence.should eql @sentence
+      end
+
+    end
+
+    describe "#frequency_in_<entity type> - e.g. " +
+    "#frequency_in_collection, #frequency_in_document, etc." do
+
+      it "return the frequency of this entity's value " +
+      "in the parent entity with the corresponding type" do
+        @adj.frequency_in_sentence.should eql 1
+      end
+
+    end
+
   end
-
 
   describe "Registrable" do
 
@@ -195,28 +342,35 @@ describe Treat::Entities::Entity do
   describe "Stringable" do
 
     describe "#to_string" do
-      it "returns the true text value of the entity or an empty string if it has none" do
-        @section.to_string.should eql ''
+      it "returns the true text value of the entity " +
+      "or an empty string if it has none" do
+        @paragraph.to_string.should eql ''
         @noun.to_string.should eql 'fox'
       end
     end
 
     describe "#to_s" do
-      it "returns the string value of the entity or its full subtree" do
-        @section.to_s.should eql 'The lazy fox is running.'
+      it "returns the string value of the " +
+      "entity or its full subtree" do
+        @paragraph.to_s.should
+        eql 'The lazy fox is running.'
         @noun.to_s.should eql 'fox'
       end
     end
 
     describe "#inspect" do
-      it "returns an informative string concerning the entity" do
-        @section.inspect.should be_an_instance_of String
+      it "returns an informative string " +
+      "concerning the entity" do
+        @paragraph.inspect.should
+        be_an_instance_of String
       end
     end
 
     describe "#short_value" do
-      it "returns a shortened version of the entity's string value" do
-        @section.short_value.should eql 'The lazy fox is running.'
+      it "returns a shortened version of the " +
+      "entity's string value" do
+        @paragraph.short_value.should
+        eql 'The lazy fox is running.'
       end
     end
 
