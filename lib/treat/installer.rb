@@ -168,10 +168,9 @@ module Treat::Installer
     download(f, 'punkt/')
     
     dest = "#{Treat.models}punkt/"
-
     puts "- Creating directory models/punkt ..."
     unless File.readable?(dest)
-      FileUtils.mkdir(dest)
+      FileUtils.mkdir_p(File.absolute_path(dest))
     end
     
     puts "- Copying model files to models/punkt ..."
@@ -235,10 +234,10 @@ module Treat::Installer
     require 'progressbar'
 
     if dir && !File.readable?(Treat.tmp + dir)
-      FileUtils.mkdir(Treat.tmp + dir)
+      FileUtils.mkdir_p(File.absolute_path(Treat.tmp + dir))
     end
 
-    file = File.open(Treat.tmp + dir + filename, 'w')
+    file = File.open(File.absolute_path(Treat.tmp + dir + filename), 'w')
 
     begin
 
@@ -293,7 +292,7 @@ module Treat::Installer
 
         puts "- Creating directory bin/stanford ..."
         unless File.readable?(Treat.bin + 'stanford')
-          FileUtils.mkdir(Treat.bin + 'stanford')
+          FileUtils.mkdir_p(File.absolute_path(Treat.bin + 'stanford'))
         end
 
         puts "- Copying JAR files to bin/stanford ..."
@@ -303,17 +302,15 @@ module Treat::Installer
 
         puts "- Creating directory models/stanford ..."
         unless File.readable?(Treat.models + 'stanford')
-          FileUtils.mkdir(Treat.models + 'stanford/')
+          FileUtils.mkdir_p(File.absolute_path(Treat.models + 'stanford/'))
         end
 
         puts "- Copying model files to models/stanford ..."
-
-        Dir.entries(Treat.tmp + f_path).each do |f|
+        
+        Dir.entries(File.absolute_path(f_path)).each do |f|
           next if f == '.' || f == '..'
-          if FileTest.directory?(Treat.tmp + f_path + f)
-            FileUtils.cp_r(
-            Treat.tmp + f_path + f,
-            Treat.models + 'stanford/')
+          if FileTest.directory?(f)
+            FileUtils.cp_r(f, Treat.models + 'stanford/')
           end
         end
 
