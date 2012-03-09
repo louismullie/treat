@@ -33,8 +33,6 @@ module Treat::Extractors::Language
     # with equal probability.
     def self.language(entity, options = {})
       options = DefaultOptions.merge(options)
-      predetection = super(entity, options)
-      return predetection if predetection
       @@detector ||= ::WhatLanguage.new(:possibilities)
       possibilities = @@detector.process_text(entity.to_s)
       lang = {}

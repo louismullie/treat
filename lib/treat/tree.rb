@@ -163,7 +163,7 @@ module Treat::Tree
     # including this one.
     def size
       @children.inject(1) do |sum, node|
-        sum + node.size
+        sum += node.size
       end
     end
 

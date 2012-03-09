@@ -42,99 +42,6 @@ describe Treat::Entities::Entity do
   end
 
 
-  describe "Buildable" do
-
-    describe "#build" do
-
-      context "when called on a document" do
-
-        context "when supplied with a file name" do
-          it "opens the file and reads its " +
-          "content into a document" do
-            d = Treat::Entities::Document.build('')
-          end
-        end
-
-        context "when supplied with a folder name" do
-          it "recursively searches the folder for " +
-          "files and opens them into a collection of documents" do
-
-          end
-        end
-
-        context "when supplied with a url" do
-          it "downloads the file the URL points to and opens " +
-          "a document with the contents of the file" do
-
-          end
-        end
-
-      end
-
-      context "when called on a section of text" do
-
-        context "when supplied with a section of text" do
-          it "creates a section with the text" do
-            
-          end
-        end
-        
-        context "when supplied with anything else" do
-          it "raises an error" do
-            
-          end
-        end
-
-      end
-
-      context "when called on a paragraph" do 
-        it "creates a paragraph with the text" do
-
-        end
-      end
-
-      context "when supplied with a sentence" do
-        it "creates a sentence with the text" do
-
-        end
-      end
-
-      context "when supplied with a phrase" do
-        it "creates a phrase with the text" do
-
-        end
-      end
-
-      context "when supplied with a word" do
-        it "creates a word with the text" do
-
-        end
-      end
-
-      context "when supplied with an integer number" do
-        it "creates a number" do
-
-        end
-      end
-
-      context "when supplied with a punctuation character" do
-        it "creates a punctuation with the text" do
-
-        end
-      end
-
-      context "when supplied with a symbol character" do
-        it "creates a symbol with the text" do
-
-        end
-      end
-
-
-    end
-
-  end
-
-
   describe "Checkable" do
 
   end
@@ -181,6 +88,21 @@ describe Treat::Entities::Entity do
 
 
   describe "Exportable" do
+
+    context "when supplied with a classification to export" do
+      classification = Treat::Classification.new(:word, :tag, :is_keyword?)
+      it "returns a data set with the exported features" do
+        ds = @sentence.export(classification)
+        ds.classification.should eql classification
+        ds.labels.should eql [:tag]
+        ds.ids.should eql @sentence.words.map { |w| w.id }
+        ds.items.should eql [
+          ["DT", false], ["JJ", false],
+          ["NN", false], ["VBZ", false],
+          ["VBG", false]
+        ]
+      end
+    end
 
   end
 
@@ -379,26 +301,38 @@ describe Treat::Entities::Entity do
   describe "Extractors" do
 
     describe "#language" do
-      it "returns the language of an arbitrary entity" do
-=begin
-        assert_equal Treat.default_language, @doc.language
-        Treat.detect_language = true
-        assert_equal :eng, @doc.language
-
-        a = 'I want to know God\'s thoughts; the rest are details. - Albert Einstein'
-        b = 'El mundo de hoy no tiene sentido, así que ¿por qué debería pintar cuadros que lo tuvieran? - Pablo Picasso'
-        c = 'Un bon Allemand ne peut souffrir les Français, mais il boit volontiers les vins de France. - Goethe'
-        d = 'Wir haben die Kunst, damit wir nicht an der Wahrheit zugrunde gehen. - Friedrich Nietzsche'
-
-        assert_equal :eng, a.language
-        assert_equal :spa, b.language
-        assert_equal :fre, c.language
-        assert_equal :ger, d.language
-
-        # Reset defaults
-        Treat.detect_language = false
-=end
+      context "when language detection is disabled " +
+      "(Treat.detect_language is set to false)" do
+        it "returns the default language (Treat.default_language)" do
+          Treat.detect_language = false
+          Treat.default_language = :test
+          s = 'Les grands hommes ne sont pas toujours grands, dit un jour Napoleon.'
+          s.language.should eql :test
+          Treat.default_language = :eng
+        end
       end
+
+      context "when language detection is enabled " +
+      "(Treat.detect_language is set to true)" do
+        
+        it "guesses the language of the entity" do
+          
+          Treat.detect_language = true
+          a = 'I want to know God\'s thoughts; the rest are details. - Albert Einstein'
+          b = 'El mundo de hoy no tiene sentido, asi que por que deberia pintar cuadros que lo tuvieran? - Pablo Picasso'
+          c = 'Un bon Allemand ne peut souffrir les Francais, mais il boit volontiers les vins de France. - Goethe'
+          d = 'Wir haben die Kunst, damit wir nicht an der Wahrheit zugrunde gehen. - Friedrich Nietzsche'
+          a.language.should eql :eng
+          b.language.should eql :spa
+          c.language.should eql :fre
+          d.language.should eql :ger
+
+          # Reset default
+          Treat.detect_language = false
+        end
+
+      end
+
     end
 
   end

@@ -57,30 +57,32 @@ module Treat::Categories
     @@lookup[method]
   end
 
+  # Fix -- This must be moved urgently.
   Treat::Entities::Entity.class_eval do
 
-    undef :language
+    alias :true_language :language
     
     def language(extractor = nil, options = {})
+      
       if is_a?(Treat::Entities::Symbol) ||
         is_a?(Treat::Entities::Number)
         return Treat.default_language
       end
-      if Treat.detect_language == false
+      
+      if !Treat.detect_language
         return Treat.default_language
       else
         dlvl = Treat.language_detection_level
-        if (Entities.rank(type) <
-          Entities.rank(dlvl)) &&
+        if (Treat::Entities.rank(type) <
+          Treat::Entities.rank(dlvl)) &&
           has_parent?
           anc = ancestor_with_type(dlvl)
           return anc.language if anc
         end
       end
-
-      extractor = Treat::Extractors::
-      Language.const_get(cc(extractor))
-      extractor.language(self, options)
+      
+      true_language(extractor, options)
+      
     end
 
   end

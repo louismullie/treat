@@ -66,10 +66,10 @@ module Treat::Entities
   #
   # Implement as true comparison functions.
   def self.rank(type)
-    klass = Entities.const_get(cc(type))
+    klass = Treat::Entities.const_get(cc(type))
     compare = lambda { |a,b| a == b || a < b }
     1.upto(@@order.size) do |i|
-      return i compare.call(klass, @@order[i])
+      return i if compare.call(klass, @@order[i])
     end
   end
 

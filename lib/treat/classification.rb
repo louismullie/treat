@@ -6,19 +6,15 @@ class Treat::Classification
   attr_reader :labels
   attr_reader :default
 
-  def initialize(type_or_types, features, question, default = false)
+  def initialize(type_or_types, feature_or_features, question, default = false)
 
     @types, @features,
     @question, @default = 
-    type_or_types,
-    features, question,
-    default
+    [*type_or_types],
+    [*feature_or_features], 
+    question, default
     
     @labels = []
-
-    unless @types.is_a?(Array)
-      @types = [@types]
-    end
 
     @features.each do |cmd|
       if cmd.is_a?(Array)

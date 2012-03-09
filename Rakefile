@@ -6,7 +6,7 @@ namespace :treat do
   task :default => :spec
 
   RSpec::Core::RakeTask.new do |t|
-    t.pattern = "./spec/**/*_spec.rb"
+    t.pattern = "./spec/**/*.rb"
   end
 
   task :version do

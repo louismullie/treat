@@ -1,28 +1,28 @@
 # Download a file without storing it entirely in memory.
 class Treat::Downloader
 
-  class << self
-    attr_accessor :progress_bar
-    attr_accessor :download_folder
-  end
-
-  self.progress_bar = false
-  self.download_folder = Treat.files
-
   require 'net/http'
   require 'fileutils'
+  require 'progressbar'
 
-  def self.download(server, filename, dir, protocol = 'http')
+  class << self
+    attr_accessor :show_progress
+  end
 
-    if self.progress_bar
-      silence_warnings { require 'progressbar' }
+  self.show_progress = true
+
+  # Download a file into destination, and return
+  # the path to the downloaded file.
+  def self.download(protocol, server, dir, file, destination = nil)
+
+    unless destination
+      path = server + '/' + dir
+      destination = Treat.files
+      make_directories_recursively(destination, path)
     end
 
-    base = self.download_folder
-    dest = server + '/' + dir
-    make_directories_recursively(base, dest)
-    fn = "#{base}#{server}/#{dir}/#{filename}"
-    file = File.open(fn, 'w')
+    resource = "#{server}/#{dir}/#{file}"
+    file = File.open("#{destination}#{resource}", 'w')
 
     begin
 
@@ -30,28 +30,32 @@ class Treat::Downloader
 
         http.use_ssl = true if protocol == 'https'
 
-        df = "/#{dir}/#{filename}"
+        df = "/#{dir}/#{file}"
         http.request_get(df) do |response|
 
           if response.content_length
             length = response.content_length
           else
-            if self.progress_bar
-              warn 'Unknown file size; '+
-              'progress bar won\'t be accurate.'
-            end
+            warn 'Unknown file size; ETR unknown.'
             length = 10000
           end
 
-          pbar = ProgressBar.new(filename,
-          length) if self.progress_bar
+          pbar = self.show_progress ? 
+          ProgressBar.new(resource, length)  : nil
+
+          unless response.code == '200'
+            raise Treat::Exception,
+            "response code was not 200 "+
+            "OK, but was #{response.code}"
+          end
 
           response.read_body do |segment|
-            pbar.inc(segment.length) if self.progress_bar
+            pbar.inc(segment.length) if pbar
             file.write(segment)
           end
 
-          pbar.finish if self.progress_bar
+          pbar.finish if pbar
+
         end
 
       end
@@ -61,9 +65,7 @@ class Treat::Downloader
     rescue Exception => e
 
       raise Treat::Exception,
-      "Couldn't download file " +
-      "#{filename} (#{e.message})"
-
+      "Couldn't download #{resource} (#{e.message})."
       file.delete
 
     ensure
@@ -79,7 +81,7 @@ class Treat::Downloader
 
     p = ''
     dirs = path.split('/')
-    base = self.download_folder
+
     dirs.each do |dir|
 
       next if dir == ''

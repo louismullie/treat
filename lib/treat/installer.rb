@@ -18,7 +18,8 @@ module Treat::Installer
   # Package managers for each platforms.
   PackageManagers = {
     :mac => 'port',
-    :linux => 'apt-get'
+    :linux => 'apt-get',
+    :windows => 'win-get'
   }
 
   # Address of the server with the files.
@@ -74,7 +75,7 @@ module Treat::Installer
 
       raise Treat::Exception,
       "Couldn't write to file - permission denied (#{e.message}). " +
-      "You may need to run Ruby on sudo."
+      "You may need to run Ruby or Rake on sudo."
 
     end
 
@@ -92,9 +93,9 @@ module Treat::Installer
         silence_warnings { @@installer.install(dependency) }
       rescue
         puts "Couldn't install '#{dependency}'. " +
-        "You need install this dependency "+
+        "You should install this dependency "+
         "manually by running: " +
-        "'gem install #{dependency}'."
+        "`gem install #{dependency}`."
       end
     end
 
@@ -233,7 +234,7 @@ module Treat::Installer
     require 'fileutils'
     require 'progressbar'
 
-    if dir && !File.readable?(Treat.tmp + dir)
+    if dir && !File.readable?(File.absolute_path(Treat.tmp + dir))
       FileUtils.mkdir_p(File.absolute_path(Treat.tmp + dir))
     end
 

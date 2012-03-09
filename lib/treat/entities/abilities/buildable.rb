@@ -39,8 +39,8 @@ module Treat::Entities::Abilities::Buildable
       from_numeric(file_or_value)
     else
       raise Treat::Exception,
-      "Unrecognizable input #{file_or_value}. "+
-      "Use filename, folder, text or a number."
+      "Unrecognizable input '#{file_or_value}'. "+
+      "Please supply a folder, filename, string or number."
     end
 
   end
@@ -86,7 +86,7 @@ module Treat::Entities::Abilities::Buildable
     '/' : sp[0..-2].join('/')
     
     f = Treat::Downloader.download(
-    uri.host, file, path)
+    uri.scheme, uri.host, path, file)
     options[:_default_format] = :html
     
     e = from_file(f, options)
@@ -114,6 +114,7 @@ module Treat::Entities::Abilities::Buildable
   # Build an entity from a folder with documents.
   # Folders will be searched recursively.
   def from_folder(folder, options)
+    
     unless FileTest.directory?(folder)
       raise Treat::Exception,
       "Path '#{folder}' does " +
@@ -136,7 +137,7 @@ module Treat::Entities::Abilities::Buildable
     c = Treat::Entities::Collection.new(folder)
     folder += '/' unless folder[-1] == '/'
 
-    Dir[Treat.lib + folder + '*'].each do |f|
+    Dir[folder + '*'].each do |f|
       if FileTest.directory?(f)
         c2 = Treat::Entities::Collection.
         from_folder(f, options)
@@ -249,6 +250,7 @@ module Treat::Entities::Abilities::Buildable
     else
       Treat::Entities::Phrase.new(string)
     end
+    
   end
 
   # Build the right type of token
