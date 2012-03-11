@@ -9,7 +9,7 @@ module Treat::Entities::Abilities::Buildable
   # Simple regexps to match common entities.
   WordRegexp = /^[[:alpha:]\-']+$/
   NumberRegexp = /^#?([0-9]+)(\^\^[0-9]+)?$/
-  PunctRegexp = /^[[:punct:]]+$/
+  PunctRegexp = /^[[:punct:]\$]+$/
   UriRegexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix
   EmailRegexp = /.+\@.+\..+/
   ExtensionRegexp = /^.*?\.([a-zA-Z0-9]{2,5})$/
@@ -27,7 +27,7 @@ module Treat::Entities::Abilities::Buildable
     
     if fv =~ UriRegexp
       from_url(file_or_value, options)
-    elsif File.readable?(fv)
+    elsif !(fv == '.') && File.readable?(fv)
       if FileTest.directory?(fv)
         from_folder(file_or_value, options)
       else
@@ -50,6 +50,9 @@ module Treat::Entities::Abilities::Buildable
   # is user-created (i.e. by calling build 
   # instead of from_string directly).
   def from_string(string, enforce_type = false)
+    
+    Treat::Helpers::DecimalPointEscaper.escape!(string)
+    
     enforce_type = true if caller_method == :build
     
     unless self == Treat::Entities::Entity
@@ -258,7 +261,6 @@ module Treat::Entities::Abilities::Buildable
   def token_from_string(string)
     
     check_encoding(string)
-    
     if string == "'s" || string == "'S"
       Treat::Entities::Clitic.new(string)
     elsif string =~ WordRegexp &&

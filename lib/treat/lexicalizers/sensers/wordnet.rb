@@ -1,6 +1,6 @@
 # Obtain lexical information about a word using the
 # ruby 'wordnet' gem.
-class Treat::Lexicalizers::Synsets::Wordnet
+class Treat::Lexicalizers::Sensers::Wordnet
 
   # Require the 'wordnet' gem.
   require 'wordnet'
@@ -13,14 +13,14 @@ class Treat::Lexicalizers::Synsets::Wordnet
   end
   
   # Require an adaptor for Wordnet synsets.
-  require 'treat/lexicalizers/synsets/wordnet/synset'
+  require 'treat/lexicalizers/sensers/wordnet/synset'
   
   # Noun, adjective and verb indexes.
   @@indexes = {}
   
   # Obtain lexical information about a word using the
   # ruby 'wordnet' gem.
-  def self.synsets(word, options = nil)
+  def self.sense(word, options = nil)
     
     category = word.check_has(:category)
     
@@ -45,7 +45,7 @@ class Treat::Lexicalizers::Synsets::Wordnet
     
     lemma.synsets.each do |synset|
       synsets << 
-      Treat::Lexicalizers::Synsets::Wordnet::Synset.new(synset)
+      Treat::Lexicalizers::Sensers::Wordnet::Synset.new(synset)
     end
     
     ((synsets.collect do |ss|

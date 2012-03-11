@@ -12,7 +12,7 @@
 # Project website: http://engtagger.rubyforge.org/
 # Original Perl module site:
 # http://cpansearch.perl.org/src/ACOBURN/Lingua-EN-Tagger-0.15/
-class Treat::Lexicalizers::Tag::Lingua
+class Treat::Lexicalizers::Taggers::Lingua
   
   # Require the 'engtagger' gem.
   silence_warnings { require 'engtagger' }

@@ -1,5 +1,5 @@
 # Wrapper for the Stanford POS tagger.
-class Treat::Lexicalizers::Tag::Stanford
+class Treat::Lexicalizers::Taggers::Stanford
 
   require 'treat/loaders/stanford'
 

@@ -56,7 +56,10 @@ module Treat::Entities
   class Clitic < Token; end
 
   # Represents a number.
-  class Number < Token; end
+  class Number < Token
+    def to_i; to_s.to_i; end
+    def to_f; to_s.to_f; end
+  end
 
   # Represents a punctuation sign.
   class Punctuation < Token; end

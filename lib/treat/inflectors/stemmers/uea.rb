@@ -10,7 +10,7 @@
 # Original paper: Jenkins, Marie-Claire, Smith, Dan,
 # Conservative stemming for search and indexing, 2005.
 # http://www.uea.ac.uk/polopoly_fs/1.85493!stemmer25feb.pdf
-class Treat::Inflectors::Stem::UEA
+class Treat::Inflectors::Stemmers::UEA
 
   # Require the 'uea-stemmer' gem.
   silence_warnings { require 'uea-stemmer' }

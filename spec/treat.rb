@@ -10,7 +10,6 @@ describe Treat do
     "define/undefine entity builders as uppercase methods " +
     "in the global namespace" do
 
-
       Treat::Entities.list.each do |type|
 
         next if type == :symbol
@@ -39,6 +38,7 @@ describe Treat do
   describe "Paths:" do
 
     paths = Treat::Paths
+    # Check IO for bin, files, tmp, models. Fix.
     paths.each do |path, files|
       describe "##{path}" do
         it "provides the path to the #{files}" do

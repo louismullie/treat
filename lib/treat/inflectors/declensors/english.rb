@@ -5,14 +5,14 @@
 # Released under the MIT License.
 #
 #  http://english.rubyforge.org
-class Treat::Inflectors::Declensions::English
+class Treat::Inflectors::Declensors::English
 
-  require 'treat/inflectors/declensions/english/inflect'
+  require 'treat/inflectors/declensors/english/inflect'
   
   # Retrieve the declensions (singular, plural)
   # of an english word using a class lifted from
   # the 'english' ruby gem.
-  def self.declensions(entity, options)
+  def self.declense(entity, options)
     
     cat = entity.check_has(:category)
     unless [:noun, :adjective, :determiner].

@@ -110,7 +110,18 @@ module Treat::Groupable
       def self.method
         return @method if @method
         m = ucc(cl(self)).dup
-        if m[-4..-1] == 'iers'
+        if  m[-4..-1] == 'zers'
+          if type == :annotator
+            if m[-6] == 'l'
+              m[-5..-1] = ''
+            else
+              m[-5..-1] = 'y'
+            end
+          else
+            m = m[0..-3]
+          end
+          n = m         
+        elsif m[-4..-1] == 'iers'
           m[-4..-1] = 'y'
           n = m
         elsif m[-3..-1] == 'ers'

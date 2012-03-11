@@ -44,6 +44,21 @@ describe Treat::Entities::Entity do
 
   describe "Checkable" do
 
+    describe "#check_has(feature, do_it = true) " do
+      
+      it "checks if an entity has the feature; if not, " +
+      "calls the default worker to get the feature if do_it " +
+      "is set to true; if the entity doesn't have the feature " +
+      " and do_it is set to false, it raises an exception." do
+        
+        # NOT PASSING! Dependence on caller method.
+
+       # lambda {  '$'.to_entity.check_has(:tag, false) }.should raise_error Treat::Exception
+ 
+      end
+
+    end
+
   end
 
   describe "Countable" do
@@ -84,8 +99,21 @@ describe Treat::Entities::Entity do
 
   describe "Delegatable" do
 
-  end
+    describe "#self.call_worker" do
 
+      it "finds the worker class to " +
+      "perform a task and delegates the task to it " do
+
+        Treat::Entities::Entity.call_worker(
+        '$'.to_entity, :tag, :lingua,
+        Treat::Lexicalizers::Taggers, {}).should
+        eql @sentence.tag(:lingua)
+
+      end
+
+    end
+
+  end
 
   describe "Exportable" do
 
@@ -105,7 +133,6 @@ describe Treat::Entities::Entity do
     end
 
   end
-
 
   describe "Iterable" do
 
@@ -314,9 +341,9 @@ describe Treat::Entities::Entity do
 
       context "when language detection is enabled " +
       "(Treat.detect_language is set to true)" do
-        
+
         it "guesses the language of the entity" do
-          
+
           Treat.detect_language = true
           a = 'I want to know God\'s thoughts; the rest are details. - Albert Einstein'
           b = 'El mundo de hoy no tiene sentido, asi que por que deberia pintar cuadros que lo tuvieran? - Pablo Picasso'

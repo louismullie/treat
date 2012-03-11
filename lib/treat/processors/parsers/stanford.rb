@@ -109,7 +109,7 @@ class Treat::Processors::Parsers::Stanford
         tag_s, tag_opt = *tag.split('-')
         tag_s ||= ''
 
-        if Treat::Languages::Tags::PhraseTagToCategory[tag_s]
+        if Treat::Linguistics::Tags::PhraseTagToCategory[tag_s]
           ruby_child = Treat::Entities::Phrase.new
         else
           l = java_child.children[0].to_s

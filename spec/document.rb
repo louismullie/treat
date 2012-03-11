@@ -2,6 +2,21 @@ require_relative '../lib/treat'
 
 describe Treat::Entities::Document do
 
+  describe "Extractable" do
+
+    describe "#topics" do
+
+      it "returns a list of general topics the document belongs to" do
+        #doc = Treat::Entities::Document.new(
+        #Treat.spec + 'samples/mathematicians/archimedes.abw').read(:abw)
+        #doc.do(:chunk, :segment, :tokenize)
+        #puts doc.topics.inspect
+      end
+
+    end
+
+  end
+
   describe "Buildable" do
 
     describe "#build" do
@@ -38,7 +53,7 @@ describe Treat::Entities::Document do
       end
 
     end
-    
+
   end
 
   describe "Processable" do
@@ -58,7 +73,7 @@ describe Treat::Entities::Document do
 
       end
 
-      context "when called on an unstructured document" do
+      context "when called on a text document" do
 
         doc = Treat::Entities::Document.new(Treat.spec +
         'samples/mathematicians/leibniz.txt').read(:txt)

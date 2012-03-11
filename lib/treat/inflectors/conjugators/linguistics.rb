@@ -2,7 +2,7 @@
 # in the 'linguistics' gem that allow to conjugate verbs.
 #
 # Project website: http://deveiate.org/projects/Linguistics/
-module Treat::Inflectors::Conjugations::Linguistics
+module Treat::Inflectors::Conjugators::Linguistics
 
   require 'treat/loaders/linguistics'
   
@@ -29,7 +29,7 @@ module Treat::Inflectors::Conjugations::Linguistics
   # - (Symbol) :count => :singular, :plural
   # - (Symbol) :person => :first, :second, :third
   # 
-  def self.conjugations(entity, options = {})
+  def self.conjugate(entity, options = {})
     
     options = DefaultOptions.merge(options)
     cat = entity.check_has(:category)

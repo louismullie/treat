@@ -2,7 +2,7 @@
 # Porter stemming algorithm, ported to Ruby from a
 # version coded up in Perl. This is a simplified
 # implementation; for a true and fast Porter stemmer,
-# see Treat::Inflectors::Stem::PorterC.
+# see Treat::Inflectors::Stemmers::PorterC.
 #
 # Authored by Ray Pereda (raypereda@hotmail.com).
 # Unknown license.
@@ -10,7 +10,7 @@
 # Original paper: Porter, 1980. An algorithm for suffix stripping,
 # Program, Vol. 14, no. 3, pp 130-137,
 # Original C implementation: http://www.tartarus.org/~martin/PorterStemmer.
-class Treat::Inflectors::Stem::Porter
+class Treat::Inflectors::Stemmers::Porter
   
   # Returns the stem of a word using a native Porter stemmer.
   #

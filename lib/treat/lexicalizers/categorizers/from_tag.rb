@@ -1,26 +1,21 @@
 # Finds the general part of speech of an entity
 # (:sentence, :noun_phrase, :verb, :adverb, etc.)
 # from its tag (e.g. 'S', 'NP', 'VBZ', 'ADV', etc.).
-class Treat::Lexicalizers::Category::FromTag
+class Treat::Lexicalizers::Categorizers::FromTag
 
-  Pttc = Treat::Languages::Tags::PhraseTagToCategory
-  Wttc = Treat::Languages::Tags::WordTagToCategory
-  Ptc = Treat::Languages::Tags::PunctuationToCategory
+  Pttc = Treat::Linguistics::Tags::PhraseTagToCategory
+  Wttc = Treat::Linguistics::Tags::WordTagToCategory
+  Ptc = Treat::Linguistics::Tags::PunctuationToCategory
   
   # Find the category of the entity from its tag.
   def self.category(entity, options = {})
 
     tag = entity.check_has(:tag)
-
-    return :unknown if tag.nil? || tag == '' || 
-    entity.is_a?(Treat::Entities::Symbol)
-    return :sentence if tag == 'S' || 
-    entity.is_a?(Treat::Entities::Sentence)
-    return :number if 
-    entity.is_a?(Treat::Entities::Number)
-    return Ptc[entity.to_s] if 
-    entity.is_a?(Treat::Entities::Punctuation)
-      
+    return :unknown if tag.nil? || tag == '' || entity.type == :symbol
+    return :sentence if tag == 'S' || entity.type == :sentence
+    return :number if entity.type == :number
+    return Ptc[entity.to_s] if entity.type == :punctuation
+    
     if entity.is_a?(Treat::Entities::Phrase)
       cat = Pttc[tag]
       cat = Wttc[tag] unless cat

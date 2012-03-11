@@ -15,7 +15,9 @@
 - Save individual documents in a collection
 - Does it return self when using processors?
 - Same old value removal problem ?
+- Detect units in number
 - 301
+- Read autoselect
 
 # Testing
 
@@ -39,3 +41,26 @@
 - Enju as a server
 - Sectionners
 - Sentiment analysis
+
+
+# Code pad
+
+
+# Find the lexical relations between words.
+module Relations
+  extend Treat::Groupable
+  self.type = :annotator
+  self.targets = [:document, :zone, :sentence, :phrase]
+  self.preset_option = :relation
+  self.presets = [:hyponym_of, :hypernym_of, 
+                  :synonym_of, :antonym_of]
+end
+
+# Find the grammatical links between words.
+module Linkages
+  extend Treat::Groupable
+  self.type = :annotator
+  self.targets = [:phrase]
+  self.preset_option = :linkage
+  self.presets = [:subject, :main_verb, :object]
+end

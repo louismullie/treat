@@ -1,7 +1,7 @@
 class Treat::Languages::English
 
   RequiredDependencies = ['rbtagger', 'ruby-stemmer', 'tactful_tokenizer', 'nickel', 'rwordnet']
-  OptionalDependencies = ['uea-stemmer', 'engtagger']
+  OptionalDependencies = ['uea-stemmer', 'engtagger', 'active_support', 'english']
 
   Extractors = {
     :time => [:nickel],
@@ -15,18 +15,17 @@ class Treat::Languages::English
   }
   
   Inflectors = {
-    :conjugations => [:linguistics],
-    :declensions => [:english, :linguistics],
-    :stem => [:porter, :porter_c, :uea],
-    :ordinal_form => [:linguistics],
-    :cardinal_form => [:linguistics]
+    :conjugators => [:linguistics],
+    :declensors => [:english, :linguistics, :active_support],
+    :stemmers => [:porter, :porter_c, :uea],
+    :ordinalizers => [:linguistics],
+    :cardinalizers => [:linguistics]
   }
   
   Lexicalizers = {
-    :category => [:from_tag],
-    :linkages => [:svo],
-    :synsets => [:wordnet],
-    :tag => [:lingua, :brill, :stanford]
+    :categorizers => [:from_tag],
+    :taggers => [:lingua, :brill, :stanford],
+    :sensers => [:wordnet]
   }
 
   Processors = {

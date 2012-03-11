@@ -1,5 +1,5 @@
 # An adaptor for synsets used by the Wordnet gem.
-class Treat::Lexicalizers::Synsets::Wordnet::Synset
+class Treat::Lexicalizers::Sensers::Wordnet::Synset
 
   # The POS tag of the word.
   attr_accessor :pos
@@ -61,7 +61,7 @@ class Treat::Lexicalizers::Synsets::Wordnet::Synset
   # Respond to the missing method event.
   def method_missing(sym, *args, &block)
     ret = @original_synset.send(sym)
-    if ret.is_a?(Treat::Lexicalizers::Synsets::Wordnet::Synset)
+    if ret.is_a?(Treat::Lexicalizers::Sensers::Wordnet::Synset)
       self.new(ret)
     else
       ret

@@ -10,9 +10,10 @@ module Treat::Entities::Abilities::Checkable
   def check_has(feature, do_it = true)
     return @features[feature] if has?(feature)
     return send(feature) if do_it
-    task = caller_method(2)
+    task = caller_method(2) # This is dangerous !
     g1 = Treat::Categories.lookup(task)
     g2 = Treat::Categories.lookup(feature)
+
     raise Treat::Exception,
     "#{g1.type.to_s.capitalize} #{task} " +
     "requires #{g2.type} #{g2.method}."

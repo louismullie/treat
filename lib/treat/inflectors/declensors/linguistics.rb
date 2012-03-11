@@ -3,7 +3,7 @@
 # declensions of a word.
 #
 # Project website: http://deveiate.org/projects/Linguistics/
-class Treat::Inflectors::Declensions::Linguistics
+class Treat::Inflectors::Declensors::Linguistics
 
   require 'treat/loaders/linguistics'
 
@@ -12,7 +12,7 @@ class Treat::Inflectors::Declensions::Linguistics
   # Options:
   #
   # - (Identifier) :count => :singular, :plural
-  def self.declensions(entity, options = {})
+  def self.declense(entity, options = {})
     
     cat = entity.check_has(:category)
     unless [:noun, :adjective, :determiner].

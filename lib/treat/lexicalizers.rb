@@ -6,14 +6,14 @@
 module Treat::Lexicalizers
 
   # Taggers return the part of speech tag of a word.
-  module Tag
+  module Taggers
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:sentence, :phrase, :token]
   end
 
   # Return the general category of a word.
-  module Category
+  module Categorizers
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:token]
@@ -21,7 +21,7 @@ module Treat::Lexicalizers
   end
 
   # Find the synsets of a word in a lexicon.
-  module Synsets
+  module Sensers
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:word]
@@ -29,26 +29,7 @@ module Treat::Lexicalizers
     self.presets = [:synonyms, :antonyms, 
                     :hyponyms, :hypernyms]
   end
-
-  # Find the lexical relations between words.
-  module Relations
-    extend Treat::Groupable
-    self.type = :annotator
-    self.targets = [:document, :zone, :sentence, :phrase]
-    self.preset_option = :relation
-    self.presets = [:hyponym_of, :hypernym_of, 
-                    :synonym_of, :antonym_of]
-  end
-
-  # Find the grammatical links between words.
-  module Linkages
-    extend Treat::Groupable
-    self.type = :annotator
-    self.targets = [:phrase]
-    self.preset_option = :linkage
-    self.presets = [:subject, :main_verb, :object]
-  end
-
+  
   # Make Lexicalizers categorizable.
   extend Treat::Categorizable
 

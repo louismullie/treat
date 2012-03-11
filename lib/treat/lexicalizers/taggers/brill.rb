@@ -13,11 +13,11 @@
 # Project website:
 #
 # http://rbtagger.rubyforge.org/
-module Treat::Lexicalizers::Tag::Brill
+module Treat::Lexicalizers::Taggers::Brill
 
   require 'rbtagger'
 
-  require 'treat/lexicalizers/tag/brill/patch'
+  require 'treat/lexicalizers/taggers/brill/patch'
 
   # Hold one instance of the tagger.
   @@tagger = nil

@@ -72,7 +72,7 @@ describe Treat::Entities::Phrase do
   describe "Lexicalizable" do
 
     before do
-      @taggers = Treat::Languages::English::Lexicalizers[:tag]
+      @taggers = Treat::Languages::English::Lexicalizers[:taggers]
     end
 
     describe "#tag" do
@@ -124,7 +124,7 @@ describe Treat::Entities::Phrase do
     end
 
   end
-
+  
 end
 
 =begin
@@ -165,10 +165,6 @@ module Treat
           topics = @col.topic_words(:lda)
           @doc.keywords(:topics_frequency, :topic_words => topics)
         end
-      end
-
-      def test_topics
-        assert_nothing_raised { @doc.topics(:reuters) }
       end
 
       def test_statistics

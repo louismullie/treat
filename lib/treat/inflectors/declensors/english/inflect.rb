@@ -5,7 +5,7 @@
 # Released under the MIT License.
 #
 #  http://english.rubyforge.org
-module Treat::Inflectors::Declensions::English::Inflect
+module Treat::Inflectors::Declensors::English::Inflect
 
   @singular_of = {}
   @plural_of = {}

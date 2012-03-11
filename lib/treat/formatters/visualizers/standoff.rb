@@ -44,7 +44,7 @@ class Treat::Formatters::Visualizers::Standoff
   end
   
   def self.ptb_escape(val)
-    Treat::Languages::Tags::
+    Treat::Linguistics::Tags::
     PTBEscapeCharacters.each do |char, esc|
       val.gsub!(char, val)
     end

@@ -3,7 +3,7 @@
 module Treat::Inflectors
 
   # Return the stem (*not root form*) of a word.
-  module Stem
+  module Stemmers
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:word]
@@ -11,7 +11,7 @@ module Treat::Inflectors
 
   # Retrieve the different declensions of a
   # noun (singular, plural).
-  module Declensions
+  module Declensors
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:word]
@@ -21,7 +21,7 @@ module Treat::Inflectors
 
   # Retrieve the different conjugations of a word
   # given a mode, tense, person, and/or number.
-  module Conjugations
+  module Conjugators
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:word]
@@ -32,7 +32,7 @@ module Treat::Inflectors
 
   # Retrieve the full text description of a
   # cardinal number.
-  module CardinalForm
+  module Cardinalizers
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:number]
@@ -40,7 +40,7 @@ module Treat::Inflectors
 
   # Retrieve the full text description of an
   # ordinal number.
-  module OrdinalForm
+  module Ordinalizers
     extend Treat::Groupable
     self.type = :annotator
     self.targets = [:number]
