@@ -7,31 +7,49 @@ describe Treat::Entities::Phrase do
     describe "#build" do
 
       context "when supplied with a sentence" do
-        
+
         it "creates a sentence with the text" do
           sentence = "This is a sentence."
           s = Treat::Entities::Phrase.build(sentence)
           s.type.should eql :sentence
           s.to_s.should eql sentence
         end
-        
+
       end
 
       context "when supplied with a phrase" do
-        
+
         it "creates a phrase with the text" do
           phrase = "this is a phrase"
           p = Treat::Entities::Phrase.build(phrase)
           p.type.should eql :phrase
           p.to_s.should eql phrase
         end
+
+      end
+
+    end
+
+  end
+
+  describe "Extractable" do
+    
+    describe "#named_entity" do
+      it "tags the named entity words in the phrase" do
         
       end
-      
     end
     
+    describe "#time" do
+      it "returns a DateTime object representing the time in the phrase" do
+        Treat::Languages::English::Extractors[:time].each do |e|
+          t = 'Tuesday, January 5th 2011'.time(e)
+          t.year.should eql 2011
+        end
+      end
+    end
   end
-  
+
   describe "Processable" do
 
     describe "#tokenize" do
@@ -124,60 +142,5 @@ describe Treat::Entities::Phrase do
     end
 
   end
-  
+
 end
-
-=begin
-
-# encoding: utf-8
-module Treat
-  module Tests
-    class TestExtractors < Test::Unit::TestCase
-
-      def setup
-        @time = Treat::Tests::English::Time
-        @date = Treat::Tests::English::Date
-        @doc = Treat::Tests::English::LongDoc
-        @word = Treat::Tests::English::Word
-        @col = Treat::Tests::English::Collection
-      end
-
-      def test_time
-        assert_nothing_raised { @time.time(:nickel) }
-      end
-      
-      def test_date
-        assert_equal 2011, @date.date(:chronic).year
-        assert_equal 2011, @date.date(:ruby).year
-      end
-
-      def test_topic_words
-        assert_nothing_raised { @col.topic_words(:lda) }
-      end
-      
-      def test_named_entity
-        p = 'Angela Merkel and Nicolas Sarkozy were the first ones to board the p'
-        assert_nothing_raised { @doc.named_entity(:stanford) }
-      end
-
-      def test_keywords
-        assert_nothing_raised do
-          topics = @col.topic_words(:lda)
-          @doc.keywords(:topics_frequency, :topic_words => topics)
-        end
-      end
-
-      def test_statistics
-        @doc.chunk.segment(:tactful).tokenize
-        assert_equal 1, @word.frequency_in(:document)
-        assert_nothing_raised { @word.tf_idf ; puts @word.tf_idf }
-        # assert_nothing_raised { @doc.statistics(:position_in) }
-        # assert_nothing_raised { @doc.statistics(:transition_matrix) }
-        # assert_nothing_raised { @doc.statistics(:transition_probability) }
-      end
-      
-    end
-  end
-end
-
-=end

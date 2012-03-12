@@ -13,11 +13,13 @@ describe Treat::Languages do
 
   end
   
-  describe "#describe" do
+  describe "#describe(code)" do
+    
     it "returns a lowercase identifier representing the " +
     "full name of a language, given its ISO-639-1/2 code." do
       Treat::Languages.describe(:eng).should eql :english
     end
+  
   end
 
 end

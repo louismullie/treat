@@ -73,7 +73,7 @@ module Treat::Entities::Abilities::Delegatable
       end
 
       if group.type == :transformer
-        self
+        entity
       else
         result
       end

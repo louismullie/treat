@@ -16,7 +16,8 @@ class Treat::Extractors::Time::Ruby
     return if s =~ /^[0-9]+$/
     begin
       time = ::DateTime.parse(s)
-      if remove_time_from_ancestors(entity, time)
+      if  entity.has_parent? && 
+        remove_time_from_ancestors(entity, time)
         nil
       else
         time

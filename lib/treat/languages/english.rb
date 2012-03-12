@@ -4,11 +4,10 @@ class Treat::Languages::English
   OptionalDependencies = ['uea-stemmer', 'engtagger', 'active_support', 'english']
 
   Extractors = {
-    :time => [:nickel],
-    :date => [:chronic, :ruby],
+    :time => [:chronic, :ruby, :nickel],
     :topics => [:reuters],
     :topic_words => [:lda],
-    :keywords => [:tf_idf, :topics_tf_idf],
+    :keywords => [:tf_idf],
     :name_tag => [:stanford],
     :coreferences => [:stanford],
     :roles => [:naive]

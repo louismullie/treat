@@ -15,23 +15,18 @@ describe Treat::Entities::Entity do
     @det = Treat::Entities::Word.new('The')
     @det.set :category, :determiner
     @det.set :tag, 'DT'
-    @det.set :tag_set, :penn
     @adj = Treat::Entities::Word.new('lazy')
     @adj.set :category, :adjective
     @adj.set :tag, 'JJ'
-    @adj.set :tag_set, :penn
     @noun = Treat::Entities::Word.new('fox')
     @noun.set :category, :noun
     @noun.set :tag, 'NN'
-    @noun.set :tag_set, :penn
     @aux = Treat::Entities::Word.new('is')
     @aux.set :category, :verb
     @aux.set :tag, 'VBZ'
-    @aux.set :tag_set, :penn
     @verb = Treat::Entities::Word.new('running')
     @verb.set :category, :verb
     @verb.set :tag, 'VBG'
-    @verb.set :tag_set, :penn
     @dot = Treat::Entities::Punctuation.new('.')
     @dot.set :tag, '.'
     @paragraph << @sentence << [@noun_phrase, @verb_phrase, @dot]
@@ -146,7 +141,7 @@ describe Treat::Entities::Entity do
       end
     end
 
-    describe "#each_entity(&entity_types) { |entity| ... }" do
+    describe "#each_entity(*entity_types) { |entity| ... }" do
 
       context "when called with no arguments" do
         it "recursively yields each element in " +
@@ -282,7 +277,12 @@ describe Treat::Entities::Entity do
 
   end
 
-  describe "Registrable" do
+  describe "Iterable" do
+
+    describe "#each_entity(*types)" do
+      
+      it "y"
+    end
 
   end
 

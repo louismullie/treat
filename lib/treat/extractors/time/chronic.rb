@@ -24,7 +24,7 @@ class Treat::Extractors::Time::Chronic
       time = ::Chronic.parse(s, {:guess => true})
     end
     
-    if remove_time_from_ancestors(entity, time)
+    if entity.has_parent? && remove_time_from_ancestors(entity, time)
       nil
     else
       time

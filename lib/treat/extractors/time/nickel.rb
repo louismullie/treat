@@ -64,7 +64,8 @@ class Treat::Extractors::Time::Nickel
     
     return unless start_time
 
-    if remove_time_from_ancestors(entity, start_time)
+    if entity.has_parent? && 
+      remove_time_from_ancestors(entity, start_time)
       nil
     else
       entity.set :time_recurrence,
