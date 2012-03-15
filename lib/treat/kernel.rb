@@ -180,5 +180,9 @@ module Kernel
   else
     NULL_DEVICE = '/dev/null'
   end
+  
+  def debug(msg)
+    puts msg if Treat.debug
+  end
 
 end

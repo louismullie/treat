@@ -53,6 +53,9 @@ module Treat::Entities
     # a line of a data set based on a classification.
     include Abilities::Exportable
     
+    # Implement support for #copy_into.
+    include Abilities::Copyable
+    
     # Initialize the entity with its value and
     # (optionally) a unique identifier. By default,
     # the object_id will be used as id.

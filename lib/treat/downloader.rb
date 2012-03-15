@@ -9,7 +9,7 @@ class Treat::Downloader
     attr_accessor :show_progress
   end
 
-  self.show_progress = true
+  self.show_progress = false
 
   # Download a file into destination, and return
   # the path to the downloaded file.

@@ -4,9 +4,14 @@ require 'rspec/core/rake_task'
 namespace :treat do
 
   task :default => :spec
-
+  
   RSpec::Core::RakeTask.new do |t|
-    t.pattern = "./spec/**/*.rb"
+    task = ARGV[0].scan(/\[([a-z]*)\]/)
+    if task.size == 0
+      t.pattern = "./spec/*.rb"
+    else
+      t.pattern = "./spec/#{task[0][0]}.rb"
+    end
   end
 
   task :version do

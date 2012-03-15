@@ -68,9 +68,6 @@ class Treat::Formatters::Readers::XML
       end
 
       document.value = ''
-      puts document.value
-
-      abort
 
     end
     
