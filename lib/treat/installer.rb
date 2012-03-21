@@ -20,6 +20,7 @@ module Treat::Installer
 
   # Filenames for the Stanford packages.
   StanfordPackages = {
+    :minimal => "stanford-core-nlp-minimal.zip",
     :english => "stanford-core-nlp-english.zip",
     :all => "stanford-core-nlp-all.zip"
   }
@@ -28,15 +29,19 @@ module Treat::Installer
   # dependencies for a specific language.
   def self.install(language = :english)
     
-    lang_class = Treat::Languages.get(language)
+    @@installer = Gem::DependencyInstaller.new
+    
+    if language == :travis
+      install_travis; return
+    end
+    
+    lang_class = Treat::Languages.get(language.to_s)
     l = "#{language.to_s.capitalize} language"
 
     puts
     puts "Treat Installer, v. #{Treat::VERSION.to_s}\n"
     puts
-
-    @@installer = Gem::DependencyInstaller.new
-
+    
     begin
 
       title "Install language-independent gem dependencies."
@@ -100,7 +105,17 @@ module Treat::Installer
     end
 
   end
-
+  
+  # Automated install for Travis CI.
+  def self.install_travis
+    dep = (Treat::Languages::English::RequiredDependencies + 
+          Treat::Languages::English::OptionalDependencies)
+    install_dependencies(false)
+    install_language_dependencies(dep, false)
+    download_stanford(:minimal)
+    download_punkt_models(:english)
+  end
+  
   def self.install_dependencies(optionally)
 
     Treat::Dependencies::Gem.each do |d|
@@ -162,7 +177,7 @@ module Treat::Installer
     
     f = StanfordPackages[language]
     loc = Treat::Downloader.download(
-    'http', Server, '/treat', f, Treat.tmp)
+    'http', Server, 'treat', f, Treat.tmp)
     
     puts "- Unzipping package ..."
     unzip_stanford(loc, Treat.tmp)
@@ -207,7 +222,7 @@ module Treat::Installer
     dest = "#{Treat.models}punkt/"
     
     loc = Treat::Downloader.download(
-    'http', Server, '/treat/punkt', f, Treat.tmp)
+    'http', Server, 'treat/punkt', f, Treat.tmp)
 
     unless File.readable?(dest)
       puts "- Creating directory models/punkt ..."
@@ -255,8 +270,9 @@ module Treat::Installer
       silence_warnings do 
         @@installer.install(dependency, version)
       end if install
-    rescue
-      puts "Couldn't install gem '#{dep}'."
+    rescue Exception => e
+      puts "Couldn't install gem '#{dependency}' " +
+           "(#{e.message})."
     end
     
   end

@@ -26,7 +26,7 @@ namespace :treat do
     require './lib/treat'
     l = args.language
     l ||= 'english'
-    Treat.install(l)
+    Treat.install(l.intern)
   end
 
 end
