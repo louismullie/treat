@@ -4,7 +4,6 @@ describe Treat::Entities::Collection do
 
   before :all do
     @file = Treat.spec + 'samples/mathematicians'
-    @collection = Treat::Entities::Collection.build(@file)
   end
 
 
@@ -21,7 +20,7 @@ describe Treat::Entities::Collection do
         d = Treat::Entities::Document.build(u)
         puts File.join(f, ff)
         c << d
-        # FileTest.readable?(File.join(f, ff)).should eql true
+        FileTest.readable?(File.join(f, ff)).should eql true
         FileUtils.rm_rf(f)
       end
 
@@ -44,7 +43,8 @@ describe Treat::Entities::Collection do
 
         it "recursively searches the folder for " +
         "files and opens them into a collection of documents" do
-          @collection.size.should eql 6
+          collection = Treat::Entities::Collection.build(@file)
+          collection.size.should eql 6
         end
 
       end
@@ -68,14 +68,12 @@ describe Treat::Entities::Collection do
   describe "Retrievable" do
 
     describe "#index" do
-
+      
       it "indexes the collection and stores the index " +
       "in the folder .index inside the collection's folder " do
-
-        @collection.index
-        @collection.index.should eql @file + '/.index'
+        collection = Treat::Entities::Collection.build(@file)
+        collection.index.should eql @file + '/.index'
         FileTest.directory?(@file + '/.index').should eql true
-
       end
 
     end
@@ -86,8 +84,9 @@ describe Treat::Entities::Collection do
       "and returns an array of documents containing a " +
       "match for the given query " do
         
-        @collection.index
-        docs = @collection.search(:q => 'Newton')
+        collection = Treat::Entities::Collection.build(@file)
+        collection.index
+        docs = collection.search(:q => 'Newton')
         docs.size.should eql 4
         docs.map { |d| d.chunk.title.to_s }.should
         eql ["Isaac (Sir) Newton (1642-1727)",

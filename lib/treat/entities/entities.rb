@@ -11,6 +11,8 @@ module Treat::Entities
     def initialize(folder = nil, id = nil)
       super('', id)
       set :folder, folder
+      i = folder + '/.index'
+      set :index, i if FileTest.directory?(i)
     end
 
     # Works like the default <<, but if the

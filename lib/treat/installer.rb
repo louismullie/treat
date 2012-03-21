@@ -273,7 +273,7 @@ module Treat::Installer
 
         f_path = File.join(destination, f.name)
 
-        FileUtils.mkdir_p(File.dirname(f_path))
+        FileUtils.mkdir_p(File.absolute_path(File.dirname(f_path)))
 
         zip_file.extract(f, f_path) unless File.exist?(f_path)
         
