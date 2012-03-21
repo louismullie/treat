@@ -25,7 +25,6 @@ module Treat::Entities::Abilities::Buildable
   def build(file_or_value, options = {})
 
     fv = file_or_value.to_s
-
     if self == Treat::Entities::Document
       if fv =~ UriRegexp
         from_url(fv, options)

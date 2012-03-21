@@ -12,26 +12,31 @@ class Treat::Downloader
   self.show_progress = false
 
   # Download a file into destination, and return
-  # the path to the downloaded file.
-  def self.download(protocol, server, dir, file, destination = nil)
+  # the path to the downloaded file. If the filename 
+  # is nil, it will set the default filename to 'top'.
+  def self.download(protocol, server, dir, file = nil, target_base = nil, target_dir = nil)
 
-    unless destination
-      path = server + '/' + dir
-      destination = Treat.files
-      make_directories_recursively(destination, path)
+    target_base ||= Treat.files
+    target_dir ||= server
+    
+    resource = "#{dir}/#{file}"
+    url = "#{server}/#{resource}"
+    path = File.join(target_base, target_dir)
+    
+    unless FileTest.directory?(path)
+      FileUtils.mkdir(path)
     end
-
-    resource = "#{server}/#{dir}/#{file}"
-    file = File.open("#{destination}#{resource}", 'w')
+    
+    
+    file = File.open("#{path}/#{file}", 'w')
 
     begin
 
       Net::HTTP.start(server) do |http|
 
         http.use_ssl = true if protocol == 'https'
-
-        df = "/#{dir}/#{file}"
-        http.request_get(df) do |response|
+        
+        http.request_get(resource) do |response|
 
           if response.content_length
             length = response.content_length
@@ -40,13 +45,14 @@ class Treat::Downloader
             length = 10000
           end
 
-          pbar = self.show_progress ? 
-          ProgressBar.new(resource, length)  : nil
+          pbar = self.show_progress ?
+          ProgressBar.new(url, length)  : nil
 
           unless response.code == '200'
             raise Treat::Exception,
             "response code was not 200 "+
-            "OK, but was #{response.code}"
+            "OK, but was #{response.code}. " +
+            "Got #{e.message}." 
           end
 
           response.read_body do |segment|
@@ -63,9 +69,8 @@ class Treat::Downloader
       file.path.to_s
 
     rescue Exception => e
-
       raise Treat::Exception,
-      "Couldn't download #{resource} (#{e.message})."
+      "Couldn't download #{url}."
       file.delete
 
     ensure
@@ -73,25 +78,6 @@ class Treat::Downloader
       file.close
 
     end
-
-  end
-
-
-  def self.make_directories_recursively(base, path)
-
-    p = ''
-    dirs = path.split('/')
-
-    dirs.each do |dir|
-
-      next if dir == ''
-      p << dir + '/'
-      unless File.readable?(base + p)
-        FileUtils.mkdir(base + p)
-      end
-    end
-
-    p
 
   end
 

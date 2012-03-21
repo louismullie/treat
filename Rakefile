@@ -7,10 +7,16 @@ namespace :treat do
   
   RSpec::Core::RakeTask.new do |t|
     task = ARGV[0].scan(/\[([a-z]*)\]/)
-    if task.size == 0
+    
+    if task && task.size == 0
       t.pattern = "./spec/*.rb"
     else
-      t.pattern = "./spec/#{task[0][0]}.rb"
+      klass = task[0][0]
+      if klass == 'sandbox'
+        t.pattern = "./spec/sandbox.rb"
+      else
+        t.pattern = "./spec/#{task[0][0]}.rb"
+      end
     end
   end
 
@@ -21,7 +27,9 @@ namespace :treat do
 
   task :install, [:language] do |t, args|
     require './lib/treat'
-    Treat.install(args.language)
+    l = args.language
+    l ||= 'english'
+    Treat.install(l)
   end
 
 end

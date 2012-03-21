@@ -32,8 +32,9 @@ module Treat
   class << self
     Paths.each do |path, _|
       define_method(path) do
-        File.dirname(__FILE__) + 
-        '/../' + path.to_s + '/'
+        File.dirname(__FILE__).
+        split('/')[0..-2].join('/') + 
+        '/' + path.to_s + '/'
       end
     end
   end
@@ -54,4 +55,7 @@ module Treat
     Treat::Installer.install(language)
   end
 
+  # Enable syntactic sugar by default.
+  Treat.sweeten!
+  
 end

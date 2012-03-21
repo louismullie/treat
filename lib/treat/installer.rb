@@ -1,19 +1,12 @@
 # Installer is a dependency manager for languages.
 #
-# It can be called by using Treat.install(:language).
+# It can be called by using Treat.install(language).
 module Treat::Installer
 
   # Require the Rubygem dependency installer.
   require 'rubygems/dependency_installer'
   require 'treat/downloader'
-  
-  # Binaries to install and their purpose.
-  Binaries = {
-    'ocropus' => 'recognize text in image files',
-    'antiword' => 'extract text from DOC files',
-    'poppler' => 'extract text from PDF files',
-    'graphviz' => 'export and visualize directed graphs'
-  }
+  require 'treat/dependencies'
 
   # Package managers for each platforms.
   PackageManagers = {
@@ -41,32 +34,57 @@ module Treat::Installer
     puts
     puts "Treat Installer, v. #{Treat::VERSION.to_s}\n"
     puts
-    puts "Warning: depending on your configuration, "+
-    "you may need to run Ruby on sudo."
 
     @@installer = Gem::DependencyInstaller.new
 
     begin
 
-      title "Install required gem dependencies for the #{l}."
-      install_required_dependencies(lang_class)
+      title "Install language-independent gem dependencies."
 
-      title "Install optional gem dependencies for the #{l}."
-      install_optional_dependencies(lang_class)
+      case prompt(
+        "1 - Install all default language-independent dependencies\n" +
+        "2 - Select dependencies to install manually\n" +
+        "3 - Skip this step", ['1', '2', '3'])
+      when '1' then install_dependencies(false)
+      when '2' then install_dependencies(true)
+      when '3' then puts 'Skipping this step.'
+      end
 
-      title "Download model for the Punkt segmenter for the #{l}."
-      download_punkt_models(language)
-      
-      title "Download Stanford Core NLP JARs and " +
-      "model files for the the #{l}.\n\n"
-      download_stanford(language)
+      title "Install gem dependencies for the #{l}.\n"
 
-      title "Install optional binaries "+
-      "(you may need to authenticate this)."
-      install_binaries
-      
-      #title "Downloading Wordnet database."
-      #download_wordnet if language == :english
+      dflt = lang_class::RequiredDependencies
+      all = lang_class::RequiredDependencies + lang_class::OptionalDependencies
+      case prompt("1 - Install default dependencies.\n" +
+        "2 - Select dependencies to install manually.\n" +
+        "3 - Skip this step.", ['1', '2', '3'])
+      when '1' then install_language_dependencies(dflt, false)
+      when '2' then install_language_dependencies(all, true)
+      when '3' then puts 'Skipping this step.'
+      end
+
+      # If gem is installed only, download models.
+      begin
+        Gem::Specification.find_by_name('punkt-segmenter')
+        title "Downloading model for the Punkt segmenter for the #{l}."
+        download_punkt_models(language)
+      rescue Gem::LoadError; end
+
+      # If stanford is installed, download models.
+      begin
+        Gem::Specification.find_by_name('stanford-core-nlp')
+        title "Download Stanford Core NLP JARs and " +
+        "model files for the the #{l}.\n\n"
+        download_stanford(language)
+      rescue Gem::LoadError; end
+
+      title "Install external binary libraries (requires port, apt-get or win-get).\n"
+      puts "Warning: this may take a long amount of time."
+
+      case prompt("1 - Select binaries to install manually.\n" +
+        "2 - Skip this step.", ['1', '2'])
+      when '1' then install_binaries
+      when '2' then puts 'Skipping this step.'
+      end
 
       puts
       puts "-----\nDone!"
@@ -81,40 +99,27 @@ module Treat::Installer
 
   end
 
-  def self.install_required_dependencies(lang_class)
+  def self.install_dependencies(optionally)
 
-    required = lang_class::RequiredDependencies
-    puts "No dependencies to install.\n" if required.empty?
-
-    required.each do |dependency|
-      puts "Installing required dependency"+
-      " '#{dependency}'..."
-      begin
-        silence_warnings { @@installer.install(dependency) }
-      rescue
-        puts "Couldn't install '#{dependency}'. " +
-        "You should install this dependency "+
-        "manually by running: " +
-        "`gem install #{dependency}`."
-      end
+    Treat::Dependencies::Gem.each do |d|
+      dep, ver, pur = *d
+      install_gem(dep, ver, pur, optionally)
     end
 
   end
 
-  def self.install_optional_dependencies(lang_class)
+  def self.install_language_dependencies(dependencies, optionally)
 
-    optional = lang_class::OptionalDependencies
-    puts "No dependencies to install.\n" if optional.empty?
-
-    optional.each do |dependency|
-      install_optionally(dependency) do
-        @@installer.install(dependency)
-      end
+    puts "No dependencies to install.\n" if dependencies.empty?
+    dependencies.each do |dependency|
+      install_gem(dependency, nil, nil, optionally)
     end
 
   end
 
   def self.install_binaries
+
+    puts "Warning: this will require authentification."
 
     p = detect_platform
     man = PackageManagers[p]
@@ -139,8 +144,9 @@ module Treat::Installer
       return
     end
 
-    Binaries.each do |binary, purpose|
-      install_optionally(binary, purpose) do
+    Treat::Dependencies::Binary.each do |binary, purpose|
+      if prompt("install #{binary} to " +
+        "#{purpose} (y/n)", ['y', 'n']) == 'y'
         `sudo #{man} install #{binary}`
       end
     end
@@ -149,42 +155,71 @@ module Treat::Installer
 
   def self.download_stanford(language)
 
+    language = language.intern 
     language = :all unless language == :english
+    
     f = StanfordPackages[language]
-
-    download(f)
-
+    loc = Treat::Downloader.download(
+    'http', Server, '/treat', f, Treat.tmp)
+    
     puts "- Unzipping package ..."
-    unzip_file(Treat.tmp + f, Treat.tmp)
+    unzip_stanford(loc, Treat.tmp)
+    
+    # Mac hidden files fix.
+    if File.readable?(Treat.tmp + '__MACOSX/')
+      FileUtils.rm_rf(Treat.tmp + '__MACOSX/')
+    end
+    
+    unless File.readable?(Treat.bin + 'stanford')
+      puts "- Creating directory bin/stanford ..."
+      FileUtils.mkdir_p(File.absolute_path(Treat.bin + 'stanford/'))
+    end
 
+    puts "- Copying JAR files to bin/stanford ..."
+    Dir.glob(File.join(Treat.tmp, '*.jar')) do |f|
+      FileUtils.cp(Treat.tmp, Treat.bin + 'stanford/')
+    end
+
+    unless File.readable?(Treat.models + 'stanford')
+      puts "- Creating directory models/stanford ..."
+      FileUtils.mkdir_p(File.absolute_path(Treat.models + 'stanford/'))
+    end
+
+    puts "- Copying model files to models/stanford ..."
+
+    Dir[Treat.tmp].each do |f|
+      next if f == '.' || f == '..'
+      if FileTest.directory?(f)
+        FileUtils.cp_r(f, Treat.models + 'stanford/')
+      end
+    end
+    
     puts "- Cleaning up..."
-    File.delete(Treat.tmp + f)
-    FileUtils.rm_rf((Treat.tmp + f)[0...-4])
+    File.delete(loc)
+    FileUtils.rm_rf(loc)
 
   end
 
   def self.download_punkt_models(language)
 
     f = "#{language}.yaml"
-    download(f, 'punkt/')
-    
     dest = "#{Treat.models}punkt/"
-    puts "- Creating directory models/punkt ..."
+    Treat::Downloader.show_progress = true
+    loc = Treat::Downloader.download(
+    'http', Server, '/treat/punkt', f, Treat.tmp)
+
     unless File.readable?(dest)
+      puts "- Creating directory models/punkt ..."
       FileUtils.mkdir_p(File.absolute_path(dest))
     end
-    
+
     puts "- Copying model files to models/punkt ..."
-    FileUtils.cp("#{Treat.tmp}punkt/#{f}", "#{Treat.models}punkt/#{f}")
+    FileUtils.cp(loc, "#{Treat.models}punkt/#{f}")
+    
     puts "- Cleaning up..."
     FileUtils.rm_rf("#{Treat.tmp}punkt")
 
   end
-
-  def self.download_wordnet
-
-  end
-
 
   private
 
@@ -200,83 +235,38 @@ module Treat::Installer
 
   # Install a dependency with a supplied purpose
   # but ask the user if she wishes to do so first.
-  def self.install_optionally(dependency, purpose = '')
+  def self.install_gem(dependency, version = nil, 
+    purpose = nil, optionally = false)
+
+    install = false
 
     begin
-      purpose = "to #{purpose} " unless purpose == ''
-      puts "Optionally install " +
-      "'#{dependency}' #{purpose}? (yes/no, <enter> = skip) ?"
-      answer = gets.strip
-      unless ['yes', 'no', ''].include?(answer)
-        raise Treat::Exception
-      end
-      if answer == 'yes'
-        yield
-      else
-        puts "Skipped installing '#{dependency}'."
-      end
-    rescue Treat::Exception
-      puts "Invalid input - valid options are 'yes' or 'no'."
-      retry
-    rescue
-      puts "Couldn't install '#{dependency}'. " +
-      "You can install this dependency manually "+
-      "by running: 'gem install #{dependency}'."
-    end
-
-  end
-
-  # Download a file without storing it
-  # entirely in memory.
-  def self.download(filename, dir = '')
-
-    require 'net/http'
-    require 'fileutils'
-    require 'progressbar'
-
-    if dir && !File.readable?(File.absolute_path(Treat.tmp + dir))
-      FileUtils.mkdir_p(File.absolute_path(Treat.tmp + dir))
-    end
-
-    file = File.open(File.absolute_path(Treat.tmp + dir + filename), 'w')
-
-    begin
-
-      Net::HTTP.start(Server) do |http|
-
-        http.request_get("/#{dir}#{filename}") do |response|
-          pbar = ProgressBar.new(filename,
-          response.content_length)
-
-          response.read_body do |segment|
-            pbar.inc(segment.length)
-            file.write(segment)
-          end
-
-          pbar.finish
+      purpose = purpose ? " to #{purpose}" : ''
+      if optionally
+        if prompt("install #{dependency}#{purpose}", 
+          ['y', 'n']) == 'y'
+          install = true
         end
-
+      else
+        puts "\n- Installing  #{dependency}#{purpose}."
+        install = true
       end
-
-    rescue Errno::EEXIST
-      raise Treat::Exception,
-      "Skipping downloading file  "+
-      "#{filename} because it already exists."
+      silence_warnings do 
+        @@installer.install(dependency, version)
+      end if install
     rescue
-      raise Treat::Exception,
-      "Couldn't download file #{filename}."
-      file.delete
-    ensure
-      file.close
+      puts "Couldn't install gem '#{dep}'."
     end
-
+    
   end
 
   # Unzip a file to the destination path.
-  def self.unzip_file(file, destination)
+  def self.unzip_stanford(file, destination)
 
-    require 'zip'
-
+    require 'zip/zip'
+    
+    f_path = ''
+    
     Zip::ZipFile.open(file) do |zip_file|
 
       zip_file.each do |f|
@@ -284,39 +274,9 @@ module Treat::Installer
         f_path = File.join(destination, f.name)
 
         FileUtils.mkdir_p(File.dirname(f_path))
-        
+
         zip_file.extract(f, f_path) unless File.exist?(f_path)
         
-        if File.readable?(Treat.tmp + '__MACOSX/')
-          FileUtils.rm_rf(Treat.tmp + '__MACOSX/')
-        end
-
-        puts "- Creating directory bin/stanford ..."
-        unless File.readable?(Treat.bin + 'stanford')
-          FileUtils.mkdir_p(File.absolute_path(Treat.bin + 'stanford'))
-        end
-
-        puts "- Copying JAR files to bin/stanford ..."
-        Dir.glob(File.join(f_path, '*.jar')) do |f|
-          FileUtils.cp(Treat.tmp + f, Treat.bin + 'stanford/')
-        end
-
-        puts "- Creating directory models/stanford ..."
-        unless File.readable?(Treat.models + 'stanford')
-          FileUtils.mkdir_p(File.absolute_path(Treat.models + 'stanford/'))
-        end
-
-        puts "- Copying model files to models/stanford ..."
-        
-        Dir.entries(File.absolute_path(f_path)).each do |f|
-          next if f == '.' || f == '..'
-          if FileTest.directory?(f)
-            FileUtils.cp_r(f, Treat.models + 'stanford/')
-          end
-        end
-
-        break
-
       end
 
     end

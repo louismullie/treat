@@ -184,5 +184,28 @@ module Kernel
   def debug(msg)
     puts msg if Treat.debug
   end
+  
+  def prompt(msg, valid_answers)
+    
+    msg = msg
+    n = msg.include?("\n") ? ":\n" : ''
+    q = msg.include?("\n") ? '' : '?'
+    
+    s = "\nPlease enter one of #{valid_answers.join(', ')}: "
+    puts "Do you want to #{n}#{msg}#{q} \n#{s}"
+    
+    begin
+      answer = STDIN.gets.strip
+      unless valid_answers.include?(answer)
+        puts "Invalid input."
+        puts s
+        raise Treat::InvalidInputException
+      end
+      answer
+    rescue Treat::InvalidInputException
+      retry
+    end
+    
+  end
 
 end
