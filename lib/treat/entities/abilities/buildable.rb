@@ -18,6 +18,9 @@ module Treat::Entities::Abilities::Buildable
   # A list of supported image extensions.
   ImageExtensions =
   ['gif', 'jpg', 'jpeg', 'png']
+  
+  # Reserved folder names
+  Reserved = ['.index']
 
   # Build an entity from anything (can be
   # a string, numeric,folder, or file name
@@ -125,6 +128,8 @@ module Treat::Entities::Abilities::Buildable
   # Folders will be searched recursively.
   def from_folder(folder, options)
 
+    return if Reserved.include?(folder)
+    
     unless FileTest.directory?(folder)
       raise Treat::Exception,
       "Path '#{folder}' does " +
@@ -151,7 +156,7 @@ module Treat::Entities::Abilities::Buildable
       if FileTest.directory?(f)
         c2 = Treat::Entities::Collection.
         from_folder(f, options)
-        c.<<(c2, false)
+        c.<<(c2, false) if c2
       else
         c.<<(Treat::Entities::Document.
         from_file(f, options), false)
@@ -163,7 +168,7 @@ module Treat::Entities::Abilities::Buildable
 
   # Build a document from a raw or serialized file.
   def from_file(file, options)
-
+    
     unless File.readable?(file)
       raise Treat::Exception,
       "Path '#{file}' does not "+
@@ -343,6 +348,7 @@ module Treat::Entities::Abilities::Buildable
   def create_collection(fv)
     debug("Creating new collection in directory #{fv}.")
     FileUtils.mkdir(fv)
+    Treat::Entities::Collection.new(fv)
   end
 
 end

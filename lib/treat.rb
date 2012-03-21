@@ -32,9 +32,10 @@ module Treat
   class << self
     Paths.each do |path, _|
       define_method(path) do
-        File.dirname(__FILE__).
+        (File.dirname(__FILE__).
         split('/')[0..-2].join('/') + 
-        '/' + path.to_s + '/'
+        '/' + path.to_s + '/').gsub(
+        'lib/../', '')
       end
     end
   end
