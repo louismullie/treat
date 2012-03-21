@@ -36,15 +36,15 @@ describe Treat::Entities::Phrase do
     
     describe "#named_entity" do
       it "tags the named entity words in the phrase" do
-        
+        # Not implemented.
       end
     end
     
     describe "#time" do
       it "returns a DateTime object representing the time in the phrase" do
         Treat::Languages::English::Extractors[:time].each do |e|
-          t = 'Tuesday, January 5th 2011'.time(e)
-          t.year.should eql 2011
+          t = 'october 2006'.time(e)
+          t.month.should eql 10
         end
       end
     end

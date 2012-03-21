@@ -195,8 +195,7 @@ module Treat::Installer
     end
     
     puts "- Cleaning up..."
-    File.delete(loc)
-    FileUtils.rm_rf(loc)
+    FileUtils.rm_rf("#{Treat.tmp}#{Server}")
 
   end
 
@@ -204,6 +203,7 @@ module Treat::Installer
 
     f = "#{language}.yaml"
     dest = "#{Treat.models}punkt/"
+    
     Treat::Downloader.show_progress = true
     loc = Treat::Downloader.download(
     'http', Server, '/treat/punkt', f, Treat.tmp)
@@ -213,11 +213,11 @@ module Treat::Installer
       FileUtils.mkdir_p(File.absolute_path(dest))
     end
 
-    puts "- Copying model files to models/punkt ..."
+    puts "- Copying model file to models/punkt ..."
     FileUtils.cp(loc, "#{Treat.models}punkt/#{f}")
     
     puts "- Cleaning up..."
-    FileUtils.rm_rf("#{Treat.tmp}punkt")
+    FileUtils.rm_rf("#{Treat.tmp}#{Server}")
 
   end
 

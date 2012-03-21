@@ -18,8 +18,8 @@ class Treat::Downloader
 
     target_base ||= Treat.files
     target_dir ||= server
-    
-    resource = "#{dir}/#{file}"
+    dir += '/' if dir && dir[-1] != '/'
+    resource = "#{dir}#{file}"
     url = "#{server}/#{resource}"
     path = File.join(target_base, target_dir)
     

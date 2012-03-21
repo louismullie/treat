@@ -277,17 +277,6 @@ describe Treat::Entities::Entity do
 
   end
 
-  describe "Iterable" do
-
-    describe "#each_entity(*types)" do
-      
-      it "y"
-    end
-
-  end
-
-
-
   describe "Stringable" do
 
     describe "#to_string" do
