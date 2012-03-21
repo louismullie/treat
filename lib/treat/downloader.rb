@@ -71,7 +71,7 @@ class Treat::Downloader
 
     rescue Exception => e
       raise Treat::Exception,
-      "Couldn't download #{url}."
+      "Couldn't download #{url}. (#{e.message})"
       file.delete
 
     ensure

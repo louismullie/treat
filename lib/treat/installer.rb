@@ -81,7 +81,8 @@ module Treat::Installer
         Gem::Specification.find_by_name('stanford-core-nlp')
         title "Download Stanford Core NLP JARs and " +
         "model files for the the #{l}.\n\n"
-        download_stanford(language)
+        package = (language == :english) ? :english : :all
+        download_stanford(package)
       rescue Gem::LoadError; end
 
       title "Install external binary libraries (requires port, apt-get or win-get).\n"
@@ -170,12 +171,9 @@ module Treat::Installer
 
   end
 
-  def self.download_stanford(language)
-
-    language = language.intern 
-    language = :all unless language == :english
+  def self.download_stanford(package = :minimal)
     
-    f = StanfordPackages[language]
+    f = StanfordPackages[package]
     loc = Treat::Downloader.download(
     'http', Server, 'treat', f, Treat.tmp)
     
