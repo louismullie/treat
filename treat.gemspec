@@ -21,8 +21,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'rubyzip', '>= 0.9.6.1'
   s.add_runtime_dependency 'progressbar', '>= 0.10.0'
   
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rake'
+  s.add_development_dependency 'rspec', '>= 2.9.0'
+  s.add_development_dependency 'rake', '>= 0.9.2'
   
 end
 
