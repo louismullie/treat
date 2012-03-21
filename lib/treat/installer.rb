@@ -27,7 +27,7 @@ module Treat::Installer
   # Install required dependencies and optional
   # dependencies for a specific language.
   def self.install(language = :english)
-
+    
     lang_class = Treat::Languages.get(language)
     l = "#{language.to_s.capitalize} language"
 
@@ -61,7 +61,9 @@ module Treat::Installer
       when '2' then install_language_dependencies(all, true)
       when '3' then puts 'Skipping this step.'
       end
-
+      
+      Treat::Downloader.show_progress = true
+      
       # If gem is installed only, download models.
       begin
         Gem::Specification.find_by_name('punkt-segmenter')
@@ -204,7 +206,6 @@ module Treat::Installer
     f = "#{language}.yaml"
     dest = "#{Treat.models}punkt/"
     
-    Treat::Downloader.show_progress = true
     loc = Treat::Downloader.download(
     'http', Server, '/treat/punkt', f, Treat.tmp)
 

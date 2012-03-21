@@ -3,7 +3,6 @@ class Treat::Downloader
 
   require 'net/http'
   require 'fileutils'
-  require 'progressbar'
 
   class << self
     attr_accessor :show_progress
@@ -16,6 +15,8 @@ class Treat::Downloader
   # is nil, it will set the default filename to 'top'.
   def self.download(protocol, server, dir, file = nil, target_base = nil, target_dir = nil)
 
+    require 'progressbar' if self.show_progress
+    
     target_base ||= Treat.files
     target_dir ||= server
     dir += '/' if dir && dir[-1] != '/'
