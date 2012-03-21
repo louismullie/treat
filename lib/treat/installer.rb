@@ -264,7 +264,6 @@ module Treat::Installer
   def self.unzip_stanford(file, destination)
 
     require 'zip/zip'
-    
     f_path = ''
     
     Zip::ZipFile.open(file) do |zip_file|
