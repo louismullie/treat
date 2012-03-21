@@ -111,8 +111,8 @@ module Treat::Installer
   def self.install_travis
     dep = (Treat::Languages::English::RequiredDependencies + 
           Treat::Languages::English::OptionalDependencies)
-    install_dependencies(false)
-    install_language_dependencies(dep, false)
+    #install_dependencies(false)
+    #install_language_dependencies(dep, false)
     download_stanford(:minimal)
     download_punkt_models(:english)
   end
@@ -268,9 +268,9 @@ module Treat::Installer
       silence_warnings do 
         @@installer.install(dependency, version)
       end if install
-    rescue Exception => e
+    rescue Exception => error
       puts "Couldn't install gem '#{dependency}' " +
-           "(#{e.message})."
+           "(#{error.message})."
     end
     
   end

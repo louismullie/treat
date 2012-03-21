@@ -20,8 +20,8 @@ class Treat::Downloader
     target_base ||= Treat.files
     target_dir ||= server
     dir += '/' if dir && dir[-1] != '/'
-    resource = "#{dir}#{file}"
-    url = "#{server}/#{resource}"
+    resource = "/#{dir}#{file}"
+    url = "#{server}#{resource}"
     path = File.join(target_base, target_dir)
     
     unless FileTest.directory?(path)
@@ -52,8 +52,7 @@ class Treat::Downloader
           unless response.code == '200'
             raise Treat::Exception,
             "response code was not 200 "+
-            "OK, but was #{response.code}. " +
-            "Got #{e.message}." 
+            "OK, but was #{response.code}. "
           end
 
           response.read_body do |segment|
@@ -69,9 +68,10 @@ class Treat::Downloader
 
       file.path.to_s
 
-    rescue Exception => e
+    rescue Exception => error
+      
       raise Treat::Exception,
-      "Couldn't download #{url}. (#{e.message})"
+      "Couldn't download #{url}. (#{error.message})"
       file.delete
 
     ensure
