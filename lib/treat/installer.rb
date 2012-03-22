@@ -209,7 +209,7 @@ module Treat::Installer
 
     unless File.readable?(Treat.models + 'stanford')
       puts "- Creating directory models/stanford ..."
-      FileUtils.mkdir_p(model_dir, 755)
+      FileUtils.mkdir_p(model_dir)
     end
 
     puts "- Copying model files to models/stanford ..."
@@ -234,7 +234,7 @@ module Treat::Installer
 
     unless File.readable?(dest)
       puts "- Creating directory models/punkt ..."
-      FileUtils.mkdir_p(File.absolute_path(dest), 755)
+      FileUtils.mkdir_p(File.absolute_path(dest))
     end
 
     puts "- Copying model file to models/punkt ..."
