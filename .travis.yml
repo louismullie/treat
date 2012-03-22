@@ -3,7 +3,7 @@ rvm:
   - 1.9.2
 before_script: 
   - sudo apt-get install antiword
-  - sudo apt-get install poppler
+  - sudo apt-get install poppler-utils
   - rake treat:install[travis]
 script: rake treat:spec
 after_script:

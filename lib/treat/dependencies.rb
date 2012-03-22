@@ -17,7 +17,7 @@ class Treat::Dependencies
   Binary = [
     ['ocropus', 'recognize text in image files'],
     ['antiword', 'extract text from DOC files'],
-    ['poppler', 'extract text from PDF files'],
+    ['poppler-utils', 'extract text from PDF files'],
     ['graphviz', 'export and visualize directed graphs']
   ]
 
