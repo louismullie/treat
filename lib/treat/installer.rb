@@ -118,8 +118,8 @@ module Treat::Installer
   def self.install_travis
     dep = (Treat::Languages::English::RequiredDependencies + 
           Treat::Languages::English::OptionalDependencies)
-    #install_dependencies(false)
-    #install_language_dependencies(dep, false)
+    install_dependencies(false)
+    install_language_dependencies(dep, false)
     download_stanford(:minimal)
     download_punkt_models(:english)
   end
