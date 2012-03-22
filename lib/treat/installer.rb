@@ -186,41 +186,46 @@ module Treat::Installer
     'http', Server, 'treat', f, Treat.tmp)
     
     puts "- Unzipping package ..."
-    unzip_stanford(loc, Treat.tmp)
+    dest = File.join(Treat.tmp, 'stanford')
+    unzip_stanford(loc, dest)
     
-    model_dir = File.join(Paths[:models] + 'stanford')
+    model_dir = File.join(Paths[:models], 'stanford')
+    bin_dir = File.join(Paths[:bin], 'stanford')
+    origin = File.join(Paths[:tmp], 'stanford')
     
     # Mac hidden files fix.
-    if File.readable?(Treat.tmp + '__MACOSX/')
-      FileUtils.rm_rf(Paths[:tmp] + '__MACOSX/')
+    mac_remove = File.join(dest, '__MACOSX')
+    if File.readable?(mac_remove)
+      FileUtils.rm_rf(mac_remove)
     end
     
-    unless File.readable?(Treat.bin + 'stanford')
+    unless File.readable?(bin_dir)
       puts "- Creating directory bin/stanford ..."
-      FileUtils.mkdir_p(File.join(Paths[:bin], 'stanford'))
+      FileUtils.mkdir_p(bin_dir)
     end
-
-    puts "- Copying JAR files to bin/stanford ..."
     
-    Dir.glob(File.join(Paths[:tmp], '*.jar')) do |f|
-      FileUtils.cp(f, File.join(Paths[:bin], 
-      'stanford', File.basename(f)))
-    end
-
-    unless File.readable?(Treat.models + 'stanford')
+    unless File.readable?(model_dir)
       puts "- Creating directory models/stanford ..."
       FileUtils.mkdir_p(model_dir)
     end
 
-    puts "- Copying model files to models/stanford ..."
-
-    Dir.entries(Paths[:tmp] + '/' + Server).each do |f|
-      next if f == '.' || f == '..' || !FileTest.directory?(f)
-      FileUtils.cp_r(f, model_dir)
+    puts "- Copying JAR files to bin/stanford " +
+         "and model files to models/stanford ..."
+    
+    Dir.glob(File.join(origin, '*')) do |f|
+      next if ['.', '..'].include?(f)
+      if f.index('jar')
+        FileUtils.cp(f, File.join(Paths[:bin], 
+        'stanford', File.basename(f)))
+      elsif FileTest.directory?(f)
+        puts f
+        puts model_dir
+        FileUtils.cp_r(f, model_dir)
+      end
     end
     
     puts "- Cleaning up..."
-    FileUtils.rm_rf(Paths[:tmp] + '/' + Server)
+    FileUtils.rm_rf(origin)
     
   end
 
