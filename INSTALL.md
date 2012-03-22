@@ -15,6 +15,6 @@ Run `gem install treat`.
 Then, open an `irb` session and type:
 
 ```ruby
-require 'treat'
+require "treat"
 Treat.install(:english)
 ```
