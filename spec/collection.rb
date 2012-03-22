@@ -29,8 +29,8 @@ describe Treat::Entities::Collection do
       it "adds the object to the collection" do
         f = Treat.spec + 'samples/test'
         c = Treat::Entities::Collection.build(f)
-        c << Treat::Entities::Number.new(2)
-        c.size.should eql 1
+        c << Treat::Entities::Document.new
+        c.size.should eql 2
         FileUtils.rm_rf(f)
       end
     end

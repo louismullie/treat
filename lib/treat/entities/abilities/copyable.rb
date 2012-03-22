@@ -34,6 +34,7 @@ module Treat::Entities::Abilities::Copyable
   
   def copy_document_into(collection)
     copy = dup
+    return copy unless file
     f = File.basename(file)
     f = File.join(collection.folder, f)
     FileUtils.cp(file, f)
