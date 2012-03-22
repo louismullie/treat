@@ -279,7 +279,7 @@ module Treat::Installer
           install = true
         end
       else
-        puts "\n- Installing  #{dependency}#{purpose}."
+        puts "\n- Installing #{dependency}#{purpose}."
         install = true
       end
       silence_warnings do 

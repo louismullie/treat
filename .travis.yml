@@ -1,5 +1,11 @@
 language: ruby
 rvm:
   - 1.9.2
-before_script: rake treat:install[travis]
+before_script: 
+  - sudo apt-get install antiword
+  - sudo apt-get install poppler
+  - rake treat:install[travis]
 script: rake treat:spec
+after_script:
+  - cd ./bin
+  - ls

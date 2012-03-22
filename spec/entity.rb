@@ -220,7 +220,7 @@ describe Treat::Entities::Entity do
     "#sentence_count, #paragraph_count, etc. and " +
     "#noun_count, #verb_count, etc." do
 
-      it "return the number of entities with the" +
+      it "return the number of entities with the " +
       "corresponding type inside another entity" do
         @paragraph.sentence_count.should eql 1
         @paragraph.phrase_count.should eql 4

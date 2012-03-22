@@ -1,7 +1,6 @@
 class Treat::Dependencies
   
   Gem = [
-    
     ['psych', '>= 1.2.2', '(un)serialize annotated entities to YAML format'],
     ['nokogiri', '>= 1.4.0', 'read and parse XML and HTML formats'],
     ['sdsykes-ferret', '>= 0.11.6.19', 'perform full-text search in collections'],
