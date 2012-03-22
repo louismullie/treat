@@ -18,7 +18,6 @@ describe Treat::Entities::Collection do
         u = 'http://guides.rubyonrails.org/' + ff
         c = Treat::Entities::Collection.build(f)
         d = Treat::Entities::Document.build(u)
-        puts File.join(f, ff)
         c << d
         FileTest.readable?(File.join(f, ff)).should eql true
         FileUtils.rm_rf(f)
@@ -27,9 +26,12 @@ describe Treat::Entities::Collection do
     end
 
     context "when supplied with anything else" do
-      it "adds the object to the collection without " +
-      "copying the file to the collection's folder" do
-        # TODO
+      it "adds the object to the collection" do
+        f = Treat.spec + 'samples/test'
+        c = Treat::Entities::Collection.build(f)
+        c << Treat::Entities::Number.new(2)
+        c.size.should eql 1
+        FileUtils.rm_rf(f)
       end
     end
 

@@ -6,6 +6,3 @@ before_script:
   - sudo apt-get install poppler-utils
   - rake treat:install[travis]
 script: rake treat:spec
-after_script:
-  - cd ./bin
-  - ls

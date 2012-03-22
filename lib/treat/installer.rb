@@ -65,7 +65,7 @@ module Treat::Installer
       title "Install gem dependencies for the #{l}.\n"
 
       dflt = lang_class::RequiredDependencies
-      all = lang_class::RequiredDependencies + lang_class::OptionalDependencies
+      all = dflt + lang_class::OptionalDependencies
       case prompt("1 - Install default dependencies.\n" +
         "2 - Select dependencies to install manually.\n" +
         "3 - Skip this step.", ['1', '2', '3'])
@@ -92,7 +92,8 @@ module Treat::Installer
         download_stanford(package)
       rescue Gem::LoadError; end
 
-      title "Install external binary libraries (requires port, apt-get or win-get).\n"
+      title "Install external binary libraries " +
+            "(requires port, apt-get or win-get).\n"
       puts "Warning: this may take a long amount of time."
 
       case prompt("1 - Select binaries to install manually.\n" +
@@ -179,13 +180,15 @@ module Treat::Installer
   end
 
   def self.download_stanford(package = :minimal)
-    
+    package = :minimal
     f = StanfordPackages[package]
     loc = Treat::Downloader.download(
     'http', Server, 'treat', f, Treat.tmp)
     
     puts "- Unzipping package ..."
     unzip_stanford(loc, Treat.tmp)
+    
+    model_dir = File.join(Paths[:models] + 'stanford')
     
     # Mac hidden files fix.
     if File.readable?(Treat.tmp + '__MACOSX/')
@@ -194,39 +197,30 @@ module Treat::Installer
     
     unless File.readable?(Treat.bin + 'stanford')
       puts "- Creating directory bin/stanford ..."
-      FileUtils.mkdir_p(
-      Paths[:bin] + 
-      'stanford/')
+      FileUtils.mkdir_p(File.join(Paths[:bin], 'stanford'))
     end
 
     puts "- Copying JAR files to bin/stanford ..."
     
     Dir.glob(File.join(Paths[:tmp], '*.jar')) do |f|
-      next if File.readable?(f)
-      FileUtils.cp(
-        File.join(File.absolute_path(f)), 
-        File.join(Paths[:bin], 'stanford/')
-      )
+      FileUtils.cp(f, File.join(Paths[:bin], 
+      'stanford', File.basename(f)))
     end
 
     unless File.readable?(Treat.models + 'stanford')
       puts "- Creating directory models/stanford ..."
-      FileUtils.mkdir_p(Paths[:models] + 'stanford/')
+      FileUtils.mkdir_p(model_dir, 755)
     end
 
     puts "- Copying model files to models/stanford ..."
 
-    Dir.entries(Paths[:tmp]).each do |f|
-      next if f == '.' || f == '..'
-      next if File.readable?(f)
-      if FileTest.directory?(f)
-        FileUtils.cp_r(File.absolute_path(f), 
-        Paths[:models] + 'stanford/')
-      end
+    Dir.entries(Paths[:tmp] + '/' + Server).each do |f|
+      next if f == '.' || f == '..' || !FileTest.directory?(f)
+      FileUtils.cp_r(f, model_dir)
     end
     
     puts "- Cleaning up..."
-    FileUtils.rm_rf(Paths[:tmp] + Server)
+    FileUtils.rm_rf(Paths[:tmp] + '/' + Server)
     
   end
 
@@ -240,12 +234,11 @@ module Treat::Installer
 
     unless File.readable?(dest)
       puts "- Creating directory models/punkt ..."
-      FileUtils.mkdir_p(File.absolute_path(dest))
+      FileUtils.mkdir_p(File.absolute_path(dest), 755)
     end
 
     puts "- Copying model file to models/punkt ..."
-    FileUtils.cp(File.absolute_path(loc), 
-    Paths[:models] + "/punkt/#{f}")
+    FileUtils.cp(loc, File.join(Paths[:models], 'punkt', f))
     
     puts "- Cleaning up..."
     FileUtils.rm_rf(Paths[:tmp] + Server)
