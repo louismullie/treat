@@ -25,6 +25,13 @@ module Treat::Installer
     :all => "stanford-core-nlp-all.zip"
   }
 
+  # Absolute paths required for cp and mkdir.
+  Paths = {
+    :tmp => File.absolute_path(Treat.tmp),
+    :bin => File.absolute_path(Treat.bin),
+    :models => File.absolute_path(Treat.models)
+  }
+  
   # Install required dependencies and optional
   # dependencies for a specific language.
   def self.install(language = :english)
@@ -182,36 +189,45 @@ module Treat::Installer
     
     # Mac hidden files fix.
     if File.readable?(Treat.tmp + '__MACOSX/')
-      FileUtils.rm_rf(Treat.tmp + '__MACOSX/')
+      FileUtils.rm_rf(Paths[:tmp] + '__MACOSX/')
     end
     
     unless File.readable?(Treat.bin + 'stanford')
       puts "- Creating directory bin/stanford ..."
-      FileUtils.mkdir_p(File.absolute_path(Treat.bin + 'stanford/'))
+      FileUtils.mkdir_p(
+      Paths[:bin] + 
+      'stanford/')
     end
 
     puts "- Copying JAR files to bin/stanford ..."
-    Dir.glob(File.join(Treat.tmp, '*.jar')) do |f|
-      FileUtils.cp(Treat.tmp, Treat.bin + 'stanford/')
+    
+    Dir.glob(File.join(Paths[:tmp], '*.jar')) do |f|
+      next if File.readable?(f)
+      FileUtils.cp(
+        File.join(File.absolute_path(f)), 
+        File.join(Paths[:bin], 'stanford/')
+      )
     end
 
     unless File.readable?(Treat.models + 'stanford')
       puts "- Creating directory models/stanford ..."
-      FileUtils.mkdir_p(File.absolute_path(Treat.models + 'stanford/'))
+      FileUtils.mkdir_p(Paths[:models] + 'stanford/')
     end
 
     puts "- Copying model files to models/stanford ..."
 
-    Dir[Treat.tmp].each do |f|
+    Dir.entries(Paths[:tmp]).each do |f|
       next if f == '.' || f == '..'
+      next if File.readable?(f)
       if FileTest.directory?(f)
-        FileUtils.cp_r(f, Treat.models + 'stanford/')
+        FileUtils.cp_r(File.absolute_path(f), 
+        Paths[:models] + 'stanford/')
       end
     end
     
     puts "- Cleaning up..."
-    FileUtils.rm_rf("#{Treat.tmp}#{Server}")
-
+    FileUtils.rm_rf(Paths[:tmp] + Server)
+    
   end
 
   def self.download_punkt_models(language)
@@ -228,10 +244,11 @@ module Treat::Installer
     end
 
     puts "- Copying model file to models/punkt ..."
-    FileUtils.cp(loc, "#{Treat.models}punkt/#{f}")
+    FileUtils.cp(File.absolute_path(loc), 
+    Paths[:models] + "/punkt/#{f}")
     
     puts "- Cleaning up..."
-    FileUtils.rm_rf("#{Treat.tmp}#{Server}")
+    FileUtils.rm_rf(Paths[:tmp] + Server)
 
   end
 
