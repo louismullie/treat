@@ -10,15 +10,11 @@ The ``rake treat:install`` command will open an installer that lets you customiz
 
 **Installing as a Gem**
 
-In your shell, run the following commands:
-
-```
-gem install treat
-```
+Run `gem install treat`.
 
 Then, open an `irb` session and type:
 
 ```ruby
-require 'treat'
+require "treat"
 Treat.install(:english)
 ```
