@@ -1,6 +1,8 @@
 language: ruby
 rvm:
   - 1.9.2
+  - 1.9.2
+  - rbx-19mode
 before_script: 
   - sudo apt-get install antiword
   - sudo apt-get install poppler-utils
