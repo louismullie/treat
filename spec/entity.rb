@@ -313,6 +313,45 @@ describe Treat::Entities::Entity do
     end
 
   end
+  
+  describe "Formatters" do 
+    
+    describe "#serialize" do
+      
+      before :all do 
+        @serializers = [:xml, :yaml] # Treat::Languages::All::Serializers
+        @txt = "The story of the fox. The quick brown fox jumped over the lazy dog."
+      end
+      
+      context "when called with a file to save to" do
+        
+        it "serializes a document to XML or YAML format" do
+          
+          @serializers.each do |ser|
+            next if ser == :xml   # Fix
+            f = Treat.spec + 'test.' + ser.to_s
+            s = Treat::Entities::Paragraph.new(@txt)
+            s.do(:segment, :tokenize)
+            s.serialize(ser, :file => f)
+            d = Treat::Entities::Document.build(f)
+            d.to_s.should eql @txt
+            d.size.should eql s.size
+            d.token_count.should eql s.token_count
+            d.tokens[0].id.should eql s.tokens[0].id
+            File.delete(f)
+          end
+          
+        end
+        
+      end
+      
+    end
+    
+    describe "#unserialize" do
+      
+    end
+    
+  end
 
   describe "Extractors" do
 

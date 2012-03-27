@@ -12,13 +12,13 @@ class Treat::Formatters::Serializers::XML
     indent = options[:indent]
     if options[:indent] == 0
       enc = entity.to_s.encoding.to_s.downcase
-      string = "<?xml version=\"1.0\" encoding=\"#{enc}\" standalone=\"no\" ?>\n<treat>"
+      string = "<?xml version=\"1.0\" encoding=\"#{enc}\" standalone=\"no\" ?>\n<treat>\n"
     else
       string = ''
     end
     spaces = ''
     options[:indent].times { spaces << ' ' }
-    attributes = " id='#{entity.id}' "
+    attributes = " id='#{entity.id}'"
     if !entity.features.nil? && entity.features.size != 0
       attributes << ' '
       entity.features.each_pair do |feature, value|
@@ -41,10 +41,10 @@ class Treat::Formatters::Serializers::XML
       end
     end
     tag = entity.class.to_s.split('::')[-1].downcase
+    string += "#{spaces}<#{tag}#{attributes}>"
     unless entity.is_a?(Treat::Entities::Token)
       string += "\n"
     end
-    string += "#{spaces}<#{tag}#{attributes}>"
     if entity.has_children?
       options[:indent] += 1
       entity.children.each do |child|
@@ -57,7 +57,7 @@ class Treat::Formatters::Serializers::XML
       string = string + "#{escape(entity.value)}"
     end
     unless entity.is_a?(Treat::Entities::Token)
-      string += "\n#{spaces}"
+      string += "#{spaces}"
     end
     string += "</#{tag}>\n"
     if indent == 0
