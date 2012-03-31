@@ -56,11 +56,7 @@ class Treat::Formatters::Visualizers::DOT
                 v = v.to_s if v.is_a?(DateTime)
                 v = "*#{v.id}" if v.is_a?(Treat::Entities::Entity)
                 v = v ? v.inspect : ' -- '
-                v.gsub!('[', '\[')
-                v.gsub!('{', '\}')
-                v.gsub!(']', '\]')
-                v.gsub!('}', '\}')
-                v.gsub!('"', '\"')
+                v = escape(v)
                 label <<  "#{member}: #{v},\\n"
               end
               label = label[0..-4] unless label[-2] == '{'
@@ -69,11 +65,7 @@ class Treat::Formatters::Visualizers::DOT
               label << "\\n#{feature}: \\n\{ "
               value.each do |k,v|
                 v = v ? v.inspect : ' -- '
-                v.gsub!('[', '\[')
-                v.gsub!('{', '\}')
-                v.gsub!(']', '\]')
-                v.gsub!('}', '\}')
-                v.gsub!('"', '\"')
+                v = escape(v)
                 label <<  "#{k}: #{v},\\n"
               end
               label = label[0..-4] unless label[-2] == '{'
@@ -81,8 +73,12 @@ class Treat::Formatters::Visualizers::DOT
             elsif value.is_a?(Array)
               label << "\\n#{feature}: \\n\[ "
               value.each do |e|
-                e = "*#{e.id}" if e.is_a?(Treat::Entities::Entity)
-                label << "#{e},\\n"
+                if e.is_a?(Treat::Entities::Entity)
+                  v = escape("*#{e.id}")
+                else
+                  v = escape(e.inspect)
+                end
+                label << "#{v},\\n"
               end
               label = label[0..-4] unless label[-2] == '['
               label << " \]"
@@ -134,4 +130,12 @@ class Treat::Formatters::Visualizers::DOT
     string
   end
 
+  def self.escape(v)
+    v.gsub('[', '\[')
+    .gsub('{', '\}')
+    .gsub(']', '\]')
+    .gsub('}', '\}')
+    .gsub('"', '\"')
+  end
+  
 end

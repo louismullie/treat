@@ -7,19 +7,17 @@
 - XML unserializer
 - Stanford dependencies
 - Hashs in visualize
-- Standoff format - tag all entities.
 - Ruby graphviz
 - Stanford parser + coreference resolver accept tokens
 - What if an element in data set is nil?
 - Save individual documents in a collection
-- Does it return self when using processors?
 - Same old value removal problem ?
-- 301
-- Read autoselect
 - Reuters models install
 
 ## Future
 
+- Standoff format - tag all entities.
+- Add stanford coreference resolver
 - Add Stanford and Wordnet lemmatizers
 - ABW, ODT Nokogiri
 - Try new encodings

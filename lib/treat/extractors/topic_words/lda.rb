@@ -33,28 +33,35 @@ module Treat::Extractors::TopicWords::LDA
   DefaultOptions = {
     :num_topics => 20,
     :words_per_topic => 10,
-    :iterations => 20
+    :iterations => 20,
+    :vocabulary => nil
   }
   
   # Retrieve the topic words of a collection.
   def self.topic_words(collection, options = {})
+
     options = DefaultOptions.merge(options)
+    
     docs = collection.documents.map { |d| d.to_s }
     # Create a corpus with the collection
     corpus = Lda::TextCorpus.new(docs)
-
+    
     # Create an Lda object for training
     lda = Lda::Lda.new(corpus)
     lda.num_topics = options[:num_topics]
     lda.max_iter = options[:iterations]
     # Run the EM algorithm using random 
     # starting points
-    silence_stdout { lda.em('random') }
+    
+    silence_stdout do
+      lda.em('random')
+    end
+    
     # Load the vocabulary.
     if options[:vocabulary]
       lda.load_vocabulary(options[:vocabulary])
     end
-
+    
     # Get the topic words.
     lda.top_words(
     options[:words_per_topic]

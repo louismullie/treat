@@ -13,12 +13,7 @@ module Treat::Entities::Abilities::Buildable
   PunctRegexp = /^[[:punct:]\$]+$/
   UriRegexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix
   EmailRegexp = /.+\@.+\..+/
-  ExtensionRegexp = /^.*?\.([a-zA-Z0-9]{2,5})$/
 
-  # A list of supported image extensions.
-  ImageExtensions =
-  ['gif', 'jpg', 'jpeg', 'png']
-  
   # Reserved folder names
   Reserved = ['.index']
 
@@ -176,7 +171,8 @@ module Treat::Entities::Abilities::Buildable
     end
 
     dflt = options[:_default_format]
-    fmt = detect_format(file, dflt)
+    fmt = Treat::Formatters::Readers::Autoselect.
+    detect_format(file, dflt)
     options[:_format] = fmt
 
     # Humanize the yaml extension.
@@ -201,7 +197,7 @@ module Treat::Entities::Abilities::Buildable
 
     d = Treat::Entities::Document.new(file)
 
-    d.read(options[:_format], options)
+    d.read(:autoselect, options)
 
   end
 
@@ -209,10 +205,7 @@ module Treat::Entities::Abilities::Buildable
   def from_serialized_file(file, options)
 
     d = Treat::Entities::Document.new(file)
-    fmt = options[:_format] ?
-    detect_format(file) :
-    :autoselect
-    d.unserialize(fmt, options)
+    d.unserialize(:autoselect, options)
     d.children[0].set_as_root!
     d.children[0]
 
@@ -311,27 +304,8 @@ module Treat::Entities::Abilities::Buildable
     end
 
   end
-
-  def detect_format(filename, default_to = :txt)
-
-    ext = filename.scan(ExtensionRegexp)
-    ext = (ext.is_a?(Array) && ext[0] && ext[0][0]) ?
-    ext[0][0] : ''
-
-    format =
-    ImageExtensions.include?(ext) ?
-    'image' : ext
-
-    # Humanize extensions.
-    format = 'html' if format == 'htm'
-    format = 'yaml' if format == 'yml'
-
-    format = default_to if format == ''
-
-    format.intern
-
-  end
-
+  
+  # Eventually find a better way.
   def is_treat_xml?(file)
 
     beginning = nil

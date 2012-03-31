@@ -10,6 +10,8 @@ class Treat::Downloader
 
   self.show_progress = false
 
+  MaxTries = 3
+  
   # Download a file into destination, and return
   # the path to the downloaded file. If the filename 
   # is nil, it will set the default filename to 'top'.
@@ -19,8 +21,9 @@ class Treat::Downloader
     
     target_base ||= Treat.files
     target_dir ||= server
+   
     dir += '/' if dir && dir[-1] != '/'
-    resource = "/#{dir}#{file}"
+    resource = "#{dir}#{file}"
     url = "#{server}#{resource}"
     path = File.join(target_base, target_dir)
     
@@ -30,7 +33,7 @@ class Treat::Downloader
     
     
     file = File.open("#{path}/#{file}", 'w')
-
+    tries = 0
     begin
 
       Net::HTTP.start(server) do |http|
@@ -69,15 +72,13 @@ class Treat::Downloader
       file.path.to_s
 
     rescue Exception => error
-      
+      tries += 1
+      retry if tries < MaxTries
       raise Treat::Exception,
       "Couldn't download #{url}. (#{error.message})"
       file.delete
-
     ensure
-
       file.close
-
     end
 
   end
