@@ -174,9 +174,8 @@ module Treat::Entities::Abilities::Buildable
     fmt = Treat::Formatters::Readers::Autoselect.
     detect_format(file, dflt)
     options[:_format] = fmt
-
-    # Humanize the yaml extension.
-    if fmt == :yaml ||
+    
+    if fmt == :yaml || fmt == :yml ||
       (fmt == :xml && is_treat_xml?(file))
       f = from_serialized_file(file, options)
     else

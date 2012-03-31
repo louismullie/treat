@@ -4,7 +4,6 @@
 class Treat::Extractors::NameTag::Stanford
 
   require 'treat/loaders/stanford'
-  Treat::Loaders::Stanford.load
 
   @@classifiers = {}
 

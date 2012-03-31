@@ -180,7 +180,6 @@ module Treat::Installer
   end
 
   def self.download_stanford(package = :minimal)
-    package = :minimal
     f = StanfordPackages[package]
     loc = Treat::Downloader.download(
     'http', Server, 'treat', f, Treat.tmp)
