@@ -3,11 +3,10 @@
 - Stanford parse can't be called after Stanford segment
 - ODT, XML tests
 - Enju dependencies, better tag handling.
-- Coref parse and NER parse
+- NER parse
 - XML unserializer
 - Stanford dependencies
 - Hashs in visualize
-- New working dirs
 - Standoff format - tag all entities.
 - Ruby graphviz
 - Stanford parser + coreference resolver accept tokens
@@ -15,18 +14,9 @@
 - Save individual documents in a collection
 - Does it return self when using processors?
 - Same old value removal problem ?
-- Detect units in number
 - 301
 - Read autoselect
-- Reuters models
-
-# Testing
-
-- All green
-- Thoroughly test on 1.9.2 ... ZIP + punkt + engtagger
-- Rake test
-- Wiki test
-- Build and test
+- Reuters models install
 
 ## Future
 
@@ -42,7 +32,7 @@
 - Enju as a server
 - Sectionners
 - Sentiment analysis
-
+- NER parse
 
 # Code pad
 

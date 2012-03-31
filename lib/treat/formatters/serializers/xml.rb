@@ -8,6 +8,7 @@ class Treat::Formatters::Serializers::XML
   # Options:
   # - (String) :file => a file to write to.
   def self.serialize(entity, options = {})
+    
     options = options.merge({:indent => 0}) if options[:indent].nil?
     indent = options[:indent]
     if options[:indent] == 0

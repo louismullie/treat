@@ -325,10 +325,9 @@ describe Treat::Entities::Entity do
       
       context "when called with a file to save to" do
         
-        it "serializes a document to XML or YAML format" do
+        it "serializes a document to the supplied format" do
           
           @serializers.each do |ser|
-            next if ser == :xml   # Fix
             f = Treat.spec + 'test.' + ser.to_s
             s = Treat::Entities::Paragraph.new(@txt)
             s.do(:segment, :tokenize)
