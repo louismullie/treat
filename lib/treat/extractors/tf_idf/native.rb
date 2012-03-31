@@ -47,6 +47,10 @@ module Treat::Extractors::TfIdf::Native
       end
     end
     collection = entity.parent_collection
+    unless collection
+      raise Treat::Exception, "Cannot get the TF*IDF scores " +
+      "for a document that is not in a collection."
+    end
     document = entity.parent_document
     dc = collection.document_count
     if !collection || !document
