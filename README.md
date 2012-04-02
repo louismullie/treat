@@ -2,6 +2,8 @@
 
 Treat is a toolkit for natural language processing and computational linguistics. It provides a common API for a number of existing tools in C, Ruby and Java for document retrieval, parsing, annotation, and information extraction.
 
+<br>
+
 **Current features**
 
 * Text extractors for PDF, HTML, XML, Word, AbiWord, OpenOffice and image formats (Ocropus)

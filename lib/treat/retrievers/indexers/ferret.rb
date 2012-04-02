@@ -19,18 +19,27 @@ class Treat::Retrievers::Indexers::Ferret
   def self.index(collection, options = {})
     
     path = "#{collection.folder}/.index"
+
+    return path if FileTest.directory?(path)
     
-    FileUtils.mkdir(path) unless File.readable?(path)
+    begin
+      FileUtils.mkdir(path)
+    rescue Exception => e
+      raise Treat::Exception,
+      "Could not create folder for index " +
+      "under the collection's folder. " +
+      "(#{e.message})."
+    end
     
     index = ::Ferret::Index::Index.new(
-    :default_field => 'content',
-    :path => path
+      :default_field => 'content',
+      :path => path
     )
     
     collection.each_document do |doc|
       index.add_document(
-      :file => doc.file,
-      :content => doc.to_s
+        :file => doc.file,
+        :content => doc.to_s
       )
     end
     

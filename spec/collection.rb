@@ -69,14 +69,17 @@ describe Treat::Entities::Collection do
   describe "Retrievable" do
 
     describe "#index" do
-      
+
       it "indexes the collection and stores the index " +
       "in the folder .index inside the collection's folder " do
-        collection = Treat::Entities::Collection.build(@file)
-        collection.index.should eql @file + '/.index'
-        FileTest.directory?(@file + '/.index').should eql true
+        begin
+          collection = Treat::Entities::Collection.build(@file)
+          collection.index.should eql @file + '/.index'
+          FileTest.directory?(@file + '/.index').should eql true
+        ensure
+          FileUtils.rm_rf(File.absolute_path(@file + '/.index'))
+        end
       end
-
     end
 
     describe "#search" do
@@ -84,17 +87,19 @@ describe Treat::Entities::Collection do
       it "searches an indexed collection for a query " +
       "and returns an array of documents containing a " +
       "match for the given query " do
-        
-        collection = Treat::Entities::Collection.build(@file)
-        collection.index
-        docs = collection.search(:q => 'Newton')
-        docs.size.should eql 4
-        docs.map { |d| d.chunk.title.to_s }.should
-        eql ["Isaac (Sir) Newton (1642-1727)",
-          "Gottfried Leibniz (1646-1716)",
-          "Leonhard Euler (1707-1783)",
-        "Archimedes of Syracuse (287-212 BC)"]
-
+        begin
+          collection = Treat::Entities::Collection.build(@file)
+          collection.index
+          docs = collection.search(:q => 'Newton')
+          docs.size.should eql 4
+          docs.map { |d| d.chunk.title.to_s }.should
+          eql ["Isaac (Sir) Newton (1642-1727)",
+            "Gottfried Leibniz (1646-1716)",
+            "Leonhard Euler (1707-1783)",
+          "Archimedes of Syracuse (287-212 BC)"]
+        ensure
+          FileUtils.rm_rf(File.absolute_path(@file + '/.index'))
+        end
       end
 
     end
@@ -109,7 +114,7 @@ describe Treat::Entities::Collection do
       it "returns an array of arrays, each representing " +
       "a cluster of words that constitutes a topic in the collection" do
         collection = Treat::Entities::Collection.build(@file)
-        # w = collection.topic_words[0][0] 
+        # w = collection.topic_words[0][0]
         w = 'mathematics'
         w.should eql 'mathematics'
       end
