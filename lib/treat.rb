@@ -10,7 +10,7 @@ module Treat
   end
 
   # The current version of Treat.
-  VERSION = "0.2.9"
+  VERSION = "0.4.0"
 
   # Add methods to handle syntactic sugar,
   # language configuration options, and paths.

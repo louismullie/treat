@@ -11,6 +11,7 @@ class Treat::Formatters::Readers::Autoselect
   # Options:
   #  - (Symbol) :default_to => format to default to.
   def self.read(document, options = {})
+    options = DefaultOptions.merge(options)
     document.read(detect_format(document.file, options[:default_to]))
   end
   

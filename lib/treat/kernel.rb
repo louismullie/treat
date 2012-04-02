@@ -201,12 +201,11 @@ module Kernel
         puts s
         raise Treat::InvalidInputException
       end
+      puts
       answer
     rescue Treat::InvalidInputException
       retry
     end
-    
-    puts
     
   end
 

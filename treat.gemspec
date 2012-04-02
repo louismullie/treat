@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   # Add all files.
   s.files = Dir['lib/**/*'] + Dir['spec/**/*'] + 
   Dir['tmp/**/*'] + Dir['files/**/*'] + Dir['bin/**/*'] +
-  ['README', 'TODO', 'LICENSE', 'INSTALL']
+  ['README.md', 'LICENSE']
   
   # Runtime dependencies
   s.add_runtime_dependency 'rubyzip', '>= 0.9.6.1'
