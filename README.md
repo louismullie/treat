@@ -1,6 +1,6 @@
 ![Build Status](https://secure.travis-ci.org/louismullie/treat.png) ![Dependency Status](https://gemnasium.com/louismullie/treat.png)
 
-Treat is a toolkit for natural language processing and computational linguistics. It provides a common API for a number of existing tools in C, Ruby and Java for document retrieval, parsing, annotation, and information extraction.
+Treat is a toolkit for natural language processing and computational linguistics in Ruby. It provides a common API for a number of gems and external libraries for document retrieval, parsing, annotation, and information extraction.
 
 <br>
 
