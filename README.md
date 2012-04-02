@@ -2,10 +2,6 @@
 
 Treat is a toolkit for natural language processing and computational linguistics. It provides a common API for a number of existing tools in C, Ruby and Java for document retrieval, parsing, annotation, and information extraction.
 
-**_Warning_**
-
-This GitHub project is currently out-of-sync with the gem. I am holding back on pushing a new gem until I am able to put out a well-tested release. This Wiki is applicable to the latest version of Treat, i.e. the one on GitHub. Things are currently moving fast; even if it builds, this library is still alpha.
-
 **Resources**
 
 * Read the [latest documentation](http://rubydoc.info/github/louismullie/treat/master/frames).
@@ -27,14 +23,14 @@ This GitHub project is currently out-of-sync with the gem. I am holding back on 
 * Simple text statistics (frequency, TF*IDF)
 * Serialization of annotated entities to YAML or XML format
 * Visualization in ASCII tree, directed graph (DOT) and tag-bracketed (standoff) formats
-* Linguistic resources, including full ISO-639-1 and ISO-639-2 support, and tag alignments for five treebanks.
+* Linguistic resources, including full ISO-639-1 and ISO-639-2 support, and tag alignments for several treebanks
 
 <br>
 **Caveats/Planned features**
 
-* The few native Ruby statistics algorithms are slow. Some of the highly recursive code in the core Tree and Entity classes will need to be ported to inline C.
-* XML unserializer is currently broken; it will need to be fixed.
-* A faster WordNet API in Java will be interfaced.
+* Some of the highly recursive code in the core Tree and Entity classes needs to be ported to C.
+* The few native Ruby statistics algorithms (e.g. TF*IDF) are in desperate need of optimization.
+* A fast WordNet API in Java or C needs is lacking.
 
 <br>
 **License**
