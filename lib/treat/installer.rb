@@ -180,10 +180,10 @@ module Treat::Installer
   end
 
   def self.download_stanford(package = :minimal)
+    
     f = StanfordPackages[package]
     loc = Treat::Downloader.download(
     'http', Server, 'treat', f, Treat.tmp)
-    
     puts "- Unzipping package ..."
     dest = File.join(Treat.tmp, 'stanford')
     unzip_stanford(loc, dest)
@@ -210,15 +210,12 @@ module Treat::Installer
 
     puts "- Copying JAR files to bin/stanford " +
          "and model files to models/stanford ..."
-    
     Dir.glob(File.join(origin, '*')) do |f|
       next if ['.', '..'].include?(f)
       if f.index('jar')
         FileUtils.cp(f, File.join(Paths[:bin], 
         'stanford', File.basename(f)))
       elsif FileTest.directory?(f)
-        puts f
-        puts model_dir
         FileUtils.cp_r(f, model_dir)
       end
     end
