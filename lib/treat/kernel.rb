@@ -41,7 +41,7 @@ module Kernel
   # Create a temporary file which is deleted
   # after execution of the block.
   def create_temp_file(ext, value = nil, &block)
-    fname = "#{Treat.lib}/../tmp/"+
+    fname = Treat.tmp + 
     "#{Random.rand(10000000).to_s}.#{ext}"
     File.open(fname, 'w') do |f|
       f.write(value) if value
