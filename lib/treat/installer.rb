@@ -4,7 +4,9 @@
 module Treat::Installer
 
   # Require the Rubygem dependency installer.
-  require 'rubygems/dependency_installer'
+  silence_warnings do
+    require 'rubygems/dependency_installer'
+  end
   require 'treat/downloader'
   require 'treat/dependencies'
 
@@ -261,7 +263,7 @@ module Treat::Installer
   # Install a dependency with a supplied purpose
   # but ask the user if she wishes to do so first.
   def self.install_gem(dependency, version = nil, 
-    purpose = nil, optionally = false)
+                       purpose = nil, optionally = false)
 
     install = false
 
@@ -280,6 +282,7 @@ module Treat::Installer
         @@installer.install(dependency, version)
       end if install
     rescue Exception => error
+      raise
       puts "Couldn't install gem '#{dependency}' " +
            "(#{error.message})."
     end
