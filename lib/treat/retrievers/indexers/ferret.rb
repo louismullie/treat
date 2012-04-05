@@ -19,7 +19,6 @@ class Treat::Retrievers::Indexers::Ferret
   def self.index(collection, options = {})
     
     path = "#{collection.folder}/.index"
-
     return path if FileTest.directory?(path)
     
     begin
