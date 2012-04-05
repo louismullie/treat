@@ -1,7 +1,6 @@
 module Treat::Extractors::Summary::DecisionTree
 
   DefaultOptions = {
-    
     :generator => lambda do |sentence|
       self.get_data_items(sentence)
     end,
