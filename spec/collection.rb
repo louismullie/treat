@@ -45,7 +45,7 @@ describe Treat::Entities::Collection do
         it "recursively searches the folder for " +
         "files and opens them into a collection of documents" do
           collection = Treat::Entities::Collection.build(@file)
-          collection.size.should eql 5
+          collection.size.should eql 6
         end
 
       end
