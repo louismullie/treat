@@ -71,7 +71,7 @@ describe Treat::Entities::Phrase do
       it "parses a phrase/sentence into its syntax tree, " +
       "adding nested phrases and tokens as children of the phrase/sentence" do
         Treat::Languages::English::Processors[:parsers].each do |p|
-          next # if p == :enju # slow?
+          next if p == :enju # slow?
           @sentence = Treat::Entities::
           Sentence.new('A sentence to tokenize.')
           @sentence.parse(p)
