@@ -24,21 +24,24 @@ class Treat::Retrievers::Searchers::Ferret
   def self.search(collection, options = {})
     
     options = DefaultOptions.merge(options)
-    unless collection.has?(:index) &&
-      collection.index
+    
+    unless collection.has?(:index)
       raise Treat::Exception,
       "This collection must be indexed to be searchable."
     end
+    
     unless options[:q]
       raise Treat::Exception,
       'You must set a query by using the :q option.'
     end
-    path = "#{collection.folder}/.index"
-    unless File.readable?(path)
+    
+    path = collection.index
+    
+    unless FileTest.directory?(path)
       raise Treat::Exception,
       "The index at location #{path} cannot be found."
     end
-    
+
     index = ::Ferret::Index::Index.new(
       :default_field => 'content',
       :path => path
