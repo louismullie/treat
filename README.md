@@ -19,7 +19,7 @@ Treat is a toolkit for natural language processing and computational linguistics
 
 **Resources**
 
-* Read the [latest documentation](http://rubydoc.info/github/louismullie/treat/master/frames).
+* Read the [latest documentation](http://rubydoc.info/github/louismullie/treat/frames).
 * See how to [install Treat](https://github.com/louismullie/treat/wiki/Installing-Treat).
 * Learn how to [use Treat](https://github.com/louismullie/treat/wiki/Using-Treat).
 * Help out by [contributing to the project](https://github.com/louismullie/treat/wiki/Contributing-to-Treat).
