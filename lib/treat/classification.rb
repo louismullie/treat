@@ -46,13 +46,14 @@ class Treat::Classification
       end
     end
 
-    begin
-      if include_question
-        line << e.send(@question)
+    if include_question
+      if e.has?(@question)
+        line << e.get(@question)
+      else
+        line << @default
       end
-    rescue Treat::Exception
-      line << @default
     end
+    
     line[-1] = '' if line[-1].nil?
     line
 
