@@ -4,15 +4,21 @@ class Treat::AI::Classifiers::ID3
   
   @@classifiers = {}
   
+  DefaultOptions = {
+    :mode => :continuous
+  }
+  
   def self.classify(entity, options = {})
   
+    options = DefautOptions.merge(options)
+    
     set = options[:training]
     cl = set.classification
     
     if !@@classifiers[cl]
       dec_tree = DecisionTree::ID3Tree.new(
       set.labels.map { |l| l.to_s }, set.items, 
-      cl.default, :continuous)
+      cl.default, options[:mode])
       dec_tree.train
     else
       dec_tree = @@classifiers[cl]
