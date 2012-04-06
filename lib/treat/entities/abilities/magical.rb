@@ -71,9 +71,6 @@ module Treat::Entities::Abilities::Magical
       f ? f.send($1.intern) : nil
     elsif method =~ /^frequency_in_#{@@entities_regexp}$/
       frequency_in($1.intern)
-      # first_word
-      # tag_of_first_verb
-      # tag_of_title
     else
       return :no_magic
     end
