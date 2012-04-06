@@ -19,7 +19,7 @@ class Treat::Loaders
     StanfordCoreNLP.log_file = 
     NULL_DEVICE if Treat.silence
     
-    StanfordCoreNLP.init
+    StanfordCoreNLP.bind
     @@loaded = true
     
   end
