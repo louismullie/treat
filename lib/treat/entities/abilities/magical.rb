@@ -35,6 +35,9 @@ module Treat::Entities::Abilities::Magical
       entities_with_type($1.intern)
     elsif method =~ /^#{@@entities_regexp}$/
       first_but_warn(entities_with_type($1.intern), $1)
+    elsif method =~ /^first_#{@@entities_regexp}$/
+      e = entities_with_type($1.intern)
+      e ? e[0] : nil
     elsif method =~ /^parent_#{@@entities_regexp}$/
       ancestor_with_type($1.intern)
     elsif method =~ /^each_#{@@entities_regexp}$/
@@ -59,15 +62,20 @@ module Treat::Entities::Abilities::Magical
       entities_with_category($1.intern)
     elsif method =~ /^#{@@cats_regexp}$/
      first_but_warn(entities_with_category($1.intern), $1)
+    elsif method =~ /^first_#{@@cats_regexp}$/
+     e = entities_with_category($1.intern)
+     e ? e[0] : nil
     elsif method =~ /^#{@@cats_regexp}_count$/
       entities_with_category($1.intern).size
+    elsif method =~ /^(.*)_count$/
+      num_children_with_feature($1.intern)
     elsif method =~ /^#{@@cats_regexp}s_with_([a-z]*)$/
       entities_with_feature($2.intern, args[0], $1)
     elsif method =~ /^#{@@cats_regexp}_with_([a-z]*)$/
       first_but_warn(entities_with_feature(
       $2.intern, args[0], $1.intern), $1)
-    elsif method =~ /^([a-z]*)_of_first_#{@@entities_regexp}$/
-      f = send(:"#{$2}s".intern).first
+    elsif method =~ /^([a-z]*)_of_(.*)$/
+      f = send($2.intern)
       f ? f.send($1.intern) : nil
     elsif method =~ /^frequency_in_#{@@entities_regexp}$/
       frequency_in($1.intern)
