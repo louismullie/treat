@@ -1,0 +1,9 @@
+Treat - Text Retrieval, Extraction and Annotation Toolkit
+
+1.0.0 - First stable API.
+
+1.0.1 - Mainly bug fixes, small feature additions.
+ * Major fix: bug when using the Stanford bindings due to an API change.
+ * Final touches to make decision tree classification work neatly.
+ * Add method to calculate position from end of parent entity.
+ * Assume HTML format given a URL with no file extension.
