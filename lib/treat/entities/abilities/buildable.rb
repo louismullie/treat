@@ -95,7 +95,7 @@ module Treat::Entities::Abilities::Buildable
 
     f = Treat::Downloader.download(
     uri.scheme, uri.host, path, file)
-    options[:_default_format] = :html
+    options[:default_to] ||= :html
 
     e = from_file(f, options)
     e.set :url, url
@@ -170,9 +170,8 @@ module Treat::Entities::Abilities::Buildable
       "point to a readable file."
     end
 
-    dflt = options[:_default_format]
     fmt = Treat::Formatters::Readers::Autoselect.
-    detect_format(file, dflt)
+    detect_format(file, options[:default_to])
     options[:_format] = fmt
     
     if fmt == :yaml || fmt == :yml ||
