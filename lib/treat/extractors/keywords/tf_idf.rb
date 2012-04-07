@@ -13,9 +13,9 @@ class Treat::Extractors::Keywords::TfIdf
     
     options = DefaultOptions.merge(options)
     tf_idfs = {}
+    
     entity.each_word do |word|
-      word.check_has(:tf_idf, false)
-      tf_idfs[word] ||= word.get(:tf_idf)
+      tf_idfs[word] ||= word.tf_idf
     end
 
     tf_idfs = tf_idfs.
@@ -32,29 +32,32 @@ class Treat::Extractors::Keywords::TfIdf
       
       w = word[0].to_s
       next if keywords.include?(w)
-
-      entity.each_word_with_value(w) do |w2|
-
-        ps = w2.parent_phrase
-        
-        if ps.has?(:keyword_count)
-          ps.set :keyword_count, 
-          ps.keyword_count + 1
-        else
-          ps.set :keyword_count, 1
-        end
-        ps.set :keyword_density, 
-        (ps.keyword_count / ps.size)
-      
-      end
-      
       break if i > options[:number]
       keywords << w
       
       i += 1
     end
     
+    entity.each_word do |word|
+      
+      if keywords.include?(word.to_s)
+        word.set :is_keyword?, true
+        pp = entity.parent_phrase
+        next unless pp
+        if pp.has? :keyword_count
+          pp.set :keyword_count, 
+          pp.keyword_count + 1
+        else
+          pp.set :keyword_count, 1
+        end
+      else
+        word.set :is_keyword?, false
+      end
+      
+    end
+    
     keywords
+    
   end
   
 end
