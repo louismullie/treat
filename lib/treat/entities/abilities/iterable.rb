@@ -99,6 +99,15 @@ module Treat::Entities::Abilities::Iterable
 
   alias :ancestors_with_type :ancestors_with_types
 
+  # Number of children that have a given feature.
+  def num_children_with_feature(feature)
+    i = 0
+    each do |c| 
+      i += 1 if c.has?(feature)
+    end
+    i
+  end
+  
   # Return the first element in the array, warning if not
   # the only one in the array. Used for magic methods: e.g.,
   # the magic method "word" if called on a sentence with many 
