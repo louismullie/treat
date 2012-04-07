@@ -4,18 +4,19 @@ class Treat::Classification
   attr_reader :features
   attr_reader :question
   attr_reader :labels
+  attr_reader :mode
   attr_reader :default
 
-  def initialize(type_or_types, feature_or_features, question, default = false)
-
+  def initialize(type_or_types, feature_or_features, 
+    question, default = false, mode = :continuous)
     @types, @features,
     @question, @default = 
     [*type_or_types],
     [*feature_or_features], 
     question, default
     
+    @mode = mode
     @labels = []
-
     @features.each do |cmd|
       if cmd.is_a?(Array)
         @labels << cmd[0]
@@ -23,11 +24,9 @@ class Treat::Classification
         @labels << cmd
       end
     end
-
   end
 
   def export_item(e, include_question = true)
-
     line = []
 
     @features.each do |cmd|
@@ -56,7 +55,6 @@ class Treat::Classification
     
     line[-1] = '' if line[-1].nil?
     line
-
   end
 
 end
