@@ -3,27 +3,29 @@ module Treat::Entities::Abilities::Countable
   # Find the position of the current entity
   # inside the parent entity, starting at 1.
   def position
-    
     unless has_parent?
       raise Treat::Exception,
       "No parent to get position in."
     end
-
     parent.children.index(self) + 1
-    
   end
 
+  # Find the position of this entity from
+  # the end of the parent entity.
+  def position_from_end
+    p = position
+    parent.size - p
+  end
+  
   # Find the frequency of the entity in
   # the supplied parent or in the root
   # node if nil.
   def frequency_in(parent_type = nil)
-
     unless parent_type
       root.registry[:value][id]
     end
 
     registry(parent_type)[:value][value]
-
   end
 
   # Get the frequency of this entity's
