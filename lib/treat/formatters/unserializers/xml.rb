@@ -36,6 +36,7 @@ module Treat::Formatters::Unserializers::XML
       id = nil; value = ''
       attributes = {}
       dependencies = []
+      
       unless xml_reader.attributes.size == 0
         xml_reader.attributes.each_pair do |k,v|
           if k == 'id'
@@ -64,6 +65,8 @@ module Treat::Formatters::Unserializers::XML
           elsif k == 'value'
             value = v
           else
+            v = false if v == 'false'
+            v = true if v == 'true'
             attributes[k.intern] = v
           end
         end
