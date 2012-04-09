@@ -113,7 +113,7 @@ describe Treat::Entities::Entity do
   describe "Exportable" do
 
     context "when supplied with a classification to export" do
-      classification = Treat::Classification.new(:word, :tag, :is_keyword?)
+      classification = Treat::Classification.new(:word, :tag, :is_keyword)
       it "returns a data set with the exported features" do
         ds = @sentence.export(classification)
         ds.classification.should eql classification
