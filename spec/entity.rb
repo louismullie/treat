@@ -356,6 +356,7 @@ describe Treat::Entities::Entity do
             s.set :test_float, 9.9
             s.set :test_string, 'hello'
             s.set :test_sym, :hello
+            s.set :test_bool, false
             
             s.do(:segment, :tokenize)
             
@@ -367,6 +368,7 @@ describe Treat::Entities::Entity do
             d.test_float.should eql 9.9
             d.test_string.should eql 'hello'
             d.test_sym.should eql :hello
+            d.test_bool.should eql false
           
             d.to_s.should eql @txt
             d.size.should eql s.size
