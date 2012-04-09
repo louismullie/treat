@@ -98,7 +98,7 @@ module Treat::Entities::Abilities::Buildable
     options[:default_to] ||= :html
 
     e = from_file(f, options)
-    e.set :url, url
+    e.set :url, uri.to_s
     e
 
   end
