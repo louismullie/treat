@@ -8,12 +8,14 @@ class Treat::Formatters::Serializers::XML
   # Options:
   # - (String) :file => a file to write to.
   def self.serialize(entity, options = {})
-    
-    options = options.merge({:indent => 0}) if options[:indent].nil?
+    if options[:indent].nil?
+      options = options.merge({:indent => 0})
+    end
     indent = options[:indent]
     if options[:indent] == 0
       enc = entity.to_s.encoding.to_s.downcase
-      string = "<?xml version=\"1.0\" encoding=\"#{enc}\" standalone=\"no\" ?>\n<treat>\n"
+      string = "<?xml version=\"1.0\" " +
+      "encoding=\"#{enc}\" ?>\n<treat>\n"
     else
       string = ''
     end
@@ -26,20 +28,24 @@ class Treat::Formatters::Serializers::XML
         if value.is_a? Treat::Entities::Entity
           attributes << "#{feature}='#{value.id}' "
         else
+          value = value.inspect if value.is_a?(Symbol)
           attributes << "#{feature}='#{escape(value)}' "
         end
       end
+      ############ To be refactored
       unless entity.dependencies.empty?
         attributes << "dependencies='"
         a = []
         entity.dependencies.each do |dependency|
-          a << ("{target: #{dependency.target}, type: #{dependency.type}, " +
+          a << ("{target: #{dependency.target}, "+
+          "type: #{dependency.type}, " +
           "directed: #{dependency.directed}, " +
           "direction: #{dependency.direction}}" )
         end
         # Structs.
         attributes << a.join(',') + "'"
       end
+      ############ End of ugly code
     end
     tag = entity.class.to_s.split('::')[-1].downcase
     string += "#{spaces}<#{tag}#{attributes}>"
