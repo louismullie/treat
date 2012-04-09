@@ -15,21 +15,16 @@ class Treat::Formatters::Readers::Autoselect
     document.read(detect_format(document.file, options[:default_to]))
   end
   
-  def self.detect_format(filename, default_to = DefaultOptions[:default_to])
-
+  def self.detect_format(filename, default_to = nil)
+    default_to ||= DefaultOptions[:default_to]
     ext = filename.scan(ExtensionRegexp)
-    ext = (ext.is_a?(Array) && ext[0] && ext[0][0]) ?
-    ext[0][0] : ''
-
-    format =
-    ImageExtensions.include?(ext) ?
-    'image' : ext
-
-    # Humanize extensions.
+    ext = (ext.is_a?(Array) && ext[0] && ext[0][0]) ? ext[0][0] : ''
+    
+    format = ImageExtensions.include?(ext) ? 'image' : ext
     format = 'html' if format == 'htm'
     format = 'yaml' if format == 'yml'
 
-    format = default_to if format == ''
+    format = default_to if format.to_s == ''
 
     format.intern
 
