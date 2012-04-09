@@ -65,11 +65,11 @@ module Treat::Formatters::Unserializers::XML
           elsif k == 'value'
             value = v
           else
-            v = false if v == 'false'
-            v = true if v == 'true'
             v = v[1..-1].intern if v[0] == ':'
             v = v.to_i if v =~ /^[0-9]*$/
             v = v.to_f if v =~ /^[0-9\.]*$/
+            v = false if v == 'false'
+            v = true if v == 'true'
             attributes[k.intern] = v
           end
         end
