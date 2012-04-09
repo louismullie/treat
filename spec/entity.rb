@@ -316,13 +316,14 @@ describe Treat::Entities::Entity do
   
   describe "Formatters" do 
     
+    
+    before do 
+      @serializers = [:xml, :yaml] # Treat::Languages::All::Serializers
+      @txt = "The story of the fox. The quick brown fox jumped over the lazy dog."
+    end
+    
     describe "#serialize" do
-      
-      before :all do 
-        @serializers = [:xml, :yaml] # Treat::Languages::All::Serializers
-        @txt = "The story of the fox. The quick brown fox jumped over the lazy dog."
-      end
-      
+
       context "when called with a file to save to" do
         
         it "serializes a document to the supplied format" do
@@ -332,11 +333,6 @@ describe Treat::Entities::Entity do
             s = Treat::Entities::Paragraph.new(@txt)
             s.do(:segment, :tokenize)
             s.serialize(ser, :file => f)
-            d = Treat::Entities::Document.build(f)
-            d.to_s.should eql @txt
-            d.size.should eql s.size
-            d.token_count.should eql s.token_count
-            d.tokens[0].id.should eql s.tokens[0].id
             File.delete(f)
           end
           
@@ -345,8 +341,45 @@ describe Treat::Entities::Entity do
       end
       
     end
-    
+      
     describe "#unserialize" do
+      
+      context "when called with a serialized file" do
+        
+        it "reconstitutes the original entity" do
+          @serializers.each do |ser|
+          
+            f = Treat.spec + 'test.' + ser.to_s
+            s = Treat::Entities::Paragraph.new(@txt)
+          
+            s.set :test_int, 9
+            s.set :test_float, 9.9
+            s.set :test_string, 'hello'
+            s.set :test_sym, :hello
+            
+            s.do(:segment, :tokenize)
+            
+            s.serialize(ser, :file => f)
+            
+            d = Treat::Entities::Document.build(f)
+          
+            d.test_int.should eql 9
+            d.test_float.should eql 9.9
+            d.test_string.should eql 'hello'
+            d.test_sym.should eql :hello
+          
+            d.to_s.should eql @txt
+            d.size.should eql s.size
+          
+            d.token_count.should eql s.token_count
+            d.tokens[0].id.should eql s.tokens[0].id
+          
+            File.delete(f)
+          end
+        
+        end
+        
+      end
       
     end
     
