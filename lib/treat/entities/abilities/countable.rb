@@ -14,7 +14,7 @@ module Treat::Entities::Abilities::Countable
   # the end of the parent entity.
   def position_from_end
     p = position
-    parent.size - p
+    parent.children.size - p
   end
   
   # Find the frequency of the entity in
