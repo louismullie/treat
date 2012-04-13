@@ -41,17 +41,10 @@ class Treat::Extractors::Keywords::TfIdf
     entity.each_word do |word|
       
       if keywords.include?(word.to_s)
-        word.set :is_keyword, true
+        word.set :keyword, true
         pp = entity.parent_phrase
-        next unless pp
-        if pp.has? :keyword_count
-          pp.set :keyword_count, 
-          pp.keyword_count + 1
-        else
-          pp.set :keyword_count, 1
-        end
       else
-        word.set :is_keyword, false
+        word.set :keyword, false
       end
       
     end
