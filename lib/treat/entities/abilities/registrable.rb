@@ -5,6 +5,16 @@ module Treat::Entities::Abilities::Registrable
   # Registers a token in the @registry hash.
   def register(entity)
     
+    unless @registry
+      @count = 0
+      @registry = {
+        :value => {}, 
+        :position => {}, 
+        :type => {}, 
+        :id => {}
+      }
+    end
+    
     if entity.is_a?(Treat::Entities::Token) ||
       entity.is_a?(Treat::Entities::Phrase)
       val = entity.to_s.downcase
