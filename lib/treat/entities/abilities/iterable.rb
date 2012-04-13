@@ -51,7 +51,7 @@ module Treat::Entities::Abilities::Iterable
   # Returns an array of the entities with the given
   # category.
   def entities_with_category(category, type = nil)
-    entities_with_feature(:category, type)
+    entities_with_feature(:category, category, type)
   end
   
   # Returns the first ancestor of this entity 
