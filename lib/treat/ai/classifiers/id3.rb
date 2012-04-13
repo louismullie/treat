@@ -14,11 +14,10 @@ class Treat::AI::Classifiers::ID3
       set.labels.map { |l| l.to_s }, set.items, 
       cl.default, cl.mode)
       dec_tree.train
+      @@classifiers[cl] = dec_tree
     else
       dec_tree = @@classifiers[cl]
     end
-    
-    cl.export_item(entity, false).inspect
     
     dec_tree.predict(
       cl.export_item(entity, false)
