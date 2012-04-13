@@ -43,6 +43,8 @@ module Treat::Processors::Tokenizers::Perl
     
     # Replace all decimal points by ^^
     Treat::Helpers::DecimalPointEscaper.escape!(text)
+    
+=begin
 
     # Translate some common extended ascii 
     # characters to quotes
@@ -60,6 +62,8 @@ module Treat::Processors::Tokenizers::Perl
     text.gsub!(/\"(?=\s)/," '' ")
     #s{\"} { `` }g;
     text.gsub!(/\"(?=\s)/," `` ")
+=end
+
     # Isolate ellipses
     # s{\.\.\.}   { ... }g;
     text.gsub!(/\.\.\./,' ... ')
