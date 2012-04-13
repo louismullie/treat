@@ -11,7 +11,8 @@ class Treat::Dependencies
     ['linguistics', '>= 1.0.9', 'retrieve the inflection of nouns, verbs and numbers in English'],
     ['punkt-segmenter', '>= 0.9.1', 'segment texts into sentences'],
     ['chronic', '>= 0.6.7', 'detect date and time in text'],
-    ['decisiontree', '>= 0.3.0', 'perform decision tree classification of text entities']
+    ['decisiontree', '>= 0.3.0', 'perform decision tree classification of text entities'],
+    ['ai4r', '>= 1.11', 'perform different kinds of classification tasks on text entities']
   ]
   
   Binary = [
