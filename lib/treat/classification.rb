@@ -30,17 +30,22 @@ class Treat::Classification
     line = []
 
     @features.each do |cmd|
+      dflt = nil
       begin
         if cmd.is_a?(Array)
-          line << cmd[1].call(e)
+          if cmd.size == 3
+            r = cmd[1].call(e)
+            dflt = cmd[2]
+            line << (r ? r : dflt)
+          elsif cmd.size == 2
+            r = e.send(cmd[0])
+            dflt = cmd[1]
+            line << (r ? r : dflt)
+          end
         else
           line << e.send(cmd)
         end
       rescue Treat::Exception
-        dflt = (
-        (cmd.is_a?(Array) && cmd[2]) ?
-        cmd[2] : nil
-        )
         line << dflt
       end
     end
