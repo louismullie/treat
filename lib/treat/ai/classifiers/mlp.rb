@@ -1,3 +1,4 @@
+# Currently, this MLP is limited to 1 output.
 class Treat::AI::Classifiers::MLP
   
   require 'ai4r'
@@ -10,26 +11,19 @@ class Treat::AI::Classifiers::MLP
     cl = set.classification
       
     if !@@mlps[cl]
-=begin
-      ai4r_set = Ai4r::Data::DataSet.new(
-        :data_items => set.items, 
-        :data_labels => (
-          set.labels.map { |l| l.to_s } + 
-          [set.classification.question.to_s]
-        )
-      )
-      net = Ai4r::Classifiers::MultilayerPerceptron.build(ai4r_set)
-=end
-      net = Ai4r::NeuralNetwork::Backpropagation.new([cl.labels.size, 3, 1])
+      net = Ai4r::NeuralNetwork::
+      Backpropagation.new([cl.labels.size, 3, 1])
       set.items.each do |item|
-        net.train(item[0...-1], item[-1])
+        inputs = item[0..-2]
+        outputs = [item[-1]]
+        net.train(inputs, outputs)
       end
       @@mlps[cl] = net
     else
       net = @@mlps[cl]
     end
     
-    net.eval(cl.export_item(entity, false))
+    net.eval(cl.export_item(entity, false))[0]
     
   end
   
