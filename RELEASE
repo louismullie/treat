@@ -2,8 +2,16 @@ Treat - Text Retrieval, Extraction and Annotation Toolkit
 
 1.0.0 - First stable API.
 
-1.0.1 - Mainly bug fixes, small feature additions.
+1.0.1
+
  * Major fix: bug when using the Stanford bindings due to an API change.
  * Final touches to make decision tree classification work neatly.
- * Add method to calculate position from end of parent entity.
- * Assume HTML format given a URL with no file extension.
+ * Add method in Countable to calculate position from end of parent entity.
+ * Assume HTML format in Buildable when given a URL with no file extension.
+ 
+1.0.2
+
+  * Major fix: fixed the unserialization of "special" values (boolean, symbol, numeric).
+  * Minor fix: bug in Iterable#entities_with_feature fixed.
+  * Minor fix: bug in Countable#position_from_end fixed.
+  * Began AI4R integration and added a simple wrapper for the Multi-Layer Perceptron.
