@@ -39,4 +39,13 @@ class Treat::DataSet
     end
   end
   
+  def to_ai4r
+    Ai4r::Data::DataSet.new(
+      :data_items => items, 
+      :data_labels => (
+        labels.map { |l| l.to_s } + 
+        [classification.question.to_s]
+    ))
+  end
+  
 end
