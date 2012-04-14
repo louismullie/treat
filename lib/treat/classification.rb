@@ -27,6 +27,7 @@ class Treat::Classification
   end
 
   def export_item(e, include_question = true)
+
     line = []
 
     @features.each do |cmd|
@@ -45,8 +46,6 @@ class Treat::Classification
         else
           line << e.send(cmd)
         end
-      rescue Treat::Exception
-        line << dflt
       end
     end
 
@@ -58,7 +57,6 @@ class Treat::Classification
       end
     end
     
-    line[-1] = '' if line[-1].nil?
     line
   end
 
