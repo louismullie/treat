@@ -64,17 +64,7 @@ module Treat::Entities
       super(value, id)
       @type = :entity if self == Entity
       @type ||= ucc(cl(self.class)).intern
-      unless is_a?(Treat::Entities::Token)
-        @count = 0
-        @registry = {
-          :id => {},
-          :value => {},
-          :type => {},
-          :position => {}
-        }
-      end
     end
-    
     
     # Add an entity to the current entity.
     # Registers the entity in the root node
