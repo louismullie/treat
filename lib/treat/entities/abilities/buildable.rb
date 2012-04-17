@@ -13,7 +13,8 @@ module Treat::Entities::Abilities::Buildable
   PunctRegexp = /^[[:punct:]\$]+$/
   UriRegexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix
   EmailRegexp = /.+\@.+\..+/
-
+  Enclitics = %w['ll 'm 're 's 't 've]
+  
   # Reserved folder names
   Reserved = ['.index']
 
@@ -264,8 +265,8 @@ module Treat::Entities::Abilities::Buildable
   def token_from_string(string)
 
     check_encoding(string)
-    if string == "'s" || string == "'S"
-      Treat::Entities::Clitic.new(string)
+    if Enclitics.include?(string.downcase)
+      Treat::Entities::Enclitic.new(string)
     elsif string =~ WordRegexp &&
       string.count(' ') == 0 &&
       string != '-'
