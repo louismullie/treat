@@ -175,6 +175,8 @@ module Treat::Tree
 
     # Return a feature.
     def get(feature)
+      return @value if feature == :value
+      return @id if feature == :id
       @features[feature]
     end
 
