@@ -69,7 +69,7 @@ module Treat::Entities::Abilities::Stringable
       
       if child.is_a?(Treat::Entities::Token) || child.value != ''
         if child.is_a?(Treat::Entities::Punctuation) ||
-          child.is_a?(Treat::Entities::Clitic)
+          child.is_a?(Treat::Entities::Enclitic)
           value.strip!
         end
         value += child.to_s + ' '
