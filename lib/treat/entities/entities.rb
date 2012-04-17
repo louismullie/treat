@@ -76,7 +76,7 @@ module Treat::Entities
   end
 
   # Represents a clitic ('s).
-  class Clitic < Token; end
+  class Enclitic < Token; end
 
   # Represents a number.
   class Number < Token
