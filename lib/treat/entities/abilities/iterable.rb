@@ -30,7 +30,7 @@ module Treat::Entities::Abilities::Iterable
     a = []
     type = :entity unless type
     each_entity(type) do |e|
-      r = e.send(feature)
+      r = e.get(feature)
       a << e if r == value
     end
     a
