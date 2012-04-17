@@ -49,6 +49,7 @@ module Treat
   require 'treat/categories'
   require 'treat/data_set'
   require 'treat/proxies'
+  require 'treat/loaders'
 
   # Install packages for a given language.
   def self.install(language = :english)
