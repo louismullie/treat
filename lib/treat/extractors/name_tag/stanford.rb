@@ -4,7 +4,8 @@
 class Treat::Extractors::NameTag::Stanford
 
   require 'treat/loaders/stanford'
-
+  Treat::Loaders::Stanford.load
+  
   @@classifiers = {}
 
   def self.name_tag(entity, options = {})
@@ -12,9 +13,10 @@ class Treat::Extractors::NameTag::Stanford
     pp = nil
 
     lang = entity.language
-
+    
     language = Treat::Languages.describe(lang)
-
+    Treat::Loaders::Stanford.load(language)
+    
     isolated_token = entity.is_a?(Treat::Entities::Token)
     tokens = isolated_token ? [entity] : entity.tokens
 

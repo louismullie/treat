@@ -22,6 +22,7 @@ class Treat::Lexicalizers::Taggers::Stanford
     
     # Handle options and initialize the tagger.
     lang = entity.language
+    
     options = get_options(options, lang)
     tokens, list = get_token_list(entity)
     init_tagger(lang)
@@ -55,14 +56,13 @@ class Treat::Lexicalizers::Taggers::Stanford
   
   # Initialize the tagger for a language.
   def self.init_tagger(lang)
-    
     language = Treat::Languages.describe(lang)
+    Treat::Loaders::Stanford.load(language)
     model = StanfordCoreNLP::Config::Models[:pos][language]
-    model = Treat.models + 'stanford/' +
+    model = Treat::Loaders::Stanford.model_path +
     StanfordCoreNLP::Config::ModelFolders[:pos] + model
     @@taggers[lang] ||= 
     StanfordCoreNLP::MaxentTagger.new(model)
-    
   end
   
   # Handle the options for the tagger.

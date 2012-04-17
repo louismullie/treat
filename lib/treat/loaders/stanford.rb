@@ -1,26 +1,36 @@
-class Treat::Loaders
-
-  # A helper class to load a language class
-  # registered with the Linguistics gem.
-  class Stanford
-
-    require 'stanford-core-nlp'
+module Treat::Loaders::Stanford
+  
+  require 'stanford-core-nlp'
+  
+  class << self
+    attr_accessor :jar_path
+    attr_accessor :model_path
+    attr_accessor :loaded
+  end
+  
+  self.jar_path = Treat.bin + 'stanford/'
+  self.model_path = Treat.models + 'stanford/'
+  self.loaded = false
+  
+  def self.load(language = nil)
     
-    StanfordCoreNLP.jar_path = 
-    Treat.bin + 'stanford/'
+    return if self.loaded
     
-    StanfordCoreNLP.model_path = 
-    Treat.models + 'stanford/'
-    
-    StanfordCoreNLP.use(
+    language ||= 
     Treat::Languages.describe(
-    Treat.default_language))
+    Treat.default_language)
+    
+    StanfordCoreNLP.jar_path = self.jar_path
+    StanfordCoreNLP.model_path = self.model_path
 
-    StanfordCoreNLP.log_file = 
+    StanfordCoreNLP.use(language)
+    
+    StanfordCoreNLP.log_file =
     NULL_DEVICE if Treat.silence
     
     StanfordCoreNLP.bind
-    @@loaded = true
+    
+    self.loaded = true
     
   end
 

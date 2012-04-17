@@ -26,7 +26,7 @@ class Treat::Processors::Parsers::Stanford
     val = entity.to_s
     lang = entity.language
     init(lang, options)
-
+    
     text = ::StanfordCoreNLP::Text.new(val)
     @@parsers[lang].annotate(text)
 
@@ -52,6 +52,10 @@ class Treat::Processors::Parsers::Stanford
 
   def self.init(lang, options)
     return if @@parsers[lang]
+    
+    language = Treat::Languages.describe(lang)
+    Treat::Loaders::Stanford.load(language)
+    
     options = DefaultOptions.merge(options)
     StanfordCoreNLP.use(lang)
     if options[:tagger_model]
