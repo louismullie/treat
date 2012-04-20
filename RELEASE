@@ -15,3 +15,9 @@ Treat - Text Retrieval, Extraction and Annotation Toolkit
   * Minor fix: bug in Iterable#entities_with_feature fixed.
   * Minor fix: bug in Countable#position_from_end fixed.
   * Began AI4R integration and added a simple wrapper for the Multi-Layer Perceptron.
+  
+1.0.3
+  
+  * Feature addition: allow to configure the paths to external Stanford files.
+  * Major fix: Made entities_with_feature use get() instead of send().
+  * Small API change: Renamed Clitic to Enclitic.
