@@ -21,7 +21,7 @@ class Treat::Extractors::NameTag::Stanford
     tokens = isolated_token ? [entity] : entity.tokens
 
     ms = StanfordCoreNLP::Config::Models[:ner][language]
-    ms = Treat.models + 'stanford/' +
+    ms = Treat::Loaders::Stanford.model_path + 'stanford/' +
     StanfordCoreNLP::Config::ModelFolders[:ner] +
     ms['3class']
 
