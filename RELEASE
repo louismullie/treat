@@ -21,3 +21,7 @@ Treat - Text Retrieval, Extraction and Annotation Toolkit
   * Feature addition: allow to configure the paths to external Stanford files.
   * Major fix: Made entities_with_feature use get() instead of send().
   * Small API change: Renamed Clitic to Enclitic.
+  
+1.0.4
+  
+  * Major fix: fixed Stanford tagger & name tagger paths.
