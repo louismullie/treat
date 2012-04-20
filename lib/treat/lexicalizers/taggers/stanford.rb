@@ -22,10 +22,9 @@ class Treat::Lexicalizers::Taggers::Stanford
     
     # Handle options and initialize the tagger.
     lang = entity.language
-    
     options = get_options(options, lang)
-    tokens, list = get_token_list(entity)
     init_tagger(lang)
+    tokens, list = get_token_list(entity)
     
     # Do the tagging.
     i = 0
