@@ -166,7 +166,7 @@ module Treat::Installer
     unless man
       puts "Skipping installation of the "+
       "following binaries:\n\n"
-      Binaries.each do |binary, purpose|
+      Binary.each do |binary, purpose|
         puts "- #{binary} to #{purpose}"
       end
       return
