@@ -36,10 +36,12 @@ module Treat::Processors::Segmenters::Tactful
     @@segmenter ||= TactfulTokenizer::Model.new
    
     sentences = @@segmenter.tokenize_text(s)
+    
     sentences.each do |sentence|
       Treat::Helpers::DecimalPointEscaper.unescape!(sentence)
       entity << Treat::Entities::Phrase.from_string(sentence)
     end
+    
   end
   
 end

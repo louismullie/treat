@@ -13,7 +13,7 @@ class Treat::Languages::French
     :chunkers => [:txt],
     :parsers => [:stanford],
     :segmenters => [:punkt],
-    :tokenizers => [:perl, :tactful]
+    :tokenizers => [:tactful]
   }
   Retrievers = {}
   

@@ -38,7 +38,9 @@ module Treat::Processors::Segmenters::Punkt
     
     s = entity.to_s
     
-    # Replace all decimal points by ^^
+    # Replace the point in all floating-point numbers
+    # by ^^; this is a fix since Punkt trips on decimal 
+    # numbers.
     Treat::Helpers::DecimalPointEscaper.escape!(s)
     s.gsub!(/([^\.\?!]\.|\!|\?)([^\s])/) { $1 + ' ' + $2 }
     
@@ -47,6 +49,7 @@ module Treat::Processors::Segmenters::Punkt
     :output => :sentences_text)
     
     result.each do |sentence|
+      # Unescape the sentence.
       Treat::Helpers::DecimalPointEscaper.
       unescape!(sentence)
       entity << Treat::Entities::Phrase.

@@ -144,7 +144,7 @@ module Treat::Linguistics::Tags
     'PN' => :punctuation,
     'SC' => :conjunction
   }
-
+  
   PunctuationToCategory = {
     '.' => :period,
     ',' => :comma,
@@ -152,9 +152,8 @@ module Treat::Linguistics::Tags
     ':' => :colon,
     '!' => :exclamation,
     '?' => :interrogation,
-    '"' => :quote,
-    "'" => :quote,
-
+    '"' => :double_quote,
+    "'" => :single_quote,
     '$' => :dollar,
     '%' => :percent,
     '#' => :hash,

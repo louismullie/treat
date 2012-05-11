@@ -9,7 +9,7 @@ class Treat::Languages::Polish
   Processors = {
     :chunkers => [:txt],
     :segmenters => [:punkt],
-    :tokenizers => [:perl, :tactful]
+    :tokenizers => [:tactful]
   }
   Retrievers = {}
   

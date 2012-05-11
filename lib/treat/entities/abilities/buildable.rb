@@ -4,12 +4,11 @@
 # is pretty much self-explanatory.
 module Treat::Entities::Abilities::Buildable
 
-  require 'treat/helpers/decimal_point_escaper'
   require 'fileutils'
 
   # Simple regexps to match common entities.
   WordRegexp = /^[[:alpha:]\-']+$/
-  NumberRegexp = /^#?([0-9]+)(\^\^[0-9]+)?$/
+  NumberRegexp = /^#?([0-9]+)(\.[0-9]+)?$/
   PunctRegexp = /^[[:punct:]\$]+$/
   UriRegexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix
   EmailRegexp = /.+\@.+\..+/
@@ -57,8 +56,6 @@ module Treat::Entities::Abilities::Buildable
   # instead of from_string directly).
   def from_string(string, enforce_type = false)
 
-    Treat::Helpers::DecimalPointEscaper.escape!(string)
-
     enforce_type = true if caller_method == :build
 
     unless self == Treat::Entities::Entity
@@ -74,6 +71,7 @@ module Treat::Entities::Abilities::Buildable
     end
 
     e
+    
   end
 
   # Build a document from an URL.
@@ -116,7 +114,6 @@ module Treat::Entities::Abilities::Buildable
       "a numeric object."
     end
     n = numeric.to_s
-    Treat::Helpers::DecimalPointEscaper.unescape!(n)
     Treat::Entities::Number.new(n)
   end
 

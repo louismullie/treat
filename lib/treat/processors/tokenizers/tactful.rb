@@ -51,6 +51,7 @@ class Treat::Processors::Tokenizers::Tactful
     entity.check_hasnt_children
     
     s = entity.to_s
+    
     Treat::Helpers::DecimalPointEscaper.escape!(s)
     
     ReTokenize.each do |rules|
@@ -58,6 +59,8 @@ class Treat::Processors::Tokenizers::Tactful
     end
     
     s.split(' ').each do |token|
+      
+      Treat::Helpers::DecimalPointEscaper.unescape!(token)
       entity << Treat::Entities::Token.
       from_string(token)
     end

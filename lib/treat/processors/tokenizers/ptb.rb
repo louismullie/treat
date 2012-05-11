@@ -1,3 +1,4 @@
+# encoding: utf-8
 # A native rule-basd tokenizer based on the one
 # developped by Robert Macyntyre in 1995 for the Penn
 # Treebank project. This tokenizer follows the
@@ -11,8 +12,6 @@
 # you can redistribute it and/or modify it under the
 # same terms as Ruby itself.
 module Treat::Processors::Tokenizers::PTB
-
-  require 'treat/helpers/decimal_point_escaper'
   
   # Tokenize the entity using a native rule-based algorithm.
   def self.tokenize(entity, options = {})
@@ -33,8 +32,16 @@ module Treat::Processors::Tokenizers::PTB
   
   # Helper method to split the string into tokens.
   def self.split(string)
+    
     s = " " + string + " "
-    Treat::Helpers::DecimalPointEscaper.escape!(s)
+    
+    # Translate some common extended ascii 
+    # characters to quotes
+    s.gsub!(/‘/,'`')
+    s.gsub!(/’/,"'")
+    s.gsub!(/“/,"``")
+    s.gsub!(/”/,"''")
+    
     s.gsub!(/\s+/," ")
     s.gsub!(/(\s+)''/,'\1"')
     s.gsub!(/(\s+)``/,'\1"')

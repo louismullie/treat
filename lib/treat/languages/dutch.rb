@@ -9,7 +9,7 @@ class Treat::Languages::Dutch
   Processors = {
     :chunkers => [:txt],
     :segmenters => [:punkt],
-    :tokenizers => [:perl, :tactful]
+    :tokenizers => [:tactful]
   }
   Retrievers = {}
   

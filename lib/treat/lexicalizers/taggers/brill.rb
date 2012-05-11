@@ -35,7 +35,7 @@ module Treat::Lexicalizers::Taggers::Brill
     # Tokenize the sentence/phrase.
     if !entity.has_children? &&
       !entity.is_a?(Treat::Entities::Token)
-      entity.tokenize(:perl, options)
+      entity.tokenize(options)
     end
     
     # Create the tagger if necessary
