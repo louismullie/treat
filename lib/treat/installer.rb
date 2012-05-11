@@ -82,9 +82,13 @@ module Treat::Installer
       begin
         Gem::Specification.find_by_name('punkt-segmenter')
         title "Downloading model for the Punkt segmenter for the #{l}."
-        download_punkt_models(language)
+        # Need fix
+        download_punkt_models([language])
       rescue Gem::LoadError; end
-
+      
+      # Download reuters models always
+      download_reuters_models
+      
       # If stanford is installed, download models.
       begin
         Gem::Specification.find_by_name('stanford-core-nlp')
@@ -227,22 +231,35 @@ module Treat::Installer
     
   end
 
-  def self.download_punkt_models(language)
+  def self.download_punkt_models(languages)
+    languages.map! { |l| "#{l}.yaml" }
+    download_models 'punkt', languages
+  end
+  
+  def self.download_reuters_models
+    files = ["industry.xml", "region.xml", "topics.xml"]
+    download_models 'reuters', files
+  end
 
-    f = "#{language}.yaml"
-    dest = "#{Treat.models}punkt/"
+  def self.download_models(directory, files)
     
-    loc = Treat::Downloader.download(
-    'http', Server, 'treat/punkt', f, Treat.tmp)
+    dest = "#{Treat.models}#{directory}/"
 
     unless File.readable?(dest)
-      puts "- Creating directory models/punkt ..."
+      puts "- Creating directory models/#{directory} ..."
       FileUtils.mkdir_p(File.absolute_path(dest))
     end
 
-    puts "- Copying model file to models/punkt ..."
-    FileUtils.cp(loc, File.join(Paths[:models], 'punkt', f))
     
+    files.each do |file|
+      puts "- Downloading #{file} ..."
+      loc = Treat::Downloader.download(
+      'http', Server, "treat/#{directory}", file, Treat.tmp)
+      puts "- Copying file to models/#{directory} ..."
+      FileUtils.cp(loc, File.join(Paths[:models], directory, file))
+    end
+
+ 
     puts "- Cleaning up..."
     FileUtils.rm_rf(Paths[:tmp] + Server)
 
