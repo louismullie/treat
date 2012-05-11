@@ -25,3 +25,9 @@ Treat - Text Retrieval, Extraction and Annotation Toolkit
 1.0.4
   
   * Major fix: fixed Stanford tagger & name tagger paths.
+  
+1.0.5
+
+  * Fixed decimal point escaping across whole library.
+  * Major removal: merged the :perl tokenizer into the :ptb tokenizer (similar regexps).
+  * Added Reuters models to installer.
