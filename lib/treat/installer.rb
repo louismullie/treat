@@ -83,7 +83,7 @@ module Treat::Installer
         Gem::Specification.find_by_name('punkt-segmenter')
         title "Downloading model for the Punkt segmenter for the #{l}."
         # Need fix
-        download_punkt_models([language])
+        download_punkt_models([language.to_s])
       rescue Gem::LoadError; end
       
       # Download reuters models always
@@ -128,7 +128,7 @@ module Treat::Installer
     install_dependencies(false)
     install_language_dependencies(dep, false)
     download_stanford(:minimal)
-    download_punkt_models(:english)
+    download_punkt_models([:english])
   end
   
   def self.install_dependencies(optionally)
