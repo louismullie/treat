@@ -42,7 +42,7 @@ module Treat::Processors::Segmenters::Punkt
     # by ^^; this is a fix since Punkt trips on decimal 
     # numbers.
     Treat::Helpers::DecimalPointEscaper.escape!(s)
-    s.gsub!(/([^\.\?!]\.|\!|\?)([^\s])/) { $1 + ' ' + $2 }
+    s.gsub!(/([^\.\?!]\.|\!|\?)([^\s"'])/) { $1 + ' ' + $2 }
     
     result = @@segmenters[lang].
     sentences_from_text(s, 

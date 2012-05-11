@@ -29,9 +29,10 @@ module Treat::Processors::Segmenters::Tactful
     entity.check_hasnt_children
     
     s = entity.to_s
+    
     Treat::Helpers::DecimalPointEscaper.escape!(s)
     
-    s.gsub!(/([^\.\?!]\.|\!|\?)([^\s])/) { $1 + ' ' + $2 }
+    s.gsub!(/([^\.\?!]\.|\!|\?)([^\s"'])/) { $1 + ' ' + $2 }
     
     @@segmenter ||= TactfulTokenizer::Model.new
    
@@ -39,6 +40,7 @@ module Treat::Processors::Segmenters::Tactful
     
     sentences.each do |sentence|
       Treat::Helpers::DecimalPointEscaper.unescape!(sentence)
+      puts sentence.to_s if sentence.to_s.include?('staff')
       entity << Treat::Entities::Phrase.from_string(sentence)
     end
     

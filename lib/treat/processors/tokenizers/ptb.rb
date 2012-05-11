@@ -42,6 +42,7 @@ module Treat::Processors::Tokenizers::PTB
     s.gsub!(/“/,"``")
     s.gsub!(/”/,"''")
     
+    
     s.gsub!(/\s+/," ")
     s.gsub!(/(\s+)''/,'\1"')
     s.gsub!(/(\s+)``/,'\1"')
