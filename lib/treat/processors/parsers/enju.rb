@@ -23,10 +23,10 @@ module Treat::Processors::Parsers::Enju
   @@parser = nil
   
   # A hash of Enju cat tags mapped to word categories.
-  Ectc = Treat::Linguistics::Tags::EnjuCatToCategory
+  Ectc = Treat::Universalisation::Tags::EnjuCatToCategory
   
   # A hash of Enju cat/xcat pairs mapped to PTB tags.
-  Ecxtp = Treat::Linguistics::Tags::EnjuCatXcatToPTB
+  Ecxtp = Treat::Universalisation::Tags::EnjuCatXcatToPTB
   
   # Parse the entity into its syntactical 
   # phrases using Enju.
