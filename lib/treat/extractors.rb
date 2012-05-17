@@ -20,7 +20,7 @@ module Treat::Extractors
   module Topics
     extend Treat::Groupable
     self.type = :annotator
-    self.targets = [:document]
+    self.targets = [:document, :section, :zone]
   end
 
   # Extract the keywords from a text.
