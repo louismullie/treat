@@ -16,7 +16,8 @@ module Treat::Lexicalizers
   module Categorizers
     extend Treat::Groupable
     self.type = :annotator
-    self.targets = [:token]
+    self.targets = [:sentence, :phrase, :token]
+    self.recursive = true
     self.default = :from_tag
   end
 
