@@ -28,6 +28,10 @@ Treat - Text Retrieval, Extraction and Annotation Toolkit
   
 1.0.5
 
+  * Added French support and multiple tag set support for Stanford tools.
   * Fixed decimal point escaping across whole library.
   * Major removal: merged the :perl tokenizer into the :ptb tokenizer (similar regexps).
   * Added Reuters models to installer.
+  * Renamed Lingustics class to Universalisation.
+  * Made keywords function available on documents, zones and sections.
+  
