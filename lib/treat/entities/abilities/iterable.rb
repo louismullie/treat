@@ -95,6 +95,14 @@ module Treat::Entities::Abilities::Iterable
     as
   end
 
+  # Returns the first ancestor that has a feature
+  # with the given name, otherwise nil.
+  def ancestor_with_feature(type, feature)
+    each_ancestor(type) do |ancestor|
+      return ancestor if ancestor.has?(feature)
+    end
+  end
+  
   alias :ancestors_with_type :ancestors_with_types
 
   # Number of children that have a given feature.
