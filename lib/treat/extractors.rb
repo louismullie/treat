@@ -27,7 +27,7 @@ module Treat::Extractors
   module Keywords
     extend Treat::Groupable
     self.type = :annotator
-    self.targets = [:document]
+    self.targets = [:document, :section, :zone]
   end
 
   # Extract clusters of topic words from a collection.
