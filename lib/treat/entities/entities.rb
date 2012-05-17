@@ -68,12 +68,10 @@ module Treat::Entities
   class Sentence < Phrase; end
 
   # Represents a terminal element in the text structure.
-  class Token < Entity
-  end
+  class Token < Entity; end
 
   # Represents a word.
-  class Word < Token
-  end
+  class Word < Token; end
 
   # Represents a clitic ('s).
   class Enclitic < Token; end
