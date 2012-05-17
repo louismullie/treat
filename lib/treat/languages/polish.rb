@@ -8,7 +8,7 @@ class Treat::Languages::Polish
   Lexicalizers = {}
   Processors = {
     :chunkers => [:txt],
-    :segmenters => [:punkt],
+    :segmenters => [:tactful],
     :tokenizers => [:tactful]
   }
   Retrievers = {}

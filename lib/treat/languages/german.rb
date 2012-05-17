@@ -12,7 +12,7 @@ class Treat::Languages::German
   Processors = {
     :chunkers => [:txt],
     :parsers => [:stanford],
-    :segmenters => [:punkt],
+    :segmenters => [:tactful],
     :tokenizers => [:tactful]
   }
   Retrievers = {}
