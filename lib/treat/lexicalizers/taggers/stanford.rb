@@ -38,11 +38,14 @@ class Treat::Lexicalizers::Taggers::Stanford
     end
 
     # Handle tags for sentences and phrases.
-    
     if entity.is_a?(Treat::Entities::Sentence) ||
       (entity.is_a?(Treat::Entities::Phrase) && 
       !entity.parent_sentence)
-        entity.set :tag_set, :penn
+      
+        tag_set =  Treat::Universalisation::Tags::
+                    StanfordTagSetForLanguage[
+                   Treat::Languages.describe(lang)]
+        entity.set :tag_set, tag_set
     end
     
     if entity.is_a?(Treat::Entities::Sentence)
