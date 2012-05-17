@@ -6,8 +6,8 @@ class Treat::Languages::German
   Extractors = {}
   Inflectors = {}
   Lexicalizers = {
-    :tag => [:stanford],
-    :category => [:from_tag]
+    :taggers => [:stanford],
+    :categorizers => [:from_tag]
   }
   Processors = {
     :chunkers => [:txt],

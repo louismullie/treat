@@ -6,13 +6,13 @@ class Treat::Languages::French
   Extractors = {}
   Inflectors = {}
   Lexicalizers = {
-    :tag => [:stanford],
-    :category => [:from_tag]
+    :taggers => [:stanford],
+    :categorizers => [:from_tag]
   }
   Processors = {
     :chunkers => [:txt],
     :parsers => [:stanford],
-    :segmenters => [:punkt],
+    :segmenters => [:tactful],
     :tokenizers => [:tactful]
   }
   Retrievers = {}

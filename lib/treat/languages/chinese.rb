@@ -6,7 +6,7 @@ class Treat::Languages::Chinese
   Extractors = {}
   Inflectors = {}
   Lexicalizers = {
-    :tag => [:stanford]
+    :taggers => [:stanford]
   }
   Processors = {
     :parsers => [:stanford]
