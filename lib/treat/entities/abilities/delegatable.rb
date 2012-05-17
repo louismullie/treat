@@ -104,9 +104,9 @@ module Treat::Entities::Abilities::Delegatable
     if !klass[g] || !klass[g][0]
       d = ucc(cl(group))
       d.gsub!('_', ' ')
-      d = 'worker to find "' + d
+      d = d[0..-2]
       raise Treat::Exception, "No #{d}" +
-      "\" is available for the " +
+      " is available for the " +
       "#{lang.to_s.capitalize} language."
     end
     return klass[g][0]
