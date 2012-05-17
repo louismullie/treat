@@ -44,7 +44,7 @@ module Treat
   require 'treat/kernel'
   require 'treat/downloader'
   require 'treat/languages'
-  require 'treat/linguistics'
+  require 'treat/universalisation'
   require 'treat/entities'
   require 'treat/categories'
   require 'treat/data_set'
