@@ -96,7 +96,10 @@ module Treat::Installer
         "model files for the the #{l}.\n\n"
         package = (language == :english) ? :english : :all
         download_stanford(package)
-      rescue Gem::LoadError; end
+      rescue Gem::LoadError
+        puts 'Stanford-core-nlp gem not installed.'
+        puts 'Skipping download of Stanford models.'
+      end
 
       title "Install external binary libraries " +
             "(requires port, apt-get or win-get).\n"
