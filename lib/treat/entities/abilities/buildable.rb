@@ -316,7 +316,6 @@ module Treat::Entities::Abilities::Buildable
   end
 
   def create_collection(fv)
-    debug("Creating new collection in directory #{fv}.")
     FileUtils.mkdir(fv)
     Treat::Entities::Collection.new(fv)
   end
