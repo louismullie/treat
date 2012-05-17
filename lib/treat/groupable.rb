@@ -95,7 +95,11 @@ module Treat::Groupable
         attr_accessor :presets
         # The preset option to use with preset functions.
         attr_accessor :preset_option
+        # Whether to recurse within multiple targets or not.
+        attr_accessor :recursive
       end
+      
+      self.recursive = false
       
       # Return the method corresponding to the group.
       # This method resolves the name of the method
