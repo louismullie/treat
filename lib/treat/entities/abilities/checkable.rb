@@ -24,8 +24,8 @@ module Treat::Entities::Abilities::Checkable
     return unless has_children?
     raise Treat::Exception,
     "Warning: can't #{caller_method(2)} "+
-    "an entity that has children. Removing " +
-    " all children of text \"[#{short_value}].\""
+    "the text \"#{short_value}\", because it " +
+    "already has children."
   end
 
 end
