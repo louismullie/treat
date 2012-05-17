@@ -37,8 +37,13 @@ module Treat::Entities::Abilities::Doable
     end
     if f || entity_types.include?(:entity)
       send(task, worker, options)
+      if group.recursive
+        each do |entity|
+          entity.do_task(task, worker, options, group)
+        end
+      end
     else
-      each_entity(*entity_types) do |entity|
+      each do |entity|
         entity.do_task(task, worker, options, group)
       end
       unless entity_types.include?(type)
