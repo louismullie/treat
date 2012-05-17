@@ -27,6 +27,10 @@ class Treat::Processors::Parsers::Stanford
     lang = entity.language
     init(lang, options)
     
+    tag_set =  Treat::Universalisation::Tags::
+               StanfordTagSetForLanguage[
+               Treat::Languages.describe(lang)]
+    
     text = ::StanfordCoreNLP::Text.new(val)
     @@parsers[lang].annotate(text)
 
@@ -37,17 +41,18 @@ class Treat::Processors::Parsers::Stanford
         tag = s.get(:category).to_s
         tag_s, tag_opt = *tag.split('-')
         tag_s ||= 'S'
-        entity.set :tag_set, :penn
         entity.set :tag, tag_s
         entity.set :tag_opt, tag_opt if tag_opt
-        recurse(s.get(:tree).children[0], entity)
-        break
+        recurse(s.get(:tree).children[0], entity, tag_set)
+        break #######
       else
         recurse(s.get(:tree), entity)
       end
       
     end
 
+    entity.set :tag_set, tag_set
+    
   end
 
   def self.init(lang, options)
@@ -76,7 +81,7 @@ class Treat::Processors::Parsers::Stanford
 
   # Helper method which recurses the tree supplied by
   # the Stanford parser.
-  def self.recurse(java_node, ruby_node, additional_tags = [])
+  def self.recurse(java_node, ruby_node, tag_set, additional_tags = [])
 
     if java_node.num_children == 0
 
@@ -85,10 +90,8 @@ class Treat::Processors::Parsers::Stanford
       tag_s, tag_opt = *tag.split('-')
       tag_s ||= ''
       ruby_node.value = java_node.value.to_s.strip
-      ruby_node.set :tag_set, :penn
       ruby_node.set :tag, tag_s
       ruby_node.set :tag_opt, tag_opt if tag_opt
-      ruby_node.set :tag_set, :penn
       ruby_node.set :lemma, label.get(:lemma).to_s
 
       additional_tags.each do |t|
@@ -103,33 +106,35 @@ class Treat::Processors::Parsers::Stanford
       if java_node.num_children == 1 &&
         java_node.children[0].num_children == 0
         recurse(java_node.children[0],
-        ruby_node, additional_tags)
+        ruby_node, tag_set, additional_tags)
         return
       end
 
       java_node.children.each do |java_child|
+        
         label = java_child.label
         tag = label.get(:category).to_s
         tag_s, tag_opt = *tag.split('-')
         tag_s ||= ''
-
-        if Treat::Linguistics::Tags::PhraseTagToCategory[tag_s]
+        
+        if Treat::Universalisation::Tags::PhraseTagToCategory[tag_s] &&
+           Treat::Universalisation::Tags::PhraseTagToCategory[tag_s][tag_set]
           ruby_child = Treat::Entities::Phrase.new
         else
           l = java_child.children[0].to_s
           v = java_child.children[0].value.to_s.strip
+          
           # Mhmhmhmhmhm
           val = (l == v) ? v :  l.split(' ')[-1].gsub(')', '')
           ruby_child = Treat::Entities::Token.from_string(val)
         end
 
-        ruby_child.set :tag_set, :penn
         ruby_child.set :tag, tag_s
         ruby_child.set :tag_opt, tag_opt if tag_opt
         ruby_node << ruby_child
 
         unless java_child.children.empty?
-          recurse(java_child, ruby_child, additional_tags)
+          recurse(java_child, ruby_child, tag_set, additional_tags)
         end
 
       end
@@ -137,4 +142,5 @@ class Treat::Processors::Parsers::Stanford
     end
 
   end
+  
 end
