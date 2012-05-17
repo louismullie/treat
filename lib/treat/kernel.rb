@@ -181,10 +181,6 @@ module Kernel
     NULL_DEVICE = '/dev/null'
   end
   
-  def debug(msg)
-    puts msg if Treat.debug
-  end
-  
   def prompt(msg, valid_answers)
     
     msg = msg
