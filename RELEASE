@@ -33,5 +33,7 @@ Treat - Text Retrieval, Extraction and Annotation Toolkit
   * Major removal: merged the :perl tokenizer into the :ptb tokenizer (similar regexps).
   * Added Reuters models to installer.
   * Renamed Lingustics class to Universalisation.
-  * Made keywords function available on documents, zones and sections.
-  
+
+1.0.6
+
+  * Made general topic extraction available on documents, zones and sections.
