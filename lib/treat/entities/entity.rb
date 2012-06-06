@@ -83,7 +83,6 @@ module Treat::Entities
       entities[0]
     end
 
-
     # Catch missing methods to support method-like
     # access to features (e.g. entity.category
     # instead of entity.features[:category]) and to
