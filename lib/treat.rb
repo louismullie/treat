@@ -42,6 +42,7 @@ module Treat
 
   require 'treat/object'
   require 'treat/kernel'
+  require 'treat/databases'
   require 'treat/downloader'
   require 'treat/languages'
   require 'treat/universalisation'
