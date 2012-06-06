@@ -25,7 +25,13 @@ class Treat::Formatters::Readers::Autoselect
     format = 'yaml' if format == 'yml'
 
     format = default_to if format.to_s == ''
-
+    
+    begin
+      Treat::Formatters::Readers.const_get(cc(format))
+    rescue Treat::Exception
+      format = default_to
+    end
+    
     format.intern
 
   end
