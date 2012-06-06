@@ -89,11 +89,15 @@ module Treat::Entities::Abilities::Buildable
     sp.shift if sp[0] == ''
 
     file = sp[-1]
+    
     path = sp.size == 1 ?
     '/' : sp[0..-2].join('/')
-
+    
+    #add_extension = !file.index('.')
+    
     f = Treat::Downloader.download(
     uri.scheme, uri.host, path, file)
+    
     options[:default_to] ||= :html
 
     e = from_file(f, options)
@@ -171,7 +175,7 @@ module Treat::Entities::Abilities::Buildable
     fmt = Treat::Formatters::Readers::Autoselect.
     detect_format(file, options[:default_to])
     options[:_format] = fmt
-    
+
     if fmt == :yaml || fmt == :yml ||
       (fmt == :xml && is_treat_xml?(file))
       f = from_serialized_file(file, options)
