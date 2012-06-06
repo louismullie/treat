@@ -48,11 +48,6 @@ class Treat::Lexicalizers::Taggers::Lingua
   #   particularly words used polysemously.
   def self.tag(entity, options = {})
     
-    if !entity.has_children? && 
-      !entity.is_a?(Treat::Entities::Token)
-      entity.tokenize
-    end
-    
     options = DefaultOptions.merge(options)
     
     @@tagger ||= ::EngTagger.new(options)

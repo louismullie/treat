@@ -32,12 +32,6 @@ module Treat::Lexicalizers::Taggers::Brill
   # :contextual_rules => String (Contextual rules file to use)
   def self.tag(entity, options = {})
 
-    # Tokenize the sentence/phrase.
-    if !entity.has_children? &&
-      !entity.is_a?(Treat::Entities::Token)
-      entity.tokenize(options)
-    end
-    
     # Create the tagger if necessary
     @@tagger ||= ::Brill::Tagger.new(options[:lexicon],
     options[:lexical_rules], options[:contextual_rules])

@@ -14,12 +14,6 @@ class Treat::Lexicalizers::Taggers::Stanford
   # Tag the word using one of the Stanford taggers.
   def self.tag(entity, options = {})
     
-    # Tokenize the sentence/phrase.
-    if !entity.has_children? &&
-      !entity.is_a?(Treat::Entities::Token)
-      entity.tokenize(:stanford, options)
-    end
-    
     # Handle options and initialize the tagger.
     lang = entity.language
     options = get_options(options, lang)
