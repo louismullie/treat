@@ -44,10 +44,18 @@ module Treat::Entities
 
   end
 
-  # Represents a section, usually with a title
-  # and at least one paragraph.
+  # Represents a section.
   class Section < Entity; end
 
+  # Represents a page of text.
+  class Page < Section; end
+  
+  # Represents a block of text 
+  class Block < Section; end
+  
+  # Represents a list.
+  class List < Section; end
+  
   # Represents a zone of text
   # (Title, Paragraph, List, Quote).
   class Zone < Entity; end
@@ -57,9 +65,6 @@ module Treat::Entities
 
   # Represents a paragraph.
   class Paragraph < Zone; end
-
-  # Represents a list.
-  class List < Zone; end
 
   # Represents a group of words.
   class Phrase < Entity; end
