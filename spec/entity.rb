@@ -60,9 +60,9 @@ describe Treat::Entities::Entity do
 
     describe "#position" do
 
-      it "returns the position of the entity in its parent, sarting at 1" do
-        @noun_phrase.position.should eql 1
-        @det.position.should eql 1
+      it "returns the position of the entity in its parent, sarting at 0" do
+        @noun_phrase.position.should eql 0
+        @det.position.should eql 0
       end
 
     end
