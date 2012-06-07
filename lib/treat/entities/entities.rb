@@ -66,11 +66,14 @@ module Treat::Entities
   # Represents a paragraph.
   class Paragraph < Zone; end
 
+  # Represents a group of words with a sentence ender.
+  class Sentence < Entity; end
+  
   # Represents a group of words.
   class Phrase < Entity; end
 
-  # Represents a group of words with a sentence ender.
-  class Sentence < Phrase; end
+  # Represents a non-linguistic fragment
+  class Fragment < Entity; end
 
   # Represents a terminal element in the text structure.
   class Token < Entity; end
