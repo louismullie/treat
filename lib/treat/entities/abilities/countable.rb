@@ -7,7 +7,7 @@ module Treat::Entities::Abilities::Countable
       raise Treat::Exception,
       "No parent to get position in."
     end
-    parent.children.index(self) + 1
+    parent.children.index(self)
   end
 
   # Find the position of this entity from
