@@ -12,7 +12,7 @@ describe Treat::Entities::Zone do
           "This is a first sentence inside the first paragraph. " +
           "This is the second sentence that is inside the paragraph.")
           paragraph.segment(s)
-          paragraph.children.should eql paragraph.phrases
+          paragraph.children.should eql paragraph.sentences
           paragraph.phrases.map { |t| t.to_s }.should
           eql ["This is a first sentence inside the first paragraph.",
           "This is the second sentence that is inside the paragraph."]
