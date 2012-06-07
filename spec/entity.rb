@@ -168,7 +168,7 @@ describe Treat::Entities::Entity do
           @sentence.each_entity(:phrase, :punctuation) do |e|
             a << e
           end
-          a.should eql [@sentence, @noun_phrase,
+          a.should eql [@noun_phrase,
           @adj_phrase, @verb_phrase, @dot]
         end
       end
@@ -195,8 +195,7 @@ describe Treat::Entities::Entity do
 
       it "return an array of the entities with the " +
       "corresponding type in the subtree of an entity" do
-        @paragraph.phrases.should eql [@sentence,
-        @noun_phrase, @adj_phrase, @verb_phrase]
+        @paragraph.phrases.should eql [@noun_phrase, @adj_phrase, @verb_phrase]
       end
 
     end
@@ -209,7 +208,7 @@ describe Treat::Entities::Entity do
         a = []
 
         @paragraph.each_phrase { |p| a << p }
-        a.should eql [@sentence, @noun_phrase,
+        a.should eql [@noun_phrase,
         @adj_phrase, @verb_phrase]
 
       end
@@ -223,7 +222,7 @@ describe Treat::Entities::Entity do
       it "return the number of entities with the " +
       "corresponding type inside another entity" do
         @paragraph.sentence_count.should eql 1
-        @paragraph.phrase_count.should eql 4
+        @paragraph.phrase_count.should eql 3
       end
 
     end
