@@ -24,6 +24,7 @@ class Treat::Processors::Chunkers::HTML
         node.parent && node.parent.type == :section)
         
         if $1
+          
           lvl = $1.to_i
           if lvl <= level
             node.ancestors_with_type(:section).
@@ -41,13 +42,13 @@ class Treat::Processors::Chunkers::HTML
           node.set :level, level
 
         end
-
+        
         t = node <<
         Treat::Entities::Title.new(txt)
         t.set :level, level
 
       elsif child.name == 'p'
-        
+
         node << Treat::Entities::Zone.
         from_string(txt)
 
