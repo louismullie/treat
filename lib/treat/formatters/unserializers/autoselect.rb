@@ -6,6 +6,8 @@ class Treat::Formatters::Unserializers::Autoselect
       document.unserialize(:yaml, options)
     elsif file.index('xml')
       document.unserialize(:xml, options)
+    elsif file.index('mongo')
+      document.unserialize(:mongo, options)
     else
       raise Treat::Exception,
       "Unreadable serialized format for file #{file}."
