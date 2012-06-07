@@ -20,7 +20,7 @@ module Treat::Processors
   module Tokenizers
     extend Treat::Groupable
     self.type = :transformer
-    self.targets = [:phrase]
+    self.targets = [:sentence, :phrase]
   end
   
   # Parsers split a sentence into phrase objects
@@ -29,7 +29,7 @@ module Treat::Processors
   module Parsers
     extend Treat::Groupable
     self.type = :transformer
-    self.targets = [:phrase]
+    self.targets = [:sentence, :phrase]
   end
   
   # Make Processors categorizable.
