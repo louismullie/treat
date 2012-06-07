@@ -221,7 +221,7 @@ module Treat::Entities::Abilities::Buildable
       "collection from a string " +
       "(need a readable file/folder)."
     when :phrase
-      phrase_from_string(string)
+      sentence_or_phrase_from_string(string)
     when :token
       token_from_string(string)
     when :zone
@@ -233,7 +233,7 @@ module Treat::Entities::Abilities::Buildable
         if string.gsub(/[\.\!\?]+/,
           '.').count('.') <= 1 &&
           string.count("\n") == 0
-          phrase_from_string(string)
+          sentence_or_phrase_from_string(string)
         else
           zone_from_string(string)
         end
@@ -249,11 +249,13 @@ module Treat::Entities::Abilities::Buildable
   end
 
   # Build a phrase from a string.
-  def phrase_from_string(string)
+  def sentence_or_phrase_from_string(string)
 
     check_encoding(string)
 
-    if string.count('.!?') >= 1
+    if !(string =~ /[a-zA-Z]+/)
+      Treat::Entities::Fragment.new(string)
+    elsif string.count('.!?') >= 1
       Treat::Entities::Sentence.new(string)
     else
       Treat::Entities::Phrase.new(string)
