@@ -1,0 +1,16 @@
+Dependencies: none
+Adapters:
+  Processors:
+    chunkers: 
+      - txt
+    segmenters: 
+      - punkt
+    tokenizers: 
+      - tactful
+    parsers:
+      - stanford
+  Lexicalizers:
+    taggers:
+      - stanford
+    categorizers:
+      - from_tag

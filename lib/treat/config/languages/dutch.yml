@@ -1,0 +1,9 @@
+Dependencies: none
+Adapters:
+  processors:
+    chunkers: 
+      - txt
+    segmenters:
+      - punkt
+    tokenizers:
+      - tactful
