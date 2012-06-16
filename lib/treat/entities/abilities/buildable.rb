@@ -172,17 +172,15 @@ module Treat::Entities::Abilities::Buildable
       "point to a readable file."
     end
 
-    fmt = Treat::Formatters::Readers::Autoselect.
-    detect_format(file, options[:default_to])
-    options[:_format] = fmt
-
-    if fmt == :yaml || fmt == :yml ||
-      (fmt == :xml && is_treat_xml?(file))
-      f = from_serialized_file(file, options)
+    if file.index('yml') || file.index('yaml') || file.index('xml')
+      from_serialized_file(file, options)
     else
-      f = from_raw_file(file, options)
+      fmt = Treat::Formatters::Readers::Autoselect.
+      detect_format(file, options[:default_to])
+      options[:_format] = fmt
+      from_raw_file(file, options)
     end
-
+    
   end
 
   # Build a document from a raw file.
@@ -304,20 +302,6 @@ module Treat::Entities::Abilities::Buildable
     else
       Treat::Entities::Paragraph.new(string)
     end
-
-  end
-  
-  # Eventually find a better way.
-  def is_treat_xml?(file)
-
-    beginning = nil
-
-    File.open(file) do |w|
-      beginning = w.readlines(200)
-    end
-
-    beginning = beginning.join(' ')
-    beginning.count('<treat>') > 0
 
   end
 
