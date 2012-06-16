@@ -1,63 +1,62 @@
 module Treat
   
-  # Require custom exception cass.
-  require 'treat/exception'
-
-  # Treat requires Ruby 1.9 or higher.
-  if RUBY_VERSION <= '1.9'
-    raise Treat::Exception,
-    'Treat requires Ruby 1.9 or higher.'
+  # Treat requires Ruby >= 1.9.2
+  if RUBY_VERSION < '1.9.2'
+    raise "Treat requires Ruby version 1.9.2 " +
+    "or higher, but current is #{RUBY_VERSION}."
   end
 
-  # The current version of Treat.
+  # Current version
   VERSION = "1.0.6"
-
-  # Add methods to handle syntactic sugar,
-  # language configuration options, and paths.
-  require 'treat/configurable'
-  extend Treat::Configurable
-
-  # The folders in the library and descriptions.
-  Paths = {
-    :tmp => 'temporary files',
-    :lib => 'class and module definitions',
-    :bin => 'binary files',
-    :files => 'user-saved files',
-    :data => 'data set files',
-    :models => 'model files',
-    :spec => 'spec test files'
-  }
-
-  # Add methods to provide access to common paths.
-  class << self
-    Paths.each do |path, _|
-      define_method(path) do
-        (File.dirname(__FILE__).
-        split('/')[0..-2].join('/') + 
-        '/' + path.to_s + '/').gsub(
-        'lib/../', '')
-      end
-    end
-  end
-
-  require 'treat/object'
-  require 'treat/kernel'
-  require 'treat/databases'
-  require 'treat/downloader'
-  require 'treat/languages'
-  require 'treat/universalisation'
-  require 'treat/entities'
-  require 'treat/categories'
-  require 'treat/data_set'
-  require 'treat/proxies'
   
-  # Install packages for a given language.
-  def self.install(language = :english)
-    require 'treat/installer'
-    Treat::Installer.install(language)
-  end
+  # Custom exception class.
+  class Exception < ::Exception; end
+  
+  # Require gem dependencies.
+  require 'schiphol'
+  
+  # Load configuration options.
+  require 'treat/config'
+  # Load all workers.
+  require 'treat/helpers'
+  # Require all entity classes.
+  require 'treat/entities'
+  # Lazy load worker classes.
+  require 'treat/workers'
+  # Require all core classes.
+  require 'treat/core'
+  
+  # Turn sugar on.
+  Treat::Config.sweeten!
+  
+  # Fix -- This must be moved urgently.
+  Treat::Entities::Entity.class_eval do
 
-  # Enable syntactic sugar by default.
-  Treat.sweeten!
+    alias :true_language :language
+    
+    def language(extractor = nil, options = {})
+      
+      if is_a?(Treat::Entities::Symbol) ||
+        is_a?(Treat::Entities::Number)
+        return Treat.core.language[:default]
+      end
+      
+      if !Treat.core.language[:detect?]
+        return Treat.core.language[:default]
+      else
+        dlvl = Treat.core.language[:detect_at]
+        if (Treat::Entities.rank(type) <
+          Treat::Entities.rank(dlvl)) &&
+          has_parent?
+          anc = ancestor_with_type(dlvl)
+          return anc.language if anc
+        end
+      end
+      
+      true_language(extractor, options)
+      
+    end
+
+  end
   
 end
