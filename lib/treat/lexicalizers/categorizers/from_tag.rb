@@ -32,7 +32,7 @@ class Treat::Lexicalizers::Categorizers::FromTag
     if entity.has?(:tag_set)
       ts = entity.get(:tag_set)
     else
-      a = entity.ancestor_with_feature(:phrase, :tag_set)
+      a = entity.ancestor_with_feature(:tag_set)
       if a
         ts = a.get(:tag_set)
       else
