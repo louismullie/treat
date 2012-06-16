@@ -1,9 +1,9 @@
 *~
 *.lock
+*.index
 *.DS_Store
 *swp
-*.out
 *.gem
-*.sh
 bin/*
 models/*
+data/*
