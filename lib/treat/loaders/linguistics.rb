@@ -14,7 +14,7 @@ module Treat
           return @@languages[language]
         end
         begin
-          l = language.to_s.upcase
+          l = language.to_s[0..1].upcase
           silence_warnings do
             @@languages[language] =
             ::Linguistics.const_get(l)
