@@ -57,7 +57,8 @@ describe Treat::Entities::Token do
   describe "Lexicalizable" do
 
     before do
-      @lexicalizers = Treat::Languages::English::Lexicalizers
+      @lexicalizers = Treat.languages.
+      english[:workers][:lexicalizers]
     end
 
     describe "#tag" do

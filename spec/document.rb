@@ -8,7 +8,7 @@ describe Treat::Entities::Document do
 
       it "returns a list of general topics the document belongs to" do
         #doc = Treat::Entities::Document.new(
-        #Treat.spec + 'samples/mathematicians/archimedes.abw').read(:abw)
+        #Treat.paths.spec + 'samples/mathematicians/archimedes.abw').read(:abw)
         #doc.do(:chunk, :segment, :tokenize)
         #puts doc.topics.inspect
       end
@@ -24,7 +24,7 @@ describe Treat::Entities::Document do
       context "when supplied with a readable file name" do
         it "opens the file and reads its " +
         "content into a document" do
-          f = Treat.spec + 'samples/mathematicians/leibniz.txt'
+          f = Treat.paths.spec + 'samples/mathematicians/leibniz.txt'
           d = Treat::Entities::Document.build(f)
           d.should be_an_instance_of Treat::Entities::Document
           d.to_s.index('Gottfried Leibniz').should_not eql nil
@@ -75,7 +75,7 @@ describe Treat::Entities::Document do
 
       context "when called on an HTML document" do
         doc = Treat::Entities::Document.new(
-        Treat.spec + 'samples/mathematicians/euler.html').read(:html)
+        Treat.paths.spec + 'samples/mathematicians/euler.html').read(:html)
         it "splits the HTML document into sections, " +
         "titles, paragraphs and lists" do
           doc.chunk
@@ -88,7 +88,7 @@ describe Treat::Entities::Document do
 
       context "when called on a text document" do
 
-        doc = Treat::Entities::Document.new(Treat.spec +
+        doc = Treat::Entities::Document.new(Treat.paths.spec +
         'samples/mathematicians/leibniz.txt').read(:txt)
         it "splits the document into titles and paragraphs" do
           doc.chunk
