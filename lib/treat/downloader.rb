@@ -41,7 +41,7 @@ class Treat::Downloader
       Net::HTTP.start(server) do |http|
 
         http.use_ssl = true if protocol == 'https'
-        
+
         http.request_get(resource) do |response|
           
           fn = File.basename(file, '.*')
