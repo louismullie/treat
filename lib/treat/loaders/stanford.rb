@@ -20,9 +20,7 @@ module Treat
 
         return if self.loaded
 
-        language ||=
-        Treat::Languages.describe(
-        Treat.default_language)
+        language ||= Treat.core.language.default
 
         StanfordCoreNLP.jar_path = self.jar_path
         StanfordCoreNLP.model_path = self.model_path
@@ -30,7 +28,7 @@ module Treat
         StanfordCoreNLP.use(language)
 
         StanfordCoreNLP.log_file =
-        NULL_DEVICE if Treat.silence
+        NULL_DEVICE if Treat.core.verbosity[:silence?]
 
         StanfordCoreNLP.bind
 
