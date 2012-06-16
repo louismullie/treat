@@ -101,7 +101,7 @@ describe Treat::Entities::Entity do
 
         Treat::Entities::Entity.call_worker(
         '$'.to_entity, :tag, :lingua,
-        Treat::Lexicalizers::Taggers, {}).should
+        Treat::Workers::Lexicalizers::Taggers, {}).should
         eql @sentence.tag(:lingua)
 
       end
@@ -113,7 +113,7 @@ describe Treat::Entities::Entity do
   describe "Exportable" do
 
     context "when supplied with a classification to export" do
-      classification = Treat::Classification.new(:word, :tag, :is_keyword)
+      classification = Treat::Core::Classification.new(:word, :tag, :is_keyword)
       it "returns a data set with the exported features" do
         ds = @sentence.export(classification)
         ds.classification.should eql classification
@@ -317,7 +317,7 @@ describe Treat::Entities::Entity do
     
     
     before do 
-      @serializers = [:xml, :yaml] # Treat::Languages::All::Serializers
+      @serializers = Treat.languages.all[:workers][:serializers]
       @txt = "The story of the fox. The quick brown fox jumped over the lazy dog."
     end
     
@@ -328,7 +328,7 @@ describe Treat::Entities::Entity do
         it "serializes a document to the supplied format" do
           
           @serializers.each do |ser|
-            f = Treat.spec + 'test.' + ser.to_s
+            f = Treat.paths.spec + 'test.' + ser.to_s
             s = Treat::Entities::Paragraph.new(@txt)
             s.do(:segment, :tokenize)
             s.serialize(ser, :file => f)
@@ -348,7 +348,7 @@ describe Treat::Entities::Entity do
         it "reconstitutes the original entity" do
           @serializers.each do |ser|
           
-            f = Treat.spec + 'test.' + ser.to_s
+            f = Treat.paths.spec + 'test.' + ser.to_s
             s = Treat::Entities::Paragraph.new(@txt)
           
             s.set :test_int, 9
@@ -392,11 +392,11 @@ describe Treat::Entities::Entity do
       context "when language detection is disabled " +
       "(Treat.detect_language is set to false)" do
         it "returns the default language (Treat.default_language)" do
-          Treat.detect_language = false
-          Treat.default_language = :test
+          Treat.core.language[:detect?] = false
+          Treat.core.language[:default] = :test
           s = 'Les grands hommes ne sont pas toujours grands, dit un jour Napoleon.'
           s.language.should eql :test
-          Treat.default_language = :eng
+          Treat.core.language[:default] = :english
         end
       end
 
@@ -405,18 +405,18 @@ describe Treat::Entities::Entity do
 
         it "guesses the language of the entity" do
 
-          Treat.detect_language = true
+          Treat.core.language[:detect?] = true
           a = 'I want to know God\'s thoughts; the rest are details. - Albert Einstein'
           b = 'El mundo de hoy no tiene sentido, asi que por que deberia pintar cuadros que lo tuvieran? - Pablo Picasso'
           c = 'Un bon Allemand ne peut souffrir les Francais, mais il boit volontiers les vins de France. - Goethe'
           d = 'Wir haben die Kunst, damit wir nicht an der Wahrheit zugrunde gehen. - Friedrich Nietzsche'
-          a.language.should eql :eng
-          b.language.should eql :spa
-          c.language.should eql :fre
-          d.language.should eql :ger
+          a.language.should eql :english
+          b.language.should eql :spanish
+          c.language.should eql :french
+          d.language.should eql :german
 
           # Reset default
-          Treat.detect_language = false
+          Treat.core.language[:detect?] = false
         end
 
       end
