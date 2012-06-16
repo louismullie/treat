@@ -5,7 +5,8 @@
 module Treat::Entities::Abilities::Buildable
 
   require 'fileutils'
-
+  require 'uri'
+  
   # Simple regexps to match common entities.
   WordRegexp = /^[[:alpha:]\-']+$/
   NumberRegexp = /^#?([0-9]+)(\.[0-9]+)?$/
@@ -82,26 +83,18 @@ module Treat::Entities::Abilities::Buildable
       'Cannot create something ' +
       'else than a document from a url.'
     end
-
-    uri = ::URI.parse(url)
-
-    sp = uri.path.split('/')
-    sp.shift if sp[0] == ''
-
-    file = sp[-1]
     
-    path = sp.size == 1 ?
-    '/' : sp[0..-2].join('/')
-    
-    #add_extension = !file.index('.')
-    
-    f = Treat::Downloader.download(
-    uri.scheme, uri.host, path, file)
+    f = Schiphol.download(url,
+      :download_folder => Treat.paths.files,
+      :show_progress => Treat.core.verbosity[:silence?],
+      :rectify_extensions => true,
+      :max_tries => 3
+    )
     
     options[:default_to] ||= :html
 
     e = from_file(f, options)
-    e.set :url, uri.to_s
+    e.set :url, url.to_s
     e
 
   end
@@ -175,7 +168,7 @@ module Treat::Entities::Abilities::Buildable
     if file.index('yml') || file.index('yaml') || file.index('xml')
       from_serialized_file(file, options)
     else
-      fmt = Treat::Formatters::Readers::Autoselect.
+      fmt = Treat::Workers::Formatters::Readers::Autoselect.
       detect_format(file, options[:default_to])
       options[:_format] = fmt
       from_raw_file(file, options)
