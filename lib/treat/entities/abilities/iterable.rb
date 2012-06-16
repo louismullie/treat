@@ -97,8 +97,8 @@ module Treat::Entities::Abilities::Iterable
 
   # Returns the first ancestor that has a feature
   # with the given name, otherwise nil.
-  def ancestor_with_feature(type, feature)
-    each_ancestor(type) do |ancestor|
+  def ancestor_with_feature(feature)
+    each_ancestor do |ancestor|
       return ancestor if ancestor.has?(feature)
     end
   end
