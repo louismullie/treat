@@ -28,7 +28,7 @@ class Treat::Languages::English
   }
 
   Processors = {
-    :chunkers => [:txt],
+    :chunkers => [:txt, :html],
     :parsers => [:stanford, :enju],
     :segmenters => [:tactful, :punkt, :stanford],
     :tokenizers => [:ptb, :stanford, :tactful, :punkt]
