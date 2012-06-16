@@ -55,7 +55,7 @@ module Treat::Entities::Abilities::Doable
 
   # Get the group of a task.
   def get_group(task)
-    g = Treat::Categories.lookup(task)
+    g = Treat::Workers.lookup(task)
     unless g
       raise Treat::Exception,
       "Task #{task} does not exist."
