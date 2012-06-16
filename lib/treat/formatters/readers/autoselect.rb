@@ -16,6 +16,7 @@ class Treat::Formatters::Readers::Autoselect
   end
   
   def self.detect_format(filename, default_to = nil)
+    
     default_to ||= DefaultOptions[:default_to]
     ext = filename.scan(ExtensionRegexp)
     ext = (ext.is_a?(Array) && ext[0] && ext[0][0]) ? ext[0][0] : ''
