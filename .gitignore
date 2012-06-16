@@ -7,3 +7,4 @@
 bin/*
 models/*
 data/*
+spec/sandbox.rb
