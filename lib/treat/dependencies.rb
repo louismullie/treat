@@ -3,7 +3,7 @@ class Treat::Dependencies
   Gem = [
     ['psych', '>= 1.2.2', '(un)serialize annotated entities to YAML format'],
     ['nokogiri', '>= 1.5.2', 'read and parse XML and HTML formats'],
-    ['sdsykes-ferret', '>= 0.11.6.19', 'perform full-text search in collections'],
+    ['ferret', '>= 0.11.8.4', 'perform full-text search in collections'],
     ['lda-ruby', '>= 0.3.8', 'extract topic words from documents and collections'],
     ['ruby-readability', '>= 0.5.2', 'extract the readable content from HTML pages'],
     ['stanford-core-nlp', '>= 0.3.0', 'tokenize, segment, parse texts and perform named entity recognition'],
