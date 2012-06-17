@@ -1,1 +1,1 @@
-[:unknown, :email, :url, :symbol, :sentence, :punctuation, :number, :enclitic, :word, :token, :fragment, :phrase, :sentence, :paragraph, :title, :zone, :list, :block, :page, :section, :collection, :document]
+[:entity, :unknown, :email, :url, :symbol, :sentence, :punctuation, :number, :enclitic, :word, :token, :fragment, :phrase, :paragraph, :title, :zone, :list, :block, :page, :section, :collection, :document]
