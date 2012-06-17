@@ -8,7 +8,7 @@ module Treat::Entities::Abilities::Delegatable
 
     opt = group.preset_option
     return unless opt
-    puts group.presets.inspect
+
     self.class_eval do
     group.presets.each do |preset|
       define_method(preset) do |worker=nil, options={}|
@@ -58,7 +58,7 @@ module Treat::Entities::Abilities::Delegatable
     end
 
     print_debug(entity, task, worker,
-    group, options) if Treat.debug
+    group, options) if Treat.core.verbosity.debug
     if not group.list.include?(worker)
       raise Treat::Exception,
       worker_not_found(worker, group)
@@ -67,10 +67,6 @@ module Treat::Entities::Abilities::Delegatable
       worker = group.const_get(
       cc(worker.to_s).intern
       )
-      
-      puts worker.inspect
-      puts worker.respond_to?(group.method).inspect
-      puts group.method
       
       result = worker.send(group.method, entity, options)
 
