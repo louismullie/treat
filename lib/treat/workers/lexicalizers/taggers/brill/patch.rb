@@ -7,7 +7,7 @@ begin
   # will clash with the top-level class 'Word'
   # we define when syntactic sugar is enabled.
 rescue TypeError
-  if Treat.sweetened?
+  if Treat.core.syntax.sweetened
     patch = true
     # Unset the class Word for the duration
     # of loading the tagger.
@@ -19,7 +19,7 @@ rescue TypeError
   end
 ensure
   # Reset the class Word if using syntactic sugar.
-  if Treat.sweetened? && patch
+  if Treat.core.syntax.sweetened && patch
     Object.const_set(:Word, Treat::Entities::Word)
   end
 end

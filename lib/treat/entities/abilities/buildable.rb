@@ -86,7 +86,7 @@ module Treat::Entities::Abilities::Buildable
     
     f = Schiphol.download(url,
       :download_folder => Treat.paths.files,
-      :show_progress => Treat.core.verbosity[:silence],
+      :show_progress => Treat.core.verbosity.silence],
       :rectify_extensions => true,
       :max_tries => 3
     )
