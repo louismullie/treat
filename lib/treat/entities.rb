@@ -37,8 +37,13 @@ module Treat::Entities
     @@match_types
   end
   
-  # A bottom-up ordering of general types of entities.
-  @@order = [Token, Fragment, Phrase, Sentence, Zone, Section, Document, Collection]
+  # A bottom-up ordering of 
+  # general types of entities.
+  @@order = [
+    Token, Fragment, Phrase, 
+    Sentence, Zone, Section, 
+    Document, Collection
+  ]
   
   # Return the hierarchy level of the entity
   # class, the minimum being a Token and the
