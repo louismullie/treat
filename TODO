@@ -1,6 +1,7 @@
 ## Todo
 
-- YAML for categories & languages.
+- Add config for Stanford loader + tagger.
+- JRuby problems: RJB, Ferret, invalid encoding in marshaling stream: serialize, 
 - HTML parser -> bug fixes.
 - URL fixes
 - MongoDB
