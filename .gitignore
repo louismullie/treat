@@ -4,7 +4,10 @@
 *.DS_Store
 *swp
 *.gem
-bin/*
-models/*
-data/*
+*.jar
+*.ser.gz
+*.props
+*.tagger
+*.html
+*.yaml
 spec/sandbox.rb
