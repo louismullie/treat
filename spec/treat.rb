@@ -16,23 +16,20 @@ describe Treat do
 
         Treat::Config.sweeten!
 
-        Treat.core.syntax[:sweetened?].should eql true
-
+        Treat.core.syntax.sweetened.should eql true
 
         Object.method_defined?(
         :"#{type.to_s.capitalize}").
         should eql true
 
         Treat::Config.unsweeten!
+        Treat.core.syntax.sweetened.should eql false
 
-        Treat.core.syntax[:sweetened?].should eql false
-        
         Object.method_defined?(type.to_s.capitalize.intern).should eql false
-=begin
+
         Object.method_defined?(
         :"#{type.to_s.capitalize}").
         should eql false
-=end
       end
 
     end
@@ -41,12 +38,12 @@ describe Treat do
 
   describe "Paths:" do
 
-    paths = Treat.core.paths[:description]
+    paths = Treat.core.paths.description
     # Check IO for bin, files, tmp, models. Fix.
-    paths.each do |path, files|
+    paths.each_pair do |path, files|
       describe "##{path}" do
         it "provides the path to the #{files}" do
-          Treat.paths.send(path).should be_instance_of String
+          Treat.paths[path].should be_instance_of String
         end
       end
     end
