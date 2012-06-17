@@ -27,7 +27,7 @@ class Treat::Workers::Processors::Parsers::Stanford
     lang = entity.language
     init(lang, options)
     
-    tag_set =  Treat.tags.stanford.language_to_tag_set[lang]
+    tag_set = StanfordCoreNLP::Config::TagSets[language]
     
     text = ::StanfordCoreNLP::Text.new(val)
     @@parsers[lang].annotate(text)
