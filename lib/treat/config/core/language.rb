@@ -1,3 +1,3 @@
 {default: :english,
-detect: true,
+detect: false,
 detect_at: :document}
