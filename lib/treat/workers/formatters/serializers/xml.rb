@@ -74,7 +74,6 @@ class Treat::Workers::Formatters::Serializers::XML
           f.write(string)
         end
       end
-      # puts string
     end
     string
   end
