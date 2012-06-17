@@ -1,7 +1,8 @@
 {
   language: {
     type: :annotator,
-    targets: [:entity]
+    targets: [:entity],
+    default: :what_language
   },
   time: {
     type: :annotator,
