@@ -1,6 +1,4 @@
 class Treat::Core::DataSet
-
-  require 'psych'
   
   attr_reader :classification
   attr_reader :labels
