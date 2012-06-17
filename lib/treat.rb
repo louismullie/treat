@@ -29,34 +29,4 @@ module Treat
   # Turn sugar on.
   Treat::Config.sweeten!
   
-  # Fix -- This must be moved urgently.
-  Treat::Entities::Entity.class_eval do
-
-    alias :true_language :language
-    
-    def language(extractor = nil, options = {})
-      
-      if is_a?(Treat::Entities::Symbol) ||
-        is_a?(Treat::Entities::Number)
-        return Treat.core.language[:default]
-      end
-      
-      if !Treat.core.language[:detect?]
-        return Treat.core.language[:default]
-      else
-        dlvl = Treat.core.language[:detect_at]
-        if (Treat::Entities.rank(type) <
-          Treat::Entities.rank(dlvl)) &&
-          has_parent?
-          anc = ancestor_with_type(dlvl)
-          return anc.language if anc
-        end
-      end
-      
-      true_language(extractor, options)
-      
-    end
-
-  end
-  
 end
