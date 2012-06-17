@@ -15,7 +15,7 @@ module Treat::Workers::Extractors::Language
     
     # By default, bias towards common languages.
     DefaultOptions = {
-      :bias => [:eng, :fre, :chi, :ger, :ara, :spa]
+      :bias_toward => [:english, :french, :chinese, :german, :arabic, :spanish]
     }
     
     # Keep only once instance of the gem class.
@@ -33,20 +33,25 @@ module Treat::Workers::Extractors::Language
     # with equal probability.
     def self.language(entity, options = {})
       options = DefaultOptions.merge(options)
+      
       @@detector ||= ::WhatLanguage.new(:possibilities)
       possibilities = @@detector.process_text(entity.to_s)
       lang = {}
       possibilities.each do |k,v|
         lang[k.intern] = v
       end
+      
       max = lang.values.max
       ordered = lang.select { |i,j| j == max }.keys
+      
       ordered.each do |l|
-        if options[:bias].include?(l)
+        if options[:bias_toward].include?(l)
           return l
         end
       end
+      
       return ordered.first
+      
     end
     
   end
