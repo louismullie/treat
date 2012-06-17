@@ -1,3 +1,4 @@
 {
-  sweeten: true
+  sweeten: true,
+  sweetened: false
 }
