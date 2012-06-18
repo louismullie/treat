@@ -32,6 +32,11 @@ module Treat::Workers::Extractors::Language
     # toward when more than one language is detected
     # with equal probability.
     def self.language(entity, options = {})
+      
+      if entity.is_a?(Treat::Entities::Token) &&
+        entity.type != :word
+          return :agnostic
+      end
       options = DefaultOptions.merge(options)
       
       @@detector ||= ::WhatLanguage.new(:possibilities)
