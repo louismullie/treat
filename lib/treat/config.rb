@@ -19,7 +19,7 @@ module Treat::Config
 
   def self.configure
     # Temporary configuration hash.
-    config = {paths: {}}
+    config = { paths: {} }
     confdir = get_full_path(:lib) + 'treat/config'
     # Iterate over each directory in the config.
     Dir[confdir + '/*'].each do |dir|
@@ -35,14 +35,38 @@ module Treat::Config
     Paths.each do |path|
       config[:paths][path] = get_full_path(path)
     end
+    # Get the tag alignments.
+    configure_tags!(config[:tags][:aligned])
     # Convert hash to structs.
     self.config = self.hash_to_struct(config)
   end
 
-
   def self.get_full_path(dir)
     File.dirname(__FILE__) +
     '/../../' + dir.to_s + "/"
+  end
+  
+  def self.configure_tags!(config)
+    ts = config[:tag_sets]
+    config[:word_tags_to_category] = 
+    align_tags(config[:word_tags], ts)
+    config[:phrase_tags_to_category] =
+    align_tags(config[:phrase_tags], ts)
+  end
+
+  # Align tag configuration.
+  def self.align_tags(tags, tag_sets)
+    wttc = {}
+    tags.each_slice(2) do |desc, tags|
+      category = desc.gsub(',', ' ,').
+      split(' ')[0].downcase.intern
+      tag_sets.each_with_index do |tag_set, i|
+        next unless tags[i]
+        wttc[tags[i]] ||= {}
+        wttc[tags[i]][tag_set] = category
+      end
+    end
+    wttc
   end
 
   def self.hash_to_struct(hash)
