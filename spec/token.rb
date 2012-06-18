@@ -59,6 +59,8 @@ describe Treat::Entities::Token do
     before do
       @lexicalizers = Treat.languages.
       english.workers.lexicalizers
+      @a_lexicalizers = Treat.languages.
+      agnostic.workers.lexicalizers
     end
 
     describe "#tag" do
@@ -79,7 +81,7 @@ describe Treat::Entities::Token do
       context "when called on a word" do
         it "returns the general part of speech of " +
         "the word as a lowercase symbol" do
-          @lexicalizers.categorizers.each do |c|
+          @a_lexicalizers.categorizers.each do |c|
             'man'.category(c).should eql :noun
           end
         end
@@ -87,7 +89,7 @@ describe Treat::Entities::Token do
 
       context "when called on a number" do
         it "returns :number" do
-          @lexicalizers.categorizers.each do |c|
+          @a_lexicalizers.categorizers.each do |c|
             '2'.category(c).should eql :number
           end
         end
@@ -96,7 +98,7 @@ describe Treat::Entities::Token do
       context "when called on a punctuation or symbol" do
         it "returns the type of punctuation or symbol" +
         "as a lowercase identifier" do
-          @lexicalizers.categorizers.each do |c|
+          @a_lexicalizers.categorizers.each do |c|
             '$'.category(c).should eql :dollar
             '.'.category(c).should eql :period
           end

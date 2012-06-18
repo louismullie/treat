@@ -70,7 +70,7 @@ describe Treat::Entities::Phrase do
 
       it "parses a phrase/sentence into its syntax tree, " +
       "adding nested phrases and tokens as children of the phrase/sentence" do
-        Treat.languages.english[:workers][:processors][:parsers].each do |p|
+        Treat.languages.english.workers.processors.parsers.each do |p|
           next #f p == :enju # slow?
           @sentence = Treat::Entities::
           Sentence.new('A sentence to tokenize.')
@@ -90,7 +90,7 @@ describe Treat::Entities::Phrase do
   describe "Lexicalizable" do
 
     before do
-      @taggers = Treat.languages.english[:workers][:lexicalizers][:taggers]
+      @taggers = Treat.languages.english.workers.lexicalizers.taggers
     end
 
     describe "#tag" do

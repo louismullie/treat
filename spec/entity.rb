@@ -317,7 +317,7 @@ describe Treat::Entities::Entity do
     
     
     before do 
-      @serializers = Treat.languages.all.
+      @serializers = Treat.languages.agnostic.
       workers.formatters.serializers
       @txt = "The story of the fox. The quick brown fox jumped over the lazy dog."
     end
