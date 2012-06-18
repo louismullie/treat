@@ -95,24 +95,31 @@ module Treat::Entities::Abilities::Delegatable
   # inside the given group.
   def find_worker_for_language(language, group)
 
-    lang = Treat.languages.send(language)
+    lang = Treat.languages[language]
     cat = group.to_s.split('::')[2].downcase.intern
     group = ucc(cl(group)).intern
-    
+
     if lang.nil?
       raise Treat::Exception,
       "No configuration file loaded for language #{language}."
     end
     
-    workers = lang[:workers][cat][group]
-
-    if !workers
-      raise Treat::Exception,
-      "No #{group_sym} is/are available for the " +
-      "#{language.to_s.capitalize} language."
+    workers = lang.workers
+    
+    if !workers.respond_to?(cat) ||
+       !workers[cat].respond_to?(group)
+        workers = Treat.languages.agnostic.workers
     end
     
-    workers.first
+    if !workers.respond_to?(cat) || 
+       !workers[cat].respond_to?(group)
+      raise Treat::Exception,
+      "No #{group} is/are available for the " +
+      "#{language.to_s.capitalize} language."
+    end
+  
+    
+    workers[cat][group].first
 
   end
 
