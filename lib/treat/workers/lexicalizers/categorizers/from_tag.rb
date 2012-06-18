@@ -3,9 +3,9 @@
 # from its tag (e.g. 'S', 'NP', 'VBZ', 'ADV', etc.).
 class Treat::Workers::Lexicalizers::Categorizers::FromTag
 
-  Pttc = Treat::Universalisation::Tags::PhraseTagToCategory
-  Wttc = Treat::Universalisation::Tags::WordTagToCategory
-  Ptc = Treat.linguistics.punctuation.sign_to_category
+  Pttc = Treat.tags.aligned.phrase_tags_to_category
+  Wttc = Treat.tags.aligned.word_tags_to_category
+  Ptc = Treat.linguistics.punctuation.punct_to_category
   
   # Find the category of the entity from its tag.
   def self.category(entity, options = {})
