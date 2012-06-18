@@ -24,8 +24,9 @@ module Treat::Entities::Abilities::Magical
   #
   def magic(sym, *args)
 
-    @@entities_regexp ||= "(#{Treat::Entities.list.join('|')})"
-    @@cats_regexp ||= "(#{Treat::Languages::Language::WordCategories.join('|')})"
+    # Cache this for performance.
+    @@entities_regexp ||= "(#{Treat.core.entities.join('|')})"
+    @@cats_regexp ||= "(#{Treat.linguistics.categories.join('|')})"
 
     method = sym.to_s =~ /entities/ ?
     sym.to_s.gsub('entities', 'entitys') :

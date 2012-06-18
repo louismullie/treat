@@ -1,13 +1,7 @@
 source :rubygems
 
-gemspec
+gem 'schiphol'
 
-group :test do
+group :development do
   gem 'rspec'
-  gem 'rake'
-end
-
-group :install do
-  gem 'rubyzip'
-  gem 'progressbar'
 end

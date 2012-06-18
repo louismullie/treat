@@ -9,6 +9,7 @@ module Treat::Entities::Abilities::Delegatable
     opt = group.preset_option
     return unless opt
 
+    self.class_eval do
     group.presets.each do |preset|
       define_method(preset) do |worker=nil, options={}|
         return get(preset) if has?(preset)
@@ -19,15 +20,17 @@ module Treat::Entities::Abilities::Delegatable
         features[preset] = f if f
       end
     end
+  end
 
   end
 
   # Add the workers to perform a task on an entity class.
   def add_workers(group)
-
     self.class_eval do
+      
       task = group.method
       add_presets(group)
+      
       define_method(task) do |worker=nil, options={}|
         if worker.is_a?(Hash)
           options, worker =
@@ -37,8 +40,8 @@ module Treat::Entities::Abilities::Delegatable
           @features[task]
         else
           self.class.call_worker(
-          self, task, worker,
-          group, options
+            self, task, worker,
+            group, options
           )
         end
       end
@@ -55,8 +58,7 @@ module Treat::Entities::Abilities::Delegatable
     end
 
     print_debug(entity, task, worker,
-    group, options) if Treat.debug
-
+    group, options) if Treat.core.verbosity.debug
     if not group.list.include?(worker)
       raise Treat::Exception,
       worker_not_found(worker, group)
@@ -93,23 +95,31 @@ module Treat::Entities::Abilities::Delegatable
   # inside the given group.
   def find_worker_for_language(language, group)
 
-    lang = Treat::Languages.describe(language)
-    klass = cc(lang).intern
-    lclass = Treat::Languages.const_get(klass)
-    cat = group.to_s.split('::')[-2].intern
-    klass = lclass.const_get(cat)
+    lang = Treat.languages[language]
+    cat = group.to_s.split('::')[2].downcase.intern
+    group = ucc(cl(group)).intern
 
-    g = ucc(cl(group)).intern
-
-    if !klass[g] || !klass[g][0]
-      d = ucc(cl(group))
-      d.gsub!('_', ' ')
-      d = d[0..-2]
-      raise Treat::Exception, "No #{d}" +
-      " is available for the " +
-      "#{lang.to_s.capitalize} language."
+    if lang.nil?
+      raise Treat::Exception,
+      "No configuration file loaded for language #{language}."
     end
-    return klass[g][0]
+    
+    workers = lang.workers
+    
+    if !workers.respond_to?(cat) ||
+       !workers[cat].respond_to?(group)
+        workers = Treat.languages.agnostic.workers
+    end
+    
+    if !workers.respond_to?(cat) || 
+       !workers[cat].respond_to?(group)
+      raise Treat::Exception,
+      "No #{group} is/are available for the " +
+      "#{language.to_s.capitalize} language."
+    end
+  
+    
+    workers[cat][group].first
 
   end
 

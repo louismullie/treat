@@ -5,36 +5,28 @@ module Treat
     class Stanford
 
       require 'stanford-core-nlp'
-
-      class << self
-        attr_accessor :jar_path
-        attr_accessor :model_path
-        attr_accessor :loaded
-      end
-
-      self.jar_path = Treat.bin + 'stanford/'
-      self.model_path = Treat.models + 'stanford/'
-      self.loaded = false
+      
+      @@loaded = false
 
       def self.load(language = nil)
 
-        return if self.loaded
+        return if @@loaded
 
-        language ||=
-        Treat::Languages.describe(
-        Treat.default_language)
+        language ||= Treat.core.language.default
 
-        StanfordCoreNLP.jar_path = self.jar_path
-        StanfordCoreNLP.model_path = self.model_path
-
+        StanfordCoreNLP.jar_path = 
+        Treat.paths.bin + "stanford/"
+        StanfordCoreNLP.model_path = 
+        Treat.paths.models + 'models/'
         StanfordCoreNLP.use(language)
-
-        StanfordCoreNLP.log_file =
-        NULL_DEVICE if Treat.silence
-
+        
+        if Treat.core.verbosity.silence
+          StanfordCoreNLP.log_file = NULL_DEVICE 
+        end
+        
         StanfordCoreNLP.bind
 
-        self.loaded = true
+        @@loaded = true
 
       end
 
