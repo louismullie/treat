@@ -23,7 +23,6 @@
       cardinalizers:  [:linguistics]
     },
     lexicalizers: {
-      categorizers: [:from_tag],
       taggers: [:lingua, :brill, :stanford],
       sensers: [:wordnet]
     },
