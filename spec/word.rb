@@ -5,13 +5,14 @@ describe Treat::Entities::Word do
   describe "Inflectors" do
 
     before do
-      @inflectors = Treat::Languages::English::Inflectors
+      @inflectors = Treat.languages.
+      english.workers.inflectors
     end
 
     describe "#stem" do
 
       it "returns the stem of the word" do
-        @inflectors[:stemmers].each do |s|
+        @inflectors.stemmers.each do |s|
           'running'.stem(s).should eql 'run'
         end
       end
@@ -20,7 +21,7 @@ describe Treat::Entities::Word do
 
     describe "#infinitive" do
       it "returns the infinitive form of a verb" do
-        @inflectors[:conjugators].each do |c|
+        @inflectors.conjugators.each do |c|
           'running'.infinitive(c).should eql 'run'
         end
       end
@@ -29,7 +30,7 @@ describe Treat::Entities::Word do
     # Nil if not verb?
     describe "#present_participle" do
       it "returns the present participle form of a verb" do
-        @inflectors[:conjugators].each do |c|
+        @inflectors.conjugators.each do |c|
           'running'.infinitive(c).should eql 'run'
         end
       end
@@ -37,7 +38,7 @@ describe Treat::Entities::Word do
 
     describe "#plural" do
       it "returns the plural form of the word" do
-        @inflectors[:declensors].each do |i|
+        @inflectors.declensors.each do |i|
           # 'inflection'.plural(i).should eql 'inflections'
         end
       end
@@ -45,7 +46,7 @@ describe Treat::Entities::Word do
 
     describe "#singular" do
       it "returns the singular form of the word" do
-        @inflectors[:declensors].each do |i|
+        @inflectors.declensors.each do |i|
           next if i == :linguistics # Fix this
           # 'inflections'.singular(i).should eql 'inflections'
         end
@@ -54,10 +55,10 @@ describe Treat::Entities::Word do
 
     describe "#ordinal_form" do
       it "returns the ordinal form of a number" do
-        @inflectors[:cardinalizers].each do |o|
+        @inflectors.cardinalizers.each do |o|
           20.cardinal.should eql 'twenty'
         end
-        @inflectors[:ordinalizers].each do |o|
+        @inflectors.ordinalizers.each do |o|
           20.ordinal.should eql 'twentieth'
         end
       end
@@ -100,7 +101,7 @@ describe Treat::Entities::Word do
     describe "#tf_idf" do
       it "returns the TF*IDF score of the word" do
         #c = Treat::Entities::Collection.build(
-        #Treat.spec + 'samples/mathematicians')
+        #Treat.paths.spec + 'samples/mathematicians')
         #c.do(:chunk, :segment, :tokenize)
         #c.words[30].tf_idf.should eql 0.2231
       end

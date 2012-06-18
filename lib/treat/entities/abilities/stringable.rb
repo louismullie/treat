@@ -32,25 +32,6 @@ module Treat::Entities::Abilities::Stringable
     end
   end
 
-  # Return an informative string representation
-  # of the entity.
-  def inspect
-    s = "#{cl(self.class)} (#{@id.to_s})"
-    if caller_method(2) == :inspect
-      @id.to_s
-    else
-      dependencies = []
-      @dependencies.each do |dependency|
-        dependencies <<
-        "#{dependency.target}#{dependency.type}"
-      end
-      s += "  --- #{short_value.inspect}" +
-      "  ---  #{@features.inspect} " +
-      "  --- #{dependencies.inspect} "
-    end
-    s
-  end
-
   # Print out an ASCII representation of the tree.
   def print_tree; puts visualize(:tree); end
   

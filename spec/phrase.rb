@@ -42,7 +42,7 @@ describe Treat::Entities::Phrase do
     
     describe "#time" do
       it "returns a DateTime object representing the time in the phrase" do
-        Treat::Languages::English::Extractors[:time].each do |e|
+        Treat.languages.english[:workers][:extractors][:time].each do |e|
           t = 'october 2006'.time(e)
           t.month.should eql 10
         end
@@ -55,7 +55,7 @@ describe Treat::Entities::Phrase do
     describe "#tokenize" do
 
       it "splits a phrase/sentence into tokens and adds them as children of the phrase" do
-        Treat::Languages::English::Processors[:tokenizers].each do |t|
+        Treat.languages.english[:workers][:processors][:tokenizers].each do |t|
           @phrase = Treat::Entities::Phrase.new('a phrase to tokenize')
           @phrase.tokenize(t)
           @phrase.children.should eql @phrase.tokens
@@ -70,7 +70,7 @@ describe Treat::Entities::Phrase do
 
       it "parses a phrase/sentence into its syntax tree, " +
       "adding nested phrases and tokens as children of the phrase/sentence" do
-        Treat::Languages::English::Processors[:parsers].each do |p|
+        Treat.languages.english.workers.processors.parsers.each do |p|
           next #f p == :enju # slow?
           @sentence = Treat::Entities::
           Sentence.new('A sentence to tokenize.')
@@ -90,7 +90,7 @@ describe Treat::Entities::Phrase do
   describe "Lexicalizable" do
 
     before do
-      @taggers = Treat::Languages::English::Lexicalizers[:taggers]
+      @taggers = Treat.languages.english.workers.lexicalizers.taggers
     end
 
     describe "#tag" do

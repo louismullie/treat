@@ -1,16 +1,17 @@
 module Treat::Entities
-
-  # Require base class for Entity.
-  require 'treat/tree'
-
-  class Entity < Treat::Tree::Node
+  
+  module Abilities; end
+  
+ # Require abilities.
+  Dir[Treat.paths.lib + 'treat/entities/abilities/*.rb'].each do |f| 
+    require f
+  end
+  
+  class Entity < Treat::Entities::Node
 
     # A Symbol representing the lowercase
     # version of the class name.
     attr_accessor :type
-
-    # Require abilities.
-    require 'treat/entities/abilities'
 
     # Implements support for #register,
     # #registry, and #contains_* methods.
@@ -104,13 +105,13 @@ module Treat::Entities
           super(sym, *args, &block)
         rescue NoMethodError
           raise Treat::Exception,
-          if Treat::Categories.lookup(sym)
+          if Treat::Workers.lookup(sym)
             msg = "Method #{sym} cannot " +
             "be called on a #{type}."
           else
             msg = "Method #{sym} does not exist."
             msg += did_you_mean?(
-            Treat::Categories.methods, sym)
+            Treat::Workers.methods, sym)
           end
         end
       else

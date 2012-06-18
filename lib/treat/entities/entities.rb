@@ -1,8 +1,5 @@
 module Treat::Entities
 
-  # Require the generic entity lass.
-  require 'treat/entities/entity'
-
   # Represents a collection of texts.
   class Collection < Entity
     

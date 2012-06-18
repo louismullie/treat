@@ -1,9 +1,13 @@
 *~
 *.lock
+*.index
 *.DS_Store
 *swp
-*.out
 *.gem
-*.sh
-bin/*
-models/*
+*.jar
+*.ser.gz
+*.props
+*.tagger
+*.html
+*.yaml
+spec/sandbox.rb

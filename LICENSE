@@ -1,4 +1,4 @@
-Treat - Text Retrieval, Extraction and Annotation Toolkit
+Treat - Text Retrieval, Extraction and Annotation Toolkit, v. 2.0
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,4 +24,3 @@ Non-trivial amount of code has been incorporated and modified from other librari
 - extractors/topics/reuters.rb - Mark Watson (GPL license)
 - inflectors/declensions/english.rb - Thomas Sawyer (MIT license)
 - inflectors/stem/porter.rb - Ray Pereda (No license information)
-- tree.rb - Partly based on work by Anupam Sengupta (Creative Commons Attribution-ShareAlike Unported v. 3.0 License)
