@@ -3,6 +3,8 @@ class Treat::Workers::Processors::Parsers::Stanford
 
   require 'treat/loaders/stanford'
 
+  Pttc = Treat.tags.aligned.phrase_tags_to_category
+  
   # Hold one instance of the pipeline per language.
   @@parsers = {}
 
@@ -114,8 +116,7 @@ class Treat::Workers::Processors::Parsers::Stanford
         tag_s, tag_opt = *tag.split('-')
         tag_s ||= ''
         
-        if Treat::Universalisation::Tags::PhraseTagToCategory[tag_s] &&
-           Treat::Universalisation::Tags::PhraseTagToCategory[tag_s][tag_set]
+        if Pttc[tag_s] && Pttc[tag_s][tag_set]
           ruby_child = Treat::Entities::Phrase.new
         else
           l = java_child.children[0].to_s
