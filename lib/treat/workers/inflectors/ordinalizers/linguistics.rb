@@ -7,10 +7,16 @@ class Treat::Workers::Inflectors::Ordinalizers::Linguistics
 
   require 'treat/loaders/linguistics'
   
+  DefaultOptions = {
+    :language => Treat.core.language.default
+  }
+  
   # Desribe a number in words in ordinal form, using the
   # 'linguistics' gem.
   def self.ordinal(number, options = {})
-    klass = Treat::Loaders::Linguistics.load(number.language)
+    options = DefaultOptions.merge(options)
+    klass = Treat::Loaders::
+    Linguistics.load(options[:language])
     klass.ordinate(number.to_s)
   end
   

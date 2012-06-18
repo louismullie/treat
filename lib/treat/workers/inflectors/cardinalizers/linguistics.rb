@@ -7,6 +7,10 @@ module Treat::Workers::Inflectors::Cardinalizers::Linguistics
   
   require 'treat/loaders/linguistics'
   
+  DefaultOptions = {
+    :language => Treat.core.language.default
+  }
+  
   # Return the description of a cardinal number in words.
   #
   # Options:
@@ -32,8 +36,9 @@ module Treat::Workers::Inflectors::Cardinalizers::Linguistics
   #
   # More specific options when using :type => :ordinal:
   def self.cardinal(entity, options = {})
+    options = DefaultOptions.merge(options)
     Treat::Loaders::Linguistics.
-    load(entity.language).
+    load(options[:language]).
     numwords(entity.to_s, options)
   end
   
