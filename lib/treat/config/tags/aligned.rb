@@ -1,7 +1,7 @@
 {tag_sets: [
   :claws_c5, :brown, :penn, :stutgart, :chinese, :paris7
 ],
-aligned_phrase_tags: [
+phrase_tags: [
   'Adjectival phrase', ['', '', 'ADJP', '', '', 'AP'],
   'Adverbial phrase', ['', '', 'ADVP', '', '', 'AdP'],
   'Conjunction phrase', ['', '', 'CONJP', '', '', 'Ssub'],
@@ -30,31 +30,14 @@ aligned_phrase_tags: [
   'Sentence', ['', '', 'S', '', '', 'SENT'],
   'Phrase', ['', '', 'SBAR', '', '', ''] # Fix
 ],
-# Aligned tags for the Claws C5, Brown and Penn tag sets.
-# Adapted from Manning, Christopher and Schütze, Hinrich,
-# 1999. Foundations of Statistical Natural Language
-# Processing. MIT Press, p. 141-142;
-# http://www.isocat.org/rest/dcs/376;
-
-=begin
-
-  Treat::Universalisation::Tags::AlignedWordTags.each_slice(2) do |desc, tags|
-    
-    category = desc.gsub(',', ' ,').
-    split(' ')[0].downcase.intern
-    
-    tags.each_with_index do |element, index|
-      tag = tags[tag_sets[index]]
-      wttc[tag] ||= {}
-      tag_sets.each do |tag_set|
-        wttc[tag][tag_set] = category
-      end
-    end
-    
-  end
+word_tags: [
   
-=end
-aligned_word_tags: [
+  # Aligned tags for the Claws C5, Brown and Penn tag sets.
+  # Adapted from Manning, Christopher and Schütze, Hinrich,
+  # 1999. Foundations of Statistical Natural Language
+  # Processing. MIT Press, p. 141-142;
+  # http://www.isocat.org/rest/dcs/376;
+
   'Adjective', ['AJ0', 'JJ', 'JJ', '', 'JJ', 'A'],
   'Adjective', ['AJ0', 'JJ', 'JJ', '', 'JJ', 'ADJ'],
   'Ajective, adverbial or predicative', ['', '', '', 'ADJD', '', 'ADJ'],
