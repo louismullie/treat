@@ -20,7 +20,7 @@ module Treat
         Treat.paths.models + 'models/'
         StanfordCoreNLP.use(language)
         
-        if Treat.core.verbosity.silence]
+        if Treat.core.verbosity.silence
           StanfordCoreNLP.log_file = NULL_DEVICE 
         end
         

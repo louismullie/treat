@@ -9,7 +9,7 @@ end
 
 # Runs a block of code while blocking stdout.
 def silence_stdout(log = '/dev/null')
-  unless Treat.core.verbosity.silence]
+  unless Treat.core.verbosity.silence
     yield; return
   end
   old = $stdout.dup
