@@ -1,4 +1,4 @@
-{sign_to_category: {
+{punct_to_category: {
   
   '.' => :period,
   ',' => :comma,
