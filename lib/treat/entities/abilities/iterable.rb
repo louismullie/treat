@@ -11,7 +11,7 @@ module Treat::Entities::Abilities::Iterable
     types = [:entity] if types.size == 0
     f = false
     types.each do |t2|
-      if Treat::Entities.match_types[t2][type]
+      if is_a?(Treat::Entities.const_get(cc(t2)))
         f = true; break
       end
     end
@@ -54,45 +54,35 @@ module Treat::Entities::Abilities::Iterable
   
   # Returns the first ancestor of this entity 
   # that has the given type.
-  def ancestor_with_types(*types)
+  def ancestor_with_type(type)
+    return unless has_parent?
     ancestor = @parent
-    match_types = lambda do |t1, t2|
-      f = false
-      types.each do |t2|
-        if Treat::Entities.match_types[t2][t1]
-          f = true; break
-        end
-      end
-      f
+    type_klass = Treat::Entities.const_get(cc(type))
+    while not ancestor.is_a?(type_klass)
+      return nil unless (ancestor && ancestor.has_parent?)
+      ancestor = ancestor.parent
     end
-    if ancestor
-      while not match_types.call(ancestor.type, type)
-        return nil unless (ancestor && ancestor.has_parent?)
-        ancestor = ancestor.parent
-      end
-      match_types.call(ancestor.type, types) ? ancestor : nil
-    end
+    ancestor
   end
 
-  alias :ancestor_with_type :ancestor_with_types
-
   # Yields each ancestors of this entity that
-  # has one of the the given types. May skip levels.
-  def each_ancestor(*types)
-    types = [:entity] if types.empty?
+  # has the given type.
+  def each_ancestor(type = :entity)
     ancestor = self
-    while (a = ancestor.ancestor_with_types(*types))
+    while (a = ancestor.ancestor_with_type(type))
       yield a
       ancestor = ancestor.parent
     end
   end
   
-  # Returns an array of ancestors of this entity that
-  # has one of the the given types. May skip levels.
-  def ancestors_with_types(*types)
-    as = []
-    each_ancestor(*types) { |a| as << a }
-    as
+  # Returns an array of ancestors of this 
+  # entity that have the given type.
+  def ancestors_with_type(type)
+    ancestors = []
+    each_ancestor(type) do |a| 
+      ancestors << a
+    end
+    ancestors
   end
 
   # Returns the first ancestor that has a feature
@@ -103,8 +93,6 @@ module Treat::Entities::Abilities::Iterable
     end
   end
   
-  alias :ancestors_with_type :ancestors_with_types
-
   # Number of children that have a given feature.
   def num_children_with_feature(feature)
     i = 0
