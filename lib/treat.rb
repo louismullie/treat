@@ -5,15 +5,13 @@ module Treat
     raise "Treat requires Ruby version 1.9.2 " +
     "or higher, but current is #{RUBY_VERSION}."
   end
-
-  # Current version
-  VERSION = "1.0.6"
   
   # Custom exception class.
   class Exception < ::Exception; end
   
-  # Require gem dependencies.
-  require 'schiphol'
+  # Require dependencies.
+  require 'bundler'
+  Bundler.require
   
   # Load configuration options.
   require 'treat/config'
