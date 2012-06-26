@@ -1,5 +1,10 @@
 ## Todo
 
+- Move AI to external gem...
+- Clusterer
+- reverse_merge!
+- SWIG interface
+- Maxent
 - Add config for Stanford loader + tagger.
 - JRuby problems: RJB, Ferret, invalid encoding in marshaling stream: serialize, 
 - HTML parser -> bug fixes.
@@ -22,13 +27,7 @@
 - Discard sentences with word_count = 0?
 - Phrase constituent -> fragment
 - Category => strings
-- Tokens_with_feature doesn't word
-
-# Testing
-
-- Rake test
-- Wiki test
-- Build and test
+- Tokens_with_feature doesn't work ?
 
 ## Future
 
@@ -36,10 +35,6 @@
 - JWI Wordnet interface
 - ABW, ODT -> migrate to Nokogiri
 - Test other encodings
-- Move tag alignments to gem
-- Benchmarks
-- Tests
-- NLP polish
 - Tests for Wiki
 - Enju as a server
 - Sectionners
