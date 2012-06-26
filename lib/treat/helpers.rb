@@ -1,7 +1,4 @@
 module Treat::Helpers
-  # Require abilities.
-   Dir.glob(Treat.paths.lib + 
-    '/treat/helpers/*.rb').each do |f| 
-     require f
-   end
+  p = Treat.paths.lib + 'treat/helpers/*.rb'
+  Dir.glob(p).each { |f| require f }
 end
