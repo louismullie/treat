@@ -49,13 +49,17 @@ module Treat::Core::Proxies
     end
 
   end
+  
+  # Include the proxies in the core classes.
+  ::String.class_eval { include Treat::Core::Proxies::String }
+  ::Numeric.class_eval { include Treat::Core::Proxies::Numeric }
 
-  # Proxy for Entity that prevents language
-  # detection when the
-  module Entity
-
+  Treat::Entities::Entity.class_eval do
+    
+    alias :language_proxied :language
+    
     def language(extractor = nil, options = {})
-
+  
       return Treat.core.language.default if
       !Treat.core.language.detect
 
@@ -65,8 +69,8 @@ module Treat::Core::Proxies
       end
 
       dlvl = Treat.core.language.detect_at
-      if (Treat::Entities.rank(type) <
-        Treat::Entities.rank(dlvl)) &&
+      if (Treat.core.entities.rankings[type] <
+        Treat.core.entities.rankings[dlvl]) &&
         has_parent?
         anc = ancestor_with_type(dlvl)
         return anc.language if anc
@@ -79,15 +83,6 @@ module Treat::Core::Proxies
 
     end
 
-  end
-  
-  # Include the proxies in the core classes.
-  ::String.class_eval { include Treat::Core::Proxies::String }
-  ::Numeric.class_eval { include Treat::Core::Proxies::Numeric }
-
-  Treat::Entities::Entity.class_eval do
-    alias :language_proxied :language
-    include Treat::Core::Proxies::Entity
   end
 
 end
