@@ -9,9 +9,8 @@ module Treat
   # Custom exception class.
   class Exception < ::Exception; end
   
-  # Require dependencies.
-  require 'bundler'
-  Bundler.require
+  # Require gems
+  require 'schiphol'
   
   # Load configuration options.
   require 'treat/config'
