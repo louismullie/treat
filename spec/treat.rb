@@ -10,7 +10,7 @@ describe Treat do
     "define/undefine entity builders as uppercase methods " +
     "in the global namespace" do
 
-      Treat.core.entities.each do |type|
+      Treat.core.entities.list.each do |type|
 
         next if type == :symbol
 
