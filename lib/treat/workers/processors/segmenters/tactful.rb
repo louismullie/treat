@@ -38,7 +38,6 @@ module Treat::Workers::Processors::Segmenters::Tactful
     
     sentences.each do |sentence|
       unescape_floats!(sentence)
-      puts sentence.to_s if sentence.to_s.include?('staff')
       entity << Treat::Entities::Phrase.from_string(sentence)
     end
     
