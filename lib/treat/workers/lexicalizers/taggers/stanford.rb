@@ -17,13 +17,13 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
     # Handle options and initialize the tagger.
     lang = entity.language
     options = get_options(options, lang)
-    init_tagger(lang)
+    init_tagger(lang) unless @@taggers[lang]
     tokens, list = get_token_list(entity)
 
     # Do the tagging.
     i = 0
     isolated_token = entity.is_a?(Treat::Entities::Token)
-    puts @@taggers[lang].inspect
+
     @@taggers[lang].apply(list).each do |tok|
       tokens[i].set :tag, tok.tag
       tokens[i].set :tag_set,
@@ -52,7 +52,7 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
   # Initialize the tagger for a language.
   def self.init_tagger(language)
     Treat::Loaders::Stanford.load(language)
-    model = StanfordCoreNLP::Config::Models[:pos][language] # fix
+    model = StanfordCoreNLP::Config::Models[:pos][language]
     model = Treat.paths.models + 'stanford/' +
     StanfordCoreNLP::Config::ModelFolders[:pos] + model
     @@taggers[language] ||=
