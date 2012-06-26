@@ -37,9 +37,6 @@ module Treat::Config
     end
     # Get the tag alignments.
     configure_tags!(config[:tags][:aligned])
-    # Get the entity order.
-    config[:core][:entities][:rankings] =
-    rank_entity_types(config[:core][:entities][:list])
     # Convert hash to structs.
     self.config = self.hash_to_struct(config)
   end
@@ -70,26 +67,6 @@ module Treat::Config
       end
     end
     wttc
-  end
-
-  # Return the hierarchy level of the entity
-  # class, the minimum being a Token and the
-  # maximum being a Collection.
-  #
-  # Implement as true comparison functions.
-  def self.rank_entity_types(types)
-    ranks = {}
-    types.each do |type|
-      klass = Treat::Entities.const_get(cc(type))
-      compare = lambda { |a,b| a == b || a < b }
-      result = nil
-      1.upto(@@order.size) do |i|
-        if compare.call(klass, @@order[i])
-          ranks[type] = result; break
-        end
-      end
-    end
-    ranks
   end
   
   def self.hash_to_struct(hash)
