@@ -37,6 +37,9 @@ module Treat::Config
     end
     # Get the tag alignments.
     configure_tags!(config[:tags][:aligned])
+    # Get the entity order.
+    config[:core][:entities][:rankings] =
+    rank_entity_types(config[:core][:entities][:list])
     # Convert hash to structs.
     self.config = self.hash_to_struct(config)
   end
@@ -69,6 +72,26 @@ module Treat::Config
     wttc
   end
 
+  # Return the hierarchy level of the entity
+  # class, the minimum being a Token and the
+  # maximum being a Collection.
+  #
+  # Implement as true comparison functions.
+  def self.rank_entity_types(types)
+    ranks = {}
+    types.each do |type|
+      klass = Treat::Entities.const_get(cc(type))
+      compare = lambda { |a,b| a == b || a < b }
+      result = nil
+      1.upto(@@order.size) do |i|
+        if compare.call(klass, @@order[i])
+          ranks[type] = result; break
+        end
+      end
+    end
+    ranks
+  end
+  
   def self.hash_to_struct(hash)
     return hash if hash.keys.
     select { |k| !k.is_a?(Symbol) }.size > 0
@@ -87,7 +110,7 @@ module Treat::Config
   def self.sweeten!
     return if Treat.core.syntax.sweetened
     Treat.core.syntax.sweetened = true
-    Treat.core.entities.each do |type|
+    Treat.core.entities.list.each do |type|
       next if type == :Symbol
       kname = cc(type).intern
       klass = Treat::Entities.const_get(kname)
@@ -103,7 +126,7 @@ module Treat::Config
   def self.unsweeten!
     return unless Treat.core.syntax.sweetened
     Treat.core.syntax.sweetened = false
-    Treat.core.entities.each do |type|
+    Treat.core.entities.list.each do |type|
       name = cc(type).intern
       next if type == :Symbol
       Object.class_eval { remove_method(name) }
