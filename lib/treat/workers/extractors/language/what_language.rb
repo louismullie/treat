@@ -33,15 +33,12 @@ module Treat::Workers::Extractors::Language
     # with equal probability.
     def self.language(entity, options = {})
       
-      if entity.is_a?(Treat::Entities::Token) &&
-        entity.type != :word
-          return :agnostic
-      end
       options = DefaultOptions.merge(options)
       
       @@detector ||= ::WhatLanguage.new(:possibilities)
       possibilities = @@detector.process_text(entity.to_s)
       lang = {}
+
       possibilities.each do |k,v|
         lang[k.intern] = v
       end
