@@ -56,7 +56,10 @@ module Treat::Entities
     
     # Implement support for #copy_into.
     include Abilities::Copyable
-    
+
+    # Implement support for #compare_with
+    include Abilities::Comparable
+       
     # Initialize the entity with its value and
     # (optionally) a unique identifier. By default,
     # the object_id will be used as id.
