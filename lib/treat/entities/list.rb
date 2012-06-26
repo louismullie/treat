@@ -1,8 +1,14 @@
+
+
 module Treat::Entities
 
+  class Entity
+    
+  end
+  
   # Represents a collection of texts.
   class Collection < Entity
-    
+
     # Initialize the collection with a folder
     # containing the texts of the collection.
     def initialize(folder = nil, id = nil)
@@ -33,7 +39,7 @@ module Treat::Entities
 
   # Represents a document.
   class Document < Entity
-    
+
     def initialize(file = nil, id = nil)
       super('', id)
       set :file, file
@@ -46,13 +52,13 @@ module Treat::Entities
 
   # Represents a page of text.
   class Page < Section; end
-  
+
   # Represents a block of text 
   class Block < Section; end
-  
+
   # Represents a list.
   class List < Section; end
-  
+
   # Represents a zone of text
   # (Title, Paragraph, List, Quote).
   class Zone < Entity; end
@@ -65,7 +71,7 @@ module Treat::Entities
 
   # Represents a group of words with a sentence ender.
   class Sentence < Entity; end
-  
+
   # Represents a group of words.
   class Phrase < Entity; end
 
