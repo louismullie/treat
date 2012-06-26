@@ -78,7 +78,7 @@ module Treat::Workers::Formatters::Unserializers::XML
       current_value = ''
       type = xml_reader.name.intern
 
-      if Treat.core.entities.include?(type)
+      if Treat.core.entities.list.include?(type)
         if !current_element
           current_element = self.revive(type, current_value, id)
         else
