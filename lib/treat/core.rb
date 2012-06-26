@@ -1,5 +1,4 @@
 module Treat::Core
-  Dir[Treat.paths.lib + 'treat/core/*.rb'].each do |f|
-    require f
-  end
+  p = Treat.paths.lib + 'treat/core/*.rb'
+  Dir.glob(p).each { |f| require f }
 end
