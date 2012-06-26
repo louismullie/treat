@@ -65,7 +65,7 @@ module Treat::Entities::Abilities::Debuggable
       @@i += 1
     else
       if @@i > 1
-        Treat.core.entities.each do |e|
+        Treat.core.entities.list.each do |e|
           @@prev.gsub!(e.to_s, e.to_s + 's')
         end
         @@prev.gsub!('its', 'their')
