@@ -33,7 +33,7 @@ module Treat::Entities::Abilities::Doable
     entity_types = group.targets
     f = nil
     entity_types.each do |t|
-      f = true if Treat::Entities.match_types[t][type]
+      f = true if is_a?(Treat::Entities.const_get(cc(t)))
     end
     if f || entity_types.include?(:entity)
       send(task, worker, options)
