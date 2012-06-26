@@ -69,9 +69,9 @@ module Treat::Core::Proxies
       end
 
       dlvl = Treat.core.language.detect_at
-      if (Treat.core.entities.rankings[type] <
-        Treat.core.entities.rankings[dlvl]) &&
-        has_parent?
+      dklass = Treat::Entities.const_get(cc(dlvl))
+      
+      if compare_with(dklass) < 1 && has_parent?
         anc = ancestor_with_type(dlvl)
         return anc.language if anc
       end
