@@ -1,4 +1,1 @@
-{
-  sweeten: true,
-  sweetened: false
-}
+{sweeten: true, sweetened: false}

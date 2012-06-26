@@ -1,2 +1,1 @@
-{debug: false,
-silence: true}
+{debug: false, silence: true}
