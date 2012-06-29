@@ -7,8 +7,10 @@ module Treat::Entities
     require f
   end
   
-  class Entity < Treat::Entities::Node
-
+  require Treat.paths.lib + 'treat/core/node'
+  
+  class Entity < Treat::Core::Node
+    
     # A Symbol representing the lowercase
     # version of the class name.
     attr_accessor :type
@@ -59,7 +61,7 @@ module Treat::Entities
 
     # Implement support for #compare_with
     include Abilities::Comparable
-       
+    
     # Initialize the entity with its value and
     # (optionally) a unique identifier. By default,
     # the object_id will be used as id.
