@@ -11,13 +11,17 @@ module Treat
       def self.load(language = nil)
 
         return if @@loaded
-
         language ||= Treat.core.language.default
 
+        jar_path = Treat.libraries.
+        stanford.jar_path || Treat.paths.bin
+        models_path = Treat.libraries.
+        stanford.model_path || Treat.paths.models
+        
         StanfordCoreNLP.jar_path = 
-        Treat.paths.bin + "stanford/"
+        "#{jar_path}stanford/"
         StanfordCoreNLP.model_path = 
-        Treat.paths.models + 'models/'
+        "#{models_path}stanford/"
         StanfordCoreNLP.use(language)
         
         if Treat.core.verbosity.silence
@@ -25,7 +29,6 @@ module Treat
         end
         
         StanfordCoreNLP.bind
-
         @@loaded = true
 
       end
