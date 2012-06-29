@@ -142,6 +142,8 @@ module Treat::Installer
     puts "- Cleaning up..."
     FileUtils.rm_rf(origin)
     
+    'Done.'
+    
   end
 
   def self.download_punkt_models(language)
