@@ -14,6 +14,21 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
   # Tag the word using one of the Stanford taggers.
   def self.tag(entity, options = {})
 
+    # Handle tags for sentences and phrases.
+    if entity.is_a?(Treat::Entities::Sentence) ||
+      (entity.is_a?(Treat::Entities::Phrase) &&
+      !entity.parent_sentence)
+
+      tag_set = options[:tag_set]
+      entity.set :tag_set, tag_set
+    end
+
+    if entity.is_a?(Treat::Entities::Sentence)
+      return 'S'
+    elsif entity.is_a?(Treat::Entities::Phrase)
+      return 'P'
+    end
+    
     # Handle options and initialize the tagger.
     lang = entity.language
     options = get_options(options, lang)
@@ -30,21 +45,6 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
       options[:tag_set] if isolated_token
       return tok.tag if isolated_token
       i += 1
-    end
-
-    # Handle tags for sentences and phrases.
-    if entity.is_a?(Treat::Entities::Sentence) ||
-      (entity.is_a?(Treat::Entities::Phrase) &&
-      !entity.parent_sentence)
-
-      tag_set = options[:tag_set]
-      entity.set :tag_set, tag_set
-    end
-
-    if entity.is_a?(Treat::Entities::Sentence)
-      return 'S'
-    elsif entity.is_a?(Treat::Entities::Phrase)
-      return 'P'
     end
 
   end
