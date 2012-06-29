@@ -81,8 +81,8 @@ module Treat::Installer
   
   # Minimal install for Travis CI.
   def self.install_travis
-    #install_language_dependencies(:agnostic)
-    #install_language_dependencies(:english)
+    install_language_dependencies(:agnostic)
+    install_language_dependencies(:english)
     download_stanford(:minimal)
     download_punkt_models(:english)
   end
