@@ -7,7 +7,5 @@ before_install:
 before_script: 
   - sudo apt-get install antiword
   - sudo apt-get install poppler-utils
-  - sudo wget http://www.louismullie.com/treat/stanford-core-nlp-minimal.zip
-  - sudo unzip -o stanford-core-nlp-minimal.zip -d bin/
-  - bundle install
+  - rake treat:install[travis]
 script: rake treat:spec

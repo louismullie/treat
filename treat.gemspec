@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   ['README.md', 'LICENSE']
   
   # Runtime dependencies
+=begin
   s.add_runtime_dependency 'schiphol'
   s.add_runtime_dependency 'psych'
   s.add_runtime_dependency 'nokogiri'
@@ -49,5 +50,5 @@ Gem::Specification.new do |s|
   
   # Development dependencies
   s.add_development_dependency 'rspec'
-  
+=end
 end

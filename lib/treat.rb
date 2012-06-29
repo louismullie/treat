@@ -28,4 +28,10 @@ module Treat
   # Turn sugar on.
   Treat::Config.sweeten!
   
+  # Install packages for a given language.
+  def self.install(language = :english)
+    require 'treat/installer'
+    Treat::Installer.install(language)
+  end
+
 end

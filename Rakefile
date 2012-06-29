@@ -25,11 +25,7 @@ namespace :treat do
   task :install, [:language] do |t, args|
   
     require './lib/treat'
-    require './lib/installer'
-  
-    l = args.language
-    l ||= 'english'
-    Treat::Installer.install(language)
+    Treat.install(args.language || 'english')
   
   end
 

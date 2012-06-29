@@ -1,10 +1,19 @@
 {
   dependencies: [
-    'whatlanguage', 
-    'psych', 
-    'mongo', 
-    'bson_ext', 
-    'linguistics'
+    'psych',
+    'nokogiri',
+    'ferret',
+    'mongo',
+    'bson_ext',
+    'lda-ruby',
+    'stanford-core-nlp',
+    'linguistics',
+    'ruby-readability',
+    'whatlanguage',
+    'chronic',
+    'nickel',
+    'decisiontree',
+    'ai4r'
   ],
   workers: {
     extractors: {
