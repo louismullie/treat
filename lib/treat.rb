@@ -16,12 +16,14 @@ module Treat
   require 'treat/config'
   # Load all workers.
   require 'treat/helpers'
+  # Require all core classes.
+  require 'treat/core'
   # Require all entity classes.
   require 'treat/entities'
   # Lazy load worker classes.
   require 'treat/workers'
-  # Require all core classes.
-  require 'treat/core'
+  # Require proxies last.
+  require 'treat/proxies'
   
   # Turn sugar on.
   Treat::Config.sweeten!
