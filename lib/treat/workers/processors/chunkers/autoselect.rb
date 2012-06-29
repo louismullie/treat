@@ -1,7 +1,10 @@
 class Treat::Workers::Processors::Chunkers::Autoselect
 
   def self.chunk(entity, options = {})
-    entity.check_has(:format)
+    unless entity.has?(:format)
+      raise Treat::Exception,
+      "Must have a format to autoselect chunker."
+    end
     begin
       k = Treat::Workers::Processors::
       Chunkers.const_get(cc(entity.format))
