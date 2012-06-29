@@ -1,19 +1,20 @@
-![Build Status](https://secure.travis-ci.org/louismullie/treat.png) ![Dependency Status](https://gemnasium.com/louismullie/treat.png)
-
-Treat is a toolkit for natural language processing and computational linguistics in Ruby. It provides a common API for a number of gems and external libraries for document retrieval, parsing, annotation, and information extraction.
+[![Build Status](https://secure.travis-ci.org/louismullie/treat.png)](http://travis-ci.org/#!/louismullie/treat)
+[![Dependency Status](https://gemnasium.com/louismullie/treat.png)](https://gemnasium.com/louismullie/treat)
+ 
+Treat is a framework for natural language processing and computational linguistics in Ruby. It provides a common API for a number of gems and external libraries for document retrieval, parsing, annotation, and information extraction.
 
 **Current features**
 
-* Text extractors for PDF, HTML, XML, Word, AbiWord, OpenOffice and image formats (Ocropus)
-* Text retrieval with indexation and full-text search (Ferret)
-* Text chunkers, sentence segmenters, tokenizers, and parsers for several languages (Stanford & Enju)
-* Word inflectors, including stemmers, conjugators, declensors, and number inflection
-* Lexical resources (WordNet interface, several POS taggers for English, Stanford taggers for several languages)
+* Text extractors for PDF, HTML, XML, Word, AbiWord, OpenOffice and image formats (Ocropus).
+* Text retrieval with indexation and full-text search (Ferret).
+* Text chunkers, sentence segmenters, tokenizers, and parsers for several languages (Stanford & Enju).
+* Word inflectors, including stemmers, conjugators, declensors, and number inflection.
+* Lexical resources (WordNet interface, several POS taggers for English, Stanford taggers for several languages).
 * Language, date/time, topic words (LDA) and keyword (TF*IDF) extraction.
-* Simple text statistics (frequency, TF*IDF)
-* Serialization of annotated entities to YAML or XML format
-* Visualization in ASCII tree, directed graph (DOT) and tag-bracketed (standoff) formats
-* Linguistic resources, including full ISO-639-1 and ISO-639-2 support, and tag alignments for several treebanks
+* Serialization of annotated entities to YAML, XML formats or to MongoDB.
+* Visualization in ASCII tree, directed graph (DOT) and tag-bracketed (standoff) formats.
+* Linguistic resources, including language detection and tag alignments for several treebanks.
+* Decision tree and multilayer perceptron classification (liblinear coming soon!)
 
 <br>
 
