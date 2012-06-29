@@ -85,6 +85,16 @@ module Treat::Config
 
   # Turn on syntactic sugar.
   def self.sweeten!
+    
+    # Undo this in unsweeten!
+    Treat::Entities.module_eval do 
+      self.constants.each do |type|
+        define_singleton_method(type) do |value='', id=nil|
+          const_get(type).build(value, id)
+        end
+      end
+    end
+    
     return if Treat.core.syntax.sweetened
     Treat.core.syntax.sweetened = true
     Treat.core.entities.list.each do |type|
