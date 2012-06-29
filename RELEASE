@@ -37,3 +37,8 @@ Treat - Text Retrieval, Extraction and Annotation Toolkit
 1.0.6
 
   * Made general topic extraction available on documents, zones and sections.
+
+1.1.0
+
+  * Complete refactoring of the core of the library.
+  * Separated all configuration stuff from dynamic stuff.
