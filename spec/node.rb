@@ -1,12 +1,12 @@
 require_relative '../lib/treat'
 
-describe Treat::Entities::Node do
+describe Treat::Core::Node do
 
   before :each do
-    @root = Treat::Entities::Node.new('root node', 'root')
-    @branch = Treat::Entities::Node.new('branch node', 'branch')
-    @sibling = Treat::Entities::Node.new('sibling node', 'sibling')
-    @leaf = Treat::Entities::Node.new('leaf node', 'leaf')
+    @root = Treat::Core::Node.new('root node', 'root')
+    @branch = Treat::Core::Node.new('branch node', 'branch')
+    @sibling = Treat::Core::Node.new('sibling node', 'sibling')
+    @leaf = Treat::Core::Node.new('leaf node', 'leaf')
     @root << @branch << @leaf
     @root << @sibling
     
