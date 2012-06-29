@@ -2,8 +2,12 @@ language: ruby
 rvm:
   - 1.9.2
   - 1.9.3
+before_install:
+  - export "JAVA_HOME=/usr/lib/jvm/java-6-openjdk/"
 before_script: 
   - sudo apt-get install antiword
   - sudo apt-get install poppler-utils
+  - sudo wget http://www.louismullie.com/treat/stanford-core-nlp-minimal.zip
+  - sudo unzip -o stanford-core-nlp-minimal.zip -d bin/
   - bundle install
 script: rake treat:spec
