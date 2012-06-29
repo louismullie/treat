@@ -1,8 +1,0 @@
-Dependencies: none
-Processors:
-  chunkers: 
-    - txt
-  segmenters: 
-    - punkt
-  tokenizers: 
-    - tactful

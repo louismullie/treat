@@ -1,8 +1,0 @@
-Dependencies: none
-Adapters:
-  Lexicalizers:
-    taggers:
-      - stanford
-  Processors:
-    parsers:
-      - stanford
