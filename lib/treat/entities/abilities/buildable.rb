@@ -24,7 +24,9 @@ module Treat::Entities::Abilities::Buildable
   def build(file_or_value, options = {})
 
     fv = file_or_value.to_s
-    if self == Treat::Entities::Document
+    if self == Treat::Entities::Document || 
+      (fv.index('yml') || fv.index('yaml') || 
+      fv.index('xml') || fv.index('mongo'))
       if fv =~ UriRegexp
         from_url(fv, options)
       else
@@ -158,14 +160,9 @@ module Treat::Entities::Abilities::Buildable
 
   # Build a document from a raw or serialized file.
   def from_file(file, options)
-    
-    unless File.readable?(file)
-      raise Treat::Exception,
-      "Path '#{file}' does not "+
-      "point to a readable file."
-    end
 
-    if file.index('yml') || file.index('yaml') || file.index('xml')
+
+    if file.index('yml') || file.index('yaml') || file.index('xml') || file.index('mongo')
       from_serialized_file(file, options)
     else
       fmt = Treat::Workers::Formatters::Readers::Autoselect.
@@ -185,7 +182,13 @@ module Treat::Entities::Abilities::Buildable
       "Cannot create something else than a " +
       "document from raw file '#{file}'."
     end
-
+    
+    unless File.readable?(file)
+      raise Treat::Exception,
+      "Path '#{file}' does not "+
+      "point to a readable file."
+    end
+    
     d = Treat::Entities::Document.new(file)
 
     d.read(:autoselect, options)
@@ -195,11 +198,29 @@ module Treat::Entities::Abilities::Buildable
   # Build an entity from a serialized file.
   def from_serialized_file(file, options)
 
-    d = Treat::Entities::Document.new(file)
-    d.unserialize(:autoselect, options)
-    d.children[0].set_as_root!
-    d.children[0]
-
+    if file.index('mongo')
+      options[:id] = file.scan(              # Consolidate this
+      /([0-9]+)\.mongo/).first.first
+      from_db(:mongo, options)
+    else
+      unless File.readable?(file)
+        raise Treat::Exception,
+        "Path '#{file}' does not "+
+        "point to a readable file."
+      end
+      d = Treat::Entities::Document.new(file)
+      d.unserialize(:autoselect, options)
+      d.children[0].set_as_root!              # Fix this
+      d.children[0]
+    end
+    
+  end
+  
+  def from_db(adapter, options)
+    id = options[:id]
+    e = self.new(nil, id)
+    e.unserialize(adapter, options)
+    e
   end
 
   # Build any kind of entity from a string.
