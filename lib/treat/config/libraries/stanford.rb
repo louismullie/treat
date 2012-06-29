@@ -1,0 +1,1 @@
+{jar_path: nil, model_path: nil}
