@@ -5,5 +5,5 @@ rvm:
 before_script: 
   - sudo apt-get install antiword
   - sudo apt-get install poppler-utils
-  - rake treat:install[travis]
+  - bundle install
 script: rake treat:spec
