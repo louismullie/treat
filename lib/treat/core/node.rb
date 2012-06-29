@@ -1,5 +1,5 @@
 # This module provides an abstract tree structure.
-module Treat::Entities
+module Treat::Core
 
   # This class is a node for an N-ary tree data structure
   # with a unique identifier, text value, children, features
@@ -113,7 +113,7 @@ module Treat::Entities
     # node from the children.
     def remove!(ion)
       return nil unless ion
-      if ion.is_a? Treat::Entities::Node
+      if ion.is_a? Treat::Core::Node
         @children.delete(ion)
         @children_hash.delete(ion.id)
         ion.set_as_root!
@@ -203,7 +203,7 @@ module Treat::Entities
     # the supplied dependency type.
     def link(id_or_node, type = nil,
       directed = true, direction = 1)
-      if id_or_node.is_a?(Treat::Entities::Node)
+      if id_or_node.is_a?(Treat::Core::Node)
         id = root.find(id_or_node).id
       else
         id = id_or_node
@@ -220,7 +220,7 @@ module Treat::Entities
 
     # Find the node in the tree with the given id.
     def find(id_or_node)
-      if id_or_node.is_a?(Treat::Entities::Node)
+      if id_or_node.is_a?(Treat::Core::Node)
         id = id_or_node.id
       else
         id = id_or_node
@@ -230,7 +230,7 @@ module Treat::Entities
       end
       self.each do |child|
         r = child.find(id)
-        return r if r.is_a? Treat::Entities::Node
+        return r if r.is_a? Treat::Core::Node
       end
       nil
     end
