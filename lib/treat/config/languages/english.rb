@@ -1,12 +1,16 @@
 {
-  codes: {
-    two_letter: 'en',
-    three_letter: 'eng'
-  },
-  dependencies: {
-    required: ['rbtagger', 'ruby-stemmer', 'tactful-tokenizer', 'nickel', 'rwordnet'],
-    optional: ['uea-stemmer', 'engtagger', 'activesupport', 'english']
-  },
+  dependencies: [
+    'rbtagger', 
+    'ruby-stemmer', 
+    'punkt-segmenter', 
+    'tactful_tokenizer', 
+    'nickel', 
+    'rwordnet', 
+    'uea-stemmer', 
+    'engtagger', 
+    'activesupport', 
+    'english'
+  ],
   workers: {
     extractors: {
       time: [:chronic, :ruby, :nickel],
