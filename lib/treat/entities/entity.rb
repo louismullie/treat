@@ -1,16 +1,16 @@
 module Treat::Entities
-  
+
   module Abilities; end
-  
- # Require abilities.
-  Dir[Treat.paths.lib + 'treat/entities/abilities/*.rb'].each do |f| 
-    require f
-  end
-  
-  require Treat.paths.lib + 'treat/core/node'
-  
+
+  # Require abilities.
+  p = Treat.paths.lib +
+  'treat/entities/abilities/*.rb'
+  Dir.glob(p).each { |f| require f }
+
+  require 'treat/core/node'
+
   class Entity < Treat::Core::Node
-    
+
     # A Symbol representing the lowercase
     # version of the class name.
     attr_accessor :type
@@ -51,17 +51,17 @@ module Treat::Entities
     # #entities_with_type, #ancestors_with_type,
     # #entities_with_feature, #entities_with_category.
     include Abilities::Iterable
-    
+
     # Implement support for #export to export
     # a line of a data set based on a classification.
     include Abilities::Exportable
-    
+
     # Implement support for #copy_into.
     include Abilities::Copyable
 
     # Implement support for #compare_with
     include Abilities::Comparable
-    
+
     # Initialize the entity with its value and
     # (optionally) a unique identifier. By default,
     # the object_id will be used as id.
@@ -71,7 +71,7 @@ module Treat::Entities
       @type = :entity if self == Entity
       @type ||= ucc(cl(self.class)).intern
     end
-    
+
     # Add an entity to the current entity.
     # Registers the entity in the root node
     # token registry if the entity is a leaf.

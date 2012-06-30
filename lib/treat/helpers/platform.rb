@@ -7,6 +7,7 @@ def detect_platform
   return :unknown
 end
 
+# Set up the right NULL device.
 if detect_platform == :windows
   NULL_DEVICE = 'NUL'
 else

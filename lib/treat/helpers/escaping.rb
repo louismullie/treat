@@ -1,3 +1,4 @@
+# This is ugly, we should change it.
 EscapeChar = '^^'
 EscapedEscapeChar = '\^\^'
  

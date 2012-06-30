@@ -1,7 +1,7 @@
-
-# Search the list to see if there are words similar to #name
-# in the #list If yes, return a string saying "Did you mean
-# ... ?" with the names.
+# Search the list to see if there are 
+# words similar to #name in the #list 
+# If yes, return a string saying 
+# "Did you mean ... ?" with the names.
 def did_you_mean?(list, name)
   return '' # Fix
   list = list.map { |e| e.to_s }
@@ -30,11 +30,10 @@ end
 
 alias :dym? :did_you_mean?
 
-# Return the levensthein distance between two stringsm
-# taking into account the costs of insertion, deletion,
-# and substitution. Stolen from:
-# http://ruby-snippets.heroku.com/string/levenshtein-distance
-# Used by did_you_mean?
+# Return the levensthein distance between 
+# two strings taking into account the costs 
+# of insertion, deletion, and substitution. 
+# Used by did_you_mean? to detect typos.
 def levenshtein(first, other, ins=1, del=1, sub=1)
   return nil if first.nil? || other.nil?
   dm = []
