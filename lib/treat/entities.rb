@@ -1,3 +1,4 @@
+# Contains the textual model used by Treat.
 module Treat::Entities
   require 'treat/entities/entity'
   p = Treat.paths.lib + 'treat/entities/*.rb'

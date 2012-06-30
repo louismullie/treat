@@ -1,24 +1,6 @@
-# This module keeps track of all the Treat::Categorizable
-# modules that exist and the methods they define.
-#
-#
-# - Processors perform the building of tree of
-#   entities representing texts (chunking,
-#   segmenting, tokenizing, parsing).
-# - Lexicalizers give lexical information about
-#   words (synsets, semantic relationships,
-#   tag, word category).
-# - Extractors extract semantic information about
-#   an entity (language, topic, date, time, named
-#   entity, coreferences).
-# - Inflectors allow to retrieve the different
-#   inflections of a word (declensors, conjugators,
-#   stemmers, lemmatizers).
-# - Formatters handle the conversion of entities to
-#   and from different formats(readers, serializers,
-#   unserializers, visualizers).
-# - Retrievers allow to index and search collections
-#   of documents.
+# This module creates all the worker categories
+# and the groups within these categories and adds
+# the relevant hooks on the appropriate entities.
 module Treat::Workers
 
   require 'treat/workers/group'

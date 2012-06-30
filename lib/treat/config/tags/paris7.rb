@@ -3,7 +3,6 @@
   'PN' => :punctuation,
   'SC' => :conjunction
 }
-
 # Paris7 Treebank functional tags
 =begin
 SUJ (subject)

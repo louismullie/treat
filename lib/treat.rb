@@ -6,12 +6,8 @@ module Treat
     "or higher, but current is #{RUBY_VERSION}."
   end
   
-  # Custom exception class.
-  class Exception < ::Exception; end
-  
-  # Require gems
-  require 'schiphol'
-  
+  # Require custom exception class.
+  require 'treat/exception'
   # Load configuration options.
   require 'treat/config'
   # Load all workers.

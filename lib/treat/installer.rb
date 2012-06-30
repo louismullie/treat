@@ -1,5 +1,4 @@
-# Installer is a dependency manager for languages.
-#
+# A dependency manager for Treat language plugins.
 # It can be called by using Treat.install(language).
 module Treat::Installer
 
@@ -8,7 +7,8 @@ module Treat::Installer
     require 'rubygems/dependency_installer'
   end
   
-  require 'treat/version'
+  require 'treat/version'  
+  require 'schiphol'
 
   # Address of the server with the files.
   Server = 'www.louismullie.com'

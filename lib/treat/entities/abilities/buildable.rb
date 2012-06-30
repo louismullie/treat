@@ -3,7 +3,8 @@
 # a string or a numeric object. This class
 # is pretty much self-explanatory.
 module Treat::Entities::Abilities::Buildable
-
+  
+  require 'schiphol'
   require 'fileutils'
   require 'uri'
   

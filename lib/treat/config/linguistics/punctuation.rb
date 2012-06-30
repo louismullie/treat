@@ -1,5 +1,4 @@
 {punct_to_category: {
-  
   '.' => :period,
   ',' => :comma,
   ';' => :semicolon,
@@ -15,7 +14,6 @@
   '&' => :ampersand,
   '+' => :plus,
   '-' => :dash,
-
   '/' => :slash,
   '\\' => :backslash,
   '^' => :caret,
@@ -24,15 +22,12 @@
   '|' => :pipe,
   '~' => :tilde,
   '@' => :at,
-
   '[' => :bracket,
   ']' => :bracket,
   '{' => :brace,
   '}' => :brace,
   '(' => :parenthesis,
   ')' => :parenthesis,
-
   '<' => :tag,
   '>' => :tag
-  
 }}
