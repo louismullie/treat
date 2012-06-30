@@ -6,12 +6,15 @@ module Treat
     "or higher, but current is #{RUBY_VERSION}."
   end
   
-  # Require custom exception class.
-  require 'treat/exception'
+  # Custom exception class.
+  class Exception < ::Exception; end
+  
   # Load configuration options.
   require 'treat/config'
   # Load all workers.
   require 'treat/helpers'
+  # Require library loaders.
+  require 'treat/loaders'
   # Require all core classes.
   require 'treat/core'
   # Require all entity classes.
