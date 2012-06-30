@@ -15,7 +15,7 @@ module Treat::Workers::Formatters::Unserializers::Mongo
       raise Treat::Exception,
       'Must supply the database name in config. ' +
       '(Treat.databases.mongo.db = ...) or pass ' +
-      'it as a parameter to #serialize.'
+      'it as a parameter to #unserialize.'
     end
     
     @@database ||= Mongo::Connection.
