@@ -29,7 +29,7 @@ class Treat::Workers::Lexicalizers::Sensers::Wordnet
       "the :nym option (:synonym, :hypernym, etc.)"
     end
     
-    unless [:noun, :adjective, :verb].
+    unless ['noun', 'adjective', 'verb'].
       include?(word.category)
       return []
     end

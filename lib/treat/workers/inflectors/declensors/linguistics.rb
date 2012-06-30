@@ -15,7 +15,7 @@ class Treat::Workers::Inflectors::Declensors::Linguistics
   def self.declense(entity, options = {})
     
     cat = entity.check_has(:category)
-    unless [:noun, :adjective, :determiner].
+    unless ['noun', 'adjective', 'determiner'].
       include?(cat)
         return
     end
@@ -28,10 +28,10 @@ class Treat::Workers::Inflectors::Declensors::Linguistics
     klass = Treat::Loaders::Linguistics.load(entity.language)
     string = entity.to_s
     
-    if options[:count] == :plural
+    if options[:count] == 'plural'
       
       if entity.has?(:category) &&
-        [:noun, :adjective, :verb].
+        ['noun', 'adjective', 'verb'].
         include?(entity.category)
         silence_warnings do
           klass.send(

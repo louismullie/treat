@@ -82,7 +82,7 @@ describe Treat::Entities::Token do
         it "returns the general part of speech of " +
         "the word as a lowercase symbol" do
           @a_lexicalizers.categorizers.each do |c|
-            'man'.category(c).should eql :noun
+            'man'.category(c).should eql 'noun'
           end
         end
       end
@@ -90,7 +90,7 @@ describe Treat::Entities::Token do
       context "when called on a number" do
         it "returns :number" do
           @a_lexicalizers.categorizers.each do |c|
-            '2'.category(c).should eql :number
+            '2'.category(c).should eql 'number'
           end
         end
       end
@@ -99,8 +99,8 @@ describe Treat::Entities::Token do
         it "returns the type of punctuation or symbol" +
         "as a lowercase identifier" do
           @a_lexicalizers.categorizers.each do |c|
-            '$'.category(c).should eql :dollar
-            '.'.category(c).should eql :period
+            '$'.category(c).should eql 'dollar'
+            '.'.category(c).should eql 'period'
           end
         end
       end

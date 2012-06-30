@@ -12,9 +12,9 @@ class Treat::Workers::Lexicalizers::Categorizers::FromTag
 
     tag = entity.check_has(:tag)
     
-    return :unknown if tag.nil? || tag == '' || entity.type == :symbol
-    return :sentence if tag == 'S' || entity.type == :sentence
-    return :number if entity.type == :number
+    return 'unknown' if tag.nil? || tag == '' || entity.type == :symbol
+    return 'sentence' if tag == 'S' || entity.type == :sentence
+    return 'number' if entity.type == :number
     
     return Ptc[entity.to_s] if entity.type == :punctuation
     
@@ -51,7 +51,7 @@ class Treat::Workers::Lexicalizers::Categorizers::FromTag
       "for token #{entity.to_s}."
     end
 
-    :unknown
+    'unknown'
 
   end
 

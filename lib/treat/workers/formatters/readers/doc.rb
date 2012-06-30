@@ -13,7 +13,7 @@ class Treat::Workers::Formatters::Readers::DOC
     f.gsub!('#keep#', "\n\n")
     
     document.value = f
-    document.set :format, :doc
+    document.set :format, 'doc'
     document
     
   end

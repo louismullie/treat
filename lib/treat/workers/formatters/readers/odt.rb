@@ -30,7 +30,7 @@ class Treat::Workers::Formatters::Readers::ODT
     REXML::Document.parse_stream(f, xml_h)
 
     document.value = xml_h.plain_text
-    document.set :format, :odt_office
+    document.set :format, 'odt'
     document
 
   end

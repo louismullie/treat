@@ -94,7 +94,7 @@ module Treat::Entities::Abilities::Buildable
       :max_tries => 3
     )
     
-    options[:default_to] ||= :html
+    options[:default_to] ||= 'html'
 
     e = from_file(f, options)
     e.set :url, url.to_s

@@ -5,7 +5,7 @@ module Treat::Entities
   # Require abilities.
   p = Treat.paths.lib +
   'treat/entities/abilities/*.rb'
-  Dir.glob(p).each { |f| require f }
+  Dir.glob(p).each { |f| require f }
 
   require 'treat/core/node'
 

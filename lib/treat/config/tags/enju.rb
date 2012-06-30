@@ -1,16 +1,16 @@
 {cat_to_category: {
-  'ADJ' => :adjective,
-  'ADV' => :adverb,
-  'CONJ' => :conjunction,
-  'COOD' => :conjunction,
-  'C' => :complementizer,
-  'D' => :determiner,
-  'N' => :noun,
-  'P' => :preposition,
-  'PN' => :punctuation,
-  'SC' => :conjunction,
-  'V' => :verb,
-  'PRT' => :particle
+  'ADJ' => 'adjective',
+  'ADV' => 'adverb',
+  'CONJ' => 'conjunction',
+  'COOD' => 'conjunction',
+  'C' => 'complementizer',
+  'D' => 'determiner',
+  'N' => 'noun',
+  'P' => 'preposition',
+  'PN' => 'punctuation',
+  'SC' => 'conjunction',
+  'V' => 'verb',
+  'PRT' => 'particle'
 },
 cat_to_description: [
   ['ADJ',	'Adjective'],

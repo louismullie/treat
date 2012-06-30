@@ -15,7 +15,7 @@ class Treat::Workers::Inflectors::Declensors::English
   def self.declense(entity, options)
     
     cat = entity.check_has(:category)
-    unless [:noun, :adjective, :determiner].
+    unless ['noun', 'adjective', 'determiner'].
       include?(cat)
         return
     end

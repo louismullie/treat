@@ -29,7 +29,7 @@ class Treat::Workers::Formatters::Readers::Image
         doc.set :file,  "#{tmp}/output.html"
         doc = doc.read(:html)
         doc.set :file, f
-        doc.set :format, :image
+        doc.set :format, 'image'
       end
     end
     

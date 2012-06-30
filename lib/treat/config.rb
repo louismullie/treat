@@ -59,7 +59,7 @@ module Treat::Config
     wttc = {}
     tags.each_slice(2) do |desc, tags|
       category = desc.gsub(',', ' ,').
-      split(' ')[0].downcase.intern
+      split(' ')[0].downcase
       tag_sets.each_with_index do |tag_set, i|
         next unless tags[i]
         wttc[tags[i]] ||= {}

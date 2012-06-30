@@ -25,7 +25,7 @@ class Treat::Workers::Formatters::Readers::ABW
     IO.read(document.file), xml_h)
 
     document.value = xml_h.plain_text
-    document.set :format, :abw_word
+    document.set :format, 'abw'
     document
 
   end

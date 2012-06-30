@@ -21,7 +21,7 @@ module Treat::Workers::Formatters::Readers::PDF
       f.gsub!('#keep#', "\n\n")
       
       document.value = f
-      document.set :format, :pdf
+      document.set :format, 'pdf'
       document
       
     end

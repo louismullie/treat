@@ -3,7 +3,7 @@ class Treat::Workers::Formatters::Readers::Autoselect
   ExtensionRegexp = /^.*?\.([a-zA-Z0-9]{2,5})$/
   ImageExtensions = ['gif', 'jpg', 'jpeg', 'png']
   DefaultOptions = {
-    :default_to => :txt
+    :default_to => 'txt'
   }
   
   # Choose a reader to use.

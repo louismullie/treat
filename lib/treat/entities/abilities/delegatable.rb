@@ -62,25 +62,21 @@ module Treat::Entities::Abilities::Delegatable
     if not group.list.include?(worker)
       raise Treat::Exception,
       worker_not_found(worker, group)
-    else
-
-      worker = group.const_get(
-      cc(worker.to_s).intern
-      )
-      
-      result = worker.send(group.method, entity, options)
-
-      if group.type == :annotator && result
-        entity.features[task] = result
-      end
-
-      if group.type == :transformer
-        entity
-      else
-        result
-      end
-
     end
+
+    worker = group.const_get(cc(worker.to_s).intern)
+    result = worker.send(group.method, entity, options)
+
+    if group.type == :annotator && result
+      entity.features[task] = result
+    end
+
+    if group.type == :transformer
+      entity
+    else
+      result
+    end
+
   end
 
   # Find which worker to use if none has been supplied.

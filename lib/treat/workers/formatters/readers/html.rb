@@ -45,7 +45,7 @@ class Treat::Workers::Formatters::Readers::HTML
       html.gsub!(/<!--[^>]*-->/m, '')
       d = Readability::Document.new(html, options)
       document.value = "<h1>#{d.title}</h1>\n" + d.content
-      document.set :format, :html
+      document.set :format, 'html'
     end
 
     document

@@ -70,7 +70,7 @@ class Treat::Workers::Formatters::Readers::XML
 
     end
     
-    document.set :format, :xml
+    document.set :format, 'xml'
     document
     
   end

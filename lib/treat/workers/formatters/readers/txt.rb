@@ -7,7 +7,7 @@ class Treat::Workers::Formatters::Readers::TXT
   # Options: none.
   def self.read(document, options = {})
     document.value = File.read(document.file)
-    document.set :format, :txt
+    document.set :format, 'txt'
     document
   end
   

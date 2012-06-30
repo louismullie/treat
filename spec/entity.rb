@@ -13,19 +13,19 @@ describe Treat::Entities::Entity do
     @adj_phrase = Treat::Entities::Phrase.new
     @adj_phrase.set :tag, 'ADJP'
     @det = Treat::Entities::Word.new('The')
-    @det.set :category, :determiner
+    @det.set :category, 'determiner'
     @det.set :tag, 'DT'
     @adj = Treat::Entities::Word.new('lazy')
-    @adj.set :category, :adjective
+    @adj.set :category, 'adjective'
     @adj.set :tag, 'JJ'
     @noun = Treat::Entities::Word.new('fox')
-    @noun.set :category, :noun
+    @noun.set :category, 'noun'
     @noun.set :tag, 'NN'
     @aux = Treat::Entities::Word.new('is')
-    @aux.set :category, :verb
+    @aux.set :category, 'verb'
     @aux.set :tag, 'VBZ'
     @verb = Treat::Entities::Word.new('running')
-    @verb.set :category, :verb
+    @verb.set :category, 'verb'
     @verb.set :tag, 'VBG'
     @dot = Treat::Entities::Punctuation.new('.')
     @dot.set :tag, '.'

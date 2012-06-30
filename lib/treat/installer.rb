@@ -29,15 +29,11 @@ module Treat::Installer
   
   # Install required dependencies and optional
   # dependencies for a specific language.
-  def self.install(language = :english)
-    
-    if language.is_a?(String)
-      language = language.intern 
-    end
+  def self.install(language = 'english')
     
     @@installer = Gem::DependencyInstaller.new
     
-    if language == :travis
+    if language == 'travis'
       install_travis; return
     end
     
@@ -48,7 +44,7 @@ module Treat::Installer
     begin
 
       title "Installing core dependencies."
-      install_language_dependencies(:agnostic)
+      install_language_dependencies('agnostic')
       
       title "Installing dependencies for the #{l}.\n"
       install_language_dependencies(language)
