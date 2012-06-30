@@ -36,7 +36,7 @@ describe Treat::Entities::Document do
         "a document with the contents of the file" do
           url = 'http://www.rubyinside.com/nethttp-cheat-sheet-2940.html'
           d = Treat::Entities::Document.build(url)
-          d.format.should eql :html
+          d.format.should eql 'html'
           d.print_tree
           d.should be_an_instance_of Treat::Entities::Document
           d.to_s.index('Rubyist').should_not eql nil
