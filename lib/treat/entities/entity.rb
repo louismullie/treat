@@ -7,7 +7,7 @@ module Treat::Entities
   'treat/entities/abilities/*.rb'
   Dir.glob(p).each { |f| require f }
 
-  require 'treat/core/node'
+  require 'birch'
 
   class Entity < Treat::Core::Node
 
