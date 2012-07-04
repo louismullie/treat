@@ -1,9 +1,7 @@
 module Treat::Config
 
-  Paths = [
-    :tmp, :lib, :bin, :files,
-    :data, :models, :spec
-  ]
+  Paths = [ :tmp, :lib, :bin, 
+  :files, :data, :models, :spec ]
 
   class << self
     attr_accessor :config
@@ -86,7 +84,7 @@ module Treat::Config
   # Turn on syntactic sugar.
   def self.sweeten!
     
-    # Undo this in unsweeten!
+    # Undo this in unsweeten! - # Fix
     Treat::Entities.module_eval do 
       self.constants.each do |type|
         define_singleton_method(type) do |value='', id=nil|
