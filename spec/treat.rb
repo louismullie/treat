@@ -25,11 +25,13 @@ describe Treat do
         Treat::Config.unsweeten!
         Treat.core.syntax.sweetened.should eql false
 
-        Object.method_defined?(type.to_s.capitalize.intern).should eql false
+        Object.method_defined?(
+        type.to_s.capitalize.intern).should eql false
 
         Object.method_defined?(
         :"#{type.to_s.capitalize}").
         should eql false
+        
       end
 
     end
