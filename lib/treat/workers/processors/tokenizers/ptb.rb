@@ -35,14 +35,11 @@ module Treat::Workers::Processors::Tokenizers::PTB
     
     s = " " + string + " "
     
-    # Translate some common extended ascii 
-    # characters to quotes
     s.gsub!(/‘/,'`')
     s.gsub!(/’/,"'")
     s.gsub!(/“/,"``")
     s.gsub!(/”/,"''")
-    
-    
+  
     s.gsub!(/\s+/," ")
     s.gsub!(/(\s+)''/,'\1"')
     s.gsub!(/(\s+)``/,'\1"')
@@ -83,6 +80,10 @@ module Treat::Workers::Processors::Tokenizers::PTB
     s.gsub!(/\//, ' / ')
     s.gsub!(/\s+/,' ')
     s.strip!
+  
+    s.gsub!(/``/,'"')
+    s.gsub!(/''/,'"')
+    
     s.split(/\s+/)
   end
   
