@@ -2,6 +2,8 @@ module Treat::Entities::Abilities::Copyable
   
   require 'fileutils'
   
+  # What happens when it is a database-stored
+  # collection or document ?
   def copy_into(collection)
     unless collection.is_a?(
     Treat::Entities::Collection)
