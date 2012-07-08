@@ -1,11 +1,19 @@
 module Treat::Workers::Formatters::Unserializers::Mongo
 
-  DefaultOptions = { :recursive => true }
+  DefaultOptions = { 
+    :recursive => true,
+    :stop_at => nil
+  }
+  
   require 'mongo'
   
   def self.unserialize(entity, options={})
 
     options = DefaultOptions.merge(options)
+    stop_at = options[:stop_at] ? 
+    Treat::Entities.const_get(
+    options[:stop_at].to_s.capitalize) : 
+    Treat::Entities::Token
     
     supertype =  cl(Treat::Entities.const_get(
     entity.type.to_s.capitalize.intern).superclass).downcase
@@ -42,14 +50,20 @@ module Treat::Workers::Formatters::Unserializers::Mongo
     # Set the entity's value.
     entity.value = record['value']
     
-    if options[:recursive]
-      record['children'].each do |c|
-        cid, ctype = *c
-        cklass = Treat::Entities.const_get(
-        ctype.capitalize.intern)
-        e = self.unserialize(cklass.new('', cid), options)
-        entity << e
-      end
+    if entity.class.compare_with(stop_at) == 0
+      entity.value = record['string']
+    end
+    
+    return entity unless options[:recursive]
+
+    record['children'].each do |c|
+      cid, ctype = *c
+      cklass = Treat::Entities.const_get(
+      ctype.capitalize.intern)
+      next if cklass.compare_with(stop_at) < 0
+      e = self.unserialize(
+      cklass.new('', cid), options)
+      entity << e
     end
 
     entity
