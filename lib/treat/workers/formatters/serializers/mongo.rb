@@ -23,9 +23,10 @@ class Treat::Workers::Formatters::Serializers::Mongo
     new(Treat.databases.mongo.host).
     db(Treat.databases.mongo.db || options[:db])
     
-    type = entity.type.to_s
-    types = (type == 'entity') ? 'entities' : (type + 's')
-    
+    type = cl(entity.class.superclass).downcase
+    type = entity.type.to_s if type == 'entity'
+    types = type + 's'
+
     coll = @@database.collection(types)
     
     entity_token = {

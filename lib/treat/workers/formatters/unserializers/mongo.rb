@@ -6,11 +6,12 @@ module Treat::Workers::Formatters::Unserializers::Mongo
   def self.unserialize(entity, options={})
 
     options = DefaultOptions.merge(options)
-
-    type = entity.type.to_s
-    types = (type == 'entity') ?
-    'entities' : (type + 's')
-
+    
+    supertype =  cl(Treat::Entities.const_get(
+    entity.type.to_s.capitalize.intern).superclass).downcase
+    supertype = entity.type.to_s if supertype == 'entity'
+    supertypes = supertype + 's'
+    
     if !Treat.databases.mongo.db && !options[:db]
       raise Treat::Exception,
       'Must supply the database name in config. ' +
@@ -21,8 +22,8 @@ module Treat::Workers::Formatters::Unserializers::Mongo
     @@database ||= Mongo::Connection.
     new(Treat.databases.mongo.host).
     db(Treat.databases.mongo.db || options[:db])
-    
-    coll = @@database.collection(types)
+
+    coll = @@database.collection(supertypes)
     record = coll.find_one(:id => entity.id)
   
     unless record
