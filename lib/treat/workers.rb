@@ -85,6 +85,9 @@ module Treat::Workers
       if conf.respond_to?(:presets)
         self.presets = conf.presets
       end
+      if conf.respond_to?(:recursive)
+        self.recursive = conf.recursive
+      end
     end
   end
 
