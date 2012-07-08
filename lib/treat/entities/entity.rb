@@ -59,8 +59,8 @@ module Treat::Entities
     # Implement support for #copy_into.
     include Abilities::Copyable
 
-    # Implement support for #compare_with
-    include Abilities::Comparable
+    # Implement support for #self.compare_with
+    extend Abilities::Comparable
 
     # Initialize the entity with its value and
     # (optionally) a unique identifier. By default,
