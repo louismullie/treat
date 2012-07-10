@@ -102,7 +102,7 @@ describe Treat::Entities::Entity do
         Treat::Entities::Entity.call_worker(
         '$'.to_entity, :tag, :lingua,
         Treat::Workers::Lexicalizers::Taggers, {}).should
-        eql @sentence.tag(:lingua)
+        eql '$'.tag(:lingua)
 
       end
 

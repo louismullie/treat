@@ -95,46 +95,12 @@ describe Treat::Entities::Phrase do
 
     describe "#tag" do
 
-      context "when called on an untokenized phrase" do
+      context "when called on a phrase" do
         it "returns the tag 'P'" do
           @taggers.each do |t|
             p = 'a phrase'
             p.tag(t)
             p.tag(t).should eql 'P'
-          end
-        end
-      end
-
-      context "when called on an untokenized sentence" do
-        it "returns the tag 'S'" do
-          @taggers.each do |t|
-            s = 'This is a sentence.'
-            s.tag(t)
-            s.tag.should eql 'S'
-          end
-        end
-      end
-
-      context "when called a tokenized phrase" do
-        it "returns the tag 'P' and tags all the phrase's tokens" do
-          @taggers.each do |t|
-            p = 'a phrase'.to_entity
-            p.tokenize
-            p.tag(t).should eql 'P'
-            p.tokens.map { |t| t.tag }.should
-            eql ["DT", "NN"]
-          end
-        end
-      end
-
-      context "when called on a tokenized sentence" do
-        it "returns the tag 'S' and tags all the sentence's tokens" do
-          @taggers.each do |t|
-            s = 'This is a sentence.'.to_entity
-            s.tokenize
-            s.tag(t).should eql 'S'
-            s.tokens.map { |t| t.tag }.should
-            eql ["DT", "VBZ", "DT", "NN", "."]
           end
         end
       end

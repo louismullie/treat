@@ -1,11 +1,11 @@
 {
   taggers: {
     type: :annotator,
-    targets: [:sentence, :phrase, :token]
+    targets: [:phrase, :token]
   },
   categorizers: {
     type: :annotator,
-    targets: [:sentence, :phrase, :token],
+    targets: [:phrase, :token],
     recursive: true
   },
   sensers: {
