@@ -6,7 +6,6 @@ module Treat::Workers::Extractors::Language
   # of words with bloom filters built from 
   # dictionaries based upon each source language.
   class WhatLanguage
-    
     # Require the 'whatlanguage' gem.
     silence_warnings { require 'whatlanguage'  }
     
