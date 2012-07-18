@@ -16,7 +16,7 @@ class Treat::Core::Problem
       r = feature.proc ? 
       feature.proc.call(e) : 
       e.send(feature.name)
-      line << r || feature.default
+      line << (r || feature.default)
     end
     return line unless include_answer
     line << (e.has?(@question.name) ? 
