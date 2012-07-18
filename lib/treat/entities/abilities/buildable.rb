@@ -221,7 +221,6 @@ module Treat::Entities::Abilities::Buildable
     id = options[:id]
     e = self.new(nil, id)
     e.unserialize(adapter, options)
-    e
   end
 
   # Build any kind of entity from a string.
