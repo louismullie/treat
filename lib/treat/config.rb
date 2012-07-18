@@ -105,6 +105,16 @@ module Treat::Config
         end
       end
     end
+    
+    Treat::Core.constants.each do |kname|
+      Object.class_eval do
+        klass = Treat::Core.const_get(kname)
+        define_method(kname) do |*args|
+          klass.new(*args)
+        end
+      end
+    end
+    
   end
 
   # Turn off syntactic sugar.
