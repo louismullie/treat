@@ -8,7 +8,7 @@ class Treat::Workers::Learners::Classifiers::MLP
   def self.classify(entity, options = {})
     
     set = options[:training]
-    cl = set.classification
+    cl = set.problem
       
     if !@@mlps[cl]
       net = Ai4r::NeuralNetwork::
