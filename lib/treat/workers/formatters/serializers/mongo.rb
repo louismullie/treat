@@ -6,55 +6,61 @@ class Treat::Workers::Formatters::Serializers::Mongo
 
   DefaultOptions = {
     :recursive => true,
-    :stop_at => :token
+    :stop_at => nil
   }
-  
+
   def self.serialize(entity, options = {})
-    
+
     options = DefaultOptions.merge(options)
-    stop_at = options[:stop_at] ? 
+    options[:stop_at] = options[:stop_at] ?
     Treat::Entities.const_get(
-    options[:stop_at].to_s.capitalize) : 
-    Treat::Entities::Token
-    
+    options[:stop_at].to_s.capitalize) : nil
+
     if !Treat.databases.mongo.db && !options[:db]
       raise Treat::Exception,
       'Must supply the database name in config. ' +
       '(Treat.databases.mongo.db = ...) or pass ' +
       'it as a parameter to #serialize.'
     end
-    
+
     @@database ||= Mongo::Connection.
     new(Treat.databases.mongo.host).
     db(Treat.databases.mongo.db || options[:db])
-    
-    type = cl(entity.class.superclass).downcase
-    type = entity.type.to_s if type == 'entity'
-    types = type + 's'
 
-    coll = @@database.collection(types)
-    
+    supertype =  cl(Treat::Entities.const_get(
+    entity.type.to_s.capitalize.intern).superclass).downcase
+    supertype = entity.type.to_s if supertype == 'entity'
+    supertypes = supertype + 's'
+      
+    coll = @@database.collection(supertypes)
+    entity_token = self.do_serialize(entity, options)
+    coll.update({id: entity.id}, entity_token, {upsert: true})
+  end
+
+  def self.do_serialize(entity, options)
+
+    children = []
+
+    if options[:recursive] && entity.has_children?
+      entity.each do |child|
+        next if options[:stop_at] && child.class.
+        compare_with(options[:stop_at]) < 0
+        children << self.do_serialize(child, options)
+      end
+    end
+
     entity_token = {
       :id => entity.id,
       :value => entity.value,
       :string => entity.to_s,
-      :type => entity.type,
-      :children => entity.children.map { |c| [c.id, c.type] },
+      :type => entity.type.to_s,
+      :children => children,
       :parent => (entity.has_parent? ? entity.parent.id : nil),
       :features => entity.features
     }
-    
-    coll.insert(entity_token)
 
-    if options[:recursive] && entity.has_children?
-      entity.each do |child|
-        next if child.class.compare_with(stop_at) < 0
-        self.serialize(child, options)
-      end
-    end
-     
+    entity_token
+
   end
 
 end
-
-
