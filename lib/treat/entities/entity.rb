@@ -52,6 +52,10 @@ module Treat::Entities
     # #entities_with_feature, #entities_with_category.
     include Abilities::Iterable
 
+    # Implement support for #export to export
+    # a line of a data set based on a classification.
+    include Abilities::Exportable
+
     # Implement support for #copy_into.
     include Abilities::Copyable
 

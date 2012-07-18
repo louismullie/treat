@@ -110,6 +110,27 @@ describe Treat::Entities::Entity do
 
   end
 
+  describe "Exportable" do
+
+    context "when supplied with a classification to export" do
+      feature = Treat::Core::Feature.new(:tag)
+      question = Treat::Core::Question.new(:is_keyword, :word, :discrete)
+      problem = Treat::Core::Problem.new(question, feature)
+      it "returns a data set with the exported features" do
+        ds = @sentence.export(problem)
+        ds.problem.should eql problem
+        ds.problem.labels.should eql [:tag]
+        ds.ids.should eql @sentence.words.map { |w| w.id }
+        ds.items.should eql [
+          ["DT", false], ["JJ", false],
+          ["NN", false], ["VBZ", false],
+          ["VBG", false]
+        ]
+      end
+    end
+
+  end
+
   describe "Iterable" do
 
     describe "#each { |child| ... }" do
