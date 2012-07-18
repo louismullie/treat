@@ -26,11 +26,17 @@ class Treat::Core::DataSet
   def serialize(file)
     problem = @problem.dup
     problem.features.each do |feature|
+      next unless feature.proc
       feature.proc = feature.proc.to_source
     end
     data = [problem, @items, @entities]
     File.open(file, 'w') do |f| 
       f.write(Marshal.dump(data))
+    end
+    problem.features.each do |feature|
+      next unless feature.proc
+      source = feature.proc[5..-1]
+      feature.proc = eval("Proc.new #{source}")
     end
   end
   
@@ -38,6 +44,7 @@ class Treat::Core::DataSet
     data = Marshal.load(File.read(file))
     problem, items, entities = *data
     problem.features.each do |feature|
+      next unless feature.proc
       source = feature.proc[5..-1]
       feature.proc = eval("Proc.new #{source}")
     end
