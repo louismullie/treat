@@ -23,6 +23,8 @@ Gem::Specification.new do |s|
   
   # Runtime dependencies
   s.add_runtime_dependency 'schiphol'
+  s.add_runtime_dependency 'birch'
+  s.add_runtime_dependency 'sourcify'
   
   # Development dependencies
   s.add_development_dependency 'rspec'
