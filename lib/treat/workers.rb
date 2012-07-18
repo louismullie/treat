@@ -34,7 +34,7 @@ module Treat::Workers
   def self.create_category(name, conf)
     category = self.const_set(name, Module.new)
     conf.each_pair do |group, worker|
-      name = group.to_s.capitalize.intern
+      name = cc(group.to_s).intern
       category.module_eval do
         @@methods = []; def methods; 
         @@methods; end; def groups; 
