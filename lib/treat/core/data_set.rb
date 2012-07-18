@@ -1,48 +1,50 @@
 class Treat::Core::DataSet
+
+  attr_accessor :problem
+  attr_accessor :items
+  attr_accessor :entities
   
-  attr_reader :classification
-  attr_reader :labels
-  attr_reader :items
-  attr_reader :ids
-  
-  def self.open(file)
-    unless File.readable?(file)
-      raise Treat::Exception,
-      "Cannot load data set "+
-      "from #{file} because " +
-      "it doesn't exist."
+  def initialize(prob_or_file)
+    if prob_or_file.is_a?(String)
+      ds = self.class.
+      unserialize(prob_or_file)
+      @problem = ds.problem
+      @items = ds.items
+      @entities = ds.entities
+    else
+      @problem = prob_or_file
+      @items, @entities = [], []
     end
-    ::Psych.load(
-    File.read(file))
-  end
-  
-  def initialize(classification)
-    @classification = classification
-    @labels = classification.labels
-    @items = []
-    @ids = []
   end
   
   def <<(entity)
-    @items << 
-    @classification.
+    @items << @problem.
     export_item(entity)
-    @ids << entity.id
+    @entities << entity.id
   end
   
-  def save(file)
-    File.open(file, 'w') do |f|
-      f.write(::Psych.dump(self))
+  def serialize(file)
+    problem = @problem.dup
+    problem.features.each do |feature|
+      feature.proc = feature.proc.to_source
+    end
+    data = [problem, @items, @entities]
+    File.open(file, 'w') do |f| 
+      f.write(Marshal.dump(data))
     end
   end
   
-  def to_ai4r
-    Ai4r::Data::DataSet.new(
-      :data_items => items, 
-      :data_labels => (
-        labels.map { |l| l.to_s } + 
-        [classification.question.to_s]
-    ))
+  def self.unserialize(file)
+    data = Marshal.load(File.read(file))
+    problem, items, entities = *data
+    problem.features.each do |feature|
+      source = feature.proc[5..-1]
+      feature.proc = eval("Proc.new #{source}")
+    end
+    data_set = Treat::Core::DataSet.new(problem)
+    data_set.items = items
+    data_set.entities = entities
+    data_set
   end
   
 end
