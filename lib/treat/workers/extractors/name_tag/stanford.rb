@@ -12,24 +12,27 @@ class Treat::Workers::Extractors::NameTag::Stanford
 
     pp = nil
 
-    lang = entity.language
+    language = entity.language
   
-    Treat::Loaders::Stanford.load(lang)
+    Treat::Loaders::Stanford.load(language)
     
     isolated_token = entity.is_a?(Treat::Entities::Token)
     tokens = isolated_token ? [entity] : entity.tokens
 
     ms = StanfordCoreNLP::Config::Models[:ner][language]
-    ms = Treat::Loaders::Stanford.model_path + '/' +
+    model_path = Treat.libraries.stanford.model_path ||
+    (Treat.paths.models + '/stanford/')
+    ms = model_path + '/' + 
     StanfordCoreNLP::Config::ModelFolders[:ner] +
     ms['3class']
 
-    @@classifiers[lang] ||=
+    @@classifiers[language] ||=
     StanfordCoreNLP::CRFClassifier.
     getClassifier(ms)
 
     token_list = StanfordCoreNLP.get_list(tokens)
-    sentence = @@classifiers[lang].classify_sentence(token_list)
+    sentence = @@classifiers[language].
+    classify_sentence(token_list)
 
     i = 0
     n = 0
