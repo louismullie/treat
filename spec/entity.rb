@@ -120,7 +120,7 @@ describe Treat::Entities::Entity do
         ds = @sentence.export(problem)
         ds.problem.should eql problem
         ds.problem.labels.should eql [:tag]
-        ds.ids.should eql @sentence.words.map { |w| w.id }
+        ds.entities.should eql @sentence.words.map { |w| w.id }
         ds.items.should eql [
           ["DT", false], ["JJ", false],
           ["NN", false], ["VBZ", false],
