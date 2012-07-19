@@ -42,7 +42,7 @@ describe Treat::Entities::Phrase do
     
     describe "#time" do
       it "returns a DateTime object representing the time in the phrase" do
-        Treat.languages.english[:workers][:extractors][:time].each do |e|
+        Treat.languages.english.workers.extractors.time.each do |e|
           t = 'october 2006'.time(e)
           t.month.should eql 10
         end
@@ -55,7 +55,7 @@ describe Treat::Entities::Phrase do
     describe "#tokenize" do
 
       it "splits a phrase/sentence into tokens and adds them as children of the phrase" do
-        Treat.languages.english[:workers][:processors][:tokenizers].each do |t|
+        Treat.languages.english.workers.processors.tokenizers.each do |t|
           @phrase = Treat::Entities::Phrase.new('a phrase to tokenize')
           @phrase.tokenize(t)
           @phrase.children.should eql @phrase.tokens
