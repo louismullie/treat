@@ -5,13 +5,13 @@
 class Treat::Core::Problem
 
   # The question we are trying to answer.
-  attr_accessor :question
+  attr_reader :question
   # An array of features that will be 
   # looked at in trying to answer the
   # problem's question.
-  attr_accessor :features
+  attr_reader :features
   # Just the labels from the features.
-  attr_accessor :labels
+  attr_reader :labels
   
   # Initialize the problem with a question
   # and an arbitrary number of features.
@@ -19,6 +19,12 @@ class Treat::Core::Problem
     @question = question
     @features = features
     @labels = @features.map { |f| f.name }
+  end
+  
+  # Custom comparison for problems.
+  def ==(problem)
+    @question == problem.question &&
+    @features == problem.features
   end
 
   # Return an array of all the entity's

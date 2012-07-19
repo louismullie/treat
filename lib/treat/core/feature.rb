@@ -7,12 +7,12 @@ class Treat::Core::Feature
   # that the target of your classification
   # problem responds to the method
   # corresponding to this name.
-  attr_accessor :name
+  attr_reader :name
   # A proc that can be used to perform
   # calculations before storing a feature.
-  attr_accessor :proc
+  attr_reader :proc
   # The default value to be
-  attr_accessor :default
+  attr_reader :default
   
   # Initialize a feature for a classification
   # problem. If two arguments are supplied, 
@@ -30,6 +30,13 @@ class Treat::Core::Feature
       @proc = nil
       @default = proc_or_default
     end
+  end
+  
+  # Custom comparison operator for features.
+  def ==(feature)
+    @name == feature.name &&
+    @proc == feature.proc &&
+    @default == feature.default
   end
   
 end

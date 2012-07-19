@@ -77,10 +77,22 @@ class Treat::Core::DataSet
     end
   end
   
+  # Merge another data set into this one.
+  def merge(data_set)
+    if data_set.problem != @problem
+      raise Treat::Exception,
+      "Cannot merge two data sets that " +
+      "don't reference the same problem." 
+    else
+      @items << data_set.items
+      @entities << data_set.entities
+    end
+  end
+  
   # Unserialize a data set file created 
   # by using the #serialize method.
   def self.unserialize(file)
-    data = Marshal.load(File.read(file))
+    data = Marshal.load(File.binread(file))
     problem, items, entities = *data
     problem.features.each do |feature|
       next unless feature.proc
