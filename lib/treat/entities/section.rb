@@ -1,6 +1,6 @@
 module Treat::Entities
   # Represents a section.
-  class Section < Treat::Entities::Entity; end
+  class Section < Entity; end
 
   # Represents a page of text.
   class Page < Section; end

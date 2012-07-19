@@ -1,6 +1,6 @@
 module Treat::Entities
   # Represents a document.
-  class Document < Treat::Entities::Entity
+  class Document < Entity
     # Initialize a document with a file name.
     def initialize(file = nil, id = nil)
       super('', id)
