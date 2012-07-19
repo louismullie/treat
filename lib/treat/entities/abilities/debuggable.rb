@@ -58,7 +58,7 @@ module Treat::Entities::Abilities::Debuggable
       worker.to_s.gsub('_', ' ')
     end
     
-    curr.gsub!('ss', 's')
+    curr.gsub!('ss', 's') unless curr.index('class')
     curr += '.'
     
     if curr == @@prev
