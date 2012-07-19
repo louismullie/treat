@@ -2,6 +2,7 @@
 # from a folder of files, a specific file,
 # a string or a numeric object. This class
 # is pretty much self-explanatory.
+# FIXME how can we make this language independent?
 module Treat::Entities::Abilities::Buildable
   
   require 'schiphol'
@@ -162,8 +163,10 @@ module Treat::Entities::Abilities::Buildable
   # Build a document from a raw or serialized file.
   def from_file(file, options)
 
-
-    if file.index('yml') || file.index('yaml') || file.index('xml') || file.index('mongo')
+    if file.index('yml') || 
+      file.index('yaml') || 
+      file.index('xml') || 
+      file.index('mongo')
       from_serialized_file(file, options)
     else
       fmt = Treat::Workers::Formatters::Readers::Autoselect.
