@@ -220,10 +220,8 @@ module Treat::Entities::Abilities::Buildable
     
   end
   
-  def from_db(adapter, options)
-    id = options[:id]
-    e = self.new(nil, id)
-    e.unserialize(adapter, options)
+  def from_db(adapter, selector)
+    self.new.unserialize(adapter, selector)
   end
 
   # Build any kind of entity from a string.

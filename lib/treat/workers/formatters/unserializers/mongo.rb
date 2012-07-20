@@ -3,8 +3,11 @@ module Treat::Workers::Formatters::Unserializers::Mongo
   require 'mongo'
   
   def self.unserialize(entity, options={})
-
-    if !Treat.databases.mongo.db && !options[:db]
+    
+    db = options.delete(:db)
+    selector = options
+    
+    if !Treat.databases.mongo.db && !db
       raise Treat::Exception,
       'Must supply the database name in config. ' +
       '(Treat.databases.mongo.db = ...) or pass ' +
@@ -13,7 +16,7 @@ module Treat::Workers::Formatters::Unserializers::Mongo
     
     @@database ||= Mongo::Connection.
     new(Treat.databases.mongo.host).
-    db(Treat.databases.mongo.db || options[:db])
+    db(Treat.databases.mongo.db || db)
     
     supertype =  cl(Treat::Entities.const_get(
     entity.type.to_s.capitalize.intern).superclass).downcase
@@ -21,7 +24,7 @@ module Treat::Workers::Formatters::Unserializers::Mongo
     supertypes = supertype + 's'
     
     coll = @@database.collection(supertypes)
-    record = coll.find_one(:id => entity.id)
+    record = coll.find_one(selector)
     
     unless record
       raise Treat::Exception,
