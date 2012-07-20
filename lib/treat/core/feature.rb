@@ -10,7 +10,7 @@ class Treat::Core::Feature
   attr_reader :name
   # A proc that can be used to perform
   # calculations before storing a feature.
-  attr_reader :proc
+  attr_accessor :proc
   # The default value to be
   attr_reader :default
   
