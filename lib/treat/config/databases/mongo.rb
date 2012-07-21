@@ -1,3 +1,1 @@
-{host: 'localhost',
- port: '27017',
- db: nil }
+{host: 'localhost', port: '27017', db: nil }
