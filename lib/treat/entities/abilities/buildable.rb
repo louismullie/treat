@@ -4,11 +4,11 @@
 # is pretty much self-explanatory.
 # FIXME how can we make this language independent?
 module Treat::Entities::Abilities::Buildable
-  
+
   require 'schiphol'
   require 'fileutils'
   require 'uri'
-  
+
   # Simple regexps to match common entities.
   WordRegexp = /^[[:alpha:]\-']+$/
   NumberRegexp = /^#?([0-9]+)(\.[0-9]+)?$/
@@ -16,7 +16,7 @@ module Treat::Entities::Abilities::Buildable
   UriRegexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix
   EmailRegexp = /.+\@.+\..+/
   Enclitics = %w['ll 'm 're 's 't 've]
-  
+
   # Reserved folder names
   Reserved = ['.index']
 
@@ -26,8 +26,11 @@ module Treat::Entities::Abilities::Buildable
   def build(file_or_value, options = {})
 
     fv = file_or_value.to_s
-    if self == Treat::Entities::Document || 
-      (fv.index('yml') || fv.index('yaml') || 
+
+    if file_or_value.is_a?(Hash)
+      from_db(file_or_value)
+    elsif self == Treat::Entities::Document ||
+      (fv.index('yml') || fv.index('yaml') ||
       fv.index('xml') || fv.index('mongo'))
       if fv =~ UriRegexp
         from_url(fv, options)
@@ -38,7 +41,7 @@ module Treat::Entities::Abilities::Buildable
       if FileTest.directory?(fv)
         from_folder(fv, options)
       else
-        create_collection(fv)
+        Treat::Entities::Collection.new(fv)
       end
     else
       if file_or_value.is_a?(String)
@@ -52,7 +55,7 @@ module Treat::Entities::Abilities::Buildable
         "filename, string or number."
       end
     end
-    
+
   end
 
   # Build an entity from a string. Type is
@@ -76,7 +79,7 @@ module Treat::Entities::Abilities::Buildable
     end
 
     e
-    
+
   end
 
   # Build a document from an URL.
@@ -87,14 +90,14 @@ module Treat::Entities::Abilities::Buildable
       'Cannot create something ' +
       'else than a document from a url.'
     end
-    
+
     f = Schiphol.download(url,
-      :download_folder => Treat.paths.files,
-      :show_progress => Treat.core.verbosity.silence,
-      :rectify_extensions => true,
-      :max_tries => 3
+    :download_folder => Treat.paths.files,
+    :show_progress => Treat.core.verbosity.silence,
+    :rectify_extensions => true,
+    :max_tries => 3
     )
-    
+
     options[:default_to] ||= 'html'
 
     e = from_file(f, options)
@@ -123,7 +126,7 @@ module Treat::Entities::Abilities::Buildable
   def from_folder(folder, options)
 
     return if Reserved.include?(folder)
-    
+
     unless FileTest.directory?(folder)
       raise Treat::Exception,
       "Path '#{folder}' does " +
@@ -163,9 +166,9 @@ module Treat::Entities::Abilities::Buildable
   # Build a document from a raw or serialized file.
   def from_file(file, options)
 
-    if file.index('yml') || 
-      file.index('yaml') || 
-      file.index('xml') || 
+    if file.index('yml') ||
+      file.index('yaml') ||
+      file.index('xml') ||
       file.index('mongo')
       from_serialized_file(file, options)
     else
@@ -174,7 +177,7 @@ module Treat::Entities::Abilities::Buildable
       options[:_format] = fmt
       from_raw_file(file, options)
     end
-    
+
   end
 
   # Build a document from a raw file.
@@ -186,13 +189,13 @@ module Treat::Entities::Abilities::Buildable
       "Cannot create something else than a " +
       "document from raw file '#{file}'."
     end
-    
+
     unless File.readable?(file)
       raise Treat::Exception,
       "Path '#{file}' does not "+
       "point to a readable file."
     end
-    
+
     d = Treat::Entities::Document.new(file)
 
     d.read(:autoselect, options)
@@ -217,11 +220,20 @@ module Treat::Entities::Abilities::Buildable
       d.children[0].set_as_root!              # Fix this
       d.children[0]
     end
-    
+
   end
-  
-  def from_db(adapter, selector)
-    self.new.unserialize(adapter, selector)
+
+  def from_db(hash)
+    adapter = (hash.delete(:adapter) ||
+    Treat.databases.default.adapter)
+    unless adapter
+      raise Treat::Exception,
+      "You must supply which database " +
+      "adapter to use by passing the :adapter " +
+      "option or setting configuration option" +
+      "Treat.databases.default.adapter"
+    end
+    self.new.unserialize(adapter, hash)
   end
 
   # Build any kind of entity from a string.
@@ -320,9 +332,5 @@ module Treat::Entities::Abilities::Buildable
 
   end
 
-  def create_collection(fv)
-    FileUtils.mkdir(fv)
-    Treat::Entities::Collection.new(fv)
-  end
 
 end
