@@ -18,6 +18,8 @@ class Treat::Workers::Retrievers::Indexers::Ferret
   # index for future use (e.g. in searching).
   def self.index(collection, options = {})
     
+    # FIXME - what if the collection is stored
+    # in a database?
     path = "#{collection.folder}/.index"
     return path if FileTest.directory?(path)
     
