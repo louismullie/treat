@@ -31,10 +31,25 @@ class Treat::Workers::Formatters::Serializers::Mongo
     entity.type.to_s.capitalize.intern).superclass).downcase
     supertype = entity.type.to_s if supertype == 'entity'
     supertypes = supertype + 's'
-      
+    
     coll = @@database.collection(supertypes)
-    entity_token = self.do_serialize(entity, options)
-    coll.update({id: entity.id}, entity_token, {upsert: true})
+    
+    if entity.type == :collection
+      docs = @@database.collection('documents')
+      coll.update(
+        {id: entity.id}, self.do_serialize(entity, 
+        options.merge({:stop_at => Treat::Entities::Document})), 
+        {upsert: true})
+      entity.each_document do |doc|
+        docs.update(
+        {id: doc.id}, self.do_serialize(doc, options), 
+        {upsert: true})
+      end
+    else
+      entity_token = self.do_serialize(entity, options)
+      coll.update({id: entity.id}, entity_token, {upsert: true})
+    end
+    
   end
 
   def self.do_serialize(entity, options)
@@ -52,7 +67,7 @@ class Treat::Workers::Formatters::Serializers::Mongo
     entity_token = {
       :id => entity.id,
       :value => entity.value,
-      :string => entity.to_s,
+      :string => entity.type == :collection ? nil : entity.to_s,
       :type => entity.type.to_s,
       :children => children,
       :parent => (entity.has_parent? ? entity.parent.id : nil),
