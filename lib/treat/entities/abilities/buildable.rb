@@ -41,7 +41,7 @@ module Treat::Entities::Abilities::Buildable
       if FileTest.directory?(fv)
         from_folder(fv, options)
       else
-        Treat::Entities::Collection.new(fv)
+        create_collection(fv)
       end
     else
       if file_or_value.is_a?(String)
@@ -330,6 +330,11 @@ module Treat::Entities::Abilities::Buildable
       Treat::Entities::Paragraph.new(string)
     end
 
+  end
+  
+  def create_collection(fv)
+    FileUtils.mkdir(fv)
+    Treat::Entities::Collection.new(fv)
   end
 
 
