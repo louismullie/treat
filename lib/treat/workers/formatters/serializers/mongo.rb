@@ -67,7 +67,6 @@ class Treat::Workers::Formatters::Serializers::Mongo
     entity_token = {
       :id => entity.id,
       :value => entity.value,
-      :string => entity.type == :collection ? nil : entity.to_s,
       :type => entity.type.to_s,
       :children => children,
       :parent => (entity.has_parent? ? entity.parent.id : nil),

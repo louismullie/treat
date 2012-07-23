@@ -24,14 +24,23 @@ module Treat::Workers::Formatters::Unserializers::Mongo
     supertypes = supertype + 's'
     
     coll = @@database.collection(supertypes)
-    record = coll.find_one(selector)
+    records = coll.find(selector).to_a
     
-    unless record
+    if records.size == 0
       raise Treat::Exception,
-      "Couldn't find record ID #{entity.id}."
+      "Couldn't find any records using " +
+      "selector #{selector.inspect}."
+    elsif records.size == 1
+      self.do_unserialize(
+      records.first, options)
+    else
+      matches = []
+      records.each do |record|
+        matches << self.
+        do_unserialize(record, options)
+      end
+      matches
     end
-
-    self.do_unserialize(record, options)
     
   end
 
