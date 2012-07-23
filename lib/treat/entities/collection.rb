@@ -4,14 +4,11 @@ module Treat::Entities
 
     # Initialize the collection with a folder
     # containing the texts of the collection.
-    def initialize(name = nil, id = nil)
+    def initialize(folder = nil, id = nil)
       super('', id)
-      set :name, name
-      if FileTest.directory?(name)
-        set :folder, folder
-        i = folder + '/.index'
-        set :index, i if FileTest.directory?(i)
-      end
+      set :folder, folder if folder
+      i = folder + '/.index'
+      set :index, i if FileTest.directory?(i)
     end
 
     # Works like the default <<, but if the
