@@ -99,7 +99,7 @@ module Treat::Config
       kname = type.to_s.capitalize.intern
       klass = Treat::Entities.const_get(kname)
       Object.class_eval do
-        define_method(kname.downcase) do |val, opts={}|
+        define_method(kname.to_s.downcase.intern) do |val, opts={}|
           klass.build(val, opts)
         end
         # THIS WILL BE DEPRECATED IN 2.0
@@ -112,7 +112,7 @@ module Treat::Config
     Treat::Core.constants.each do |kname|
       Object.class_eval do
         klass = Treat::Core.const_get(kname)
-        define_method(kname.downcase) do |*args|
+        define_method(kname.to_s.downcase.intern) do |*args|
           klass.new(*args)
         end
         # THIS WILL BE DEPRECATED IN 2.0
