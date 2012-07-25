@@ -31,7 +31,7 @@ module Treat::Entities
     extend Abilities::Buildable
 
     # Implement support for #do.
-    include Abilities::Doable
+    include Abilities::Chainable
 
     # Implement support for #frequency,
     # #frequency_in_parent and #position_in_parent.
@@ -98,7 +98,7 @@ module Treat::Entities
     # or can't be parsed, raises an exception.
     #
     # Also catches the "empty" method call (e.g.
-    # Word('hello') or Word 'hello') as syntactic
+    # word 'hello' or word 'hello' as syntactic
     # sugar for the #self.build method.
     def method_missing(sym, *args, &block)
       return self.build(*args) if sym == nil

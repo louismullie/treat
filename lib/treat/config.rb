@@ -96,10 +96,13 @@ module Treat::Config
     return if Treat.core.syntax.sweetened
     Treat.core.syntax.sweetened = true
     Treat.core.entities.list.each do |type|
-      next if type == :Symbol
-      kname = cc(type).intern
+      kname = type.to_s.capitalize.intern
       klass = Treat::Entities.const_get(kname)
       Object.class_eval do
+        define_method(kname.downcase) do |val, opts={}|
+          klass.build(val, opts)
+        end
+        # THIS WILL BE DEPRECATED IN 2.0
         define_method(kname) do |val, opts={}|
           klass.build(val, opts)
         end
@@ -109,6 +112,10 @@ module Treat::Config
     Treat::Core.constants.each do |kname|
       Object.class_eval do
         klass = Treat::Core.const_get(kname)
+        define_method(kname.downcase) do |*args|
+          klass.new(*args)
+        end
+        # THIS WILL BE DEPRECATED IN 2.0
         define_method(kname) do |*args|
           klass.new(*args)
         end
@@ -123,7 +130,6 @@ module Treat::Config
     Treat.core.syntax.sweetened = false
     Treat.core.entities.list.each do |type|
       name = cc(type).intern
-      next if type == :Symbol
       Object.class_eval { remove_method(name) }
     end
 
