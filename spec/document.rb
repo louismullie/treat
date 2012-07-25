@@ -9,7 +9,7 @@ describe Treat::Entities::Document do
       it "returns a list of general topics the document belongs to" do
         #doc = Treat::Entities::Document.new(
         #Treat.paths.spec + 'samples/mathematicians/archimedes.abw').read(:abw)
-        #doc.do(:chunk, :segment, :tokenize)
+        #doc.chain(:chunk, :segment, :tokenize)
         #puts doc.topics.inspect
       end
 

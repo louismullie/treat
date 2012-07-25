@@ -19,8 +19,8 @@ ds = DataSet(p)
 text = Paragraph("Welcome to the zoo! This is a text.")
 text2 = Paragraph("Welcome here my friend. This is well, a text.")
 
-text.do :segment, :tokenize
-text2.do :segment, :tokenize
+text.chain :segment, :tokenize
+text2.chain :segment, :tokenize
 
 ds1 = text.export(p)
 ds2 = text2.export(p2)
