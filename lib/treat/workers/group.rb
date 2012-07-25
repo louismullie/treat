@@ -117,9 +117,9 @@ module Treat::Workers::Group
         m = ucc(cl(self)).dup
         if  m[-4..-1] == 'zers'
           if type == :annotator
-            m[-5..-1] = m[-6] == 'l' ? '' : 'y'
-          else
-            m = m[0..-3]
+            m[-5..-1] = m[-6] == 'l' ? '' : 'y'   # THIS
+          else                                    # IS
+            m = m[0..-3]                          # UGLY!
           end
           n = m         
         elsif m[-4..-1] == 'iers'
