@@ -334,7 +334,7 @@ describe Treat::Entities::Entity do
             next if ser == :mongo # Fix this!
             f = Treat.paths.spec + 'test.' + ser.to_s
             s = Treat::Entities::Paragraph.new(@txt)
-            s.do(:segment, :tokenize)
+            s.chain(:segment, :tokenize)
             s.serialize(ser, :file => f)
             File.delete(f)
           end
@@ -361,7 +361,7 @@ describe Treat::Entities::Entity do
             s.set :test_sym, :hello
             s.set :test_bool, false
             
-            s.do(:segment, :tokenize)
+            s.chain(:segment, :tokenize)
             
             s.serialize(ser, :file => f)
             
