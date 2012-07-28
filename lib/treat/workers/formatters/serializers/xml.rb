@@ -33,14 +33,14 @@ class Treat::Workers::Formatters::Serializers::XML
         end
       end
       ############ To be refactored
-      unless entity.dependencies.empty?
-        attributes << "dependencies='"
+      unless entity.edges.empty?
+        attributes << "edges='"
         a = []
-        entity.dependencies.each do |dependency|
-          a << ("{target: #{dependency.target}, "+
-          "type: #{dependency.type}, " +
-          "directed: #{dependency.directed}, " +
-          "direction: #{dependency.direction}}" )
+        entity.edges.each do |edge|
+          a << ("{target: #{edge.target}, "+
+          "type: #{edge.type}, " +
+          "directed: #{edge.directed}, " +
+          "direction: #{edge.direction}}" )
         end
         # Structs.
         attributes << a.join(',') + "'"

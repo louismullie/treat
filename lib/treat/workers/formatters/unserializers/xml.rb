@@ -35,13 +35,13 @@ module Treat::Workers::Formatters::Unserializers::XML
 
       id = nil; value = ''
       attributes = {}
-      dependencies = []
+      edges = []
       
       unless xml_reader.attributes.size == 0
         xml_reader.attributes.each_pair do |k,v|
           if k == 'id'
             id = v.to_i
-          elsif k == 'dependencies'
+          elsif k == 'edges'
             a = v.split('--')
             a.each do |b|
               c = b.split(';')
@@ -54,7 +54,7 @@ module Treat::Workers::Formatters::Unserializers::XML
                 end
 
                 target, type, directed, direction = *vals
-                dependencies << [
+                edges << [
                   target.to_i,
                   type,
                   (directed == 'true' ? true : false),
@@ -87,8 +87,8 @@ module Treat::Workers::Formatters::Unserializers::XML
         end
         current_element.features = attributes
         current_element.features = attributes
-        dependencies.each do |dependency|
-          target, type, directed, direction = *dependency
+        edges.each do |edge|
+          target, type, directed, direction = *edge
           current_element.link(target, type, directed, direction)
         end
       else

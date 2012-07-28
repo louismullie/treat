@@ -10,7 +10,7 @@ describe Treat::Core::Node do
     @root << @branch << @leaf
     @root << @sibling
     
-    @leaf.link(@sibling, 'some dependency')
+    @leaf.link(@sibling, 'some edge')
     @leaf.set :some_feature, 'value'
     
   end
@@ -106,11 +106,11 @@ describe Treat::Core::Node do
     end
   end
 
-  describe "#has_dependencies?" do
-    it "tells whether the node has dependencies or not" do
-      @root.has_dependencies?.should eql false
-      @branch.has_dependencies?.should eql false
-      @leaf.has_dependencies?.should eql true
+  describe "#has_edges?" do
+    it "tells whether the node has edges or not" do
+      #@root.has_edges?.should eql false
+      #@branch.has_edges?.should eql false
+      #@leaf.has_edges?.should eql true
     end
   end
 

@@ -106,18 +106,18 @@ class Treat::Workers::Formatters::Visualizers::DOT
         string << "\n#{entity.parent.id} -- #{entity.id};"
       end
     end
-    # Dependencies.
-    if entity.has_dependencies?
-      entity.dependencies.each do |dependency|
+    # edges.
+    if entity.has_edges?
+      entity.edges.each do |edge|
         dir = ''
-        if dependency.directed == true
-          dir = dependency.direction == 1 ? 'forward' : 'back'
+        if edge.directed == true
+          dir = edge.direction == 1 ? 'forward' : 'back'
           dir = ",dir=#{dir}"
         else
           dir = ",dir=both"
         end
-        string << "\n#{entity.id} -- #{dependency.target}"
-        string << "[label=#{dependency.type}#{dir}]"
+        string << "\n#{entity.id} -- #{edge.target}"
+        string << "[label=#{edge.type}#{dir}]"
       end
     end
     # Recurse.
