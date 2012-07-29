@@ -11,7 +11,9 @@ module Treat::Entities
       end
       set :folder, folder if folder
       i = folder + '/.index'
-      set :index, i if FileTest.directory?(i)
+      if FileTest.directory?(i)
+        set :index, i
+      end
     end
 
     # Works like the default <<, but if the
@@ -19,7 +21,7 @@ module Treat::Entities
     # document, then copy that collection or
     # document into this collection's folder.
     def <<(entities, copy = true)
-      unless entities.is_a? Array
+      unless entities.is_a?(Array)
         entities = [entities]
       end
       entities.each do |entity|

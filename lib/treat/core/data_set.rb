@@ -26,10 +26,10 @@ class Treat::Core::DataSet
   # or with a filename (representing
   # a serialized data set which will
   # then be deserialized and loaded).
-  def initialize(prob_or_file)
-    if prob_or_file.is_a?(String)
+  def initialize(prob_or_file, options = {})
+    if prob_or_file.is_a?(Symbol)       # FIX THIS
       ds = self.class.
-      unserialize(prob_or_file)
+      unserialize(prob_or_file, options)
       @problem = ds.problem
       @items = ds.items
       @entities = ds.entities
@@ -60,7 +60,12 @@ class Treat::Core::DataSet
   # method relies on the sourcify gem
   # to transform Feature procs to strings,
   # since procs/lambdas can't be serialized.
-  def serialize(file)
+  def serialize(handler, options = {})
+    send("to_#{handler}", options)
+  end
+  
+  def to_dump(options)
+    file = options[:file]
     problem = @problem.dup
     problem.features.each do |feature|
       next unless feature.proc
@@ -77,21 +82,39 @@ class Treat::Core::DataSet
     end
   end
   
-  # Merge another data set into this one.
-  def merge(data_set)
-    if data_set.problem != @problem
-      raise Treat::Exception,
-      "Cannot merge two data sets that " +
-      "don't reference the same problem." 
-    else
-      @items << data_set.items
-      @entities << data_set.entities
+  def to_mongo(options)
+    require 'mongo'
+    require 'bson'
+    host = options[:host] || 
+    Treat.databases.mongo.host
+    db = options[:db] || Treat.config.
+    databases.default.adapter
+    collection = options[:collection] || 'data'
+    database = Mongo::Connection.
+    new(host).db(db).collection(collection)
+    features = @problem.features.map do |f|
+      f.name
     end
+    features << :id
+    items = []
+    @items.zip(@entities).each do |item, id|
+      item << id
+      items << Hash[features.zip(item)]
+    end
+    collection.insert({ 
+      question: to_hash(problem.question),
+      features: problem.features.map { |f| to_hash(f) },
+      items: items
+    })
   end
   
   # Unserialize a data set file created 
   # by using the #serialize method.
-  def self.unserialize(file)
+  def self.unserialize(handler, options)
+    self.send("from_#{handler}", options)
+  end
+  
+  def self.from_dump(file)
     data = Marshal.load(File.binread(file))
     problem, items, entities = *data
     problem.features.each do |feature|
@@ -103,6 +126,39 @@ class Treat::Core::DataSet
     data_set.items = items
     data_set.entities = entities
     data_set
+  end
+  
+  def to_hash(obj)
+    hash = {}
+    obj.instance_variables.each do |var| 
+      val = obj.instance_variable_get(var)
+      val = val.to_source if val.is_a?(Proc)
+      hash[var.to_s.delete("@")] = val
+    end
+    hash
+  end
+  
+  def self.from_mongo(options)
+    host = options[:host] || Treat.config.
+    databases.mongo.host
+    db = options[:db] || Treat.config.
+    databases.default.adapter
+    collection = options[:collection] || 'data'
+    database = Mongo::Connection.
+    new(host).db(db).collection(collection)
+    collection.find({})
+  end
+
+  # Merge another data set into this one.
+  def merge(data_set)
+    if data_set.problem != @problem
+      raise Treat::Exception,
+      "Cannot merge two data sets that " +
+      "don't reference the same problem." 
+    else
+      @items << data_set.items
+      @entities << data_set.entities
+    end
   end
   
 end
