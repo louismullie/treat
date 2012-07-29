@@ -9,7 +9,7 @@ module Treat::Entities
 
   require 'birch'
 
-  class Entity < Treat::Core::Node
+  class Entity < ::Birch::Tree
 
     # A Symbol representing the lowercase
     # version of the class name.
