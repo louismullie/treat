@@ -25,7 +25,7 @@ class Treat::Workers::Formatters::Serializers::Mongo
 
     @@database ||= Mongo::Connection.
     new(Treat.databases.mongo.host).
-    db(options[:db] || Treat.databases.mongo.db)
+    db(options[:db] || Treat.databases.mongo.db)
 
     supertype =  cl(Treat::Entities.const_get(
     entity.type.to_s.capitalize.intern).superclass).downcase
