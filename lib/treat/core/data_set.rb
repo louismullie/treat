@@ -39,73 +39,21 @@ class Treat::Core::DataSet
     end
   end
   
-  # Add an entity to the data set.
-  # The entity's relevant features
-  # are calculated based on the 
-  # classification problem, and a
-  # line with the results of the  
-  # calculation is added to the 
-  # data set, along with the ID
-  # of the entity.
+  # Add an entity to the data set. The 
+  # entity's relevant features are 
+  # calculated based on the classification 
+  # problem, and a line with the results 
+  # of the calculation is added to the 
+  # data set, along with the ID of the entity.
   def <<(entity)
-    @items << @problem.
-    export_item(entity)
+    @items << @problem.export_item(entity)
     @entities << entity.id
   end
   
-  # Marshal the data set to the supplied
-  # file name. Marshal is used for speed;
-  # other serialization options may be
-  # provided in later versions. This 
-  # method relies on the sourcify gem
-  # to transform Feature procs to strings,
-  # since procs/lambdas can't be serialized.
+  # Serialize the data set to a file,
+  # or store it inside the database.
   def serialize(handler, options = {})
     send("to_#{handler}", options)
-  end
-  
-  def to_dump(options)
-    file = options[:file]
-    problem = @problem.dup
-    problem.features.each do |feature|
-      next unless feature.proc
-      feature.proc = feature.proc.to_source
-    end
-    data = [problem, @items, @entities]
-    File.open(file, 'w') do |f| 
-      f.write(Marshal.dump(data))
-    end
-    problem.features.each do |feature|
-      next unless feature.proc
-      source = feature.proc[5..-1]
-      feature.proc = eval("Proc.new #{source}")
-    end
-  end
-  
-  def to_mongo(options)
-    require 'mongo'
-    require 'bson'
-    host = options[:host] || 
-    Treat.databases.mongo.host
-    db = options[:db] || Treat.config.
-    databases.default.adapter
-    collection = options[:collection] || 'data'
-    database = Mongo::Connection.
-    new(host).db(db).collection(collection)
-    features = @problem.features.map do |f|
-      f.name
-    end
-    features << :id
-    items = []
-    @items.zip(@entities).each do |item, id|
-      item << id
-      items << Hash[features.zip(item)]
-    end
-    collection.insert({ 
-      question: to_hash(problem.question),
-      features: problem.features.map { |f| to_hash(f) },
-      items: items
-    })
   end
   
   # Unserialize a data set file created 
@@ -114,13 +62,27 @@ class Treat::Core::DataSet
     self.send("from_#{handler}", options)
   end
   
-  def self.from_dump(file)
+  # Serialize the data set using Marshal.
+  def to_marshal(options)
+    file = options[:file]
+    problem = @problem.dup
+    problem.features.each do |feature|
+      feature.proc = nil
+    end
+    data = [problem, @items, @entities]
+    File.open(file, 'w') do |f| 
+      f.write(Marshal.dump(data))
+    end
+  end
+  
+  # Unserialize the data using Marshal.
+  def self.from_marshal(options)
+    file = options[:file]
     data = Marshal.load(File.binread(file))
     problem, items, entities = *data
     problem.features.each do |feature|
-      next unless feature.proc
-      source = feature.proc[5..-1]
-      feature.proc = eval("Proc.new #{source}")
+      next unless feature.proc_string
+      feature.proc = eval(feature.proc_string)
     end
     data_set = Treat::Core::DataSet.new(problem)
     data_set.items = items
@@ -128,25 +90,48 @@ class Treat::Core::DataSet
     data_set
   end
   
-  def to_hash(obj)
-    hash = {}
-    obj.instance_variables.each do |var| 
-      val = obj.instance_variable_get(var)
-      val = val.to_source if val.is_a?(Proc)
-      hash[var.to_s.delete("@")] = val
+  # Serialize the data set to a MongoDB record.
+  def to_mongo(options)
+    require 'mongo'
+    host = options[:host] || Treat.databases.mongo.host
+    db = options[:db] || Treat.databases.mongo.db
+    database = Mongo::Connection.new(host).db(db)
+    database.collection('problems').update(
+    {id: @problem.id}, @problem.to_hash, {upsert: true})
+    features = @problem.features.map { |f| f.name }
+    features << @problem.question.name
+    data = database.collection('data')
+    pid = @problem.id
+    @items.zip(@entities).each do |item, id|
+      item = Hash[features.zip(item)]
+      item[:entity], item[:problem] = id, pid
+      data.insert(item)
     end
-    hash
   end
   
   def self.from_mongo(options)
-    host = options[:host] || Treat.config.
-    databases.mongo.host
-    db = options[:db] || Treat.config.
-    databases.default.adapter
-    collection = options[:collection] || 'data'
-    database = Mongo::Connection.
-    new(host).db(db).collection(collection)
-    collection.find({})
+    require 'mongo'
+    host = options.delete(:host) || Treat.databases.mongo.host
+    db = options.delete(:db) || Treat.databases.mongo.db
+    database = Mongo::Connection.new(host).db(db)
+    p_record = database.collection('problems').
+    find_one(id: options[:problem])
+    unless p_record
+      raise Treat::Exception, 
+      "Couldn't retrieve problem ID #{options[:problem]}."
+    end
+    problem = Treat::Core::Problem.from_hash(p_record)
+    data = database.collection('data').find(options).to_a
+    items, entities = [], []
+    data.each do |datum|
+      datum.delete("_id"); datum.delete('problem')
+      entities << datum.delete('entity')
+      items << datum.values
+    end
+    data_set = Treat::Core::DataSet.new(problem)
+    data_set.items = items
+    data_set.entities = entities
+    data_set
   end
 
   # Merge another data set into this one.
