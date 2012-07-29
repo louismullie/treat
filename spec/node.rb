@@ -10,16 +10,8 @@ describe Treat::Core::Node do
     @root << @branch << @leaf
     @root << @sibling
     
-    @leaf.link(@sibling, 'some edge')
     @leaf.set :some_feature, 'value'
     
-  end
-
-  describe "#[]" do
-    it "allows traversal of the tree by node ID" do
-      @root['branch'].should eql @branch
-      @root['branch']['leaf'].should eql @leaf
-    end
   end
   
 =begin
@@ -45,7 +37,7 @@ describe Treat::Core::Node do
 
 =end
 
-  describe "#set(feature, value) and #get(feature)" do
+  describe "#set(feature, value), []=(feature, value) and #get(feature), [](feature)" do
     it "set and get a feature in the @features hash" do 
       @root.set :foo, true
       @root.get(:foo).should eql true
