@@ -11,7 +11,7 @@ class Treat::Core::Feature
   # A proc that can be used to perform
   # calculations before storing a feature.
   attr_accessor :proc
-  # The default value to be
+  # The default value to be used.
   attr_reader :default
   
   # Initialize a feature for a classification

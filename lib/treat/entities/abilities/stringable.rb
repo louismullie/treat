@@ -42,14 +42,14 @@ module Treat::Entities::Abilities::Stringable
      if caller_method(2) == :inspect
        @id.to_s
      else
-       dependencies = []
-       @dependencies.each do |dependency|
-         dependencies <<
-         "#{dependency.target}#{dependency.type}"
+       edges = []
+       @edges.each do |edge|
+         edges <<
+         "#{edge.target}#{edge.type}"
        end
        s += "  --- #{short_value.inspect}" +
        "  ---  #{@features.inspect} " +
-       "  --- #{dependencies.inspect} "
+       "  --- #{edges.inspect} "
      end
      s
    end

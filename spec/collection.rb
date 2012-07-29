@@ -29,7 +29,7 @@ describe Treat::Entities::Collection do
         f = Treat.paths.spec + 'samples/test'
         c = Treat::Entities::Collection.build(f)
         c << Treat::Entities::Document.new
-        c.size.should eql 2
+        c.size.should eql 1
         FileUtils.rm_rf(f)
       end
     end
@@ -45,7 +45,7 @@ describe Treat::Entities::Collection do
         it "recursively searches the folder for " +
         "files and opens them into a collection of documents" do
           collection = Treat::Entities::Collection.build(@file)
-          collection.size.should eql 6
+          collection.size.should eql 5
         end
 
       end

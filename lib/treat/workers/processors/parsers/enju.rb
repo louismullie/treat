@@ -38,7 +38,7 @@ module Treat::Workers::Processors::Parsers::Enju
     val = entity.to_s
     
     @@id_table = {}
-    @@dependencies_table = {}
+    @@edges_table = {}
     
     stdin, stdout = proc
     text, remove_last = valid_text(val)
@@ -63,7 +63,7 @@ module Treat::Workers::Processors::Parsers::Enju
     end
     
     link_heads(entity)
-    add_dependencies(entity)
+    add_edges(entity)
   end
   
   # Return the process running Enju.
@@ -102,12 +102,12 @@ module Treat::Workers::Processors::Parsers::Enju
         pd = cd
         next
       end
-      # Get and format attributes and dependencies.
+      # Get and format attributes and edges.
       attributes = reader.attributes
       id = attributes.delete('id')
-      new_attr = {}; dependencies = {}
+      new_attr = {}; edges = {}
       unless attributes.size == 0
-        new_attr, dependencies =
+        new_attr, edges =
         cleanup_attributes(reader.name, attributes)
       end
       # Create the appropriate entity for the
@@ -117,17 +117,17 @@ module Treat::Workers::Processors::Parsers::Enju
       when 'sentence'
         entity = Treat::Entities::Sentence.new('')
         @@id_table[id] = entity.id
-        @@dependencies_table[entity.id] = dependencies
+        @@edges_table[entity.id] = edges
         entity.features = new_attr
       when 'cons'
         entity = entity <<
         Treat::Entities::Phrase.new('')
         @@id_table[id] = entity.id
-        @@dependencies_table[entity.id] = dependencies
+        @@edges_table[entity.id] = edges
         entity.features = new_attr
       when 'tok'
         tmp_attributes = new_attr
-        tmp_dependencies = dependencies
+        tmp_edges = edges
       else
         current_value = reader.value.gsub(/\s+/, "")
         unless current_value.size == 0
@@ -136,7 +136,7 @@ module Treat::Workers::Processors::Parsers::Enju
           if entity.is_a?(Treat::Entities::Word)
             entity.features = tmp_attributes
             @@id_table[id] = entity.id
-            @@dependencies_table[entity.id] = tmp_dependencies
+            @@edges_table[entity.id] = tmp_edges
           else
             # Do something useful here
             entity.set :tag, 'SYM'
@@ -179,15 +179,15 @@ module Treat::Workers::Processors::Parsers::Enju
     end
   end
   
-  # Add dependencies a posteriori to a parsed entity.
-  def self.add_dependencies(entity2)
+  # Add edges a posteriori to a parsed entity.
+  def self.add_edges(entity2)
     
     entity2.each_entity(:word, :phrase) do |entity|
-      @@dependencies_table.each_pair do |id, dependencies|
-        next if dependencies.nil?
+      @@edges_table.each_pair do |id, edges|
+        next if edges.nil?
         entity = entity2.root.find(id)
         next if entity.nil?
-        dependencies.each_pair do |argument, type|
+        edges.each_pair do |argument, type|
           # Skip this argument if we 
           # don't know the target node.
           next if argument == 'unk'
@@ -205,7 +205,7 @@ module Treat::Workers::Processors::Parsers::Enju
   def self.cleanup_attributes(name, attributes)
     
     new_attr = {}
-    dependencies = {}
+    edges = {}
     pred = attributes.delete('pred')
     
     attributes.each_pair do |attribute2, value|
@@ -214,7 +214,7 @@ module Treat::Workers::Processors::Parsers::Enju
       
       if attribute == 'arg1' || 
         attribute == 'arg2'
-        dependencies[value] = pred
+        edges[value] = pred
         next
       end
       
@@ -256,7 +256,7 @@ module Treat::Workers::Processors::Parsers::Enju
       new_attr.delete :base
     end
     
-    return new_attr, dependencies
+    return new_attr, edges
   
   end
   
