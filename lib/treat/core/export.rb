@@ -1,6 +1,6 @@
 # Represents a feature to be used
 # in a classification task.
-class Treat::Core::Feature
+class Treat::Core::Export
   
   # The name of the feature. If no 
   # proc is supplied, this assumes
@@ -34,3 +34,6 @@ class Treat::Core::Feature
   end
   
 end
+
+class Treat::Core::Feature < Treat::Core::Export; end
+class Treat::Core::Tag < Treat::Core::Export; end
