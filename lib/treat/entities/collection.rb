@@ -6,13 +6,15 @@ module Treat::Entities
     # containing the texts of the collection.
     def initialize(folder = nil, id = nil)
       super('', id)
-      if folder && !FileTest.directory?(folder)
-        FileUtils.mkdir(folder)
-      end
-      set :folder, folder if folder
-      i = folder + '/.index'
-      if FileTest.directory?(i)
-        set :index, i
+      if folder
+        if !FileTest.directory?(folder)
+          FileUtils.mkdir(folder) 
+        end
+        set :folder, folder if folder
+        i = folder + '/.index'
+        if FileTest.directory?(i)
+          set :index, i
+        end
       end
     end
 
