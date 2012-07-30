@@ -22,7 +22,7 @@ module Treat::Workers::Formatters::Unserializers::Mongo
     entity.type.to_s.capitalize.intern).superclass).downcase
     supertype = entity.type.to_s if supertype == 'entity'
     supertypes = supertype + 's'
-    
+    supertypes = 'documents' if entity.type == :collection
     coll = @@database.collection(supertypes)
     records = coll.find(selector).to_a
     
@@ -30,16 +30,24 @@ module Treat::Workers::Formatters::Unserializers::Mongo
       raise Treat::Exception,
       "Couldn't find any records using " +
       "selector #{selector.inspect}."
-    elsif records.size == 1
-      self.do_unserialize(
-      records.first, options)
-    else
-      matches = []
+    end
+    
+    if entity.type == :document 
+      if records.size == 1
+        self.do_unserialize(
+        records.first, options)
+      else
+        raise Treat::Exception,
+        "More than one document matched" +
+        "your selector #{selector.inspect}."
+      end
+    elsif entity.type == :collection
+      collection = Treat::Entities::Collection.new
       records.each do |record|
-        matches << self.
+        collection << self.
         do_unserialize(record, options)
       end
-      matches
+      collection
     end
     
   end
