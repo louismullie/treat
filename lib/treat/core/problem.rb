@@ -4,41 +4,50 @@
 #   to attempt to answer that question?
 class Treat::Core::Problem
 
+  # A unique identifier for the problem.
+  attr_accessor :id
   # The question we are trying to answer.
   attr_reader :question
   # An array of features that will be 
   # looked at in trying to answer the
   # problem's question.
   attr_reader :features
+  attr_reader :tags
   # Just the labels from the features.
-  attr_reader :labels
-  # A unique identifier for the problem.
-  attr_accessor :id
+  attr_reader :feature_labels
+  attr_reader :tag_labels
   
   # Initialize the problem with a question
   # and an arbitrary number of features.
-  def initialize(question, *features)
+  def initialize(question, *exports)
     unless question.is_a?(Treat::Core::Question)
       raise Treat::Exception,
-      "The first argument to initialize should be " +
-      "an instance of Treat::Core::Question."
+      "The first argument to initialize " +
+      "should be an instance of " +
+      "Treat::Core::Question."
     end
-    if features.any? { |f| !f.is_a?(Treat::Core::Feature) }
+    if exports.any? { |f| !f.is_a?(Treat::Core::Export) }
       raise Treat::Exception,
       "The second argument and all subsequent ones " +
-      "to initialize should be instances of Treat::" +
-      "Core::Feature."
+      "to initialize should be instances of subclasses " +
+      "of Treat::Core::Export."
     end
-    @question = question
-    @features = features
-    @labels = @features.map { |f| f.name }
-    @id = object_id
+    @question, @id = question, object_id
+    @features = exports.select do |exp|
+      exp.is_a?(Treat::Core::Feature)
+    end
+    @tags = exports.select do |exp|
+      exp.is_a?(Treat::Core::Tag)
+    end
+    @feature_labels = @features.map { |f| f.name }
+    @tag_labels = @tags.map { |t| t.name }
   end
   
   # Custom comparison for problems.
   def ==(problem)
     @question == problem.question &&
-    @features == problem.features
+    @features == problem.features &&
+    @tags == problem.tags
   end
 
   # Return an array of all the entity's
@@ -46,24 +55,33 @@ class Treat::Core::Problem
   # If include_answer is set to true, will
   # append the answer to the problem after
   # all of the features.
-  def export_item(e, what = :features, include_answer = true)
-    line = []
-    @features.each do |feature|
-      r = feature.proc ? 
-      feature.proc.call(e) : 
-      e.send(feature.name)
-      line << (r || feature.default)
-    end
-    return line unless include_answer
-    line << (e.has?(@question.name) ? 
+  def export_features(e, include_answer = true)
+    features = export(e, @features)
+    return features unless include_answer
+    features << (e.has?(@question.name) ? 
     e.get(@question.name) : @question.default)
-    line
+    features
+  end
+  
+  def export_tags(e); export(e, @tags); end
+
+  def export(entity, exports)
+    ret = []
+    exports.each do |export|
+      r = export.proc ? 
+      export.proc.call(entity) : 
+      entity.send(export.name)
+      ret << (r || export.default)
+    end
+    ret
   end
   
   def to_hash
     {'question' => @question.to_hash,
     'features' => @features.map { |f| 
     f.tap { |f| f.proc = nil }.to_hash },
+    'tags' => @tags.map { |t| 
+    t.tap { |t| t.proc = nil }.to_hash },
     'id' => @id }
   end
   
@@ -80,7 +98,14 @@ class Treat::Core::Problem
       feature['name'], feature['default'],
       feature['proc_string'])
     end
-    p = Treat::Core::Problem.new(question, *features)
+    tags = []
+    hash['tags'].each do |tag|
+      tags << Treat::Core::Tag.new(
+      tag['name'], tag['default'],
+      tag['proc_string'])
+    end
+    features_and_tags = features + tags
+    p = Treat::Core::Problem.new(question, *features_and_tags)
     p.id = hash['id']
     p
   end
