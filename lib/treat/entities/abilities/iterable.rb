@@ -103,7 +103,7 @@ module Treat::Entities::Abilities::Iterable
       end
     else
        each do |c|
-        i += 1 if c.features.value_at(feature) == [value]
+        i += 1 if c.features.values_at(feature) == [value]
       end
     end
     i
