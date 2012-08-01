@@ -11,11 +11,11 @@ class Treat::Workers::Learners::Classifiers::MLP
     cl = set.problem
       
     if !@@mlps[cl]
-      net = Ai4r::NeuralNetwork::
-      Backpropagation.new([cl.labels.size, 3, 1])
+      net = Ai4r::NeuralNetwork::Backpropagation.new(
+      [cl.feature_labels.size, 3, 1])
       set.items.each do |item|
-        inputs = item[0..-2]
-        outputs = [item[-1]]
+        inputs = item[:features][0..-2]
+        outputs = [item[:features][-1]]
         net.train(inputs, outputs)
       end
       @@mlps[cl] = net
@@ -23,7 +23,7 @@ class Treat::Workers::Learners::Classifiers::MLP
       net = @@mlps[cl]
     end
     
-    net.eval(cl.export_item(entity, false))[0]
+    net.eval(cl.export_features(entity, false))[0]
     
   end
   

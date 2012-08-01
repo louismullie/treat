@@ -3,11 +3,6 @@
 # have already been classified, complete with
 # references to these entities.
 class Treat::Core::DataSet
-
-  # Used to serialize Procs.
-  silence_warnings do
-    require 'sourcify'
-  end
   
   # The classification problem this
   # data set holds data for.
@@ -15,10 +10,6 @@ class Treat::Core::DataSet
   # Items that have been already 
   # classified (training data).
   attr_accessor :items
-  # References to the IDs of the
-  # original entities contained
-  # in the data set.
-  attr_accessor :entities
   
   # Initialize the DataSet. Can be 
   # done with a Problem entity
@@ -26,17 +17,8 @@ class Treat::Core::DataSet
   # or with a filename (representing
   # a serialized data set which will
   # then be deserialized and loaded).
-  def initialize(prob_or_file, options = {})
-    if prob_or_file.is_a?(Symbol)       # FIX THIS
-      ds = self.class.
-      unserialize(prob_or_file, options)
-      @problem = ds.problem
-      @items = ds.items
-      @entities = ds.entities
-    else
-      @problem = prob_or_file
-      @items, @entities = [], []
-    end
+  def initialize(problem)
+    @problem, @items = problem, []
   end
   
   # Add an entity to the data set. The 
@@ -46,8 +28,11 @@ class Treat::Core::DataSet
   # of the calculation is added to the 
   # data set, along with the ID of the entity.
   def <<(entity)
-    @items << @problem.export_item(entity)
-    @entities << entity.id
+    @items << { tags: @problem.
+    export_tags(entity),
+    features: @problem.
+    export_features(entity),
+    id: entity.id }
   end
   
   # Serialize the data set to a file,
@@ -69,7 +54,10 @@ class Treat::Core::DataSet
     problem.features.each do |feature|
       feature.proc = nil
     end
-    data = [problem, @items, @entities]
+    problem.tags.each do |tag|
+      tag.proc = nil
+    end
+    data = [problem, @items]
     File.open(file, 'w') do |f| 
       f.write(Marshal.dump(data))
     end
@@ -79,14 +67,17 @@ class Treat::Core::DataSet
   def self.from_marshal(options)
     file = options[:file]
     data = Marshal.load(File.binread(file))
-    problem, items, entities = *data
+    problem, items = *data
     problem.features.each do |feature|
       next unless feature.proc_string
       feature.proc = eval(feature.proc_string)
     end
+    problem.tags.each do |tag|
+      next unless tag.proc_string
+      tag.proc = eval(tag.proc_string)
+    end
     data_set = Treat::Core::DataSet.new(problem)
     data_set.items = items
-    data_set.entities = entities
     data_set
   end
   
@@ -95,16 +86,20 @@ class Treat::Core::DataSet
     require 'mongo'
     host = options[:host] || Treat.databases.mongo.host
     db = options[:db] || Treat.databases.mongo.db
+    # UNLESS HOST, UNLESS DB
     database = Mongo::Connection.new(host).db(db)
     database.collection('problems').update(
     {id: @problem.id}, @problem.to_hash, {upsert: true})
-    features = @problem.features.map { |f| f.name }
-    features << @problem.question.name
+    feature_labels = @problem.feature_labels
+    feature_labels << @problem.question.name
+    tag_labels = @problem.tag_labels
+    tags = @problem.tags.map  { |t| t.name }
     data = database.collection('data')
     pid = @problem.id
-    @items.zip(@entities).each do |item, id|
-      item = Hash[features.zip(item)]
-      item[:entity], item[:problem] = id, pid
+    @items.each do |item|
+      item[:features] = Hash[feature_labels.zip(item[:features])]
+      item[:tags] = Hash[tag_labels.zip(item[:tags])]
+      item[:problem] = pid
       data.insert(item)
     end
   end
@@ -122,22 +117,24 @@ class Treat::Core::DataSet
     end
     problem = Treat::Core::Problem.from_hash(p_record)
     data = database.collection('data').find(options).to_a
-    items, entities = [], []
+    items = []
     data.each do |datum|
       datum.delete("_id"); datum.delete('problem')
-      entities << datum.delete('entity')
-      items << datum.values
+      item = {}
+      item[:features] = datum['features'].values
+      item[:tags] = datum['tags'].values
+      item[:id] = datum['id']
+      items << item
     end
     data_set = Treat::Core::DataSet.new(problem)
     data_set.items = items
-    data_set.entities = entities
     data_set
   end
 
   # Merge another data set into this one.
   def merge(data_set)
     if data_set.problem != @problem
-      raise Treat::Exception,
+      raise Treat::Exception,                               # FIXME
       "Cannot merge two data sets that " +
       "don't reference the same problem." 
     else

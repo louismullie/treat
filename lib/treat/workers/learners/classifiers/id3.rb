@@ -11,8 +11,9 @@ class Treat::Workers::Learners::Classifiers::ID3
     
     if !@@classifiers[cl]
       dec_tree = DecisionTree::ID3Tree.new(
-      cl.labels.map { |l| l.to_s }, set.items, cl.question.default, 
-      cl.question.type)
+      cl.feature_labels.map { |l| l.to_s }, 
+      set.items.map { |i| i[:features]}, 
+      cl.question.default, cl.question.type)
       dec_tree.train
       @@classifiers[cl] = dec_tree
     else
@@ -20,7 +21,7 @@ class Treat::Workers::Learners::Classifiers::ID3
       dec_tree.graph('testingbitch')
     end
     dec_tree.predict(
-      cl.export_item(entity, false)
+      cl.export_features(entity, false)
     )
   end
   

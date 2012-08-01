@@ -35,7 +35,7 @@ class Treat::Workers::Formatters::Serializers::Mongo
     coll = @@database.collection(supertypes)
     
     if entity.type == :collection
-      docs = @@database.collection('documents')
+      docs = @@database.collection('documents')                    # Take a design decision here.
       coll.update(
         {id: entity.id}, self.do_serialize(entity, 
         options.merge({:stop_at => Treat::Entities::Document})), 
