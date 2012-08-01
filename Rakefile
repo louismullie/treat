@@ -6,7 +6,7 @@ task :default => :spec
 namespace :treat do
   
   RSpec::Core::RakeTask.new do |t|
-    task = ARGV[0].scan(/\[([a-z]*)\]/)
+    task = ARGV[0].scan(/\[([a-z_]*)\]/)
     if task && task.size == 0
       t.pattern = "./spec/*.rb"
     else
