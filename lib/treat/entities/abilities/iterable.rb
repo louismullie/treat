@@ -95,11 +95,13 @@ module Treat::Entities::Abilities::Iterable
   
   # Number of children that have a given feature.
   # Second variable to allow for passing value to check for.
-  def num_children_with_feature(feature, value = nil, recursive = false)
+  def num_children_with_feature(feature, recursive = false, value = nil)
     i = 0
       each do |c|
         # If Recursive ...
-        i += num_children_with_feature(feature, value, true) if recursive == true && c.has_children?
+        if recursive == true && c.has_children?
+          i += c.num_children_with_feature(feature, true, value)
+        end
         if value == nil
           i += 1 if c.has?(feature)
         else
