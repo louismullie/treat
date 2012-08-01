@@ -19,12 +19,15 @@ class Treat::Core::Question
   attr_reader :target
   # Default for the answer to the question.
   attr_reader :default
+  # A list of possible answers to the question.
+  attr_reader :labels
   
   # Initialize the question.
   def initialize(name, target, 
-    type = :continuous, default = nil)
+    type = :continuous, default = nil, labels = [])
     @name, @target = name, target
     @type, @default = type, default
+    @labels = labels
   end
 
   # Custom comparison operator for questions.
