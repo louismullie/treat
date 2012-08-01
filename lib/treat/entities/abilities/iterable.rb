@@ -94,10 +94,17 @@ module Treat::Entities::Abilities::Iterable
   end
   
   # Number of children that have a given feature.
-  def num_children_with_feature(feature)
+  # Second variable to allow for passing value to check for.
+  def num_children_with_feature(feature, value = nil)
     i = 0
-    each do |c| 
-      i += 1 if c.has?(feature)
+    if value == nil
+      each do |c|
+        i += 1 if c.has?(feature)
+      end
+    else
+       each do |c|
+        i += 1 if c.features.value_at(feature) == [value]
+      end
     end
     i
   end
