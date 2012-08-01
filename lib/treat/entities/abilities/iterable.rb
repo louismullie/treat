@@ -99,7 +99,7 @@ module Treat::Entities::Abilities::Iterable
     i = 0
       each do |c|
         # If Recursive ...
-        i += c.num_children_with_feature(feature, value, true) if recursive == true && c.has_children?
+        i += num_children_with_feature(feature, value, true) if recursive == true && c.has_children?
         if value == nil
           i += 1 if c.has?(feature)
         else
