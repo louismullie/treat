@@ -18,7 +18,27 @@ class Treat::Core::DataSet
   # a serialized data set which will
   # then be deserialized and loaded).
   def initialize(problem)
+    unless problem.is_a?(Treat::Core::Problem)
+      raise Treat::Exception, "The first argument " +
+      "to initialize should be an instance of " +
+      "Treat::Core::Problem."
+    end
     @problem, @items = problem, []
+  end
+  
+  def self.build(from)
+    if from.is_a?(Hash)
+      Treat::Core::DataSet.unserialize(
+      Treat.databases.default.adapter, from)
+    elsif from.is_a?(String)
+      unless File.readable?(from)
+        raise Treat::Exception,
+        "Attempting to initialize data set from "
+        "file #{from}, but it is not readable."
+      end
+      Treat::Core::DataSet.unserialize(
+      extension, file: from)
+    end
   end
   
   # Add an entity to the data set. The 
@@ -28,8 +48,9 @@ class Treat::Core::DataSet
   # of the calculation is added to the 
   # data set, along with the ID of the entity.
   def <<(entity)
-    @items << { tags: @problem.
-    export_tags(entity),
+    @items << { 
+    tags: (!@problem.tags.empty? ? 
+    @problem.export_tags(entity) : []),
     features: @problem.
     export_features(entity),
     id: entity.id }
