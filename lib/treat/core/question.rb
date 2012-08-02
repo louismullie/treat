@@ -11,12 +11,12 @@ class Treat::Core::Question
   # also be used as the annotation name
   # for the answer to the question.
   attr_reader :name
-  # Can be :continuous or :discrete,
-  # depending on the features used.
-  attr_reader :type
   # Defines the target of the question
   # (e.g. :sentence, :paragraph, etc.)
   attr_reader :target
+  # Can be :continuous or :discrete,
+  # depending on the features used.
+  attr_reader :type
   # Default for the answer to the question.
   attr_reader :default
   # A list of possible answers to the question.
@@ -25,9 +25,20 @@ class Treat::Core::Question
   # Initialize the question.
   def initialize(name, target, 
     type = :continuous, default = nil, labels = [])
-    @name, @target = name, target
-    @type, @default = type, default
-    @labels = labels
+    unless name.is_a?(Symbol) && target.is_a?(Symbol)
+      raise Treat::Exception, "Question name should be a symbol."
+    end
+    unless Treat.core.entities.list.include?(target)
+      raise Treat::Exception, "Target type should be " +
+      "a symbol and should be one of the following: " +
+      Treat.core.entities.list.inspect
+    end
+    unless [:continuous, :discrete].include?(type)
+      raise Treat::Exception, "Type should be " +
+      "continuous or discrete."
+    end
+    @name, @target, @type, @default, @labels = 
+     name,  target,  type,  default,  labels
   end
 
   # Custom comparison operator for questions.
@@ -35,7 +46,8 @@ class Treat::Core::Question
     @name == question.name &&
     @type == question.type &&
     @target == question.target &&
-    @default == question.default
+    @default == question.default &&
+    @labels = question.labels
   end
   
 end
