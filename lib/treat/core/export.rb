@@ -21,16 +21,39 @@ class Treat::Core::Export
   
   # Initialize a feature for a classification problem.
   def initialize(name, default = nil, proc_string = nil)
+    unless name.is_a?(Symbol)
+      raise Treat::Exception,
+      "The first argument to initialize should "+
+      "be a symbol representing the name of the export."
+    end
+    if proc_string && !proc_string.is_a?(String)
+      raise Treat::Exception,
+      "The third argument to initialize, " +
+      "if supplied, should be a string that " +
+      "can be evaluated to yield a Proc."
+    end
     @name, @default, @proc_string =
     name, default, proc_string
-    @proc = proc_string ? eval(proc_string) : nil
+    begin
+      @proc = proc_string ? 
+      eval(proc_string) : nil
+    rescue Exception => e
+      raise Treat::Exception,
+      "The third argument to initialize " +
+      "did not evaluate without errors " +
+      "(#{e.message})."
+    end
+    if @proc && !@proc.is_a?(Proc)
+      raise Treat::Exception,
+      "The third argument did not evaluate to a Proc."
+    end
   end
   
   # Custom comparison operator for features.
   def ==(feature)
     @name == feature.name &&
-    @proc == feature.proc &&
-    @default == feature.default
+    @default == feature.default &&
+    @proc_string == feature.proc_string
   end
   
 end
