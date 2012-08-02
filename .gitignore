@@ -12,4 +12,5 @@
 *.html
 *.yaml
 spec/sandbox.rb
+coverage/*
 TODO
