@@ -25,8 +25,9 @@ class Treat::Core::Question
   # Initialize the question.
   def initialize(name, target, 
     type = :continuous, default = nil, labels = [])
-    unless name.is_a?(Symbol) && target.is_a?(Symbol)
-      raise Treat::Exception, "Question name should be a symbol."
+    unless name.is_a?(Symbol)
+      raise Treat::Exception, 
+      "Question name should be a symbol."
     end
     unless Treat.core.entities.list.include?(target)
       raise Treat::Exception, "Target type should be " +
