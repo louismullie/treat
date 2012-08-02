@@ -49,6 +49,7 @@ class Treat::Core::Problem
   end
   
   # Custom comparison for problems.
+  # Should we check for ID here ? FIXME
   def ==(problem)
     @question == problem.question &&
     @features == problem.features &&
