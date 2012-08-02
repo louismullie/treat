@@ -286,6 +286,7 @@ describe Treat::Core::DataSet do
           data_set.to_marshal(file: 'test.dump')
           Treat::Core::DataSet.from_marshal(
           file: 'test.dump').should == data_set
+          FileUtils.rm('test.dump')
         end
       end
     end
