@@ -1,10 +1,9 @@
 require 'date'
 require 'rspec/core/rake_task'
 
-task :default => :spec
-
 namespace :treat do
   
+  # task :spec
   RSpec::Core::RakeTask.new do |t|
     task = ARGV[0].scan(/\[([a-z_]*)\]/)
     if task && task.size == 0
@@ -13,7 +12,7 @@ namespace :treat do
       t.pattern = "./spec/#{task[0][0]}.rb"
     end
   end
-
+  
   task :version do
     vpath = '../lib/treat/version.rb'
     vfile = File.expand_path(vpath, __FILE__)
