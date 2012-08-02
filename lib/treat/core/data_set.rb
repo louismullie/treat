@@ -11,12 +11,7 @@ class Treat::Core::DataSet
   # classified (training data).
   attr_accessor :items
   
-  # Initialize the DataSet. Can be 
-  # done with a Problem entity
-  # (thereby creating an empty set)
-  # or with a filename (representing
-  # a serialized data set which will
-  # then be deserialized and loaded).
+  # Initialize the DataSet.
   def initialize(problem)
     unless problem.is_a?(Treat::Core::Problem)
       raise Treat::Exception, "The first argument " +
@@ -155,13 +150,18 @@ class Treat::Core::DataSet
   # Merge another data set into this one.
   def merge(data_set)
     if data_set.problem != @problem
-      raise Treat::Exception,                               # FIXME
+      raise Treat::Exception,
       "Cannot merge two data sets that " +
       "don't reference the same problem." 
     else
-      @items << data_set.items
-      @entities << data_set.entities
+      @items += data_set.items
     end
+  end
+  
+  # Compare with other data set.
+  def ==(data_set)
+    @problem == data_set.problem &&
+    @items == data_set.items
   end
   
 end
