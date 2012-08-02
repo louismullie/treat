@@ -18,7 +18,7 @@ class Treat::Core::Problem
   attr_reader :tag_labels
   
   # Initialize the problem with a question
-  # and an arbitrary number of features.
+  # and an arbitrary number of features.        # FIXME: init with id!?
   def initialize(question, *exports)
     unless question.is_a?(Treat::Core::Question)
       raise Treat::Exception,
@@ -35,6 +35,11 @@ class Treat::Core::Problem
     @question, @id = question, object_id
     @features = exports.select do |exp|
       exp.is_a?(Treat::Core::Feature)
+    end
+    if @features.size == 0
+      raise Treat::Exception, 
+      "Problem should be supplied with at least "+
+      "one feature to work with."
     end
     @tags = exports.select do |exp|
       exp.is_a?(Treat::Core::Tag)
@@ -63,9 +68,21 @@ class Treat::Core::Problem
     features
   end
   
-  def export_tags(e); export(e, @tags); end
+  def export_tags(entity)
+    if @tags.empty?
+      raise Treat::Exception,
+      "Cannot export the tags, because " +
+      "this problem doesn't have any."
+    end
+    export(entity, @tags)
+  end
 
   def export(entity, exports)
+    unless @question.target == entity.type
+      raise Treat::Exception, 
+      "This classification problem targets #{@question.target}s, " +
+      "but a(n) #{entity.type} was passed to export instead."
+    end
     ret = []
     exports.each do |export|
       r = export.proc ? 
@@ -90,7 +107,8 @@ class Treat::Core::Problem
       hash['question']['name'], 
       hash['question']['target'],
       hash['question']['type'],
-      hash['question']['default']
+      hash['question']['default'],
+      hash['question']['labels']
     )
     features = []
     hash['features'].each do |feature|
