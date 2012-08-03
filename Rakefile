@@ -11,6 +11,7 @@ namespace :treat do
     else
       t.pattern = "./spec/#{task[0][0]}.rb"
     end
+    # t.ruby_opts = '-w'
   end
   
   task :version do
