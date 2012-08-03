@@ -1,19 +1,4 @@
-require 'simplecov'
-
-SimpleCov.start do
-
-  add_filter '/spec/'
-  add_filter '/config/'
-
-  add_group 'Core', 'treat/core'
-  add_group 'Entities', 'treat/entities'
-  add_group 'Helpers', 'treat/helpers'
-  add_group 'Loaders', 'treat/loaders'
-  add_group 'Workers', 'treat/workers'
-
-end
-
-require_relative '../lib/treat'
+require_relative 'helper'
 
 describe Treat::Core::Question do
 
@@ -272,7 +257,7 @@ describe Treat::Core::DataSet do
     describe "#serialize" do
       context "when asked to use a given adapter" do
         it "calls the corresponding #to_something method" do
-
+          
         end
       end
     end
@@ -292,22 +277,18 @@ describe Treat::Core::DataSet do
     end
 
     describe "#to_mongo" do
-
+      
     end
 
     describe "#self.unserialize" do
       context "when asked to use a given adapter" do
         it "calls the corresponding #to_something method" do
-
+          
         end
       end
     end
 
     describe "#self.from_mongo" do
-
-    end
-
-    describe "#self.from_marshal" do
 
     end
 

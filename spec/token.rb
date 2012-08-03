@@ -1,5 +1,5 @@
 #encoding: utf-8
-require_relative '../lib/treat'
+require_relative 'helper'
 
 describe Treat::Entities::Token do
 
