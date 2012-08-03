@@ -95,11 +95,11 @@ class Treat::Core::Problem
   end
   
   def to_hash
-    {'question' => @question.to_hash,
+    {'question' => object_to_hash(@question),
     'features' => @features.map { |f| 
-    f.tap { |f| f.proc = nil }.to_hash },
+    object_to_hash(f.tap { |f| f.proc = nil }) },
     'tags' => @tags.map { |t| 
-    t.tap { |t| t.proc = nil }.to_hash },
+    object_to_hash(t.tap { |t| t.proc = nil }) },
     'id' => @id }
   end
   

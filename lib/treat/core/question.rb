@@ -2,9 +2,6 @@
 # context of a classification problem.
 class Treat::Core::Question
   
-  require 'treat/core/hashable'
-  include Treat::Core::Hashable
-  
   # Defines an arbitrary label for the
   # question we are trying to answer 
   # (e.g. is_key_sentence), which will

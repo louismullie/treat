@@ -16,9 +16,6 @@ class Treat::Core::Export
   # The proc as a string value.
   attr_accessor :proc_string
   
-  require 'treat/core/hashable'
-  include Treat::Core::Hashable
-  
   # Initialize a feature for a classification problem.
   def initialize(name, default = nil, proc_string = nil)
     unless name.is_a?(Symbol)
