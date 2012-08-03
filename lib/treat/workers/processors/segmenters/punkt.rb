@@ -63,7 +63,9 @@ module Treat::Workers::Processors::Segmenters::Punkt
     if options[:model]
       model = options[:model]
     else
-      model = "#{Treat.paths.models}punkt/#{lang}.yaml"
+      model_path = Treat.libraries.punkt.model_path || 
+      Treat.paths.models + 'punkt/'
+      model = model_path + "#{lang}.yaml"
       unless File.readable?(model)
         raise Treat::Exception,
         "Could not get the language model " +

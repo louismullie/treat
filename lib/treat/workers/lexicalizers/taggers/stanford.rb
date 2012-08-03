@@ -53,8 +53,10 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
   def self.init_tagger(language)
     Treat::Loaders::Stanford.load(language)
     model = StanfordCoreNLP::Config::Models[:pos][language]
-    model = Treat.paths.models + 'stanford/' +
-    StanfordCoreNLP::Config::ModelFolders[:pos] + model
+    model_path = Treat.libraries.stanford.model_path || 
+    Treat.paths.models + 'stanford/'
+    model = model_path + StanfordCoreNLP::
+    Config::ModelFolders[:pos] + model
     @@taggers[language] ||=
     StanfordCoreNLP::MaxentTagger.new(model)
   end
