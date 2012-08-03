@@ -17,7 +17,7 @@ SimpleCov.start do
 end
 
 require_relative '../lib/treat'
-
+=begin
 Treat.core.language.detect = true
 Treat.core.verbosity.debug = true
 Treat.paths.files = './files/'
@@ -31,3 +31,4 @@ Treat.libraries.punkt.model_path =
 '/ruby/punkt/'
 Treat.libraries.reuters.model_path =
 '/ruby/reuters/'
+=end
