@@ -42,3 +42,10 @@ Treat - Text Retrieval, Extraction and Annotation Toolkit
 
   * Complete refactoring of the core of the library.
   * Separated all configuration stuff from dynamic stuff.
+
+1.2.0
+
+  * Added LIBSVM and LIBLINEAR classifier support.
+  * Added support for serialization of documents and data sets to MongoDB.
+  * Added specs for most of the core classes.
+  * Several bug fixes.
