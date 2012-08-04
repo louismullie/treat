@@ -1,5 +1,5 @@
 # Implement support for the functions #do and #do_task.
-module Treat::Entities::Abilities::Doable
+module Treat::Entities::Abilities::Chainable
 
   # Perform the supplied tasks on the entity.
   def do(*tasks)
@@ -25,6 +25,8 @@ module Treat::Entities::Abilities::Doable
     end
     self
   end
+  
+  alias :chain :do
 
   # Perform an individual task on an entity
   # given a worker and options to pass to it.

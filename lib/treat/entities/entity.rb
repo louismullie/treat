@@ -30,8 +30,8 @@ module Treat::Entities
     # and #self.from_*
     extend Abilities::Buildable
 
-    # Implement support for #do.
-    include Abilities::Doable
+    # Implement support for #chain.
+    include Abilities::Chainable
 
     # Implement support for #frequency,
     # #frequency_in_parent and #position_in_parent.
