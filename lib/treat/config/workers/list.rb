@@ -1,1 +1,0 @@
-[:extractors, :inflectors, :formatters, :learners, :lexicalizers, :processors, :retrievers]
