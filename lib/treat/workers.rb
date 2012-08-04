@@ -14,8 +14,8 @@ module Treat::Workers
   end
 
   def self.create_categories
-    Treat.workers.list.each do |cat|
-      create_category(cat.to_s.
+    Treat.workers.members.each do |cat|
+      create_category(cat.
       capitalize.intern,
       load_category_conf(cat))
     end
