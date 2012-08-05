@@ -1,6 +1,7 @@
 [![Build Status](https://secure.travis-ci.org/louismullie/treat.png)](http://travis-ci.org/#!/louismullie/treat)
 [![Dependency Status](https://gemnasium.com/louismullie/treat.png)](https://gemnasium.com/louismullie/treat)
- 
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/louismullie/treat)
+
 Treat is a framework for natural language processing and computational linguistics in Ruby. It provides a common API for a number of gems and external libraries for document retrieval, parsing, annotation, and information extraction.
 
 **Current features**
