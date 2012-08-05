@@ -6,7 +6,7 @@
   },
   time: {
     type: :annotator,
-    targets: [:phrase]
+    targets: [:group]
   },
   topics: {
     type: :annotator,
@@ -22,18 +22,10 @@
   },
   name_tag: {
     type: :annotator,
-    targets: [:phrase, :word]
-  },
-  coreferences: {
-    type: :annotator,
-    targets: [:zone]
+    targets: [:group]
   },
   tf_idf: {
     type: :annotator,
     targets: [:word]
-  },
-  summary: {
-    type: :annotator,
-    targets: [:document]
   }
 }
