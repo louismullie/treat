@@ -9,7 +9,8 @@
     'uea-stemmer', 
     'engtagger', 
     'activesupport', 
-    'english'
+    'english',
+    'srx-english'
   ],
   workers: {
     extractors: {
@@ -32,7 +33,7 @@
     },
     processors: {
       parsers: [:stanford, :enju],
-      segmenters: [:tactful, :punkt, :stanford],
+      segmenters: [:tactful, :punkt, :stanford, :srx],
       tokenizers: [:ptb, :stanford, :tactful, :punkt]
     }
   },
