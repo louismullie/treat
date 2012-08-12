@@ -11,7 +11,7 @@
 module Treat::Workers::Processors::Segmenters::SRX
   
   # Require the srx-english library.
-  require 'srx-english'
+  require 'srx/english/sentence_splitter'
 
   # Segment a text using the SRX algorithm
   def self.segment(entity, options = {})
@@ -20,9 +20,10 @@ module Treat::Workers::Processors::Segmenters::SRX
     text = entity.to_s
     escape_floats!(text)
     
-    SRX::English::SentenceSplitter.new(text)
+    sentences = SRX::English::
+    SentenceSplitter.new(text)
     
-    @@segmenter.each do |sentence|
+    sentences.each do |sentence|
       unescape_floats!(sentence)
       entity << Treat::Entities::Phrase.
       from_string(sentence)
