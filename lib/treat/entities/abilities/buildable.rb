@@ -91,13 +91,17 @@ module Treat::Entities::Abilities::Buildable
       'else than a document from a url.'
     end
 
-    f = Schiphol.download(url,
-    :download_folder => Treat.paths.files,
-    :show_progress => Treat.core.verbosity.silence,
-    :rectify_extensions => true,
-    :max_tries => 3
-    )
-
+    begin
+      f = Schiphol.download(url,
+      download_folder: Treat.paths.files,
+      show_progress: !Treat.core.verbosity.silence,
+      rectify_extensions: true,
+      max_tries: 3)
+    rescue
+      raise Treat::Exception,
+      "Couldn't download file at #{url}."
+    end
+    
     options[:default_to] ||= 'html'
 
     e = from_file(f, options)
