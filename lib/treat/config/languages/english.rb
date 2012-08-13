@@ -17,8 +17,7 @@
       time: [:chronic, :ruby, :nickel],
       topics: [:reuters],
       keywords: [:tf_idf],
-      name_tag: [:stanford],
-      coreferences: [:stanford]
+      name_tag: [:stanford]
     },
     inflectors: {
       conjugators: [:linguistics],
