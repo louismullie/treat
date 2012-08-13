@@ -15,15 +15,24 @@ namespace :treat do
   end
   
   task :version do
-    vpath = '../lib/treat/version.rb'
-    vfile = File.expand_path(vpath, __FILE__)
-    contents = File.read(vfile)
+    path = '../lib/treat/version.rb'
+    file = File.expand_path(path, __FILE__)
+    contents = File.read(file)
     puts contents[/VERSION = "([^"]+)"/, 1]
   end
 
   task :install, [:language] do |t, args|
     require './lib/treat'
     Treat.install(args.language || 'english')
+  end
+  
+  task :benchmark do
+    Dir.glob('./perf/*.rb').each do |file|
+      require file
+    end
+    Treat::Benchmarks.constants.each do |cst|
+      Treat::Benchmarks.const_get(cst).run
+    end
   end
 
 end
