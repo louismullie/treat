@@ -5,7 +5,7 @@
 # Original paper: Kiss, Tibor and Strunk, Jan (2006):
 # Unsupervised Multilingual Sentence Boundary Detection.
 # Computational Linguistics 32: 485-525.
-module Treat::Workers::Processors::Segmenters::Punkt
+class Treat::Workers::Processors::Segmenters::Punkt
   
   # Require silently the punkt-segmenter gem.
   silence_warnings { require 'punkt-segmenter' }

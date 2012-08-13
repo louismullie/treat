@@ -11,7 +11,7 @@
 # All rights reserved. This program is free software;
 # you can redistribute it and/or modify it under the
 # same terms as Ruby itself.
-module Treat::Workers::Processors::Tokenizers::PTB
+class Treat::Workers::Processors::Tokenizers::PTB
   
   # Tokenize the entity using a native rule-based algorithm.
   def self.tokenize(entity, options = {})

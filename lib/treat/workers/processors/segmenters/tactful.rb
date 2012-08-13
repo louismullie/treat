@@ -7,7 +7,7 @@
 # Original paper: Dan Gillick. 2009. Sentence Boundary Detection
 # and the Problem with the U.S. University of California, Berkeley.
 # http://dgillick.com/resource/sbd_naacl_2009.pdf
-module Treat::Workers::Processors::Segmenters::Tactful
+class Treat::Workers::Processors::Segmenters::Tactful
   
   # Require the 'tactful_tokenizer' gem.
   silence_warnings { require 'tactful_tokenizer' }
