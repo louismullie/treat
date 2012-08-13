@@ -8,7 +8,7 @@
 # as a Challenge for Computer Science and Linguistics, 
 # ed. by Zygmunt Vetulani, Poznań: Wydawnictwo Poznańskie, 
 # Fundacja Uniwersytetu im. A. Mickiewicza, p. 556-560.
-module Treat::Workers::Processors::Segmenters::SRX
+class Treat::Workers::Processors::Segmenters::SRX
   
   # Require the srx-english library.
   require 'srx/english/sentence_splitter'
@@ -26,7 +26,7 @@ module Treat::Workers::Processors::Segmenters::SRX
     sentences.each do |sentence|
       unescape_floats!(sentence)
       entity << Treat::Entities::Phrase.
-      from_string(sentence)
+      from_string(sentence.strip)
     end
     
     entity
