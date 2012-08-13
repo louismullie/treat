@@ -10,10 +10,10 @@
   },
   tokenizers: {
     type: :transformer,
-    targets: [:sentence, :phrase]
+    targets: [:group]
   },
   parsers: {
     type: :transformer,
-    targets: [:sentence, :phrase] 
+    targets: [:group] 
   }
 }
