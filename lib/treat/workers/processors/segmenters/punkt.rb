@@ -1,10 +1,12 @@
-# An adapter for the 'punk-segmenter' gem, which segments
-# texts into sentences based on an unsupervised, language
-# independent algorithm.
+# Sentence segmentation based on a set of log-
+# likelihood-based heuristics to infer abbreviations
+# and common sentence starters from a large text
+# corpus. Easily adaptable but requires a large 
+# (unlabeled) indomain corpus for assembling statistics.
 #
-# Original paper: Kiss, Tibor and Strunk, Jan (2006):
+# Original paper: Kiss, Tibor and Strunk, Jan. 2006.
 # Unsupervised Multilingual Sentence Boundary Detection.
-# Computational Linguistics 32: 485-525.
+# Computational Linguistics 32:485-525.
 class Treat::Workers::Processors::Segmenters::Punkt
   
   # Require silently the punkt-segmenter gem.

@@ -1,13 +1,11 @@
-# An adapter for the 'srx-english' gem, which segments
-# texts into sentences based on a set of rules written
-# by Marcin Milkowski.
+# Sentence segmentation based on a set of predefined 
+# rules defined in SRX (Segmentation Rules eXchange)
+# format and developped by Marcin Milkowski.
 #
 # Original paper: Marcin Miłkowski, Jarosław Lipski, 
 # 2009. Using SRX standard for sentence segmentation 
 # in LanguageTool, in: Human Language Technologies 
-# as a Challenge for Computer Science and Linguistics, 
-# ed. by Zygmunt Vetulani, Poznań: Wydawnictwo Poznańskie, 
-# Fundacja Uniwersytetu im. A. Mickiewicza, p. 556-560.
+# as a Challenge for Computer Science and Linguistics.
 class Treat::Workers::Processors::Segmenters::SRX
   
   # Require the srx-english library.

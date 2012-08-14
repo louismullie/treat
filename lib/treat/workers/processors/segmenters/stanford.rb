@@ -1,5 +1,7 @@
-# A wrapper for the sentence splitter supplied by
-# the Stanford parser.
+# Detects sentence boundaries by first tokenizing the
+# text and deciding whether periods are sentence ending 
+# or used for other purposes (abreviations, etc.).  The  
+# obtained tokens are then grouped into sentences.
 class Treat::Workers::Processors::Segmenters::Stanford
 
   require 'treat/loaders/stanford'

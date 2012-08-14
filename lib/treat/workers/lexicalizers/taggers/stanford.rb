@@ -1,4 +1,16 @@
-# Wrapper for the Stanford POS tagger.
+# POS tagging using (i) explicit use of both preceding 
+# and following tag contexts via a dependency network 
+# representation, (ii) broad use of lexical features, 
+# including jointly conditioning on multiple consecutive 
+# words, (iii) effective use of priors in conditional 
+# loglinear models, and (iv) ﬁne-grained modeling of 
+# unknown word features.
+#
+# Original paper: Toutanova, Manning, Klein and Singer.
+# 2003. Feature-Rich Part-of-Speech Tagging with a 
+# Cyclic Dependency Network. In Proceedings of the 
+# Conference of the North American Chapter of the 
+# Association for Computational Linguistics.
 class Treat::Workers::Lexicalizers::Taggers::Stanford
 
   require 'treat/loaders/stanford'

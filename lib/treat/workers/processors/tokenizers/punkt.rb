@@ -1,19 +1,11 @@
-# A tokenizer that was lifted from the 'punkt-segmenter'
-# Ruby gem.
+# Tokenization script from the 'punkt-segmenter' Ruby gem.
 #
-# This code follows the terms and conditions of Apache
-# License v2 (http://www.apache.org/licenses/LICENSE-2.0)
-#
-# Authors: Willy <willy@csse.unimelb.edu.au>
-# (original Python port), Steven Bird
-# <sb@csse.unimelb.edu.au> (additions),
-# Edward Loper <edloper@gradient.cis.upenn.edu>
-# (rewrite), Joel Nothman <jnothman@student.usyd.edu.au>
-# (almost rewrite).
-#
-# Project website: https://github.com/lfcipriani/punkt-segmenter
+# Authors: Willy (willy@csse.unimelb.edu.au>), 
+# Steven Bird (sb@csse.unimelb.edu.au), Edward Loper 
+# (edloper@gradient.cis.upenn.edu), Joel Nothman 
+# (jnothman@student.usyd.edu.au).
+# License: Apache License v2.
 class Treat::Workers::Processors::Tokenizers::Punkt
-  
   SentEndChars = ['.', '?', '!']
   ReSentEndChars = /[.?!]/
   InternalPunctuation = [',', ':', ';']
@@ -24,8 +16,8 @@ class Treat::Workers::Processors::Tokenizers::Punkt
   ReWordTokenizer = /#{ReMultiCharPunct}|(?=#{ReWordStart})\S+?(?=\s|$|#{ReNonWordChars}|#{ReMultiCharPunct}|,(?=$|\s|#{ReNonWordChars}|#{ReMultiCharPunct}))|\S/
   RePeriodContext = /\S*#{ReSentEndChars}(?=(?<after_tok>#{ReNonWordChars}|\s+(?<next_tok>\S+)))/
   
-  # Tokenize the text using the algorithm lifted from
-  # the Punkt tokenizer gem.
+  # Perform tokenization of the entity and add
+  # the resulting tokens as its children.
   #
   # Options: none.
   def self.tokenize(entity, options = {})

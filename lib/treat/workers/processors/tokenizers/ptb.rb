@@ -1,37 +1,43 @@
 # encoding: utf-8
-# A native rule-basd tokenizer based on the one
-# developped by Robert Macyntyre in 1995 for the Penn
-# Treebank project. This tokenizer follows the
-# conventions used by the Penn Treebank.
-#
-# Original script:
-# http://www.cis.upenn.edu/~treebank/tokenizer.sed
-#
-# Copyright (c) 2004 UTIYAMA Masao <mutiyama@nict.go.jp>
-# All rights reserved. This program is free software;
-# you can redistribute it and/or modify it under the
-# same terms as Ruby itself.
+# Tokenization based on the tokenizer developped by 
+# Robert Macyntyre in 1995 for the Penn Treebank 
+# project. This tokenizer follows the conventions 
+# used by the Penn Treebank, except that by default
+# it will not change double quotes to directional quotes.
+# 
+# Authors: Utiyama Masao (mutiyama@nict.go.jp).
+# License: Ruby License.
 class Treat::Workers::Processors::Tokenizers::PTB
   
-  # Tokenize the entity using a native rule-based algorithm.
+  # Default options for the tokenizer.
+  
+  DefaultOptions = {
+    directional_quotes: false
+  }
+  
+  # Perform tokenization of the entity and add
+  # the resulting tokens as its children.
+  #
+  # Options:
+  # - (Boolean) => :directional_quotes whether to 
+  # replace double quotes by `` and '' or not.
   def self.tokenize(entity, options = {})
-    
+    options = DefaultOptions.merge(options)
     entity.check_hasnt_children
-    
     if entity.has_children?
       raise Treat::Exception,
       "Cannot tokenize an #{entity.class} " +
       "that already has children."
     end
-    chunks = split(entity.to_s)
+    chunks = split(entity.to_s, options)
     chunks.each do |chunk|
       next if chunk =~ /([[:space:]]+)/
-      entity << Treat::Entities::Token.from_string(chunk)
+      entity << Treat::Entities::Token.
+      from_string(chunk)
     end
   end
-  
-  # Helper method to split the string into tokens.
-  def self.split(string)
+
+  def self.split(string, options)
     
     s = " " + string + " "
     
@@ -81,8 +87,10 @@ class Treat::Workers::Processors::Tokenizers::PTB
     s.gsub!(/\s+/,' ')
     s.strip!
   
-    s.gsub!(/``/,'"')
-    s.gsub!(/''/,'"')
+    unless options[:directional_quotes]
+      s.gsub!(/``/,'"') 
+      s.gsub!(/''/,'"')
+    end
     
     s.split(/\s+/)
   end

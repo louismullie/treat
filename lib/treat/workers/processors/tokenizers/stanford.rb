@@ -1,5 +1,9 @@
-# A wrapper for the Stanford parser's
-# Penn-Treebank style tokenizer.
+# Tokenization provided by Stanford Penn-Treebank style 
+# tokenizer. Most punctuation is split from adjoining words,
+# double quotes (") are changed to doubled single forward- 
+# and backward- quotes (`` and ''), verb contractions and 
+# the Anglo-Saxon genitive of nouns are split into their 
+# component morphemes, and each morpheme is tagged separately.
 class Treat::Workers::Processors::Tokenizers::Stanford
 
   require 'treat/loaders/stanford'
@@ -7,35 +11,29 @@ class Treat::Workers::Processors::Tokenizers::Stanford
   
   @@tokenizer = nil
 
-  # Tokenize the entity using a Penn-Treebank
-  # style tokenizer.
+  # Perform tokenization of the entity and add
+  # the resulting tokens as its children.
   #
   # Options: none.
   def self.tokenize(entity, options = {})
-
     entity.check_hasnt_children
-
-    s = entity.to_s
-    
     @@tokenizer ||=
     ::StanfordCoreNLP.load(:tokenize)
-    text =
-    ::StanfordCoreNLP::Text.new(s)
+    text = ::StanfordCoreNLP::
+    Text.new(entity.to_s)
     @@tokenizer.annotate(text)
-
     add_tokens(entity, text.get(:tokens))
-
   end
 
   # Add the tokens to the entity.
   def self.add_tokens(entity, tokens)
     tokens.each do |token|
       val = token.value
-      val = '(' if val == '-LRB-'     # Fix for other special chars
+      # FIXME - other special chars
+      val = '(' if val == '-LRB-'
       val = ')' if val == '-RRB'
-      t = Treat::Entities::Token.
+      entity << Treat::Entities::Token.
       from_string(token.value)
-      entity << t
     end
   end
 

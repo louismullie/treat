@@ -1,6 +1,9 @@
-# Finds the general part of speech of an entity
-# (:sentence, :noun_phrase, :verb, :adverb, etc.)
-# from its tag (e.g. 'S', 'NP', 'VBZ', 'ADV', etc.).
+# Uses a hand-made table to convert part-of-speech tags
+# to descriptive English word or phrase categories.
+# 
+# Original paper: Manning, Christopher and Schütze, Hinrich,
+# 1999. Foundations of Statistical Natural Language
+# Processing. MIT Press, p. 141-142.
 class Treat::Workers::Lexicalizers::Categorizers::FromTag
 
   Pttc = Treat.tags.aligned.phrase_tags_to_category

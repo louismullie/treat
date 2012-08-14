@@ -1,12 +1,11 @@
-# An adapter for the 'tactful_tokenizer' gem, which
-# detects sentence boundaries based on a Naive Bayesian
-# statistical model.
+# Sentence segmentation based on a Naive Bayesian
+# statistical model. Trained on Wall Street Journal 
+# news combined with the Brown Corpus, which is 
+# intended to be widely representative of written English.
 #
-# Project website: https://github.com/SlyShy/Tackful-Tokenizer
-#
-# Original paper: Dan Gillick. 2009. Sentence Boundary Detection
-# and the Problem with the U.S. University of California, Berkeley.
-# http://dgillick.com/resource/sbd_naacl_2009.pdf
+# Original paper: Dan Gillick. 2009. Sentence Boundary 
+# Detection and the Problem with the U.S. University 
+# of California, Berkeley (http://bit.ly/O2W48F).
 class Treat::Workers::Processors::Segmenters::Tactful
   
   # Require the 'tactful_tokenizer' gem.

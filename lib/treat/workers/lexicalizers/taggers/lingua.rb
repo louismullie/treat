@@ -1,17 +1,7 @@
-# An adapter for the 'engtagger' gem, which
-# is a port of the Perl Lingua::EN::Tagger module.
-#
-# "This module uses part-of-speech statistics from
+# POS tagging using part-of-speech statistics from
 # the Penn Treebank to assign POS tags to English text.
 # The tagger applies a bigram (two-word) Hidden Markov
 # Model to guess the appropriate POS tag for a word.
-# That means that the tagger will try to assign a POS
-# tag based on the known POS tags for a given word and
-# the POS tag assigned to its predecessor.
-#
-# Project website: http://engtagger.rubyforge.org/
-# Original Perl module site:
-# http://cpansearch.perl.org/src/ACOBURN/Lingua-EN-Tagger-0.15/
 class Treat::Workers::Lexicalizers::Taggers::Lingua
   
   # Require the 'engtagger' gem.

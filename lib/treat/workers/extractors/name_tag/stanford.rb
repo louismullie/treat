@@ -1,6 +1,13 @@
-# Detects the named entity tag in sentences by using
-# the stanford-core-nlp gem, which interfaces with
-# the Stanford Deterministic Coreference Resolver.
+# Named entity tag extraction using the Stanford NLP
+# Deterministic Coreference Resolver, which implements a
+# multi-pass sieve coreference resolution (or anaphora 
+# resolution) system.
+#
+# Original paper: Heeyoung Lee, Yves Peirsman, Angel 
+# Chang, Nathanael Chambers, Mihai Surdeanu, Dan Jurafsky. 
+# Stanford's Multi-Pass Sieve Coreference Resolution 
+# System at the CoNLL-2011 Shared Task. In Proceedings 
+# of the CoNLL-2011 Shared Task, 2011.
 class Treat::Workers::Extractors::NameTag::Stanford
 
   require 'treat/loaders/stanford'

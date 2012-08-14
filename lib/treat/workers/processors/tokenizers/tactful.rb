@@ -1,12 +1,11 @@
-# A tokenizer class lifted from the 'tactful-tokenizer' gem.
+# Tokenization script lifted from the 'tactful-
+# tokenizer' gem.
 #
-# Copyright © 2010 Matthew Bunday. All rights reserved.
-# Released under the GNU GPL v3. Modified by Louis Mullie.
-#
-# Project website: https://github.com/SlyShy/Tactful_Tokenizer
+# Authors: Matthew Bunday, Louis Mullie.
+# License: GPLv3.
 class Treat::Workers::Processors::Tokenizers::Tactful
 
-  ReTokenize = [
+  Rules = [
     # Uniform Quotes
     [/''|``/, '"'],
     # Separate punctuation from words.
@@ -37,27 +36,21 @@ class Treat::Workers::Processors::Tokenizers::Tactful
     [/N 'T( |$)/, " N'T\\1"],
     # Treebank tokenizer special words
     [/([Cc])annot/, '\1an not']
-
   ]
 
-
-  # Tokenize the entity using a rule-based algorithm
-  # that has been lifted from the 'tactful-tokenizer'
-  # gem.
+  # Perform tokenization of the entity and add
+  # the resulting tokens as its children.
   def self.tokenize(entity, options = {})
     
     entity.check_hasnt_children
-    
     s = entity.to_s
-    
     escape_floats!(s)
     
-    ReTokenize.each do |rules|
+    Rules.each do |rules|
       s.gsub!(rules[0], rules[1])
     end
     
     s.split(' ').each do |token|
-      
       unescape_floats!(token)
       entity << Treat::Entities::Token.
       from_string(token)
