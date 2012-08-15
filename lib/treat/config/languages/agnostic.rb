@@ -13,6 +13,7 @@
     'chronic',
     'nickel',
     'decisiontree',
+    'rb-libsvm',
     'ai4r'
   ],
   workers: {
