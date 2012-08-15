@@ -5,7 +5,7 @@
 #
 # Original paper: Dan Gillick. 2009. Sentence Boundary 
 # Detection and the Problem with the U.S. University 
-# of California, Berkeley (http://bit.ly/O2W48F).
+# of California, Berkeley.
 class Treat::Workers::Processors::Segmenters::Tactful
   
   # Require the 'tactful_tokenizer' gem.
