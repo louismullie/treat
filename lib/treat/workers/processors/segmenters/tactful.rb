@@ -29,6 +29,13 @@ class Treat::Workers::Processors::Segmenters::Tactful
     
     escape_floats!(s)
     
+    # Remove abbreviations.
+    s.scan(/(?:[A-Za-z]\.){2,}/).each do |abbr| 
+      s.gsub!(abbr, abbr.gsub(' ', '').gsub('.', '&-&'))
+    end
+    # Take out suspension points temporarily.
+    s.gsub!('...', '&;&.')
+    # Unstick sentences from each other.
     s.gsub!(/([^\.\?!]\.|\!|\?)([^\s"'])/) { $1 + ' ' + $2 }
     
     @@segmenter ||= TactfulTokenizer::Model.new
@@ -37,6 +44,10 @@ class Treat::Workers::Processors::Segmenters::Tactful
     
     sentences.each do |sentence|
       unescape_floats!(sentence)
+      # Repair abbreviations.
+      sentence.gsub!('&-&', '.')
+      # Repair suspension points.
+      sentence.gsub!('&;&.', '...')
       entity << Treat::Entities::Phrase.from_string(sentence)
     end
     

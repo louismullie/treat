@@ -41,8 +41,14 @@ class Treat::Workers::Processors::Segmenters::Punkt
     # Replace the point in all floating-point numbers
     # by ^^; this is a fix since Punkt trips on decimal 
     # numbers.
-
     escape_floats!(s)
+    # Take out suspension points temporarily.
+    s.gsub!('...', '&;&.')
+    # Remove abbreviations.
+    s.scan(/(?:[A-Za-z]\.){2,}/).each do |abbr| 
+      s.gsub!(abbr, abbr.gsub(' ', '').gsub('.', '&-&'))
+    end
+    # Unstick sentences from each other.
     s.gsub!(/([^\.\?!]\.|\!|\?)([^\s"'])/) { $1 + ' ' + $2 }
     
     result = @@segmenters[lang].
@@ -52,6 +58,10 @@ class Treat::Workers::Processors::Segmenters::Punkt
     result.each do |sentence|
       # Unescape the sentence.
       unescape_floats!(sentence)
+      # Repair abbreviations in sentences.
+      sentence.gsub!('&-&', '.')
+      # Repair suspension points.
+      sentence.gsub!('&;&.', '...')
       entity << Treat::Entities::Phrase.
         from_string(sentence)
     end
