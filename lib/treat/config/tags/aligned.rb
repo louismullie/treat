@@ -33,10 +33,6 @@ phrase_tags: [
 word_tags: [
   
   # Aligned tags for the Claws C5, Brown and Penn tag sets.
-  # Adapted from Manning, Christopher and Schütze, Hinrich,
-  # 1999. Foundations of Statistical Natural Language
-  # Processing. MIT Press, p. 141-142;
-  # http://www.isocat.org/rest/dcs/376;
 
   'Adjective', ['AJ0', 'JJ', 'JJ', '', 'JJ', 'A'],
   'Adjective', ['AJ0', 'JJ', 'JJ', '', 'JJ', 'ADJ'],

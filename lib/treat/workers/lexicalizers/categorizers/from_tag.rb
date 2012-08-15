@@ -1,9 +1,22 @@
 # Uses a hand-made table to convert part-of-speech tags
 # to descriptive English word or phrase categories.
 # 
-# Original paper: Manning, Christopher and Schütze, Hinrich,
+# Original paper: 1) Manning, Christopher and Schütze, Hinrich,
 # 1999. Foundations of Statistical Natural Language
-# Processing. MIT Press, p. 141-142.
+# Processing. MIT Press, p. 141-142. 
+# 
+# 2) Schiller et al. 1999. Guidelines fur das Tagging 
+# deutscher Textcorpora. Universitat Tubingen. Institut
+# fur maschinelle Sprachverarbeitung.
+# 
+# 3) Anne Abeille, Francois Toussenel, et Martine
+# Cheradame. 2004. Corpus Le Monde: Annotations en 
+# constituants. Guide pour les correcteurs. LLF et 
+# UFRL and Universite Paris 7.
+
+# 4) Xue and Palmer. 2008. Annotating the Propositions in 
+# the Penn Chinese Treebank. University of Pennsylvania,
+# Department of Computer Information and Science.
 class Treat::Workers::Lexicalizers::Categorizers::FromTag
 
   Pttc = Treat.tags.aligned.phrase_tags_to_category
