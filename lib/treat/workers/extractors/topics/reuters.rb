@@ -1,11 +1,8 @@
 # A Ruby text categorizer that was trained using 
-# the Reuters news story corpus. 
+# the Reuters news story corpus. Works well for
+# news articles, not so well for other sources.
 #
-# Copyright 2005 Mark Watson. All rights reserved.
-# Rewrite for inclusion in Treat by Louis Mullie (2011).
-#
-# Original project website: 
-# http://www.markwatson.com/opensource/
+# Authors: Mark Watson, 2005; Louis Mullie, 2011.
 class Treat::Workers::Extractors::Topics::Reuters
 
   # Require the Nokogiri XML parser.
@@ -46,12 +43,11 @@ class Treat::Workers::Extractors::Topics::Reuters
   # Read the topics from the XML files.
   def self.get_topics
     return unless @@industry.size == 0
-    @@industry = read_xml(Treat.paths.models + 
-    'reuters/industry.xml')
-    @@region = read_xml(Treat.paths.models + 
-    'reuters/region.xml')
-    @@topics = read_xml(Treat.paths.models + 
-    'reuters/topics.xml')
+    path = (Treat.libraries.reuters.model_path || 
+    (Treat.paths.models + 'reuters/'))
+    @@industry = read_xml(path + 'industry.xml')
+    @@region = read_xml(path + 'region.xml')
+    @@topics = read_xml(path + 'topics.xml')
   end
   
   # Read an XML file and populate a

@@ -1,8 +1,13 @@
-# Obtain lexical information about a word using the
-# ruby 'wordnet' gem.
+# Sense information (synonyms, antonyms, hypernyms
+# and hyponyms) obtained through a Ruby parser that
+# accesses Wordnet flat files.
+# 
+# Original paper: George A. Miller (1995). WordNet: 
+# A Lexical Database for English. Communications of 
+# the ACM Vol. 38, No. 11: 39-41.
 class Treat::Workers::Lexicalizers::Sensers::Wordnet
 
-  # Require the 'wordnet' gem.
+  # Require the 'wordnet' gem (install as 'rwordnet').
   require 'wordnet'
   
   # Patch for bug.

@@ -1,8 +1,8 @@
-# This class is a wrapper for the functions included
-# in the 'linguistics' gem that allow to obtain the
-# declensions of a word.
+# Inflection using the the 'linguistics' gem (will attempt
+# to load the Linguistics module corresponding to the
+# language of the entity.
 #
-# Project website: http://deveiate.org/projects/Linguistics/
+# Website: http://deveiate.org/projects/Linguistics/
 class Treat::Workers::Inflectors::Declensors::Linguistics
 
   require 'treat/loaders/linguistics'
