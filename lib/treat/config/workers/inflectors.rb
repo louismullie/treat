@@ -18,10 +18,10 @@
   },
   cardinalizers: {
     type: :annotator,
-    targets: [:number]
+    targets: [:word, :number]
   },
   ordinalizers: {
     type: :annotator,
-    targets: [:number]
+    targets: [:word, :number]
   }
 }
