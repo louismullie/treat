@@ -1,7 +1,7 @@
 # encoding: utf-8
 # A wrapper for the Poppler pdf2text utility, which
 # extracts the text from a PDF file.
-module Treat::Workers::Formatters::Readers::PDF
+class Treat::Workers::Formatters::Readers::PDF
 
   # Read a PDF file using the Poppler pdf2text utility.
   #

@@ -10,7 +10,7 @@
 # Takuya Matsuzaki, Yusuke Miyao, and Jun'ichi Tsujii.
 # 2007. Efficient HPSG Parsing with Supertagging and
 # CFG-filtering. In Proceedings of IJCAI 2007.
-module Treat::Workers::Processors::Parsers::Enju
+class Treat::Workers::Processors::Parsers::Enju
 
   # Require the 'open3' library to connect
   # with the background Enju process.

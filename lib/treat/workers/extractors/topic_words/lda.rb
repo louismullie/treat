@@ -8,7 +8,7 @@
 # Machine Learning Research. 3 (Mar. 2003), 993-1022.
 #
 # Project website: https://github.com/ealdent/lda-ruby
-module Treat::Workers::Extractors::TopicWords::LDA
+class Treat::Workers::Extractors::TopicWords::LDA
 
   # Require the lda-ruby gem.
   silence_warnings { require 'lda-ruby' }

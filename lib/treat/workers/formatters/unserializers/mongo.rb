@@ -1,4 +1,4 @@
-module Treat::Workers::Formatters::Unserializers::Mongo
+class Treat::Workers::Formatters::Unserializers::Mongo
   
   require 'mongo'
   

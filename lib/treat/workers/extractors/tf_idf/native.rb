@@ -1,5 +1,5 @@
 # Calculates the TF*IDF score of words.
-module Treat::Workers::Extractors::TfIdf::Native
+class Treat::Workers::Extractors::TfIdf::Native
   DefaultOptions = {
     :tf => :natural,
     :idf => :logarithm,

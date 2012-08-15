@@ -3,7 +3,7 @@
 # number in words in cardinal form.
 #
 # Project website: http://deveiate.org/projects/Linguistics/
-module Treat::Workers::Inflectors::Cardinalizers::Linguistics
+class Treat::Workers::Inflectors::Cardinalizers::Linguistics
   
   require 'treat/loaders/linguistics'
   

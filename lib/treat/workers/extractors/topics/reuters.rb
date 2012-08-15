@@ -6,7 +6,7 @@
 #
 # Original project website: 
 # http://www.markwatson.com/opensource/
-module Treat::Workers::Extractors::Topics::Reuters
+class Treat::Workers::Extractors::Topics::Reuters
 
   # Require the Nokogiri XML parser.
   require 'nokogiri'
