@@ -8,9 +8,9 @@
     'rwordnet', 
     'uea-stemmer', 
     'engtagger', 
-    'activesupport', 
-    'english',
-    'srx-english'
+    'activesupport',
+    'srx-english',
+    'scalpel'
   ],
   workers: {
     extractors: {
@@ -32,7 +32,7 @@
     },
     processors: {
       parsers: [:stanford, :enju],
-      segmenters: [:tactful, :punkt, :stanford, :srx, :scalpel],
+      segmenters: [:srx, :tactful, :punkt, :stanford, :scalpel],
       tokenizers: [:ptb, :stanford, :tactful, :punkt]
     }
   },
