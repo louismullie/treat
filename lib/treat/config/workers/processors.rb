@@ -1,7 +1,7 @@
 {
   chunkers: {
     type: :transformer,
-    targets: [:document],
+    targets: [:document, :section],
     default: :autoselect
   },
   segmenters: {
