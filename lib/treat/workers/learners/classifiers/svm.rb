@@ -1,11 +1,21 @@
 class Treat::Workers::Learners::Classifiers::SVM
   
-  require 'svm'
+  require 'libsvm'
   
   @@classifiers = {}
+
+  DefaultOptions = {
+    cache_size: 1,
+    eps: 0.001,
+    c: 10
+  }
   
+  # - (Numeric) :cache_size => cache size in MB.
+  # - (Numeric) :eps => tolerance of termination criterion
+  # - (Numeric) :c => C parameter
   def self.classify(entity, options = {})
     
+    options = DefaultOptions.merge(options)
     set = options[:training]
     problem = set.problem
     
@@ -17,14 +27,21 @@ class Treat::Workers::Learners::Classifiers::SVM
         "labels to assign to classification items when " +
         "specifying the question."
       end
-      data = set.items.map  { |item| item[:features] }
-      prob = Problem.new(labels, data)
-      param = Parameter.new(:kernel_type => LINEAR, :C => 10)
-      @@classifiers[problem] = Model.new(prob, param)
+      examples = set.items.map  { |item| item[:features] }
+      prob = Libsvm::Problem.new
+      prob.set_examples(labels, examples)
+      param = Libsvm::SvmParameter.new
+      param.cache_size = options[:cache_size]
+      param.eps = options[:eps]
+      param.c = options[:c]
+      model = Libsvm::Model.train(problem, parameter)
+      @@classifiers[problem] = model
     end
-
-    @@classifiers[problem].predict_probability(
-    problem.export_features(entity, false))[0]
+    
+    features = problem.export_features(entity, false)
+    
+    @@classifiers[problem].predict(
+    Libsvm::Node.features(*features))
     
   end
   
