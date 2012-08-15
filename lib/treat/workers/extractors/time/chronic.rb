@@ -1,7 +1,5 @@
-# A wrapper for the 'chronic' gem, which parses
-# date information.
-#
-# Project website: http://chronic.rubyforge.org/
+# Time/date extraction using a rule-based, pure 
+# Ruby natural language date parser.
 class Treat::Workers::Extractors::Time::Chronic
 
   # Require the 'chronic' gem.

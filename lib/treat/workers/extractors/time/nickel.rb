@@ -1,23 +1,5 @@
-# A wrapper for the 'nickel' gem, which parses
-# times and dates and supplies additional information
-# concerning these. The additional information supplied
-# that this class annotates entities with is:
-#
-# - time_recurrence: frequency of recurrence in words*.
-# - time_recurrence_interval: frequency of recurrence in days.
-# - start_time: a DateTime object representing the beginning of
-#   an event.
-# - end_time: a DateTime object representing the end of an event.
-#
-# Examples of values for time_recurrence are:
-#
-# - single: "lunch with megan tomorrow at noon"
-# - daily: "Art exhibit until March 1st"
-# - weekly: "math class every wed from 8-11am"
-# - daymonthly: "open bar at joes the first friday of every month"
-# - datemonthly: "pay credit card bill on the 22nd of each month"
-#
-# Project website: http://naturalinputs.com/
+# Time extraction using a pure Ruby natural language
+# time parser.
 class Treat::Workers::Extractors::Time::Nickel
 
   require 'date'
@@ -25,6 +7,23 @@ class Treat::Workers::Extractors::Time::Nickel
   silence_warnings { require 'nickel' }
 
   # Extract time information from a bit of text.
+  #
+  # In addition to the :time annotation, this class will provided:
+  #
+  # - time_recurrence: frequency of recurrence in words*.
+  # - time_recurrence_interval: frequency of recurrence in days.
+  # - start_time: a DateTime object representing the beginning of
+  #   an event.
+  # - end_time: a DateTime object representing the end of an event.
+  #
+  # Examples of values for time_recurrence are:
+  #
+  # - single: "lunch with megan tomorrow at noon"
+  # - daily: "Art exhibit until March 1st"
+  # - weekly: "math class every wed from 8-11am"
+  # - daymonthly: "open bar at joes the first friday of every month"
+  # - datemonthly: "pay credit card bill on the 22nd of each month"
+  #
   def self.time(entity, options = {})
     
     s = entity.to_s

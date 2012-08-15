@@ -1,4 +1,5 @@
-# A wrapper for Ruby's native date/time parsing.
+# Date extraction using Ruby's standard library
+# DateTime.parse() method.
 class Treat::Workers::Extractors::Time::Ruby
 
   # Require Ruby's date module.

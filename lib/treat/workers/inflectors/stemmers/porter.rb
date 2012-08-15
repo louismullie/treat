@@ -1,15 +1,13 @@
-# Stem a word using a native Ruby implementation of the
-# Porter stemming algorithm, ported to Ruby from a
-# version coded up in Perl. This is a simplified
-# implementation; for a true and fast Porter stemmer,
-# see Treat::Workers::Inflectors::Stemmers::PorterC.
+# Stemming using a native Ruby implementation of the
+# Porter stemming algorithm, a rule-based suffix-stripping
+# stemmer which is very widely used and is considered the 
+# de-facto standard algorithm used for English stemming.
 #
-# Authored by Ray Pereda (raypereda@hotmail.com).
-# Unknown license.
+# Original paper: Porter, 1980. An algorithm for suffix 
+# stripping. Program, vol. 14, no. 3, p. 130-137.
 #
-# Original paper: Porter, 1980. An algorithm for suffix stripping,
-# Program, Vol. 14, no. 3, pp 130-137,
-# Original C implementation: http://www.tartarus.org/~martin/PorterStemmer.
+# Authors: Ray Pereda (raypereda@hotmail.com).
+# License: Unknown.
 class Treat::Workers::Inflectors::Stemmers::Porter
   
   # Returns the stem of a word using a native Porter stemmer.

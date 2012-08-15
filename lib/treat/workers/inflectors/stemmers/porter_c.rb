@@ -1,10 +1,10 @@
-# Stems words using the 'ruby-stemmer' gem, which
-# wraps a C version of the Porter stemming algorithm.
+# Stemming using a wrapper for a C implementation of the
+# Porter stemming algorithm, a rule-based suffix-stripping
+# stemmer which is very widely used and is considered the 
+# de-facto standard algorithm used for English stemming.
 #
-# Project website: https://github.com/aurelian/ruby-stemmer
-# Original paper: Porter, 1980. An algorithm for suffix stripping,
-# Program, Vol. 14, no. 3, pp 130-137,
-# Original C implementation: http://www.tartarus.org/~martin/PorterStemmer.
+# Original paper: Porter, 1980. An algorithm for suffix 
+# stripping. Program, vol. 14, no. 3, p. 130-137.
 class Treat::Workers::Inflectors::Stemmers::PorterC
   
   # Require the 'ruby-stemmer' gem.

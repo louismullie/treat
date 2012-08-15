@@ -1,15 +1,10 @@
-# Stems a word using the UEA algorithm, implemented
-# by the 'uea-stemmer' gem.
-#
-# "Similar to other stemmers, UEA-Lite operates on a
-# set of rules which are used as steps. There are two
+# Stemming using the UEA algorithm, a stemmer that operates
+# on a set of rules which are used as steps. There are two
 # groups of rules: the first to clean the tokens, and
-# the second to alter suffixes."
+# the second to alter suffixes.
 #
-# Project website: https://github.com/ealdent/uea-stemmer
 # Original paper: Jenkins, Marie-Claire, Smith, Dan,
 # Conservative stemming for search and indexing, 2005.
-# http://www.uea.ac.uk/polopoly_fs/1.85493!stemmer25feb.pdf
 class Treat::Workers::Inflectors::Stemmers::UEA
 
   # Require the 'uea-stemmer' gem.
