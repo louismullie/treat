@@ -21,14 +21,15 @@
     },
     inflectors: {
       conjugators: [:linguistics],
-      declensors: [:english, :linguistics, :active_support],
+      declensors: [:english, :linguistics],
       stemmers: [:porter, :porter_c, :uea],
       ordinalizers:  [:linguistics],
       cardinalizers:  [:linguistics]
     },
     lexicalizers: {
       taggers: [:lingua, :brill, :stanford],
-      sensers: [:wordnet]
+      sensers: [:wordnet],
+      categorizers: [:from_tag]
     },
     processors: {
       parsers: [:stanford, :enju],
