@@ -7,7 +7,4 @@ module Treat::Entities
 
   # Represents a block of text 
   class Block < Section; end
-
-  # Represents a list.
-  class List < Section; end
 end

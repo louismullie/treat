@@ -9,4 +9,7 @@ module Treat::Entities
   # Represents a paragraph (group 
   # of sentences and/or phrases).
   class Paragraph < Zone; end
+  
+  # Represents a list.
+  class List < Section; end
 end
