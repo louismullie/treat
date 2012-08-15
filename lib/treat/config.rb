@@ -9,6 +9,7 @@ module Treat::Config
 
   Treat.module_eval do
     # Handle all missing methods as conf options.
+    # Instead, should dynamically define them. FIXME.
     def self.method_missing(sym, *args, &block)
       super(sym, *args, &block) if sym == :to_ary
       Treat::Config.config[sym]
