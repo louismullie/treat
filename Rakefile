@@ -27,11 +27,24 @@ namespace :treat do
   end
   
   task :benchmark do
-    Dir.glob('./perf/*.rb').each do |file|
+    require './lib/treat'
+    require './spec/languages/benchmark'
+    
+    task = ARGV[0].scan(/\[([a-z_]*)\]/)
+    
+    if task && task.size == 0
+      pattern = "./spec/languages/*.rb"
+    else
+      pattern = "./spec/languages/#{task[0][0]}.rb"
+    end
+    
+    Dir.glob(pattern).each do |file|
       require file
     end
-    Treat::Benchmarks.constants.each do |cst|
-      Treat::Benchmarks.const_get(cst).run
+    
+    Treat::Spec::Languages.constants.each do |cst|
+      next if cst == :Benchmark
+      Treat::Spec::Languages.const_get(cst).new.run :benchmarks
     end
   end
 
