@@ -3,7 +3,7 @@
     'rbtagger', 
     'ruby-stemmer', 
     'punkt-segmenter', 
-    'tactful_tokenizer', 
+    'tactful_tokenizer',
     'nickel', 
     'rwordnet', 
     'uea-stemmer', 
@@ -33,7 +33,7 @@
     processors: {
       parsers: [:stanford],
       segmenters: [:srx, :tactful, :punkt, :stanford, :scalpel],
-      tokenizers: [:ptb, :stanford, :tactful, :punkt]
+      tokenizers: [:ptb, :stanford, :punkt]
     }
   },
   info: {
