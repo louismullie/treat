@@ -16,7 +16,6 @@
     extractors: {
       time: [:chronic, :ruby, :nickel],
       topics: [:reuters],
-      keywords: [:tf_idf],
       name_tag: [:stanford]
     },
     inflectors: {
@@ -32,7 +31,7 @@
       categorizers: [:from_tag]
     },
     processors: {
-      parsers: [:stanford, :enju],
+      parsers: [:stanford],
       segmenters: [:srx, :tactful, :punkt, :stanford, :scalpel],
       tokenizers: [:ptb, :stanford, :tactful, :punkt]
     }
