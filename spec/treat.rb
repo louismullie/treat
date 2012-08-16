@@ -2,7 +2,7 @@ require_relative 'helper'
 
 describe Treat do
 
-  describe "Syntactic sugar:"
+  describe "Syntactic sugar:" # Move to config?
 
   describe "#sweeten!, #unsweeten!" do
 
