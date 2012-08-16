@@ -7,9 +7,8 @@
 # statistical natural language modeling, and multi-
 # lingual capabilities."
 #
-# Original paper:
-#
-# Breuel, Thomas M. The Ocropus Open Source OCR System.
+# Original paper: Google Ocropus Engine: Breuel, 
+# Thomas M. The Ocropus Open Source OCR System. 
 # DFKI and U. Kaiserslautern, Germany.
 class Treat::Workers::Formatters::Readers::Image
 
@@ -33,9 +32,8 @@ class Treat::Workers::Formatters::Readers::Image
       end
     end
     
-    options[:silent] ?
-    silence_stdout { read.call(document) } :
-    read.call(document)
+    options[:silent] ? silence_stdout { 
+    read.call(document) } : read.call(document)
     
     document
     
