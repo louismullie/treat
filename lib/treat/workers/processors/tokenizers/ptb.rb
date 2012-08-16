@@ -1,25 +1,26 @@
 # encoding: utf-8
-# Tokenization based on the tokenizer developped by 
-# Robert Macyntyre in 1995 for the Penn Treebank 
-# project. This tokenizer follows the conventions 
-# used by the Penn Treebank, except that by default
-# it will not change double quotes to directional quotes.
-# 
+# Tokenization based on the tokenizer developped by
+# Robert Macyntyre in 1995 for the Penn Treebank
+# project. This tokenizer mostly follows the conventions
+# used by the Penn Treebank. N.B. Contrary to the 
+# standard PTB tokenization, double quotes (") are 
+# NOT changed to doubled single forward- and 
+# backward- quotes (`` and '') by default.
+#
 # Authors: Utiyama Masao (mutiyama@nict.go.jp).
 # License: Ruby License.
 class Treat::Workers::Processors::Tokenizers::PTB
-  
+
   # Default options for the tokenizer.
-  
   DefaultOptions = {
     directional_quotes: false
   }
-  
+
   # Perform tokenization of the entity and add
   # the resulting tokens as its children.
   #
   # Options:
-  # - (Boolean) => :directional_quotes whether to 
+  # - (Boolean) => :directional_quotes whether to
   # replace double quotes by `` and '' or not.
   def self.tokenize(entity, options = {})
     options = DefaultOptions.merge(options)
@@ -38,14 +39,14 @@ class Treat::Workers::Processors::Tokenizers::PTB
   end
 
   def self.split(string, options)
-    
+
     s = " " + string + " "
-    
+
     s.gsub!(/‘/,'`')
     s.gsub!(/’/,"'")
     s.gsub!(/“/,"``")
     s.gsub!(/”/,"''")
-  
+
     s.gsub!(/\s+/," ")
     s.gsub!(/(\s+)''/,'\1"')
     s.gsub!(/(\s+)``/,'\1"')
@@ -86,13 +87,14 @@ class Treat::Workers::Processors::Tokenizers::PTB
     s.gsub!(/\//, ' / ')
     s.gsub!(/\s+/,' ')
     s.strip!
-  
+    
+    # Remove directional quotes.
     unless options[:directional_quotes]
-      s.gsub!(/``/,'"') 
+      s.gsub!(/``/,'"')
       s.gsub!(/''/,'"')
     end
-    
+
     s.split(/\s+/)
   end
-  
+
 end
