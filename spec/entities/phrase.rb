@@ -1,5 +1,3 @@
-require_relative 'helper'
-
 describe Treat::Entities::Phrase do
 
   describe "Buildable" do

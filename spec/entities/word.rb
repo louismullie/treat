@@ -1,5 +1,3 @@
-require_relative 'helper'
-
 describe Treat::Entities::Word do
 
   describe "Extractable" do

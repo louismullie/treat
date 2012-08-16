@@ -1,6 +1,4 @@
 #encoding: utf-8
-require_relative 'helper'
-
 describe Treat::Entities::Token do
 
   describe "Buildable" do

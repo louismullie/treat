@@ -1,5 +1,3 @@
-require_relative 'helper'
-
 describe Treat::Entities::Zone do
 
   describe "Buildable" do
