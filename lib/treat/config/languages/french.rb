@@ -7,7 +7,7 @@
   workers: {
     processors: {
       segmenters: [:punkt],
-      tokenizers: [:tactful],
+      tokenizers: [],
       parsers: [:stanford]
     },
     lexicalizers: {

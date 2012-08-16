@@ -6,7 +6,7 @@
   workers: {
     processors: {
       segmenters: [:punkt],
-      tokenizers: [:tactful]
+      tokenizers: []
     }
   }
 }
