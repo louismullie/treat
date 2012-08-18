@@ -3,16 +3,11 @@
 # #to_str, #inspect, #print_tree).
 module Treat::Entities::Abilities::Stringable
 
-  # Return the entity's true string value in
-  # plain text format. Non-terminal entities
-  # will normally have an empty value.
-  def to_string; @value; end
-
   # Returns the entity's string value by
   # imploding the value of all terminal
   # entities in the subtree of that entity.
   def to_s
-    @value != '' ? @value : implode.strip
+    has_children? ? implode.strip : @value.dup
   end
   
   # #to_str is the same as #to_s.
