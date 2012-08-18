@@ -1,5 +1,7 @@
 class Treat::Spec::Languages::English < Treat::Spec::Languages::Benchmark
 
+  # TODO:
+  # Enju
   def initialize
     super(Benchmarks, 'english')
   end
