@@ -24,12 +24,10 @@ module Treat::Entities::Abilities::Stringable
   def short_value(max_length = 30)
     s = to_s
     words = s.split(' ')
-    if s.length < max_length
-      s
-    else
-      words[0..2].join(' ') + ' [...] ' +
-      words[-2..-1].join(' ')
-    end
+    return s if (s.length < max_length) ||
+    !(words[0..2] && words[-2..-1])
+    words[0..2].join(' ') + ' [...] ' +
+    words[-2..-1].join(' ')
   end
 
   # Print out an ASCII representation of the tree.
