@@ -3,7 +3,7 @@
 class Treat::Workers::Formatters::Visualizers::Tree
 
   # Start out with an indent at 0.
-  DefaultOptions = { :indent => 0 }
+  DefaultOptions = { indent: 0 }
   
   # Obtain a plain text tree representation
   # of the entity.
