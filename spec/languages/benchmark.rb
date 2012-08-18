@@ -27,10 +27,9 @@ module Treat::Spec
       end
 
       def run(what)
-
+        return if @language == 'agnostic' ## FIXME
         method = "run_#{what}"
-        workers = Treat.languages[
-        @language].workers
+        workers = Treat.languages[@language].workers
         results = []
 
         workers.members.each do |cat|
@@ -41,17 +40,12 @@ module Treat::Spec
             group_class = Treat::Workers.
             const_get(cc(cat)).
             const_get(cc(grp))
-
-            next unless [:serialize].
+          
+            next unless [:segment].
             include?(group_class.method)
-
-            # ??: :language, :enju
-            # TODO: :keywords, :tf_idf, 
-            # :read, :visualize, :serialize, 
-            # :unserialize, :search,
-            # :index, :classify, 
-            # DONE: topic_words
+            
             group.each do |worker|
+              #next unless worker == :stanford
               results << send(method,
               group_class, worker)
             end
@@ -94,11 +88,12 @@ module Treat::Spec
               i2, n2 = Treat::Spec::Languages::Benchmark.
               run_tests(method, worker, target, benchmark)
             end
+
             i += i2; n += n2
           end
 
           accuracy = (i.to_f/n.to_f*100).round(2)
-
+  
         end
 
         [ method.to_s, worker.to_s,
@@ -117,7 +112,7 @@ module Treat::Spec
         *get_description(group_class, worker)
         method = group_class.method
         targets = group_class.targets
-
+        
         targets.each do |target|
           next if target == :section ### FIXME
           benchmark = @benchmarks[method][target]
@@ -165,7 +160,7 @@ module Treat::Spec
       end
 
       def self.run_tests(method, worker, target, benchmark, options = {})
-
+        
         i = 0; n = 0
         examples, generator,
         preprocessor =
@@ -186,7 +181,9 @@ module Treat::Spec
             result = entity.send(method, worker, options)
           end
           puts result.inspect
+          puts method.to_s + " --- " + worker.to_s
           i += 1 if result == expectation
+          puts "\nPASSES" if result == expectation
           n += 1
         end
 
