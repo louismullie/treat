@@ -33,8 +33,7 @@ class Treat::Workers::Processors::Segmenters::Stanford
     ::StanfordCoreNLP.load(:tokenize, :ssplit)
     
     s = entity.to_s
-    
-    text = ::StanfordCoreNLP::Text.new(entity.to_s)
+    text = ::StanfordCoreNLP::Text.new(s)
 
     @@segmenter.annotate(text)
     text.get(:sentences).each do |sentence|
