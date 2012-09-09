@@ -1,5 +1,5 @@
 module Treat::Spec
-  
+
   module Languages
 
     Treat.libraries.stanford.model_path =
@@ -16,6 +16,34 @@ module Treat::Spec
     require 'terminal-table'
 
     class Benchmark
+
+
+      Descriptions = {
+        stem: "returns the stem of the word",
+        conjugate: {
+          infinitive: "returns the infinitive form of a verb",
+          present_participle: "returns the present participle form of a verb"
+        },
+        declense: {
+          plural: "returns the plural form of the word",
+          singular: "returns the singular form of the word"
+        },
+        ordinal: "returns the ordinal form of a number",
+        sense: {
+          synonyms: "returns the synonyms of the word",
+          antonyms: "returns the antonyms of the word",
+          hypernyms: "returns the hypernyms of the word",
+          hyponyms:"returns the hyponyms of the word"
+        },
+        tag: "returns the tag of the token",
+        category: "returns the category of the number, punctuation or symbol",
+        name_tag: "tags the named entity words in the group of words",
+        time: "annotates all entities within the group with time information",
+        tokenize: "splits the group of words into tokens and adds them as children of the group",
+        parse: "parses a group of words into its syntax tree, adding nested phrases and tokens as children of the group",
+        topics: "returns a list of general topics the document belongs to",
+        segment: "splits a zone into phrases/sentences and adds them as children of the zone"
+      }
 
       Headings = ['Task', 'Worker',
         'Description', 'Reference', 'User',
@@ -40,12 +68,11 @@ module Treat::Spec
             group_class = Treat::Workers.
             const_get(cc(cat)).
             const_get(cc(grp))
-          
+
             next unless [:segment].
             include?(group_class.method)
-            
+
             group.each do |worker|
-              #next unless worker == :stanford
               results << send(method,
               group_class, worker)
             end
@@ -93,7 +120,7 @@ module Treat::Spec
           end
 
           accuracy = (i.to_f/n.to_f*100).round(2)
-  
+
         end
 
         [ method.to_s, worker.to_s,
@@ -112,31 +139,39 @@ module Treat::Spec
         *get_description(group_class, worker)
         method = group_class.method
         targets = group_class.targets
-        
+
         targets.each do |target|
           next if target == :section ### FIXME
           benchmark = @benchmarks[method][target]
           examples = benchmark[:examples]
+          does = Descriptions[group_class.method]
           describe group_class do
-            context "it is supplied with a lol" do
-              it "returns a lol" do
-                if examples.is_a?(Hash)
-                  preset_examples = benchmark[:examples]
-                  i = 0; n = 0;
-                  preset_examples.each do |preset, examples|
-                    options = {group_class.preset_option => preset}
-                    bm = benchmark.dup; bm[:examples] = examples
-                    i2, n2 = *Treat::Spec::Languages::Benchmark.
-                    run_tests(method, worker, target, bm, options)
-                    i += i2; n += n2
+            context "it is called on a #{target}" do
+              if examples.is_a?(Hash)
+                preset_examples = benchmark[:examples]
+                i = 0; n = 0;
+                preset_examples.each do |preset, examples|
+                  context "and #{group_class.preset_option} is set to #{preset}" do
+                    it does do
+                      options = {group_class.preset_option => preset}
+                      bm = benchmark.dup; bm[:examples] = examples
+                      i2, n2 = *Treat::Spec::Languages::Benchmark.
+                      run_tests(method, worker, target, bm, options)
+                      (i2.to_f/n2.to_f*100).round(2).should eql 100.0
+                      i += i2; n += n2
+                    end
                   end
-                else
+                end
+              else
+                it does do
                   i, n = Treat::Spec::Languages::Benchmark.
                   run_tests(method, worker, target, benchmark)
+                  (i.to_f/n.to_f*100).round(2).should eql 100.0
                 end
-                # Check for accuracy.
-                (i.to_f/n.to_f*100).round(2).should eql 100.0
               end
+              # Check for accuracy.
+
+
             end
           end
 
@@ -160,7 +195,7 @@ module Treat::Spec
       end
 
       def self.run_tests(method, worker, target, benchmark, options = {})
-        
+
         i = 0; n = 0
         examples, generator,
         preprocessor =
@@ -211,7 +246,7 @@ module Treat::Spec
           end
           html += "</tr>\n"
         end
-        FileUtils.mkdir('./benchmark') unless 
+        FileUtils.mkdir('./benchmark') unless
         FileTest.directory?('./benchmark')
         File.open('./benchmark/index.html', 'w+') do |f|
           f.write(html)

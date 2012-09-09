@@ -1,9 +1,15 @@
 class Treat::Spec::Languages::Agnostic < Treat::Spec::Languages::Benchmark
+  
+  # TODO: :keywords, :tf_idf, 
+  # :read, :visualize, :serialize, 
+  # :unserialize, :search,
+  # :index, :classify, 
+  # DONE: topic_words
 
   def initialize
     super(Benchmarks, 'agnostic')
   end
-
+  
   Benchmarks = {
     serialize: {
       entity: {
@@ -11,7 +17,7 @@ class Treat::Spec::Languages::Agnostic < Treat::Spec::Languages::Benchmark
           ["A test entity", "A test entity."]
         ]
       },
-      generator: lambda { |entity| Entity() }
+      generator: lambda { |entity| Entity(entity.id + '.' + entity.format) }
     },
     keywords: {
       document: {

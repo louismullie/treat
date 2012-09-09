@@ -5,7 +5,7 @@ class Treat::Spec::Languages::English < Treat::Spec::Languages::Benchmark
   def initialize
     super(Benchmarks, 'english')
   end
-
+  
   Benchmarks = {
     tokenize: {
       group: {
