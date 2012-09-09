@@ -42,7 +42,7 @@ class Treat::Workers::Processors::Tokenizers::PTB
 
     s = " " + string + " "
 
-    s.gsub!(/‘/,'`')
+    s.gsub!(/‘/,"'")
     s.gsub!(/’/,"'")
     s.gsub!(/“/,"``")
     s.gsub!(/”/,"''")
