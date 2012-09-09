@@ -2,7 +2,10 @@
 # to string representations (#to_string, #to_s,
 # #to_str, #inspect, #print_tree).
 module Treat::Entities::Abilities::Stringable
-
+  
+  # Returns the entity's true string value.
+  def to_string;  @value.dup; end
+  
   # Returns the entity's string value by
   # imploding the value of all terminal
   # entities in the subtree of that entity.
