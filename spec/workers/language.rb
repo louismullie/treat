@@ -1,33 +1,6 @@
 module Treat::Specs::Workers
 
   class Language
-    
-    Descriptions = {
-      stem: "returns the stem of the word",
-      conjugate: {
-        infinitive: "returns the infinitive form of a verb",
-        present_participle: "returns the present participle form of a verb"
-      },
-      declense: {
-        plural: "returns the plural form of the word",
-        singular: "returns the singular form of the word"
-      },
-      ordinal: "returns the ordinal form of a number",
-      sense: {
-        synonyms: "returns the synonyms of the word",
-        antonyms: "returns the antonyms of the word",
-        hypernyms: "returns the hypernyms of the word",
-        hyponyms:"returns the hyponyms of the word"
-      },
-      tag: "returns the tag of the token",
-      category: "returns the category of the number, punctuation or symbol",
-      name_tag: "tags the named entity words in the group of words",
-      time: "annotates all entities within the group with time information",
-      tokenize: "splits the group of words into tokens and adds them as children of the group",
-      parse: "parses a group of words into its syntax tree, adding nested phrases and tokens as children of the group",
-      topics: "returns a list of general topics the document belongs to",
-      segment: "splits a zone into phrases/sentences and adds them as children of the zone"
-    }
 
     Headings = ['Task', 'Worker',
       'Description', 'Reference', 'User',
@@ -41,8 +14,8 @@ module Treat::Specs::Workers
       @@list << base
       base.class_eval do 
         def initialize
-          @benchmarks, @language =
-          Benchmarks, cl(self.
+          @examples, @language =
+          Examples, cl(self.
           class).downcase
         end
       end
@@ -66,8 +39,8 @@ module Treat::Specs::Workers
           const_get(cc(cat)).
           const_get(cc(grp))
 
-          next unless [:serialize].
-          include?(group_class.method)
+          #next unless [:topics].
+          #include?(group_class.method)
 
           group.each do |worker|
             results << send(method,
@@ -98,8 +71,7 @@ module Treat::Specs::Workers
 
         targets.each do |target|
           next if target == :section ### FIXME
-          puts @benchmarks[method]
-          benchmark = @benchmarks[method][target]
+          benchmark = @examples[method][target]
           examples = benchmark[:examples]
           i2 = 0; n2 = 0
           if examples.is_a?(Hash)
@@ -141,12 +113,12 @@ module Treat::Specs::Workers
 
       targets.each do |target|
         next if target == :section ### FIXME
-        benchmark = @benchmarks[method][target]
+        benchmark = @examples[method][target]
         examples = benchmark[:examples]
         does = Descriptions[group_class.method]
         type = group_class.type
         describe group_class do
-          context "it is called on a #{target}" do
+          context "when it is called on a #{target}" do
             if examples.is_a?(Hash)
               preset_examples = benchmark[:examples]
               i = 0; n = 0;
@@ -211,17 +183,15 @@ module Treat::Specs::Workers
         preprocessor.call(entity) if preprocessor
 
         if generator
-          
           result = entity.send(method, worker, options)
           operand = (type == :computer ? result : entity)
           result = generator.call(operand)
         else
           result = entity.send(method, worker, options)
         end
-        puts result.inspect
-        puts method.to_s + " --- " + worker.to_s
+        #puts method.to_s + " --- " + worker.to_s
         i += 1 if result == expectation
-        puts "\nPASSES" if result == expectation
+        #puts "\nPASSES" if result == expectation
         n += 1
       end
 
