@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<treat>
+<paragraph id='70358553221340' test_int='9' test_float='9.9' test_string='hello' test_sym=':hello' test_bool='false' >
+/ruby/gems/treat/lib/treat/../../spec/test.xml/ruby/gems/treat/lib/treat/../../spec/test.xml</paragraph>
+
+</treat>

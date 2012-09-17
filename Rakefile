@@ -28,7 +28,7 @@ namespace :treat do
     
     # Must be required first.
     require 'simplecov'
-    require 'rspec'
+    require './spec/helper'
     
     # Get a list of all folders.
     SimpleCov.start do
@@ -51,13 +51,13 @@ namespace :treat do
     # Run all of the benchmark examples.
     Treat::Specs::Workers::Language.
         list.each do |lang|
-      lang.new.run(:benchmarks)
+      lang.new.run(:specs)
     end
     
-    # Require the core and entit specs.
+    # Require the core and entity specs.
     files = Dir.glob('./spec/core/*.rb') +
     Dir.glob('./spec/entities/*.rb')
-    
+
     # Run all the spec files.
     RSpec::Core::Runner.run(
     files, $stderr, $stdout)
@@ -69,7 +69,6 @@ namespace :treat do
   # Syntax: rake treat:benchmark[language]
   task :benchmark, [:language] do |t, args|
 
-    require './lib/treat'
     require './spec/helper'
     
     # Require the right benchmark files.
