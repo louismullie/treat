@@ -1,17 +1,39 @@
 require 'date'
 
+# All commands are prefixed with "treat:".
 namespace :treat do
 
-  task :spec do
+  # Returns the current version of Treat.
+  # Syntax: rake treat:version
+  task :version do
+    # Parse out the version number from file.
+    path = '../lib/treat/version.rb'
+    file = File.expand_path(path, __FILE__)
+    contents = File.read(file)
+    puts contents[/VERSION = "([^"]+)"/, 1]
+  end
+
+  # Install a language pack (default to english).
+  # Syntax: rake treat:install[language]
+  task :install, [:language] do |t, args|
+    require './lib/treat'
+    Treat.install(args.language || 'english')
+  end
+  
+  # Runs the specs for the core library
+  # and for all languages (default) or 
+  # a specific language (if specified).
+  # Syntax: rake treat:spec[language]
+  task :spec, [:language] do |t, args|
     
+    # Must be required first.
     require 'simplecov'
     require 'rspec'
     
+    # Get a list of all folders.
     SimpleCov.start do
-
       add_filter '/spec/'
       add_filter '/config/'
-
       add_group 'Core', 'treat/core'
       add_group 'Entities', 'treat/entities'
       add_group 'Helpers', 'treat/helpers'
@@ -20,62 +42,45 @@ namespace :treat do
       add_group 'Config', 'config.rb'
       add_group 'Proxies', 'proxies.rb'
       add_group 'Treat', 'treat.rb'
-
     end
     
-    # Require benchmarks and run them all.
-    require './spec/workers/language'
-    Dir.glob('./spec/workers/*.rb').each do |file|
-      require file
-    end
+    # Require all the necessary examples.
+    Treat::Specs::Helper.
+    require_languages(args.language, t)
     
-    Treat::Specs::Workers.constants.each do |cst|
-      next if cst == :Language
-      Treat::Specs::Workers.const_get(cst).new.run :specs
+    # Run all of the benchmark examples.
+    Treat::Specs::Workers::Language.
+        list.each do |lang|
+      lang.new.run(:benchmarks)
     end
     
     # Require the core and entit specs.
     files = Dir.glob('./spec/core/*.rb') +
     Dir.glob('./spec/entities/*.rb')
     
+    # Run all the spec files.
     RSpec::Core::Runner.run(
     files, $stderr, $stdout)
     
   end
   
-  task :version do
-    path = '../lib/treat/version.rb'
-    file = File.expand_path(path, __FILE__)
-    contents = File.read(file)
-    puts contents[/VERSION = "([^"]+)"/, 1]
-  end
+  # Benchmark all languages (default) or a 
+  # specific language (if argument supplied).
+  # Syntax: rake treat:benchmark[language]
+  task :benchmark, [:language] do |t, args|
 
-  task :install, [:language] do |t, args|
     require './lib/treat'
-    Treat.install(args.language || 'english')
-  end
+    require './spec/helper'
+    
+    # Require the right benchmark files.
+    Treat::Specs::Helper.
+    require_languages(args.language, t)
 
-  task :benchmark do
-    require './lib/treat'
-    require './spec/workers/language'
-
-    task = ARGV[0].scan(/\[([a-z_]*)\]/)
-
-    if task && task.size == 0
-      pattern = "./spec/workers/*.rb"
-    else
-      pattern = "./spec/workers/#{task[0][0]}.rb"
+    Treat::Specs::Workers::Language.
+      list.each do |lang|
+        lang.new.run(:benchmarks)
     end
-
-    Dir.glob(pattern).each do |file|
-      require file
-    end
-
-    Treat::Specs::Workers.constants.each do |cst|
-      next if cst == :Language
-      Treat::Specs::Workers.
-      const_get(cst).new.run :benchmarks
-    end
+    
   end
 
 end
