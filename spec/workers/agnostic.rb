@@ -1,4 +1,4 @@
-class Treat::Spec::Languages::Agnostic < Treat::Spec::Languages::Benchmark
+class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
   
   # TODO: :keywords, :tf_idf, 
   # :read, :visualize, :serialize, 
@@ -14,11 +14,20 @@ class Treat::Spec::Languages::Agnostic < Treat::Spec::Languages::Benchmark
     serialize: {
       entity: {
         examples: [
-          ["A test entity", "A test entity."]
-        ]
-      },
-      generator: lambda { |entity| Entity(entity.id + '.' + entity.format) }
-    },
+          ["A test entity.", "A test entity."]
+        ],
+        generator: lambda { |selector| Entity(selector).to_s }
+      }
+    },    # 
+        # search: {
+        #   collection: {
+        #     examples: [
+        #       ["./spec/languages/english/economist/", Collection()]
+        #     ]
+        #   },
+        #   generator: lambda { |document| document.parent = Collection('./spec/languages/english/economist/') },
+        #   preprocessor: lambda { |document| document.parent = Collection('./spec/languages/english/economist/') }
+        # },
     keywords: {
       document: {
         examples: [
@@ -36,7 +45,7 @@ class Treat::Spec::Languages::Agnostic < Treat::Spec::Languages::Benchmark
           ["A test phrase", ["A", "test", "phrase"]]
         ]
       }
-    },  ## FIXME
+    },
     topic_words: {
       collection: {
         examples: [

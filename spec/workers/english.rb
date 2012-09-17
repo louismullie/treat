@@ -1,7 +1,8 @@
-class Treat::Spec::Languages::English < Treat::Spec::Languages::Benchmark
+class Treat::Specs::Workers::English < Treat::Specs::Workers::Language
 
   # TODO:
   # Enju
+  # FAILING: declense
   def initialize
     super(Benchmarks, 'english')
   end
