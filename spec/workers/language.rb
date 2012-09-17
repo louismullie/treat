@@ -1,21 +1,22 @@
-module Treat::Spec
+module Treat::Specs
+  
+  Treat.databases.mongo.db = 'treat_test'
+  Treat.libraries.stanford.model_path =
+  '/ruby/stanford/stanford-core-nlp-all/'
+  Treat.libraries.stanford.jar_path =
+  '/ruby/stanford/stanford-core-nlp-all/'
+  Treat.libraries.punkt.model_path =
+  '/ruby/punkt/'
+  Treat.libraries.reuters.model_path =
+  '/ruby/reuters/'
 
-  module Languages
+  require 'benchmark'
+  require 'rspec'
+  require 'terminal-table'
+  
+  module Workers
 
-    Treat.libraries.stanford.model_path =
-    '/ruby/stanford/stanford-core-nlp-all/'
-    Treat.libraries.stanford.jar_path =
-    '/ruby/stanford/stanford-core-nlp-all/'
-    Treat.libraries.punkt.model_path =
-    '/ruby/punkt/'
-    Treat.libraries.reuters.model_path =
-    '/ruby/reuters/'
-
-    require 'benchmark'
-    require 'rspec'
-    require 'terminal-table'
-
-    class Benchmark
+    class Language
 
 
       Descriptions = {
@@ -55,7 +56,7 @@ module Treat::Spec
       end
 
       def run(what)
-        return if @language == 'agnostic' ## FIXME
+        # return if @language == 'agnostic' ## FIXME
         method = "run_#{what}"
         workers = Treat.languages[@language].workers
         results = []
@@ -69,7 +70,7 @@ module Treat::Spec
             const_get(cc(cat)).
             const_get(cc(grp))
 
-            next unless [:segment].
+            next unless [:serialize].
             include?(group_class.method)
 
             group.each do |worker|
@@ -93,13 +94,15 @@ module Treat::Spec
         method = group_class.method
         targets = group_class.targets
         accuracy = 0
-
+        type = group_class.type
+        
         time = ::Benchmark.measure do |x|
 
           i = 0; n = 0
 
           targets.each do |target|
             next if target == :section ### FIXME
+            puts @benchmarks[method]
             benchmark = @benchmarks[method][target]
             examples = benchmark[:examples]
             i2 = 0; n2 = 0
@@ -108,12 +111,12 @@ module Treat::Spec
               preset_examples.each do |preset, examples|
                 options = {group_class.preset_option => preset}
                 bm = benchmark.dup; bm[:examples] = examples
-                i2, n2 = *Treat::Spec::Languages::Benchmark.
-                run_tests(method, worker, target, bm, options)
+                i2, n2 = *Treat::Specs::Workers::Language.
+                run_tests(method, worker, target, bm, type, options)
               end
             else
-              i2, n2 = Treat::Spec::Languages::Benchmark.
-              run_tests(method, worker, target, benchmark)
+              i2, n2 = Treat::Specs::Workers::Language.
+              run_tests(method, worker, target, benchmark, type)
             end
 
             i += i2; n += n2
@@ -145,6 +148,7 @@ module Treat::Spec
           benchmark = @benchmarks[method][target]
           examples = benchmark[:examples]
           does = Descriptions[group_class.method]
+          type = group_class.type
           describe group_class do
             context "it is called on a #{target}" do
               if examples.is_a?(Hash)
@@ -155,8 +159,8 @@ module Treat::Spec
                     it does do
                       options = {group_class.preset_option => preset}
                       bm = benchmark.dup; bm[:examples] = examples
-                      i2, n2 = *Treat::Spec::Languages::Benchmark.
-                      run_tests(method, worker, target, bm, options)
+                      i2, n2 = *Treat::Specs::Workers::Language.
+                      run_tests(method, worker, target, bm, type, options)
                       (i2.to_f/n2.to_f*100).round(2).should eql 100.0
                       i += i2; n += n2
                     end
@@ -164,8 +168,8 @@ module Treat::Spec
                 end
               else
                 it does do
-                  i, n = Treat::Spec::Languages::Benchmark.
-                  run_tests(method, worker, target, benchmark)
+                  i, n = Treat::Specs::Workers::Language.
+                  run_tests(method, worker, target, benchmark, type)
                   (i.to_f/n.to_f*100).round(2).should eql 100.0
                 end
               end
@@ -194,7 +198,7 @@ module Treat::Spec
         split('Original paper: ')
       end
 
-      def self.run_tests(method, worker, target, benchmark, options = {})
+      def self.run_tests(method, worker, target, benchmark, type, options = {})
 
         i = 0; n = 0
         examples, generator,
@@ -209,9 +213,12 @@ module Treat::Spec
           value, expectation = *example
           entity = target_class.build(value)
           preprocessor.call(entity) if preprocessor
+  
           if generator
-            entity.send(method, worker, options)
-            result = generator.call(entity)
+            
+            result = entity.send(method, worker, options)
+            operand = (type == :computer ? result : entity)
+            result = generator.call(operand)
           else
             result = entity.send(method, worker, options)
           end
@@ -254,5 +261,7 @@ module Treat::Spec
       end
 
     end
+  
   end
+
 end
