@@ -1,11 +1,7 @@
 class Treat::Specs::Workers::English < Treat::Specs::Workers::Language
 
-  # TODO:
-  # Enju
+  # TODO: Enju
   # FAILING: declense
-  def initialize
-    super(Benchmarks, 'english')
-  end
   
   Benchmarks = {
     tokenize: {
