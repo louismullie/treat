@@ -1,4 +1,14 @@
 module Treat::Specs
+
+  # Require Treat core files.
+  require './lib/treat'
+  require './spec/workers'
+  # Require RSpec library.
+  require 'rspec'
+  # Require Ruby benchmark library.
+  require 'benchmark'
+  # Require gem to build ASCII tables.
+  require 'terminal-table'
   
   # Some configuration options for devel.
   Treat.databases.mongo.db = 'treat_test'
@@ -10,11 +20,6 @@ module Treat::Specs
   '/ruby/punkt/'
   Treat.libraries.reuters.model_path =
   '/ruby/reuters/'
-
-  # Require Ruby benchmark library.
-  require 'benchmark'
-  # Require gem to build ASCII tables.
-  require 'terminal-table'
   
   # Provide helper functions for running specs.
   class Helper
