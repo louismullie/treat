@@ -5,12 +5,8 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
   # :unserialize, :search,
   # :index, :classify, 
   # DONE: topic_words
-
-  def initialize
-    super(Benchmarks, 'agnostic')
-  end
   
-  Benchmarks = {
+  Examples = {
     serialize: {
       entity: {
         examples: [

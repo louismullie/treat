@@ -3,7 +3,7 @@ class Treat::Specs::Workers::English < Treat::Specs::Workers::Language
   # TODO: Enju
   # FAILING: declense
   
-  Benchmarks = {
+  Examples = {
     tokenize: {
       group: {
         examples: [
@@ -123,7 +123,7 @@ class Treat::Specs::Workers::English < Treat::Specs::Workers::Language
     topics: {
       document: {
         examples: [
-          ["./spec/languages/english/test.txt",
+          ["./spec/workers/examples/english/test.txt",
             ['household goods and hardware',
               'united states of america',
             'corporate/industrial']]
