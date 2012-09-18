@@ -1,7 +1,8 @@
 describe Treat::Entities::Collection do
 
   before :all do
-    @file = Treat.paths.spec + 'samples/mathematicians'
+    @file = Treat.paths.spec + 
+    'workers/examples/english/mathematicians'
   end
 
 
@@ -22,7 +23,7 @@ describe Treat::Entities::Collection do
       context "when supplied a folder name that doesn't exist" do
 
         it "creates the directory and opens the collection" do
-          f = Treat.paths.spec + 'samples/test'
+          f = Treat.paths.spec + 'workers/examples/agnostic/test'
           c = Treat::Entities::Collection.build(f)
           FileTest.directory?(f).should eql true
           c.should be_an_instance_of Treat::Entities::Collection
@@ -35,11 +36,11 @@ describe Treat::Entities::Collection do
 
   describe "#<<" do
 
-    context "when supplied with a document" do
+    context "when supplied with a document stored on disk" do
 
       it "copies the document to the collection's folder " +
       "and adds the document object to the collection" do
-        f = Treat.paths.spec + 'samples/test'
+        f = Treat.paths.spec + 'workers/examples/agnostic/test'
         ff = '3_2_release_notes.html'
         u = 'http://guides.rubyonrails.org/' + ff
         c = Treat::Entities::Collection.build(f)
@@ -53,7 +54,7 @@ describe Treat::Entities::Collection do
 
     context "when supplied with anything else" do
       it "adds the object to the collection" do
-        f = Treat.paths.spec + 'samples/test'
+        f = Treat.paths.spec + 'workers/examples/agnostic/test'
         c = Treat::Entities::Collection.build(f)
         c << Treat::Entities::Document.new
         c.size.should eql 1
