@@ -2,7 +2,13 @@ require 'date'
 
 # All commands are prefixed with "treat:".
 namespace :treat do
-
+  
+  # Sandboxing a script can be done here.
+  task :sandbox do
+    require './lib/treat'
+    require './spec/sandbox'
+  end
+  
   # Returns the current version of Treat.
   # Syntax: rake treat:version
   task :version do
@@ -51,7 +57,7 @@ namespace :treat do
     # Run all of the benchmark examples.
     Treat::Specs::Workers::Language.
       list.each do |lang|
-        lang.new.run('spec')
+        lang.new('spec').run
     end
     
     # Require the core and entity specs.
@@ -77,7 +83,7 @@ namespace :treat do
 
     Treat::Specs::Workers::Language.
       list.each do |lang|
-        lang.new.run('benchmark')
+        lang.new('benchmark').run
     end
     
   end
