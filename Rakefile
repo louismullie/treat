@@ -50,8 +50,8 @@ namespace :treat do
     
     # Run all of the benchmark examples.
     Treat::Specs::Workers::Language.
-        list.each do |lang|
-      lang.new.run(:specs)
+      list.each do |lang|
+        lang.new.run('spec')
     end
     
     # Require the core and entity specs.
@@ -77,7 +77,7 @@ namespace :treat do
 
     Treat::Specs::Workers::Language.
       list.each do |lang|
-        lang.new.run(:benchmarks)
+        lang.new.run('benchmark')
     end
     
   end
