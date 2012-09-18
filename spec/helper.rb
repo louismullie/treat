@@ -45,6 +45,33 @@ module Treat::Specs
       Dir.glob(pattern).each { |f| require f }
     end
     
+    def print_table(rows)
+      puts Terminal::Table.new(
+      headings: Headings, rows: rows)
+    end
+
+    def save_html(rows)
+      require 'fileutils'
+      html = "<table>\n"
+      html += "<tr>\n"
+      Headings.each do |heading|
+        html += "<td>" + heading + "</td>\n"
+      end
+      html += "</tr>\n"
+      rows.each do |row|
+        html += "<tr>\n"
+        row.each do |el|
+          html += "<td>#{el}</td>"
+        end
+        html += "</tr>\n"
+      end
+      FileUtils.mkdir('./benchmark') unless
+      FileTest.directory?('./benchmark')
+      File.open('./benchmark/index.html', 'w+') do |f|
+        f.write(html)
+      end
+    end
+    
   end
   
 end
