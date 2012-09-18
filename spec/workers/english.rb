@@ -3,7 +3,7 @@ class Treat::Specs::Workers::English < Treat::Specs::Workers::Language
   # TODO: Enju
   # FAILING: declense
   
-  Examples = {
+  Scenarios = {
     tokenize: {
       group: {
         examples: [

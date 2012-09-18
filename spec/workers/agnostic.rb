@@ -6,7 +6,7 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
   # :index, :classify, 
   # DONE: topic_words
   
-  Examples = {
+  Scenarios = {
     serialize: {
       entity: {
         examples: [
