@@ -1,12 +1,11 @@
 {
   dependencies: [
-    'punkt-segmenter', 
-    'tactful_tokenizer'
+    'punkt-segmenter',
+    'srx-polish'
   ],
   workers: {
     processors: {
-      segmenters: [:punkt],
-      tokenizers: [:tactful]
+      segmenters: [:srx, :punkt]
     }
   }
 }

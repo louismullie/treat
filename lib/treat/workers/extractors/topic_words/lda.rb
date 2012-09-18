@@ -1,13 +1,13 @@
-# An adapter for the 'lda-ruby' gem, which clusters
-# documents into topics based on Latent Dirichlet
-# Allocation.
+# Topic word retrieval using a thin wrapper over a 
+# C implementation of Latent Dirichlet Allocation (LDA),
+# a statistical model that posits that each document 
+# is a mixture of a small number of topics and that 
+# each word's creation is attributable to one of the 
+# document's topics.
 #
-# Original paper:
-# Blei, David M., Ng, Andrew Y., and Jordan, Michael
-# I. 2003. Latent dirichlet allocation. Journal of
+# Original paper: Blei, David, Ng, Andrew, and Jordan, 
+# Michael. 2003. Latent dirichlet allocation. Journal of
 # Machine Learning Research. 3 (Mar. 2003), 993-1022.
-#
-# Project website: https://github.com/ealdent/lda-ruby
 class Treat::Workers::Extractors::TopicWords::LDA
 
   # Require the lda-ruby gem.

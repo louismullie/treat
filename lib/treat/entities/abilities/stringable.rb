@@ -2,17 +2,15 @@
 # to string representations (#to_string, #to_s,
 # #to_str, #inspect, #print_tree).
 module Treat::Entities::Abilities::Stringable
-
-  # Return the entity's true string value in
-  # plain text format. Non-terminal entities
-  # will normally have an empty value.
-  def to_string; @value; end
-
+  
+  # Returns the entity's true string value.
+  def to_string;  @value.dup; end
+  
   # Returns the entity's string value by
   # imploding the value of all terminal
   # entities in the subtree of that entity.
   def to_s
-    @value != '' ? @value : implode.strip
+    has_children? ? implode.strip : @value.dup
   end
   
   # #to_str is the same as #to_s.
@@ -24,12 +22,10 @@ module Treat::Entities::Abilities::Stringable
   def short_value(max_length = 30)
     s = to_s
     words = s.split(' ')
-    if s.length < max_length
-      s
-    else
-      words[0..2].join(' ') + ' [...] ' +
-      words[-2..-1].join(' ')
-    end
+    return s if (s.length < max_length) ||
+    !(words[0..2] && words[-2..-1])
+    words[0..2].join(' ') + ' [...] ' +
+    words[-2..-1].join(' ')
   end
 
   # Print out an ASCII representation of the tree.

@@ -14,12 +14,14 @@
     'nickel',
     'decisiontree',
     'rb-libsvm',
-    'ai4r'
+    'ai4r',
+    'zip'
   ],
   workers: {
     extractors: {
       keywords: [:tf_idf],
-      language: [:what_language]
+      language: [:what_language],
+      topic_words: [:lda]
     },
     formatters: {
       serializers: [:xml, :yaml, :mongo]

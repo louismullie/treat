@@ -16,7 +16,9 @@ class Treat::Workers::Formatters::Serializers::Mongo
     Treat::Entities.const_get(
     options[:stop_at].to_s.capitalize) : nil
 
-    if !Treat.databases.mongo.db && !options[:db]
+    options[:db] ||= Treat.databases.mongo.db
+    
+    if !options[:db]
       raise Treat::Exception,
       'Must supply the database name in config. ' +
       '(Treat.databases.mongo.db = ...) or pass ' +
@@ -25,7 +27,7 @@ class Treat::Workers::Formatters::Serializers::Mongo
 
     @@database ||= Mongo::Connection.
     new(Treat.databases.mongo.host).
-    db(options[:db] || Treat.databases.mongo.db)
+    db(options[:db])
 
     supertype =  cl(Treat::Entities.const_get(
     entity.type.to_s.capitalize.intern).superclass).downcase
@@ -49,6 +51,8 @@ class Treat::Workers::Formatters::Serializers::Mongo
       entity_token = self.do_serialize(entity, options)
       coll.update({id: entity.id}, entity_token, {upsert: true})
     end
+    
+    {db: options[:db], collection: supertypes, id: entity.id}
     
   end
 

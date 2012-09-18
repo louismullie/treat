@@ -12,12 +12,13 @@ class Treat::Workers::Formatters::Serializers::YAML
   # - (String) :file => a file to write to.
   def self.serialize(entity, options = {})
     yaml = ::Psych.dump(entity)
+    options[:file] ||= (entity.id.to_s + '.yml')
     if options[:file]
       File.open(options[:file], 'w') do |f| 
         f.write(yaml)
       end
     end
-    yaml
+    options[:file]
   end
 
 end
