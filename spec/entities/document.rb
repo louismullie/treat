@@ -7,7 +7,8 @@ describe Treat::Entities::Document do
       context "when supplied with a readable file name" do
         it "opens the file and reads its " +
         "content into a document" do
-          f = Treat.paths.spec + 'samples/mathematicians/leibniz.txt'
+          f = Treat.paths.spec + 
+          'workers/examples/english/mathematicians/leibniz.txt'
           d = Treat::Entities::Document.build(f)
           d.should be_an_instance_of Treat::Entities::Document
           d.to_s.index('Gottfried Leibniz').should_not eql nil
