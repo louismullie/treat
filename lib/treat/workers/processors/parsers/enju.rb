@@ -5,9 +5,7 @@
 # XML reader. It creates wrappers for the sentences,
 # syntactical phrases and tokens that Enju identified.
 #
-# Original paper:
-#
-# Takuya Matsuzaki, Yusuke Miyao, and Jun'ichi Tsujii.
+# Original paper: Takuya M., Yusuke M., and Jun'ichi T.
 # 2007. Efficient HPSG Parsing with Supertagging and
 # CFG-filtering. In Proceedings of IJCAI 2007.
 class Treat::Workers::Processors::Parsers::Enju

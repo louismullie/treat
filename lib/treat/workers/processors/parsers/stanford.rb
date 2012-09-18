@@ -1,4 +1,12 @@
-# A wrapper class for the Stanford parser.
+# Parsing using an interface to a Java implementation 
+# of probabilistic natural language parsers, both 
+# optimized PCFG and lexicalized dependency parsers, 
+# and a lexicalized PCFG parser. 
+# 
+# Original paper: Dan Klein and Christopher D. 
+# Manning. 2003. Accurate Unlexicalized Parsing. 
+# Proceedings of the 41st Meeting of the Association 
+# for Computational Linguistics, pp. 423-430.
 class Treat::Workers::Processors::Parsers::Stanford
 
   require 'treat/loaders/stanford'
@@ -46,7 +54,7 @@ class Treat::Workers::Processors::Parsers::Stanford
         recurse(s.get(:tree).children[0], entity, tag_set)
         break #######
       else
-        recurse(s.get(:tree), entity)
+        recurse(s.get(:tree), entity, tag_set)
       end
       
     end

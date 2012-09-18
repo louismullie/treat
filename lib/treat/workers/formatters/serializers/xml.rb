@@ -8,6 +8,7 @@ class Treat::Workers::Formatters::Serializers::XML
   # Options:
   # - (String) :file => a file to write to.
   def self.serialize(entity, options = {})
+    options[:file] ||= (entity.id.to_s + '.xml')
     if options[:indent].nil?
       options = options.merge({:indent => 0})
     end
@@ -75,7 +76,7 @@ class Treat::Workers::Formatters::Serializers::XML
         end
       end
     end
-    string
+    options[:file]
   end
 
   def self.escape(input)

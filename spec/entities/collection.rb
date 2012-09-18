@@ -1,40 +1,10 @@
-require_relative 'helper'
-
 describe Treat::Entities::Collection do
 
   before :all do
-    @file = Treat.paths.spec + 'samples/mathematicians'
+    @file = Treat.paths.spec + 
+    'workers/examples/english/mathematicians'
   end
 
-  describe "#<<" do
-
-    context "when supplied with a document" do
-
-      it "copies the document to the collection's folder " +
-      "and adds the document object to the collection" do
-        f = Treat.paths.spec + 'samples/test'
-        ff = '3_2_release_notes.html'
-        u = 'http://guides.rubyonrails.org/' + ff
-        c = Treat::Entities::Collection.build(f)
-        d = Treat::Entities::Document.build(u)
-        c << d
-        FileTest.readable?(File.join(f, ff)).should eql true
-        FileUtils.rm_rf(f)
-      end
-
-    end
-
-    context "when supplied with anything else" do
-      it "adds the object to the collection" do
-        f = Treat.paths.spec + 'samples/test'
-        c = Treat::Entities::Collection.build(f)
-        c << Treat::Entities::Document.new
-        c.size.should eql 1
-        FileUtils.rm_rf(f)
-      end
-    end
-
-  end
 
   describe "Buildable" do
 
@@ -53,7 +23,7 @@ describe Treat::Entities::Collection do
       context "when supplied a folder name that doesn't exist" do
 
         it "creates the directory and opens the collection" do
-          f = Treat.paths.spec + 'samples/test'
+          f = Treat.paths.spec + 'workers/examples/agnostic/test'
           c = Treat::Entities::Collection.build(f)
           FileTest.directory?(f).should eql true
           c.should be_an_instance_of Treat::Entities::Collection
@@ -64,6 +34,39 @@ describe Treat::Entities::Collection do
 
   end
 
+  describe "#<<" do
+
+    context "when supplied with a document stored on disk" do
+
+      it "copies the document to the collection's folder " +
+      "and adds the document object to the collection" do
+        f = Treat.paths.spec + 'workers/examples/agnostic/test'
+        ff = '3_2_release_notes.html'
+        u = 'http://guides.rubyonrails.org/' + ff
+        c = Treat::Entities::Collection.build(f)
+        d = Treat::Entities::Document.build(u)
+        c << d
+        FileTest.readable?(File.join(f, ff)).should eql true
+        FileUtils.rm_rf(f)
+      end
+
+    end
+
+    context "when supplied with anything else" do
+      it "adds the object to the collection" do
+        f = Treat.paths.spec + 'workers/examples/agnostic/test'
+        c = Treat::Entities::Collection.build(f)
+        c << Treat::Entities::Document.new
+        c.size.should eql 1
+        FileUtils.rm_rf(f)
+      end
+    end
+
+  end
+
+end
+
+=begin
   describe "Retrievable" do
 
     describe "#index" do
@@ -86,7 +89,7 @@ describe Treat::Entities::Collection do
         collection = Treat::Entities::Collection.build(@file)
         collection.index
         # Works but weird multithreading bug with Ferret.
-=begin
+
         docs = collection.search :ferret, :q => 'Newton'
         docs.size.should eql 3
         
@@ -96,7 +99,7 @@ describe Treat::Entities::Collection do
           "Gottfried Leibniz (1646-1716)",
           "Leonhard Euler (1707-1783)"
         ]
-=end
+
       end
 
     end
@@ -121,3 +124,4 @@ describe Treat::Entities::Collection do
   end
   
 end
+=end

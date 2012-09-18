@@ -28,10 +28,13 @@ class Treat::Workers::Processors::Tokenizers::Punkt
     
     s.scan(ReWordTokenizer).each do |token|
       if SentEndChars.include?(token[-1])
-        entity << Treat::Entities::Token.from_string(token[0..-2])
-        entity << Treat::Entities::Token.from_string(token[-1..-1])
+        entity << Treat::Entities::
+        Token.from_string(token[0..-2])
+        entity << Treat::Entities::
+        Token.from_string(token[-1..-1])
       else
-        entity << Treat::Entities::Token.from_string(token)
+        entity << Treat::Entities::
+        Token.from_string(token)
       end
     end
     

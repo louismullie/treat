@@ -2,8 +2,8 @@ module Treat::Entities::Abilities::Copyable
   
   require 'fileutils'
   
-  # What happens when it is a database-stored
-  # collection or document ?
+  # Only happens if the document/
+  # collection is stored on disk.
   def copy_into(collection)
     unless collection.is_a?(
     Treat::Entities::Collection)
@@ -11,6 +11,7 @@ module Treat::Entities::Abilities::Copyable
       "Cannot copy an entity into " +
       "something else than a collection."
     end
+   return unless has?(:file) || has?(:folder)
     if type == :document
       copy_document_into(collection)
     elsif type == :collection
@@ -23,7 +24,8 @@ module Treat::Entities::Abilities::Copyable
   end
   
   def copy_collection_into(collection)
-    copy = dup
+    copy = dup; folder = get(:folder)
+    return copy unless folder
     f = File.dirname(folder)
     f = f.split(File::SEPARATOR)[-1]
     f = File.join(collection.folder, f)
@@ -35,7 +37,7 @@ module Treat::Entities::Abilities::Copyable
   end
   
   def copy_document_into(collection)
-    copy = dup
+    copy = dup; file = get(:file)
     return copy unless file
     f = File.basename(file)
     f = File.join(collection.folder, f)
