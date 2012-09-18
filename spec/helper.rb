@@ -45,16 +45,16 @@ module Treat::Specs
       Dir.glob(pattern).each { |f| require f }
     end
     
-    def print_table(rows)
+    def self.html_table(headings, rows)
       puts Terminal::Table.new(
-      headings: Headings, rows: rows)
+      headings: headings, rows: rows)
     end
 
-    def save_html(rows)
+    def self.text_table(headings, rows)
       require 'fileutils'
       html = "<table>\n"
       html += "<tr>\n"
-      Headings.each do |heading|
+      headings.each do |heading|
         html += "<td>" + heading + "</td>\n"
       end
       html += "</tr>\n"
