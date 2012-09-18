@@ -52,9 +52,9 @@ module Treat::Specs::Workers
       categories = Treat.languages[
         @language].workers
       results = []
-      method = "run_scenarios_as_#{@mode}"
+      method = "run_scenarios_as_#{@mode}s"
       categories.members.each do |cat|
-        category = workers[cat]
+        category = categories[cat]
         category.members.each do |grp|
           group = category[grp]
           group_class = Treat::Workers.
