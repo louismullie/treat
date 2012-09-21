@@ -219,10 +219,19 @@ module Treat::Entities::Abilities::Buildable
         "Path '#{file}' does not "+
         "point to a readable file."
       end
-      d = Treat::Entities::Document.new(file)
-      d.unserialize(:autoselect, options)
-      d.children[0].set_as_root!              # Fix this
-      d.children[0]
+      doc = Treat::Entities::Document.new(file)
+      format = nil
+      if file.index('yml') || file.index('yaml')
+        format = :yaml
+      elsif file.index('xml')
+        f = :xml
+      else
+        raise Treat::Exception,
+        "Unreadable serialized format for #{file}."
+      end
+      doc.unserialize(format, options)
+      doc.children[0].set_as_root!              # Fix this
+      doc.children[0]
     end
 
   end
