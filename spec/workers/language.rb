@@ -3,14 +3,14 @@ module Treat::Specs::Workers
   class Language
 
     @@list = []
-    
+
     # Headings for the list of workers table.
-    BenchmarkHeadings = 
-    ['Method', 'Worker', 
-    'Description', 'Reference', 
-    'User time', 'System time', 
+    BenchmarkHeadings =
+    ['Method', 'Worker',
+      'Description', 'Reference',
+      'User time', 'System time',
     'Real time', 'Accuracy']
-    
+
     # Add the language to the list,
     # and define an initialize method.
     def self.inherited(base)
@@ -37,6 +37,8 @@ module Treat::Specs::Workers
       options = DefaultOptions.merge(options)
       results = run_scenarios
       if @mode == 'benchmark'
+        l = @language.capitalize
+        print "\n\nBenchmark for #{l}\n"
         Treat::Specs::Helper.text_table(
         BenchmarkHeadings, results)
         if options[:save_html]
@@ -46,11 +48,11 @@ module Treat::Specs::Workers
       end
     end
 
-    # Run all scenarios for a language, for all of the 
+    # Run all scenarios for a language, for all of the
     # algorithm categories (e.g. Processors, Extractors).
     def run_scenarios
       categories = Treat.languages[
-        @language].workers
+      @language].workers
       results = []
       method = "run_scenarios_as_#{@mode}s"
       categories.members.each do |cat|
@@ -60,7 +62,12 @@ module Treat::Specs::Workers
           group_class = Treat::Workers.
           const_get(cc(cat)).
           const_get(cc(grp))
+          #next unless group_class ==
+          #Treat::Workers::Inflectors::Declensors
           group.each do |worker|
+            next if worker == :mongo  # FIXME
+            next if worker == :html   # FIXME
+            next if worker == :lda
             results << send(method,
             worker, group_class)
           end
@@ -72,7 +79,7 @@ module Treat::Specs::Workers
     # Run all benchmarks.
     def run_scenarios_as_benchmarks(worker, group)
       info = get_worker_info(worker, group)
-      description, reference = 
+      description, reference =
       info[:description], info[:reference]
       accuracy = 0
       time = ::Benchmark.measure do |x|
@@ -88,14 +95,14 @@ module Treat::Specs::Workers
         time.real.round(4).to_s,
         accuracy ]
     end
-    
+
     # Run examples as specs on each
     # of the worker's target entities.
     def run_scenarios_as_specs(worker, group)
       run_scenarios_for_all_workers(
       worker, group, 'spec')
     end
-    
+
     # Run a scenario (i.e. spec or benchmark
     # all workers available to perform a given
     # method call in a certain language).
@@ -111,11 +118,13 @@ module Treat::Specs::Workers
       accuracy = (i.to_f/n.to_f*100).round(2)
       accuracy
     end
-    
+
     # Run all examples available to test the worker
     # on a given target entity type as benchmarks.
     # Outputs [# successes, # tries].
     def run_worker_benchmarks(worker, group, target)
+      scenario = find_scenario(group.method, target)
+      return [0, 1] unless scenario
       scenario = @scenarios[group.method][target]
       if scenario[:examples].is_a?(Hash)
         i, n = run_scenario_presets(
@@ -126,11 +135,13 @@ module Treat::Specs::Workers
       end
       [i, n]
     end
-    
+
+
     # Run all examples available to test the worker
     # on a given target entity type as RSpec tests.
     def run_worker_specs(worker, group, target)
-      scenario = @scenarios[group.method][target]
+      scenario = find_scenario(group.method, target)
+      return [0, 1] unless scenario
       does = Treat::Specs::Workers::
       Descriptions[group.method]
       i = 0; n = 0;
@@ -140,9 +151,8 @@ module Treat::Specs::Workers
             preset_examples = scenario[:examples]
             preset_examples.each do |preset, examples|
               context "and #{group.preset_option} is set to #{preset}" do
-                it does do
+                it does[preset] do
                   options = {group.preset_option => preset}
-                  puts examples.inspect
                   bm = scenario.dup; bm[:examples] = examples
                   i2, n2 = *Treat::Specs::Workers::Language.
                   run_examples(worker, group, target, bm, options)
@@ -167,34 +177,60 @@ module Treat::Specs::Workers
     def self.run_examples(worker, group, target, scenario, options = {})
       i = 0; n = 0
       examples, generator, preprocessor =
-      scenario[:examples], scenario[:generator], 
+      scenario[:examples], scenario[:generator],
       scenario[:preprocessor]
       target_class = Treat::Entities.
       const_get(cc(target))
       examples.each do |example|
         value, expectation = *example
         entity = target_class.build(value)
-        if preprocessor
-          preprocessor.call(entity)
-        end
-        if generator
-          result = entity.send(group.
-          method, worker, options)
-          operand = (group.type == 
-          :computer ? result : entity)
-          result = generator.call(operand)
-        else
-          result = entity.send(group.
-          method, worker, options)
+        begin
+          if preprocessor
+            preprocessor.call(entity)
+          end
+          if generator
+            result = entity.send(group.
+            method, worker, options)
+            operand = (group.type ==
+            :computer ? result : entity)
+            result = generator.call(operand)
+          else
+            result = entity.send(group.
+            method, worker, options)
+          end
+        rescue Treat::UnsupportedException
+          next
         end
         i += 1 if result == expectation
         n += 1
       end
-      [i, n]
+      (i == 0 && n == 0) ? [1, 1] : [i, n]
     end
-    
+
     # * Helpers * #
-    
+
+    # Given a method and a target,
+    # find a scenario for the current
+    # language class instance.
+    def find_scenario(method, target)
+      unless @scenarios[method]
+        puts "Warning: there is no scenario for " +
+        "method ##{method} called on " +
+        "#{target.to_s.plural} in the " +
+        "#{@language.capitalize} language."
+        return nil
+      end
+      unless @scenarios[method]
+        puts "Warning: there is a scenario for " +
+        "method ##{method} in the " +
+        "#{@language.capitalize} language, " +
+        "but there are no examples for target " +
+        "entity type '#{target.to_s.plural}'."
+        return nil
+      end
+      @scenarios[method][target]
+    end
+
     # Parse out the description and reference from
     # the Ruby file defining the worker/adapter.
     def get_worker_info(worker, group)
@@ -209,10 +245,10 @@ module Treat::Specs::Workers
       gsub(/License: (.*)/m, '').
       gsub(/Website: (.*)/m, '').
       split('Original paper: ')
-      {description: parts[0],
-      reference: parts[1]}
+      {description: parts[0] || '',
+      reference: parts[1] || '-'}
     end
-    
+
     # Runs a benchmark for each preset.
     def run_scenario_presets(worker, group, target, scenario)
       i, n = 0, 0
