@@ -24,14 +24,10 @@
       topic_words: [:lda]
     },
     formatters: {
-      serializers: [:xml, :yaml, :mongo]
-    },
-    lexicalizers: {
-      categorizers: [:from_tag]
-    },
-    inflectors: {
-      ordinalizers: [:linguistics],
-      cardinalizers: [:linguistics]
+      serializers: [:xml, :yaml, :mongo],
+      unserializers: [:xml, :yaml, :mongo],
+      visualizers: [:dot, :standoff, :tree]
+      
     }
   }
 }
