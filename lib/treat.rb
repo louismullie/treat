@@ -8,6 +8,7 @@ module Treat
   
   # Custom exception class.
   class Exception < ::Exception; end
+  class UnsupportedException < Exception; end
   
   # Load configuration options.
   require 'treat/config'
