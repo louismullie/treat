@@ -1,5 +1,4 @@
-# This class generates an ASCII representation
-# of a tree of entities.
+# Visualization of entities in ASCII tree format.
 class Treat::Workers::Formatters::Visualizers::Tree
 
   # Start out with an indent at 0.

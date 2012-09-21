@@ -1,6 +1,6 @@
 # Topic word retrieval using a thin wrapper over a 
 # C implementation of Latent Dirichlet Allocation (LDA),
-# a statistical model that posits that each document 
+# a statistical model that posits each document 
 # is a mixture of a small number of topics and that 
 # each word's creation is attributable to one of the 
 # document's topics.

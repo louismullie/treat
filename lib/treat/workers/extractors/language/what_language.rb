@@ -1,9 +1,11 @@
-# Adaptor for the 'whatlanguage' gem, which
-# performs probabilistic language detection.
-# The library works by checking for the presence
-# of words with bloom filters built from
-# dictionaries based upon each source language.
-module Treat::Workers::Extractors::Language::WhatLanguage
+# Language detection using a probabilistic algorithm
+# that checks for the presence of words with Bloom 
+# filters built from dictionaries for each language.
+#
+# Original paper: Grothoff. 2007. A Quick Introduction to 
+# Bloom Filters. Department of Computer Sciences, Purdue 
+# University.
+class Treat::Workers::Extractors::Language::WhatLanguage
 
   # Require the 'whatlanguage' gem.
   silence_warnings { require 'whatlanguage'  }

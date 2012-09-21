@@ -1,6 +1,6 @@
-# This retrieves a supplied number of keywords
-# by selecting the N words with the highest TF*IDF
-# for each document.
+# Extracts an arbitrary number of keywords from a
+# document in a collection by selecting its N words
+# with the highest TF*IDF score.
 class Treat::Workers::Extractors::Keywords::TfIdf
   
   # Default options - retrieve 5 keywords.

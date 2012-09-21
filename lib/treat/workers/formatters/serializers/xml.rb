@@ -1,4 +1,4 @@
-# This class converts an entity to a storable XML format.
+# Serialization of entities to XML format.
 class Treat::Workers::Formatters::Serializers::XML
 
   # Reauire the Nokogiri XML parser.

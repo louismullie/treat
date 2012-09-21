@@ -1,4 +1,4 @@
-# This class serializes entities in YAML format.
+# Serialization of entities to YAML format.
 class Treat::Workers::Formatters::Serializers::YAML
   
   silence_warnings do

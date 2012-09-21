@@ -1,5 +1,4 @@
-# Recreates the entity tree corresponding to
-# a serialized XML file.
+# Unserialization of entities stored in XML format.
 class Treat::Workers::Formatters::Unserializers::XML
 
   require 'nokogiri'

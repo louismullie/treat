@@ -1,4 +1,4 @@
-# Stores an entity in a Mongo collection.
+# Serialization of entities to a Mongo database.
 class Treat::Workers::Formatters::Serializers::Mongo
 
   # Reauire the Mongo DB

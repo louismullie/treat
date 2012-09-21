@@ -1,3 +1,4 @@
+# Unserialization of entities stored in a Mongo database.
 class Treat::Workers::Formatters::Unserializers::Mongo
   
   require 'mongo'

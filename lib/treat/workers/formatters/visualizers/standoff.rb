@@ -1,6 +1,5 @@
-# This class allows the visualization of
-# an entity in standoff format; for example:
-# (S (NP John) (VP has (VP come))).
+# Visualization of entities in standoff (tag-bracketed)
+# format, based on the Stanford tag-bracketed format.
 class Treat::Workers::Formatters::Visualizers::Standoff
 
   # Start out with an indent of 0.

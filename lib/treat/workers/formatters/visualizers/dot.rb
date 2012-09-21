@@ -1,3 +1,4 @@
+# Visualization of entities in DOT graph format.
 class Treat::Workers::Formatters::Visualizers::DOT
 
   require 'date'

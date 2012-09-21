@@ -1,5 +1,4 @@
-# This class is a wrapper for the Psych YAML
-# parser; it unserializes YAML files.
+# Unserialization of entities stored in YAML format.
 class Treat::Workers::Formatters::Unserializers::YAML
 
   silence_warnings do
