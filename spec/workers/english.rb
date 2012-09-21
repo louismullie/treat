@@ -167,7 +167,7 @@ class Treat::Specs::Workers::English < Treat::Specs::Workers::Language
               ["men", "man"]
             ],
             plural: [
-              ["runs", "run"]
+              ["man", "men"]
             ]
           }
         }
