@@ -21,7 +21,8 @@
     extractors: {
       keywords: [:tf_idf],
       language: [:what_language],
-      topic_words: [:lda]
+      topic_words: [:lda],
+      tf_idf: [:native]
     },
     formatters: {
       serializers: [:xml, :yaml, :mongo],
