@@ -24,9 +24,9 @@ class Treat::Workers::Extractors::TfIdf::Native
   @@wc = {} # Number of words in a given document (word count).
   @@cw = {} # Common words to filter out.
   def self.tf_idf(entity, options={})
-    l = Treat.languages.send(entity.language)
-    if l.stop_words
-      @@cw[entity.language] = l.stop_words.list
+    l = Treat.languages[entity.language]
+    if l.respond_to?(:stop_words)
+      @@cw[entity.language] = l.stop_words
       return 0 if @@cw[entity.language].include?(entity.value)
     end
     return 0 if entity.value.length <= 2
