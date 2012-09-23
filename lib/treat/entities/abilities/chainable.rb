@@ -26,7 +26,7 @@ module Treat::Entities::Abilities::Chainable
     self
   end
   
-  alias :chain :do
+  alias :apply :do
 
   # Perform an individual task on an entity
   # given a worker and options to pass to it.
