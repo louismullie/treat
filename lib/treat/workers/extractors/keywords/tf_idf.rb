@@ -8,14 +8,17 @@ class Treat::Workers::Extractors::Keywords::TfIdf
   
   # Annotate a document with an array containing
   # the N words with the highest TF*IDF in that
-  # document,
+  # document.
   def self.keywords(entity, options = {})
     
     options = DefaultOptions.merge(options)
     tf_idfs = {}
     
     entity.each_word do |word|
-      tf_idfs[word] ||= word.tf_idf
+      tf_idf = word.tf_idf
+      if tf_idf
+        tf_idfs[word] ||= tf_idf 
+      end
     end
 
     tf_idfs = tf_idfs.
