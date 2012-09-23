@@ -63,11 +63,12 @@ module Treat::Specs::Workers
           const_get(cc(cat)).
           const_get(cc(grp))
           #next unless group_class ==
-          #Treat::Workers::Inflectors::Declensors
+          #Treat::Workers::Extractors::Keywords
           group.each do |worker|
             next if worker == :mongo  # FIXME
             next if worker == :html   # FIXME
             next if worker == :lda
+            #next unless 
             results << send(method,
             worker, group_class)
           end
@@ -147,7 +148,7 @@ module Treat::Specs::Workers
       i = 0; n = 0;
       describe group do
         context "when it is called on a #{target}" do
-          if scenario[:examples].is_a?(Hash)
+          if scenario[:examples].is_a?(Hash) && group.preset_option
             preset_examples = scenario[:examples]
             preset_examples.each do |preset, examples|
               context "and #{group.preset_option} is set to #{preset}" do
@@ -181,6 +182,13 @@ module Treat::Specs::Workers
       scenario[:preprocessor]
       target_class = Treat::Entities.
       const_get(cc(target))
+      if examples.is_a?(Hash)
+        unless examples[worker]
+          raise Treat::Exception,
+          "No example defined for worker #{worker}."
+        end
+        examples = examples[worker]
+      end
       examples.each do |example|
         value, expectation = *example
         entity = target_class.build(value)
@@ -201,6 +209,7 @@ module Treat::Specs::Workers
         rescue Treat::UnsupportedException
           next
         end
+        puts result
         i += 1 if result == expectation
         n += 1
       end
