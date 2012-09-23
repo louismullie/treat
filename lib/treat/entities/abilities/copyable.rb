@@ -29,6 +29,7 @@ module Treat::Entities::Abilities::Copyable
     f = File.dirname(folder)
     f = f.split(File::SEPARATOR)[-1]
     f = File.join(collection.folder, f)
+    return if File.readable?(f)
     FileUtils.mkdir(f) unless
     FileTest.directory(f)
     FileUtils.cp_r(folder, f)
@@ -41,6 +42,7 @@ module Treat::Entities::Abilities::Copyable
     return copy unless file
     f = File.basename(file)
     f = File.join(collection.folder, f)
+    return if File.readable?(f)
     FileUtils.cp(file, f)
     copy.set :file, f
     copy
