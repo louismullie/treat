@@ -2,7 +2,7 @@
   dependencies: [
     'punkt-segmenter', 
     'tactful_tokenizer', 
-    'stanford'
+    'stanford-core-nlp'
   ],
   workers: {
     processors: {
