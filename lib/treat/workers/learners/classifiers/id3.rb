@@ -1,3 +1,10 @@
+# Classification based on Ross Quinlan's ID3 
+# (Iterative Dichotomiser 3) decision tree 
+# algorithm.
+# 
+# Original paper: Quinlan, J. R. 1986. 
+# Induction of Decision Trees. Mach. Learn. 
+# 1, 1 (Mar. 1986), 81-106.
 class Treat::Workers::Learners::Classifiers::ID3
   
   require 'decisiontree'

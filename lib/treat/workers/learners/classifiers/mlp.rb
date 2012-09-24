@@ -1,4 +1,4 @@
-# Currently, this MLP is limited to 1 output.
+# Classification based on a multilayer perceptron.
 class Treat::Workers::Learners::Classifiers::MLP
   
   require 'ai4r'
@@ -23,7 +23,7 @@ class Treat::Workers::Learners::Classifiers::MLP
       net = @@mlps[cl]
     end
     
-    net.eval(cl.export_features(entity, false))[0]
+    (1 - net.eval(cl.export_features(entity, false))[0])
     
   end
   
