@@ -18,6 +18,9 @@
     'zip'
   ],
   workers: {
+    learners: {
+      classifiers: [:id3, :linear, :mlp, :svm]
+    },
     extractors: {
       keywords: [:tf_idf],
       language: [:what_language],
@@ -27,8 +30,11 @@
     formatters: {
       serializers: [:xml, :yaml, :mongo],
       unserializers: [:xml, :yaml, :mongo],
-      visualizers: [:dot, :standoff, :tree]
-      
+      visualizers: [:dot, :standoff, :tree] 
+    },
+    retrievers: {
+      searchers: [:ferret],
+      indexers: [:ferret]
     }
   }
 }
