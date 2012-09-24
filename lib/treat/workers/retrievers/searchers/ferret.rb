@@ -10,7 +10,7 @@ class Treat::Workers::Retrievers::Searchers::Ferret
   require 'find'
   
   DefaultOptions = {
-    :q => nil,
+    :query => nil,
     :limit => :all,
     :callback => nil
   }
@@ -30,7 +30,7 @@ class Treat::Workers::Retrievers::Searchers::Ferret
       "This collection must be indexed to be searchable."
     end
     
-    unless options[:q]
+    unless options[:query]
       raise Treat::Exception,
       'You must set a query by using the :q option.'
     end
