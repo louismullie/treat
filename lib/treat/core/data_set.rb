@@ -28,11 +28,11 @@ class Treat::Core::DataSet
     elsif from.is_a?(String)
       unless File.readable?(from)
         raise Treat::Exception,
-        "Attempting to initialize data set from "
-        "file #{from}, but it is not readable."
+        "Attempting to initialize data set from " +
+        "file '#{from}', but it is not readable."
       end
       Treat::Core::DataSet.unserialize(
-      extension, file: from)
+      File.extname(from)[1..-1], file: from)
     end
   end
   
