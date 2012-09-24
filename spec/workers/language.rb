@@ -63,12 +63,13 @@ module Treat::Specs::Workers
           const_get(cc(cat)).
           const_get(cc(grp))
           #next unless group_class ==
-          #Treat::Workers::Extractors::Keywords
+          #Treat::Workers::Learners::Classifiers
           group.each do |worker|
             next if worker == :mongo  # FIXME
             next if worker == :html   # FIXME
             next if worker == :lda
-            #next unless 
+            next if worker == :linear
+            next if worker == :svm
             results << send(method,
             worker, group_class)
           end
@@ -190,12 +191,16 @@ module Treat::Specs::Workers
         examples = examples[worker]
       end
       examples.each do |example|
-        value, expectation = *example
+        value, expectation, options2 = *example
         entity = target_class.build(value)
         begin
           if preprocessor
             preprocessor.call(entity)
           end
+          if options2.is_a?(::Proc)
+            options2 = options2.call
+          end
+          options = options.merge(options2 || {})
           if generator
             result = entity.send(group.
             method, worker, options)
@@ -209,7 +214,7 @@ module Treat::Specs::Workers
         rescue Treat::UnsupportedException
           next
         end
-        puts result
+        puts result.inspect
         i += 1 if result == expectation
         n += 1
       end
