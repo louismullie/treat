@@ -1,15 +1,11 @@
 class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
-  
-  # TODO: :keywords, :tf_idf, 
-  # :read,. :unserialize, 
-  # :search, :index, :classify.
-  
-  # MISC: :
-  #   - serialize in mongo
-  #   - visualize 33%
-  
+
+  # TODO: :tf_idf,
+  # :read,. :unserialize
+
   Scenarios = {
 
+    # Also tests unserialize.
     serialize: {
       entity: {
         examples: [
@@ -18,7 +14,29 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
         generator: lambda { |selector| Entity(selector).to_s }
       }
     },
-    
+    classify: {
+      entity: {
+        examples: [
+          ["Homer", 1, lambda { {training: Treat::Core::DataSet.build('test.marshal')} }]
+        ],
+        preprocessor: lambda do |entity|
+          ds = DataSet(Problem(
+            Question(:is_person, :word, :discrete, :false, [0, 1]), 
+            Feature(:first_capital, 0, "->(e) {  (e.to_s[0] =~ /^[A-Z]$/) ? 1 : 0 }"), 
+            Tag(:value, 0)
+          ))
+          w1, w2, w3, w4, w5 = Word("Alfred"), Word("lucky"), 
+          Word("Hobbit"), Word("hello"), Word("Alice")
+          w1.set :is_person, 1
+          w2.set :is_person, 0
+          w3.set :is_person, 1
+          w4.set :is_person, 0
+          w5.set :is_person, 1
+          ds << w1; ds << w2; ds << w3
+          ds.serialize :marshal, file: 'test.marshal'
+        end
+      }
+    },
     visualize: {
       entity: {
         examples: {
@@ -36,31 +54,31 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
         generator: lambda  { |result| result.gsub(/[0-9]+/, '*') }
       }
     },
-    
+
     keywords: {
       document: {
         examples: [
-          ["./spec/workers/examples/english/economist/saving_the_euro.odt", 
-          ["crisis", "government", "called", "financial", "funds", "treaty"]]
-        ],
-        preprocessor: lambda do |document| 
-          coll = Collection('./spec/workers/examples/english/economist/')
-          coll << document
-          coll.apply(:chunk, :segment, :tokenize, :keywords)
-          document
-        end
+          ["./spec/workers/examples/english/economist/saving_the_euro.odt",
+            ["crisis", "government", "called", "financial", "funds", "treaty"]]
+          ],
+          preprocessor: lambda do |document|
+            coll = Collection('./spec/workers/examples/english/economist/')
+            coll << document
+            coll.apply(:chunk, :segment, :tokenize, :keywords)
+            document
+          end
+        },
+        section: {
+          examples: [
+            ["A test phrase", ["A", "test", "phrase"]]
+          ]
+        },
+        zone: {
+          examples: [
+            ["A test phrase", ["A", "test", "phrase"]]
+          ]
+        }
       },
-      section: {
-        examples: [
-          ["A test phrase", ["A", "test", "phrase"]]
-        ]
-      },
-      zone: {
-        examples: [
-          ["A test phrase", ["A", "test", "phrase"]]
-        ]
-      }
-    },
 =begin  
     unserialize: {
       examples: [
@@ -69,22 +87,27 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
       generator: lambda { |selector| Entity(selector).to_s }
     },
 =end
-        # search: {
-        #   collection: {
-        #     examples: [
-        #       ["./spec/languages/english/economist/", Collection()]
-        #     ]
-        #   },
-        #   generator: lambda { |document| document.parent = Collection('./spec/languages/english/economist/') },
-        #   preprocessor: lambda { |document| document.parent = Collection('./spec/languages/english/economist/') }
-        # },
+=begin
+      # Index
+      search: {
+        collection: {
+          examples: [
+            ["./spec/workers/examples/english/economist/", 
+              "Hungary's troubles", {query: 'Hungary'}]
+          ],
+          generator: lambda { |docs| docs[0].titles[0] },
+          preprocessor: lambda { |coll| coll.apply(:index) }
+      },
+    },
+=end
 =begin
     keywords: {
       document: {
         examples: [
-          ["./spec/languages/english/economist/saving_the_euro.odt", ["A", "test", "phrase"]]
+          ["./spec/languages/english/economist/saving_the_euro.odt", 
+            ["A", "test", "phrase"]]
         ],
-        preprocessor: lambda { |document| document.parent = Collection('./spec/languages/english/economist/') }
+        preprocessor: lambda { |doc| doc.parent = Collection('./spec/languages/english/economist/') }
       },
       section: {
         examples: [
