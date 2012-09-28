@@ -59,7 +59,6 @@ class Treat::Workers::Formatters::Unserializers::Mongo
     const_get(record['type'].
     capitalize.intern).new(
     record['value'], record['id'])
-    
     features = record['features']
     new_feat = {}
     features.each do |feature, value|
