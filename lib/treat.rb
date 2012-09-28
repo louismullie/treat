@@ -11,19 +11,19 @@ module Treat
   class UnsupportedException < Exception; end
   
   # Load configuration options.
-  require 'treat/config'
+  require_relative 'treat/config'
   # Load all workers.
-  require 'treat/helpers'
+  require_relative 'treat/helpers'
   # Require library loaders.
-  require 'treat/loaders'
+  require_relative 'treat/loaders'
   # Require all core classes.
-  require 'treat/core'
+  require_relative 'treat/core'
   # Require all entity classes.
-  require 'treat/entities'
+  require_relative 'treat/entities'
   # Lazy load worker classes.
-  require 'treat/workers'
+  require_relative 'treat/workers'
   # Require proxies last.
-  require 'treat/proxies'
+  require_relative 'treat/proxies'
   
   # Turn sugar on.
   Treat::Config.sweeten!
