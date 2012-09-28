@@ -24,7 +24,8 @@ class Treat::Workers::Formatters::Readers::ODT
     Zip::ZipFile::CREATE) do |zipfile|
       f = zipfile.read('content.xml')
     end
-    raise "Couldn't unzip dot file " +
+    raise Treat::Exception, 
+    "Couldn't unzip dot file " +
     "#{document.file}!" unless f
     xml_h = ODTXmlHandler.new
     REXML::Document.parse_stream(f, xml_h)
