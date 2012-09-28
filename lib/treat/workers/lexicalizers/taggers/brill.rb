@@ -7,7 +7,7 @@ class Treat::Workers::Lexicalizers::Taggers::Brill
 
   require 'rbtagger'
 
-  require_relative 'treat/workers/lexicalizers/taggers/brill/patch'
+  require_relative 'brill/patch'
 
   # Hold one instance of the tagger.
   @@tagger = nil

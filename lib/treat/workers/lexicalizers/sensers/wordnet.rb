@@ -18,7 +18,7 @@ class Treat::Workers::Lexicalizers::Sensers::Wordnet
   end
   
   # Require an adaptor for Wordnet synsets.
-  require_relative 'treat/workers/lexicalizers/sensers/wordnet/synset'
+  require_relative 'wordnet/synset'
   
   # Noun, adjective and verb indexes.
   @@indexes = {}
