@@ -6,9 +6,8 @@ module Treat::Specs::Workers
 
     # Headings for the list of workers table.
     BenchmarkHeadings =
-    ['Method', 'Worker',
-      'Description', 'Reference',
-      'User time', 'System time',
+    ['Method', 'Worker', 'Description', 
+    'Reference', 'User time', 'System time',
     'Real time', 'Accuracy']
 
     # Add the language to the list,
@@ -17,11 +16,9 @@ module Treat::Specs::Workers
       @@list << base
       base.class_eval do
         def initialize(mode)
-          @language = cl(
-          self.class).downcase
-          @scenarios = self.class.
-          const_get(:Scenarios)
-          @mode = mode
+          klass = self.class.const_get(:Scenarios)
+          @scenarios, @mode = klass, mode
+          @language = cl(self.class).downcase
         end
       end
     end
@@ -101,8 +98,7 @@ module Treat::Specs::Workers
     # Run examples as specs on each
     # of the worker's target entities.
     def run_scenarios_as_specs(worker, group)
-      run_scenarios_for_all_workers(
-      worker, group, 'spec')
+      run_scenarios_for_all_workers(worker, group, 'spec')
     end
 
     # Run a scenario (i.e. spec or benchmark
