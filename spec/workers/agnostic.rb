@@ -1,6 +1,6 @@
 class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
 
-  # TODO: :tf_idf,
+  # TODO: :tf_idf, :keywords, :classifiers
   # :read,. :unserialize
 
   Scenarios = {

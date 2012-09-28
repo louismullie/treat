@@ -1,7 +1,6 @@
 class Treat::Specs::Workers::English < Treat::Specs::Workers::Language
 
-  # TODO: Enju
-  # FAILING: declense
+  # TODO: parse
   
   Scenarios = {
     tokenize: {
