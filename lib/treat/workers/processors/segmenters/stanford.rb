@@ -4,7 +4,6 @@
 # obtained tokens are then grouped into sentences.
 class Treat::Workers::Processors::Segmenters::Stanford
 
-  require_relative 'treat/loaders/stanford'
   Treat::Loaders::Stanford.load
   
   DefaultOptions = {

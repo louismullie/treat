@@ -4,8 +4,6 @@
 # Project website: http://deveiate.org/projects/Linguistics/
 module Treat::Workers::Inflectors::Conjugators::Linguistics
 
-  require_relative 'treat/loaders/linguistics'
-  
   DefaultOptions = {
     :strict => false
   }

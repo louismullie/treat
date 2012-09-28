@@ -5,8 +5,6 @@
 # Project website: http://deveiate.org/projects/Linguistics/
 class Treat::Workers::Inflectors::Ordinalizers::Linguistics
 
-  require_relative 'treat/loaders/linguistics'
-  
   DefaultOptions = {
     :language => Treat.core.language.default
   }

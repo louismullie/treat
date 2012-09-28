@@ -10,7 +10,6 @@
 # of the CoNLL-2011 Shared Task, 2011.
 class Treat::Workers::Extractors::NameTag::Stanford
 
-  require_relative 'treat/loaders/stanford'
   Treat::Loaders::Stanford.load
   
   @@classifiers = {}

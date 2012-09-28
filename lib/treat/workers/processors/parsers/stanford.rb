@@ -8,9 +8,7 @@
 # Proceedings of the 41st Meeting of the Association 
 # for Computational Linguistics, pp. 423-430.
 class Treat::Workers::Processors::Parsers::Stanford
-
-  require_relative 'treat/loaders/stanford'
-
+  
   Pttc = Treat.tags.aligned.phrase_tags_to_category
   
   # Hold one instance of the pipeline per language.
