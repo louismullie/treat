@@ -13,7 +13,7 @@
 # Association for Computational Linguistics.
 class Treat::Workers::Lexicalizers::Taggers::Stanford
 
-  require 'treat/loaders/stanford'
+  require_relative 'treat/loaders/stanford'
 
   # Hold one tagger per language.
   @@taggers = {}

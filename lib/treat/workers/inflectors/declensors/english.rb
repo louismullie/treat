@@ -5,7 +5,7 @@
 # Website: http://english.rubyforge.org
 class Treat::Workers::Inflectors::Declensors::English
 
-  require 'treat/workers/inflectors/declensors/english/inflect'
+  require_relative 'treat/workers/inflectors/declensors/english/inflect'
   
   # Retrieve the declensions (singular, plural)
   # of an english word using a class lifted from

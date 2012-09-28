@@ -7,7 +7,7 @@
 # single forward- and backward- quotes (`` and '') by default.
 class Treat::Workers::Processors::Tokenizers::Stanford
 
-  require 'treat/loaders/stanford'
+  require_relative 'treat/loaders/stanford'
   Treat::Loaders::Stanford.load
   
   # Default options for the tokenizer.

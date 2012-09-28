@@ -7,7 +7,7 @@ module Treat::Installer
     require 'rubygems/dependency_installer'
   end
   
-  require 'treat/version'  
+  require_relative 'treat/version'  
   require 'schiphol'
 
   # Address of the server with the files.

@@ -30,7 +30,7 @@ module Treat
   
   # Install packages for a given language.
   def self.install(language = :english)
-    require 'treat/installer'
+    require_relative 'treat/installer'
     Treat::Installer.install(language)
   end
 

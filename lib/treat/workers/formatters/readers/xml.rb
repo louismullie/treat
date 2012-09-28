@@ -1,6 +1,6 @@
 class Treat::Workers::Formatters::Readers::XML
 
-  require 'treat/loaders/stanford'
+  require_relative 'treat/loaders/stanford'
   Treat::Loaders::Stanford.load
   require 'cgi'
 

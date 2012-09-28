@@ -3,7 +3,7 @@
 # the relevant hooks on the appropriate entities.
 module Treat::Workers
 
-  require 'treat/workers/group'
+  require_relative 'treat/workers/group'
 
   # A lookup table for entity types.
   @@lookup = {}
