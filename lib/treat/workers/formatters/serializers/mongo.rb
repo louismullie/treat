@@ -35,22 +35,8 @@ class Treat::Workers::Formatters::Serializers::Mongo
     supertypes = supertype + 's'
     
     coll = @@database.collection(supertypes)
-    
-    if entity.type == :collection
-      docs = @@database.collection('documents')                    # Take a design decision here.
-      coll.update(
-        {id: entity.id}, self.do_serialize(entity, 
-        options.merge({:stop_at => Treat::Entities::Document})), 
-        {upsert: true})
-      entity.each_document do |doc|
-        docs.update(
-        {id: doc.id}, self.do_serialize(doc, options), 
-        {upsert: true})
-      end
-    else
-      entity_token = self.do_serialize(entity, options)
-      coll.update({id: entity.id}, entity_token, {upsert: true})
-    end
+    entity_token = self.do_serialize(entity, options)
+    coll.update({id: entity.id}, entity_token, {upsert: true})
     
     {db: options[:db], collection: supertypes, id: entity.id}
     
