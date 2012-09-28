@@ -11,15 +11,15 @@ module Treat::Specs
   require 'terminal-table'
   
   # Some configuration options for devel.
-  Treat.databases.mongo.db = 'treat_test'
-  Treat.libraries.stanford.model_path =
-  '/ruby/stanford/stanford-core-nlp-all/'
-  Treat.libraries.stanford.jar_path =
-  '/ruby/stanford/stanford-core-nlp-all/'
-  Treat.libraries.punkt.model_path =
-  '/ruby/punkt/'
-  Treat.libraries.reuters.model_path =
-  '/ruby/reuters/'
+  #Treat.databases.mongo.db = 'treat_test'
+  #Treat.libraries.stanford.model_path =
+  #'/ruby/stanford/stanford-core-nlp-all/'
+  #Treat.libraries.stanford.jar_path =
+  #'/ruby/stanford/stanford-core-nlp-all/'
+  #Treat.libraries.punkt.model_path =
+  #'/ruby/punkt/'
+  #Treat.libraries.reuters.model_path =
+  #'/ruby/reuters/'
   
   # Provide helper functions for running specs.
   class Helper
