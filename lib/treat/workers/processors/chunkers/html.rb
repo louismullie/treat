@@ -45,7 +45,6 @@ class Treat::Workers::Processors::Chunkers::HTML
         
         t = node <<
         Treat::Entities::Title.new(txt)
-        t.set :level, level
 
       elsif child.name == 'p'
 
