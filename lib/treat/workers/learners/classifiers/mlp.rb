@@ -23,7 +23,7 @@ class Treat::Workers::Learners::Classifiers::MLP
       net = @@mlps[cl]
     end
     
-    (1 - net.eval(cl.export_features(entity, false))[0])
+    net.eval(cl.export_features(entity, false))[0]
     
   end
   
