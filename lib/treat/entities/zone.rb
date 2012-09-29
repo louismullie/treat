@@ -11,5 +11,5 @@ module Treat::Entities
   class Paragraph < Zone; end
   
   # Represents a list.
-  class List < Section; end
+  class List < Zone; end
 end
