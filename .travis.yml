@@ -8,4 +8,4 @@ before_script:
   - sudo apt-get install antiword
   - sudo apt-get install poppler-utils
   - rake treat:install[travis] --trace
-script: rake treat:spec
+script: rake treat:spec --trace
