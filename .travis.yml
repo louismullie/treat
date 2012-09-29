@@ -5,6 +5,8 @@ rvm:
 before_install:
   - export "JAVA_HOME=/usr/lib/jvm/java-6-openjdk/"
 before_script: 
+  - cd /usr/lib/jvm/
+  - ls -a
   - sudo apt-get install antiword
   - sudo apt-get install poppler-utils
   - rake treat:install[travis] --trace
