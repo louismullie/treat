@@ -8,24 +8,59 @@ module Treat::Specs
   # Require Ruby benchmark library.
   require 'benchmark'
   # Require gem to build ASCII tables.
-  require 'terminal-table'
   
   # Some configuration options for devel.
-  #Treat.databases.mongo.db = 'treat_test'
-  #Treat.libraries.stanford.model_path =
-  #'/ruby/stanford/stanford-core-nlp-all/'
-  #Treat.libraries.stanford.jar_path =
-  #'/ruby/stanford/stanford-core-nlp-all/'
-  #Treat.libraries.punkt.model_path =
-  #'/ruby/punkt/'
-  #Treat.libraries.reuters.model_path =
-  #'/ruby/reuters/'
+  Treat.databases.mongo.db = 'treat_test'
+  Treat.libraries.stanford.model_path =
+  '/ruby/stanford/stanford-core-nlp-all/'
+  Treat.libraries.stanford.jar_path =
+  '/ruby/stanford/stanford-core-nlp-all/'
+  Treat.libraries.punkt.model_path =
+  '/ruby/punkt/'
+  Treat.libraries.reuters.model_path =
+  '/ruby/reuters/'
   
   # Provide helper functions for running specs.
   class Helper
     
+    # Run all worker example files as :specs
+    # or :benchmarks for the given language.
+    def self.run_examples_as(what, language)
+       require_languages(args.language, t)
+      Treat::Specs::Workers::Language.
+        list.each do |lang|
+          lang.new(what).run
+      end
+    end
+    
+    # Run specs for the core classes.
+    def self.run_core_specs
+      files = Dir.glob('./spec/core/*.rb') +
+      Dir.glob('./spec/entities/*.rb')
+      # Run all the spec files.
+      RSpec::Core::Runner.run(
+      files, $stderr, $stdout)
+    end
+    
+    # Start SimpleCov coverage.
+    def self.start_coverage
+      require 'simplecov'
+      SimpleCov.start do
+        add_filter '/spec/'
+        add_filter '/config/'
+        add_group 'Core', 'treat/core'
+        add_group 'Entities', 'treat/entities'
+        add_group 'Helpers', 'treat/helpers'
+        add_group 'Loaders', 'treat/loaders'
+        add_group 'Workers', 'treat/workers'
+        add_group 'Config', 'config.rb'
+        add_group 'Proxies', 'proxies.rb'
+        add_group 'Treat', 'treat.rb'
+      end
+    end
+    
     # Require language files based on the argument.
-    def self.require_languages(arg, task)
+    def self.require_languages(arg)
       # Require the base language class.
       require_relative 'workers/language'
       # If no language supplied, get all languages.
@@ -36,21 +71,21 @@ module Treat::Specs
         pattern = "./spec/workers/#{arg}.rb"
         # Check if a spec file exists.
         unless File.readable?(pattern)
-          task = task.name.split(':').last
           raise Treat::Exception, 
-          "No #{task} file exists for language '#{arg}'."
+          "No example file exists for language '#{arg}'."
         end
       end
       # Require all files matched by the pattern.
       Dir.glob(pattern).each { |f| require f }
     end
     
-    def self.html_table(headings, rows)
+    def self.text_table(headings, rows)
+      require 'terminal-table'
       puts Terminal::Table.new(
       headings: headings, rows: rows)
     end
 
-    def self.text_table(headings, rows)
+    def self.html_table(headings, rows)
       require 'fileutils'
       html = "<table>\n"
       html += "<tr>\n"
