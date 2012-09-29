@@ -1,7 +1,7 @@
+require_relative '../lib/treat'
 module Treat::Specs
 
-  # Require Treat core files.
-  require_relative '../lib/treat'
+  # Require the worker specs.
   require_relative 'workers'
   # Require RSpec library.
   require 'rspec'
