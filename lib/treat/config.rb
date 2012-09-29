@@ -41,8 +41,8 @@ module Treat::Config
   end
 
   def self.get_full_path(dir)
-    File.dirname(__FILE__) +
-    '/../../' + dir.to_s + "/"
+    File.dirname(__FILE__).split('/')[0..-3].
+    join('/') + '/' + dir.to_s + '/'
   end
   
   def self.configure_tags!(config)

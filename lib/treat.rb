@@ -8,8 +8,19 @@ module Treat
   
   # Custom exception class.
   class Exception < ::Exception; end
-  class UnsupportedException < Exception; end
+  class UnimplementedException < Exception; end
   
+  # Base module with auto-require.
+  module Module
+    def self.included(base)
+      bits = base.ancestors[0].to_s.split('::').
+      collect! { |bit| bit.downcase }
+      Dir.glob(Treat.paths.lib +
+      bits.join('/') + '/*.rb').
+      each { |f| require_relative f }
+    end
+  end
+
   # Load configuration options.
   require_relative 'treat/config'
   # Load all workers.
@@ -25,7 +36,7 @@ module Treat
   # Require proxies last.
   require_relative 'treat/proxies'
   
-  # Turn sugar on.
+  # Enable entity creation DSL.
   Treat::Config.sweeten!
   
   # Install packages for a given language.

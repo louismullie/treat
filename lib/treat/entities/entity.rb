@@ -1,11 +1,8 @@
 module Treat::Entities
 
-  module Abilities; end
-
-  # Require abilities.
-  p = Treat.paths.lib +
-  'treat/entities/abilities/*.rb'
-  Dir.glob(p).each { |f| require f }
+  module Abilities
+    include Treat::Module
+  end
 
   require 'birch'
 
