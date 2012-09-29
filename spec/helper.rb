@@ -1,8 +1,8 @@
 module Treat::Specs
 
   # Require Treat core files.
-  require './lib/treat'
-  require './spec/workers'
+  require_relative '../lib/treat'
+  require_relative 'workers'
   # Require RSpec library.
   require 'rspec'
   # Require Ruby benchmark library.
