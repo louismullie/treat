@@ -207,7 +207,7 @@ module Treat::Specs::Workers
             result = entity.send(group.
             method, worker, options)
           end
-        rescue Treat::UnsupportedException
+        rescue Treat::UnimplementedException
           next
         end
         puts result.inspect
