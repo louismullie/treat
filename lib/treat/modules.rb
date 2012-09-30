@@ -2,6 +2,11 @@ module Treat
   
   # Load the basic Module functionality.
   require_relative 'module'
+  
+  # Contains configuration.
+  module Config
+    require_relative 'config'
+  end
 
   # Contains utility functions used by Treat.
   module Helpers
