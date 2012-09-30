@@ -1,5 +1,4 @@
 module Treat::Specs::Workers
-    
     Descriptions = {
       stem: "returns the stem of the word",
       conjugate: {
@@ -26,5 +25,4 @@ module Treat::Specs::Workers
       topics: "returns a list of general topics the document belongs to",
       segment: "splits a zone into phrases/sentences and adds them as children of the zone"
     }
-
 end
