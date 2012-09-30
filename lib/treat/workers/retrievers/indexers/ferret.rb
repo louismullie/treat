@@ -18,8 +18,12 @@ class Treat::Workers::Retrievers::Indexers::Ferret
   # index for future use (e.g. in searching).
   def self.index(collection, options = {})
 
-    # FIXME - what if the collection is stored
-    # in a database?
+    unless collection.get(:folder)
+      raise Treat::Exception,
+      "Only collections stored on disk " +
+      "can currently be indexed with Ferret."
+    end
+    
     path = "#{collection.folder}/.index"
     return path if FileTest.directory?(path)
     
@@ -45,7 +49,6 @@ class Treat::Workers::Retrievers::Indexers::Ferret
     end
     
     path
-    
   end
   
 end
