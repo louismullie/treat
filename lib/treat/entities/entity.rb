@@ -1,60 +1,64 @@
 module Treat::Entities
 
   require 'birch'
-  require 'abilities'
   
   class Entity < ::Birch::Tree
 
-    # A Symbol representing the lowercase
-    # version of the class name.
+    # A symbol representing the lowercase
+    # version of the class name. This is 
+    # the only attribute that the Entity
+    # class adds to the Birch:Tree class.
     attr_accessor :type
-
+    
+    # Autoload all the entity classes.
+    include Treat::Modules::Module::Autoloaded
+    
     # Implements support for #register,
     # #registry, and #contains_* methods.
-    include Abilities::Registrable
+    include Registrable
 
     # Implement support for #self.add_workers
-    extend Abilities::Delegatable
+    extend Delegatable
 
     # Implement support for #self.print_debug and
     # #self.invalid_call_msg
-    extend Abilities::Debuggable
+    extend Debuggable
 
     # Implement support for #self.build
     # and #self.from_*
-    extend Abilities::Buildable
+    extend Buildable
 
     # Implement support for #chain.
-    include Abilities::Chainable
+    include Chainable
 
     # Implement support for #frequency,
     # #frequency_in_parent and #position_in_parent.
-    include Abilities::Countable
+    include Countable
 
     # Implement support for #magic.
-    include Abilities::Magical
+    include Magical
 
     # Implement support for #to_s, #inspect, etc.
-    include Abilities::Stringable
+    include Stringable
 
     # Implement support for #check_has
     # and #check_hasnt_children?
-    include Abilities::Checkable
+    include Checkable
 
     # Implement support for #each_entity, as well as
     # #entities_with_type, #ancestors_with_type,
     # #entities_with_feature, #entities_with_category.
-    include Abilities::Iterable
+    include Iterable
 
     # Implement support for #export to export
     # a line of a data set based on a classification.
-    include Abilities::Exportable
+    include Exportable
 
     # Implement support for #copy_into.
-    include Abilities::Copyable
+    include Copyable
 
     # Implement support for #self.compare_with
-    extend Abilities::Comparable
+    extend Comparable
 
     # Initialize the entity with its value and
     # (optionally) a unique identifier. By default,
