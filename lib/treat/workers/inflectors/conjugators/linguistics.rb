@@ -9,11 +9,11 @@ module Treat::Workers::Inflectors::Conjugators::Linguistics
   }
   
   Forms = {
-    :present_participle =>
+    'present_participle' =>
     {:mode => 'participle', :tense => 'present'},
-    :infinitive => {:mode => 'infinitive'},
-    :plural_verb => {:count => 'plural'},
-    :singular_verb => {:count => 'singular'}
+    'infinitive' => {:mode => 'infinitive'},
+    'plural_verb' => {:count => 'plural'},
+    'singular_verb' => {:count => 'singular'}
   }
   
   # Conjugate a verb using ruby linguistics with the specified
@@ -33,7 +33,7 @@ module Treat::Workers::Inflectors::Conjugators::Linguistics
     cat = entity.check_has(:category)
     return if cat != 'verb' && options[:strict]
 
-    options = Forms[options[:form]] if options[:form]
+    options = Forms[options[:form].to_s] if options[:form]
 
     klass = Treat::Loaders::Linguistics.load(entity.language)
     if options[:mode] == 'infinitive'
