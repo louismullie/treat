@@ -19,7 +19,7 @@ module Treat::Config
   def self.configure
     # Temporary configuration hash.
     config = { paths: {} }
-    confdir = get_full_path(:lib) + 'treat/config'
+    confdir = Dir.pwd + '/lib/treat/config'
     # Iterate over each directory in the config.
     Dir[confdir + '/*'].each do |dir|
       name = File.basename(dir, '.*').intern
@@ -32,17 +32,12 @@ module Treat::Config
     end
     # Get the path config.
     Paths.each do |path|
-      config[:paths][path] = get_full_path(path)
+      config[:paths][path] = Dir.pwd + '/' + path.to_s + '/'
     end
     # Get the tag alignments.
     configure_tags!(config[:tags][:aligned])
     # Convert hash to structs.
     self.config = self.hash_to_struct(config)
-  end
-
-  def self.get_full_path(dir)
-    File.dirname(__FILE__).split('/')[0..-3].
-    join('/') + '/' + dir.to_s + '/'
   end
   
   def self.configure_tags!(config)
