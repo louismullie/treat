@@ -1,21 +1,19 @@
 # All commands are prefixed with "treat:".
 namespace :treat do
   
+  # Require the Treat library.
+  require_relative 'lib/treat'
+  
   # Sandbox a script, for development.
   # Syntax: rake treat:sandbox
   task :sandbox do
-    require './lib/treat'
-    require './spec/sandbox'
+    require_relative 'spec/sandbox'
   end
   
   # Prints the current version of Treat.
   # Syntax: rake treat:version
   task :version do
-    # Parse out the version number from file.
-    path = '../lib/treat/version.rb'
-    file = File.expand_path(path, __FILE__)
-    contents = File.read(file)
-    puts contents[/VERSION = "([^"]+)"/, 1]
+    puts Treat::VERSION
   end
 
   # Installs a language pack (default to english).
@@ -25,7 +23,6 @@ namespace :treat do
   # Syntax: rake treat:install (installs english)
   # - OR -  rake treast:install[some_language]
   task :install, [:language] do |t, args|
-    require './lib/treat'
     Treat.install(args.language || 'english')
   end
   
@@ -44,7 +41,7 @@ namespace :treat do
     Treat::Specs::Helper.start_coverage
     Treat::Specs::Helper.run_core_specs
     Treat::Specs::Helper.run_examples_as(
-    :specs, args.language)
+    'spec', args.language)
   end
   
   # Runs worker benchmarks for all languages (by 
@@ -55,7 +52,7 @@ namespace :treat do
   task :benchmark, [:language] do |t, args|
     require_relative 'spec/helper'
     Treat::Specs::Helper.run_examples_as(
-    :benchmarks, args.language)
+    'benchmark', args.language)
   end
 
 end
