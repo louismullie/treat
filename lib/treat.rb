@@ -4,5 +4,8 @@ module Treat
   require_relative 'treat/version'
   require_relative 'treat/exception'
   require_relative 'treat/modules'
-
+  
+  # Enable DSL.
+  Treat::Config.sweeten!
+  
 end
