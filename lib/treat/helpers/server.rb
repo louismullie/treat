@@ -1,11 +1,9 @@
 class Treat::Server 
   
-  require 'json'
-  require 'rack'
-  
   # Refer to http://rack.rubyforge.org/doc/classes/Rack/Server.html
   # for possible options to configure.
   def initialize(handler = 'thin', options = {})
+    require 'json'; require 'rack'
     @handler, @options = handler.capitalize, options
   end
   
