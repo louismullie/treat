@@ -1,46 +1,34 @@
-# Registers occurences of textual values inside
-# all children entity. Useful to calculate frequency.
+# Registers the entities ocurring in the subtree of
+# a node as children are added. Also registers text
+# occurrences for word groups and tokens (n grams).
 module Treat::Entities::Entity::Registrable
 
-  # Registers a token in the @registry hash.
+  # Registers a token or phrase in the registry.
+  # The registry keeps track of children by id,
+  # by entity type, and also keeps the position
+  # of the entity in its parent entity.
   def register(entity)
-    
-    unless @registry
-      @count = 0
-      @registry = {
-        :value => {}, 
-        :position => {}, 
-        :type => {}, 
-        :id => {}
-      }
-    end
-    
+    @count, @registry = 0, {value: {}, 
+    position:{}, type: {}} unless @registry
     if entity.is_a?(Treat::Entities::Token) ||
-      entity.is_a?(Treat::Entities::Phrase)
+      entity.is_a?(Treat::Entities::Group)
       val = entity.to_s.downcase
       @registry[:value][val] ||= 0
       @registry[:value][val] += 1
     end
-  
     @registry[:id][entity.id] = true
     @registry[:type][entity.type] ||= 0
     @registry[:type][entity.type] += 1
     @registry[:position][entity.id] = @count
     @count += 1
-    
     @parent.register(entity) if has_parent?
-    
   end
 
   # Backtrack up the tree to find a token registry,
-  # by default the one in the root node of any entity.
+  # by default the one in the root node of the tree.
   def registry(type = nil)
-    if has_parent? &&
-      type != self.type
-      @parent.registry(type)
-    else
-      @registry
-    end
+    (has_parent? && type != self.type) ?
+    @parent.registry(type) : @registry
   end
 
 end
