@@ -19,7 +19,7 @@ module Treat
   end
 
   # Contains the core classes used by Treat.
-  module Core
+  module Learning
     include Module::Autoloaded
   end
 
