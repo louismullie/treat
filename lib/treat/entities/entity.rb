@@ -1,11 +1,8 @@
 module Treat::Entities
 
-  module Abilities
-    include Treat::Module
-  end
-
   require 'birch'
-
+  require 'abilities'
+  
   class Entity < ::Birch::Tree
 
     # A Symbol representing the lowercase
