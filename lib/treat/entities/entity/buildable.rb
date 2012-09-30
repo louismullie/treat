@@ -3,7 +3,7 @@
 # a string or a numeric object. This class
 # is pretty much self-explanatory.
 # FIXME how can we make this language independent?
-module Treat::Entities::Abilities::Buildable
+module Treat::Entities::Entity::Buildable
 
   require 'schiphol'
   require 'fileutils'

@@ -1,4 +1,4 @@
-module Treat::Entities::Abilities::Magical
+module Treat::Entities::Entity::Magical
 
   # Parse "magic methods", which allow the following
   # syntaxes to be used (where 'word' can be replaced

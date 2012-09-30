@@ -1,7 +1,7 @@
 # Gives entities the ability to be converted
 # to string representations (#to_string, #to_s,
 # #to_str, #inspect, #print_tree).
-module Treat::Entities::Abilities::Stringable
+module Treat::Entities::Entity::Stringable
   
   # Returns the entity's true string value.
   def to_string;  @value.dup; end

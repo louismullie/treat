@@ -1,4 +1,4 @@
-module Treat::Entities::Abilities::Iterable
+module Treat::Entities::Entity::Iterable
 
   # Yields each entity of any of the supplied
   # types in the children tree of this Entity.

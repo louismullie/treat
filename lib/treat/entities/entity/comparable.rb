@@ -1,4 +1,4 @@
-module Treat::Entities::Abilities::Comparable
+module Treat::Entities::Entity::Comparable
 
   def compare_with(klass)
     

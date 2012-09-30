@@ -1,7 +1,7 @@
 # When Treat.debug is set to true, each call to
 # #call_worker will result in a debug message being
 # printed by the #print_debug function.
-module Treat::Entities::Abilities::Debuggable
+module Treat::Entities::Entity::Debuggable
   
   @@prev = nil
   @@i = 0

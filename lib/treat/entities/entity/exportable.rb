@@ -1,4 +1,4 @@
-module Treat::Entities::Abilities::Exportable
+module Treat::Entities::Entity::Exportable
   
   def export(problem)
     ds = Treat::Learning::DataSet.new(problem)

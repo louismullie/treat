@@ -1,4 +1,4 @@
-module Treat::Entities::Abilities::Countable
+module Treat::Entities::Entity::Countable
 
   # Find the position of the current entity
   # inside the parent entity, starting at 1.

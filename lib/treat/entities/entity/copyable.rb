@@ -1,4 +1,4 @@
-module Treat::Entities::Abilities::Copyable
+module Treat::Entities::Entity::Copyable
   
   require 'fileutils'
   

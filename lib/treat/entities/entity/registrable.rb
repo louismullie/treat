@@ -1,6 +1,6 @@
 # Registers occurences of textual values inside
 # all children entity. Useful to calculate frequency.
-module Treat::Entities::Abilities::Registrable
+module Treat::Entities::Entity::Registrable
 
   # Registers a token in the @registry hash.
   def register(entity)

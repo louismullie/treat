@@ -1,7 +1,7 @@
 # This module implements methods that are used
 # by workers to determine if an entity is properly
 # formatted before working on it.
-module Treat::Entities::Abilities::Checkable
+module Treat::Entities::Entity::Checkable
 
   # Check if the entity has the given feature,
   # and if so return it. If not, calculate the

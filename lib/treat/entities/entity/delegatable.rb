@@ -1,7 +1,7 @@
 # Makes a class delegatable, allowing calls
 # on it to be forwarded to a worker class
 # able to perform the appropriate task.
-module Treat::Entities::Abilities::Delegatable
+module Treat::Entities::Entity::Delegatable
 
   # Add preset methods to an entity class.
   def add_presets(group)

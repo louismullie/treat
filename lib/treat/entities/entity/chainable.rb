@@ -1,5 +1,5 @@
 # Implement support for the functions #do and #do_task.
-module Treat::Entities::Abilities::Chainable
+module Treat::Entities::Entity::Chainable
 
   # Perform the supplied tasks on the entity.
   def do(*tasks)
