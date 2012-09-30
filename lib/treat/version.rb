@@ -8,5 +8,5 @@ module Treat
     raise "Treat requires Ruby version 1.9.2 " +
     "or higher, but current is #{RUBY_VERSION}."
   end
-  
+
 end
