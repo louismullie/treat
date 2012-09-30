@@ -17,7 +17,7 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
     classify: {
       entity: {
         examples: [
-          ["Homer", 1, lambda { {training: Treat::Core::DataSet.build('test.marshal')} }]
+          ["Homer", 1, lambda { {training: Treat::Learning::DataSet.build('test.marshal')} }]
         ],
         preprocessor: lambda do |entity|
           ds = DataSet(Problem(

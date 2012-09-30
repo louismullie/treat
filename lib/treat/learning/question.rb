@@ -1,6 +1,6 @@
 # Defines a question to answer in the
 # context of a classification problem.
-class Treat::Core::Question
+class Treat::Learning::Question
   
   # Defines an arbitrary label for the
   # question we are trying to answer 

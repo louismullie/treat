@@ -2,7 +2,7 @@
 # problem as well as data for entities that
 # have already been classified, complete with
 # references to these entities.
-class Treat::Core::DataSet
+class Treat::Learning::DataSet
   
   # The classification problem this
   # data set holds data for.
@@ -13,17 +13,17 @@ class Treat::Core::DataSet
   
   # Initialize the DataSet.
   def initialize(problem)
-    unless problem.is_a?(Treat::Core::Problem)
+    unless problem.is_a?(Treat::Learning::Problem)
       raise Treat::Exception, "The first argument " +
       "to initialize should be an instance of " +
-      "Treat::Core::Problem."
+      "Treat::Learning::Problem."
     end
     @problem, @items = problem, []
   end
   
   def self.build(from)
     if from.is_a?(Hash)
-      Treat::Core::DataSet.unserialize(
+      Treat::Learning::DataSet.unserialize(
       Treat.databases.default.adapter, from)
     elsif from.is_a?(String)
       unless File.readable?(from)
@@ -31,7 +31,7 @@ class Treat::Core::DataSet
         "Attempting to initialize data set from " +
         "file '#{from}', but it is not readable."
       end
-      Treat::Core::DataSet.unserialize(
+      Treat::Learning::DataSet.unserialize(
       File.extname(from)[1..-1], file: from)
     end
   end
@@ -92,7 +92,7 @@ class Treat::Core::DataSet
       next unless tag.proc_string
       tag.proc = eval(tag.proc_string)
     end
-    data_set = Treat::Core::DataSet.new(problem)
+    data_set = Treat::Learning::DataSet.new(problem)
     data_set.items = items
     data_set
   end
@@ -131,7 +131,7 @@ class Treat::Core::DataSet
       raise Treat::Exception, 
       "Couldn't retrieve problem ID #{options[:problem]}."
     end
-    problem = Treat::Core::Problem.from_hash(p_record)
+    problem = Treat::Learning::Problem.from_hash(p_record)
     data = database.collection('data').find(options).to_a
     items = []
     data.each do |datum|
@@ -142,7 +142,7 @@ class Treat::Core::DataSet
       item[:id] = datum['id']
       items << item
     end
-    data_set = Treat::Core::DataSet.new(problem)
+    data_set = Treat::Learning::DataSet.new(problem)
     data_set.items = items
     data_set
   end

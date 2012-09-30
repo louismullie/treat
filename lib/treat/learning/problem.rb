@@ -2,7 +2,7 @@
 # - What question are we trying to answer?
 # - What features are we going to look at
 #   to attempt to answer that question?
-class Treat::Core::Problem
+class Treat::Learning::Problem
 
   # A unique identifier for the problem.
   attr_accessor :id
@@ -20,21 +20,21 @@ class Treat::Core::Problem
   # Initialize the problem with a question
   # and an arbitrary number of features.        # FIXME: init with id!?
   def initialize(question, *exports)
-    unless question.is_a?(Treat::Core::Question)
+    unless question.is_a?(Treat::Learning::Question)
       raise Treat::Exception,
       "The first argument to initialize " +
       "should be an instance of " +
-      "Treat::Core::Question."
+      "Treat::Learning::Question."
     end
-    if exports.any? { |f| !f.is_a?(Treat::Core::Export) }
+    if exports.any? { |f| !f.is_a?(Treat::Learning::Export) }
       raise Treat::Exception,
       "The second argument and all subsequent ones " +
       "to initialize should be instances of subclasses " +
-      "of Treat::Core::Export."
+      "of Treat::Learning::Export."
     end
     @question, @id = question, object_id
     @features = exports.select do |exp|
-      exp.is_a?(Treat::Core::Feature)
+      exp.is_a?(Treat::Learning::Feature)
     end
     if @features.size == 0
       raise Treat::Exception, 
@@ -42,7 +42,7 @@ class Treat::Core::Problem
       "one feature to work with."
     end
     @tags = exports.select do |exp|
-      exp.is_a?(Treat::Core::Tag)
+      exp.is_a?(Treat::Learning::Tag)
     end
     @feature_labels = @features.map { |f| f.name }
     @tag_labels = @tags.map { |t| t.name }
@@ -104,7 +104,7 @@ class Treat::Core::Problem
   end
   
   def self.from_hash(hash)
-    question = Treat::Core::Question.new(
+    question = Treat::Learning::Question.new(
       hash['question']['name'], 
       hash['question']['target'],
       hash['question']['type'],
@@ -113,18 +113,18 @@ class Treat::Core::Problem
     )
     features = []
     hash['features'].each do |feature|
-      features << Treat::Core::Feature.new(
+      features << Treat::Learning::Feature.new(
       feature['name'], feature['default'],
       feature['proc_string'])
     end
     tags = []
     hash['tags'].each do |tag|
-      tags << Treat::Core::Tag.new(
+      tags << Treat::Learning::Tag.new(
       tag['name'], tag['default'],
       tag['proc_string'])
     end
     features_and_tags = features + tags
-    p = Treat::Core::Problem.new(question, *features_and_tags)
+    p = Treat::Learning::Problem.new(question, *features_and_tags)
     p.id = hash['id']
     p
   end

@@ -111,9 +111,9 @@ describe Treat::Entities::Entity do
   describe "Exportable" do
 
     context "when supplied with a classification to export" do
-      feature = Treat::Core::Feature.new(:tag)
-      question = Treat::Core::Question.new(:is_keyword, :word, :discrete, false)
-      problem = Treat::Core::Problem.new(question, feature)
+      feature = Treat::Learning::Feature.new(:tag)
+      question = Treat::Learning::Question.new(:is_keyword, :word, :discrete, false)
+      problem = Treat::Learning::Problem.new(question, feature)
       it "returns a data set with the exported features" do
         ds = @sentence.export(problem)
         ds.problem.should eql problem

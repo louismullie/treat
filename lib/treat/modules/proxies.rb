@@ -2,7 +2,7 @@
 # when a method defined by Treat is called on these
 # objects, the Ruby object is cast to a Treat entity
 # and the method is called on the resultant type.
-module Treat::Core::Proxies
+module Treat::Learning::Proxies
 
   # Provides a base functionality for proxies.
   module Proxy
@@ -28,7 +28,7 @@ module Treat::Core::Proxies
   module String
 
     # Include base proxy functionality.
-    include Treat::Core::Proxies::Proxy
+    include Treat::Learning::Proxies::Proxy
 
     # Return the entity corresponding to the string.
     def to_entity
@@ -41,7 +41,7 @@ module Treat::Core::Proxies
   module Numeric
 
     # Include base proxy functionality.
-    include Treat::Core::Proxies::Proxy
+    include Treat::Learning::Proxies::Proxy
 
     # Return the entity corresponding to the number.
     def to_entity(builder = nil)
@@ -52,12 +52,12 @@ module Treat::Core::Proxies
   
   # Include Treat methods on strings.
   ::String.class_eval do
-    include Treat::Core::Proxies::String
+    include Treat::Learning::Proxies::String
   end
   
   # Include Treat methods on numerics.
   ::Numeric.class_eval do
-    include Treat::Core::Proxies::Numeric
+    include Treat::Learning::Proxies::Numeric
   end
   
   # This is kind of ugly; need to find a
