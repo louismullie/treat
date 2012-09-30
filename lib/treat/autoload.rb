@@ -1,6 +1,14 @@
-# Basic mixin for all the main modules,
-# which takes care of requiring the right
-# files in the right order for each one.
+# Basic mixin for all the main modules;
+# takes care of requiring the right files 
+# in the right order for each one.
+# 
+# If a module's folder (e.g. /entities) 
+# contains a file with a corresponding
+# singular name (e.g. /entity), that 
+# base class is required first. Then, 
+# all the files that are found directly 
+# under that folder are required (but
+# not those found in sub-folders).
 module Treat::Autoload
   
   # Loads all the files for the base
