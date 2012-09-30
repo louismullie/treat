@@ -1,5 +1,5 @@
 # A dependency manager for Treat language plugins.
-# It can be called by using Treat.install(language).
+# Usage: Treat::Installer.install('language')
 module Treat::Installer
   
   require 'schiphol'
