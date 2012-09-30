@@ -128,5 +128,7 @@ module Treat::Config
 
   # Run all configuration.
   self.configure
+  # Enable DSL.
+  Treat::Config.sweeten!
 
 end
