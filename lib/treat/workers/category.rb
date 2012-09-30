@@ -1,9 +1,9 @@
 # This module creates all the worker categories
 # and the groups within these categories and adds
 # the relevant hooks on the appropriate entities.
-module Treat::Workers
+module Treat::Workers::Category
 
-  require_relative 'workers/group'
+  require_relative 'group'
 
   # A lookup table for entity types.
   @@lookup = {}
@@ -32,7 +32,8 @@ module Treat::Workers
   end
 
   def self.create_category(name, conf)
-    category = self.const_set(name, Module.new)
+    category = Treat::Workers.
+    const_set(name, Module.new)
     conf.each_pair do |group, worker|
       name = cc(group.to_s).intern
       category.module_eval do

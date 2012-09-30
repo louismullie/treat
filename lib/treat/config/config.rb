@@ -23,6 +23,7 @@ module Treat::Config
     # Iterate over each directory in the config.
     Dir[confdir + '/*'].each do |dir|
       name = File.basename(dir, '.*').intern
+      next if name == :config
       config[name] = {}
       # Iterate over each file in the directory.
       Dir[confdir + "/#{name}/*.rb"].each do |file|
