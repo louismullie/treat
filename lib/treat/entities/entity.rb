@@ -11,7 +11,7 @@ module Treat::Entities
     attr_accessor :type
     
     # Autoload all the entity classes.
-    include Treat::Module::Autoloaded
+    include Treat::Autoloaded
     
     # Implements support for #register,
     # #registry, and #contains_* methods.
