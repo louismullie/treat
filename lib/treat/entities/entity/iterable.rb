@@ -6,7 +6,7 @@ module Treat::Entities::Entity::Iterable
   # #each. It does not yield the top element being
   # recursed.
   #
-  # This function NEEDS to be ported to C.
+  # This function NEEDS to be ported to C. #FIXME
   def each_entity(*types)
     types = [:entity] if types.size == 0
     f = false
