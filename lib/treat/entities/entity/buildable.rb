@@ -152,7 +152,15 @@ module Treat::Entities::Entity::Buildable
 
     c = Treat::Entities::Collection.new(folder)
     folder += '/' unless folder[-1] == '/'
-
+    
+    if !FileTest.directory?(folder)
+      FileUtils.mkdir(folder)
+    end
+    
+    c.set :folder, folder
+    i = folder + '/.index'
+    c.set :index, i if FileTest.directory?(i)
+    
     Dir[folder + '*'].each do |f|
       if FileTest.directory?(f)
         c2 = Treat::Entities::Collection.
@@ -163,6 +171,7 @@ module Treat::Entities::Entity::Buildable
         from_file(f, options), false)
       end
     end
+    
     c
 
   end
@@ -200,8 +209,8 @@ module Treat::Entities::Entity::Buildable
       "point to a readable file."
     end
 
-    d = Treat::Entities::Document.new(file)
-
+    d = Treat::Entities::Document.new
+    d.set :file, file
     d.read(:autoselect, options)
 
   end
@@ -219,7 +228,8 @@ module Treat::Entities::Entity::Buildable
         "Path '#{file}' does not "+
         "point to a readable file."
       end
-      doc = Treat::Entities::Document.new(file)
+      doc = Treat::Entities::Document.new
+      doc.set :file, file
       format = nil
       if file.index('yml') || file.index('yaml')
         format = :yaml
