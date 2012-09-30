@@ -1,43 +1,61 @@
 module Treat
   
-  module Modules
-    require_relative 'modules/module'
+  module Autoloaded
+    
+    def self.included(base)
+      bits =  base.to_s.split('::')
+      name = bits[-1].downcase
+      name = self.singularize(name) + '.rb'
+      dir = File.join(Dir.pwd, 'lib/treat', 
+      bits[1..-1].collect! { |ch| ch.
+      downcase }.join('/')) + '/'
+      require dir + name if 
+      File.readable?(dir + name)
+      patt = dir + '*.rb'
+      Dir.glob(patt).each { |f| require f }
+    end
+    
+    def self.singularize(name)
+      (name[-3..-1] == 'ies' ? 
+      (name[0...-3] + 'y') : (name[-1] == 
+      's' ? name[0...-1] : name))
+    end
+    
   end
   
   # Contains configuration.
   module Config
-    require_relative 'modules/config'
+    include Autoloaded
   end
 
   # Contains utility functions used by Treat.
   module Helpers
-    include Modules::Module::Autoloaded
+    include Autoloaded
   end
 
   # Contains classes to load external libraries.
   module Loaders
-    include Modules::Module::Autoloadable
+    include Autoloaded
   end
 
   # Contains the core classes used by Treat.
   module Learning
-    include Modules::Module::Autoloaded
+    include Autoloaded
   end
 
   # Contains the textual model used by Treat.
   module Entities
-    require_relative 'entities/entity'
-    include Modules::Module::Autoloaded
+    include Autoloaded
   end
 
   # This module creates all the worker categories.
   module Workers
-    require_relative 'modules/workers'
+    include Autoloaded
   end
 
   # Proxies install builders on core Ruby objects.
   module Proxies
-    require_relative 'modules/proxies'
+    include Autoloaded
   end
   
 end
