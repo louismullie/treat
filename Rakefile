@@ -23,7 +23,8 @@ namespace :treat do
   # Syntax: rake treat:install (installs english)
   # - OR -  rake treast:install[some_language]
   task :install, [:language] do |t, args|
-    Treat.install(args.language || 'english')
+    language = args.language || 'english'
+    Treat::Installer.install(language)
   end
   
   # Runs 1) the core library specs and 2) the 
