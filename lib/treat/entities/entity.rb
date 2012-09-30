@@ -1,61 +1,65 @@
 module Treat::Entities
 
+  # Basic tree structure.
   require 'birch'
   
+  # The Entity class extends a basic tree structure 
+  # (written in C for optimal speed) and represents 
+  # any form of textual entityin a processing task 
+  # (this could be a collection of documents, a 
+  # single document, a single paragraph, etc.)
+  # 
+  # Classes that extend Entity provide the concrete
+  # behavior corresponding to the relevant entity type. 
+  # See entities.rb for a full list and description of 
+  # the different entity types in the document model.
   class Entity < ::Birch::Tree
 
     # A symbol representing the lowercase
     # version of the class name. This is 
     # the only attribute that the Entity
-    # class adds to the Birch:Tree class.
+    # class adds to the Birch::Tree class.
     attr_accessor :type
     
-    # Autoload all the entity classes.
+    # Autoload all the classes in /abilities.
     include Treat::Autoload
     
-    # Implements support for #register,
-    # #registry, and #contains_* methods.
+    # Implements support for #register, #registry.
     include Registrable
 
-    # Implement support for #self.add_workers
+    # Implement support for #self.call_worker, etc.
     extend Delegatable
 
-    # Implement support for #self.print_debug and
-    # #self.invalid_call_msg
+    # Implement support for #self.print_debug, etc.
     extend Debuggable
 
-    # Implement support for #self.build
-    # and #self.from_*
+    # Implement support for #self.build and #self.from_*
     extend Buildable
 
-    # Implement support for #chain.
-    include Chainable
+    # Implement support for #apply (previously #do).
+    include Applicable
 
-    # Implement support for #frequency,
-    # #frequency_in_parent and #position_in_parent.
+    # Implement support for #frequency, #frequency_in,
+    # #frequency_of, #position, #position_from_end, etc.
     include Countable
 
-    # Implement support for #magic.
+    # Implement support for over 100 #magic methods!
     include Magical
 
     # Implement support for #to_s, #inspect, etc.
     include Stringable
 
-    # Implement support for #check_has
-    # and #check_hasnt_children?
+    # Implement support for #check_has and others.
     include Checkable
 
     # Implement support for #each_entity, as well as
     # #entities_with_type, #ancestors_with_type,
-    # #entities_with_feature, #entities_with_category.
+    # #entities_with_feature, #entities_with_category, etc.
     include Iterable
 
-    # Implement support for #export to export
-    # a line of a data set based on a classification.
+    # Implement support for #export, allowing to export 
+    # a data set row from the receiving entity.
     include Exportable
-
-    # Implement support for #copy_into.
-    include Copyable
 
     # Implement support for #self.compare_with
     extend Comparable
