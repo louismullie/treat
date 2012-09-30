@@ -2,11 +2,11 @@ class Treat::Module
   
   module Autoloaded
     def self.included(base)
-      bits = base.ancestors[0].to_s.split('::').
-      collect! { |bit| bit.downcase }
-      Dir.glob(Treat.paths.lib +
-      bits.join('/') + '/*.rb').
-      each { |f| require_relative f }
+      Dir.glob(Dir.pwd + '/lib/treat/' + 
+      base.to_s.split('::')[1..-1].
+      collect! { |ch| ch.downcase }.
+      join('/') + '/*.rb').
+      each { |file| require file }
     end
   end
   
@@ -15,7 +15,7 @@ class Treat::Module
       name = const.to_s.downcase
       mdir = base.to_s.
       split('::')[-1].downcase
-      require Treat.paths.lib + 
+      require Dir.pwd + '/lib/' + 
       "treat/#{mdir}/#{name}.rb"
       self.const_get(const)
     end
