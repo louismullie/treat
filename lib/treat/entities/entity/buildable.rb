@@ -63,23 +63,19 @@ module Treat::Entities::Entity::Buildable
   # is user-created (i.e. by calling build
   # instead of from_string directly).
   def from_string(string, enforce_type = false)
-
+    # If calling using the build syntax (i.e. user-
+    # called), enforce the type that was supplied.
     enforce_type = true if caller_method == :build
-
     unless self == Treat::Entities::Entity
       return self.new(string) if enforce_type
     end
-
     e = anything_from_string(string)
-
     if enforce_type && !e.is_a?(self)
       raise "Asked to build a #{cl(self).downcase} "+
       "from \"#{string}\" and to enforce type, "+
       "but type detected was #{cl(e.class).downcase}."
     end
-
     e
-
   end
 
   # Build a document from an URL.
@@ -261,7 +257,6 @@ module Treat::Entities::Entity::Buildable
 
   # Build any kind of entity from a string.
   def anything_from_string(string)
-
     case cl(self).downcase.intern
     when :document, :collection
       raise Treat::Exception,
@@ -269,7 +264,7 @@ module Treat::Entities::Entity::Buildable
       "collection from a string " +
       "(need a readable file/folder)."
     when :phrase
-      sentence_or_phrase_from_string(string)
+      group_from_string(string)
     when :token
       token_from_string(string)
     when :zone
@@ -281,7 +276,7 @@ module Treat::Entities::Entity::Buildable
         if string.gsub(/[\.\!\?]+/,
           '.').count('.') <= 1 &&
           string.count("\n") == 0
-          sentence_or_phrase_from_string(string)
+          group_from_string(string)
         else
           zone_from_string(string)
         end
@@ -297,10 +292,8 @@ module Treat::Entities::Entity::Buildable
   end
 
   # Build a phrase from a string.
-  def sentence_or_phrase_from_string(string)
-
+  def group_from_string(string)
     check_encoding(string)
-
     if !(string =~ /[a-zA-Z]+/)
       Treat::Entities::Fragment.new(string)
     elsif string.count('.!?') >= 1
@@ -308,7 +301,6 @@ module Treat::Entities::Entity::Buildable
     else
       Treat::Entities::Phrase.new(string)
     end
-
   end
 
   # Build the right type of token
