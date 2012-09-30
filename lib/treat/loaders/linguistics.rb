@@ -1,5 +1,6 @@
 # A helper class to load a language class
-# registered with the Linguistics gem.
+# registered with the Linguistics gem, for
+# example Linguistics::EN.
 class Treat::Loaders::Linguistics
 
   # Linguistics throws warnings; silence them.
@@ -13,16 +14,15 @@ class Treat::Loaders::Linguistics
   # if there is no such language class registered.
   def self.load(language)
     silence_warnings do
+      code = language.to_s[0..1].upcase
       @@languages[language] ||= 
-      ::Linguistics.const_get(
-      language.to_s[0..1].upcase)
+      ::Linguistics.const_get(code)
     end
     return @@languages[language]
   rescue RuntimeError
     raise Treat::Exception,
-    "Ruby Linguistics does " +
-    "not have a module installed " +
-    "for the #{language} language."
+    "Ruby Linguistics does not have a module " +
+    "installed for the #{language} language."
   end
 
 end
