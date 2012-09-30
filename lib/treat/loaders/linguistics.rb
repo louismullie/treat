@@ -3,9 +3,6 @@
 # example Linguistics::EN.
 class Treat::Loaders::Linguistics
 
-  # Linguistics throws warnings; silence them.
-  silence_warnings { require 'linguistics' }
-
   # Linguistics classes for each language.
   @@languages = {}
 
@@ -14,6 +11,8 @@ class Treat::Loaders::Linguistics
   # if there is no such language class registered.
   def self.load(language)
     silence_warnings do
+      # Linguistics throws warnings; silence them.
+      silence_warnings { require 'linguistics' }
       code = language.to_s[0..1].upcase
       @@languages[language] ||= 
       ::Linguistics.const_get(code)

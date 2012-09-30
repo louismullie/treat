@@ -1,7 +1,5 @@
 # A helper class to load the CoreNLP package.
 class Treat::Loaders::Stanford
-
-  require 'stanford-core-nlp'
   
   # Keep track of whether its loaded or not.
   @@loaded = false
@@ -9,6 +7,7 @@ class Treat::Loaders::Stanford
   # Load CoreNLP package for a given language.
   def self.load(language = nil)
     return if @@loaded
+    require 'stanford-core-nlp'
     language ||= Treat.core.language.default
     StanfordCoreNLP.jar_path = 
     Treat.libraries.stanford.jar_path || 
