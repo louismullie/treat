@@ -4,24 +4,17 @@ module Treat::Entities::Entity::Magical
   # syntaxes to be used (where 'word' can be replaced
   # by any entity type, e.g. token, zone, etc.):
   #
-  # - each_word : iterate over each entity of type word.
-  # - words: return an array of words in the entity.
+  # - each_word : iterate over each children of type word.
+  # - words: return an array of children words.
   # - word: return the first word in the entity.
   # - word_count: return the number of words in the entity.
-  # - words_with_*(value) (where  is an arbitrary feature):
-  #   return the words that have the given feature.
-  # - word_with_*(value) : return the first word with
-  #   the feature specified by * in value.
+  # - words_with_*(value) (where * is an arbitrary feature):
+  #   return the words that have the given feature set to value.
   #
-  # Also provides magical methods for types of words:
-  #
-  # - each_noun:
-  # - nouns:
-  # - noun:
-  # - noun_count:
-  # - nouns_with_*(value)
-  # - noun_with_*(value)
-  #
+  # Also provides magical methods for types of words (each_noun,
+  # nouns, noun_count, nouns_with_*(value) noun_with_*(value), etc.)
+  # For this to be used, the words in the text must have been 
+  # tokenized and categorized in the first place.
   def magic(sym, *args)
 
     # Cache this for performance.
@@ -80,8 +73,9 @@ module Treat::Entities::Entity::Magical
     elsif method =~ /^frequency_in_#{@@entities_regexp}$/
       frequency_in($1.intern)
     else
-      return :no_magic
+      return :no_magic # :-(
     end
+    
   end
   
   
