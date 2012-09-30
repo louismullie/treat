@@ -1,9 +1,0 @@
---- !ruby/object:Treat::Entities::Sentence
-value: A test entity.
-id: 70179051523080
-parent: 
-children: []
-children_hash: {}
-features: {}
-edges: []
-type: :sentence
