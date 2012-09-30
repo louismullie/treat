@@ -1,13 +1,16 @@
 module Treat::Workers::Group
 
+  include Treat::Modules::Module::Autoloadable
+  
   # Lazily load the worker classes in the group.
   def const_missing(const)
-    bits = self.ancestors[0].to_s.split('::')
+    bits = self.ancestors[0].to_s.split('::')[1..-1]
     bits.collect! { |bit| ucc(bit) }
     file = bits.join('/') + "/#{ucc(const)}"
-    if not File.readable?(Treat.paths.lib + "#{file}.rb")
+    file = Treat.paths.lib + "treat/#{file}.rb"
+    if not File.readable?(file)
       raise Treat::Exception,
-      "File '#{file}.rb' corresponding to " +
+      "File #{file} corresponding to " +
       "requested worker #{self}::#{const} " +
       "does not exist."
     else
