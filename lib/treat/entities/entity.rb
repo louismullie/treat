@@ -68,8 +68,7 @@ module Treat::Entities
     # (optionally) a unique identifier. By default,
     # the object_id will be used as id.
     def initialize(value = '', id = nil)
-      id ||= object_id
-      super(value, id)
+      id ||= object_id; super(value, id)
       @type = :entity if self == Entity
       @type ||= ucc(cl(self.class)).intern
     end
@@ -77,20 +76,26 @@ module Treat::Entities
     # Add an entity to the current entity.
     # Registers the entity in the root node
     # token registry if the entity is a leaf.
-    #
+    # Unsets the parent node's value; in order
+    # to keep the tree clean, only the leaf
+    # values are stored.
+    # 
+    # Takes in a single entity or an array of 
+    # entities. Returns the first child supplied.
     # @see Treat::Registrable
     def <<(entities, clear_parent = true)
-      unless entities.is_a? Array
-        entities = [entities]
-      end
-      entities.each do |entity|
-        register(entity)
-      end
+      entities = entities.is_a?(::Array) ?
+      entities : [entities]
+      # Register each entity in this node.
+      entities.each { |e| register(e) }
+      # Pass to the <<() method in Birch.
       super(entities)
+      # Unset the parent value if necessary.
       @parent.value = '' if has_parent?
-      entities[0]
+      # Return the first child.
+      return entities[0]
     end
-
+    
     # Catch missing methods to support method-like
     # access to features (e.g. entity.category
     # instead of entity.features[:category]) and to
@@ -104,29 +109,25 @@ module Treat::Entities
     # sugar for the #self.build method.
     def method_missing(sym, *args, &block)
       return self.build(*args) if sym == nil
-
-      if !@features.has_key?(sym)
-        r = magic(sym, *args, &block)
-        return r unless r == :no_magic
-        begin
-          super(sym, *args, &block)
-        rescue NoMethodError
-          raise Treat::Exception,
-          if Treat::Workers::Category.lookup(sym)
-            msg = "Method #{sym} cannot " +
-            "be called on a #{type}."
-          else
-            msg = "Method #{sym} does not exist."
-            msg += did_you_mean?(
-            Treat::Workers.methods, sym)
-          end
-        end
-      else
-        @features[sym]
-      end
-
+      return @features[sym] if @features.has_key?(sym)
+      result = magic(sym, *args, &block)
+      return result unless result == :no_magic
+      begin; super(sym, *args, &block)
+      rescue NoMethodError; invalid_call(sym); end
     end
-
+    
+    # Raises a Treat::Exception saying that the 
+    # method called was invalid, and that the 
+    # requested method does not exist. Also
+    # provides suggestions for misspellings.
+    def invalid_call(sym)
+      msg = Treat::Workers::Category.lookup(sym) ?
+      "Method #{sym} can't be called on a #{type}." :
+      "Method #{sym} is not defined by Treat." +
+      did_you_mean?(Treat::Workers.methods, sym)
+      raise Treat::Exception, msg
+    end
+    
   end
 
 end

@@ -8,8 +8,10 @@ module Treat::Entities::Entity::Registrable
   # by entity type, and also keeps the position
   # of the entity in its parent entity.
   def register(entity)
-    @count, @registry = 0, {value: {}, 
-    position:{}, type: {}} unless @registry
+    unless @registry 
+      @count, @registry = 0, 
+      {id: {}, value: {}, position:{}, type: {}} 
+    end
     if entity.is_a?(Treat::Entities::Token) ||
       entity.is_a?(Treat::Entities::Group)
       val = entity.to_s.downcase
