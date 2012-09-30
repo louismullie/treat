@@ -57,7 +57,7 @@ module Treat::Entities::Entity::Chainable
 
   # Get the group of a task.
   def get_group(task)
-    g = Treat::Workers.lookup(task)
+    g = Treat::Workers::Category.lookup(task)
     unless g
       raise Treat::Exception,
       "Task #{task} does not exist."

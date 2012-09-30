@@ -11,8 +11,8 @@ module Treat::Entities::Entity::Checkable
     return @features[feature] if has?(feature)
     return send(feature) if do_it
     task = caller_method(2) # This is dangerous !
-    g1 = Treat::Workers.lookup(task)
-    g2 = Treat::Workers.lookup(feature)
+    g1 = Treat::Workers::Category.lookup(task)
+    g2 = Treat::Workers::Category.lookup(feature)
 
     raise Treat::Exception,
     "#{g1.type.to_s.capitalize} #{task} " +

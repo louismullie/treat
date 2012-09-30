@@ -11,7 +11,7 @@ module Treat::Entities
     attr_accessor :type
     
     # Autoload all the entity classes.
-    include Treat::Modules::Module::Autoloaded
+    include Treat::Module::Autoloaded
     
     # Implements support for #register,
     # #registry, and #contains_* methods.
@@ -108,7 +108,7 @@ module Treat::Entities
           super(sym, *args, &block)
         rescue NoMethodError
           raise Treat::Exception,
-          if Treat::Workers.lookup(sym)
+          if Treat::Workers::Category.lookup(sym)
             msg = "Method #{sym} cannot " +
             "be called on a #{type}."
           else
