@@ -1,5 +1,8 @@
 module Treat
   
+  # Require the autoload mixin.
+  require_relative 'autoload'
+  
   # Contains all the configuration options.
   module Config; include Autoload; end
 
