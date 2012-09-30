@@ -5,6 +5,9 @@
 # Website: http://deveiate.org/projects/Linguistics/
 class Treat::Workers::Inflectors::Declensors::Linguistics
 
+  # Part of speech that can be declensed.
+  POS = ['noun', 'adjective', 'determiner']
+  
   # Retrieve a declension of a word using the 'linguistics' gem.
   #
   # Options:
@@ -13,20 +16,17 @@ class Treat::Workers::Inflectors::Declensors::Linguistics
   def self.declense(entity, options = {})
 
     cat = entity.get(:category)
-    return if cat && !['noun', 'adjective',
-    'determiner'].include?(cat)
+    return if cat && !POS.include?(cat)
     unless options[:count]
-      raise Treat::Exception,
-      "Must supply :count option (:singular or :plural)."
+      raise Treat::Exception, 'Must supply ' +
+      ':count option ("singular" or "plural").'
     end
-
+    
     klass = Treat::Loaders::
     Linguistics.load(entity.language)
-
     string = entity.to_s
 
     if options[:count] == 'plural'
-
       if (entity.has?(:category))
         result = ''
         silence_warnings do
@@ -35,7 +35,6 @@ class Treat::Workers::Inflectors::Declensors::Linguistics
           string)
         end
         return result
-
       else
         return klass.plural(string)
       end
