@@ -41,7 +41,7 @@ class Treat::Workers::Inflectors::Declensors::Linguistics
       end
 
     else
-      raise Treat::UnimplementedException,
+      raise Treat::Exception,
       "Ruby Linguistics does not support " +
       "singularization of words."
     end
