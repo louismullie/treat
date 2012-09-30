@@ -23,23 +23,24 @@ module Treat::Specs
   # Provide helper functions for running specs.
   class Helper
     
+    ModuleFiles = [
+      './spec/core/*.rb', 
+      './spec/entities/*.rb'
+    ]
+    
     # Run all worker example files as :specs
     # or :benchmarks for the given language.
     def self.run_examples_as(what, language)
-       require_languages(args.language, t)
+      self.require_language_files(language)
       Treat::Specs::Workers::Language.
-        list.each do |lang|
-          lang.new(what).run
-      end
+      list.each { |l| l.new(what).run }
     end
     
     # Run specs for the core classes.
     def self.run_core_specs
-      files = Dir.glob('./spec/core/*.rb') +
-      Dir.glob('./spec/entities/*.rb')
-      # Run all the spec files.
       RSpec::Core::Runner.run(
-      files, $stderr, $stdout)
+      ModuleFiles.map { |d| Dir.glob(d) }, 
+      $stderr, $stdout)
     end
     
     # Start SimpleCov coverage.
@@ -60,7 +61,7 @@ module Treat::Specs
     end
     
     # Require language files based on the argument.
-    def self.require_languages(arg)
+    def self.require_language_files(arg)
       # Require the base language class.
       require_relative 'workers/language'
       # If no language supplied, get all languages.
@@ -72,7 +73,7 @@ module Treat::Specs
         # Check if a spec file exists.
         unless File.readable?(pattern)
           raise Treat::Exception, 
-          "No example file exists for language '#{arg}'."
+          "There are no examples for '#{arg}'."
         end
       end
       # Require all files matched by the pattern.
@@ -100,11 +101,15 @@ module Treat::Specs
         end
         html += "</tr>\n"
       end
-      FileUtils.mkdir('./benchmark') unless
-      FileTest.directory?('./benchmark')
-      File.open('./benchmark/index.html', 'w+') do |f|
-        f.write(html)
+      self.write_html('benchmark', html)
+    end
+    
+    def self.write_html(dir, html)
+      unless FileTest.directory?(dir) 
+        FileUtils.mkdir('./' + dir) 
       end
+      fn = "./#{dir}/index.html"
+      File.open(fn, 'w+') { |f| f.write(html) }
     end
     
   end
