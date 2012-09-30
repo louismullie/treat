@@ -1,8 +1,8 @@
 # Implement support for the functions #do and #do_task.
-module Treat::Entities::Entity::Chainable
+module Treat::Entities::Entity::Applicable
 
   # Perform the supplied tasks on the entity.
-  def do(*tasks)
+  def apply(*tasks)
     tasks.each do |task|
 
       if task.is_a?(Hash)
@@ -26,7 +26,7 @@ module Treat::Entities::Entity::Chainable
     self
   end
   
-  alias :apply :do
+  alias :do :apply
 
   # Perform an individual task on an entity
   # given a worker and options to pass to it.
