@@ -17,14 +17,21 @@ module Treat::Config
     end
   end
 
+  def self.get_path
+    File.dirname(File.expand_path(
+    __FILE__)).split('/')[0..-4].join('/') + '/'
+  end
+  
   # Main function; loads all configuration options.
   def self.configure!
     # Temporary configuration hash.
     config = { paths: {} }
-    conf_dir = Dir.pwd + '/lib/treat/config'
+    conf_dir = self.get_path + 'lib/treat/config'
+    puts conf_dir
     # Iterate over each directory in the config.
     Dir[conf_dir + '/*'].each do |dir|
       name = File.basename(dir, '.*').intern
+      puts name
       next if name == :config; config[name] = {}
       # Iterate over each file in the directory.
       Dir[conf_dir + "/#{name}/*.rb"].each do |file|
@@ -65,7 +72,7 @@ module Treat::Config
   def self.get_paths_config
     Hash[
     # Get a list of directories in treat/
-    Dir.glob(Dir.pwd + '/*').select do |path|
+    Dir.glob(self.get_path + '*').select do |path|
       FileTest.directory?(path)
     # Map to pairs of [:name, path]
     end.map do |path|
