@@ -11,7 +11,10 @@ rescue TypeError
     patch = true
     # Unset the class Word for the duration
     # of loading the tagger.
-    Object.const_unset(:Word); retry
+    Object.instance_eval do 
+      remove_const(:Word)
+    end
+    retry
   else
     raise Treat::Exception,
     'Something went wrong due to a name clash with the "rbtagger" gem.' +
