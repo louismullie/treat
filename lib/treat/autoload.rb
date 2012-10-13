@@ -22,8 +22,8 @@ module Treat::Autoload
     (w[0..-4] + 'y') : (w[-1] == 
     's' ? w[0...-1] : w)) + '.rb'
     # Get the module's directory.
-    d = File.dirname(
-    File.expand_path(__FILE__))[0..-6] +  
+    d = File.dirname(File.
+    expand_path(__FILE__))[0..-6] +  
     bits.join('/').downcase + '/'
     # Require base class if exists.
     require d + n if File.readable?(d + n)
