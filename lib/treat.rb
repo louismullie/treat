@@ -17,8 +17,5 @@ module Treat
   require_relative 'treat/version'
   require_relative 'treat/exception'
   require_relative 'treat/modules'
-  
-  # * Enable syntactic sugar. * #
-  Treat::Config.sweeten!
-  
+
 end
