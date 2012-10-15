@@ -1,6 +1,6 @@
 # A dependency manager for Treat language plugins.
 # Usage: Treat::Installer.install('language')
-module Treat::Installer
+module Treat::Core::Installer
   
   require 'schiphol'
 
@@ -26,7 +26,7 @@ module Treat::Installer
   def self.install(language = 'english')
     
     # Require the Rubygem dependency installer.
-    silence_warnings do
+    Treat::Helpers::Verbosity.silence_warnings do
       require 'rubygems/dependency_installer'
     end
     
