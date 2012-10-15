@@ -16,6 +16,7 @@ module Treat
   # * Load all the core classes. * #
   require_relative 'treat/version'
   require_relative 'treat/exception'
+  require_relative 'treat/autoload'
   require_relative 'treat/modules'
 
 end
