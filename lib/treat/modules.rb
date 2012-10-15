@@ -5,6 +5,9 @@ module Treat
   
   # Contains all the configuration options.
   module Config; include Autoload; end
+  
+  # Load all the configuration options.
+  Treat::Config.configure!
 
   # Contains common utility/helper functions.
   module Helpers; include Autoload; end
@@ -23,5 +26,11 @@ module Treat
 
   # Installs builders on core Ruby objects.
   module Proxies; include Autoload; end
+  
+  # Core classes (installer, server, etc.)
+  module Core; include Autoload; end
+  
+  # * Enable syntactic sugar. * #
+  Treat::Config.sweeten!
   
 end
