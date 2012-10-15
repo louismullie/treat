@@ -16,7 +16,7 @@ class Treat::Loaders::Stanford
     Treat.libraries.stanford.model_path || 
     Treat.paths.models + 'stanford/'
     StanfordCoreNLP.use(language)
-    StanfordCoreNLP.log_file = NULL_DEVICE if 
+    StanfordCoreNLP.log_file = '/dev/null' if 
     Treat.core.verbosity.silence
     StanfordCoreNLP.bind; @@loaded = true
   end
