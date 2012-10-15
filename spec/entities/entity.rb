@@ -344,6 +344,7 @@ describe Treat::Entities::Entity do
         it "reconstitutes the original entity" do
           @serializers.each do |ser|
             next if ser == :mongo # Fix this!
+            
             f = Treat.paths.spec + 'test.' + ser.to_s
             s = Treat::Entities::Paragraph.new(@txt)
           
@@ -355,23 +356,24 @@ describe Treat::Entities::Entity do
             
             s.do(:segment, :tokenize)
             
-            s.serialize(ser, :file => f)
+            s.serialize(ser, file: f)
             
             d = Treat::Entities::Document.build(f)
-          
+
             d.test_int.should eql 9
             d.test_float.should eql 9.9
             d.test_string.should eql 'hello'
             d.test_sym.should eql :hello
             d.test_bool.should eql false
-          
-            d.to_s.should eql @txt
+
+            d.to_s.should eql f
             d.size.should eql s.size
           
             d.token_count.should eql s.token_count
             d.tokens[0].id.should eql s.tokens[0].id
           
             File.delete(f)
+            
           end
         
         end
