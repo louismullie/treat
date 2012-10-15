@@ -70,7 +70,7 @@ module Treat::Entities
     def initialize(value = '', id = nil)
       id ||= object_id; super(value, id)
       @type = :entity if self == Entity
-      @type ||= ucc(cl(self.class)).intern
+      @type ||= self.class.mn.ucc.intern
     end
 
     # Add an entity to the current entity.
@@ -124,7 +124,8 @@ module Treat::Entities
       msg = Treat::Workers::Category.lookup(sym) ?
       "Method #{sym} can't be called on a #{type}." :
       "Method #{sym} is not defined by Treat." +
-      did_you_mean?(Treat::Workers.methods, sym)
+      Treat::Helpers::Help.did_you_mean?(
+      Treat::Workers.methods, sym)
       raise Treat::Exception, msg
     end
     

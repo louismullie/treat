@@ -28,7 +28,7 @@ class Treat::Workers::Formatters::Readers::Autoselect
     format = default_to if format.to_s == ''
     
     begin
-      Treat::Workers::Formatters::Readers.const_get(cc(format))
+      Treat::Workers::Formatters::Readers.const_get(format.cc)
     rescue Treat::Exception
       format = default_to
     end

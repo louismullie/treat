@@ -18,7 +18,7 @@ module Treat::Specs::Workers
         def initialize(mode)
           klass = self.class.const_get(:Scenarios)
           @scenarios, @mode = klass, mode
-          @language = cl(self.class).downcase
+          @language = self.class.mn.downcase
         end
       end
     end
@@ -57,8 +57,8 @@ module Treat::Specs::Workers
         category.members.each do |grp|
           group = category[grp]
           group_class = Treat::Workers.
-          const_get(cc(cat)).
-          const_get(cc(grp))
+          const_get(cat.cc).
+          const_get(grp.cc)
           #next unless group_class ==
           #Treat::Workers::Learners::Classifiers
           group.each do |worker|
@@ -178,7 +178,7 @@ module Treat::Specs::Workers
       scenario[:examples], scenario[:generator],
       scenario[:preprocessor]
       target_class = Treat::Entities.
-      const_get(cc(target))
+      const_get(target.cc)
       if examples.is_a?(Hash)
         unless examples[worker]
           raise Treat::Exception,
@@ -246,7 +246,7 @@ module Treat::Specs::Workers
     # the Ruby file defining the worker/adapter.
     def get_worker_info(worker, group)
       bits = group.to_s.split('::')
-      bits.collect! { |bit| ucc(bit) }
+      bits.collect! { |bit| bit.ucc }
       file = bits.join('/') + "/#{worker}.rb"
       contents = File.read(Treat.paths.lib + file)
       head = contents[0...contents.index('class')]

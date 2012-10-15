@@ -105,7 +105,7 @@ class Treat::Workers::Formatters::Unserializers::XML
   end
 
   def self.revive(type, value, id)
-    klass = Treat::Entities.const_get(cc(type))
+    klass = Treat::Entities.const_get(type.cc)
     klass.new(value, id)
   end
 

@@ -11,7 +11,7 @@ module Treat::Entities::Entity::Iterable
     types = [:entity] if types.size == 0
     f = false
     types.each do |t2|
-      if is_a?(Treat::Entities.const_get(cc(t2)))
+      if is_a?(Treat::Entities.const_get(t2.cc))
         f = true; break
       end
     end
@@ -57,7 +57,7 @@ module Treat::Entities::Entity::Iterable
   def ancestor_with_type(type)
     return unless has_parent?
     ancestor = @parent
-    type_klass = Treat::Entities.const_get(cc(type))
+    type_klass = Treat::Entities.const_get(type.cc)
     while not ancestor.is_a?(type_klass)
       return nil unless (ancestor && ancestor.has_parent?)
       ancestor = ancestor.parent

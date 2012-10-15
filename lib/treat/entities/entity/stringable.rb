@@ -34,7 +34,8 @@ module Treat::Entities::Entity::Stringable
   # Return an informative string representation
    # of the entity.
    def inspect
-     s = "#{cl(self.class)} (#{@id.to_s})"
+     name = self.class.mn
+     s = "#{name} (#{@id.to_s})"
      if caller_method(2) == :inspect
        @id.to_s
      else

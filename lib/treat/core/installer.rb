@@ -26,7 +26,7 @@ module Treat::Core::Installer
   def self.install(language = 'english')
     
     # Require the Rubygem dependency installer.
-    Treat::Helpers::Verbosity.silence_warnings do
+    silence_warnings do
       require 'rubygems/dependency_installer'
     end
     

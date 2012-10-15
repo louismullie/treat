@@ -7,7 +7,7 @@ class Treat::Workers::Processors::Chunkers::Autoselect
     end
     begin
       k = Treat::Workers::Processors::
-      Chunkers.const_get(cc(entity.format))
+      Chunkers.const_get(entity.format.cc)
       k.chunk(entity, options)
     rescue Treat::Exception
       Treat::Workers::Processors::
