@@ -4,6 +4,10 @@
 
 Treat is a toolkit for natural language processing and computational linguistics in Ruby. The Treat project aims to build a language- and algorithm- agnostic NLP framework for Ruby with support for tasks such as document retrieval, text chunking, segmentation and tokenization, natural language parsing, part-of-speech tagging, keyword extraction and named entity recognition.
 
+**Warning**
+
+Things are moving fast these days - the master branch might be unstable for a period of time.
+
 **Current features**
 
 * Text extractors for PDF, HTML, XML, Word, AbiWord, OpenOffice and image formats (Ocropus).
