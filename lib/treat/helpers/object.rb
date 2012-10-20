@@ -50,6 +50,7 @@ class Treat::Helpers::Object
   # Allow getting the caller method in any context.
   Object.class_eval do
     include Treat::Helpers::Object::CallerMethod
+    include Treat::Helpers::Object::Verbosity
   end
   
   # Allow getting the last name of any module/class.
