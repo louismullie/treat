@@ -3,6 +3,27 @@
 # the /config folder.
 module Treat::Config
 
+  class Treat::Config::Entities; end
+  
+  class Treat::Config::Paths; end
+  
+  class Treat::Config::Workers; end
+
+  class Treat::Config::Linguistics; end
+
+  class Treat::Config::Languages; end
+
+  class Treat::Config::Libraries; end
+
+  class Treat::Config::Workers; end
+  
+  class Treat::Config::Databases; end
+
+  class Treat::Config::Core; end
+  
+  # Require autolodable mix in.
+  require_relative 'configurable'
+  
   # Store all the configuration in self.config
   class << self; attr_accessor :config; end
 
@@ -20,38 +41,22 @@ module Treat::Config
   
   # Main function; loads all configuration options.
   def self.configure!
+    config = {}
     Treat::Config.constants.each do |const|
-      unless [:Config, :Autoloadable].include?(const)
-        config[const.to_s.downcase.intern] = 
-        Treat::Config.const_get(const)
+      unless const == :Configurable
+        klass = Treat::Config.const_get(const)
+        klass.class_eval do
+          extend Treat::Config::Configurable
+        end
+        k = const.to_s.downcase.intern
+        klass.configure!
+        config[k] = klass.config
       end
     end
     self.config = self.hash_to_struct(config)
   end
 
-  # Turn on syntactic sugar. This means that
-  # all entities and learning classes can be 
-  # created in a "Python-like" syntax in the 
-  # global namespace (e.g. Word('hello'), 
-  # Phrase('a bird'), etc.).
-  def self.sweeten!
-    return if Treat.core.syntax.sweetened
-    Treat.core.syntax.sweetened = true
-    Treat::Entities.sweeten_entities
-    Treat::Entities.sweeten_learning
-  end
-
-  # Turn off syntactic sugar. See #sweeten!
-  def self.unsweeten!
-    self.sweeten_entities(false)
-    self.sweeten_learning(false)
-  end
-
-  # Get the path to the config directory.
-  def self.get_path
-    File.dirname(File.expand_path(
-    __FILE__)).split('/')[0..-4].join('/') + '/'
-  end
+  # * Helper methods * #
   
   # Convert a hash to nested structs.
   def self.hash_to_struct(hash)
