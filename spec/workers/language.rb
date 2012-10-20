@@ -1,6 +1,8 @@
 module Treat::Specs::Workers
 
   class Language
+    
+    include Treat::Core::DSL
 
     @@list = []
 
