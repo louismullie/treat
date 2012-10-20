@@ -27,7 +27,4 @@ module Treat
   # Core classes (installer, server, etc.)
   module Core; include Autoload; end
   
-  # * Enable syntactic sugar. * #
-  Treat::Config.sweeten!
-  
 end
