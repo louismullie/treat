@@ -10,7 +10,7 @@ module Treat::Proxies
     # object and send the method call to the entity.
     def method_missing(sym, *args, &block)
       if [:do, :apply].include?(sym) || 
-        Treat::Workers::Category.lookup(sym)
+        Treat::Workers.lookup(sym)
           to_entity.send(sym, *args)
       else
         super(sym, *args, &block)

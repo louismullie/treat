@@ -123,7 +123,7 @@ module Treat::Entities
     # requested method does not exist. Also
     # provides suggestions for misspellings.
     def invalid_call(sym)
-      msg = Treat::Workers::Category.lookup(sym) ?
+      msg = Treat::Workers.lookup(sym) ?
       "Method #{sym} can't be called on a #{type}." :
       "Method #{sym} is not defined by Treat." +
       Treat::Helpers::Help.did_you_mean?(
