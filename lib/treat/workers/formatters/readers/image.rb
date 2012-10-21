@@ -20,7 +20,7 @@ class Treat::Workers::Formatters::Readers::Image
   def self.read(document, options = {})
     
     read = lambda do |doc|
-      create_temp_dir do |tmp|
+      self.create_temp_dir do |tmp|
         `ocropus book2pages #{tmp}/out #{doc.file}`
         `ocropus pages2lines #{tmp}/out`
         `ocropus lines2fsts #{tmp}/out`
@@ -37,6 +37,16 @@ class Treat::Workers::Formatters::Readers::Image
     
     document
     
+  end
+  
+  # Create a dire that gets deleted after execution of the block.
+  def self.create_temp_dir(&block)
+    dname = Treat.paths.tmp +
+    "#{Random.rand(10000000).to_s}"
+    Dir.mkdir(dname)
+    block.call(dname)
+  ensure
+    FileUtils.rm_rf(dname)
   end
   
 end

@@ -71,9 +71,9 @@ module Treat::Entities::Entity::Buildable
     end
     e = anything_from_string(string)
     if enforce_type && !e.is_a?(self)
-      raise "Asked to build a #{cl(self).downcase} "+
+      raise "Asked to build a #{self.mn.downcase} "+
       "from \"#{string}\" and to enforce type, "+
-      "but type detected was #{cl(e.class).downcase}."
+      "but type detected was #{e.class.mn.downcase}."
     end
     e
   end
@@ -257,7 +257,7 @@ module Treat::Entities::Entity::Buildable
 
   # Build any kind of entity from a string.
   def anything_from_string(string)
-    case cl(self).downcase.intern
+    case self.mn.downcase.intern
     when :document, :collection
       raise Treat::Exception,
       "Cannot create a document or " +

@@ -35,7 +35,7 @@ module Treat::Entities::Entity::Applicable
     entity_types = group.targets
     f = nil
     entity_types.each do |t|
-      f = true if is_a?(Treat::Entities.const_get(cc(t)))
+      f = true if is_a?(Treat::Entities.const_get(t.cc))
     end
     if f || entity_types.include?(:entity)
       send(task, worker, options)

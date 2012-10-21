@@ -15,7 +15,7 @@ module Treat::Entities::Entity::Checkable
     g2 = Treat::Workers::Category.lookup(feature)
 
     raise Treat::Exception,
-    "#{g1.type.to_s.capitalize} #{task} " +
+    "#{g1.type.to_s.capitalize} " +
     "requires #{g2.type} #{g2.method}."
   end
 

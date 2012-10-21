@@ -36,23 +36,6 @@ describe Treat::Entities::Collection do
 
   describe "#<<" do
 
-    context "when supplied with a document stored on disk" do
-
-      it "copies the document to the collection's folder " +
-      "and adds the document object to the collection" do
-        f = Treat.paths.spec + 'workers/examples/agnostic/test'
-        ff = '3_2_release_notes.html'
-        u = 'http://guides.rubyonrails.org/' + ff
-        c = Treat::Entities::Collection.build(f)
-        d = Treat::Entities::Document.build(u)
-        c << d
-        FileTest.readable?(File.join(f, ff)).should eql true
-        FileUtils.rm_rf(f)
-      end
-
-    end
-
-    context "when supplied with anything else" do
       it "adds the object to the collection" do
         f = Treat.paths.spec + 'workers/examples/agnostic/test'
         c = Treat::Entities::Collection.build(f)
@@ -60,7 +43,6 @@ describe Treat::Entities::Collection do
         c.size.should eql 1
         FileUtils.rm_rf(f)
       end
-    end
 
   end
 

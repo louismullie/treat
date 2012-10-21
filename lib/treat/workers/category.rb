@@ -35,7 +35,7 @@ module Treat::Workers::Category
     category = Treat::Workers.
     const_set(name, Module.new)
     conf.each_pair do |group, worker|
-      name = cc(group.to_s).intern
+      name = group.to_s.cc.intern
       category.module_eval do
         @@methods = []; def methods; 
         @@methods; end; def groups; 
@@ -57,7 +57,7 @@ module Treat::Workers::Category
   def self.bind_group_targets(group)
     group.targets.each do |entity_type|
       entity = Treat::Entities.
-      const_get(cc(entity_type))
+      const_get(entity_type.cc)
       entity.class_eval do
         add_workers group
       end

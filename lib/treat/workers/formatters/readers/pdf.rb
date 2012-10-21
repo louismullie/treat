@@ -3,13 +3,14 @@
 # extracts the text from a PDF file.
 class Treat::Workers::Formatters::Readers::PDF
 
+  require 'fileutils'
+  
   # Read a PDF file using the Poppler pdf2text utility.
   #
   # Options: none.
   def self.read(document, options = {})
     
-    create_temp_file(:txt) do |tmp|
-      
+    self.create_temp_file(:txt) do |tmp|
       `pdftotext #{document.file} #{tmp} `.strip
       f = File.read(tmp)
       f.gsub!("\t\r ", '')
@@ -26,6 +27,19 @@ class Treat::Workers::Formatters::Readers::PDF
       
     end
     
+  end
+  
+  # Create a temporary file which is deleted
+  # after execution of the block.
+  def self.create_temp_file(ext, value = nil, &block)
+    fname = Treat.paths.tmp + 
+    "#{Random.rand(10000000).to_s}.#{ext}"
+    File.open(fname, 'w') do |f|
+      f.write(value) if value
+      block.call(f.path)
+    end
+  ensure
+    File.delete(fname)
   end
 
 end

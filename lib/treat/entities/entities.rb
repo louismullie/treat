@@ -6,7 +6,6 @@ module Treat::Entities
   class Collection < Entity; end
   # Represents a document.
   class Document < Entity; end
-  
     
   # * Sections and related classes * #
   
@@ -19,8 +18,7 @@ module Treat::Entities
   # Represents a block of text 
   class Block < Section; end
   
-  
-  # Zones and related classes * #
+  # * Zones and related classes * #
   
   # Represents a zone of text.
   class Zone < Entity; end
@@ -35,7 +33,6 @@ module Treat::Entities
   
   # Represents a list.
   class List < Zone; end
-  
   
   # * Groups and related classes * #
   
@@ -53,7 +50,6 @@ module Treat::Entities
   # Represents a non-linguistic
   # fragment (e.g. stray symbols).
   class Fragment < Group; end
-  
   
   # * Tokens and related classes* #
   
@@ -101,5 +97,4 @@ module Treat::Entities
   # cannot be identified.
   class Unknown; end
   
-
 end
