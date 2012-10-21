@@ -181,7 +181,7 @@ module Treat::Core::Installer
     begin
       puts "Installing #{dependency}...\n"
       @@installer.install(dependency)
-    rescue Gem::InstallError => e
+    rescue Gem::InstallError => error
       puts "Warning: couldn't install " +
       "gem '#{dependency}' (#{error.message})."
     end
