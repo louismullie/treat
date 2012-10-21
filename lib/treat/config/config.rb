@@ -3,71 +3,36 @@
 # the /config folder.
 module Treat::Config
 
+  # Require configurable mix in.
+  require_relative 'importable'
+  
+  # Make all configuration importable.
+  extend Treat::Config::Importable
+  
+  # Core configuration options for entities.
   class Treat::Config::Entities; end
   
+  # Configuration for paths to models, binaries,
+  # temporary storage and file downloads.
   class Treat::Config::Paths; end
   
+  # Configuration for all Treat workers.
   class Treat::Config::Workers; end
 
+  # Helpful linguistic options.
   class Treat::Config::Linguistics; end
 
+  # Supported workers for each language.
   class Treat::Config::Languages; end
 
+  # Configuration options for external libraries.
   class Treat::Config::Libraries; end
-
-  class Treat::Config::Workers; end
   
+  # Configuration options for database 
+  # connectivity (host, port, etc.)
   class Treat::Config::Databases; end
 
+  # Configuration options for Treat core.
   class Treat::Config::Core; end
-  
-  # Require autolodable mix in.
-  require_relative 'configurable'
-  
-  # Store all the configuration in self.config
-  class << self; attr_accessor :config; end
 
-  # Setup a proxy on the main Treat module to 
-  # make configuration options directly accessible,
-  # using e.g. Treat.paths.tmp = '...'
-  Treat.module_eval do
-    # Handle all missing methods as conf options.
-    # Instead, should dynamically define them. FIXME.
-    def self.method_missing(sym, *args, &block)
-      super(sym, *args, &block) if sym == :to_ary
-      Treat::Config.config[sym]
-    end
-  end
-  
-  # Main function; loads all configuration options.
-  def self.configure!
-    config = {}
-    Treat::Config.constants.each do |const|
-      unless const == :Configurable
-        klass = Treat::Config.const_get(const)
-        klass.class_eval do
-          extend Treat::Config::Configurable
-        end
-        k = const.to_s.downcase.intern
-        klass.configure!
-        config[k] = klass.config
-      end
-    end
-    self.config = self.hash_to_struct(config)
-  end
-
-  # * Helper methods * #
-  
-  # Convert a hash to nested structs.
-  def self.hash_to_struct(hash)
-    return hash if hash.keys.
-    select { |k| !k.is_a?(Symbol) }.size > 0
-    struct = Struct.new(*hash.keys).new(*hash.values)
-    hash.each do |key, value|
-      if value.is_a?(Hash)
-        struct[key] = self.hash_to_struct(value)
-      end
-    end; return struct
-  end
-  
 end
