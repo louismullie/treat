@@ -21,7 +21,8 @@ module Treat::Proxies
       !Treat.core.language.detect
 
       if is_a?(Treat::Entities::Symbol) ||
-        is_a?(Treat::Entities::Number)
+        is_a?(Treat::Entities::Number) ||
+        is_a?(Treat::Entities::Punctuation)
         return Treat.core.language.default
       end
 
