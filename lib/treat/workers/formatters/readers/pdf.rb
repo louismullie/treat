@@ -32,6 +32,9 @@ class Treat::Workers::Formatters::Readers::PDF
   # Create a temporary file which is deleted
   # after execution of the block.
   def self.create_temp_file(ext, value = nil, &block)
+    if not FileTest.directory?(Treat.paths.tmp)
+      FileUtils.mkdir(Treat.paths.tmp)
+    end
     fname = Treat.paths.tmp + 
     "#{Random.rand(10000000).to_s}.#{ext}"
     File.open(fname, 'w') do |f|

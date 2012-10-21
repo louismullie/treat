@@ -27,7 +27,6 @@ class Treat::Workers::Formatters::Readers::Image
         `ocropus buildhtml #{tmp}/out > #{tmp}/output.html`
         doc.set :file,  "#{tmp}/output.html"
         doc = doc.read(:html)
-        doc.set :file, f
         doc.set :format, 'image'
       end
     end
@@ -41,6 +40,9 @@ class Treat::Workers::Formatters::Readers::Image
   
   # Create a dire that gets deleted after execution of the block.
   def self.create_temp_dir(&block)
+    if not FileTest.directory?(Treat.paths.tmp)
+      FileUtils.mkdir(Treat.paths.tmp)
+    end
     dname = Treat.paths.tmp +
     "#{Random.rand(10000000).to_s}"
     Dir.mkdir(dname)
