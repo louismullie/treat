@@ -29,8 +29,8 @@ class Treat::Workers::Formatters::Serializers::Mongo
     new(Treat.databases.mongo.host).
     db(options[:db])
 
-    supertype =  cl(Treat::Entities.const_get(
-    entity.type.to_s.capitalize.intern).superclass).downcase
+    supertype =  Treat::Entities.const_get(
+    entity.type.to_s.capitalize.intern).superclass.mn.downcase
     supertype = entity.type.to_s if supertype == 'entity'
     supertypes = supertype + 's'
     

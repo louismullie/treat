@@ -19,8 +19,8 @@ class Treat::Workers::Formatters::Unserializers::Mongo
     new(Treat.databases.mongo.host).
     db(Treat.databases.mongo.db || db)
     
-    supertype =  cl(Treat::Entities.const_get(
-    entity.type.to_s.capitalize.intern).superclass).downcase
+    supertype =  Treat::Entities.const_get(
+    entity.type.to_s.capitalize.intern).superclass.mn.downcase
     supertype = entity.type.to_s if supertype == 'entity'
     supertypes = supertype + 's'
     supertypes = 'documents' if entity.type == :collection

@@ -118,7 +118,7 @@ module Treat::Entities::Entity::Delegatable
 
   # Return an error message and suggest possible typos.
   def worker_not_found(klass, group)
-    "Algorithm '#{cl(klass).ucc}' couldn't be "+
+    "Algorithm '#{klass.mn.ucc}' couldn't be "+
     "found in group #{group}." + Treat::Helpers::Help.
     did_you_mean?(group.list.map { |c| c.ucc }, klass.ucc)
   end
