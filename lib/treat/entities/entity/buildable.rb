@@ -88,8 +88,12 @@ module Treat::Entities::Entity::Buildable
     end
 
     begin
+      folder = Treat.paths.files
+      if folder[-1] == '/'
+        folder = folder[0..-2] 
+      end
       f = Schiphol.download(url,
-      download_folder: Treat.paths.files,
+      download_folder: folder,
       show_progress: !Treat.core.verbosity.silence,
       rectify_extensions: true,
       max_tries: 3)
