@@ -26,13 +26,13 @@ class Treat::Workers::Processors::Segmenters::Tactful
     entity.check_hasnt_children
     
     s = entity.to_s
-    
-    escape_floats!(s)
+    s.escape_floats!
     
     # Remove abbreviations.
     s.scan(/(?:[A-Za-z]\.){2,}/).each do |abbr| 
       s.gsub!(abbr, abbr.gsub(' ', '').gsub('.', '&-&'))
     end
+    
     # Take out suspension points temporarily.
     s.gsub!('...', '&;&.')
     # Unstick sentences from each other.
@@ -43,7 +43,7 @@ class Treat::Workers::Processors::Segmenters::Tactful
     sentences = @@segmenter.tokenize_text(s)
     
     sentences.each do |sentence|
-      unescape_floats!(sentence)
+      sentence.unescape_floats!
       # Repair abbreviations.
       sentence.gsub!('&-&', '.')
       # Repair suspension points.

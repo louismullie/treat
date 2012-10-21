@@ -3,8 +3,8 @@ module Treat::Workers::Group
   # Lazily load the worker classes in the group.
   def const_missing(const)
     bits = self.ancestors[0].to_s.split('::')
-    bits.collect! { |bit| ucc(bit) }
-    file = bits.join('/') + "/#{ucc(const)}"
+    bits.collect! { |bit| bit.ucc }
+    file = bits.join('/') + "/#{const.ucc}"
     if not File.readable?(Treat.paths.lib + "#{file}.rb")
       raise Treat::Exception,
       "File '#{file}.rb' corresponding to " +
@@ -26,7 +26,7 @@ module Treat::Workers::Group
   # Populates once the list of the workers in the group
   # by crawling the filesystem.
   def list
-    mod = ucc(cl(self))
+    mod = self.mn.ucc
     if @@list[mod].nil?
       @@list[mod] = []
       dirs = Dir[Treat.paths.lib + "treat/workers/*/#{mod}/*.rb"]
@@ -43,7 +43,7 @@ module Treat::Workers::Group
   def has_target?(target, strict = false)
     is_target = false
     self.targets.each do |entity_type|
-      t = cc(entity_type)
+      t = entity_type.cc
       entity_type = Treat::Entities.const_get(t)
       if target < entity_type ||
         entity_type == target
@@ -57,10 +57,10 @@ module Treat::Workers::Group
   # the algorithm is added, it will be automatically
   # installed on all the targets of the group.
   def add(class_name, &block)
-    c = cc(class_name).intern
+    c = class_name.cc.intern
     klass = self.const_set(c, Class.new)
     method = self.method
-    @@list[ucc(cl(self))] << class_name
+    @@list[self.mn.ucc] << class_name
     klass.send(:define_singleton_method,
     method) do |entity, options={}|
       block.call(entity, options)
@@ -75,7 +75,7 @@ module Treat::Workers::Group
 
   # Modify the extended class.
   def self.extended(group)
-    
+
     group.module_eval do
       
       class << self
@@ -114,7 +114,7 @@ module Treat::Workers::Group
       @method = nil
       def self.method
         return @method if @method
-        m = ucc(cl(self)).dup
+        m = self.mn.ucc.dup
         if  m[-4..-1] == 'zers'
           if type == :annotator
             m[-5..-1] = m[-6] == 'l' ? '' : 'y'

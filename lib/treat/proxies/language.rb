@@ -26,7 +26,7 @@ module Treat::Proxies
       end
 
       dlvl = Treat.core.language.detect_at
-      dklass = Treat::Entities.const_get(cc(dlvl))
+      dklass = Treat::Entities.const_get(dlvl.cc)
       
       if self.class.compare_with(
         dklass) < 1 && has_parent?

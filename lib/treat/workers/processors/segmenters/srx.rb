@@ -17,7 +17,7 @@ class Treat::Workers::Processors::Segmenters::SRX
     lang = entity.language
     entity.check_hasnt_children
     text = entity.to_s
-    escape_floats!(text)
+    text.escape_floats!
 
     unless @@segmenters[lang]
       # Require the appropriate gem.
@@ -30,7 +30,7 @@ class Treat::Workers::Processors::Segmenters::SRX
     sentences = @@segmenters[lang].new(text)
 
     sentences.each do |sentence|
-      unescape_floats!(sentence)
+      sentence.unescape_floats!
       entity << Treat::Entities::Phrase.
       from_string(sentence.strip)
     end

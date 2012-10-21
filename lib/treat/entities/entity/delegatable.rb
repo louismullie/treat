@@ -10,27 +10,25 @@ module Treat::Entities::Entity::Delegatable
     return unless opt
 
     self.class_eval do
-    group.presets.each do |preset|
-      define_method(preset) do |worker=nil, options={}|
-        return get(preset) if has?(preset)
-        options = {opt => preset}.merge(options)
-        m = group.method
-        send(m, worker, options)
-        f = unset(m)
-        features[preset] = f if f
+      group.presets.each do |preset|
+        define_method(preset) do |worker=nil, options={}|
+          return get(preset) if has?(preset)
+          options = {opt => preset}.merge(options)
+          m = group.method
+          send(m, worker, options)
+          f = unset(m)
+          features[preset] = f if f
+        end
       end
     end
-  end
 
   end
 
   # Add the workers to perform a task on an entity class.
   def add_workers(group)
     self.class_eval do
-      
       task = group.method
       add_presets(group)
-      
       define_method(task) do |worker=nil, options={}|
         if worker.is_a?(Hash)
           options, worker =
@@ -64,7 +62,7 @@ module Treat::Entities::Entity::Delegatable
       worker_not_found(worker, group)
     end
 
-    worker = group.const_get(cc(worker.to_s).intern)
+    worker = group.const_get(worker.to_s.cc.intern)
     result = worker.send(group.method, entity, options)
 
     if group.type == :annotator && result
@@ -93,8 +91,7 @@ module Treat::Entities::Entity::Delegatable
 
     lang = Treat.languages[language]
     cat = group.to_s.split('::')[2].downcase.intern
-    group = ucc(cl(group)).intern
-
+    group = group.mn.ucc.intern
     if lang.nil?
       raise Treat::Exception,
       "No configuration file loaded for language #{language}."
@@ -121,9 +118,9 @@ module Treat::Entities::Entity::Delegatable
 
   # Return an error message and suggest possible typos.
   def worker_not_found(klass, group)
-    "Algorithm '#{ucc(cl(klass))}' couldn't be "+
-    "found in group #{group}." + did_you_mean?(
-    group.list.map { |c| ucc(c) }, ucc(klass))
+    "Algorithm '#{cl(klass).ucc}' couldn't be "+
+    "found in group #{group}." + Treat::Helpers::Help.
+    did_you_mean?(group.list.map { |c| c.ucc }, klass.ucc)
   end
 
 end

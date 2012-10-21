@@ -36,12 +36,14 @@ class Treat::Workers::Processors::Segmenters::Punkt
     lang = entity.language
     set_options(lang, options)
     
+   
     s = entity.to_s
     
     # Replace the point in all floating-point numbers
     # by ^^; this is a fix since Punkt trips on decimal 
     # numbers.
-    escape_floats!(s)
+    s.escape_floats!
+    
     # Take out suspension points temporarily.
     s.gsub!('...', '&;&.')
     # Remove abbreviations.
@@ -57,7 +59,7 @@ class Treat::Workers::Processors::Segmenters::Punkt
     
     result.each do |sentence|
       # Unescape the sentence.
-      unescape_floats!(sentence)
+      sentence.unescape_floats!
       # Repair abbreviations in sentences.
       sentence.gsub!('&-&', '.')
       # Repair suspension points.
