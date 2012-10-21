@@ -1,10 +1,29 @@
+# Provide default functionality to load configuration
+# options from flat files into their respective modules.
 module Treat::Config::Configurable
-
+  
+  # When extended, add the .config property to
+  # the class that is being operated on.
   def self.extended(base)
     class << base; attr_accessor :config; end
     base.class_eval { self.config = {} }
   end
   
+  # Provide base functionality to configure 
+  # all modules. The behaviour is as follows:
+  # 
+  # 1 - Check if a file named data/$CLASS$.rb
+  # exists; if so, load that file as the base 
+  # configuration, i.e. "Treat.$CLASS$"; e.g. 
+  # "Treat.core"
+  # 
+  # 2 - Check if a folder named data/$CLASS$
+  # exists; if so, load each file in that folder
+  # as a suboption of the main configuration,
+  # i.e. "Treat.$CLASS$.$FILE$"; e.g. "Treat.workers"
+  # 
+  # (where $CLASS$ is the lowercase name of 
+  # the concrete class being extended by this.)
   def configure!
     path = File.dirname(File.expand_path(         # FIXME
     __FILE__)).split('/')[0..-4].join('/') + '/'
@@ -14,14 +33,16 @@ module Treat::Config::Configurable
     base_file = main_dir + mod_name + '.rb'
     if File.readable?(base_file)
       self.config = eval(File.read(base_file))
-    end
-    if FileTest.directory?(conf_dir)
+    elsif FileTest.directory?(conf_dir)
       config = {}
       Dir[conf_dir + '/*'].each do |path|
         name = File.basename(path, '.*').intern
         config[name] = eval(File.read(path))
       end
       self.config = config
+    else
+      raise Treat::Exception,
+      "No config file found for #{mod_name}."
     end
   end
   
