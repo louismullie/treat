@@ -99,12 +99,19 @@ class Treat::Helpers::String
   
   end
   
+  # Determines whether module is 
+  # an "-able" mixin kind of thing.
+  module IsMixin
+    def is_mixin?; to_s[-4..-1] == 'able'; end
+  end
+  
   # Graft the helpers onto the string module.
   String.class_eval do
     include Treat::Helpers::String::CamelCaseable
     include Treat::Helpers::String::UnCamelCaseable
     include Treat::Helpers::String::Escapable
     include Treat::Helpers::String::Unescapable
+    include Treat::Helpers::String::IsMixin
   end
   
   # Graft camel casing onto symbols.
