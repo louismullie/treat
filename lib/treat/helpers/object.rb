@@ -5,11 +5,14 @@ class Treat::Helpers::Object
   # another one at runtime (useful for debugging).
   module CallerMethod
     
+    # Pattern to match method from trace.
+    CMPattern = /^(.+?):(\d+)(?::in `(.*)')?/
+    
     # Return the name of the method that 
     # called the method that calls this method.
     def caller_method(n = 3)
       at = caller(n).first
-      /^(.+?):(\d+)(?::in `(.*)')?/ =~ at
+      CMPattern =~ at
       Regexp.last_match[3].
       gsub('block in ', '').intern
     end
@@ -28,10 +31,8 @@ class Treat::Helpers::Object
   module Verbosity
     # Runs a block of code without warnings.
     def silence_warnings(&block)
-      warn_level = $VERBOSE
-      $VERBOSE = nil
-      result = block.call
-      $VERBOSE = warn_level
+      warn_level = $VERBOSE; $VERBOSE = nil
+      result = block.call; $VERBOSE = warn_level
       result
     end
 
@@ -40,10 +41,8 @@ class Treat::Helpers::Object
       unless Treat.core.verbosity.silence
         yield; return
       end
-      old = $stdout.dup
-      $stdout.reopen(File.new(log, 'w'))
-      yield
-      $stdout = old
+      file, old = File.new(log, 'w'),  $stdout.dup
+      $stdout.reopen(file); yield; $stdout = old
     end
   end
   
