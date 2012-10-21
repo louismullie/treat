@@ -14,21 +14,31 @@ module Treat::Autoload
   # Loads all the files for the base
   # module in the appropriate order.
   def self.included(base)
-    # Get the parts of module name.
-    bits = base.to_s.split('::')
-    # Singularize the module name.
-    w = bits[-1].downcase
-    n = (w[-3..-1] == 'ies' ? 
-    (w[0..-4] + 'y') : (w[-1] == 
-    's' ? w[0...-1] : w)) + '.rb'
-    # Get the module's directory.
-    d = File.dirname(File.
-    expand_path(__FILE__))[0..-6] +  
-    bits.join('/').downcase + '/'
-    # Require base class if exists.
-    require d + n if File.readable?(d + n)
-    # Require all other files in dir.
-    Dir.glob("#{d}*.rb").each { |f| require f }
+    m = self.get_module_name(base)
+    d = self.get_module_path(m)
+    n = self.singularize(m) + '.rb'
+    f, p = File.join(d, n), "#{d}/*.rb"
+    require f if File.readable?(f)
+    Dir.glob(p).each { |f| require f }
+  end
+
+  # Returns the path to a module's dir.
+  def self.get_module_path(name)
+    file = File.expand_path(__FILE__)
+    dirs = File.dirname(file).split('/')
+    File.join(*dirs[0..-1], name)
+  end
+  
+  # Return the downcased form of the
+  # module's last name (e.g. "entities").
+  def self.get_module_name(mod)
+    mod.to_s.split('::')[-1].downcase
+  end
+    
+  # Helper method to singularize words.
+  def self.singularize(w)
+    if w[-3..-1] == 'ies'; w[0..-4] +  'y'
+    else; (w[-1] == 's' ? w[0..-2] : w); end
   end
   
 end
