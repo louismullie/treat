@@ -1,13 +1,13 @@
 module Treat
   
+  # Contains common utility/helper functions.
+  module Helpers; include Autoload; end
+  
   # Contains all the configuration options.
   module Config; include Autoload; end
   
-  # Load all the configuration options.
-  Treat::Config.configure!
-
-  # Contains common utility/helper functions.
-  module Helpers; include Autoload; end
+  # Import all the configuration options.
+  Treat::Config.import!
 
   # Contains classes to load external libraries.
   module Loaders; include Autoload; end
@@ -20,7 +20,10 @@ module Treat
 
   # Contains all the worker categories.
   module Workers; include Autoload; end
-
+  
+  # Make all the worker categories.
+  Treat::Workers.categorize!
+  
   # Installs builders on core Ruby objects.
   module Proxies; include Autoload; end
   
