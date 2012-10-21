@@ -1,3 +1,6 @@
+# Mixin that is extended by Treat::Config
+# in order to provide a single point of 
+# access method to trigger the import.
 module Treat::Config::Importable
   
   # Import relies on each configuration.
@@ -10,19 +13,16 @@ module Treat::Config::Importable
 
   # Main function; loads all configuration options.
   def import!
-    config = {}
+    config, c = {}, Treat::Config::Configurable
+    definition = :define_singleton_method
     Treat::Config.constants.each do |const|
       next if const.to_s.downcase.is_mixin?
       klass = Treat::Config.const_get(const)
-      klass.class_eval do
-        extend Treat::Config::Configurable
-      end
-      k = const.to_s.downcase.intern
-      klass.configure!
-      config[k] = klass.config
-      d = :define_singleton_method
-      Treat.send(d, k) do
-        Treat::Config.config[k]
+      klass.class_eval { extend c }.configure!
+      name = const.to_s.downcase.intern
+      config[name] = klass.config
+      Treat.send(definition, name) do
+        Treat::Config.config[name]
       end
     end
     self.config = config.to_struct
