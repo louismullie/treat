@@ -15,7 +15,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 Author: Louis-Antoine Mullie (louis.mullie@gmail.com). Copyright 2011-12.
 
-Non-trivial amount of code has been incorporated and modified from other libraries:
+A non-trivial amount of code has been incorporated and modified from other libraries:
 
 - formatters/readers/odt.rb - Mark Watson (GPL license)
 - processors/tokenizers/tactful.rb - Matthew Bunday (GPL license)
