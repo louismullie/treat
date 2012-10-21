@@ -22,7 +22,9 @@ module Treat::Entities
     attr_accessor :type
     
     # Autoload all the classes in /abilities.
-    include Treat::Autoload
+    path = File.expand_path(__FILE__)
+    patt = File.dirname(path) + '/entity/*.rb'
+    Dir.glob(patt).each { |f| require f }
     
     # Implements support for #register, #registry.
     include Registrable
