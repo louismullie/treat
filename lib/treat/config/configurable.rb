@@ -34,16 +34,18 @@ module Treat::Config::Configurable
     if File.readable?(base_file)
       self.config = eval(File.read(base_file))
     elsif FileTest.directory?(conf_dir)
-      config = {}
-      Dir[conf_dir + '/*'].each do |path|
-        name = File.basename(path, '.*').intern
-        config[name] = eval(File.read(path))
-      end
-      self.config = config
-    else
-      raise Treat::Exception,
+      self.config = self.from_dir(conf_dir)
+    else; raise Treat::Exception,
       "No config file found for #{mod_name}."
     end
+  end
+  
+  # * Helper methods for configuraton * #
+  def from_dir(conf_dir)
+    Hash[Dir[conf_dir + '/*'].map do |path|
+      name = File.basename(path, '.*').intern
+      [name, eval(File.read(path))]
+    end]
   end
   
 end
