@@ -16,7 +16,8 @@ Gem::Specification.new do |s|
   s.files = 
   Dir['bin/**/*'] + 
   Dir['lib/**/*'] + 
-  Dir['spec/**/*'] + 
+  Dir['spec/**/*'] +
+  Dir['models/**/*'] +  
   Dir['tmp/**/*'] + 
   Dir['files/**/*'] +
   ['README.md', 'LICENSE']
