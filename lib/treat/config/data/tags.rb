@@ -24,6 +24,7 @@
       'Coordinated phrase', ['', '', 'UCP', '', '', 'COORD'],
       'Infinitival phrase', ['', '', '', '', '', 'VPinf'],
       'Verb phrase', ['', '', 'VP', '', '', ''],
+      'Inverted yes/no question', ['', '', 'SQ', '', '', ''],
       'Wh adjective phrase', ['', '', 'WHADJP', '', '', ''],
       'Wh adverb phrase', ['', '', 'WHAVP', '', '', ''],
       'Wh noun phrase', ['', '', 'WHNP', '', '', ''],
@@ -100,7 +101,7 @@
       'Pronoun, reflexive', ['PNX', 'PPL', 'PRP', 'PRF'],
       'Pronoun, reflexive, plural', ['PNX', 'PPLS', 'PRP', 'PRF'],
       'Pronoun, question, subject', ['PNQ', 'WPS', 'WP', 'PWAV'],
-      'Pronoun, question, subject', ['PNQ', 'WPS', 'WPS', 'PWAV'],  # Hack
+      'Pronoun, question, subject', ['PNQ', 'WPS', 'WPS', 'PWAV'],  # FIXME
       'Pronoun, question, object', ['PNQ', 'WPO', 'WP', 'PWAV', 'PWAT'],
       'Pronoun, existential there', ['EX0', 'EX', 'EX'],
       'Pronoun, attributive demonstrative', ['', '', '', 'PDAT'],
