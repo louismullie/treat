@@ -29,11 +29,11 @@ class Treat::Workers::Processors::Parsers::Stanford
   # instead of displaying it.
   def self.parse(entity, options = {})
 
-    entity.check_hasnt_children
-
     val = entity.to_s
     lang = entity.language
     init(lang, options)
+    
+    entity.check_hasnt_children
     
     tag_set = StanfordCoreNLP::Config::TagSets[lang]
     
