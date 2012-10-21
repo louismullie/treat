@@ -13,4 +13,5 @@
 *.yaml
 spec/sandbox.rb
 coverage/*
+benchmark/*
 TODO
