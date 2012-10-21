@@ -1,19 +1,19 @@
 # This module creates all the worker categories
 # and the groups within these categories and adds
 # the relevant hooks on the appropriate entities.
-module Treat::Workers::Category
+module Treat::Workers::Categorizable
 
-  require_relative 'group'
+  require_relative 'groupable'
 
   # A lookup table for entity types.
   @@lookup = {}
 
   # Find a worker group based on method.
-  def self.lookup(method)
+  def lookup(method)
     @@lookup[method]
   end
 
-  def self.create_categories
+  def categorize!
     Treat.workers.members.each do |cat|
       create_category(cat.
       capitalize.intern,
@@ -21,7 +21,7 @@ module Treat::Workers::Category
     end
   end
 
-  def self.load_category_conf(name)
+  def load_category_conf(name)
     config = Treat.workers[name]
     if config.nil?
       raise Treat::Exception,
@@ -31,7 +31,7 @@ module Treat::Workers::Category
     config
   end
 
-  def self.create_category(name, conf)
+  def create_category(name, conf)
     category = Treat::Workers.
     const_set(name, Module.new)
     conf.each_pair do |group, worker|
@@ -45,7 +45,7 @@ module Treat::Workers::Category
     end
   end
 
-  def self.create_group(name, conf, category)
+  def create_group(name, conf, category)
     group = category.const_set(name, Module.new)
     self.set_group_options(group, conf)
     self.bind_group_targets(group)
@@ -54,7 +54,7 @@ module Treat::Workers::Category
     @@lookup[group.method] = group
   end
 
-  def self.bind_group_targets(group)
+  def bind_group_targets(group)
     group.targets.each do |entity_type|
       entity = Treat::Entities.
       const_get(entity_type.cc)
@@ -64,7 +64,7 @@ module Treat::Workers::Category
     end
   end
 
-  def self.register_group_presets(group, conf)
+  def register_group_presets(group, conf)
     return unless conf.respond_to? :presets
     conf.presets.each do |m|
       @@methods << m
@@ -72,9 +72,9 @@ module Treat::Workers::Category
     end
   end
 
-  def self.set_group_options(group, conf)
+  def set_group_options(group, conf)
     group.module_eval do
-      extend Treat::Workers::Group
+      extend Treat::Workers::Groupable
       self.type = conf.type
       self.targets = conf.targets
       if conf.respond_to?(:default)
@@ -91,7 +91,5 @@ module Treat::Workers::Category
       end
     end
   end
-
-  self.create_categories
-
+  
 end

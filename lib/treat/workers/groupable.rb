@@ -1,4 +1,4 @@
-module Treat::Workers::Group
+module Treat::Workers::Groupable
 
   # Lazily load the worker classes in the group.
   def const_missing(const)
