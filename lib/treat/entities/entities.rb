@@ -4,6 +4,7 @@ module Treat::Entities
   
   # Represents a collection.
   class Collection < Entity; end
+  
   # Represents a document.
   class Document < Entity; end
     
