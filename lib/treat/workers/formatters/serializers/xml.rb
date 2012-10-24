@@ -9,18 +9,19 @@ class Treat::Workers::Formatters::Serializers::XML
   # - (String) :file => a file to write to.
   def self.serialize(entity, options = {})
     options[:file] ||= (entity.id.to_s + '.xml')
-    if options[:indent].nil?
-      options = options.merge({:indent => 0})
-    end
-    indent = options[:indent]
-    if options[:indent] == 0
-      enc = entity.to_s.encoding.to_s.downcase
-      string = "<?xml version=\"1.0\" " +
-      "encoding=\"#{enc}\" ?>\n<treat>\n"
-    else
-      string = ''
-    end
-    spaces = ''
+    options[:indent] = 0
+    enc = entity.to_s.encoding.to_s.downcase
+    string = "<?xml version=\"1.0\" " +
+    "encoding=\"#{enc}\" ?>\n<treat>\n"
+    val = self.recurse(entity, options)
+    string += "#{val}\n</treat>"
+    File.open(options[:file], 'w') do |f|
+      f.write(string)
+    end; return string
+  end
+  
+  def self.recurse(entity, options)
+    spaces, string = '', ''
     options[:indent].times { spaces << ' ' }
     attributes = " id='#{entity.id}'"
     if !entity.features.nil? && entity.features.size != 0
@@ -56,27 +57,16 @@ class Treat::Workers::Formatters::Serializers::XML
     if entity.has_children?
       options[:indent] += 1
       entity.children.each do |child|
-        string =
-        string +
-        serialize(child, options)
+        string += self.recurse(child, options)
       end
       options[:indent] -= 1
     else
-      string = string + "#{escape(entity.value)}"
+      string += "#{escape(entity.value)}"
     end
     unless entity.is_a?(Treat::Entities::Token)
       string += "#{spaces}"
     end
     string += "</#{tag}>\n"
-    if indent == 0
-      string += "\n</treat>"
-      if options[:file]
-        File.open(options[:file], 'w') do |f|
-          f.write(string)
-        end
-      end
-    end
-    options[:file]
   end
 
   def self.escape(input)
