@@ -10,14 +10,14 @@ module Treat::Core::DSL
   # a global builder function (Entity, etc.)
   def self.sweeten_entities(base, on = true)
     Treat.core.entities.list.each do |type|
-      next if type == :Symbol
       kname = type.cc.intern
+      mname = type.intern
       klass = Treat::Entities.const_get(kname)
       Object.class_eval do
-        define_method(kname) do |val, opts={}|
-          klass.build(val, opts)
+        define_method(mname) do |*args|
+          klass.build(*args)
         end if on
-        remove_method(name) if !on
+        remove_method(mname) if !on
       end
     end
   end
@@ -26,11 +26,13 @@ module Treat::Core::DSL
   # to a global builder function (e.g. DataSet).
   def self.sweeten_learning(base, on = true)
     Treat::Learning.constants.each do |kname|
+      mname = kname.downcase
+      klass = Treat::Learning.const_get(kname)
       Object.class_eval do
-        define_method(kname) do |*args| 
-          Treat::Learning.const_get(kname).new(*args)
+        define_method(mname) do |*args| 
+          klass.new(*args)
         end if on
-        remove_method(name) if !on
+        remove_method(mname) if !on
       end
     end
   end
