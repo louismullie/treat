@@ -11,7 +11,7 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
         examples: [
           ["A test entity.", "A test entity."]
         ],
-        generator: lambda { |selector| Entity(selector).to_s }
+        generator: lambda { |selector| Treat::Entities::Entity.buikd(selector).to_s }
       }
     },
     classify: {
@@ -20,13 +20,15 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
           ["Homer", 1, lambda { {training: Treat::Learning::DataSet.build('test.marshal')} }]
         ],
         preprocessor: lambda do |entity|
-          ds = DataSet(Problem(
-            Question(:is_person, :word, :discrete, :false, [0, 1]), 
-            Feature(:first_capital, 0, "->(e) {  (e.to_s[0] =~ /^[A-Z]$/) ? 1 : 0 }"), 
-            Tag(:value, 0)
+          ds = Treat::Learning::DataSet.new(
+          Treat::Learning::Problem.new(
+            Treat::Learning::Question.new(:is_person, :word, :discrete, :false, [0, 1]), 
+            Treat::Learning::Feature.new(:first_capital, 0, "->(e) {  (e.to_s[0] =~ /^[A-Z]$/) ? 1 : 0 }"), 
+            Treat::Learning::Tag.new(:value, 0)
           ))
-          w1, w2, w3, w4, w5 = Word("Alfred"), Word("lucky"), 
-          Word("Hobbit"), Word("hello"), Word("Alice")
+          w1, w2, w3, w4, w5 = 
+          ["Alfred", "lucky", "Hobbit", "hello", "Alice"].
+          map { |w| Treat::Entities::Word.new(w) }
           w1.set :is_person, 1
           w2.set :is_person, 0
           w3.set :is_person, 1
@@ -62,7 +64,7 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
             ["crisis", "government", "called", "financial", "funds", "treaty"]]
           ],
           preprocessor: lambda do |document|
-            coll = Collection('./spec/workers/examples/english/economist/')
+            coll = Treat::Entities::Collection.build('./spec/workers/examples/english/economist/')
             coll << document
             coll.apply(:chunk, :segment, :tokenize, :keywords)
             document
@@ -84,7 +86,7 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
       examples: [
         ["A test entity.", "A test entity."]
       ],
-      generator: lambda { |selector| Entity(selector).to_s }
+      generator: lambda { |selector| Treat::Entities::Entity.build(selector).to_s }
     },
 =end
 =begin
