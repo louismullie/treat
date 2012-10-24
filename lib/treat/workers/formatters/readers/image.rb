@@ -31,7 +31,7 @@ class Treat::Workers::Formatters::Readers::Image
       end
     end
     
-    options[:silent] ? silence_stdout { 
+    Treat.core.verbosity.silence ? silence_stdout { 
     read.call(document) } : read.call(document)
     
     document

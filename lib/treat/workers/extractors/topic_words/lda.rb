@@ -53,9 +53,9 @@ class Treat::Workers::Extractors::TopicWords::LDA
     # Run the EM algorithm using random 
     # starting points
     
-    silence_stdout do
-      lda.em('random')
-    end
+    Treat.core.verbosity.silence ?
+    silence_stdout { lda.em('random') :
+    lda.em('random')
     
     # Load the vocabulary.
     if options[:vocabulary]

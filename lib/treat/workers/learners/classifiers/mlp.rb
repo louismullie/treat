@@ -33,6 +33,8 @@ class Treat::Workers::Learners::Classifiers::MLP
       fann = @@classifiers[prob]
     end
     vect = prob.export_features(entity, false)
+    Treat.core.verbosity.silence ? 
+    silence_stdout { fann.run(vect)[0] } :
     fann.run(vect)[0]
   end
   
