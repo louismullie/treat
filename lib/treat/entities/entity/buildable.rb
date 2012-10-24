@@ -23,11 +23,28 @@ module Treat::Entities::Entity::Buildable
   # Build an entity from anything (can be
   # a string, numeric,folder, or file name
   # representing a raw or serialized file).
-  def build(file_or_value, options = {})
+  def build(*args)
+    
+    if args.size == 0
+      file_or_value = ''
+    elsif args[1].is_a?(Hash)
+      file_or_value = args[0]
+      options = args[1] || {}
+    elsif args.size == 1
+      file_or_value = args[0]
+      options = {}
+    else
+      file_or_value = args[0...-1]
+      options = args[-1]
+    end
 
     fv = file_or_value.to_s
 
-    if file_or_value.is_a?(Hash)
+    if fv == ''
+      self.new
+    elsif file_or_value.is_a?(Array)
+      from_array(file_or_value, options)
+    elsif file_or_value.is_a?(Hash)
       from_db(file_or_value)
     elsif self == Treat::Entities::Document ||
       (fv.index('yml') || fv.index('yaml') ||
@@ -76,6 +93,19 @@ module Treat::Entities::Entity::Buildable
       "but type detected was #{e.class.mn.downcase}."
     end
     e
+  end
+  
+  # Build a document from an array
+  # of builders.
+  def from_array(array, options)
+    obj = self.new
+    array.each do |el|
+      unless el.is_a?(Treat::Entities::Entity)
+        el = el.to_entity 
+      end
+      obj << el
+    end
+    obj
   end
 
   # Build a document from an URL.
