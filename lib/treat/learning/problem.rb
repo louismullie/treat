@@ -63,7 +63,7 @@ class Treat::Learning::Problem
   # all of the features.
   def export_features(e, include_answer = true)
     features = export(e, @features)
-    return features unless include_answer
+    return features if !include_answer
     features << (e.has?(@question.name) ? 
     e.get(@question.name) : @question.default)
     features
@@ -80,9 +80,11 @@ class Treat::Learning::Problem
 
   def export(entity, exports)
     unless @question.target == entity.type
+      targ, type = @question.target, entity.type
       raise Treat::Exception, 
-      "This classification problem targets #{@question.target}s, " +
-      "but a(n) #{entity.type} was passed to export instead."
+      "This classification problem targets " +
+      "#{targ}s, but a(n) #{type} " +
+      "was passed to export instead."
     end
     ret = []
     exports.each do |export|
