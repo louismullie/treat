@@ -5,7 +5,7 @@ class Treat::Workers::Learners::Classifiers::SVM
   @@classifiers = {}
 
   DefaultOptions = {
-    cache_size: 1,
+    cache_size: 1, # in MB
     eps: 0.001,
     c: 10
   }
@@ -14,35 +14,32 @@ class Treat::Workers::Learners::Classifiers::SVM
   # - (Numeric) :eps => tolerance of termination criterion
   # - (Numeric) :c => C parameter
   def self.classify(entity, options = {})
-    
     options = DefaultOptions.merge(options)
-    set = options[:training]
-    problem = set.problem
-    
-    if !@@classifiers[problem]
-      labels = problem.question.labels
-      unless labels
+    dset = options[:training]
+    prob, items = dset.problem, dset.items
+    if !@@classifiers[prob]
+      labels = prob.question.labels
+      if !labels || labels.empty?
         raise Treat::Exception,
         "LibSVM requires that you provide the possible " +
         "labels to assign to classification items when " +
         "specifying the question."
       end
-      examples = set.items.map  { |item| item[:features] }
-      prob = Libsvm::Problem.new
-      prob.set_examples(labels, examples)
-      param = Libsvm::SvmParameter.new
-      param.cache_size = options[:cache_size]
-      param.eps = options[:eps]
-      param.c = options[:c]
-      model = Libsvm::Model.train(problem, parameter)
-      @@classifiers[problem] = model
+      lprob = Libsvm::Problem.new
+      lparam = Libsvm::SvmParameter.new
+      lparam.cache_size = options[:cache_size]
+      lparam.eps = options[:eps]
+      lparam.c = options[:c]
+      llabels = items.map { |it| it[:features][-1] }
+      lexamples = items.map { |it| it[:features][0..-2] }.
+      map { |ary| Libsvm::Node.features(ary) }
+      lprob.set_examples(llabels, lexamples)
+      model = Libsvm::Model.train(lprob, lparam)
+      @@classifiers[prob] = model
     end
-    
-    features = problem.export_features(entity, false)
-    
-    @@classifiers[problem].predict(
-    Libsvm::Node.features(*features))
-    
+    features = prob.export_features(entity, false)
+    @@classifiers[prob].predict(
+    Libsvm::Node.features(features))
   end
   
 end
