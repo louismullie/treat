@@ -1,21 +1,11 @@
 {
   dependencies: [
-    'psych',
-    'nokogiri',
-    'ferret',
-    'bson_ext',
-    'mongo',
-    'lda-ruby',
-    'stanford-core-nlp',
-    'linguistics',
-    'ruby-readability',
-    'whatlanguage',
-    'chronic',
-    'nickel',
-    'decisiontree',
-    'rb-libsvm',
-    'ai4r',
-    'zip'
+    'psych', 'nokogiri', 'ferret',
+    'bson_ext', 'mongo', 'lda-ruby',
+    'stanford-core-nlp', 'linguistics',
+    'ruby-readability', 'whatlanguage',
+    'chronic', 'nickel', 'decisiontree',
+    'rb-libsvm', 'ai4r', 'zip'
   ],
   workers: {
     learners: {
