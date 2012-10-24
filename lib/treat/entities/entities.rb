@@ -19,6 +19,9 @@ module Treat::Entities
   # Represents a block of text 
   class Block < Section; end
   
+  # Represents a list.
+  class List < Section; end
+  
   # * Zones and related classes * #
   
   # Represents a zone of text.
@@ -31,9 +34,6 @@ module Treat::Entities
   # Represents a paragraph (group 
   # of sentences and/or phrases).
   class Paragraph < Zone; end
-  
-  # Represents a list.
-  class List < Zone; end
   
   # * Groups and related classes * #
   
