@@ -88,7 +88,6 @@ module Treat::Entities::Entity::Delegatable
   # Get the default worker for that language
   # inside the given group.
   def find_worker_for_language(language, group)
-
     lang = Treat.languages[language]
     cat = group.to_s.split('::')[2].downcase.intern
     group = group.mn.ucc.intern
@@ -96,31 +95,25 @@ module Treat::Entities::Entity::Delegatable
       raise Treat::Exception,
       "No configuration file loaded for language #{language}."
     end
-    
     workers = lang.workers
-    
     if !workers.respond_to?(cat) ||
        !workers[cat].respond_to?(group)
         workers = Treat.languages.agnostic.workers
     end
-    
     if !workers.respond_to?(cat) || 
        !workers[cat].respond_to?(group)
       raise Treat::Exception,
       "No #{group} is/are available for the " +
       "#{language.to_s.capitalize} language."
     end
-  
-    
     workers[cat][group].first
-
   end
 
   # Return an error message and suggest possible typos.
-  def worker_not_found(klass, group)
-    "Algorithm '#{klass.mn.ucc}' couldn't be "+
+  def worker_not_found(worker, group)
+    "Worker with name '#{worker}' couldn't be "+
     "found in group #{group}." + Treat::Helpers::Help.
-    did_you_mean?(group.list.map { |c| c.ucc }, klass.ucc)
+    did_you_mean?(group.list.map { |c| c.ucc }, worker)
   end
 
 end
