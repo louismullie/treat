@@ -12,24 +12,20 @@ class Treat::Workers::Learners::Classifiers::ID3
   @@classifiers = {}
   
   def self.classify(entity, options = {})
-    
-    set = options[:training]
-    cl = set.problem
-    
-    if !@@classifiers[cl]
+    dset = options[:training]
+    prob = dset.problem
+    if !@@classifiers[prob]
       dec_tree = DecisionTree::ID3Tree.new(
-      cl.feature_labels.map { |l| l.to_s }, 
-      set.items.map { |i| i[:features]}, 
-      cl.question.default, cl.question.type)
+      prob.feature_labels.map { |l| l.to_s }, 
+      dset.items.map { |i| i[:features] }, 
+      prob.question.default, prob.question.type)
       dec_tree.train
-      @@classifiers[cl] = dec_tree
+      @@classifiers[prob] = dec_tree
     else
-      dec_tree = @@classifiers[cl]
-      dec_tree.graph('testingbitch')
+      dec_tree = @@classifiers[prob]
     end
-    dec_tree.predict(
-      cl.export_features(entity, false)
-    )
+    vect = prob.export_features(entity, false)
+    dec_tree.predict(vect)
   end
   
 end
