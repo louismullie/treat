@@ -5,7 +5,7 @@
     'stanford-core-nlp', 'linguistics',
     'ruby-readability', 'whatlanguage',
     'chronic', 'nickel', 'decisiontree',
-    'rb-libsvm', 'ai4r', 'zip'
+    'rb-libsvm', 'ruby-fann', 'zip'
   ],
   workers: {
     learners: {
