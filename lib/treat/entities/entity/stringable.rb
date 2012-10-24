@@ -6,6 +6,12 @@ module Treat::Entities::Entity::Stringable
   # Returns the entity's true string value.
   def to_string;  @value.dup; end
   
+  # Returns an array of the childrens' string
+  # values, found by calling #to_s on them.
+  def to_a; @children.map { |c| c.to_s }; end
+  
+  alias :to_ary :to_a
+  
   # Returns the entity's string value by
   # imploding the value of all terminal
   # entities in the subtree of that entity.
