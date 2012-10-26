@@ -1,5 +1,11 @@
 module Treat::Core::DSL
   
+  # Message for deprecation of old DSL syntax.
+  DeprecationMessage = "The DSL that used " +
+  "capitalized entity names is now deprecated. " +
+  "Use `include Treat::Core::DSL` along with " +
+  "lowercase names from now on." 
+  
   # Include DSL on base.
   def self.included(base)
     self.sweeten_entities(base)
@@ -14,6 +20,9 @@ module Treat::Core::DSL
       mname = type.intern
       klass = Treat::Entities.const_get(kname)
       Object.class_eval do
+        define_method(mname.capitalize) do |*args|
+          raise DeprecationMessage
+        end
         define_method(mname) do |*args|
           klass.build(*args)
         end if on
@@ -29,6 +38,9 @@ module Treat::Core::DSL
       mname = kname.downcase
       klass = Treat::Learning.const_get(kname)
       Object.class_eval do
+        define_method(mname.capitalize) do |*args|
+          raise DeprecationMessage
+        end
         define_method(mname) do |*args| 
           klass.new(*args)
         end if on
