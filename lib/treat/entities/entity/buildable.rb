@@ -307,7 +307,7 @@ module Treat::Entities::Entity::Buildable
       from_raw_file(doc_file, {})
     when :collection
       raise Treat::Exception,
-      "Cannot create a document or " +
+      "Cannot create a " +
       "collection from a string " +
       "(need a readable file/folder)."
     when :phrase
