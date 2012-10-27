@@ -23,19 +23,16 @@ class Treat::Workers::Extractors::Keywords::TfIdf
 
     tf_idfs = tf_idfs.
     sort_by {|k,v| v}.reverse
-
-    if tf_idfs.size <= options[:number]
-      return tf_idfs
-    end
-    
+   
     keywords = []
     i = 0
+    max_count = tf_idfs.size < options[:number] ? tf_idfs.size : options[:number]
     
     tf_idfs.each do |word|
       
       w = word[0].to_s
       next if keywords.include?(w)
-      break if i > options[:number]
+      break if i > max_count
       keywords << w
       
       i += 1
