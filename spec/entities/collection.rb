@@ -23,7 +23,7 @@ describe Treat::Entities::Collection do
       context "when supplied a folder name that doesn't exist" do
 
         it "creates the directory and opens the collection" do
-          f = Treat.paths.spec + 'workers/examples/agnostic/test'
+          f = Treat.paths.spec + 'workers/examples/english/test'
           c = Treat::Entities::Collection.build(f)
           FileTest.directory?(f).should eql true
           c.should be_an_instance_of Treat::Entities::Collection
@@ -37,11 +37,10 @@ describe Treat::Entities::Collection do
   describe "#<<" do
 
       it "adds the object to the collection" do
-        f = Treat.paths.spec + 'workers/examples/agnostic/test'
+        f = Treat.paths.spec + 'workers/examples/english/economist'
         c = Treat::Entities::Collection.build(f)
         c << Treat::Entities::Document.new
-        c.size.should eql 1
-        FileUtils.rm_rf(f)
+        c.size.should eql 3
       end
 
   end

@@ -366,7 +366,8 @@ describe Treat::Entities::Entity do
             d.test_sym.should eql :hello
             d.test_bool.should eql false
 
-            d.to_s.should eql f
+            d.to_s.should eql "The story of the fox." +
+            " The quick brown fox jumped over the lazy dog."
             d.size.should eql s.size
           
             d.token_count.should eql s.token_count
