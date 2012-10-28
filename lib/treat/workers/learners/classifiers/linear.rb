@@ -11,35 +11,23 @@ class Treat::Workers::Learners::Classifiers::Linear
   }
   
   def self.classify(entity, options = {})
-    
     options = DefaultOptions.merge(options)
-    set = options[:training]
-    problem = set.problem
-    
-    if !@@classifiers[problem]
-      labels = problem.question.labels
-      unless labels
-        raise Treat::Exception,
-        "LibLinear requires that you provide the possible " +
-        "labels to assign to classification items when " +
-        "specifying the question."
-      end
-      param = LParameter.new
-      param.solver_type = options[:solver_type]
-      param.eps = options[:eps]
-      bias = options[:bias]
-      data = set.items.map do |item| 
-        self.array_to_hash(item[:features]) 
-      end
-      prob = LProblem.new(labels, data, bias)
-      @@classifiers[problem] = 
-      LModel.new(prob, param)
+    dset = options[:training]
+    prob, items = dset.problem, dset.items
+    if !@@classifiers[prob]
+      lparam = LParameter.new
+      lparam.solver_type = options[:solver_type]
+      lparam.eps = options[:eps]
+      lbls = items.map { |it| it[:features][-1] }
+      exs = items.map { |it| it[:features][0..-2] }.
+      map { |ary| self.array_to_hash(ary) }
+      lprob = LProblem.new(lbls, exs, options[:bias])
+      model = LModel.new(lprob, lparam)
+      @@classifiers[prob] = model
     end
-
-    @@classifiers[problem].predict(
-    self.array_to_hash(problem.
-    export_features(entity, false)))
-    
+    features = prob.export_features(entity, false)
+    @@classifiers[prob].predict(
+    self.array_to_hash(features))
   end
   
   def self.array_to_hash(array)
