@@ -50,9 +50,9 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
     isolated_token = entity.is_a?(Treat::Entities::Token)
 
     @@taggers[lang].apply(list).each do |tok|
-      tokens[i].set :tag, tok.tag
-      tokens[i].set :tag_set,
-      options[:tag_set] if isolated_token
+      tokens[i].set(:tag, tok.tag)
+      tokens[i].set(:tag_set,
+      options[:tag_set]) if isolated_token
       return tok.tag if isolated_token
       i += 1
     end
