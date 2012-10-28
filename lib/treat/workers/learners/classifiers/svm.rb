@@ -18,13 +18,6 @@ class Treat::Workers::Learners::Classifiers::SVM
     dset = options[:training]
     prob, items = dset.problem, dset.items
     if !@@classifiers[prob]
-      labels = prob.question.labels
-      if !labels || labels.empty?
-        raise Treat::Exception,
-        "LibSVM requires that you provide the possible " +
-        "labels to assign to classification items when " +
-        "specifying the question."
-      end
       lprob = Libsvm::Problem.new
       lparam = Libsvm::SvmParameter.new
       lparam.cache_size = options[:cache_size]
