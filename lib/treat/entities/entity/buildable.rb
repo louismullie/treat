@@ -292,9 +292,22 @@ module Treat::Entities::Entity::Buildable
   # Build any kind of entity from a string.
   def anything_from_string(string)
     case self.mn.downcase.intern
-    when :document, :collection
+    when :document
+      folder = Treat.paths.files
+      if folder[-1] == '/'
+        folder = folder[0..-2]
+      end
+
+      doc_file = folder+ "/#{Time.now.to_f}.txt"
+      string.force_encoding('UTF-8')
+      File.open(doc_file, 'w') do |f|
+        f.puts string
+      end
+
+      from_raw_file(doc_file, {})
+    when :collection
       raise Treat::Exception,
-      "Cannot create a document or " +
+      "Cannot create a " +
       "collection from a string " +
       "(need a readable file/folder)."
     when :phrase
