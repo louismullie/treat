@@ -19,7 +19,7 @@ module Treat::Core::DSL
       kname = type.cc.intern
       mname = type.intern
       klass = Treat::Entities.const_get(kname)
-      Object.class_eval do
+      base.class_eval do
         define_method(mname.capitalize) do |*args|
           raise DeprecationMessage
         end
@@ -32,12 +32,14 @@ module Treat::Core::DSL
   end
   
   # Map all classes in the Learning module
-  # to a global builder function (e.g. DataSet).
+  # to a global builder function. Defines:
+  # dataset, export, feature, tag, problem
+  # question.
   def self.sweeten_learning(base, on = true)
     Treat::Learning.constants.each do |kname|
       mname = kname.downcase
       klass = Treat::Learning.const_get(kname)
-      Object.class_eval do
+      base.class_eval do
         define_method(mname.capitalize) do |*args|
           raise DeprecationMessage
         end
