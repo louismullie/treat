@@ -11,7 +11,7 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
         examples: [
           ["A test entity.", "A test entity."]
         ],
-        generator: lambda { |selector| Treat::Entities::Entity.buikd(selector).to_s }
+        generator: lambda { |selector| Treat::Entities::Entity.build(selector).to_s }
       }
     },
     classify: {
@@ -22,7 +22,7 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
         preprocessor: lambda do |entity|
           ds = Treat::Learning::DataSet.new(
           Treat::Learning::Problem.new(
-            Treat::Learning::Question.new(:is_person, :word, :discrete, :false, [0, 1]), 
+            Treat::Learning::Question.new(:is_person, :word, :false, :discrete), 
             Treat::Learning::Feature.new(:first_capital, 0, "->(e) {  (e.to_s[0] =~ /^[A-Z]$/) ? 1 : 0 }"), 
             Treat::Learning::Tag.new(:value, 0)
           ))
