@@ -11,7 +11,7 @@ describe Treat::Learning::Problem do
     @paragraph.do :segment, :tokenize
     @sentence = @paragraph.sentences[0]
     @hash = {"question"=>{"name"=>:is_key_sentence, "target"=>:sentence,
-    "type"=>:continuous, "default"=>0, "labels"=>[0, 1]}, "features"=>[
+    "type"=>:continuous, "default"=>0}, "features"=>[
     {"proc_string"=>nil, "default"=>0, "name"=>:word_count, "proc"=>nil}],
     "tags"=>[{"proc_string"=>"->(e) { e.parent_paragraph.word_count }",
     "default"=>0, "name"=>:paragraph_length, "proc"=>nil}], "id"=>0}
@@ -133,7 +133,6 @@ describe Treat::Learning::Problem do
         problem.question.target.should eql :sentence
         problem.question.type.should eql :continuous
         problem.question.default.should eql 0
-        problem.question.labels.should eql [0, 1]
         problem.features[0].proc_string.should eql nil
         problem.features[0].default.should eql 0
         problem.features[0].name.should eql :word_count

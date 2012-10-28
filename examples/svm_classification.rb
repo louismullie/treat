@@ -2,7 +2,7 @@
 require_relative '../lib/treat'
 include Treat::Core::DSL
 
-question = question(:is_spam, :sentence, :continuous, 0, [0, 1])
+question = question(:is_spam, :sentence)
 problem = problem(question, feature(:punctuation_count), feature(:word_count))
 
 d = document('http://en.wikipedia.org/wiki/NOD_mouse').

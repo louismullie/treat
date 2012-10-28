@@ -16,12 +16,9 @@ class Treat::Learning::Question
   attr_reader :type
   # Default for the answer to the question.
   attr_reader :default
-  # A list of possible answers to the question.
-  attr_reader :labels
   
   # Initialize the question.
-  def initialize(name, target, 
-    type = :continuous, default = nil, labels = [])
+  def initialize(name, target, default = nil, type = :continuous)
     unless name.is_a?(Symbol)
       raise Treat::Exception, 
       "Question name should be a symbol."
@@ -35,8 +32,8 @@ class Treat::Learning::Question
       raise Treat::Exception, "Type should be " +
       "continuous or discrete."
     end
-    @name, @target, @type, @default, @labels = 
-     name,  target,  type,  default,  labels
+    @name, @target, @type, @default = 
+     name,  target,  type,  default
   end
 
   # Custom comparison operator for questions.
@@ -44,8 +41,7 @@ class Treat::Learning::Question
     @name == question.name &&
     @type == question.type &&
     @target == question.target &&
-    @default == question.default &&
-    @labels = question.labels
+    @default == question.default
   end
   
 end

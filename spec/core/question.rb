@@ -4,12 +4,11 @@ describe Treat::Learning::Question do
     context "when supplied with acceptable parameters" do
       it "should give access to the parameters" do
         question = Treat::Learning::Question.new(
-        :is_keyword, :word, :continuous, 0, [0, 1])
+        :is_keyword, :word, 0, :continuous)
         question.name.should eql :is_keyword
         question.target.should eql :word
         question.type.should eql :continuous
         question.default.should eql 0
-        question.labels.should eql [0, 1]
       end
     end
     context "when supplied with wrong parameters" do
