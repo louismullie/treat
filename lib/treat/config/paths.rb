@@ -1,3 +1,6 @@
+# Generates the following path config options:
+# Treat.paths.tmp, Treat.paths.bin, Treat.paths.lib,
+# Treat.paths.models, Treat.paths.files, Treat.paths.spec.
 class Treat::Config::Paths
   
   # Get the path configuration based on the 
