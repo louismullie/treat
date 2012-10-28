@@ -22,8 +22,10 @@ class Treat::Workers::Learners::Classifiers::MLP
       fann = RubyFann::Standard.new(options)
       inputs = items.map { |it| it[:features][0..-2] }
       outputs = items.map { |it| [it[:features][-1]] }
-      training = RubyFann::TrainData.new(
-      inputs: inputs, desired_outputs: outputs)
+      training = silence_stdout do 
+        RubyFann::TrainData.new(inputs: 
+        inputs, desired_outputs: outputs)
+      end
       params = [options[:max_neurons],
       options[:neurons_between_reports],
       options[:desired_error]]
