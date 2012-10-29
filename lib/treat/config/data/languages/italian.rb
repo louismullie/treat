@@ -8,7 +8,7 @@
       segmenters: [:punkt],
       tokenizers: []
     }
-  }
+  },
   stop_words:
     [
       "affinche",
