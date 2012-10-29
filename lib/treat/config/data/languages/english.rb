@@ -86,7 +86,6 @@
       "who",
       "whom",
       "whose",
-      "why",
       "will",
       "with",
       "would",
