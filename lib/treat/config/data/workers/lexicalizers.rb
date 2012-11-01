@@ -1,11 +1,11 @@
 {
   taggers: {
     type: :annotator,
-    targets: [:phrase, :token]
+    targets: [:group, :token]
   },
   categorizers: {
     type: :annotator,
-    targets: [:phrase, :token],
+    targets: [:group, :token],
     recursive: true
   },
   sensers: {
@@ -14,5 +14,5 @@
     preset_option: :nym,
     presets: [:synonyms, :antonyms, 
               :hyponyms, :hypernyms],
-  }        
+  }
 }
