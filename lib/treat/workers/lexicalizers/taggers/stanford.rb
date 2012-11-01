@@ -25,8 +25,7 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
   def self.tag(entity, options = {})
 
     # Handle tags for sentences and phrases.
-    if entity.is_a?(Treat::Entities::Sentence) ||
-      (entity.is_a?(Treat::Entities::Phrase) &&
+    if entity.is_a?(Treat::Entities::Group) &&
       !entity.parent_sentence)
 
       tag_set = options[:tag_set]

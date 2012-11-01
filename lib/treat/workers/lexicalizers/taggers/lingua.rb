@@ -61,15 +61,14 @@ class Treat::Workers::Lexicalizers::Taggers::Lingua
     end
 
     
-    if entity.is_a?(Treat::Entities::Sentence) ||
-      (entity.is_a?(Treat::Entities::Phrase) && 
-      !entity.parent_sentence)
+    if entity.is_a?(Treat::Entities::Group) && 
+      !entity.parent_sentence
         entity.set :tag_set, :penn
     end
 
     return 'S' if entity.is_a?(Treat::Entities::Sentence)
     return 'P' if entity.is_a?(Treat::Entities::Phrase)
-    
+
   end
   
 end

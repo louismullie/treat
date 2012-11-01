@@ -40,8 +40,7 @@ class Treat::Workers::Lexicalizers::Taggers::Brill
       return pair[1] if isolated_token
     end
     
-    if entity.is_a?(Treat::Entities::Sentence) ||
-      (entity.is_a?(Treat::Entities::Phrase) && 
+    if entity.is_a?(Treat::Entities::Group) && 
       !entity.parent_sentence)
         entity.set :tag_set, :penn
     end
