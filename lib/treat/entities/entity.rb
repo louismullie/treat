@@ -84,8 +84,11 @@ module Treat::Entities
     # 
     # Takes in a single entity or an array of 
     # entities. Returns the first child supplied.
-    # @see Treat::Registrable
+    # If a string is 
     def <<(entities, clear_parent = true)
+      entities = (entities.is_a?(::String) ||
+      entities.is_a?(::Numeric)) ? 
+      entities.to_entity : entities
       entities = entities.is_a?(::Array) ?
       entities : [entities]
       # Register each entity in this node.
