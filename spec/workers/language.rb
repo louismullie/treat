@@ -66,9 +66,7 @@ module Treat::Specs::Workers
           group.each do |worker|
             next if worker == :mongo  # FIXME
             next if worker == :html   # FIXME
-            next if worker == :lda
-            next if worker == :linear
-            next if worker == :svm
+            next if worker == :lda    # FIXME
             results << send(method,
             worker, group_class)
           end
