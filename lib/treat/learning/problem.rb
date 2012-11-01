@@ -118,9 +118,8 @@ class Treat::Learning::Problem
     question = Treat::Learning::Question.new(
       hash['question']['name'], 
       hash['question']['target'],
-      hash['question']['type'],
       hash['question']['default'],
-      hash['question']['labels']
+      hash['question']['type']
     )
     features = []
     hash['features'].each do |feature|
