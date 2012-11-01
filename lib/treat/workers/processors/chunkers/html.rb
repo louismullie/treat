@@ -3,12 +3,9 @@ class Treat::Workers::Processors::Chunkers::HTML
   require 'nokogiri'
 
   def self.chunk(entity, options = {})
-    
     entity.check_hasnt_children
-    
     doc = Nokogiri::HTML(entity.value)
-    recurse(entity, doc)
-  
+    self.recurse(entity, doc)
   end
 
   def self.recurse(node, html_node, level = 1)
@@ -16,7 +13,6 @@ class Treat::Workers::Processors::Chunkers::HTML
     html_node.children.each do |child|
       
       next if child.name == 'text'
-
       txt = child.inner_text
       
       if child.name =~ /^h([0-9]{1})$/ ||
