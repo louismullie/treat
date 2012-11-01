@@ -112,7 +112,7 @@ describe Treat::Entities::Entity do
 
     context "when supplied with a classification to export" do
       feature = Treat::Learning::Feature.new(:tag)
-      question = Treat::Learning::Question.new(:is_keyword, :word, :discrete, false)
+      question = Treat::Learning::Question.new(:is_keyword, :word, false, :discrete)
       problem = Treat::Learning::Problem.new(question, feature)
       it "returns a data set with the exported features" do
         ds = @sentence.export(problem)

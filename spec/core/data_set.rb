@@ -1,7 +1,7 @@
 describe Treat::Learning::DataSet do
 
   before do
-    @question = Treat::Learning::Question.new(:is_key_sentence, :sentence, :continuous, 0, [0, 1])
+    @question = Treat::Learning::Question.new(:is_key_sentence, :sentence, 0, :continuous)
     @feature = Treat::Learning::Feature.new(:word_count, 0)
     @problem = Treat::Learning::Problem.new(@question, @feature)
     @tag = Treat::Learning::Tag.new(:paragraph_length, 0,
@@ -49,9 +49,9 @@ describe Treat::Learning::DataSet do
       it "returns false" do
         # Get two slightly different problems.
         question1 = Treat::Learning::Question.new(
-        :is_key_sentence, :sentence, :continuous, 0, [0, 1])
+        :is_key_sentence, :sentence, 0,  :continuous)
         question2 = Treat::Learning::Question.new(
-        :is_key_word, :sentence, :continuous, 0, [1, 1])
+        :is_key_word, :sentence, 0, :continuous)
         problem1 = Treat::Learning::Problem.new(question1, @feature)
         problem2 = Treat::Learning::Problem.new(question2, @feature)
         # Then the problems shouldn't be equal anymore.
@@ -101,9 +101,9 @@ describe Treat::Learning::DataSet do
       it "raises an error" do
         # Get two slightly different questions.
         question1 = Treat::Learning::Question.new(
-        :is_key_sentence, :sentence, :continuous, 0, [0, 1])
+        :is_key_sentence, :sentence, 0, :continuous)
         question2 = Treat::Learning::Question.new(
-        :is_key_word, :sentence, :continuous, 0, [1, 1])
+        :is_key_word, :sentence, 0, :continuous)
         # Create two problems with the different questions.
         problem1 = Treat::Learning::Problem.new(question1, @feature)
         problem2 = Treat::Learning::Problem.new(question2, @feature)

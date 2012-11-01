@@ -2,7 +2,7 @@ describe Treat::Learning::Problem do
 
   before do
     @question = Treat::Learning::Question.new(:is_key_sentence,
-    :sentence, :continuous, 0, [0, 1])
+    :sentence,  0, :continuous)
     @feature = Treat::Learning::Feature.new(:word_count, 0)
     @tag = Treat::Learning::Tag.new(:paragraph_length, 0,
     "->(e) { e.parent_paragraph.word_count }")

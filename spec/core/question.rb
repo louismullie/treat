@@ -21,7 +21,7 @@ describe Treat::Learning::Question do
         :name, :foo) }.to raise_error
         # Distribution type should be continuous or discrete
         expect { Treat::Learning::Question.new(
-        :name, :sentence, :nonsense) }.to raise_error
+        :name, :sentence, 0, :nonsense) }.to raise_error
       end
     end
   end
@@ -33,14 +33,6 @@ describe Treat::Learning::Question do
         :is_keyword, :word).
         should == Treat::Learning::Question.new(
         :is_keyword, :word)
-        Treat::Learning::Question.new(
-        :is_keyword, :word, :continuous).
-        should == Treat::Learning::Question.new(
-        :is_keyword, :word, :continuous)
-        Treat::Learning::Question.new(
-        :is_keyword, :word, :continuous, [0, 1]).
-        should == Treat::Learning::Question.new(
-        :is_keyword, :word, :continuous, [0, 1])
       end
     end
     context "when supplied with a different question" do
@@ -50,13 +42,9 @@ describe Treat::Learning::Question do
         should_not == Treat::Learning::Question.new(
         :is_keyword, :sentence)
         Treat::Learning::Question.new(
-        :is_keyword, :word, :continuous).
+        :is_keyword, :word, 0, :continuous).
         should_not == Treat::Learning::Question.new(
-        :is_keyword, :word, :discrete)
-        Treat::Learning::Question.new(
-        :is_keyword, :word, :continuous, [0, 1]).
-        should_not == Treat::Learning::Question.new(
-        :is_keyword, :word, :continuous, [1, 0])
+        :is_keyword, :word, 0, :discrete)
       end
     end
   end
