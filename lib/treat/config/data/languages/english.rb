@@ -32,7 +32,7 @@
     },
     processors: {
       parsers: [:stanford],
-      segmenters: [:srx, :tactful, :punkt, :stanford, :scalpel],
+      segmenters: [:scalpel, :srx, :tactful, :punkt, :stanford],
       tokenizers: [:ptb, :stanford, :punkt]
     }
   },
