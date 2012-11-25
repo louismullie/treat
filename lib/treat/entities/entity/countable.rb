@@ -41,6 +41,7 @@ module Treat::Entities::Entity::Countable
   # Returns the frequency of the given value
   # in the this entity.
   def frequency_of(value)
+    value = value.downcase
     if is_a?(Treat::Entities::Token)
       raise Treat::Exception,
       "Cannot get the frequency " +
