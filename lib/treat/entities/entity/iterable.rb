@@ -105,18 +105,6 @@ module Treat::Entities::Entity::Iterable
     end
     i
   end
-  
-  # Return the first element in the array, warning if not
-  # the only one in the array. Used for magic methods: e.g.,
-  # the magic method "word" if called on a sentence with many 
-  # words, Treat will return the first word, but warn the user.
-  def first_but_warn(array, type)
-    if array.size > 1
-      warn "Warning: requested one #{type}, but" +
-      " there are many #{type}s in this entity."
-    end
-    array[0]
-  end
 
   
 end
