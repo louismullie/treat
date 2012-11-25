@@ -26,7 +26,7 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
 
     # Handle tags for sentences and phrases.
     if entity.is_a?(Treat::Entities::Group) &&
-      !entity.parent_sentence)
+      !entity.parent_sentence
 
       tag_set = options[:tag_set]
       entity.set :tag_set, tag_set
@@ -40,15 +40,15 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
     
     # Handle options and initialize the tagger.
     lang = entity.language
-    options = get_options(options, lang)
     init_tagger(lang) unless @@taggers[lang]
-    tokens, list = get_token_list(entity)
+    options = get_options(options, lang)
+    tokens, t_list = get_token_list(entity)
 
     # Do the tagging.
     i = 0
     isolated_token = entity.is_a?(Treat::Entities::Token)
-
-    @@taggers[lang].apply(list).each do |tok|
+    
+    @@taggers[lang].apply(t_list).each do |tok|
       tokens[i].set(:tag, tok.tag)
       tokens[i].set(:tag_set,
       options[:tag_set]) if isolated_token
