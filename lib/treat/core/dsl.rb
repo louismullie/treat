@@ -6,15 +6,10 @@ module Treat::Core::DSL
   "Use `include Treat::Core::DSL` along with " +
   "lowercase names from now on." 
   
-  # Include DSL on base.
-  def self.included(base)
-    self.sweeten_entities(base)
-    self.sweeten_learning(base)
-  end
-
   # Map all classes in Treat::Entities to
-  # a global builder function (Entity, etc.)
-  def self.sweeten_entities(base, on = true)
+  # a global builder function (entity, word,
+  # phrase, punctuation, symbol, list, etc.)
+  def self.included(base)
     Treat.core.entities.list.each do |type|
       kname = type.cc.intern
       mname = type.intern
@@ -23,30 +18,11 @@ module Treat::Core::DSL
         define_method(mname.capitalize) do |*args|
           raise DeprecationMessage
         end
-        define_method(mname) do |*args|
-          klass.build(*args)
-        end if on
-        remove_method(mname) if !on
-      end
-    end
-  end
-  
-  # Map all classes in the Learning module
-  # to a global builder function. Defines:
-  # dataset, export, feature, tag, problem
-  # question.
-  def self.sweeten_learning(base, on = true)
-    Treat::Learning.constants.each do |kname|
-      mname = kname.downcase
-      klass = Treat::Learning.const_get(kname)
-      base.class_eval do
-        define_method(mname.capitalize) do |*args|
-          raise DeprecationMessage
+        old_mm = instance_method(:method_missing)
+        define_method(:method_missing) do |sym,*args,&block|
+          return klass.build(*args) if sym == mname
+          return old_mm.bind(self).call(sym,*args,&block)
         end
-        define_method(mname) do |*args| 
-          klass.new(*args)
-        end if on
-        remove_method(mname) if !on
       end
     end
   end
