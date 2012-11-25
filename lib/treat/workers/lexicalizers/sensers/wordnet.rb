@@ -50,13 +50,16 @@ class Treat::Workers::Lexicalizers::Sensers::Wordnet
     
     lemma.synsets.each do |synset|
       synsets << 
-      Treat::Workers::Lexicalizers::Sensers::Wordnet::Synset.new(synset)
+      Treat::Workers::Lexicalizers::
+      Sensers::Wordnet::Synset.new(synset)
     end
     
     ((synsets.collect do |ss|
       ss.send(options[:nym])
-    end - [word.value]).flatten).uniq
-    
+    end - [word.value]).
+    flatten).uniq.map do |token|
+      token.gsub('_', ' ')
+    end
   end
 
 end
