@@ -1,6 +1,6 @@
 {
   dependencies: [
-    'psych', 'nokogiri', 'ferret',
+    'nokogiri', 'ferret',
     'bson_ext', 'mongo', 'lda-ruby',
     'stanford-core-nlp', 'linguistics',
     'ruby-readability', 'whatlanguage',
