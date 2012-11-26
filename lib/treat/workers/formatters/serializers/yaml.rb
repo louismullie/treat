@@ -3,7 +3,7 @@ class Treat::Workers::Formatters::Serializers::YAML
   
   silence_warnings do
     # Require the Psych YAML serializer.
-    require 'psych'
+    # require 'psych'
   end
   
   # Serialize an entity in YAML format.
@@ -11,7 +11,7 @@ class Treat::Workers::Formatters::Serializers::YAML
   # Options:
   # - (String) :file => a file to write to.
   def self.serialize(entity, options = {})
-    yaml = ::Psych.dump(entity)
+    yaml = ::Yaml.dump(entity)
     options[:file] ||= (entity.id.to_s + '.yml')
     if options[:file]
       File.open(options[:file], 'w') do |f| 
