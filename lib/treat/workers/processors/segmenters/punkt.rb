@@ -13,7 +13,7 @@ class Treat::Workers::Processors::Segmenters::Punkt
   silence_warnings { require 'punkt-segmenter' }
   
   # Require the YAML parser.
-  silence_warnings { require 'psych' }
+  # silence_warnings { require 'psych' }
   
   # Hold one copy of the segmenter per language.
   @@segmenters = {}
@@ -87,7 +87,7 @@ class Treat::Workers::Processors::Segmenters::Punkt
       end
     end
     
-    t = ::Psych.load(File.read(model))
+    t = ::YAML.load(File.read(model))
 
     @@segmenters[lang] =
     ::Punkt::SentenceTokenizer.new(t)

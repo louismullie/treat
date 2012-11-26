@@ -3,7 +3,7 @@ class Treat::Workers::Formatters::Unserializers::YAML
 
   silence_warnings do
     # Require the Psych YAML parser.
-    require 'psych'
+    # require 'psych'
   end
   
   # Require date to revive DateTime.
@@ -13,7 +13,7 @@ class Treat::Workers::Formatters::Unserializers::YAML
   #
   # Options: none.
   def self.unserialize(document, options = {})
-    document << ::Psych.load(
+    document << ::YAML.load(
     File.read(document.file))
     document
   end
