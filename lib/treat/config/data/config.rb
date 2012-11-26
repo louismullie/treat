@@ -10,8 +10,8 @@ encodings:
     arabic: 'UTF-8',
     chinese: 'GB18030',
     english: 'UTF-8',
-    french: 'ISO_8859-1',
-    ferman: 'ISO_8859-1',
+    french: 'UTF-8',
+    german: 'UTF-8',
     hebrew: 'UTF-8'
 }},
 
