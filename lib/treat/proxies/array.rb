@@ -7,7 +7,11 @@ module Treat::Proxies
       if [:do, :apply].include?(sym) || 
         Treat::Workers.lookup(sym)
         map do |el|
-          el.to_entity.send(sym, *args)
+          if el.is_a?(Treat::Entities::Entity)
+            el.send(sym, *args)
+          else
+            el.to_entity.send(sym, *args)
+          end
         end
       else
         super(sym, *args, &block)
