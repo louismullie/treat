@@ -25,38 +25,38 @@ module Treat::Entities::Entity::Buildable
   # representing a raw or serialized file).
   def build(*args)
     
+    # This probably needs some doc.
     if args.size == 0
       file_or_value = ''
-    elsif args[1].is_a?(Hash)
+    elsif args[0].is_a?(Hash)
       file_or_value = args[0]
-      options = args[1] || {}
     elsif args.size == 1
+      if args[0].is_a?(Treat::Entities::Entity)
+        args[0] = [args[0]]
+      end
       file_or_value = args[0]
-      options = {}
     else
-      file_or_value = args[0...-1]
-      options = args[-1]
+      file_or_value = args
     end
 
     fv = file_or_value.to_s
 
-    if fv == ''
-      self.new
+    if fv == ''; self.new
     elsif file_or_value.is_a?(Array)
-      from_array(file_or_value, options)
+      from_array(file_or_value)
     elsif file_or_value.is_a?(Hash)
       from_db(file_or_value)
     elsif self == Treat::Entities::Document ||
       (fv.index('yml') || fv.index('yaml') ||
       fv.index('xml') || fv.index('mongo'))
       if fv =~ UriRegexp
-        from_url(fv, options)
+        from_url(fv)
       else
-        from_file(fv, options)
+        from_file(fv)
       end
     elsif self == Treat::Entities::Collection
       if FileTest.directory?(fv)
-        from_folder(fv, options)
+        from_folder(fv)
       else
         create_collection(fv)
       end
@@ -97,19 +97,18 @@ module Treat::Entities::Entity::Buildable
   
   # Build a document from an array
   # of builders.
-  def from_array(array, options)
+  def from_array(array)
     obj = self.new
     array.each do |el|
-      unless el.is_a?(Treat::Entities::Entity)
-        el = el.to_entity 
-      end
+      el = el.to_entity unless el.
+      is_a?(Treat::Entities::Entity)
       obj << el
     end
     obj
   end
 
   # Build a document from an URL.
-  def from_url(url, options)
+  def from_url(url)
     unless self ==
       Treat::Entities::Document
       raise Treat::Exception,
@@ -131,10 +130,8 @@ module Treat::Entities::Entity::Buildable
       raise Treat::Exception,
       "Couldn't download file at #{url}."
     end
-    
-    options[:default_to] ||= 'html'
 
-    e = from_file(f, options)
+    e = from_file(f,'html')
     e.set :url, url.to_s
     e
 
@@ -157,7 +154,7 @@ module Treat::Entities::Entity::Buildable
 
   # Build an entity from a folder with documents.
   # Folders will be searched recursively.
-  def from_folder(folder, options)
+  def from_folder(folder)
 
     return if Reserved.include?(folder)
 
@@ -194,37 +191,36 @@ module Treat::Entities::Entity::Buildable
     Dir[folder + '*'].each do |f|
       if FileTest.directory?(f)
         c2 = Treat::Entities::Collection.
-        from_folder(f, options)
+        from_folder(f)
         c.<<(c2, false) if c2
       else
         c.<<(Treat::Entities::Document.
-        from_file(f, options), false)
+        from_file(f), false)
       end
     end
     
-    c
+    return c
 
   end
 
   # Build a document from a raw or serialized file.
-  def from_file(file, options)
+  def from_file(file,def_fmt=nil)
 
     if file.index('yml') ||
       file.index('yaml') ||
       file.index('xml') ||
       file.index('mongo')
-      from_serialized_file(file, options)
+      from_serialized_file(file)
     else
-      fmt = Treat::Workers::Formatters::Readers::Autoselect.
-      detect_format(file, options[:default_to])
-      options[:_format] = fmt
-      from_raw_file(file, options)
+      fmt = Treat::Workers::Formatters::
+      Readers::Autoselect.detect_format(file,def_fmt)
+      from_raw_file(file, fmt)
     end
 
   end
 
   # Build a document from a raw file.
-  def from_raw_file(file, options)
+  def from_raw_file(file, def_fmt='txt')
 
     unless self ==
       Treat::Entities::Document
@@ -238,7 +234,7 @@ module Treat::Entities::Entity::Buildable
       "Path '#{file}' does not "+
       "point to a readable file."
     end
-
+    options =  {default_format: def_fmt}
     d = Treat::Entities::Document.new
     d.set :file, file
     d.read(:autoselect, options)
@@ -246,33 +242,28 @@ module Treat::Entities::Entity::Buildable
   end
 
   # Build an entity from a serialized file.
-  def from_serialized_file(file, options)
-
-    if file.index('mongo')
-      options[:id] = file.scan(              # Consolidate this
-      /([0-9]+)\.mongo/).first.first
-      from_db(:mongo, options)
-    else
-      unless File.readable?(file)
-        raise Treat::Exception,
-        "Path '#{file}' does not "+
-        "point to a readable file."
-      end
-      doc = Treat::Entities::Document.new
-      doc.set :file, file
-      format = nil
-      if file.index('yml') || file.index('yaml')
-        format = :yaml
-      elsif file.index('xml')
-        f = :xml
-      else
-        raise Treat::Exception,
-        "Unreadable serialized format for #{file}."
-      end
-      doc.unserialize(format, options)
-      doc.children[0].set_as_root!              # Fix this
-      doc.children[0]
+  def from_serialized_file(file)
+    
+    unless File.readable?(file)
+      raise Treat::Exception,
+      "Path '#{file}' does not "+
+      "point to a readable file."
     end
+    doc = Treat::Entities::Document.new
+    doc.set :file, file
+    format = nil
+    if file.index('yml') || 
+      file.index('yaml')
+      format = :yaml
+    elsif file.index('xml')
+      f = :xml
+    else
+      raise Treat::Exception,
+      "Unreadable serialized format for #{file}."
+    end
+    doc.unserialize(format)
+    doc.children[0].set_as_root!              # Fix this
+    doc.children[0]
 
   end
 
@@ -297,14 +288,15 @@ module Treat::Entities::Entity::Buildable
       if folder[-1] == '/'
         folder = folder[0..-2]
       end
-
-      doc_file = folder+ "/#{Time.now.to_f}.txt"
+      
+      now = Time.now.to_f
+      doc_file = folder+ "/#{now}.txt"
       string.force_encoding('UTF-8')
       File.open(doc_file, 'w') do |f|
         f.puts string
       end
 
-      from_raw_file(doc_file, {})
+      from_raw_file(doc_file)
     when :collection
       raise Treat::Exception,
       "Cannot create a " +
@@ -334,6 +326,7 @@ module Treat::Entities::Entity::Buildable
 
   end
 
+  # This should be improved on.
   def check_encoding(string)
     string.encode("UTF-8", undef: :replace) # Fix
   end
