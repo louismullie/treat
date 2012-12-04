@@ -57,6 +57,7 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
       }
     },
 
+=begin
     keywords: {
       document: {
         examples: [
@@ -81,6 +82,7 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
           ]
         }
       },
+=end
 =begin  
     unserialize: {
       examples: [
