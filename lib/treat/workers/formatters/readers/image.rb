@@ -26,8 +26,8 @@ class Treat::Workers::Formatters::Readers::Image
         `ocropus lines2fsts #{tmp}/out`
         `ocropus buildhtml #{tmp}/out > #{tmp}/output.html`
         doc.set :file,  "#{tmp}/output.html"
+        doc.set :format, :html
         doc = doc.read(:html)
-        doc.set :format, 'image'
       end
     end
     
