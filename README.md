@@ -3,7 +3,6 @@
 
 Treat is a toolkit for natural language processing and computational linguistics in Ruby. The Treat project aims to build a language- and algorithm- agnostic NLP framework for Ruby with support for tasks such as document retrieval, text chunking, segmentation and tokenization, natural language parsing, part-of-speech tagging, keyword extraction and named entity recognition. Learn more by taking a [quick tour](https://github.com/louismullie/treat/wiki/Quick-Tour) or by reading the [manual](https://github.com/louismullie/treat/wiki/Manual).
 
-
 **Features**
 
 * Text extractors for PDF, HTML, XML, Word, AbiWord, OpenOffice and image formats (Ocropus).
@@ -17,16 +16,9 @@ Treat is a toolkit for natural language processing and computational linguistics
 * Machine learning (decision tree, multilayer perceptron, LIBLINEAR, LIBSVM).
 * Text retrieval with indexation and full-text search (Ferret).
 
+**Contributing**
 
-**Resources**
-
-* Read the [documentation](http://rubydoc.info/github/louismullie/treat/frames).
-* See how to [install Treat](https://github.com/louismullie/treat/wiki/Installation).
-* Learn how to [use Treat](https://github.com/louismullie/treat/wiki/Manual).
-* Help out by [contributing to the project](https://github.com/louismullie/treat/wiki/Contributing).
-* View a list of [papers](https://github.com/louismullie/treat/wiki/Papers) about tools included in this toolkit.
-* Open an [issue](https://github.com/louismullie/treat/issues).
- 
+I am actively seeking developer to help maintain and expand this project. You can find a list of ideas for contributing to the project [here](https://github.com/louismullie/treat/wiki/Contributing).
 
 **License**
 
