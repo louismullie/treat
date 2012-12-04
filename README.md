@@ -20,6 +20,17 @@ Treat is a toolkit for natural language processing and computational linguistics
 
 I am actively seeking developers that can help maintain and expand this project. You can find a list of ideas for contributing to the project [here](https://github.com/louismullie/treat/wiki/Contributing).
 
+**Authors**
+
+Lead developper: @louismullie [[Twitter](https://twitter.com/LouisMullie)]
+
+Contributors:
+- @bdigital
+- @automatedtendencies
+- @LeFnord
+- @darkphantum
+- @whistlerbrk
+
 **License**
 
 This software is released under the [GPL License](https://github.com/louismullie/treat/wiki/License-Information) and includes software released under the GPL, Ruby, Apache 2.0 and MIT licenses.
