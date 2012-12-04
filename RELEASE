@@ -49,3 +49,8 @@ Treat - Text Retrieval, Extraction and Annotation Toolkit
   * Added support for serialization of documents and data sets to MongoDB.
   * Added specs for most of the core classes.
   * Several bug fixes.
+
+2.0.0rc1
+
+  * MAJOR CHANGE: the old DSL is no longer supported. A new DSL style using
+    lowercase keywords is now used and must be required explicitly.
