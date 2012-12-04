@@ -1,7 +1,8 @@
 {
   taggers: {
     type: :annotator,
-    targets: [:group, :token]
+    targets: [:group, :token],
+    recursive: true
   },
   categorizers: {
     type: :annotator,
