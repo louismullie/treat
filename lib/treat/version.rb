@@ -1,7 +1,7 @@
 module Treat
   
   # The current version of Treat.
-  VERSION = "1.2.0"
+  VERSION = "2.0.0rc1"
   
   # Treat requires Ruby >= 1.9.2
   if RUBY_VERSION < '1.9.2'
