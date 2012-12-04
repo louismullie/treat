@@ -10,6 +10,13 @@ module Treat::Core::DSL
   # a global builder function (entity, word,
   # phrase, punctuation, symbol, list, etc.)
   def self.included(base)
+    self.sweeten_entities(base)
+    self.sweeten_learning(base)
+  end
+  
+  # Map all classes in Treat::Entities to
+  # a global builder function (word, etc.)
+  def self.sweeten_entities(base, on = true)
     Treat.core.entities.list.each do |type|
       kname = type.cc.intern
       mname = type.intern
@@ -21,7 +28,25 @@ module Treat::Core::DSL
         old_mm = instance_method(:method_missing)
         define_method(:method_missing) do |sym,*args,&block|
           return klass.build(*args) if sym == mname
-          return old_mm.bind(self).call(sym,*args,&block)
+          old_mm.bind(self).call(sym,*args,&block)
+        end
+      end
+    end
+  end
+  
+  # Map all classes in the Learning module
+  # to a global builder function. Defines:
+  # dataset, export, feature, tag, problem
+  # question.
+  def self.sweeten_learning(base, on = true)
+    Treat::Learning.constants.each do |kname|
+      mname = kname.downcase
+      klass = Treat::Learning.const_get(kname)
+      base.class_eval do
+        old_mm = instance_method(:method_missing)
+        define_method(:method_missing) do |sym,*args,&block|
+          return klass.new(*args) if sym == mname
+          old_mm.bind(self).call(sym,*args,&block)
         end
       end
     end
