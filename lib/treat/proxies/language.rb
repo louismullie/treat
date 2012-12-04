@@ -29,10 +29,10 @@ module Treat::Proxies
       dlvl = Treat.core.language.detect_at
       dklass = Treat::Entities.const_get(dlvl.cc)
       
-      if self.class.compare_with(
-        dklass) < 1 && has_parent?
+      if self.class.compare_with(dklass) < 1
         anc = ancestor_with_type(dlvl)
         return anc.language if anc
+        return self.parent.language if has_parent?
       end
 
       extractor ||= Treat.workers.
