@@ -21,13 +21,13 @@
         [:entity, :unknown, :email, 
          :url, :symbol, :sentence, 
          :punctuation, :number, 
-         :enclitic, :word, :token, 
+         :enclitic, :word, :token, :group,
          :fragment, :phrase, :paragraph, 
          :title, :zone, :list, :block, 
          :page, :section, :collection, 
          :document],
       order: 
-        [:token, :fragment, :phrase, 
+        [:token, :fragment, :group, 
          :sentence, :zone, :section, 
          :document, :collection]},
       language: {
