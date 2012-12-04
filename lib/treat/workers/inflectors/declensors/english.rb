@@ -21,9 +21,9 @@ class Treat::Workers::Inflectors::Declensors::English
       'option count ("singular" or "plural").'
     end
     string = entity.to_s
-    if options[:count] == 'plural'
+    if options[:count].to_s == 'plural'
       Inflect.plural(string)
-    elsif options[:count] == 'singular'
+    elsif options[:count].to_s == 'singular'
       Inflect.singular(string)
     end
   end

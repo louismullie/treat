@@ -26,7 +26,7 @@ class Treat::Workers::Inflectors::Declensors::Linguistics
     Linguistics.load(entity.language)
     string = entity.to_s
 
-    if options[:count] == 'plural'
+    if options[:count].to_s == 'plural'
       if (entity.has?(:category))
         result = ''
         silence_warnings do
