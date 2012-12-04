@@ -18,7 +18,7 @@ Treat is a toolkit for natural language processing and computational linguistics
 
 **Contributing**
 
-I am actively seeking developer to help maintain and expand this project. You can find a list of ideas for contributing to the project [here](https://github.com/louismullie/treat/wiki/Contributing).
+I am actively seeking developers that can help maintain and expand this project. You can find a list of ideas for contributing to the project [here](https://github.com/louismullie/treat/wiki/Contributing).
 
 **License**
 
