@@ -34,6 +34,7 @@ module Treat::Specs
       self.require_language_files(language)
       Treat::Specs::Workers::Language.
       list.each { |l| l.new(what).run }
+      RSpec::Core::CommandLine.new([]).run($stderr, $stdout)
     end
     
     # Run specs for the core classes.

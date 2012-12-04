@@ -143,7 +143,7 @@ module Treat::Specs::Workers
       does = Treat::Specs::Workers::
       Descriptions[group.method]
       i = 0; n = 0;
-      describe group do
+      rspec_task = RSpec::Core::ExampleGroup.describe(group) do
         context "when it is called on a #{target}" do
           if scenario[:examples].is_a?(Hash) && group.preset_option
             preset_examples = scenario[:examples]
@@ -169,6 +169,7 @@ module Treat::Specs::Workers
           # Check for accuracy.
         end
       end
+      rspec_task.register
       [i, n]
     end
 
