@@ -41,7 +41,7 @@ class Treat::Workers::Lexicalizers::Taggers::Brill
     end
     
     if entity.is_a?(Treat::Entities::Group) && 
-      !entity.parent_sentence)
+      !entity.parent_sentence
         entity.set :tag_set, :penn
     end
     
