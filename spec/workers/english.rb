@@ -175,16 +175,16 @@ class Treat::Specs::Workers::English < Treat::Specs::Workers::Language
         word: {
           examples: {
             synonyms: [
-              ["throw", ["throw", "shed", "cast", "cast_off", "shake_off", "throw_off", "throw_away", "drop", "thrust", "give", "flip", "switch", "project", "contrive", "bewilder", "bemuse", "discombobulate", "hurl", "hold", "have", "make", "confuse", "fox", "befuddle", "fuddle", "bedevil", "confound"],]
+              ["throw", ["throw", "shed", "cast", "cast off", "shake off", "throw off", "throw away", "drop", "thrust", "give", "flip", "switch", "project", "contrive", "bewilder", "bemuse", "discombobulate", "hurl", "hold", "have", "make", "confuse", "fox", "befuddle", "fuddle", "bedevil", "confound"]]
             ],
             antonyms: [
               ["weak", ["strong"]]
             ],
             hypernyms: [
-              ["table", ["array", "furniture", "piece_of_furniture", "article_of_furniture", "tableland", "plateau", "gathering", "assemblage", "fare"]]
+              ["table", ["array", "furniture", "piece of furniture", "article of furniture", "tableland", "plateau", "gathering", "assemblage", "fare"]]
             ],
             hyponyms: [
-              ["furniture", ["baby_bed", "baby's_bed", "bedroom_furniture", "bedstead", "bedframe", "bookcase", "buffet", "counter", "sideboard", "cabinet", "chest_of_drawers", "chest", "bureau", "dresser", "dining-room_furniture", "etagere", "fitment", "hallstand", "lamp", "lawn_furniture", "nest", "office_furniture", "seat", "sectional", "Sheraton", "sleeper", "table", "wall_unit", "wardrobe", "closet", "press", "washstand", "wash-hand_stand"]]
+              ["furniture", ["baby bed", "baby's bed", "bedroom furniture", "bedstead", "bedframe", "bookcase", "buffet", "counter", "sideboard", "cabinet", "chest of drawers", "chest", "bureau", "dresser", "dining-room furniture", "etagere", "fitment", "hallstand", "lamp", "lawn furniture", "nest", "office furniture", "seat", "sectional", "Sheraton", "sleeper", "table", "wall unit", "wardrobe", "closet", "press", "washstand", "wash-hand stand"]]
             ]
           }
         }
