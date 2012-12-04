@@ -6,8 +6,8 @@
   ],
   workers: {
     processors: {
-      segmenters: [:punkt],
-      tokenizers: [],
+      segmenters: [:scalpel],
+      tokenizers: [:ptb,:stanford],
       parsers: [:stanford]
     },
     lexicalizers: {
