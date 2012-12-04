@@ -3,7 +3,7 @@ class Treat::Workers::Formatters::Unserializers::YAML
 
   silence_warnings do
     # Require the Psych YAML parser.
-    # require 'psych'
+    require 'yaml'
   end
   
   # Require date to revive DateTime.
