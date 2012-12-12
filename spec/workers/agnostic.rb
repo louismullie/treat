@@ -1,3 +1,4 @@
+=begin
 class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
 
   # TODO: :tf_idf, :keywords, :classifiers
@@ -103,8 +104,7 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
           preprocessor: lambda { |coll| coll.apply(:index) }
       },
     },
-=end
-=begin
+
     keywords: {
       document: {
         examples: [
@@ -124,7 +124,7 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
         ]
       }
     },
-=end
+
     topic_words: {
       collection: {
         examples: [
@@ -134,4 +134,4 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
     }
   }
 
-end
+=end

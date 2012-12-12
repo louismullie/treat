@@ -41,19 +41,7 @@ namespace :treat do
     require_relative 'spec/helper'
     Treat::Specs::Helper.start_coverage
     Treat::Specs::Helper.run_core_specs
-    Treat::Specs::Helper.run_examples_as(
-    'spec', args.language)
-  end
-  
-  # Runs worker benchmarks for all languages (by 
-  # default), or for a specific language (if supplied).
-  # Also outputs an HTML table 
-  # Syntax: rake treat:benchmark (all languages)
-  # - OR -  rake treat:benchmark[language]
-  task :benchmark, [:language] do |t, args|
-    require_relative 'spec/helper'
-    Treat::Specs::Helper.run_examples_as(
-    'benchmark', args.language)
+    Treat::Specs::Helper.run_language_specs(args.language)
   end
 
 end
