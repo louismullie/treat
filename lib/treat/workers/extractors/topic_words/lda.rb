@@ -54,7 +54,7 @@ class Treat::Workers::Extractors::TopicWords::LDA
     # starting points
     
     Treat.core.verbosity.silence ?
-    silence_stdout { lda.em('random') :
+    silence_stdout { lda.em('random') }  :
     lda.em('random')
     
     # Load the vocabulary.
