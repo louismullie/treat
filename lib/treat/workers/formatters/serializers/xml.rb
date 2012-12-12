@@ -17,7 +17,7 @@ class Treat::Workers::Formatters::Serializers::XML
     string += "#{val}\n</treat>"
     File.open(options[:file], 'w') do |f|
       f.write(string)
-    end; return string
+    end; return options[:file]
   end
   
   def self.recurse(entity, options)
