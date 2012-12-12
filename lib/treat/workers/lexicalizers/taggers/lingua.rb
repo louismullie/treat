@@ -65,9 +65,11 @@ class Treat::Workers::Lexicalizers::Taggers::Lingua
       !entity.parent_sentence
         entity.set :tag_set, :penn
     end
-
+    
     return 'S' if entity.is_a?(Treat::Entities::Sentence)
     return 'P' if entity.is_a?(Treat::Entities::Phrase)
+    return 'F' if entity.is_a?(Treat::Entities::Fragment)
+    return 'G' if entity.is_a?(Treat::Entities::Group)
 
   end
   

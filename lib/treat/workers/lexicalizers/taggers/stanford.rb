@@ -32,11 +32,10 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
       entity.set :tag_set, tag_set
     end
 
-    if entity.is_a?(Treat::Entities::Sentence)
-      return 'S'
-    elsif entity.is_a?(Treat::Entities::Phrase)
-      return 'P'
-    end
+    return 'S' if entity.is_a?(Treat::Entities::Sentence)
+    return 'P' if entity.is_a?(Treat::Entities::Phrase)
+    return 'F' if entity.is_a?(Treat::Entities::Fragment)
+    return 'G' if entity.is_a?(Treat::Entities::Group)
     
     # Handle options and initialize the tagger.
     lang = entity.language
