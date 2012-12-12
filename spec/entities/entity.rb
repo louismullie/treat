@@ -391,11 +391,11 @@ describe Treat::Entities::Entity do
       context "when language detection is disabled " +
       "(Treat.core.detect is set to false)" do
         it "returns the default language (Treat.core.language.default)" do
-           #Treat.core.language.detect = false
-          # Treat.core.language.default = :test
+          Treat.core.language.detect = false
+          Treat.core.language.default = :test
           s = 'Les grands hommes ne sont pas toujours grands, dit un jour Napoleon.'
-          # s.language.should eql :test
-          # Treat.core.language.default = :english
+          s.language.should eql :test
+          Treat.core.language.default = :english
         end
       end
 
