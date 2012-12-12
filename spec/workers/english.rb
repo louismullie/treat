@@ -258,22 +258,6 @@ class English
     end
     
   end
-  
-  describe Treat::Workers::Extractors::Language do
-    before do
-      @entities = ["Obama and Sarkozy will meet in Berlin."]
-      @languages = ["english"]
-    end
-    context "when called on any textual entity" do
-      it "returns the language of the entity" do
-        Treat.core.language.detect = true
-        $workers.extractors.language.each do |extractor|
-          @entities.map(&:language).should eql @languages
-        end
-        Treat.core.language.detect = false
-      end
-    end
-  end
 
   describe Treat::Workers::Extractors::Topics do
     before do
@@ -290,51 +274,108 @@ class English
       end
     end
   end
-=begin
+  
+  describe Treat::Workers::Extractors::Time do
+    before do
+      @expressions = ["october 2006"]
+      @months = [10]
+    end
+    context "when called on a group representing a time expression" do
+      it "returns the DateTime object corresponding to the time" do
+        $workers.extractors.time.each do |extractor|
+          puts @expressions.map(&:time).inspect
+          @expressions.map(&:time).all? { |time| time
+            .is_a?(DateTime) }.should be_true
+          @expressions.map(&:time).map { |time| time.month }
+          .should eql @months
+        end
+      end
+    end
+  end
+  
+  describe Treat::Workers::Extractors::TopicWords do
 
-TODO
+    before do
+      @collections = ["./spec/workers/examples/english/economist"]
+      @topic_words = [["euro", "zone", "european", "mrs", "greece", "chancellor", "berlin", "practice", "german", "germans"], ["bank", "minister", "central", "bajnai", "mr", "hu", "orban", "commission", "hungarian", "government"], ["bank", "mr", "central", "bajnai", "prime", "government", "brussels", "responsibility", "national", "independence"], ["mr", "bank", "central", "policies", "prime", "minister", "today", "financial", "government", "funds"], ["euro", "merkel", "mr", "zone", "european", "greece", "german", "berlin", "sarkozy", "government"], ["mr", "bajnai", "today", "orban", "government", "forced", "independence", "part", "hand", "minister"], ["sarkozy", "mrs", "zone", "euro", "fiscal", "called", "greece", "merkel", "german", "financial"], ["mr", "called", "central", "policies", "financial", "bank", "european", "prime", "minister", "shift"], ["bajnai", "orban", "prime", "mr", "government", "independence", "forced", "commission", "-", "hvg"], ["euro", "sarkozy", "fiscal", "merkel", "mr", "chancellor", "european", "german", "agenda", "soap"], ["mr", "bank", "called", "central", "today", "prime", "government", "minister", "european", "crisis"], ["mr", "fiscal", "mrs", "sarkozy", "merkel", "euro", "summit", "tax", "leaders", "ecb"], ["called", "government", "financial", "policies", "part", "bank", "central", "press", "mr", "president"], ["sarkozy", "merkel", "euro", "mr", "summit", "mrs", "fiscal", "merkozy", "economic", "german"], ["mr", "prime", "minister", "policies", "government", "financial", "crisis", "bank", "called", "part"], ["mr", "bank", "government", "today", "called", "central", "minister", "prime", "issues", "president"], ["mr", "orban", "central", "government", "parliament", "hungarian", "minister", "hu", "personal", "bajnai"], ["government", "called", "central", "european", "today", "bank", "prime", "financial", "part", "deficit"], ["mr", "orban", "government", "hungarian", "bank", "hvg", "minister", "-", "fidesz", "hand"], ["mr", "bank", "european", "minister", "policies", "crisis", "government", "president", "called", "shift"]]
+    end
 
-time: {
-  group: {
-    examples: [
-      ['october 2006', 10]
-    ],
-    generator: lambda { |entity| entity.time.month }
-  }
-},
-
-  topic_words: {
-    collection: {
-      examples: [
-        ["./perf/examples/economist", [""]]
-      ],
-      preprocessor: lambda { |coll| coll.do :chunk, :segment, :tokenize }
-    }
-  },
-  conjugate: {
-    word: {
-      examples: {
-        present_participle: [
-          ["run", "running"]
-        ],
-        infinitive: [
-          ["running", "run"]
-        ]
-      }
-    }
-  },
-  declense: {
-    word: {
-      examples: {
-        singular: [
-          ["men", "man"]
-        ],
-        plural: [
-          ["man", "men"]
-        ]
-      }
-    }
-  }
-}
-=end
+    context "when #topic_words is called on a chunked, segmented and tokenized collection" do
+      it "annotates the collection with the topic words and returns them" do
+        $workers.extractors.topic_words.each do |extractor|
+          @collections.map(&method(:collection))
+          .map { |col| col.apply(:chunk,:segment,:tokenize) }
+          map { |col| col.topic_words }.should eql @topic_words
+        end
+      end
+    end
+  end
+  
+  describe Treat::Workers::Inflectors::Conjugators do
+    before do
+      @infinitives = ["run"]
+      @participles = ["running"]
+    end
+    
+    context "when #present_participle is called on a word or #conjugate " +
+    "is called on a word with option :form set to 'present_participle'" do
+      it "returns the present participle form of the verb" do
+        $workers.inflectors.conjugators.each do |conjugator|
+          @participles.map { |verb| verb
+          .infinitive(conjugator) }
+          .should eql @infinitives
+          @participles.map { |verb| verb.conjugate(
+          conjugator, form: 'infinitive') }
+          .should eql @infinitives
+        end
+      end
+    end
+    
+    context "when #infinitive is called on a word or #conjugate is " +
+    "called on a word with option :form set to 'infinitive'" do
+      it "returns the infinitive form of the verb" do
+        $workers.inflectors.conjugators.each do |conjugator|
+          @infinitives.map { |verb| verb
+          .present_participle(conjugator) }
+          .should eql @participles
+          @infinitives.map { |verb| verb.conjugate(
+          conjugator, form: 'present_participle') }
+          .should eql @participles
+        end
+      end
+    end
+    
+  end
+  
+  describe Treat::Workers::Inflectors::Declensors do
+    before do
+      @singulars = ["man"]
+      @plurals = ["men"]
+    end
+    context "when #plural is called on a word or #declense "+
+    "is called on a word with option :count set to ''" do
+      it "returns the plural form of the word" do
+        $workers.inflectors.declensors.each do |declensor|
+          @singulars.map { |word| word.plural(declensor) }
+          .should eql @plurals
+          @singulars.map { |word| word
+          .declense(declensor, count: 'plural') }
+          .should eql @plurals
+        end
+      end
+    end
+    context "when #singular is called on a word or #declense " +
+    "is called on a word with option :count set to 'singular'" do
+      it "returns the singular form of the word" do
+        $workers.inflectors.declensors.each do |declensor|
+          next if declensor == :linguistics
+          @plurals.map { |word| word.singular(declensor) }
+          .should eql @singulars
+          @singulars.map { |word| word
+          .declense(declensor, count: 'singular') }
+          .should eql @singulars
+        end
+      end
+    end
+  end
 end
