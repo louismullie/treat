@@ -15,7 +15,7 @@ describe Treat::Entities::Collection do
         it "recursively searches the folder for " +
         "files and opens them into a collection of documents" do
           collection = Treat::Entities::Collection.build(@file)
-          collection.size.should eql 5
+          collection.size.should eql 6
         end
 
       end
@@ -40,7 +40,7 @@ describe Treat::Entities::Collection do
         f = Treat.paths.spec + 'workers/examples/english/economist'
         c = Treat::Entities::Collection.build(f)
         c << Treat::Entities::Document.new
-        c.size.should eql 3
+        c.size.should eql 4
       end
 
   end
