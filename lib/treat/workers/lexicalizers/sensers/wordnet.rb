@@ -29,9 +29,15 @@ class Treat::Workers::Lexicalizers::Sensers::Wordnet
     
     category = word.check_has(:category)
     
-    unless options[:nym]
+    if !options[:nym] 
       raise Treat::Exception, "You must supply " +
       "the :nym option (:synonym, :hypernym, etc.)"
+    end
+    
+    if ![:synonyms, :antonyms,
+      :hypernyms, :hyponyms].include?(options[:nym])
+      raise Treat::Exception, "You must supply " +
+      "a valid :nym option (:synonym, :hypernym, etc.)" 
     end
     
     unless ['noun', 'adjective', 'verb'].
