@@ -1,3 +1,21 @@
+$workers = Treat.languages.agnostic.workers
+
+describe Treat::Workers::Extractors::Language do
+  before do
+    @entities = ["Obama and Sarkozy will meet in Berlin."]
+    @languages = ["english"]
+  end
+  context "when called on any textual entity" do
+    it "returns the language of the entity" do
+      Treat.core.language.detect = true
+      $workers.extractors.language.each do |extractor|
+        @entities.map(&:language).should eql @languages
+      end
+      Treat.core.language.detect = false
+    end
+  end
+end
+
 =begin
 class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
 
