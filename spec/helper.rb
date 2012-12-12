@@ -24,7 +24,7 @@ module Treat::Specs
   class Helper
     
     ModuleFiles = [
-      './spec/core/*.rb', 
+      './spec/learning/*.rb',     # FIX - automate
       './spec/entities/*.rb'
     ]
     
