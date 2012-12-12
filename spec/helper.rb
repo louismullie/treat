@@ -15,7 +15,7 @@ module Treat::Specs
   Treat.libraries.reuters.model_path =
   '/ruby/reuters/'
   
-  ModuleFiles = ['./entities/*.rb', './learning/*.rb']
+  ModuleFiles = ['entities/*.rb', 'learning/*.rb']
   
   # Provide helper functions for running specs.
   class Helper
@@ -39,7 +39,9 @@ module Treat::Specs
     
     # Run specs for the core classes.
     def self.run_core_specs
-      files = ModuleFiles.map { |d| Dir.glob(d) }
+      files = ModuleFiles.map do |d|
+        Dir.glob(Treat.paths.spec + d)
+      end
       RSpec::Core::Runner.run(files)
     end
     
