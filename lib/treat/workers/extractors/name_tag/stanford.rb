@@ -25,7 +25,7 @@ class Treat::Workers::Extractors::NameTag::Stanford
     isolated_token = entity.is_a?(Treat::Entities::Token)
     tokens = isolated_token ? [entity] : entity.tokens
 
-    ms = StanfordCoreNLP::Config::Models[:ner][language]
+    ms = StanfordCoreNLP::Config::Models[:ner][language.intern]
     model_path = Treat.libraries.stanford.model_path ||
     (Treat.paths.models + '/stanford/')
     ms = model_path + '/' + 
