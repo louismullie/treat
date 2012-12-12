@@ -45,7 +45,9 @@
           spec: 'spec test files'
         }
       },
-    
+  learning: {
+    list: [:data_set, :export, :feature, :tag, :problem, :question]
+  },
   syntax: { sweetened: false },
 
   verbosity: { debug: false, silence: true}
