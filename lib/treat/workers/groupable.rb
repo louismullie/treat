@@ -69,9 +69,7 @@ module Treat::Workers::Groupable
 
   # Get constants in this module, excluding by
   # default those defined by parent modules.
-  def const_get(const)
-    super(const, false)
-  end
+  def const_get(const); super(const, false); end
 
   # Modify the extended class.
   def self.extended(group)
