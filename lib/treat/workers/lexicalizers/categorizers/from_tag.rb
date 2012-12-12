@@ -28,8 +28,9 @@ class Treat::Workers::Lexicalizers::Categorizers::FromTag
 
     tag = entity.check_has(:tag)
     
-    return 'unknown' if tag.nil? || tag == '' || entity.type == :symbol
-    return 'sentence' if tag == 'S' || entity.type == :sentence
+    return 'unknown' if tag.nil? || tag == ''
+    return 'fragment' if tag == 'F'
+    return 'sentence' if tag == 'S'
     return 'number' if entity.type == :number
     
     return Ptc[entity.to_s] if entity.type == :punctuation
