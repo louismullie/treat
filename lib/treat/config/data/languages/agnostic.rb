@@ -6,7 +6,7 @@
     'jruby-readability', 'whatlanguage',
     'chronic', 'nickel', 'decisiontree',
     'rb-libsvm', 'ruby-fann', 'zip',
-    'tf-idf-similarity', 'narray'
+    'tf-idf-similarity', 'narray', 'fastimage'
   ],
   workers: {
     learners: {
