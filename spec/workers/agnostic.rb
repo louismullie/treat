@@ -39,7 +39,7 @@ describe Treat::Workers::Formatters::Unserializers do
     end
   end
 end
-
+=begin
 visualize: {
   entity: {
     examples: {
