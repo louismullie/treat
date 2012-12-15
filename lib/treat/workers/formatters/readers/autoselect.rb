@@ -12,7 +12,9 @@ class Treat::Workers::Formatters::Readers::Autoselect
   #  - (Symbol) :default_to => format to default to.
   def self.read(document, options = {})
     options = DefaultOptions.merge(options)
-    document.read(detect_format(document.file, options[:default_to]))
+    fmt = detect_format(document.file, options[:default_to])
+    Treat::Workers::Formatters::Readers.
+    const_get(fmt.cc).read(document,options)
   end
   
   def self.detect_format(filename, default_to = nil)
