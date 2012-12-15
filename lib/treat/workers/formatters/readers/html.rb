@@ -6,12 +6,13 @@
 # https://github.com/iterationlabs/ruby-readability
 class Treat::Workers::Formatters::Readers::HTML
   
-  silence_warnings { require 'ruby-readability' }
+  silence_warnings { require 'jruby-readability' }
 
   # By default, don't backup the original HTML
   DefaultOptions = {
     :keep_html => false,
-    :tags => %w[p div h1 h2 h3 ul ol dl dt li]
+    :tags => %w[p div h1 h2 h3 ul ol dl dt li img],
+    
   }
 
   # Read the HTML document and strip it of its markup.
@@ -46,6 +47,7 @@ class Treat::Workers::Formatters::Readers::HTML
       d = Readability::Document.new(html, options)
       document.value = "<h1>#{d.title}</h1>\n" + d.content
       document.set :format, 'html'
+      document.set :images, d.images
     end
 
     document
