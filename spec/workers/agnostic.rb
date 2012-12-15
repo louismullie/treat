@@ -7,12 +7,70 @@ describe Treat::Workers::Extractors::Language do
   end
   context "when called on any textual entity" do
     it "returns the language of the entity" do
-      Treat.core.language.detect = true
+      # Treat.core.language.detect = true
       $workers.extractors.language.each do |extractor|
         @entities.map(&:language).should eql @languages
       end
-      Treat.core.language.detect = false
+      # Treat.core.language.detect = false
     end
+  end
+end
+
+describe Treat::Workers::Formatters::Serializers do
+  before do
+    @texts = ["A test entity"]
+  end
+  context "when #serialize is called on any textual entity" do
+    it "serializes the entity to disk and returns a pointer to the location" do
+      # m = Treat::Entities::Entity.build
+      @texts.map(&:to_entity).map(&:serialize)
+      .map(&method(:entity)).map(&:to_s).should eql @texts
+    end
+  end
+end
+
+describe Treat::Workers::Formatters::Unserializers do
+  before do
+    @texts = ["A te"]
+  end
+  context "when #unserialize is called with a selector on any textual entity" do
+    it "unserializes the file and loads it in the entity" do
+      
+    end
+  end
+end
+
+visualize: {
+  entity: {
+    examples: {
+      standoff: [
+        ["I walked to the store.", "(S\n   (PRP I)   (VBD walked)   (TO to)   (DT the)   (NN store)   (. .))\n"]
+      ],
+      tree: [
+        ["I walked to the store.", "+ Sentence (*)  --- \"I walked to the store.\"  ---  {}   --- [] \n|\n+--> Word (*)  --- \"I\"  ---  {}   --- [] \n+--> Word (*)  --- \"walked\"  ---  {}   --- [] \n+--> Word (*)  --- \"to\"  ---  {}   --- [] \n+--> Word (*)  --- \"the\"  ---  {}   --- [] \n+--> Word (*)  --- \"store\"  ---  {}   --- [] \n+--> Punctuation (*)  --- \".\"  ---  {}   --- [] "]
+      ],
+      dot: [
+        ["I walked to the store.", "graph {\n* [label=\"Sentence\\n\\\"I walked to the store.\\\"\",color=\"\"]\n* [label=\"Word\\n\\\"I\\\"\",color=\"\"]\n* -- *;\n* [label=\"Word\\n\\\"walked\\\"\",color=\"\"]\n* -- *;\n* [label=\"Word\\n\\\"to\\\"\",color=\"\"]\n* -- *;\n* [label=\"Word\\n\\\"the\\\"\",color=\"\"]\n* -- *;\n* [label=\"Word\\n\\\"store\\\"\",color=\"\"]\n* -- *;\n* [label=\"Punctuation\\n\\\".\\\"\",color=\"\"]\n* -- *;\n}"]
+      ]
+    },
+    preprocessor: lambda  { |entity| entity.tokenize },
+    generator: lambda  { |result| result.gsub(/[0-9]+/, '*') }
+  }
+},
+
+
+describe Treat::Workers::Formatters::Visualizers do
+  before do
+    @texts = ["I walked to the store."]
+  end
+  describe "when #visualize is called with the :dot worker" do
+    
+  end
+  describe "when #visualize is called with the :tree worker" do
+    
+  end
+  describe "when #visualize is called with the :dot worker" do
+    
   end
 end
 
@@ -24,15 +82,6 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
 
   Scenarios = {
 
-    # Also tests unserialize.
-    serialize: {
-      entity: {
-        examples: [
-          ["A test entity.", "A test entity."]
-        ],
-        generator: lambda { |selector| Treat::Entities::Entity.build(selector).to_s }
-      }
-    },
     classify: {
       entity: {
         examples: [
@@ -56,23 +105,6 @@ class Treat::Specs::Workers::Agnostic < Treat::Specs::Workers::Language
           ds << w1; ds << w2; ds << w3
           ds.serialize :marshal, file: 'test.marshal'
         end
-      }
-    },
-    visualize: {
-      entity: {
-        examples: {
-          standoff: [
-            ["I walked to the store.", "(S\n   (PRP I)   (VBD walked)   (TO to)   (DT the)   (NN store)   (. .))\n"]
-          ],
-          tree: [
-            ["I walked to the store.", "+ Sentence (*)  --- \"I walked to the store.\"  ---  {}   --- [] \n|\n+--> Word (*)  --- \"I\"  ---  {}   --- [] \n+--> Word (*)  --- \"walked\"  ---  {}   --- [] \n+--> Word (*)  --- \"to\"  ---  {}   --- [] \n+--> Word (*)  --- \"the\"  ---  {}   --- [] \n+--> Word (*)  --- \"store\"  ---  {}   --- [] \n+--> Punctuation (*)  --- \".\"  ---  {}   --- [] "]
-          ],
-          dot: [
-            ["I walked to the store.", "graph {\n* [label=\"Sentence\\n\\\"I walked to the store.\\\"\",color=\"\"]\n* [label=\"Word\\n\\\"I\\\"\",color=\"\"]\n* -- *;\n* [label=\"Word\\n\\\"walked\\\"\",color=\"\"]\n* -- *;\n* [label=\"Word\\n\\\"to\\\"\",color=\"\"]\n* -- *;\n* [label=\"Word\\n\\\"the\\\"\",color=\"\"]\n* -- *;\n* [label=\"Word\\n\\\"store\\\"\",color=\"\"]\n* -- *;\n* [label=\"Punctuation\\n\\\".\\\"\",color=\"\"]\n* -- *;\n}"]
-          ]
-        },
-        preprocessor: lambda  { |entity| entity.tokenize },
-        generator: lambda  { |result| result.gsub(/[0-9]+/, '*') }
       }
     },
 
