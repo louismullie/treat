@@ -15,7 +15,7 @@ module Treat::Entities::Entity::Buildable
   PunctRegexp = /^[[:punct:]\$]+$/
   UriRegexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix
   EmailRegexp = /.+\@.+\..+/
-  Enclitics = %w['ll 'm 're 's 't 've]
+  Enclitics = %w['ll 'm 're 's 't 've 'nt]
 
   # Reserved folder names
   Reserved = ['.index']
