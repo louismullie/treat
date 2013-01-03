@@ -1,3 +1,4 @@
+include Treat::Core::DSL
 $workers = Treat.languages.agnostic.workers
 
 describe Treat::Workers::Extractors::Language do
