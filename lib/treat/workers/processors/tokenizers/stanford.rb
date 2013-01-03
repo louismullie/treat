@@ -29,8 +29,7 @@ class Treat::Workers::Processors::Tokenizers::Stanford
     options = DefaultOptions.merge(options)
     @@tokenizer ||= StanfordCoreNLP.load(:tokenize)
     entity.check_hasnt_children
-    text = ::StanfordCoreNLP::
-    Text.new(entity.to_s)
+    text = ::StanfordCoreNLP::Annotation.new(entity.to_s)
     @@tokenizer.annotate(text)
     add_tokens(entity, text.get(:tokens), options)
   end
