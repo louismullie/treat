@@ -33,8 +33,7 @@ class Treat::Workers::Extractors::NameTag::Stanford
     ms['3class']
 
     @@classifiers[language] ||=
-    StanfordCoreNLP::CRFClassifier.
-    getClassifier(ms)
+    StanfordCoreNLP::CRFClassifier.getClassifier(ms)
 
     token_list = StanfordCoreNLP.get_list(tokens)
     sentence = @@classifiers[language].
