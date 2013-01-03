@@ -5,7 +5,8 @@ module Treat::Workers::Groupable
     bits = self.ancestors[0].to_s.split('::')
     bits.collect! { |bit| bit.ucc }
     file = bits.join('/') + "/#{const.ucc}"
-    if not File.readable?(Treat.paths.lib + "#{file}.rb")
+    path = Treat.paths.lib + "#{file}.rb"
+    if not File.readable?(path)
       raise Treat::Exception,
       "File '#{file}.rb' corresponding to " +
       "requested worker #{self}::#{const} " +
