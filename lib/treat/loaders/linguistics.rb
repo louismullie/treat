@@ -13,7 +13,9 @@ class Treat::Loaders::Linguistics
     silence_warnings do
       # Linguistics throws warnings; silence them.
       silence_warnings { require 'linguistics' }
-      code = language.to_s[0..1].upcase
+      code = language.to_s[0..1].intern
+      Linguistics.use(code)
+      code = code.to_s.upcase
       @@languages[language] ||= 
       ::Linguistics.const_get(code)
     end
