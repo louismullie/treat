@@ -29,7 +29,6 @@ Gem::Specification.new do |s|
   # Development dependencies
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rake'
-  s.add_development_dependency 'terminal-table'
   s.add_development_dependency 'simplecov'
 
 end
