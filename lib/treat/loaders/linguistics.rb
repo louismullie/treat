@@ -10,7 +10,7 @@ class Treat::Loaders::Linguistics
   # to the supplied language; raises an exception
   # if there is no such language class registered.
   def self.load(language)
-    code = language.to_s[0..1].intern
+    code = language.to_s[0..1].intern # FIX
     unless @@languages[language]
       require 'linguistics'
       Linguistics.use(code)
