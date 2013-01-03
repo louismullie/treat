@@ -9,26 +9,24 @@ module Treat::Workers::Categorizable
   @@lookup = {}
 
   # Find a worker group based on method.
-  def lookup(method)
-    @@lookup[method]
-  end
+  def lookup(method); @@lookup[method]; end
 
   def categorize!
     Treat.workers.members.each do |cat|
-      create_category(cat.
-      capitalize.intern,
-      load_category_conf(cat))
+      name = cat.capitalize.intern
+      conf = load_category_conf(cat)
+      create_category(name, conf)
     end
   end
 
   def load_category_conf(name)
-    config = Treat.workers[name]
-    if config.nil?
+    if !Treat.workers.respond_to?(name)
       raise Treat::Exception,
       "The configuration file " +
       "for #{cat_sym} is missing."
+    else
+      Treat.workers[name]
     end
-    config
   end
 
   def create_category(name, conf)
@@ -37,11 +35,11 @@ module Treat::Workers::Categorizable
     conf.each_pair do |group, worker|
       name = group.to_s.cc.intern
       category.module_eval do
-        @@methods = []; def methods; 
-        @@methods; end; def groups; 
-        self.constants; end
+        @@methods = []
+        def methods; @@methods; end
+        def groups; self.constants; end
       end
-      self.create_group(name, worker, category)
+      create_group(name, worker, category)
     end
   end
 
@@ -52,24 +50,6 @@ module Treat::Workers::Categorizable
     self.register_group_presets(group, conf)
     @@methods << group.method
     @@lookup[group.method] = group
-  end
-
-  def bind_group_targets(group)
-    group.targets.each do |entity_type|
-      entity = Treat::Entities.
-      const_get(entity_type.cc)
-      entity.class_eval do
-        add_workers group
-      end
-    end
-  end
-
-  def register_group_presets(group, conf)
-    return unless conf.respond_to? :presets
-    conf.presets.each do |m|
-      @@methods << m
-      @@lookup[m] = group
-    end
   end
 
   def set_group_options(group, conf)
@@ -91,5 +71,23 @@ module Treat::Workers::Categorizable
       end
     end
   end
-  
+
+  def bind_group_targets(group)
+    group.targets.each do |entity_type|
+      entity = Treat::Entities.
+      const_get(entity_type.cc)
+      entity.class_eval do
+        add_workers group
+      end
+    end
+  end
+
+  def register_group_presets(group, conf)
+    return unless conf.respond_to?(:presets)
+    conf.presets.each do |method|
+      @@methods << method
+      @@lookup[method] = group
+    end
+  end
+
 end
