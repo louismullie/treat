@@ -37,7 +37,7 @@ class Treat::Workers::Processors::Parsers::Stanford
     
     tag_set = StanfordCoreNLP::Config::TagSets[lang]
     
-    text = ::StanfordCoreNLP::Text.new(val)
+    text = ::StanfordCoreNLP::Annotation.new(val)
     @@parsers[lang].annotate(text)
 
     text.get(:sentences).each do |s|

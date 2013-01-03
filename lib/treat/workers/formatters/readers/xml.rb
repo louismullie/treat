@@ -30,7 +30,7 @@ class Treat::Workers::Formatters::Readers::XML
     @@xml_reader ||= StanfordCoreNLP.load(
     :tokenize, :ssplit, :cleanxml)
 
-    text = StanfordCoreNLP::Text.new(xml)
+    text = StanfordCoreNLP::Annotation.new(xml)
     @@xml_reader.annotate(text)
 
     text.get(:sentences).each do |sentence|
