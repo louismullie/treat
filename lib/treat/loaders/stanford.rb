@@ -6,19 +6,44 @@ class Treat::Loaders::Stanford
 
   # Load CoreNLP package for a given language.
   def self.load(language = nil)
+    
     return if @@loaded
-    require 'stanford-core-nlp'
+    
     language ||= Treat.core.language.default
-    StanfordCoreNLP.jar_path = 
-    Treat.libraries.stanford.jar_path || 
-    Treat.paths.bin + 'stanford/'
-    StanfordCoreNLP.model_path = 
-    Treat.libraries.stanford.model_path || 
-    Treat.paths.models + 'stanford/'
+
+    jar_path   = Treat.libraries.stanford.jar_path || 
+                 Treat.paths.bin + 'stanford/'
+    model_path = Treat.libraries.stanford.model_path || 
+                 Treat.paths.models + 'stanford/'
+               
+    if !File.directory?(jar_path)
+      raise Treat::Exception, "Looking for Stanford " +
+      "CoreNLP JAR files in #{jar_path}, but it is " +
+      "not a directory. Please set the config option " +
+      "Treat.libraries.stanford.jar_path to a folder " +
+      "containing the Stanford JAR files."
+    end
+    
+    if !File.directory?(model_path)
+      raise Treat::Exception, "Looking for Stanford " +
+      "CoreNLP model files in #{model_path}, but it " +
+      "is not a directory. Please set the config option " +
+      "Treat.libraries.stanford.model_path to a folder " +
+      "containing the Stanford JAR files."
+    end
+    
+    require 'stanford-core-nlp'
+    
+    StanfordCoreNLP.jar_path = jar_path
+    StanfordCoreNLP.model_path = model_path
     StanfordCoreNLP.use(language)
-    StanfordCoreNLP.log_file = '/dev/null' if 
-    Treat.core.verbosity.silence
-    StanfordCoreNLP.bind; @@loaded = true
+    
+    if Treat.core.verbosity.silence
+      StanfordCoreNLP.log_file = '/dev/null' 
+    end
+
+    @@loaded = true
+    
   end
   
 end
