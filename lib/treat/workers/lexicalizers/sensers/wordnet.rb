@@ -35,7 +35,7 @@ class Treat::Workers::Lexicalizers::Sensers::Wordnet
     end
 
     if !options[:nym].is_a?(Symbol)
-      options[:nym] == options[:nym].intern
+      options[:nym] = options[:nym].intern
     end
   
     if ![:synonyms, :antonyms,
