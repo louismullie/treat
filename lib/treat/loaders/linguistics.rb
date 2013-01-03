@@ -10,16 +10,13 @@ class Treat::Loaders::Linguistics
   # to the supplied language; raises an exception
   # if there is no such language class registered.
   def self.load(language)
-    silence_warnings do
-      # Linguistics throws warnings; silence them.
-      silence_warnings { require 'linguistics' }
-      code = language.to_s[0..1].intern
+    code = language.to_s[0..1].intern
+    unless @@languages[language]
+      require 'linguistics'
       Linguistics.use(code)
-      code = code.to_s.upcase
-      @@languages[language] ||= 
-      ::Linguistics.const_get(code)
+      @@languages[language] = true
     end
-    return @@languages[language]
+    code
   rescue RuntimeError
     raise Treat::Exception,
     "Ruby Linguistics does not have a module " +
