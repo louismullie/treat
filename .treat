@@ -1,0 +1,35 @@
+# A boolean value indicating whether to silence 
+# the output of external libraries (e.g. Stanford 
+# tools, Enju, LDA, Ruby-FANN, Schiphol).
+Treat.core.verbosity.silence = false
+
+# A boolean value indicating whether to explain 
+# the steps that Treat is performing.
+Treat.core.verbosity.debug = true
+
+# A boolean value indicating whether Treat should 
+# try to detect the language of newly input text.
+Treat.core.language.detect = false
+
+# A string representing the language to default 
+# to when detection is off.
+Treat.core.language.default = 'english'
+
+# A symbol representing the finest level at which
+# language detection should be performed if language
+# detection is turned on.
+Treat.core.language.detect_at = :document
+
+# The directory containing executables and JAR files.
+Treat.paths.bin = '##_INSTALLER_BIN_PATH_##'
+
+# The directory containing trained models
+Treat.paths.models = '##_INSTALLER_MODELS_PATH_##'
+
+# Mongo database configuration.
+Treat.databases.mongo.db = 'your_database'
+Treat.databases.mongo.host = 'localhost'
+Treat.databases.mongo.port = '27017'
+
+# Include the DSL by default.
+include Treat::Core::DSL
