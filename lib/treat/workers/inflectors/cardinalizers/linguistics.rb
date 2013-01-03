@@ -35,9 +35,9 @@ class Treat::Workers::Inflectors::Cardinalizers::Linguistics
   # More specific options when using :type => :ordinal:
   def self.cardinal(entity, options = {})
     options = DefaultOptions.merge(options)
-    Treat::Loaders::Linguistics.
-    load(options[:language]).
-    numwords(entity.to_s, options)
+    lang = entity.language
+    code = Treat::Loaders::Linguistics.load(lang)
+    entity.to_s.send(code).numwords(options)
   end
   
 end

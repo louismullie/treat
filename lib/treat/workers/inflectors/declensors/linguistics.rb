@@ -17,33 +17,26 @@ class Treat::Workers::Inflectors::Declensors::Linguistics
 
     cat = entity.get(:category)
     return if cat && !POS.include?(cat)
+    
     unless options[:count]
       raise Treat::Exception, 'Must supply ' +
       ':count option ("singular" or "plural").'
     end
-    
-    klass = Treat::Loaders::
-    Linguistics.load(entity.language)
-    string = entity.to_s
 
-    if options[:count].to_s == 'plural'
-      if (entity.has?(:category))
-        result = ''
-        silence_warnings do
-          result = klass.send(
-          :"plural_#{entity.category}",
-          string)
-        end
-        return result
-      else
-        return klass.plural(string)
-      end
-
-    else
+    unless options[:count].to_s == 'plural'
       raise Treat::Exception,
       "Ruby Linguistics does not support " +
       "singularization of words."
     end
+
+    lang = entity.language
+    code = Treat::Loaders::Linguistics.load(lang)
+    obj = entity.to_s.send(code)
+
+    if cat = entity.get(:category)
+      method = "plural_#{cat}"
+      obj.send(method)
+    else; obj.plural; end
 
   end
 

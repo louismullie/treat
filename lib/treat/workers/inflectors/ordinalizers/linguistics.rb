@@ -11,11 +11,11 @@ class Treat::Workers::Inflectors::Ordinalizers::Linguistics
   
   # Desribe a number in words in ordinal form, using the
   # 'linguistics' gem.
-  def self.ordinal(number, options = {})
+  def self.ordinal(entity, options = {})
     options = DefaultOptions.merge(options)
-    klass = Treat::Loaders::
-    Linguistics.load(options[:language])
-    klass.ordinate(number.to_s)
+    lang = entity.language
+    code = Treat::Loaders::Linguistics.load(lang)
+    entity.to_s.send(code).ordinate
   end
   
 end

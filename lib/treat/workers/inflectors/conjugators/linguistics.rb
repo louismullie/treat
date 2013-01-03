@@ -35,13 +35,15 @@ module Treat::Workers::Inflectors::Conjugators::Linguistics
 
     options = Forms[options[:form].to_s] if options[:form]
 
-    klass = Treat::Loaders::Linguistics.load(entity.language)
+    code = Treat::Loaders::Linguistics.load(entity.language)
+    obj = entity.to_s.send(code)
+  
     if options[:mode] == 'infinitive'
-      silence_warnings { klass.infinitive(entity.to_s) }
+      obj.infinitive
     elsif options[:mode] == 'participle' && options[:tense] == 'present'
-      silence_warnings { klass.present_participle(entity.to_s) }
+      obj.present_participle
     elsif options[:count] == 'plural' && options.size == 1
-      silence_warnings { klass.plural_verb(entity.to_s) }
+      obj.plural_verb
     else
       raise Treat::Exception,
       'This combination of modes, tenses, persons ' +
