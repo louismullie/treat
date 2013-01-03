@@ -1,15 +1,15 @@
-# POS tagging using (i) explicit use of both preceding 
-# and following tag contexts via a dependency network 
-# representation, (ii) broad use of lexical features, 
-# including jointly conditioning on multiple consecutive 
-# words, (iii) effective use of priors in conditional 
-# loglinear models, and (iv) ﬁne-grained modeling of 
+# POS tagging using (i) explicit use of both preceding
+# and following tag contexts via a dependency network
+# representation, (ii) broad use of lexical features,
+# including jointly conditioning on multiple consecutive
+# words, (iii) effective use of priors in conditional
+# loglinear models, and (iv) ﬁne-grained modeling of
 # unknown word features.
 #
 # Original paper: Toutanova, Manning, Klein and Singer.
-# 2003. Feature-Rich Part-of-Speech Tagging with a 
-# Cyclic Dependency Network. In Proceedings of the 
-# Conference of the North American Chapter of the 
+# 2003. Feature-Rich Part-of-Speech Tagging with a
+# Cyclic Dependency Network. In Proceedings of the
+# Conference of the North American Chapter of the
 # Association for Computational Linguistics.
 class Treat::Workers::Lexicalizers::Taggers::Stanford
 
@@ -20,6 +20,9 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
   DefaultOptions =  {
     :tagger_model => nil
   }
+
+  # Shortcut for gem config.
+  Config = StanfordCoreNLP::Config
 
   # Tag the word using one of the Stanford taggers.
   def self.tag(entity, options = {})
@@ -36,9 +39,9 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
     return 'P' if entity.is_a?(Treat::Entities::Phrase)
     return 'F' if entity.is_a?(Treat::Entities::Fragment)
     return 'G' if entity.is_a?(Treat::Entities::Group)
-    
+
     # Handle options and initialize the tagger.
-    lang = entity.language
+    lang = entity.language.intern
     init_tagger(lang) unless @@taggers[lang]
     options = get_options(options, lang)
     tokens, t_list = get_token_list(entity)
@@ -46,7 +49,7 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
     # Do the tagging.
     i = 0
     isolated_token = entity.is_a?(Treat::Entities::Token)
-    
+
     @@taggers[lang].apply(t_list).each do |tok|
       tokens[i].set(:tag, tok.tag)
       tokens[i].set(:tag_set,
@@ -59,21 +62,20 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
 
   # Initialize the tagger for a language.
   def self.init_tagger(language)
-    Treat::Loaders::Stanford.load(language)
-    model = StanfordCoreNLP::Config::Models[:pos][language]
-    model_path = Treat.libraries.stanford.model_path || 
-    Treat.paths.models + 'stanford/'
-    model = model_path + StanfordCoreNLP::
-    Config::ModelFolders[:pos] + model
-    @@taggers[language] ||=
-    StanfordCoreNLP::MaxentTagger.new(model)
+    unless @@taggers[language]
+      Treat::Loaders::Stanford.load(language)
+      model = Treat::Loaders::Stanford.find_model(:pos,language)
+      tagger = StanfordCoreNLP::MaxentTagger.new(model)
+      @@taggers[language] = tagger
+    end
+    @@taggers[language]
   end
 
   # Handle the options for the tagger.
   def self.get_options(options, language)
     options = DefaultOptions.merge(options)
     if options[:tagger_model]
-      ::StanfordCoreNLP.set_model('pos.model',
+      StanfordCoreNLP.set_model('pos.model',
       options[:tagger_model])
     end
     options[:tag_set] =

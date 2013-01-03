@@ -3,7 +3,7 @@ class Treat::Loaders::Stanford
   
   # Keep track of whether its loaded or not.
   @@loaded = false
-
+  
   # Load CoreNLP package for a given language.
   def self.load(language = nil)
     
@@ -46,4 +46,13 @@ class Treat::Loaders::Stanford
     
   end
   
+  def self.find_model(name, language)
+    language = language.intern
+    model_file = StanfordCoreNLP::Config::Models[name][language]
+    model_dir  = StanfordCoreNLP::Config::ModelFolders[name]
+    model_path = Treat.libraries.stanford.model_path ||
+    File.join(Treat.paths.models, 'stanford')
+    File.join(model_path, model_dir, model_file)
+  end
+
 end

@@ -29,9 +29,8 @@ class Treat::Workers::Processors::Parsers::Stanford
   # instead of displaying it.
   def self.parse(entity, options = {})
 
-    val = entity.to_s
-    lang = entity.language
-    init(lang, options)
+    val, lang = entity.to_s, entity.language
+    init(lang, options) unless @@parsers[lang]
     
     entity.check_hasnt_children
     
@@ -50,7 +49,7 @@ class Treat::Workers::Processors::Parsers::Stanford
         entity.set :tag, tag_s
         entity.set :tag_opt, tag_opt if tag_opt
         recurse(s.get(:tree).children[0], entity, tag_set)
-        break #######
+        break ####### ? FIX
       else
         recurse(s.get(:tree), entity, tag_set)
       end
@@ -62,26 +61,17 @@ class Treat::Workers::Processors::Parsers::Stanford
   end
 
   def self.init(lang, options)
-    return if @@parsers[lang]
-    
     Treat::Loaders::Stanford.load(lang)
-    
     options = DefaultOptions.merge(options)
-    StanfordCoreNLP.use(lang)
+    StanfordCoreNLP.use(lang.intern)
     if options[:tagger_model]
-      ::StanfordCoreNLP.set_model(
-      'pos.model', options[:tagger_model]
-      )
+      StanfordCoreNLP.set_model('pos.model', options[:tagger_model])
     end
     if options[:parser_model]
-      ::StanfordCoreNLP.set_model(
-      'parser.model', options[:parser_model]
-      )
+      StanfordCoreNLP.set_model('parser.model', options[:parser_model])
     end
-    @@parsers[lang] ||=
-    ::StanfordCoreNLP.load(
-    :tokenize, :ssplit, :pos, :lemma, :parse
-    )
+    annotators = [:tokenize, :ssplit, :pos, :lemma, :parse]
+    @@parsers[lang] = StanfordCoreNLP.load(*annotators)
   end
 
   # Helper method which recurses the tree supplied by
@@ -128,7 +118,7 @@ class Treat::Workers::Processors::Parsers::Stanford
           l = java_child.children[0].to_s
           v = java_child.children[0].value.to_s.strip
           
-          # Mhmhmhmhmhm
+          # Mhmhmhmhmhm FIX!
           val = (l == v) ? v :  l.split(' ')[-1].gsub(')', '')
           ruby_child = Treat::Entities::Token.from_string(val)
         end
