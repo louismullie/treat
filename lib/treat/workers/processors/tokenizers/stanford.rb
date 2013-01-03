@@ -27,8 +27,7 @@ class Treat::Workers::Processors::Tokenizers::Stanford
   # replacing "..." by ``...''. Off by default.
   def self.tokenize(entity, options = {})
     options = DefaultOptions.merge(options)
-    @@tokenizer ||=
-    ::StanfordCoreNLP.load(:tokenize)
+    @@tokenizer ||= StanfordCoreNLP.load(:tokenize)
     entity.check_hasnt_children
     text = ::StanfordCoreNLP::
     Text.new(entity.to_s)
