@@ -5,7 +5,7 @@
     'stanford-core-nlp', 'linguistics',
     'jruby-readability', 'whatlanguage',
     'chronic', 'nickel', 'decisiontree',
-    'rb-libsvm', 'ruby-fann', 'zip',
+    'rb-libsvm', 'ruby-fann', 'zip', 'loggability',
     'tf-idf-similarity', 'narray', 'fastimage'
   ],
   workers: {
