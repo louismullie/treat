@@ -1,18 +1,11 @@
 require 'rspec'
 
 require_relative '../../lib/treat'
-include Treat::Core::DSL
 
-=begin
-Treat.libraries.stanford.model_path = '/ruby/stanford/stanford-core-nlp-all/'
-Treat.libraries.stanford.jar_path = '/ruby/stanford/stanford-core-nlp-all/'
-Treat.libraries.punkt.model_path = '/ruby/punkt/'
-Treat.libraries.reuters.model_path = '/ruby/reuters/'
-=end
+class Treat::Specs::Workers::English
 
-class English
+  @@workers = Treat.languages.english.workers
 
-  $workers = Treat.languages.english.workers
   Treat.core.language.default = 'english'
   Treat.core.language.detect  = false
 
@@ -29,7 +22,7 @@ class English
   
     context "when #segment is called on a zone" do
       it "segments the zone into groups" do
-        $workers.processors.segmenters.each do |segmenter|
+        @@workers.processors.segmenters.each do |segmenter|
           @zones.map { |zone| zone.segment(segmenter) }
           .map { |zone| zone.groups.map(&:to_s) }
           .should eql @groups
@@ -72,7 +65,7 @@ class English
     end
     context "when #tokenize is called on a group" do
       it "separates the group into tokens" do
-        $workers.processors.tokenizers.each do |tokenizer|
+        @@workers.processors.tokenizers.each do |tokenizer|
           @groups.dup.map { |text| group(text).tokenize(tokenizer) }
           .map { |group| group.tokens.map(&:to_s) }
           .should eql @tokens
@@ -88,7 +81,7 @@ class English
     end
     context "when #parse is called on a group" do
       it "tokenizes and parses the group into its syntactical phrases" do
-        $workers.processors.parsers.each do |parser|
+        @@workers.processors.parsers.each do |parser|
           @groups.dup.map { |text| group(text).parse(parser) }
           .map { |group| group.phrases.map(&:to_s)}
           .should eql @phrases
@@ -106,7 +99,7 @@ class English
     end
     context "when #tag is is called on a tokenized group" do
       it "annotates each token in the group with its tag and returns the tag 'G'" do
-        $workers.lexicalizers.taggers.each do |tagger|
+        @@workers.lexicalizers.taggers.each do |tagger|
           @groups.map { |txt| group(txt).tag(tagger) }
           .all? { |tag| tag == 'G' }.should be_true
           @groups.map { |txt| group(txt).tokenize }
@@ -117,7 +110,7 @@ class English
     end
     context "when #tag is called on a token" do
       it "annotates the token with its tag and returns it" do
-        $workers.lexicalizers.taggers.each do |tagger|
+        @@workers.lexicalizers.taggers.each do |tagger|
           @tokens.map { |tok| token(tok).tag(tagger)  }
           .should eql @token_tags
         end
@@ -186,7 +179,7 @@ class English
     context "when #synonym is called on a word, or #sense is "+
     "called on a word with option :nym set to 'hyponyms'" do
       it "returns the hyponyms of the word" do
-        $workers.lexicalizers.sensers.each do |senser|
+        @@workers.lexicalizers.sensers.each do |senser|
           @words.map { |txt| word(txt) }
           .map { |wrd| wrd.hyponyms(senser) }.should eql @hyponyms
           @words.map { |txt| word(txt) }
@@ -199,7 +192,7 @@ class English
     context "when #hypernyms is called on a word or #sense is "+
     "called on a word with option :nym set to 'hyponyms'" do
       it "returns the hyponyms of the word" do
-        $workers.lexicalizers.sensers.each do |senser|
+        @@workers.lexicalizers.sensers.each do |senser|
           @words.map { |txt| word(txt) }
           .map { |wrd| wrd.hypernyms(senser) }.should eql @hypernyms
           @words.map { |txt| word(txt) }
@@ -212,7 +205,7 @@ class English
     context "when #antonyms is called on a word or #sense is" +
     "called on a word with option :nym set to 'antonyms'" do
       it "returns the hyponyms of the word" do
-        $workers.lexicalizers.sensers.each do |senser|
+        @@workers.lexicalizers.sensers.each do |senser|
           @words.map { |txt| word(txt) }
           .map { |wrd| wrd.antonyms(senser) }.should eql @antonyms
           @words.map { |txt| word(txt) }
@@ -225,7 +218,7 @@ class English
     context "when #synonyms is called on a word or #sense is" +
     "called on a word with option :nym set to 'synonyms'" do
       it "returns the hyponyms of the word" do
-        $workers.lexicalizers.sensers.each do |senser|
+        @@workers.lexicalizers.sensers.each do |senser|
           @words.map { |txt| word(txt) }
           .map { |wrd| wrd.synonyms(senser) }.should eql @synonyms
           @words.map { |txt| word(txt) }
@@ -251,7 +244,7 @@ class English
 
     context "when #category is called on a tokenized and tagged group" do
       it "returns a tag corresponding to the group name" do
-        $workers.lexicalizers.categorizers.each do |categorizer|
+        @@workers.lexicalizers.categorizers.each do |categorizer|
           [phrase(@phrase), fragment(@fragment), sentence(@sentence)]
           .map { |grp| grp.apply(:tag).category(categorizer) }
           .should eql @group_categories
@@ -261,7 +254,7 @@ class English
 
     context "when #category is called called on a tagged token" do
       it "returns the category corresponding to the token's tag" do
-        $workers.lexicalizers.categorizers.each do |categorizer|
+        @@workers.lexicalizers.categorizers.each do |categorizer|
           @tokens.map { |tok| token(tok).apply(:tag).category(categorizer) }
           .should eql @token_tags
         end
@@ -281,7 +274,7 @@ class English
 
     context "when #ordinal is called on a number" do
       it "returns the ordinal form (e.g. 'first') of the number" do
-        $workers.inflectors.ordinalizers.each do |ordinalizer|
+        @@workers.inflectors.ordinalizers.each do |ordinalizer|
           @numbers.map { |num| number(num) }
           .map { |num| num.ordinal(ordinalizer) }.should eql @ordinal
         end
@@ -290,7 +283,7 @@ class English
 
     context "when #cardinal is called on a number" do
       it "returns the cardinal form (e.g. 'second' of the number)" do
-        $workers.inflectors.cardinalizers.each do |cardinalizer|
+        @@workers.inflectors.cardinalizers.each do |cardinalizer|
           @numbers.map { |num| number(num) }
           .map { |num| num.cardinal(cardinalizer) }.should eql @cardinal
         end
@@ -306,7 +299,7 @@ class English
     end
     context "when #stem is called on a word" do
       it "annotates the word with its stem and returns the stem" do
-        $workers.inflectors.stemmers.each do |stemmer|
+        @@workers.inflectors.stemmers.each do |stemmer|
           @words.map { |wrd| wrd.stem(stemmer) }.should eql @stems
         end
       end
@@ -321,7 +314,7 @@ class English
 
     context "when #name_tag called on a tokenized group" do
       it "tags each token with its name tag" do
-        $workers.extractors.name_tag.each do |tagger|
+        @@workers.extractors.name_tag.each do |tagger|
           @groups.map { |grp| grp.tokenize.apply(:name_tag) }
           .map { |grp| grp.tokens.map { |t| t.get(:name_tag) } }
           .should eql @tags
@@ -339,7 +332,7 @@ class English
     end
     context "when #topics is called on a chunked, segmented and tokenized document" do
       it "annotates the document with its general topics and returns them" do
-        $workers.extractors.topics.each do |extractor|
+        @@workers.extractors.topics.each do |extractor|
           @files.map { |f| document(f).apply(:chunk, :segment, :tokenize) }
           .map { |doc| doc.topics }.should eql @topics
         end
@@ -354,7 +347,7 @@ class English
     end
     context "when called on a tokenized group representing a time expression" do
       it "returns the DateTime object corresponding to the time" do
-        $workers.extractors.time.each do |extractor|
+        @@workers.extractors.time.each do |extractor|
           puts @expressions.map(&:time).inspect
           @expressions.map(&:time).all? { |time| time
           .is_a?(DateTime) }.should be_true
@@ -374,7 +367,7 @@ class English
     context "when #present_participle is called on a word or #conjugate " +
     "is called on a word with option :form set to 'present_participle'" do
       it "returns the present participle form of the verb" do
-        $workers.inflectors.conjugators.each do |conjugator|
+        @@workers.inflectors.conjugators.each do |conjugator|
           @participles.map { |verb| verb
           .infinitive(conjugator) }
           .should eql @infinitives
@@ -388,7 +381,7 @@ class English
     context "when #infinitive is called on a word or #conjugate is " +
     "called on a word with option :form set to 'infinitive'" do
       it "returns the infinitive form of the verb" do
-        $workers.inflectors.conjugators.each do |conjugator|
+        @@workers.inflectors.conjugators.each do |conjugator|
           @infinitives.map { |verb| verb
           .present_participle(conjugator) }
           .should eql @participles
@@ -409,7 +402,7 @@ class English
     context "when #plural is called on a word, or #declense "+
     "is called on a word with option :count set to 'plural'" do
       it "returns the plural form of the word" do
-        $workers.inflectors.declensors.each do |declensor|
+        @@workers.inflectors.declensors.each do |declensor|
           @singulars.map { |word| word.plural(declensor) }
           .should eql @plurals
           @singulars.map { |word| word
@@ -421,7 +414,7 @@ class English
     context "when #singular is called on a word, or #declense " +
     "is called on a word with option :count set to 'singular'" do
       it "returns the singular form of the word" do
-        $workers.inflectors.declensors.each do |declensor|
+        @@workers.inflectors.declensors.each do |declensor|
           next if declensor == :linguistics
           @plurals.map { |word| word.singular(declensor) }
           .should eql @singulars

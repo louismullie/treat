@@ -1,11 +1,13 @@
 require_relative '../lib/treat'
 
+include Treat::Core::DSL
+  
 module Treat::Specs
 
   require 'rspec'
   
   # Some configuration options for devel.
-=begin
+
   Treat.databases.mongo.db = 'treat_test'
   Treat.libraries.stanford.model_path =
   '/ruby/stanford-core-nlp-minimal/models/'
@@ -15,7 +17,7 @@ module Treat::Specs
   '/ruby/punkt/models/'
   Treat.libraries.reuters.model_path =
   '/ruby/reuters/models/'
-=end
+
   ModuleFiles = ['entities/*.rb', 'learning/*.rb']
   
   # Provide helper functions for running specs.
@@ -26,7 +28,6 @@ module Treat::Specs
       require 'simplecov'
       SimpleCov.start do
         add_filter '/spec/'
-        add_filter '/config/'
         add_group 'Core', 'treat/core'
         add_group 'Entities', 'treat/entities'
         add_group 'Helpers', 'treat/helpers'
