@@ -6,7 +6,7 @@
 # https://github.com/iterationlabs/ruby-readability
 class Treat::Workers::Formatters::Readers::HTML
   
-  silence_warnings { require 'jruby-readability' }
+  silence_warnings { require 'ruby-readability' }
 
   # By default, don't backup the original HTML
   DefaultOptions = {

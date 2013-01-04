@@ -3,7 +3,7 @@
     'nokogiri', 'ferret',
     'bson_ext', 'mongo', 'lda-ruby',
     'stanford-core-nlp', 'linguistics',
-    'jruby-readability', 'whatlanguage',
+    'ruby-readability', 'whatlanguage',
     'chronic', 'nickel', 'decisiontree',
     'rb-libsvm', 'ruby-fann', 'zip', 'loggability',
     'tf-idf-similarity', 'narray', 'fastimage'
