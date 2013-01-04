@@ -1,7 +1,6 @@
 class Treat::Builder
+  include Treat::Core::DSL
   def initialize(&block)
-    i = 'include Treat::Core::DSL'
-    eval(i, block.binding)
-    block.call
+    instance_exec(&block)
   end
 end
