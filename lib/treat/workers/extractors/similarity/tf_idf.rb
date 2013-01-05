@@ -2,12 +2,28 @@
 class Treat::Workers::Extractors::Similarity::TfIdf
 
   require 'tf-idf-similarity'
-
-  @collections = {}
   
-  def self.tf_idf(collection, options={})
+  def self.similarity(entity, options={})
+
+    raise 'Not currently implemented.'
+    
+    unless options[:to] && 
+           options[:to].type == :document
+      raise Treat::Exception, 'Must supply ' +
+      'a document to compare to using ' +
+      'the option :to for this worker.'
+    end
+  
+    unless options[:to].parent_collection && 
+           entity.parent_collection
+      raise Treat::Exception, 'The TF*IDF ' +
+      'similarity algorithm can only be applied ' +
+      'to documents that are inside collections.' 
+    end
+    
     coll = TfIdfSimilarity::Collection.new
-    collection.each_document do |doc|
+    
+    entity.each_document do |doc|
       tdoc = TfIdfSimilarity::Document.new(doc.to_s)
       term_counts = Hash.new(0)
       doc.each_word do |word| 

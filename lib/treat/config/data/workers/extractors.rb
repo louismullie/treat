@@ -27,5 +27,13 @@
   tf_idf: {
     type: :annotator,
     targets: [:word]
+  },
+  similarity: {
+    type: :computer,
+    targets: [:entity]
+  },
+  distance: {
+    type: :computer,
+    targets: [:entity]
   }
 }
