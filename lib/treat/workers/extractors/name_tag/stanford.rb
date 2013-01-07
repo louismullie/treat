@@ -1,7 +1,7 @@
 # Named entity tag extraction using the Stanford NLP
 # Deterministic Coreference Resolver, which implements a
 # multi-pass sieve coreference resolution (or anaphora 
-# resolution) system.
+# resolution) system based on conditional random fields.
 #
 # Original paper: Heeyoung Lee, Yves Peirsman, Angel 
 # Chang, Nathanael Chambers, Mihai Surdeanu, Dan Jurafsky. 
@@ -24,6 +24,9 @@ class Treat::Workers::Extractors::NameTag::Stanford
     
     unless classifier = @@classifiers[language]
       model = Treat::Loaders::Stanford.find_model(:ner, language)
+      unless StanfordCoreNLP.const_defined?('CRFClassifier')
+        StanfordCoreNLP.load_class('CRFClassifier', 'edu.stanford.nlp.ie.crf')
+      end
       classifier = StanfordCoreNLP::CRFClassifier.getClassifier(model)
       @@classifiers[language] = classifier
     end
