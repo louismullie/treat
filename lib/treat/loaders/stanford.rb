@@ -42,6 +42,8 @@ class Treat::Loaders::Stanford
       StanfordCoreNLP.log_file = '/dev/null' 
     end
 
+    StanfordCoreNLP.bind
+    
     @@loaded = true
     
   end
