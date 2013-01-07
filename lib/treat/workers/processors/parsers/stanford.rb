@@ -26,7 +26,8 @@ class Treat::Workers::Processors::Parsers::Stanford
     tag_set = StanfordCoreNLP::Config::TagSets[lang]
     
     list = get_token_list(entity)
-
+    entity.remove_all!
+    
     model_file     = options[:model] || 
     StanfordCoreNLP::Config::Models[:parse][lang]
     
@@ -45,7 +46,8 @@ class Treat::Workers::Processors::Parsers::Stanford
     parser = @@parsers[lang][model_file]
     
     text = parser.apply(list)
-    recurse(text, entity, tag_set)
+    
+    recurse(text.children[0], entity, tag_set)
     entity.set :tag_set, tag_set
 
   end
