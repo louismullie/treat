@@ -4,7 +4,7 @@
     'bson_ext', 'mongo', 'lda-ruby',
     'stanford-core-nlp', 'linguistics',
     'ruby-readability', 'whatlanguage',
-    'chronic', 'nickel', 'decisiontree',
+    'chronic', 'kronic', 'nickel', 'decisiontree',
     'rb-libsvm', 'ruby-fann', 'zip', 'loggability',
     'tf-idf-similarity', 'narray', 'fastimage',
     'fuzzy-string-match', 'levenshtein-ffi'
