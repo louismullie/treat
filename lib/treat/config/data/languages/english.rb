@@ -14,7 +14,7 @@
   ],
   workers: {
     extractors: {
-      time: [:chronic, :ruby, :nickel],
+      time: [:chronic, :kronic, :ruby, :nickel],
       topics: [:reuters],
       name_tag: [:stanford]
     },
