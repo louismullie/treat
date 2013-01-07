@@ -7,7 +7,6 @@ module Treat::Specs
   require 'rspec'
   
   # Some configuration options for devel.
-
   Treat.databases.mongo.db = 'treat_test'
   Treat.libraries.stanford.model_path =
   '/ruby/stanford-core-nlp-minimal/models/'
@@ -17,6 +16,11 @@ module Treat::Specs
   '/ruby/punkt/models/'
   Treat.libraries.reuters.model_path =
   '/ruby/reuters/models/'
+
+  # Mimic the ./lib structure.
+  module Entities; end
+  module Workers; end
+  module Learning; end
 
   ModuleFiles = ['entities/*.rb', 'learning/*.rb']
   
@@ -40,7 +44,7 @@ module Treat::Specs
     end
     
     # Run specs for the core classes.
-    def self.run_core_specs
+    def self.run_library_specs
       files = ModuleFiles.map do |d|
         Dir.glob(Treat.paths.spec + d)
       end

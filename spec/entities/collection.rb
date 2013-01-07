@@ -1,40 +1,42 @@
-describe Treat::Entities::Collection do
+module Treat::Specs::Entities
+  
+  describe Treat::Entities::Collection do
 
-  before :all do
-    @file = Treat.paths.spec + 
-    'workers/examples/english/mathematicians'
-  end
-
-
-  describe "Buildable" do
-
-    describe "#build" do
-
-      context "when supplied with an existing folder name" do
-
-        it "recursively searches the folder for " +
-        "files and opens them into a collection of documents" do
-          collection = Treat::Entities::Collection.build(@file)
-          collection.size.should eql 6
-        end
-
-      end
-
-      context "when supplied a folder name that doesn't exist" do
-
-        it "creates the directory and opens the collection" do
-          f = Treat.paths.spec + 'workers/examples/english/test'
-          c = Treat::Entities::Collection.build(f)
-          FileTest.directory?(f).should eql true
-          c.should be_an_instance_of Treat::Entities::Collection
-          FileUtils.rm_rf(f)
-        end
-      end
+    before :all do
+      @file = Treat.paths.spec +
+      'workers/examples/english/mathematicians'
     end
 
-  end
 
-  describe "#<<" do
+    describe "Buildable" do
+
+      describe "#build" do
+
+        context "when supplied with an existing folder name" do
+
+          it "recursively searches the folder for " +
+          "files and opens them into a collection of documents" do
+            collection = Treat::Entities::Collection.build(@file)
+            collection.size.should eql 6
+          end
+
+        end
+
+        context "when supplied a folder name that doesn't exist" do
+
+          it "creates the directory and opens the collection" do
+            f = Treat.paths.spec + 'workers/examples/english/test'
+            c = Treat::Entities::Collection.build(f)
+            FileTest.directory?(f).should eql true
+            c.should be_an_instance_of Treat::Entities::Collection
+            FileUtils.rm_rf(f)
+          end
+        end
+      end
+
+    end
+
+    describe "#<<" do
 
       it "adds the object to the collection" do
         f = Treat.paths.spec + 'workers/examples/english/economist'
@@ -42,6 +44,8 @@ describe Treat::Entities::Collection do
         c << Treat::Entities::Document.new
         c.size.should eql 4
       end
+
+    end
 
   end
 

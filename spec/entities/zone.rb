@@ -1,43 +1,47 @@
-describe Treat::Entities::Zone do
+module Treat::Specs::Entities
 
-  describe "Buildable" do
+  describe Treat::Entities::Zone do
 
-    describe "#build" do
+    describe "Buildable" do
 
-      context "when called with a section of text" do
+      describe "#build" do
 
-        it "creates a section with the text" do
+        context "when called with a section of text" do
 
-          section = "A title\nFollowed by a fake sentence."
-          s = Treat::Entities::Zone.build(section)
-          s.should be_an_instance_of Treat::Entities::Section
+          it "creates a section with the text" do
+
+            section = "A title\nFollowed by a fake sentence."
+            s = Treat::Entities::Zone.build(section)
+            s.should be_an_instance_of Treat::Entities::Section
+
+          end
 
         end
 
-      end
+        context "when called with a paragraph of text" do
 
-      context "when called with a paragraph of text" do
+          it "creates a paragraph with the text" do
+            paragraph = "Sentence 1. Sentence 2. Sentence 3."
+            p = Treat::Entities::Zone.build(paragraph)
+            p.should be_instance_of Treat::Entities::Paragraph
+          end
 
-        it "creates a paragraph with the text" do
-          paragraph = "Sentence 1. Sentence 2. Sentence 3."
-          p = Treat::Entities::Zone.build(paragraph)
-          p.should be_instance_of Treat::Entities::Paragraph
         end
 
-      end
+        context "when called with a very short text" do
 
-      context "when called with a very short text" do
+          it "creates a title with the text" do
+            title = "A title!"
+            p = Treat::Entities::Zone.build(title)
+            p.should be_instance_of Treat::Entities::Title
+          end
 
-        it "creates a title with the text" do
-          title = "A title!"
-          p = Treat::Entities::Zone.build(title)
-          p.should be_instance_of Treat::Entities::Title
         end
 
       end
 
     end
-    
-  end
 
+  end
+  
 end

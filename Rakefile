@@ -40,7 +40,7 @@ namespace :treat do
   task :spec, [:language] do |t, args|
     require_relative 'spec/helper'
     Treat::Specs::Helper.start_coverage
-    Treat::Specs::Helper.run_core_specs
+    Treat::Specs::Helper.run_library_specs
     Treat::Specs::Helper.run_language_specs(args.language)
   end
 

@@ -1,27 +1,31 @@
-describe Treat::Entities::Phrase do
+module Treat::Specs::Entities
 
-  describe "Buildable" do
+  describe Treat::Entities::Phrase do
 
-    describe "#build" do
+    describe "Buildable" do
 
-      context "when supplied with a sentence" do
+      describe "#build" do
 
-        it "creates a sentence with the text" do
-          sentence = "This is a sentence."
-          s = Treat::Entities::Phrase.build(sentence)
-          s.type.should eql :sentence
-          s.to_s.should eql sentence
+        context "when supplied with a sentence" do
+
+          it "creates a sentence with the text" do
+            sentence = "This is a sentence."
+            s = Treat::Entities::Phrase.build(sentence)
+            s.type.should eql :sentence
+            s.to_s.should eql sentence
+          end
+
         end
 
-      end
+        context "when supplied with a phrase" do
 
-      context "when supplied with a phrase" do
+          it "creates a phrase with the text" do
+            phrase = "this is a phrase"
+            p = Treat::Entities::Phrase.build(phrase)
+            p.type.should eql :phrase
+            p.to_s.should eql phrase
+          end
 
-        it "creates a phrase with the text" do
-          phrase = "this is a phrase"
-          p = Treat::Entities::Phrase.build(phrase)
-          p.type.should eql :phrase
-          p.to_s.should eql phrase
         end
 
       end
