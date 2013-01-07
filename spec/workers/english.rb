@@ -80,7 +80,7 @@ class Treat::Specs::Workers::English
     context "when #parse is called on a group" do
       it "tokenizes and parses the group into its syntactical phrases" do
         @@workers.processors.parsers.each do |parser|
-          @groups.dup.map { |text| group(text).parse(parser) }
+          @groups.dup.map { |text| group(text).tokenize.parse(parser) }
           .map { |group| group.phrases.map(&:to_s)}
           .should eql @phrases
         end
