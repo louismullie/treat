@@ -47,7 +47,6 @@ class Treat::Workers::Extractors::Time::Nickel
     occ.interval : :none
     time_recurrence_interval = interval
 
-
     s = [occ.start_date, occ.start_time]
     ds = [s[0].year, s[0].month, s[0].day] if s[0]
     ts = [s[1].hour, s[1].minute, s[1].second] if s[1]
@@ -75,20 +74,6 @@ class Treat::Workers::Extractors::Time::Nickel
       start_time
     end
     
-  end
-
-  # Keeps the lowest-level time annotations that do
-  # not conflict with a higher time annotation.
-  # Returns true if the entity conflicts with a
-  # higher-level time annotation.
-  def self.remove_time_from_ancestors(entity, time)
-    entity.ancestors_with_type(:phrase).each do |a|
-      next if !a.has?(:time)
-      return false unless a.get(:time).to_s == time.to_s
-      a.unset(:time, :time_recurrence, 
-      :time_recurrence_interval, :end_time)
-    end
-    true
   end
 
 end
