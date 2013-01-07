@@ -17,7 +17,7 @@ module Treat::Specs::Entities
           it "recursively searches the folder for " +
           "files and opens them into a collection of documents" do
             collection = Treat::Entities::Collection.build(@file)
-            collection.size.should eql 6
+            collection.size.should eql 5
           end
 
         end
