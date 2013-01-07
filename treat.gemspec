@@ -30,5 +30,10 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'simplecov'
+  
+  # Post-install message
+  s.post_install_message = %q{Thanks for installing Treat.
+  To complete the installation, run `require treat` in an IRB 
+  terminal, followed by `Treat::Core::Installer.install`. }
 
 end
