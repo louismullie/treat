@@ -1,10 +1,10 @@
-# POS tagging using (i) explicit use of both preceding
-# and following tag contexts via a dependency network
-# representation, (ii) broad use of lexical features,
-# including jointly conditioning on multiple consecutive
-# words, (iii) effective use of priors in conditional
-# loglinear models, and (iv) ﬁne-grained modeling of
-# unknown word features.
+# POS tagging using a maximum entropy model, with (i) 
+# explicit use of both preceding and following tag 
+# contexts via a dependency network representation, 
+# (ii) broad use of lexical features, including jointly 
+# conditioning on multiple consecutive words, (iii) 
+# effective use of priors in conditional loglinear models, 
+# and (iv) ﬁne-grained modeling of unknown word features.
 #
 # Original paper: Toutanova, Manning, Klein and Singer.
 # 2003. Feature-Rich Part-of-Speech Tagging with a
@@ -20,9 +20,6 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
   DefaultOptions =  {
     :tagger_model => nil
   }
-
-  # Shortcut for gem config.
-  Config = StanfordCoreNLP::Config
 
   # Tag the word using one of the Stanford taggers.
   def self.tag(entity, options = {})
@@ -64,6 +61,10 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
   def self.init_tagger(language)
     unless @@taggers[language]
       Treat::Loaders::Stanford.load(language)
+      unless StanfordCoreNLP.const_defined?('MaxentTagger')
+        StanfordCoreNLP.load_class('MaxentTagger', 
+        'edu.stanford.nlp.tagger.maxent')
+      end
       model = Treat::Loaders::Stanford.find_model(:pos,language)
       tagger = StanfordCoreNLP::MaxentTagger.new(model)
       @@taggers[language] = tagger
