@@ -75,7 +75,7 @@ class Treat::Specs::Workers::English
   describe Treat::Workers::Processors::Parsers do
     before do
       @groups = ["A sentence to tokenize."]
-      @phrases = [["A sentence to tokenize.", "A sentence", "to tokenize", "tokenize"]]
+      @phrases = [["A sentence", "to tokenize", "tokenize"]]
     end
     context "when #parse is called on a group" do
       it "tokenizes and parses the group into its syntactical phrases" do
