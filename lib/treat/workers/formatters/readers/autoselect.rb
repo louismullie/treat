@@ -17,10 +17,10 @@ class Treat::Workers::Formatters::Readers::Autoselect
     const_get(fmt.cc).read(document,options)
   end
   
-  def self.detect_format(filename, default_to = nil)
+  def self.detect_format(file, default_to = nil)
     
     default_to ||= DefaultOptions[:default_to]
-    ext = filename.scan(ExtensionRegexp)
+    ext = file.path.scan(ExtensionRegexp)
     ext = (ext.is_a?(Array) && ext[0] && ext[0][0]) ? ext[0][0] : ''
     
     format = ImageExtensions.include?(ext) ? 'image' : ext
