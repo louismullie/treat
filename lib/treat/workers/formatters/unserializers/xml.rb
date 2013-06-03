@@ -65,6 +65,7 @@ class Treat::Workers::Formatters::Unserializers::XML
             value = v
           else
             v = v[1..-1].intern if v[0] == ':'
+            v = ":".intern if v == :''
             v = v.to_i if v =~ /^[0-9]*$/
             v = v.to_f if v =~ /^[0-9\.]*$/
             v = false if v == 'false'
