@@ -100,8 +100,7 @@ module Treat::Entities::Entity::Buildable
   def from_array(array)
     obj = self.new
     array.each do |el|
-      el = el.to_entity unless el.
-      is_a?(Treat::Entities::Entity)
+      el = el.to_entity unless el.is_a?(Treat::Entities::Entity)
       obj << el
     end
     obj
@@ -206,10 +205,9 @@ module Treat::Entities::Entity::Buildable
   # Build a document from a raw or serialized file.
   def from_file(file,def_fmt=nil)
 
-    if file.index('yml') ||
-      file.index('yaml') ||
-      file.index('xml') ||
-      file.index('mongo')
+    if file.index('.yml') ||
+      file.index('.yaml') ||
+      file.index('.xml')
       from_serialized_file(file)
     else
       fmt = Treat::Workers::Formatters::
