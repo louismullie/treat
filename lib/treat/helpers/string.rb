@@ -54,7 +54,7 @@ class Treat::Helpers::String
       if @@cc_cache[o_phrase]
         return @@cc_cache[o_phrase] 
       end
-      if Treat.core.acronyms.include?(phrase)
+      if Treat.core.acronyms.include?(phrase.downcase)
         phrase = phrase.upcase
       else
         phrase.gsub!(Regex) { |a| a.upcase }

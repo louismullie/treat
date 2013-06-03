@@ -7,17 +7,21 @@ module Treat::Specs
   require 'rspec'
   
   # Some configuration options for devel.
-=begin
+
   Treat.databases.mongo.db = 'treat_test'
   Treat.libraries.stanford.model_path =
   '/ruby/stanford-core-nlp-minimal/models/'
   Treat.libraries.stanford.jar_path =
   '/ruby/stanford-core-nlp-minimal/bin/'
+  Treat.libraries.open_nlp.jar_path = 
+  '/ruby/open-nlp-english/bin/'
+  Treat.libraries.open_nlp.model_path =
+  '/ruby/open-nlp-english/models/'
   Treat.libraries.punkt.model_path =
   '/ruby/punkt/models/'
   Treat.libraries.reuters.model_path =
   '/ruby/reuters/models/'
-=end
+
   # Mimic the ./lib structure.
   module Entities; end
   module Workers; end

@@ -15,7 +15,7 @@ module Treat::Workers::Groupable
       require file
       if not self.const_defined?(const)
         raise Treat::Exception,
-        "File #{file} does not define " +
+        "File #{file}.rb does not define " +
         "#{self}::#{const}."
       end
       const_get(const)

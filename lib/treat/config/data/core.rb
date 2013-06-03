@@ -4,7 +4,7 @@
     'abw', 'doc', 'yaml', 'uea',
     'lda', 'pdf', 'ptb', 'dot',
     'ai', 'id3', 'svo', 'mlp',
-    'svm', 'srx'],
+    'svm', 'srx', 'nlp'],
   
   encodings: 
     {language_to_code: {

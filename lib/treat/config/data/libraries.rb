@@ -8,5 +8,9 @@
   stanford: {
     jar_path: nil, 
     model_path: nil
+  },
+  open_nlp: {
+    jar_path: nil,
+    model_path: nil
   }
 }

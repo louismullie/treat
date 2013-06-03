@@ -33,7 +33,7 @@
     processors: {
       parsers: [:stanford],
       segmenters: [:scalpel, :srx, :tactful, :punkt, :stanford],
-      tokenizers: [:ptb, :stanford, :punkt]
+      tokenizers: [:ptb, :stanford, :punkt, :open_nlp]
     }
   },
   stop_words:

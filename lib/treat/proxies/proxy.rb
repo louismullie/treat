@@ -11,14 +11,15 @@ module Treat::Proxies
     def method_missing(sym, *args, &block)
       if [:do, :apply].include?(sym) || 
         Treat::Workers.lookup(sym)
-          to_entity.send(sym, *args)
+        to_entity.send(sym, *args)
       else
         super(sym, *args, &block)
       end
     end
+    
     # Create an unknown type of entity by default.
     def to_entity(builder = nil)
-      Treat::Entities::Unknown(self.to_s)
+      Treat::Entities::Unknown.new(self.to_s)
     end
   end
 
