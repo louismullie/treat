@@ -9,10 +9,10 @@ module Treat::Specs::Entities
           it "opens the file and reads its " +
           "content into a document" do
             f = Treat.paths.spec +
-            'workers/examples/english/mathematicians/leibniz.txt'
+            'workers/examples/english/mathematicians/pythagoras.docx'
             d = Treat::Entities::Document.build(f)
             d.should be_an_instance_of Treat::Entities::Document
-            d.to_s.index('Gottfried Leibniz').should_not eql nil
+            d.to_s.index('Pythagoras of Samos').should_not eql nil
           end
         end
 

@@ -4,6 +4,7 @@ gemspec
 
 gem 'birch'
 gem 'schiphol'
+gem 'yomu'
 
 group :test do
   gem 'rspec'
