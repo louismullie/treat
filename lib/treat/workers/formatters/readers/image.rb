@@ -21,11 +21,6 @@ class Treat::Workers::Formatters::Readers::Image
 
     read = lambda do |doc|
       self.create_temp_dir do |tmp|
-        # `ocropus book2pages #{tmp}/out #{doc.file}`
-        # `ocropus pages2lines #{tmp}/out`
-        # `ocropus lines2fsts #{tmp}/out`
-        # `ocropus buildhtml #{tmp}/out > #{tmp}/output.html`
-
         `ocropus-nlbin -o #{tmp}/out #{doc.file}`
         `ocropus-gpageseg #{tmp}/out/????.bin.png --minscale 2`
         `ocropus-rpred #{tmp}/out/????/??????.bin.png`
@@ -37,15 +32,13 @@ class Treat::Workers::Formatters::Readers::Image
       end
     end
 
-
     Treat.core.verbosity.silence ? silence_stdout {
     read.call(document) } : read.call(document)
 
     document
-
   end
 
-  # Create a dire that gets deleted after execution of the block.
+  # Create a dir that gets deleted after execution of the block.
   def self.create_temp_dir(&block)
     if not FileTest.directory?(Treat.paths.tmp)
       FileUtils.mkdir(Treat.paths.tmp)
