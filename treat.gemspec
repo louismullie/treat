@@ -27,6 +27,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'birch'
   s.add_runtime_dependency 'yomu'
   
+  s.add_runtime_dependency 'open-nlp'
+  s.add_runtime_dependency 'stanford-core-nlp'
   # Development dependencies
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rake'
