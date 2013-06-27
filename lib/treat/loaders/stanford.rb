@@ -3,9 +3,8 @@ require 'treat/loaders/bind_it'
 # A helper class to load the CoreNLP package.
 class Treat::Loaders::Stanford < Treat::Loaders::BindIt
   
-  require 'stanford-core-nlp'
-  
   def self.load(language = nil)
+    require 'stanford-core-nlp'
     super(StanfordCoreNLP, :stanford, language)
   end
 

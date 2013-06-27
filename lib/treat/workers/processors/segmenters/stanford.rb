@@ -4,8 +4,6 @@
 # obtained tokens are then grouped into sentences.
 class Treat::Workers::Processors::Segmenters::Stanford
 
-  Treat::Loaders::Stanford.load
-  
   DefaultOptions = {
     :also_tokenize => false
   }
@@ -24,6 +22,8 @@ class Treat::Workers::Processors::Segmenters::Stanford
   # - (Boolean) :also_tokenize - Whether to also
   # add the tokens as children of the sentence.
   def self.segment(entity, options = {})
+
+    Treat::Loaders::Stanford.load
 
     options = DefaultOptions.merge(options)
     entity.check_hasnt_children

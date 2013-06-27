@@ -48,7 +48,7 @@ class Treat::Workers::Lexicalizers::Taggers::Stanford
     isolated_token = entity.is_a?(Treat::Entities::Token)
 
     @@taggers[lang].apply(t_list).each do |tok|
-      tokens[i].set(:tag, tok.tag)
+      tokens[i].set(:tag, tok.tag.split('-').first)
       tokens[i].set(:tag_set,
       options[:tag_set]) if isolated_token
       return tok.tag if isolated_token

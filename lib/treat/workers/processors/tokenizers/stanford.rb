@@ -7,8 +7,6 @@
 # single forward- and backward- quotes (`` and '') by default.
 class Treat::Workers::Processors::Tokenizers::Stanford
 
-  Treat::Loaders::Stanford.load
-  
   # Default options for the tokenizer.
   DefaultOptions = {
     directional_quotes: false,
@@ -26,6 +24,7 @@ class Treat::Workers::Processors::Tokenizers::Stanford
   # to attempt to get correct directional quotes,
   # replacing "..." by ``...''. Off by default.
   def self.tokenize(entity, options = {})
+    Treat::Loaders::Stanford.load
     options = DefaultOptions.merge(options)
     @@tokenizer ||= StanfordCoreNLP.load(:tokenize)
     entity.check_hasnt_children
