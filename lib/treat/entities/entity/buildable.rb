@@ -47,8 +47,8 @@ module Treat::Entities::Entity::Buildable
     elsif file_or_value.is_a?(Hash)
       from_db(file_or_value)
     elsif self == Treat::Entities::Document ||
-      (fv.index('yml') || fv.index('yaml') ||
-      fv.index('xml') || fv.index('mongo'))
+      (fv.index('.yml') || fv.index('.yaml') ||
+      fv.index('.xml'))
       if fv =~ UriRegexp
         from_url(fv)
       else
