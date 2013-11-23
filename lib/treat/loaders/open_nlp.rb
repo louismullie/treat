@@ -1,4 +1,4 @@
-require 'treat/loaders/bind_it'
+require_relative 'bind_it'
 
 # A helper class to load the OpenNLP package.
 class Treat::Loaders::OpenNLP < Treat::Loaders::BindIt

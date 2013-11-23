@@ -1,4 +1,4 @@
-require 'treat/loaders/bind_it'
+require_relative 'bind_it'
 
 # A helper class to load the CoreNLP package.
 class Treat::Loaders::Stanford < Treat::Loaders::BindIt
