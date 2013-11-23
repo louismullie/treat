@@ -5,6 +5,7 @@ gemspec
 gem 'birch'
 gem 'schiphol'
 gem 'yomu'
+gem 'ruby-readability'
 
 group :test do
   gem 'rspec'
@@ -20,7 +21,6 @@ gem 'open-nlp'
 gem 'stanford-core-nlp'
 gem 'rwordnet'
 gem 'scalpel'
-gem 'ruby-readability'
 gem 'fastimage'
 gem 'decisiontree'
 gem 'whatlanguage'
