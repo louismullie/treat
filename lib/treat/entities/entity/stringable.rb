@@ -58,16 +58,14 @@ module Treat::Entities::Entity::Stringable
    end
    
   # Helper method to implode the string value of the subtree.
-  def implode
+  def implode(value = "")
     
     return @value.dup if !has_children?
     
-    value = ''
-
     each do |child|
       
       if child.is_a?(Treat::Entities::Section)
-        value += "\n\n"
+        value << "\n\n"
       end
       
       if child.is_a?(Treat::Entities::Token) || child.value != ''
@@ -75,14 +73,14 @@ module Treat::Entities::Entity::Stringable
           child.is_a?(Treat::Entities::Enclitic)
           value.strip!
         end
-        value += child.to_s + ' '
+        value << child.to_s + ' '
       else
-        value += child.implode
+        child.implode(value)
       end
       
       if child.is_a?(Treat::Entities::Title) ||
         child.is_a?(Treat::Entities::Paragraph)
-        value += "\n\n"
+        value << "\n\n"
       end
       
     end
