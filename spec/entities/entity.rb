@@ -434,14 +434,15 @@ module Treat::Specs::Entities
           it "guesses the language of the entity" do
 
             Treat.core.language.detect = true
-            a = 'I want to know God\'s thoughts; the rest are details. - Albert Einstein'
-            b = 'El mundo de hoy no tiene sentido, asi que por que deberia pintar cuadros que lo tuvieran? - Pablo Picasso'
-            c = 'Un bon Allemand ne peut souffrir les Francais, mais il boit volontiers les vins de France. - Goethe'
-            d = 'Wir haben die Kunst, damit wir nicht an der Wahrheit zugrunde gehen. - Friedrich Nietzsche'
+            a = 'I want to know God\'s thoughts; the rest are details.' # Albert Einstein
+            b = 'El mundo de hoy no tiene sentido, asi que por que deberia pintar cuadros que lo tuvieran?' # Pablo Picasso
+            c = 'Un bon Allemand ne peut souffrir les Francais, mais il boit volontiers les vins de France.' # Goethe
+            d = 'Wir haben die Kunst, damit wir nicht an der Wahrheit zugrunde gehen.' # Friedrich Nietzsche
+
             a.language.should eql :english
-            #b.language.should eql :spanish
-            #c.language.should eql :french
-            #d.language.should eql :german
+            b.language.should eql :spanish
+            c.language.should eql :french
+            d.language.should eql :german
 
             # Reset default
             Treat.core.language.detect = false
