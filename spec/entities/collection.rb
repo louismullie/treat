@@ -1,5 +1,5 @@
 module Treat::Specs::Entities
-  
+
   describe Treat::Entities::Collection do
 
     before :all do
@@ -17,7 +17,7 @@ module Treat::Specs::Entities
           it "recursively searches the folder for " +
           "files and opens them into a collection of documents" do
             collection = Treat::Entities::Collection.build(@file)
-            collection.size.should eql 5
+            collection.children.size.should eql 5
           end
 
         end
@@ -64,7 +64,7 @@ end
       end
 
     end
-    
+
     describe "#search" do
 
       it "searches an indexed collection for a query " +
@@ -77,7 +77,7 @@ end
 
         docs = collection.search :ferret, :q => 'Newton'
         docs.size.should eql 3
-        
+
         docs.map { |d| d.chunk.title.to_s }.should
         eql [
           "Isaac (Sir) Newton (1642-1727)",
@@ -107,6 +107,6 @@ end
     end
 
   end
-  
+
 end
 =end
