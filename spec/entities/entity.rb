@@ -118,9 +118,8 @@ module Treat::Specs::Entities
 
           Treat::Entities::Entity.call_worker(
           '$'.to_entity, :tag, :lingua,
-          Treat::Workers::Lexicalizers::Taggers, {}).should(
-          eql '$'.tag(:lingua)
-          )
+          Treat::Workers::Lexicalizers::Taggers, {}).
+          should  eql '$'.tag(:lingua)
 
         end
 
@@ -303,34 +302,29 @@ module Treat::Specs::Entities
       describe "#to_s" do
         it "returns the string value of the " +
         "entity or its full subtree" do
-          @paragraph.to_s.should(
-            eql 'The lazy fox is running.'
-          )
+          @paragraph.to_s.
+          should eql 'The lazy fox is running.'
           @noun.to_s.should eql 'fox'
-          @enc_phrase.to_s.should(
-            eql 'It\'s hot'
-          )
+          @enc_phrase.to_s.
+          should eql 'It\'s hot'
         end
       end
 
       describe "#inspect" do
         it "returns an informative string " +
         "concerning the entity" do
-          @paragraph.inspect.should(
-            be_an_instance_of String
-          )
+          @paragraph.inspect.
+          should be_an_instance_of String
         end
       end
 
       describe "#short_value" do
         it "returns a shortened version of the " +
         "entity's string value" do
-          @paragraph.short_value.should(
-            eql 'The lazy fox is running.'
-          )
-          @enc_phrase.short_value.should(
-            eql 'It\'s hot'
-          )
+          @paragraph.short_value.
+          should eql 'The lazy fox is running.'
+          @enc_phrase.short_value.
+          should eql 'It\'s hot'
         end
       end
 
