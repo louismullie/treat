@@ -210,8 +210,7 @@ module Treat::Entities::Entity::Buildable
       file.index('.xml')
       from_serialized_file(file)
     else
-      fmt = Treat::Workers::Formatters::
-      Readers::Autoselect.detect_format(file,def_fmt)
+      fmt = Treat::Workers::Formatters::Readers::Autoselect.detect_format(file,def_fmt)
       from_raw_file(file, fmt)
     end
 

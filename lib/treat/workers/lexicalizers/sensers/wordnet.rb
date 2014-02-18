@@ -60,8 +60,7 @@ class Treat::Workers::Lexicalizers::Sensers::Wordnet
     
     lemma.synsets.each do |synset|
       synsets << 
-      Treat::Workers::Lexicalizers::
-      Sensers::Wordnet::Synset.new(synset)
+      Treat::Workers::Lexicalizers::Sensers::Wordnet::Synset.new(synset)
     end
     
     ((synsets.collect do |ss|

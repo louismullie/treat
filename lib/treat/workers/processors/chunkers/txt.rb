@@ -12,16 +12,13 @@ class Treat::Workers::Processors::Chunkers::TXT
     zones.each do |zone|
       zone.strip!
       next if zone == ''
-      c = Treat::Entities::
-      Zone.from_string(zone)
+      c = Treat::Entities::Zone.from_string(zone)
       if c.type == :title
         if current.type == :section
           current = current.parent
-          current = entity << Treat::
-          Entities::Section.new
+          current = entity << Treat::Entities::Section.new
         else
-          current = entity << Treat::
-          Entities::Section.new
+          current = entity << Treat::Entities::Section.new
         end
       end
       current << c
