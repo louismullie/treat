@@ -33,6 +33,24 @@ module Treat::Specs::Entities
       @adj_phrase << @adj
       @verb_phrase << [@aux, @verb]
 
+      @enc_phrase = Treat::Entities::Phrase.new
+      @enc_noun_phrase = Treat::Entities::Phrase.new
+      @enc_noun_phrase.set :tag, 'NP'
+      @enc_verb_phrase = Treat::Entities::Phrase.new
+      @enc_verb_phrase.set :tag, 'VP'
+      @enc_pronoun = Treat::Entities::Word.new('It')
+      @enc_pronoun.set :category, 'pronoun'
+      @enc_pronoun.set :tag, 'PRP'
+      @enc_enclitic = Treat::Entities::Enclitic.new('\'s')
+      @enc_enclitic.set :category, 'verb'
+      @enc_enclitic.set :tag, 'VBZ'
+      @enc_adj = Treat::Entities::Word.new('hot')
+      @enc_adj.set :category, 'adjectival'
+      @enc_adj.set :tag, 'ADJP'
+
+      @enc_noun_phrase << @enc_pronoun
+      @enc_verb_phrase << [ @enc_enclitic, @enc_adj ]
+      @enc_phrase << [ @enc_noun_phrase, @enc_verb_phrase ]
     end
 
 
@@ -67,7 +85,7 @@ module Treat::Specs::Entities
       end
 
 =begin
-    
+
     describe "#frequency" do
 
       it "returns the frequency of the entity's value in the root" do
@@ -82,9 +100,9 @@ module Treat::Specs::Entities
       it "returns the position of the entity's value "+
          "in the supplied parent type, or root if nil" do
            @noun_phrase.frequency_in(:sentence).should eql 1
-          
+
       end
-      
+
     end
 
 =end
@@ -100,8 +118,8 @@ module Treat::Specs::Entities
 
           Treat::Entities::Entity.call_worker(
           '$'.to_entity, :tag, :lingua,
-          Treat::Workers::Lexicalizers::Taggers, {}).should
-          eql '$'.tag(:lingua)
+          Treat::Workers::Lexicalizers::Taggers, {}).
+          should  eql '$'.tag(:lingua)
 
         end
 
@@ -284,25 +302,29 @@ module Treat::Specs::Entities
       describe "#to_s" do
         it "returns the string value of the " +
         "entity or its full subtree" do
-          @paragraph.to_s.should
-          eql 'The lazy fox is running.'
+          @paragraph.to_s.
+          should eql 'The lazy fox is running.'
           @noun.to_s.should eql 'fox'
+          @enc_phrase.to_s.
+          should eql 'It\'s hot'
         end
       end
 
       describe "#inspect" do
         it "returns an informative string " +
         "concerning the entity" do
-          @paragraph.inspect.should
-          be_an_instance_of String
+          @paragraph.inspect.
+          should be_an_instance_of String
         end
       end
 
       describe "#short_value" do
         it "returns a shortened version of the " +
         "entity's string value" do
-          @paragraph.short_value.should
-          eql 'The lazy fox is running.'
+          @paragraph.short_value.
+          should eql 'The lazy fox is running.'
+          @enc_phrase.short_value.
+          should eql 'It\'s hot'
         end
       end
 
@@ -406,14 +428,15 @@ module Treat::Specs::Entities
           it "guesses the language of the entity" do
 
             Treat.core.language.detect = true
-            a = 'I want to know God\'s thoughts; the rest are details. - Albert Einstein'
-            b = 'El mundo de hoy no tiene sentido, asi que por que deberia pintar cuadros que lo tuvieran? - Pablo Picasso'
-            c = 'Un bon Allemand ne peut souffrir les Francais, mais il boit volontiers les vins de France. - Goethe'
-            d = 'Wir haben die Kunst, damit wir nicht an der Wahrheit zugrunde gehen. - Friedrich Nietzsche'
+            a = 'I want to know God\'s thoughts; the rest are details.' # Albert Einstein
+            b = 'El mundo de hoy no tiene sentido, asi que por que deberia pintar cuadros que lo tuvieran?' # Pablo Picasso
+            c = 'Un bon Allemand ne peut souffrir les Francais, mais il boit volontiers les vins de France.' # Goethe
+            d = 'Wir haben die Kunst, damit wir nicht an der Wahrheit zugrunde gehen.' # Friedrich Nietzsche
+
             a.language.should eql :english
-            #b.language.should eql :spanish
-            #c.language.should eql :french
-            #d.language.should eql :german
+            b.language.should eql :spanish
+            c.language.should eql :french
+            d.language.should eql :german
 
             # Reset default
             Treat.core.language.detect = false

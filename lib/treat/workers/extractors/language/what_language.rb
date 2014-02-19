@@ -1,9 +1,9 @@
 # Language detection using a probabilistic algorithm
-# that checks for the presence of words with Bloom 
+# that checks for the presence of words with Bloom
 # filters built from dictionaries for each language.
 #
-# Original paper: Grothoff. 2007. A Quick Introduction to 
-# Bloom Filters. Department of Computer Sciences, Purdue 
+# Original paper: Grothoff. 2007. A Quick Introduction to
+# Bloom Filters. Department of Computer Sciences, Purdue
 # University.
 class Treat::Workers::Extractors::Language::WhatLanguage
 
@@ -35,7 +35,7 @@ class Treat::Workers::Extractors::Language::WhatLanguage
 
     options = DefaultOptions.merge(options)
 
-    @@detector ||= ::WhatLanguage.new(:possibilities)
+    @@detector ||= ::WhatLanguage.new(:all)
     possibilities = @@detector.process_text(entity.to_s)
     lang = {}
 
