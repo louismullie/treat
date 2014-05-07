@@ -1,5 +1,5 @@
 [![Build Status](https://secure.travis-ci.org/louismullie/treat.png)](http://travis-ci.org/#!/louismullie/treat)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/louismullie/treat)
+[![Code Climate](https://codeclimate.com/github/louismullie/treat.png)](https://codeclimate.com/github/louismullie/treat)
 
 ![Treat Logo](http://www.louismullie.com/treat/treat-logo.jpg)
 
