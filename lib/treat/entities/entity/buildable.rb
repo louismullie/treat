@@ -17,6 +17,9 @@ module Treat::Entities::Entity::Buildable
   EmailRegexp = /.+\@.+\..+/
   Enclitics = %w['ll 'm 're 's 't 've 'nt]
 
+  # Accepted formats of serialized files
+  AcceptedFormats = ['.xml', '.yml', '.yaml', '.mongo']
+
   # Reserved folder names
   Reserved = ['.index']
 
@@ -24,7 +27,7 @@ module Treat::Entities::Entity::Buildable
   # a string, numeric,folder, or file name
   # representing a raw or serialized file).
   def build(*args)
-    
+
     # This probably needs some doc.
     if args.size == 0
       file_or_value = ''
@@ -46,9 +49,7 @@ module Treat::Entities::Entity::Buildable
       from_array(file_or_value)
     elsif file_or_value.is_a?(Hash)
       from_db(file_or_value)
-    elsif self == Treat::Entities::Document ||
-      (fv.index('.yml') || fv.index('.yaml') ||
-      fv.index('.xml'))
+    elsif self == Treat::Entities::Document || (is_serialized_file?(fv))
       if fv =~ UriRegexp
         from_url(fv)
       else
@@ -94,7 +95,7 @@ module Treat::Entities::Entity::Buildable
     end
     e
   end
-  
+
   # Build a document from an array
   # of builders.
   def from_array(array)
@@ -118,7 +119,7 @@ module Treat::Entities::Entity::Buildable
     begin
       folder = Treat.paths.files
       if folder[-1] == '/'
-        folder = folder[0..-2] 
+        folder = folder[0..-2]
       end
       f = Schiphol.download(url,
       download_folder: folder,
@@ -178,15 +179,15 @@ module Treat::Entities::Entity::Buildable
 
     c = Treat::Entities::Collection.new(folder)
     folder += '/' unless folder[-1] == '/'
-    
+
     if !FileTest.directory?(folder)
       FileUtils.mkdir(folder)
     end
-    
+
     c.set :folder, folder
     i = folder + '/.index'
     c.set :index, i if FileTest.directory?(i)
-    
+
     Dir[folder + '*'].each do |f|
       if FileTest.directory?(f)
         c2 = Treat::Entities::Collection.
@@ -197,7 +198,7 @@ module Treat::Entities::Entity::Buildable
         from_file(f), false)
       end
     end
-    
+
     return c
 
   end
@@ -205,9 +206,7 @@ module Treat::Entities::Entity::Buildable
   # Build a document from a raw or serialized file.
   def from_file(file,def_fmt=nil)
 
-    if file.index('.yml') ||
-      file.index('.yaml') ||
-      file.index('.xml')
+    if is_serialized_file?(file)
       from_serialized_file(file)
     else
       fmt = Treat::Workers::Formatters::Readers::Autoselect.detect_format(file,def_fmt)
@@ -240,7 +239,7 @@ module Treat::Entities::Entity::Buildable
 
   # Build an entity from a serialized file.
   def from_serialized_file(file)
-    
+
     unless File.readable?(file)
       raise Treat::Exception,
       "Path '#{file}' does not "+
@@ -249,11 +248,11 @@ module Treat::Entities::Entity::Buildable
     doc = Treat::Entities::Document.new
     doc.set :file, file
     format = nil
-    if file.index('yml') || 
-      file.index('yaml')
+    if File.extname(file) == '.yml' ||
+       File.extname(file) == '.yaml'
       format = :yaml
-    elsif file.index('xml')
-      f = :xml
+    elsif File.extname(file) == '.xml'
+      format = :xml
     else
       raise Treat::Exception,
       "Unreadable serialized format for #{file}."
@@ -261,7 +260,10 @@ module Treat::Entities::Entity::Buildable
     doc.unserialize(format)
     doc.children[0].set_as_root!              # Fix this
     doc.children[0]
+  end
 
+  def is_serialized_file?(path_to_check)
+    (AcceptedFormats.include? File.extname(path_to_check)) && (File.file?(path_to_check))
   end
 
   def from_db(hash)
@@ -285,7 +287,7 @@ module Treat::Entities::Entity::Buildable
       if folder[-1] == '/'
         folder = folder[0..-2]
       end
-      
+
       now = Time.now.to_f
       doc_file = folder+ "/#{now}.txt"
       string.force_encoding('UTF-8')
@@ -383,7 +385,7 @@ module Treat::Entities::Entity::Buildable
     end
 
   end
-  
+
   def create_collection(fv)
     FileUtils.mkdir(fv)
     Treat::Entities::Collection.new(fv)
