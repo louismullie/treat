@@ -36,7 +36,11 @@ class Treat::Loaders::BindIt
     klass.use language
     
     if Treat.core.verbosity.silence
-      klass.log_file = '/dev/null' 
+      if Gem.win_platform?
+        klass.log_file = 'NUL'
+      else
+        klass.log_file = '/dev/null'
+      end
     end
 
     klass.bind
