@@ -1,2 +1,2 @@
---format s -c
+--format d -c
 --order rand
