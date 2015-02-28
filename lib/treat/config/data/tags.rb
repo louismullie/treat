@@ -182,7 +182,7 @@
 
       'Punctuation, semicolon', ['PUN', '.', '.', '', '', 'PN'],
       'Puncutation, colon or ellipsis', ['PUN', ':', ':'],
-      'Punctuationm, comma', ['PUN', ',', ',', '$,'],
+      'Punctuation, comma', ['PUN', ',', ',', '$,'],
       'Punctuation, dash', ['PUN', '-', '-'],
       'Punctuation, dollar sign', ['PUN', '', '$'],
       'Punctuation, left bracket', ['PUL', '(', '(', '$('],
