@@ -15,7 +15,18 @@ module Treat::Entities::Entity::Buildable
   PunctRegexp = /^[[:punct:]\$]+$/
   UriRegexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix
   EmailRegexp = /.+\@.+\..+/
-  Enclitics = %w['ll 'm 're 's 't 've n't]
+  Enclitics = [
+              # EXAMPLE:
+    "'d",     # I'd         => I would
+    "'ll",    # I'll        => I will
+    "'m",     # I'm         => I am
+    "'re",    # We're       => We are
+    "'s",     # There's     => There is
+              # Let's       => Let us
+    "'t",     # 'Twas       => Archaic ('Twas the night)
+    "'ve",    # They've     => They have
+    "n't"     # Can't       => Can not
+  ]
 
   # Accepted formats of serialized files
   AcceptedFormats = ['.xml', '.yml', '.yaml', '.mongo']
