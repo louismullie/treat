@@ -20,9 +20,6 @@ class Treat::Workers::Lexicalizers::Sensers::Wordnet
   # Require an adaptor for Wordnet synsets.
   require_relative 'wordnet/synset'
 
-  # Noun, adjective and verb indexes.
-  @@indexes = {}
-
   # Obtain lexical information about a word using the
   # ruby 'wordnet' gem.
   def self.sense(word, options = nil)
@@ -49,9 +46,9 @@ class Treat::Workers::Lexicalizers::Sensers::Wordnet
       return []
     end
 
-    cat = category.to_s.capitalize
+    cat = abbreviate(category)
 
-    lemma = ::WordNet::Lemma.find(word.value.downcase, cat.to_sym)
+    lemma = ::WordNet::Lemma.find(word.value.downcase, cat)
 
     return [] if lemma.nil?
     synsets = []
@@ -66,6 +63,16 @@ class Treat::Workers::Lexicalizers::Sensers::Wordnet
     end - [word.value]).
     flatten).uniq.map do |token|
       token.gsub('_', ' ')
+    end
+  end
+
+  def self.abbreviate category
+    if category == 'adjective'
+      :adj
+    elsif category == 'adverb'
+      :adv
+    else
+      category.to_sym
     end
   end
 
