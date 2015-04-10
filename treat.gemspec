@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   
   # Post-install message
   s.post_install_message = %q{Thanks for installing Treat.
-  To complete the installation, run `require treat` in an IRB 
+  To complete the installation, run `require 'treat'` in an IRB 
   terminal, followed by `Treat::Core::Installer.install`. }
 
 end
