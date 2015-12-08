@@ -26,7 +26,7 @@
       'Verb phrase', ['', '', 'VP', '', '', ''],
       'Inverted yes/no question', ['', '', 'SQ', '', '', ''],
       'Wh adjective phrase', ['', '', 'WHADJP', '', '', ''],
-      'Wh adverb phrase', ['', '', 'WHAVP', '', '', ''],
+      'Wh adverb phrase', ['', '', 'WHADVP', '', '', ''],
       'Wh noun phrase', ['', '', 'WHNP', '', '', ''],
       'Wh prepositional phrase', ['', '', 'WHPP', '', '', ''],
       'Unknown', ['', '', 'X', '', '', ''],
