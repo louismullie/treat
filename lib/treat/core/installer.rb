@@ -1,11 +1,11 @@
 # A dependency manager for Treat language plugins.
 # Usage: Treat::Installer.install('language')
 module Treat::Core::Installer
-  
+
   require 'schiphol'
 
   # Address of the server with the files.
-  Server = 'www.louismullie.com'
+  Server = 's3.amazonaws.com/static-public-assets'
 
   # Filenames for the Stanford packages.
   StanfordPackages = {
