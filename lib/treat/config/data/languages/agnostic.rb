@@ -1,7 +1,6 @@
 {
   dependencies: [
-    'nokogiri', 'ferret',
-    'bson_ext', 'mongo', 'lda-ruby',
+    'ferret', 'bson_ext', 'mongo', 'lda-ruby',
     'stanford-core-nlp', 'linguistics',
     'ruby-readability', 'whatlanguage',
     'chronic', 'kronic', 'nickel', 'decisiontree',

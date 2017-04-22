@@ -6,6 +6,7 @@ gem 'birch'
 gem 'schiphol'
 gem 'yomu'
 gem 'ruby-readability'
+gem 'nokogiri'
 
 group :test do
   gem 'rspec'
