@@ -23,7 +23,7 @@ module Treat::Core::Installer
   
   # Install required dependencies and optional
   # dependencies for a specific language.
-  def self.install(language = 'english')
+  def self.install(language = 'english', download_options = {})
     
     # Require the Rubygem dependency installer.
     silence_warnings do
@@ -52,7 +52,7 @@ module Treat::Core::Installer
       begin
         Gem::Specification.find_by_name('punkt-segmenter')
         title "Downloading models for the Punkt segmenter for the #{l}."
-        download_punkt_models(language)
+        download_punkt_models(language, download_options)
       rescue Gem::LoadError; end
 
       # If stanford is installed, download models.
@@ -61,7 +61,7 @@ module Treat::Core::Installer
         title "Download Stanford Core NLP JARs and " +
         "model files for the the #{l}.\n\n"
         package = (language == :english) ? :english : :all
-        download_stanford(package)
+        download_stanford(package, download_options)
       rescue Gem::LoadError; end
 
     rescue Errno::EACCES => e
@@ -91,13 +91,12 @@ module Treat::Core::Installer
     end
   end
 
-  def self.download_stanford(package = :minimal)
+  def self.download_stanford(package = :minimal, options = {})
     
     f = StanfordPackages[package]
     url = "http://#{Server}/treat/#{f}"
-    loc = Schiphol.download(url, 
-      download_folder: Treat.paths.tmp
-    )
+    options.merge(download_folder: Treat.paths.tmp)
+    loc = Schiphol.download(url, options)
     puts "- Unzipping package ..."
     dest = File.join(Treat.paths.tmp, 'stanford')
     unzip_stanford(loc, dest)
@@ -141,14 +140,13 @@ module Treat::Core::Installer
     
   end
 
-  def self.download_punkt_models(language)
+  def self.download_punkt_models(language, options = {})
 
     f = "#{language}.yaml"
     dest = "#{Treat.paths.models}punkt/"
     url = "http://#{Server}/treat/punkt/#{f}"
-    loc = Schiphol.download(url, 
-      download_folder: Treat.paths.tmp
-    )
+    options.merge(download_folder: Treat.paths.tmp)
+    loc = Schiphol.download(url, options)
     unless File.readable?(dest)
       puts "- Creating directory models/punkt ..."
       FileUtils.mkdir_p(File.absolute_path(dest))

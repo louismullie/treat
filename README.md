@@ -1,3 +1,6 @@
+**Fork Changes**
+Allow Treat::Core::Installer.install to accept schiphol download options, eg. suppress progress bar for some terminals
+
 [![Build Status](https://secure.travis-ci.org/louismullie/treat.png)](http://travis-ci.org/#!/louismullie/treat)
 [![Code Climate](https://codeclimate.com/github/louismullie/treat.png)](https://codeclimate.com/github/louismullie/treat)
 
